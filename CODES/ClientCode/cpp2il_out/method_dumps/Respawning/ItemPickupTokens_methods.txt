@@ -1,0 +1,158 @@
+Type: ItemPickupTokens
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Respawning.ItemPickupTokens
+	static System.Void Init()
+		System.Action`3<ReferenceHub,InventorySystem.Items.ItemBase,InventorySystem.Items.Pickups.ItemPickupBase> action = new System.Action`3<ReferenceHub,InventorySystem.Items.ItemBase,InventorySystem.Items.Pickups.ItemPickupBase>()
+		ulong local1 = 0
+
+		action..ctor(local1, {'OnItemAdded' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		InventorySystem.InventoryExtensions.add_OnItemAdded(action) //(Action`3 value)
+		System.Action`3<ReferenceHub,InventorySystem.Items.ItemBase,InventorySystem.Items.Pickups.ItemPickupBase> action2 = new System.Action`3<ReferenceHub,InventorySystem.Items.ItemBase,InventorySystem.Items.Pickups.ItemPickupBase>()
+		ulong local4 = 0
+
+		action2..ctor(local4, {'OnItemRemoved' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		InventorySystem.InventoryExtensions.add_OnItemRemoved(action2) //(Action`3 value)
+		System.Action <>9__3_0 = Respawning.ItemPickupTokens/<>c.<>9__3_0
+
+		if (<>9__3_0 == 0)
+		    Respawning.ItemPickupTokens/<>c <>c = Respawning.ItemPickupTokens/<>c.<>9
+		    System.Action action3 = new System.Action()
+
+		    action3..ctor(<>c, {'<Init>b__3_0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		     += 8
+		    Respawning.ItemPickupTokens/<>c.<>9 = action3
+		endif
+        
+
+		CustomNetworkManager.add_OnClientReady(<>9__3_0) //(Action value)
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180345612) is corrupt (Mismatched instance parameter. Expecting an instance of System.Action`3, actually {'action3' (type System.Action)}) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Respawning.ItemPickupTokens
+	static System.Boolean TryGetSpawnableTeam(ReferenceHub hub, Respawning.SpawnableTeamType& stt)
+
+		System.Boolean boolean = Respawning.RespawnTokensManager.TryGetAssignedSpawnableTeam(hub, stt) //(ReferenceHub ply, SpawnableTeamType& stt)
+
+		if (boolean != False)
+		    return True
+		endif
+        
+		ulong local4 = 0
+		return local4
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x180345A6F) is corrupt (Return value has a type of System.Int32, expecting an object of type System.Boolean) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Respawning.ItemPickupTokens
+	static System.Boolean IsCivilian(ReferenceHub hub)
+		PlayerRoles.PlayerRoleManager roleManager = hub.roleManager
+		ulong local2 = 0
+
+		PlayerRoles.PlayerRoleBase currentRole = roleManager.CurrentRole
+
+		if (currentRole != 0)
+		    //UNKNOWN CLASS OFFSET READ HERE
+		    System.Boolean local4 =  == 0
+		    return local4
+		endif
+        
+		ulong local5 = 0
+		return local5
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.UnknownClassOffsetReadAction at (0x1803456CA) is corrupt (Unknown class offset read) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Respawning.ItemPickupTokens
+	static System.Void OnItemAdded(ReferenceHub hub, InventorySystem.Items.ItemBase ib, InventorySystem.Items.Pickups.ItemPickupBase ipb)
+
+		System.Boolean boolean = Respawning.ItemPickupTokens.TryGetSpawnableTeam()
+
+		if (boolean != False)
+		    ItemCategory category = ib.Category
+
+		    if (category != constant7)
+                goto INSN_18034580F
+            endif
+		    PlayerRoles.PlayerRoleManager roleManager = hub.roleManager
+		    ulong local8 = 0
+
+		    PlayerRoles.PlayerRoleBase currentRole = roleManager.CurrentRole
+
+		    if (currentRole != 0)
+		        //UNKNOWN CLASS OFFSET READ HERE
+
+		        if ( == 0)
+
+		            Respawning.RespawnTokensManager.GrantTokens()
+		        endif
+                
+		        return
+
+		        INSN_18034580F:
+
+		        if (boolean == True)
+
+		            Respawning.RespawnTokensManager.GrantTokens()
+		            return
+		            throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18034573B) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Respawning.ItemPickupTokens
+	static System.Void OnItemRemoved(ReferenceHub hub, InventorySystem.Items.ItemBase ib, InventorySystem.Items.Pickups.ItemPickupBase ipb)
+
+		if (ib.Category == constant5)
+		    PlayerRoles.PlayerRoleManager roleManager = hub.roleManager
+		    ulong local5 = 0
+
+		    PlayerRoles.PlayerRoleBase currentRole = roleManager.CurrentRole
+
+		    if (currentRole != 0)
+		        //UNKNOWN CLASS OFFSET READ HERE
+
+		        if ( == 0)
+
+		            System.Boolean boolean = Respawning.ItemPickupTokens.TryGetSpawnableTeam()
+
+		            if (boolean != False)
+
+		                Respawning.RespawnTokensManager.RemoveTokens()
+		            endif
+                    
+		            return
+		            throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfNonZeroOrNonNullAction at (0x1803458AD) is corrupt (ConstantDefinition: Don't know how to get IL to load a System.Byte) and cannot be created as IL. Aborting here.
+
+

@@ -1,0 +1,642 @@
+Type: JailbirdViewmodel
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Jailbird.JailbirdViewmodel
+	System.Void InitAny()
+
+		base.InitAny()
+		System.Action`2<System.UInt16,InventorySystem.Items.Jailbird.JailbirdMessageType> action = new System.Action`2<System.UInt16,InventorySystem.Items.Jailbird.JailbirdMessageType>()
+
+		action..ctor(this, {'RpcReceived' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		InventorySystem.Items.Jailbird.JailbirdItem.add_OnRpcReceived(action) //(Action`2 value)
+		InventorySystem.Items.Jailbird.JailbirdMaterialController _materialController = this._materialController
+
+		InventorySystem.Items.ItemIdentifier itemId = base.ItemId
+		_materialController._serial = itemId
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void InventorySystem.Items.StandardAnimatedViemodel::InitAny()
+	IL_0006: ldarg.0
+	IL_0007: ldftn System.Void InventorySystem.Items.Jailbird.JailbirdViewmodel::RpcReceived(System.UInt16,InventorySystem.Items.Jailbird.JailbirdMessageType)
+	IL_000d: newobj System.Void System.Action`2::.ctor(System.Object,System.IntPtr)
+	IL_0012: call System.Void InventorySystem.Items.Jailbird.JailbirdItem::add_OnRpcReceived(System.Action`2)
+	IL_0017: ldarg.0
+	IL_0018: ldfld InventorySystem.Items.Jailbird.JailbirdMaterialController InventorySystem.Items.Jailbird.JailbirdViewmodel::_materialController
+	IL_001d: stloc.0
+	IL_001e: ldarg.0
+	IL_001f: call InventorySystem.Items.ItemIdentifier InventorySystem.Items.ItemViewmodelBase::get_ItemId()
+	IL_0024: stloc.1
+	IL_0025: ldloc.0
+	IL_0026: ldloc.1
+	IL_0027: stfld System.UInt16 InventorySystem.Items.Jailbird.JailbirdMaterialController::_serial
+	IL_002c: ret
+	IL_002d: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0032: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Jailbird.JailbirdViewmodel
+	System.Void OnEquipped()
+
+		base.OnEquipped()
+		System.Boolean _alreadyPickedUp = InventorySystem.Items.Jailbird.JailbirdViewmodel._alreadyPickedUp
+		System.Int32 skipPickupHash = InventorySystem.Items.Jailbird.JailbirdViewmodel.SkipPickupHash
+
+		base.AnimatorSetBool(skipPickupHash, _alreadyPickedUp) //(Int32 hash, Boolean val)
+		UnityEngine.AudioClip _firstEquipSound = this._firstEquipSound
+
+		System.Single skipEquipTime = base.SkipEquipTime
+		ulong local9 = 0
+
+		this.PlaySound(_firstEquipSound, skipEquipTime, True, local9) //(AudioClip clip, Single delay, Boolean stopPrev, Single pitchRandom)
+		. = 1
+		return
+		  = .
+		. = 1
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ImmediateToFieldAction at (0x180565D71) is corrupt (Instance or field is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Jailbird.JailbirdViewmodel
+	System.Void InitSpectator(ReferenceHub ply, InventorySystem.Items.ItemIdentifier id, System.Boolean wasEquipped)
+		this.<Hub>k__BackingField = ply
+		ulong local5 = 0
+		this.<IsSpectator>k__BackingField = True
+		this._itemId = id
+
+		this.InitSpectator()
+		System.Collections.Generic.HashSet`1<System.UInt16> brokenJailbirds = InventorySystem.Items.Jailbird.JailbirdViewmodel.BrokenJailbirds
+
+		System.Boolean boolean = brokenJailbirds.Contains()
+
+		if (boolean != False)
+
+		    this.SetBroken()
+		endif
+        
+
+		System.Single skipEquipTime = base.SkipEquipTime
+		System.Int64 local12 = 1
+
+		base.AnimatorForceUpdate(skipEquipTime, local12) //(Single deltaTime, Boolean fastMode)
+		System.Collections.Generic.Dictionary`2<System.UInt16,InventorySystem.Items.Jailbird.JailbirdMessageType> lastRpcs = InventorySystem.Items.Jailbird.JailbirdViewmodel.LastRpcs
+
+		System.Boolean boolean2 = lastRpcs.TryGetValue()
+
+		if (boolean2 == False)
+            goto INSN_1805659B8
+        endif
+		System.Collections.Generic.Dictionary`2<System.UInt16,System.Double> lastUpdates = InventorySystem.Items.Jailbird.JailbirdViewmodel.LastUpdates
+
+		System.Boolean boolean3 = lastUpdates.TryGetValue()
+
+		if (boolean3 == False)
+            goto INSN_1805659B8
+        endif
+		ulong local17 = 0
+
+		System.Double time = Mirror.NetworkTime.time
+		ulong local19 = 0
+		System.Boolean local20 = local5 == 7
+		System.Boolean local21 = local5 == 5
+		System.Int32 chargingHash = InventorySystem.Items.Jailbird.JailbirdViewmodel.ChargingHash
+
+		base.AnimatorSetBool(chargingHash, local20) //(Int32 hash, Boolean val)
+		local20 = local21
+		System.Int32 chargeLoadHash = InventorySystem.Items.Jailbird.JailbirdViewmodel.ChargeLoadHash
+
+		base.AnimatorSetBool(chargeLoadHash, local20) //(Int32 hash, Boolean val)
+		ulong local26 = 0
+
+		if (this._wasCharging == local5)
+            goto INSN_180565759
+        endif
+
+		if (local5 == 7)
+            goto INSN_180565759
+        endif
+		UnityEngine.AudioClip _chargeHitSound = this._chargeHitSound
+		System.Int64 local28 = 1
+
+		this.PlaySound(_chargeHitSound, local19, local28, local26) //(AudioClip clip, Single delay, Boolean stopPrev, Single pitchRandom)
+
+		INSN_180565759:
+
+		if (local5 > 7)
+            goto INSN_18056597B
+        endif
+		this += constant54
+
+		this.SetBroken()
+		UnityEngine.AudioClip _brokenSound = this._brokenSound
+		ulong local31 = 0
+
+		this.PlaySound(_brokenSound, local19, local31, local26) //(AudioClip clip, Single delay, Boolean stopPrev, Single pitchRandom)
+
+		if ( == local5)
+            goto INSN_18056597B
+        endif
+
+		this.PlayAttackAnim(local19) //(Single delay)
+		UnityEngine.AudioClip _chargeLoadSound = this._chargeLoadSound
+		System.Int64 local34 = 1
+
+		this.PlaySound(_chargeLoadSound, local19, local34, local26) //(AudioClip clip, Single delay, Boolean stopPrev, Single pitchRandom)
+		System.Int64 local35 = 1
+		ulong local36 = 0
+
+		this.PlaySound(local36, local19, local35, local26) //(AudioClip clip, Single delay, Boolean stopPrev, Single pitchRandom)
+		UnityEngine.AudioClip _chargingSound = this._chargingSound
+		System.Int64 local38 = 1
+
+		this.PlaySound(_chargingSound, local19, local38, local26) //(AudioClip clip, Single delay, Boolean stopPrev, Single pitchRandom)
+
+		UnityEngine.AnimatorStateInfo animatorStateInfo = .AnimatorStateInfo()
+		System.Single m_Length = animatorStateInfo.m_Length
+		System.Int32 m_Loop = animatorStateInfo.m_Loop
+		ulong local46 = 0
+
+		System.Double time2 = Mirror.NetworkTime.time
+		System.Int32 inspectTriggerHash = InventorySystem.Items.Jailbird.JailbirdViewmodel.InspectTriggerHash
+
+		base.AnimatorSetTrigger(inspectTriggerHash) //(Int32 hash)
+		UnityEngine.AudioClip _inspectSound = this._inspectSound
+		System.Int64 local51 = 1
+
+		this.PlaySound(_inspectSound, local19, local51, local26) //(AudioClip clip, Single delay, Boolean stopPrev, Single pitchRandom)
+		ulong local52 = 0
+
+		System.Double time3 = Mirror.NetworkTime.time
+
+		INSN_18056597B:
+		this._wasCharging = local20
+		ulong local55 = 0
+
+		base.AnimatorForceUpdate(local19, local55) //(Single deltaTime, Boolean fastMode)
+
+		INSN_1805659B8:
+		return
+
+		base.AnimatorForceUpdate()
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallVirtualMethodAction at (0x180565517) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (3)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Jailbird.JailbirdViewmodel
+	System.Void InitLocal(InventorySystem.Items.ItemBase ib)
+		ReferenceHub Owner = ib.<Owner>k__BackingField
+		this.<Hub>k__BackingField = Owner
+		this.<IsLocal>k__BackingField = True
+		this.<ParentItem>k__BackingField = ib
+
+		this.InitSpectator()
+		InventorySystem.Items.ItemBase ParentItem = this.<ParentItem>k__BackingField
+		System.Action`1<InventorySystem.Items.Jailbird.JailbirdMessageType> action = new System.Action`1<InventorySystem.Items.Jailbird.JailbirdMessageType>()
+
+		action..ctor(this, {'OnCmdSent' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		//UNKNOWN CLASS OFFSET READ HERE
+		System.Boolean local5 =  == JailbirdItem
+		  = ParentItem.
+
+		System.Delegate delegate = System.Delegate.Combine()
+
+		if (delegate != 0)
+
+		    if (delegate == 0)
+                goto INSN_18056548D
+            endif
+		endif
+        
+
+		if (delegate == ParentItem)
+		    return
+		    throw new System.NullReferenceException()
+
+		    INSN_18056548D:
+		    throw new System.InvalidCastException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallVirtualMethodAction at (0x18056538F) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (3)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Jailbird.JailbirdViewmodel
+	System.Void OnDestroy()
+		System.Action`2<System.UInt16,InventorySystem.Items.Jailbird.JailbirdMessageType> action = new System.Action`2<System.UInt16,InventorySystem.Items.Jailbird.JailbirdMessageType>()
+
+		action..ctor(this, {'RpcReceived' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		InventorySystem.Items.Jailbird.JailbirdItem.remove_OnRpcReceived(action) //(Action`2 value)
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldftn System.Void InventorySystem.Items.Jailbird.JailbirdViewmodel::RpcReceived(System.UInt16,InventorySystem.Items.Jailbird.JailbirdMessageType)
+	IL_0007: newobj System.Void System.Action`2::.ctor(System.Object,System.IntPtr)
+	IL_000c: call System.Void InventorySystem.Items.Jailbird.JailbirdItem::remove_OnRpcReceived(System.Action`2)
+	IL_0011: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Jailbird.JailbirdViewmodel
+	System.Void Update()
+
+		UnityEngine.AnimatorStateInfo animatorStateInfo = .AnimatorStateInfo()
+		System.Single m_Length = animatorStateInfo.m_Length
+		System.Int32 m_Loop = animatorStateInfo.m_Loop
+		UnityEngine.GameObject _particlesSmall = this._particlesSmall
+		System.Boolean local9 = m_Loop == "{il2cpp field on {'constant14' (constant value of type Cpp2IL.Core.Analysis.ResultModels.StaticFieldsPtr)}, offset 0x2C}"
+
+		_particlesSmall.SetActive(local9) //(Boolean value)
+		UnityEngine.GameObject _particlesTrail = this._particlesTrail
+		System.Boolean local12 = m_Loop == "{il2cpp field on {'constant18' (constant value of type Cpp2IL.Core.Analysis.ResultModels.StaticFieldsPtr)}, offset 0x24}"
+
+		_particlesTrail.SetActive(local12) //(Boolean value)
+		UnityEngine.GameObject _particlesLarge = this._particlesLarge
+		System.Boolean local15 = m_Loop == "{il2cpp field on {'constant29' (constant value of type Cpp2IL.Core.Analysis.ResultModels.StaticFieldsPtr)}, offset 0x24}"
+		local12 = local15
+
+		_particlesLarge.SetActive(local12) //(Boolean value)
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18056645B) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Jailbird.JailbirdViewmodel
+	System.Void RpcReceived(System.UInt16 serial, InventorySystem.Items.Jailbird.JailbirdMessageType rpc)
+		System.Int32 local3 = rpc.value__
+
+		InventorySystem.Items.ItemIdentifier itemId = base.ItemId
+
+		if (serial == itemId)
+
+		    this.ProcessRpc()
+		endif
+        
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.Implicit4ByteFieldReadAction at (0x180566352) is corrupt (Local local3 has been stripped out for being unused, so doesn't have a variable.) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Jailbird.JailbirdViewmodel
+	System.Void ProcessRpc(InventorySystem.Items.Jailbird.JailbirdMessageType rpc, System.Single delay)
+		System.Int32 local3 = rpc.value__
+		System.Boolean local4 = local3 == 7
+		System.Boolean local5 = local3 == 5
+		System.Int32 chargingHash = InventorySystem.Items.Jailbird.JailbirdViewmodel.ChargingHash
+
+		base.AnimatorSetBool(chargingHash, local4) //(Int32 hash, Boolean val)
+		local4 = local5
+		System.Int32 chargeLoadHash = InventorySystem.Items.Jailbird.JailbirdViewmodel.ChargeLoadHash
+
+		base.AnimatorSetBool(chargeLoadHash, local4) //(Int32 hash, Boolean val)
+		ulong local10 = 0
+		ulong local11 = 0
+
+		if (this._wasCharging != local10)
+
+		    if (local3 != 7)
+		        UnityEngine.AudioClip _chargeHitSound = this._chargeHitSound
+		        System.Int64 local13 = 1
+
+		        this.PlaySound(_chargeHitSound, delay, local13, local11) //(AudioClip clip, Single delay, Boolean stopPrev, Single pitchRandom)
+		    endif
+            
+
+		    if (local3 > 7)
+                goto INSN_1805662F2
+            endif
+		    this += constant17
+
+		    this.SetBroken()
+		    UnityEngine.AudioClip _brokenSound = this._brokenSound
+		    ulong local16 = 0
+
+		    this.PlaySound(_brokenSound, delay, local16, local11) //(AudioClip clip, Single delay, Boolean stopPrev, Single pitchRandom)
+
+		    if ( == local10)
+                goto INSN_1805662F2
+            endif
+
+		    this.PlayAttackAnim(delay) //(Single delay)
+		    UnityEngine.AudioClip _chargeLoadSound = this._chargeLoadSound
+		    System.Int64 local19 = 1
+
+		    this.PlaySound(_chargeLoadSound, delay, local19, local11) //(AudioClip clip, Single delay, Boolean stopPrev, Single pitchRandom)
+		    System.Int64 local20 = 1
+		    ulong local21 = 0
+
+		    this.PlaySound(local21, delay, local20, local11) //(AudioClip clip, Single delay, Boolean stopPrev, Single pitchRandom)
+		    UnityEngine.AudioClip _chargingSound = this._chargingSound
+		    System.Int64 local23 = 1
+
+		    this.PlaySound(_chargingSound, delay, local23, local11) //(AudioClip clip, Single delay, Boolean stopPrev, Single pitchRandom)
+
+		    UnityEngine.AnimatorStateInfo animatorStateInfo = .AnimatorStateInfo()
+		    System.Single m_Length = animatorStateInfo.m_Length
+		    System.Int32 m_Loop = animatorStateInfo.m_Loop
+		    local3 = m_Loop
+		    ulong local31 = 0
+
+		    System.Double time = Mirror.NetworkTime.time
+		    System.Int32 inspectTriggerHash = InventorySystem.Items.Jailbird.JailbirdViewmodel.InspectTriggerHash
+
+		    base.AnimatorSetTrigger(inspectTriggerHash) //(Int32 hash)
+		    UnityEngine.AudioClip _inspectSound = this._inspectSound
+		    System.Int64 local36 = 1
+
+		    this.PlaySound(_inspectSound, delay, local36, local11) //(AudioClip clip, Single delay, Boolean stopPrev, Single pitchRandom)
+		    ulong local37 = 0
+
+		    System.Double time2 = Mirror.NetworkTime.time
+
+		    INSN_1805662F2:
+		    this._wasCharging = local4
+		    return
+		    _inspectSound += _inspectSound
+		    _inspectSound += _inspectSound
+		     += local37
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.EqualRegisterSetAction at (0x180566043) is corrupt (Destination local has been stripped) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Jailbird.JailbirdViewmodel
+	System.Void PlaySound(UnityEngine.AudioClip clip, System.Single delay, System.Boolean stopPrev, System.Single pitchRandom)
+
+		if (stopPrev != False)
+		    UnityEngine.AudioSource _targetAudioSource = this._targetAudioSource
+
+		    _targetAudioSource.Stop()
+		endif
+        
+		ulong local8 = 0
+
+		if (delay <= local8)
+            goto INSN_180565F59
+        endif
+		ulong local9 = 0
+
+		[instruction error - managed method being called is null]
+
+		System.Int32 int32 = UnityEngine.Mathf.RoundToInt(local8) //(Single f)
+
+		System.Int32 samples = clip.samples
+
+		INSN_180565F59:
+		UnityEngine.AudioSource _targetAudioSource2 = this._targetAudioSource
+
+		_targetAudioSource2.PlayOneShot(clip) //(AudioClip clip)
+		UnityEngine.AudioSource _targetAudioSource3 = this._targetAudioSource
+
+		System.Single single = UnityEngine.Random.Range()
+
+		_targetAudioSource3.pitch = single
+
+		if (int32 == 0)
+            goto INSN_180565FC4
+        endif
+		UnityEngine.AudioSource _targetAudioSource4 = this._targetAudioSource
+
+		_targetAudioSource4.timeSamples = int32
+
+		INSN_180565FC4:
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180565F09) is corrupt (Don't know what method is being called) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Jailbird.JailbirdViewmodel
+	System.Void SetBroken()
+		System.Int32 brokenHash = InventorySystem.Items.Jailbird.JailbirdViewmodel.BrokenHash
+
+		base.AnimatorSetBool(brokenHash, True) //(Int32 hash, Boolean val)
+		UnityEngine.GameObject _particlesBroken = this._particlesBroken
+
+		_particlesBroken.SetActive(True) //(Boolean value)
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldsfld System.Int32 InventorySystem.Items.Jailbird.JailbirdViewmodel::BrokenHash
+	IL_0005: stloc.0
+	IL_0006: ldarg.0
+	IL_0007: ldloc.0
+	IL_0008: ldc.i4.1
+	IL_0009: call System.Void InventorySystem.Items.AnimatedViewmodelBase::AnimatorSetBool(System.Int32,System.Boolean)
+	IL_000e: ldarg.0
+	IL_000f: ldfld UnityEngine.GameObject InventorySystem.Items.Jailbird.JailbirdViewmodel::_particlesBroken
+	IL_0014: ldc.i4.1
+	IL_0015: call System.Void UnityEngine.GameObject::SetActive(System.Boolean)
+	IL_001a: ret
+	IL_001b: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0020: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Jailbird.JailbirdViewmodel
+	System.Void OnCmdSent(InventorySystem.Items.Jailbird.JailbirdMessageType cmd)
+
+		if (cmd == 3)
+		    ulong local3 = 0
+
+		    this.PlayAttackAnim(local3) //(Single delay)
+		    return
+		endif
+        
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.1
+	IL_0001: ldc.i4.3
+	IL_0002: bne.un.s IL_000e
+	IL_0004: ldc.i4.0
+	IL_0005: stloc.0
+	IL_0006: ldarg.0
+	IL_0007: ldloc.0
+	IL_0008: call System.Void InventorySystem.Items.Jailbird.JailbirdViewmodel::PlayAttackAnim(System.Single)
+	IL_000d: ret
+	IL_000e: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Jailbird.JailbirdViewmodel
+	System.Void PlayAttackAnim(System.Single delay)
+		System.Boolean local2 = "{il2cpp field on {'constant10' (constant value of type Cpp2IL.Core.Analysis.ResultModels.StaticFieldsPtr)}, offset 0x3A}" == 0
+		InventorySystem.Items.Jailbird.JailbirdViewmodel._wasLeftHand = local2
+		System.Boolean _wasLeftHand = InventorySystem.Items.Jailbird.JailbirdViewmodel._wasLeftHand
+		System.Int32 leftHandHash = InventorySystem.Items.Jailbird.JailbirdViewmodel.LeftHandHash
+
+		base.AnimatorSetBool(leftHandHash, _wasLeftHand) //(Int32 hash, Boolean val)
+		System.Int32 attackTriggerHash = InventorySystem.Items.Jailbird.JailbirdViewmodel.AttackTriggerHash
+
+		base.AnimatorSetTrigger(attackTriggerHash) //(Int32 hash)
+
+		this.PlaySound()
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180565E83) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (4)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Jailbird.JailbirdViewmodel
+	static System.Void Init()
+		System.Action <>9__45_0 = InventorySystem.Items.Jailbird.JailbirdViewmodel/<>c.<>9__45_0
+
+		if (<>9__45_0 == 0)
+		    InventorySystem.Items.Jailbird.JailbirdViewmodel/<>c <>c = InventorySystem.Items.Jailbird.JailbirdViewmodel/<>c.<>9
+		    System.Action action = new System.Action()
+
+		    action..ctor(<>c, {'<Init>b__45_0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		     += 8
+		    InventorySystem.Items.Jailbird.JailbirdViewmodel/<>c.<>9 = action
+		endif
+        
+
+		CustomNetworkManager.add_OnClientReady(<>9__45_0) //(Action value)
+		System.Action`2<System.UInt16,InventorySystem.Items.Jailbird.JailbirdMessageType> <>9__45_1 = InventorySystem.Items.Jailbird.JailbirdViewmodel/<>c.<>9__45_1
+
+		if (<>9__45_1 != 0)
+            goto INSN_180565B9C
+        endif
+		InventorySystem.Items.Jailbird.JailbirdViewmodel/<>c <>c2 = InventorySystem.Items.Jailbird.JailbirdViewmodel/<>c.<>9
+		System.Action`2<System.UInt16,InventorySystem.Items.Jailbird.JailbirdMessageType> action2 = new System.Action`2<System.UInt16,InventorySystem.Items.Jailbird.JailbirdMessageType>()
+
+		action2..ctor(<>c2, {'<Init>b__45_1' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		 += 16
+		InventorySystem.Items.Jailbird.JailbirdViewmodel/<>c.<>9 = action2
+
+		INSN_180565B9C:
+
+		InventorySystem.Items.Jailbird.JailbirdItem.add_OnRpcReceived(action2) //(Action`2 value)
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x180565AC7) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Jailbird.JailbirdViewmodel
+	System.Void .ctor()
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void InventorySystem.Items.StandardAnimatedViemodel::.ctor()
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Jailbird.JailbirdViewmodel
+	static System.Void .cctor()
+		System.Collections.Generic.Dictionary`2<System.UInt16,System.Double> dictionary = new System.Collections.Generic.Dictionary`2<System.UInt16,System.Double>()
+
+		dictionary..ctor()
+		InventorySystem.Items.Jailbird.JailbirdViewmodel.LastUpdates = dictionary
+		System.Collections.Generic.Dictionary`2<System.UInt16,InventorySystem.Items.Jailbird.JailbirdMessageType> dictionary2 = new System.Collections.Generic.Dictionary`2<System.UInt16,InventorySystem.Items.Jailbird.JailbirdMessageType>()
+
+		dictionary2..ctor()
+		 += 8
+		InventorySystem.Items.Jailbird.JailbirdViewmodel.LastUpdates = dictionary2
+		System.Collections.Generic.HashSet`1<System.UInt16> hashSet = new System.Collections.Generic.HashSet`1<System.UInt16>()
+
+		hashSet..ctor()
+		 += 16
+		InventorySystem.Items.Jailbird.JailbirdViewmodel.LastUpdates = hashSet
+
+		System.Int32 int32 = UnityEngine.Animator.StringToHash("Broken") //(String name)
+		InventorySystem.Items.Jailbird.JailbirdViewmodel.BrokenHash = int32
+
+		System.Int32 int322 = UnityEngine.Animator.StringToHash("LeftHand") //(String name)
+		InventorySystem.Items.Jailbird.JailbirdViewmodel.LeftHandHash = int322
+
+		System.Int32 int323 = UnityEngine.Animator.StringToHash("ChargeLoad") //(String name)
+		InventorySystem.Items.Jailbird.JailbirdViewmodel.ChargeLoadHash = int323
+
+		System.Int32 int324 = UnityEngine.Animator.StringToHash("Charging") //(String name)
+		InventorySystem.Items.Jailbird.JailbirdViewmodel.ChargingHash = int324
+
+		System.Int32 int325 = UnityEngine.Animator.StringToHash("AlreadyPickedUp") //(String name)
+		InventorySystem.Items.Jailbird.JailbirdViewmodel.SkipPickupHash = int325
+
+		System.Int32 int326 = UnityEngine.Animator.StringToHash("Attack") //(String name)
+		InventorySystem.Items.Jailbird.JailbirdViewmodel.AttackTriggerHash = int326
+
+		System.Int32 int327 = UnityEngine.Animator.StringToHash("Inspect") //(String name)
+		InventorySystem.Items.Jailbird.JailbirdViewmodel.InspectTriggerHash = int327
+
+		System.Int32 int328 = UnityEngine.Animator.StringToHash("Idle") //(String name)
+		InventorySystem.Items.Jailbird.JailbirdViewmodel.IdleTagHash = int328
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x180566607) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+

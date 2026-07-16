@@ -1,0 +1,211 @@
+Type: Hemorrhage
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomPlayerEffects.Hemorrhage
+	System.Boolean get_AllowEnabling()
+		ReferenceHub Hub = this.<Hub>k__BackingField
+		ulong local3 = 0
+
+		System.Boolean boolean = ReferenceHub.op_Inequality(Hub, local3) //(ReferenceHub left, ReferenceHub right)
+
+		if (boolean == False)
+		    return True
+		endif
+        
+		PlayerEffectsController playerEffectsController = Hub.playerEffectsController
+
+		CustomPlayerEffects.Vitality effect = playerEffectsController.GetEffect<CustomPlayerEffects.Vitality>()
+		return effect
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x181AEA5EA) is corrupt (Return value has a type of CustomPlayerEffects.Vitality, expecting an object of type System.Boolean) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomPlayerEffects.Hemorrhage
+	System.Void OnAwake()
+		ReferenceHub Hub = this.<Hub>k__BackingField
+
+		System.Boolean isLocalPlayer = Hub.isLocalPlayer
+
+		if (isLocalPlayer != False)
+
+		    CustomPlayerEffects.DiminishingLerpVisuals component = base.GetComponent<CustomPlayerEffects.DiminishingLerpVisuals>()
+		    this._diminishingPlayerEffect = component
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld ReferenceHub CustomPlayerEffects.StatusEffectBase::<Hub>k__BackingField
+	IL_0006: call System.Boolean Mirror.NetworkBehaviour::get_isLocalPlayer()
+	IL_000b: ldc.i4.0
+	IL_000c: beq.s IL_001c
+	IL_000e: ldarg.0
+	IL_000f: call T UnityEngine.Component::GetComponent<CustomPlayerEffects.DiminishingLerpVisuals>()
+	IL_0014: stloc.0
+	IL_0015: ldarg.0
+	IL_0016: ldloc.0
+	IL_0017: stfld CustomPlayerEffects.DiminishingLerpVisuals CustomPlayerEffects.Hemorrhage::_diminishingPlayerEffect
+	IL_001c: ret
+	IL_001d: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0022: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomPlayerEffects.Hemorrhage
+	System.Void OnTick()
+
+		if (this._isSprinting != False)
+		    ReferenceHub Hub = this.<Hub>k__BackingField
+
+		    System.Single single = CustomPlayerEffects.RainbowTaste.CurrentMultiplier(Hub) //(ReferenceHub ply)
+		    ReferenceHub Hub2 = this.<Hub>k__BackingField
+		    PlayerStatsSystem.PlayerStats playerStats = Hub2.playerStats
+		    PlayerStatsSystem.DeathTranslation bleeding = PlayerStatsSystem.DeathTranslations.Bleeding
+		    PlayerStatsSystem.UniversalDamageHandler universalDamageHandler = new PlayerStatsSystem.UniversalDamageHandler()
+		    ulong local9 = 0
+
+		    universalDamageHandler..ctor(single, bleeding, local9) //(Single damage, DeathTranslation deathReason, CassieAnnouncement cassieAnnouncement)
+
+		    System.Boolean boolean = playerStats.DealDamage(universalDamageHandler) //(DamageHandlerBase handler)
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Boolean CustomPlayerEffects.Hemorrhage::_isSprinting
+	IL_0006: ldc.i4.0
+	IL_0007: beq.s IL_003d
+	IL_0009: ldarg.0
+	IL_000a: ldfld ReferenceHub CustomPlayerEffects.StatusEffectBase::<Hub>k__BackingField
+	IL_000f: call System.Single CustomPlayerEffects.RainbowTaste::CurrentMultiplier(ReferenceHub)
+	IL_0014: stloc.0
+	IL_0015: ldarg.0
+	IL_0016: ldfld ReferenceHub CustomPlayerEffects.StatusEffectBase::<Hub>k__BackingField
+	IL_001b: ldfld PlayerStatsSystem.PlayerStats ReferenceHub::playerStats
+	IL_0020: stloc.1
+	IL_0021: ldsfld PlayerStatsSystem.DeathTranslation PlayerStatsSystem.DeathTranslations::Bleeding
+	IL_0026: stloc.2
+	IL_0027: ldloc.0
+	IL_0028: ldloc.2
+	IL_0029: ldloc.s V_4
+	IL_002b: newobj System.Void PlayerStatsSystem.UniversalDamageHandler::.ctor(System.Single,PlayerStatsSystem.DeathTranslation,PlayerStatsSystem.DamageHandlerBase/CassieAnnouncement)
+	IL_0030: stloc.3
+	IL_0031: ldc.i4.0
+	IL_0032: stloc.s V_4
+	IL_0034: ldloc.1
+	IL_0035: ldloc.3
+	IL_0036: call System.Boolean PlayerStatsSystem.PlayerStats::DealDamage(PlayerStatsSystem.DamageHandlerBase)
+	IL_003b: stloc.s V_6
+	IL_003d: ret
+	IL_003e: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0043: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomPlayerEffects.Hemorrhage
+	System.Void OnEffectUpdate()
+		System.Single _timeTillTick = this._timeTillTick
+		ulong local2 = 0
+
+		System.Single deltaTime = UnityEngine.Time.deltaTime
+		ulong local4 = 0
+		this._timeTillTick = _timeTillTick
+
+		if (_timeTillTick <= local4)
+		    this._timeTillTick = _timeTillTick
+
+		    this.DisableEffect()
+		endif
+        
+		ReferenceHub Hub = this.<Hub>k__BackingField
+		PlayerRoles.PlayerRoleManager roleManager = Hub.roleManager
+
+		PlayerRoles.PlayerRoleBase currentRole = roleManager.CurrentRole
+
+		if (currentRole == 0)
+            goto INSN_181AFA0B4
+        endif
+
+		PlayerRoles.FirstPersonControl.PlayerMovementState currentMovementState = currentRole.CurrentMovementState
+		ReferenceHub Hub2 = this.<Hub>k__BackingField
+		System.Boolean local13 = currentMovementState == constant12
+		this._isSprinting = local13
+
+		System.Boolean isLocalPlayer = Hub2.isLocalPlayer
+
+		if (isLocalPlayer == False)
+            goto INSN_181AFA0B4
+        endif
+		ReferenceHub Hub3 = this.<Hub>k__BackingField
+
+		System.Boolean isLocallySpectated = PlayerRoles.Spectating.SpectatorNetworking.IsLocallySpectated(Hub3) //(ReferenceHub target)
+
+		if (isLocallySpectated == False)
+            goto INSN_181AFA0B4
+        endif
+
+		if (this._isSprinting == False)
+            goto INSN_181AFA0B4
+        endif
+		CustomPlayerEffects.DiminishingLerpVisuals _diminishingPlayerEffect = this._diminishingPlayerEffect
+		System.Single _weight = _diminishingPlayerEffect._weight
+
+		_diminishingPlayerEffect.Weight = _weight
+
+		INSN_181AFA0B4:
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181AFA063) is corrupt (Mismatched instance parameter. Expecting an instance of PlayerRoles.FirstPersonControl.FirstPersonMovementModule, actually {'currentRole' (type PlayerRoles.PlayerRoleBase)}) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomPlayerEffects.Hemorrhage
+	System.Void .ctor()
+		this.damagePerTick = 1
+		this.effectIncrease = 0,05
+		this.<MaxIntensity>k__BackingField = 255
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldc.r4 1
+	IL_0006: stfld System.Single CustomPlayerEffects.Hemorrhage::damagePerTick
+	IL_000b: ldarg.0
+	IL_000c: ldc.r4 0,05
+	IL_0011: stfld System.Single CustomPlayerEffects.Hemorrhage::effectIncrease
+	IL_0016: ldarg.0
+	IL_0017: ldc.i4 255
+	IL_001c: conv.i8
+	IL_001d: conv.u8
+	IL_001e: stfld System.Byte CustomPlayerEffects.StatusEffectBase::<MaxIntensity>k__BackingField
+	IL_0023: ldarg.0
+	IL_0024: call System.Void UnityEngine.MonoBehaviour::.ctor()
+	IL_0029: ret
+	
+

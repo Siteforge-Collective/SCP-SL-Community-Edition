@@ -1,0 +1,190 @@
+Type: GlobalBanCommand
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.Console.GlobalBanCommand
+	System.String get_Command()
+		System.String Command = this.<Command>k__BackingField
+		return Command
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String CommandSystem.Commands.Console.GlobalBanCommand::<Command>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.Console.GlobalBanCommand
+	System.String[] get_Aliases()
+		System.String[] Aliases = this.<Aliases>k__BackingField
+		return Aliases
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String[] CommandSystem.Commands.Console.GlobalBanCommand::<Aliases>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.Console.GlobalBanCommand
+	System.String get_Description()
+		System.String Description = this.<Description>k__BackingField
+		return Description
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String CommandSystem.Commands.Console.GlobalBanCommand::<Description>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.Console.GlobalBanCommand
+	System.Boolean Execute(System.ArraySegment`1<System.String> arguments, CommandSystem.ICommandSender sender, System.String& response)
+		ulong local5 = 0
+
+		System.String appFolder = FileManager.GetAppFolder(True, local5, "") //(Boolean addSeparator, Boolean serverConfig, String centralConfig)
+
+		System.String string = System.String.Concat(appFolder, "StaffAPI.txt") //(String str0, String str1)
+
+		System.Boolean boolean = System.IO.File.Exists(string) //(String path)
+
+		if (boolean != False)
+		    ulong local11 = 0
+
+		    ReferenceHub localHub = ReferenceHub.LocalHub
+		    ulong local14 = 0
+
+		    System.Boolean boolean2 = ReferenceHub.op_Equality(localHub, local14) //(ReferenceHub left, ReferenceHub right)
+
+		    if (boolean2 == False)
+		        System.Int32 5 = 5
+
+		        System.Boolean boolean3 = System.String.Equals()
+
+		        if (boolean3 == False)
+		            System.Int32 5 = 5
+
+		            System.Boolean boolean4 = System.String.Equals()
+
+		            if (boolean4 == False)
+                        goto INSN_18047294C
+                    endif
+		        endif
+                
+		        response. = "Requesting global ban issuance..."
+		         += 1
+
+		        System.String string2 = response.ToUpperInvariant()
+		        System.Int32 5 = 5
+
+		        System.Boolean boolean5 = System.String.Equals(response, "id", 5) //(String a, String b, StringComparison comparisonType)
+		        System.Boolean local29 = boolean5 != False
+
+		        RemoteAdmin.Communication.RaGlobalBan.Request(string2, local29) //(String key, Int32 keytype)
+		        return True
+
+		        INSN_18047294C:
+		    else
+		        response. = "You must join a server to execute this command."
+		    else
+		        response. = "You are not authorized to issue global bans!"
+		    endif
+            
+		    ulong local31 = 0
+		    return local31
+		    throw new System.IndexOutOfRangeException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18047284B) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (3)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.Console.GlobalBanCommand
+	System.Void .ctor()
+		this.<Command>k__BackingField = "globalban"
+		System.String[] local1 = new System.String[2]
+
+		if ("gban" != 0)
+
+		    if ("gban" == 0)
+                goto INSN_180472AF4
+            endif
+		endif
+        
+		local1[0] = "gban"
+
+		if ("superban" == 0)
+            goto INSN_180472AA3
+        endif
+
+		if ("superban" == 0)
+            goto INSN_180472B14
+        endif
+
+		INSN_180472AA3:
+		local1[1] = "superban"
+		this.<Aliases>k__BackingField = local1
+		this.<Description>k__BackingField = "Issues global ban."
+
+		base..ctor()
+		return
+		throw new System.NullReferenceException()
+
+		INSN_180472AF4:
+
+		INSN_180472B14:
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldstr "globalban"
+	IL_0006: stfld System.String CommandSystem.Commands.Console.GlobalBanCommand::<Command>k__BackingField
+	IL_000b: ldc.i4.2
+	IL_000c: newarr System.String
+	IL_0011: stloc.0
+	IL_0012: ldstr "gban"
+	IL_0017: ldc.i4.0
+	IL_0018: beq.s IL_0022
+	IL_001a: ldstr "gban"
+	IL_001f: ldc.i4.0
+	IL_0020: beq.s IL_0000
+	IL_0022: ldloc.0
+	IL_0023: ldc.i4.0
+	IL_0024: ldstr "gban"
+	IL_0029: stelem.any System.String
+	IL_002e: ldstr "superban"
+	IL_0033: ldc.i4.0
+	IL_0034: beq.s IL_003e
+	IL_0036: ldstr "superban"
+	IL_003b: ldc.i4.0
+	IL_003c: beq.s IL_0000
+	IL_003e: ldloc.0
+	IL_003f: ldc.i4.1
+	IL_0040: ldstr "superban"
+	IL_0045: stelem.any System.String
+	IL_004a: ldarg.0
+	IL_004b: ldloc.0
+	IL_004c: stfld System.String[] CommandSystem.Commands.Console.GlobalBanCommand::<Aliases>k__BackingField
+	IL_0051: ldarg.0
+	IL_0052: ldstr "Issues global ban."
+	IL_0057: stfld System.String CommandSystem.Commands.Console.GlobalBanCommand::<Description>k__BackingField
+	IL_005c: ldarg.0
+	IL_005d: call System.Void System.Object::.ctor()
+	IL_0062: ret
+	IL_0063: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0068: throw
+	
+

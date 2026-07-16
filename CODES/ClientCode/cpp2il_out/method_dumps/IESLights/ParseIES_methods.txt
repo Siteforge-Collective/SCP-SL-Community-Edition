@@ -1,0 +1,1502 @@
+Type: ParseIES
+
+
+	Generated Pseudocode:
+
+	Declaring Type: IESLights.ParseIES
+	static IESLights.IESData Parse(System.String path, IESLights.NormalizationMode normalizationMode)
+		System.Int32 local2 = normalizationMode.value__
+
+		System.String[] stringArray = System.IO.File.ReadAllLines(path) //(String path)
+		ulong local5 = 0
+
+		IESLights.ParseIES.FindNumberOfAnglesLine(stringArray, local5) //(String[] lines, Int32& lineNumber)
+		System.Int32 length = stringArray.Length
+
+		if ( != length)
+		    System.Int32 13 = 13
+
+		    System.Collections.Generic.List`1<System.Single> list = IESLights.ParseIES.ReadValues(stringArray, 13, local5) //(String[] lines, Int32 numberOfValuesToFind, Int32& lineNumber)
+		    System.Int32 _size = list._size
+
+		    if (_size <= 3)
+		        ulong local11 = 0
+
+		        System.ThrowHelper.ThrowArgumentOutOfRangeException()
+		    endif
+            
+
+		    if (_size > 4)
+                goto INSN_181BB67A7
+            endif
+		    ulong local14 = 0
+
+		    System.ThrowHelper.ThrowArgumentOutOfRangeException()
+		    System.Int32 _size2 = list._size
+
+		    INSN_181BB67A7:
+
+		    if (_size2 > 5)
+                goto INSN_181BB67BC
+            endif
+		    ulong local17 = 0
+
+		    System.ThrowHelper.ThrowArgumentOutOfRangeException()
+
+		    INSN_181BB67BC:
+
+		    System.Collections.Generic.List`1<System.Single> list2 = IESLights.ParseIES.ReadValues(stringArray, 13, local5) //(String[] lines, Int32 numberOfValuesToFind, Int32& lineNumber)
+
+		    System.Collections.Generic.List`1<System.Single> list3 = IESLights.ParseIES.ReadValues(stringArray, 13, local5) //(String[] lines, Int32 numberOfValuesToFind, Int32& lineNumber)
+		    System.Collections.Generic.List`1<System.Collections.Generic.List`1<System.Single>> list4 = new System.Collections.Generic.List`1<System.Collections.Generic.List`1<System.Single>>()
+
+		    list4..ctor()
+
+		    if ( <= 0)
+                goto INSN_181BB6845
+            endif
+
+		    System.Collections.Generic.List`1<System.Single> list5 = IESLights.ParseIES.ReadValues()
+
+		    list4.Add(list5) //(T item)
+		    local5 += 1
+
+		    INSN_181BB6845:
+		    IESLights.IESData iESData = new IESLights.IESData()
+
+		    iESData..ctor()
+		    iESData.<VerticalAngles>k__BackingField = list2
+		    iESData.<HorizontalAngles>k__BackingField = list3
+		    iESData.<CandelaValues>k__BackingField = list4
+		    iESData.<PhotometricType>k__BackingField = 
+		    System.Boolean local28 = local2 == 1
+
+		    IESLights.ParseIES.NormalizeValues(iESData, local28) //(IESData iesData, Boolean squashHistogram)
+
+		    if (local2 != 2)
+                goto INSN_181BB68BF
+            endif
+
+		    IESLights.ParseIES.EqualizeHistogram(iESData) //(IESData iesData)
+
+		    INSN_181BB68BF:
+
+		    if ( != 3)
+                goto INSN_181BB68D1
+            endif
+
+		    IESLights.ParseIES.PadToSquare(iESData) //(IESData iesData)
+
+		    INSN_181BB68D1:
+
+		    IESLights.ParseIES.DiscardUnusedVerticalHalf(iESData) //(IESData iesData)
+
+		    IESLights.ParseIES.SetVerticalAndHorizontalType(iESData) //(IESData iesData)
+
+		    System.Single single = IESLights.ParseIES.CalculateHalfSpotFov(iESData) //(IESData iesData)
+		    iESData.<HalfSpotlightFov>k__BackingField = single
+		    return iESData
+		    throw new System.NullReferenceException()
+		endif
+        
+		IESLights.IESParseException iESParseException = new IESLights.IESParseException()
+
+		iESParseException..ctor("No line containing number of angles found.") //(String message)
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfZeroOrNullAction at (0x181BB6738) is corrupt (One of the arguments is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: IESLights.ParseIES
+	static System.Void DiscardUnusedVerticalHalf(IESLights.IESData iesData)
+		System.Collections.Generic.List`1<System.Single> VerticalAngles = iesData.<VerticalAngles>k__BackingField
+
+		if ( <= 0)
+		    ulong local2 = 0
+
+		    System.ThrowHelper.ThrowArgumentOutOfRangeException()
+		endif
+        
+		T[] _items = VerticalAngles._items
+		ulong local4 = 0
+		T local5 = _items[0]
+
+		if ( != 0)
+            goto INSN_181BB5025
+        endif
+		System.Collections.Generic.List`1<System.Single> VerticalAngles2 = iesData.<VerticalAngles>k__BackingField
+		System.Int32 _size = VerticalAngles2._size
+		System.Int32 local8 = _size - 1
+		ulong local9 = 0
+
+		System.ThrowHelper.ThrowArgumentOutOfRangeException()
+
+		if (local8 != _size)
+            goto INSN_181BB5025
+        endif
+		IESLights.ParseIES/<>c__DisplayClass2_0 enumeratorInstance = new IESLights.ParseIES/<>c__DisplayClass2_0()
+
+		enumeratorInstance..ctor()
+		ulong local13 = 0
+		enumeratorInstance.i = local13
+		System.Collections.Generic.List`1<System.Single> VerticalAngles3 = iesData.<VerticalAngles>k__BackingField
+
+		if (local13 >= )
+            goto INSN_181BB503F
+        endif
+		System.Collections.Generic.List`1<System.Collections.Generic.List`1<System.Single>> NormalizedValues = iesData.<NormalizedValues>k__BackingField
+		System.Func`2<System.Collections.Generic.List`1<System.Single>,System.Boolean> func = new System.Func`2<System.Collections.Generic.List`1<System.Single>,System.Boolean>()
+
+		func..ctor(enumeratorInstance, {'<DiscardUnusedVerticalHalf>b__0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		System.Boolean boolean = System.Linq.Enumerable.Any<System.Collections.Generic.List`1<System.Single>>(NormalizedValues, func) //(IEnumerable`1 source, Func`2 predicate)
+
+		if (boolean != False)
+            goto INSN_181BB503F
+        endif
+		System.Collections.Generic.List`1<System.Single> VerticalAngles4 = iesData.<VerticalAngles>k__BackingField
+
+		if (VerticalAngles4 == 0)
+            goto INSN_181BB501B
+        endif
+		System.Collections.Generic.List`1<System.Single> VerticalAngles5 = iesData.<VerticalAngles>k__BackingField
+		System.Collections.Generic.List`1<System.Single> VerticalAngles6 = iesData.<VerticalAngles>k__BackingField
+
+		VerticalAngles6.set_Item()
+
+		INSN_181BB501B:
+
+		IESLights.ParseIES.DiscardBottomHalf(iesData) //(IESData iesData)
+
+		INSN_181BB5025:
+		return
+
+		INSN_181BB503F:
+		IESLights.ParseIES/<>c__DisplayClass2_1 enumeratorInstance2 = new IESLights.ParseIES/<>c__DisplayClass2_1()
+
+		enumeratorInstance2..ctor()
+		System.Collections.Generic.List`1<System.Single> VerticalAngles7 = iesData.<VerticalAngles>k__BackingField
+		System.Int32 _size2 = VerticalAngles7._size
+		enumeratorInstance2.i = _size2
+		System.Collections.Generic.List`1<System.Collections.Generic.List`1<System.Single>> NormalizedValues2 = iesData.<NormalizedValues>k__BackingField
+		System.Func`2<System.Collections.Generic.List`1<System.Single>,System.Boolean> func2 = new System.Func`2<System.Collections.Generic.List`1<System.Single>,System.Boolean>()
+
+		func2..ctor(enumeratorInstance2, {'<DiscardUnusedVerticalHalf>b__1' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		System.Boolean boolean2 = System.Linq.Enumerable.Any<System.Collections.Generic.List`1<System.Single>>(NormalizedValues2, func2) //(IEnumerable`1 source, Func`2 predicate)
+
+		if (boolean2 == False)
+		    System.Collections.Generic.List`1<System.Single> VerticalAngles8 = iesData.<VerticalAngles>k__BackingField
+
+		    if (VerticalAngles8 == 0)
+                goto INSN_181BB5122
+            endif
+		    System.Collections.Generic.List`1<System.Single> VerticalAngles9 = iesData.<VerticalAngles>k__BackingField
+
+		    if (constant23 > local4)
+                goto INSN_181BB5107
+            endif
+		endwhile
+        
+		goto INSN_181BB5025
+        
+		System.Collections.Generic.List`1<System.Single> VerticalAngles10 = iesData.<VerticalAngles>k__BackingField
+
+		VerticalAngles10.set_Item()
+
+		INSN_181BB5122:
+
+		IESLights.ParseIES.DiscardTopHalf(iesData) //(IESData iesData)
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL Generation Skipped due to invalid local _items of type T[]
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: IESLights.ParseIES
+	static System.Void DiscardBottomHalf(IESLights.IESData iesData)
+		ulong local1 = 0
+		System.Int32 32 = 32
+		System.Collections.Generic.List`1<System.Single> VerticalAngles = iesData.<VerticalAngles>k__BackingField
+		System.Int32 _size = VerticalAngles._size
+
+		if (local1 < _size)
+		    ulong local4 = 0
+
+		    System.ThrowHelper.ThrowArgumentOutOfRangeException()
+
+		    if (local1 != _size)
+		        local1 += 1
+		        local1 += 1
+		         += 4
+		    endif
+            
+		    ulong local7 = 0
+
+		    IESLights.ParseIES.DiscardHalf(iesData, local7, local1) //(IESData iesData, Int32 start, Int32 range)
+		    return
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x181BB4C42) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: IESLights.ParseIES
+	static System.Void DiscardTopHalf(IESLights.IESData iesData)
+		ulong local1 = 0
+		System.Int32 32 = 32
+		System.Collections.Generic.List`1<System.Single> VerticalAngles = iesData.<VerticalAngles>k__BackingField
+		System.Int32 _size = VerticalAngles._size
+
+		if (local1 < _size)
+		    ulong local4 = 0
+
+		    System.ThrowHelper.ThrowArgumentOutOfRangeException()
+		    T[] _items = VerticalAngles._items
+		    local1 += 1
+		     local6 = _items[]
+
+		    if (local1 != _size)
+		         += 4
+		    endif
+            
+		endif
+        
+		System.Int32 _size2 = VerticalAngles._size
+		_size2 -= local1
+
+		IESLights.ParseIES.DiscardHalf(iesData, local1, _size2) //(IESData iesData, Int32 start, Int32 range)
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL Generation Skipped due to invalid local _items of type T[]
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: IESLights.ParseIES
+	static System.Void DiscardHalf(IESLights.IESData iesData, System.Int32 start, System.Int32 range)
+		System.Collections.Generic.List`1<System.Single> VerticalAngles = iesData.<VerticalAngles>k__BackingField
+
+		VerticalAngles.RemoveRange(start, range) //(Int32 index, Int32 count)
+		ulong local4 = 0
+		System.Int32 32 = 32
+		System.Collections.Generic.List`1<System.Collections.Generic.List`1<System.Single>> CandelaValues = iesData.<CandelaValues>k__BackingField
+		System.Int32 _size = CandelaValues._size
+
+		if (local4 < _size)
+		    ulong local7 = 0
+
+		    System.ThrowHelper.ThrowArgumentOutOfRangeException()
+		    T[] _items = CandelaValues._items
+		     local9 = _items[]
+
+		    local9.RemoveRange(start, range) //(Int32 index, Int32 count)
+		    System.Collections.Generic.List`1<System.Collections.Generic.List`1<System.Single>> NormalizedValues = iesData.<NormalizedValues>k__BackingField
+		    ulong local11 = 0
+
+		    System.ThrowHelper.ThrowArgumentOutOfRangeException()
+		    T[] _items2 = NormalizedValues._items
+		     local13 = _items2[]
+
+		    local13.RemoveRange(start, range) //(Int32 index, Int32 count)
+		    local4 += 1
+		     += 8
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL Generation Skipped due to invalid local _items of type T[]
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: IESLights.ParseIES
+	static System.Void PadToSquare(IESLights.IESData iesData)
+		System.Collections.Generic.List`1<System.Single> HorizontalAngles = iesData.<HorizontalAngles>k__BackingField
+		System.Int32 _size = HorizontalAngles._size
+		System.Collections.Generic.List`1<System.Single> VerticalAngles = iesData.<VerticalAngles>k__BackingField
+		System.Int32 _size2 = VerticalAngles._size
+		_size -= _size2
+		ulong local5 = 0
+
+		System.Int32 int32 = UnityEngine.Mathf.Abs(_size) //(Int32 value)
+
+		if (int32 > 1)
+		    System.Collections.Generic.List`1<System.Single> HorizontalAngles2 = iesData.<HorizontalAngles>k__BackingField
+		    System.Int32 _size3 = HorizontalAngles2._size
+		    System.Collections.Generic.List`1<System.Single> VerticalAngles2 = iesData.<VerticalAngles>k__BackingField
+		    System.Int32 _size4 = VerticalAngles2._size
+
+		    System.Int32 int322 = UnityEngine.Mathf.Max(_size3, _size4) //(Int32 a, Int32 b)
+		    _size4 = int322
+		    System.Collections.Generic.List`1<System.Single> HorizontalAngles3 = iesData.<HorizontalAngles>k__BackingField
+
+		    IESLights.ParseIES.PadVertical(iesData, _size4) //(IESData iesData, Int32 longestSide)
+		endif
+        
+		return
+		System.Collections.Generic.List`1<System.Single> HorizontalAngles4 = iesData.<HorizontalAngles>k__BackingField
+		 -= local5
+		iesData.<PadAfterAmount>k__BackingField = 0
+		iesData.<PadBeforeAmount>k__BackingField = 0
+		System.Collections.Generic.List`1<System.Single> VerticalAngles3 = iesData.<VerticalAngles>k__BackingField
+		System.Int32 _size5 = VerticalAngles3._size
+
+		System.Collections.Generic.IEnumerable`1<System.Single> iEnumerable = System.Linq.Enumerable.Repeat<System.Single>(5.453853623152188E-41, _size5) //(TResult element, Int32 count)
+
+		System.Collections.Generic.List`1<System.Single> list = System.Linq.Enumerable.ToList<System.Single>(iEnumerable) //(IEnumerable`1 source)
+		ulong local21 = 0
+
+		if (constant24 <= 0)
+            goto INSN_181BB5FA4
+        endif
+		System.Collections.Generic.List`1<System.Collections.Generic.List`1<System.Single>> NormalizedValues = iesData.<NormalizedValues>k__BackingField
+		ulong local23 = 0
+
+		NormalizedValues.Insert(local23, list) //(Int32 index, T item)
+		local21 += 1
+
+		INSN_181BB5FA4:
+		 -= constant24
+
+		if (constant24 > 0)
+		    System.Collections.Generic.List`1<System.Collections.Generic.List`1<System.Single>> NormalizedValues2 = iesData.<NormalizedValues>k__BackingField
+
+		    NormalizedValues2.Add(list) //(T item)
+		    local21 += 1
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.SubtractRegFromRegAction at (0x181BB5F3C) is corrupt (Missing an argument) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: IESLights.ParseIES
+	static System.Void PadHorizontal(IESLights.IESData iesData, System.Int32 longestSide)
+		System.Collections.Generic.List`1<System.Single> HorizontalAngles = iesData.<HorizontalAngles>k__BackingField
+		longestSide -= longestSide
+		iesData.<PadAfterAmount>k__BackingField = longestSide
+		iesData.<PadBeforeAmount>k__BackingField = longestSide
+		System.Collections.Generic.List`1<System.Single> VerticalAngles = iesData.<VerticalAngles>k__BackingField
+		System.Int32 _size = VerticalAngles._size
+
+		System.Collections.Generic.IEnumerable`1<System.Single> iEnumerable = System.Linq.Enumerable.Repeat<System.Single>(5.453853623152188E-41, _size) //(TResult element, Int32 count)
+
+		System.Collections.Generic.List`1<System.Single> list = System.Linq.Enumerable.ToList<System.Single>(iEnumerable) //(IEnumerable`1 source)
+		ulong local8 = 0
+
+		if (longestSide > 0)
+		    System.Collections.Generic.List`1<System.Collections.Generic.List`1<System.Single>> NormalizedValues = iesData.<NormalizedValues>k__BackingField
+		    ulong local10 = 0
+
+		    NormalizedValues.Insert(local10, list) //(Int32 index, T item)
+		    local8 += 1
+		endif
+        
+		longestSide -= longestSide
+
+		if (longestSide <= 0)
+            goto INSN_181BB5DCE
+        endif
+		System.Collections.Generic.List`1<System.Collections.Generic.List`1<System.Single>> NormalizedValues2 = iesData.<NormalizedValues>k__BackingField
+
+		NormalizedValues2.Add(list) //(T item)
+		local8 += 1
+
+		INSN_181BB5DCE:
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.SubtractRegFromRegAction at (0x181BB5D37) is corrupt (SubRFromR: First operand, {'longestSide' (function parameter, type System.Int32)}, has been stripped or has no variable) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: IESLights.ParseIES
+	static System.Void PadVertical(IESLights.IESData iesData, System.Int32 longestSide)
+		System.Collections.Generic.List`1<System.Single> VerticalAngles = iesData.<VerticalAngles>k__BackingField
+		System.Int32 _size = VerticalAngles._size
+		longestSide -= _size
+
+		if (_size == 0)
+		    ulong local7 = 0
+
+		    System.ThrowHelper.ThrowArgumentOutOfRangeException()
+		endif
+        
+		T[] _items = VerticalAngles._items
+		T local9 = _items[0]
+
+		System.Single single = UnityEngine.Mathf.Sign()
+		System.Collections.Generic.List`1<System.Single> VerticalAngles2 = iesData.<VerticalAngles>k__BackingField
+		System.Int32 _size2 = VerticalAngles2._size
+		System.Int32 local14 = _size2 - 1
+		ulong local15 = 0
+
+		System.ThrowHelper.ThrowArgumentOutOfRangeException()
+		ulong local17 = 0
+
+		System.Int32 int32 = System.Math.Sign()
+		int32 = longestSide
+		int32 -= local17
+		iesData.<PadBeforeAmount>k__BackingField = int32
+		longestSide -= int32
+		iesData.<PadAfterAmount>k__BackingField = longestSide
+		System.Collections.Generic.List`1<System.Collections.Generic.List`1<System.Single>> NormalizedValues = iesData.<NormalizedValues>k__BackingField
+
+		System.Collections.Generic.List`1/Enumerator<T> enumerator = .GetEnumerator()
+
+		if (enumerator == 0)
+            goto INSN_181BB6236
+        endif
+		System.Single[] local21 = new System.Single[int32]
+		System.Collections.Generic.List`1<System.Single> list = new System.Collections.Generic.List`1<System.Single>()
+
+		list..ctor(local21) //(IEnumerable`1 collection)
+		ulong local23 = 0
+
+		_size2.InsertRange(local23, list) //(Int32 index, IEnumerable`1 collection)
+		System.Single[] local24 = new System.Single[longestSide]
+		System.Collections.Generic.List`1<System.Single> list2 = new System.Collections.Generic.List`1<System.Single>()
+
+		list2..ctor(local24) //(IEnumerable`1 collection)
+
+		_size2.AddRange(list2) //(IEnumerable`1 collection)
+
+		INSN_181BB6236:
+		ulong local26 = 0
+
+		_size2.Dispose()
+
+		_size2.Dispose()
+
+		if (list2 != 0)
+            goto INSN_181BB6685
+        endif
+
+		if (local26 == -1)
+            goto INSN_181BB62CF
+        endif
+		return
+
+		INSN_181BB62CF:
+		System.Collections.Generic.List`1<System.Single> VerticalAngles3 = iesData.<VerticalAngles>k__BackingField
+		System.Func`2<System.Single,System.Boolean> <>9__8_0 = IESLights.ParseIES/<>c.<>9__8_0
+		longestSide -= Dispose
+
+		if (<>9__8_0 != 0)
+            goto INSN_181BB6395
+        endif
+		IESLights.ParseIES/<>c <>c = IESLights.ParseIES/<>c.<>9
+		System.Func`2<System.Single,System.Boolean> func = new System.Func`2<System.Single,System.Boolean>()
+
+		func..ctor(<>c, {'<PadVertical>b__8_0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		 += 8
+		IESLights.ParseIES/<>c.<>9 = func
+
+		INSN_181BB6395:
+
+		System.Int32 int322 = System.Linq.Enumerable.Count<System.Single>(VerticalAngles3, func) //(IEnumerable`1 source, Func`2 predicate)
+		longestSide -= int322
+		System.Collections.Generic.List`1<System.Single> VerticalAngles4 = iesData.<VerticalAngles>k__BackingField
+
+		if ( > 0)
+            goto INSN_181BB63C8
+        endif
+		ulong local33 = 0
+
+		System.ThrowHelper.ThrowArgumentOutOfRangeException()
+
+		INSN_181BB63C8:
+		ulong local35 = 0
+
+		if (local35 <= "{il2cpp array field local34->}")
+            goto INSN_181BB6552
+        endif
+		longestSide -= longestSide
+		iesData.<PadBeforeAmount>k__BackingField = longestSide
+		iesData.<PadAfterAmount>k__BackingField = longestSide
+		System.Collections.Generic.List`1<System.Collections.Generic.List`1<System.Single>> NormalizedValues2 = iesData.<NormalizedValues>k__BackingField
+
+		System.Collections.Generic.List`1/Enumerator<T> enumerator2 = local33.GetEnumerator()
+
+		if (enumerator2 == 0)
+            goto INSN_181BB64D6
+        endif
+		System.Single[] local38 = new System.Single[longestSide]
+		System.Collections.Generic.List`1<System.Single> list3 = new System.Collections.Generic.List`1<System.Single>()
+
+		list3..ctor(local38) //(IEnumerable`1 collection)
+		ulong local40 = 0
+
+		VerticalAngles4.InsertRange(local40, list3) //(Int32 index, IEnumerable`1 collection)
+		System.Single[] local41 = new System.Single[longestSide]
+		System.Collections.Generic.List`1<System.Single> list4 = new System.Collections.Generic.List`1<System.Single>()
+
+		list4..ctor(local41) //(IEnumerable`1 collection)
+
+		VerticalAngles4.AddRange(list4) //(IEnumerable`1 collection)
+
+		INSN_181BB64D6:
+		local26 += 1
+		list4. = 430
+
+		VerticalAngles4.Dispose()
+
+		if (VerticalAngles4 != 0)
+            goto INSN_181BB6696
+        endif
+
+		if (local26 == -1)
+            goto INSN_181BB6552
+        endif
+
+		if (constant78 == 430)
+            goto INSN_181BB62AA
+        endif
+
+		INSN_181BB6552:
+		iesData.<PadBeforeAmount>k__BackingField = longestSide
+		local41 -= longestSide
+		iesData.<PadAfterAmount>k__BackingField = local41
+		System.Collections.Generic.List`1<System.Collections.Generic.List`1<System.Single>> NormalizedValues3 = iesData.<NormalizedValues>k__BackingField
+
+		System.Collections.Generic.List`1/Enumerator<System.Single> enumerator3 = VerticalAngles4.GetEnumerator()
+
+		if (enumerator3 == 0)
+            goto INSN_181BB6646
+        endif
+		System.Single[] local45 = new System.Single[longestSide]
+		System.Collections.Generic.List`1<System.Single> list5 = new System.Collections.Generic.List`1<System.Single>()
+
+		list5..ctor(local45) //(IEnumerable`1 collection)
+		ulong local47 = 0
+
+		VerticalAngles4.InsertRange(local47, list5) //(Int32 index, IEnumerable`1 collection)
+		System.Single[] local48 = new System.Single[local41]
+		System.Collections.Generic.List`1<System.Single> list6 = new System.Collections.Generic.List`1<System.Single>()
+
+		list6..ctor(local48) //(IEnumerable`1 collection)
+
+		VerticalAngles4.AddRange(list6) //(IEnumerable`1 collection)
+
+		INSN_181BB6646:
+		VerticalAngles4. = 430
+
+		VerticalAngles4.Dispose()
+
+		if (VerticalAngles4 != 0)
+            goto INSN_181BB66A7
+        endif
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+
+		INSN_181BB6685:
+		throw new System.NullReferenceException()
+
+		INSN_181BB6696:
+		throw new System.NullReferenceException()
+
+		INSN_181BB66A7:
+
+
+Generated IL:
+	IL Generation Skipped due to invalid local _items of type T[]
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: IESLights.ParseIES
+	static System.Void SetVerticalAndHorizontalType(IESLights.IESData iesData)
+		System.Collections.Generic.List`1<System.Single> VerticalAngles = iesData.<VerticalAngles>k__BackingField
+
+		if ( <= 0)
+		    ulong local2 = 0
+
+		    System.ThrowHelper.ThrowArgumentOutOfRangeException()
+		endif
+        
+		T[] _items = VerticalAngles._items
+		T local5 = _items[0]
+
+		if ( != 0)
+            goto INSN_181BB6CE2
+        endif
+		System.Collections.Generic.List`1<System.Single> VerticalAngles2 = iesData.<VerticalAngles>k__BackingField
+		System.Int32 _size = VerticalAngles2._size
+		System.Int32 local8 = _size - 1
+		ulong local9 = 0
+
+		System.ThrowHelper.ThrowArgumentOutOfRangeException()
+
+		if (local8 == _size)
+            goto INSN_181BB6D40
+        endif
+
+		INSN_181BB6CE2:
+		System.Collections.Generic.List`1<System.Single> VerticalAngles3 = iesData.<VerticalAngles>k__BackingField
+
+		if ( > 0)
+            goto INSN_181BB6CFC
+        endif
+		ulong local12 = 0
+
+		System.ThrowHelper.ThrowArgumentOutOfRangeException()
+
+		INSN_181BB6CFC:
+		T[] _items2 = VerticalAngles3._items
+		T local14 = _items2[0]
+
+		if ( != 0)
+            goto INSN_181BB6D49
+        endif
+		System.Collections.Generic.List`1<System.Single> VerticalAngles4 = iesData.<VerticalAngles>k__BackingField
+		System.Int32 _size2 = VerticalAngles4._size
+		System.Int32 local17 = _size2 - 1
+		ulong local18 = 0
+
+		System.ThrowHelper.ThrowArgumentOutOfRangeException()
+
+		if (local17 != _size2)
+            goto INSN_181BB6D49
+        endif
+
+		INSN_181BB6D40:
+		iesData.<VerticalType>k__BackingField = 1
+
+		INSN_181BB6D49:
+		System.Collections.Generic.List`1<System.Single> VerticalAngles5 = iesData.<VerticalAngles>k__BackingField
+		System.Int32 _size3 = VerticalAngles5._size
+		System.Int32 local22 = _size3 - 1
+		ulong local23 = 0
+
+		System.ThrowHelper.ThrowArgumentOutOfRangeException()
+
+		if (local22 != _size3)
+            goto INSN_181BB6DB4
+        endif
+		System.Collections.Generic.List`1<System.Single> VerticalAngles6 = iesData.<VerticalAngles>k__BackingField
+
+		if ( > 0)
+            goto INSN_181BB6D97
+        endif
+		ulong local26 = 0
+
+		System.ThrowHelper.ThrowArgumentOutOfRangeException()
+
+		INSN_181BB6D97:
+		T[] _items3 = VerticalAngles6._items
+		T local28 = _items3[0]
+
+		if ( != 0)
+            goto INSN_181BB6DB4
+        endif
+		iesData.<VerticalType>k__BackingField = 2
+
+		INSN_181BB6DB4:
+		iesData.<VerticalType>k__BackingField = 0
+		System.Collections.Generic.List`1<System.Single> HorizontalAngles = iesData.<HorizontalAngles>k__BackingField
+		System.Int32 _size4 = HorizontalAngles._size
+
+		if (_size4 == 1)
+            goto INSN_181BB6F77
+        endif
+		System.Int32 local31 = _size4 - 1
+		ulong local32 = 0
+
+		System.ThrowHelper.ThrowArgumentOutOfRangeException()
+		System.Collections.Generic.List`1<System.Single> HorizontalAngles2 = iesData.<HorizontalAngles>k__BackingField
+
+		if ( > 0)
+            goto INSN_181BB6E0A
+        endif
+		ulong local35 = 0
+
+		System.ThrowHelper.ThrowArgumentOutOfRangeException()
+
+		INSN_181BB6E0A:
+		T[] _items4 = HorizontalAngles2._items
+
+		if ( != 0)
+            goto INSN_181BB6E3F
+        endif
+		iesData.<HorizontalType>k__BackingField = 2
+		return
+
+		INSN_181BB6E3F:
+		System.Collections.Generic.List`1<System.Single> HorizontalAngles3 = iesData.<HorizontalAngles>k__BackingField
+		System.Int32 _size5 = HorizontalAngles3._size
+		System.Int32 local39 = _size5 - 1
+		ulong local40 = 0
+
+		System.ThrowHelper.ThrowArgumentOutOfRangeException()
+		System.Collections.Generic.List`1<System.Single> HorizontalAngles4 = iesData.<HorizontalAngles>k__BackingField
+
+		if ( > 0)
+            goto INSN_181BB6E85
+        endif
+		ulong local43 = 0
+
+		System.ThrowHelper.ThrowArgumentOutOfRangeException()
+
+		INSN_181BB6E85:
+
+		if ( != 0)
+            goto INSN_181BB6EA2
+        endif
+		iesData.<HorizontalType>k__BackingField = 1
+
+		INSN_181BB6EA2:
+		System.Collections.Generic.List`1<System.Single> HorizontalAngles5 = iesData.<HorizontalAngles>k__BackingField
+		iesData.<HorizontalType>k__BackingField = 0
+		System.Int32 _size6 = HorizontalAngles5._size
+		System.Int32 local47 = _size6 - 1
+		ulong local48 = 0
+
+		System.ThrowHelper.ThrowArgumentOutOfRangeException()
+
+		if (local47 == _size6)
+            goto INSN_181BB6E25
+        endif
+		System.Collections.Generic.List`1<System.Single> HorizontalAngles6 = iesData.<HorizontalAngles>k__BackingField
+
+		HorizontalAngles6.Add()
+		System.Collections.Generic.List`1<System.Collections.Generic.List`1<System.Single>> CandelaValues = iesData.<CandelaValues>k__BackingField
+
+		if ( > 0)
+            goto INSN_181BB6F2E
+        endif
+		ulong local52 = 0
+
+		System.ThrowHelper.ThrowArgumentOutOfRangeException()
+
+		INSN_181BB6F2E:
+		T[] _items5 = CandelaValues._items
+		T local54 = _items5[0]
+
+		CandelaValues.Add()
+		System.Collections.Generic.List`1<System.Collections.Generic.List`1<System.Single>> NormalizedValues = iesData.<NormalizedValues>k__BackingField
+
+		if ( > 0)
+            goto INSN_181BB6F5B
+        endif
+		ulong local56 = 0
+
+		System.ThrowHelper.ThrowArgumentOutOfRangeException()
+
+		INSN_181BB6F5B:
+		T[] _items6 = NormalizedValues._items
+		T local58 = _items6[0]
+
+		NormalizedValues.Add()
+
+		INSN_181BB6F77:
+		NormalizedValues. = 3
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL Generation Skipped due to invalid local _items of type T[]
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: IESLights.ParseIES
+	static System.Void StitchHorizontalAssymetry(IESLights.IESData iesData)
+		System.Collections.Generic.List`1<System.Single> HorizontalAngles = iesData.<HorizontalAngles>k__BackingField
+
+		HorizontalAngles.Add()
+		System.Collections.Generic.List`1<System.Collections.Generic.List`1<System.Single>> CandelaValues = iesData.<CandelaValues>k__BackingField
+
+		if ( <= 0)
+		    ulong local3 = 0
+
+		    System.ThrowHelper.ThrowArgumentOutOfRangeException()
+		endif
+        
+		T[] _items = CandelaValues._items
+		T local5 = _items[0]
+
+		CandelaValues.Add()
+		System.Collections.Generic.List`1<System.Collections.Generic.List`1<System.Single>> NormalizedValues = iesData.<NormalizedValues>k__BackingField
+
+		if ( > 0)
+            goto INSN_181BB7022
+        endif
+		ulong local7 = 0
+
+		System.ThrowHelper.ThrowArgumentOutOfRangeException()
+
+		INSN_181BB7022:
+		T[] _items2 = NormalizedValues._items
+		T local9 = _items2[0]
+
+		NormalizedValues.Add()
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL Generation Skipped due to invalid local _items of type T[]
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: IESLights.ParseIES
+	static System.Single CalculateHalfSpotFov(IESLights.IESData iesData)
+
+		if (iesData.<VerticalType>k__BackingField == 1)
+		    System.Collections.Generic.List`1<System.Single> VerticalAngles = iesData.<VerticalAngles>k__BackingField
+
+		    if ( <= 0)
+		        ulong local2 = 0
+
+		        System.ThrowHelper.ThrowArgumentOutOfRangeException()
+		    endif
+            
+		    T[] _items = VerticalAngles._items
+		    T local5 = _items[0]
+
+		    if ( != 0)
+                goto INSN_181BB4913
+            endif
+		    System.Collections.Generic.List`1<System.Single> VerticalAngles2 = iesData.<VerticalAngles>k__BackingField
+		    System.Int32 _size = VerticalAngles2._size
+		    ulong local8 = 0
+		    System.Collections.Generic.List`1<System.Collections.Generic.List`1<System.Single>> NormalizedValues = iesData.<NormalizedValues>k__BackingField
+
+		    if (local8 >= )
+                goto INSN_181BB48C5
+            endif
+		    local8 += 1
+
+		    INSN_181BB48C5:
+		    System.Collections.Generic.List`1<System.Single> VerticalAngles3 = iesData.<VerticalAngles>k__BackingField
+		    System.Int32 _size2 = VerticalAngles3._size
+
+		    if (_size >= _size2)
+                goto INSN_181BB48EE
+            endif
+		    System.Int32 local12 = _size + 1
+
+		    INSN_181BB48EE:
+		    return local5
+		endif
+        
+		IESLights.VerticalType VerticalType = iesData.<VerticalType>k__BackingField
+
+		if (VerticalType == 2)
+            goto INSN_181BB4954
+        endif
+
+		if (VerticalType != 1)
+            goto INSN_181BB494A
+        endif
+		System.Collections.Generic.List`1<System.Single> VerticalAngles4 = iesData.<VerticalAngles>k__BackingField
+
+		if ( > 0)
+            goto INSN_181BB4936
+        endif
+		ulong local15 = 0
+
+		System.ThrowHelper.ThrowArgumentOutOfRangeException()
+
+		INSN_181BB4936:
+		T[] _items2 = VerticalAngles4._items
+		T local17 = _items2[0]
+
+		if ( == 0)
+            goto INSN_181BB4954
+        endif
+
+		INSN_181BB494A:
+
+		INSN_181BB4954:
+
+		System.Single single = IESLights.ParseIES.CalculateHalfSpotlightFovForTopHalf(iesData) //(IESData iesData)
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL Generation Skipped due to invalid local _items of type T[]
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: IESLights.ParseIES
+	static System.Single CalculateHalfSpotlightFovForBottomHalf(IESLights.IESData iesData)
+		System.Collections.Generic.List`1<System.Single> VerticalAngles = iesData.<VerticalAngles>k__BackingField
+		System.Int32 _size = VerticalAngles._size
+		ulong local3 = 0
+		System.Collections.Generic.List`1<System.Collections.Generic.List`1<System.Single>> NormalizedValues = iesData.<NormalizedValues>k__BackingField
+
+		if (local3 < )
+		    local3 += 1
+		endif
+        
+		ulong local5 = 0
+		System.Collections.Generic.List`1<System.Single> VerticalAngles2 = iesData.<VerticalAngles>k__BackingField
+		System.Int32 _size2 = VerticalAngles2._size
+		return local5
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfGreaterThanOrEqualToAction at (0x181BB49DE) is corrupt (One of the arguments is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: IESLights.ParseIES
+	static System.Single CalculateHalfSpotlightFovForTopHalf(IESLights.IESData iesData)
+		ulong local1 = 0
+		ulong local2 = 0
+		System.Collections.Generic.List`1<System.Single> VerticalAngles = iesData.<VerticalAngles>k__BackingField
+
+		if (local2 < )
+		    ulong local4 = 0
+		    System.Collections.Generic.List`1<System.Collections.Generic.List`1<System.Single>> NormalizedValues = iesData.<NormalizedValues>k__BackingField
+
+		    if (local4 < )
+		        local4 += 1
+		    endif
+            
+		    local1 += 1
+		    System.Collections.Generic.List`1<System.Single> VerticalAngles2 = iesData.<VerticalAngles>k__BackingField
+
+		    if (iesData.<VerticalType>k__BackingField == 2)
+                goto INSN_181BB4B64
+            endif
+		    System.Int32 -1 = 4294967295
+
+		    INSN_181BB4B64:
+		    return constant21
+		    System.Int32 -1 = 4294967295
+		endif
+        
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfGreaterThanOrEqualToAction at (0x181BB4AC0) is corrupt (One of the arguments is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: IESLights.ParseIES
+	static System.Void NormalizeValues(IESLights.IESData iesData, System.Boolean squashHistogram)
+		System.Collections.Generic.List`1<System.Collections.Generic.List`1<System.Single>> list = new System.Collections.Generic.List`1<System.Collections.Generic.List`1<System.Single>>()
+
+		list..ctor()
+		iesData.<NormalizedValues>k__BackingField = list
+		System.Collections.Generic.List`1<System.Collections.Generic.List`1<System.Single>> CandelaValues = iesData.<CandelaValues>k__BackingField
+		System.Func`2<System.Collections.Generic.List`1<System.Single>,System.Collections.Generic.IEnumerable`1<System.Single>> <>9__14_0 = IESLights.ParseIES/<>c.<>9__14_0
+
+		if (<>9__14_0 == 0)
+		    IESLights.ParseIES/<>c <>c = IESLights.ParseIES/<>c.<>9
+		    System.Func`2<System.Collections.Generic.List`1<System.Single>,System.Collections.Generic.IEnumerable`1<System.Single>> func = new System.Func`2<System.Collections.Generic.List`1<System.Single>,System.Collections.Generic.IEnumerable`1<System.Single>>()
+
+		    func..ctor(<>c, {'<NormalizeValues>b__14_0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		     += 16
+		    IESLights.ParseIES/<>c.<>9 = func
+		endif
+        
+
+		System.Collections.Generic.IEnumerable`1<System.Collections.Generic.List`1<System.Single>> iEnumerable = System.Linq.Enumerable.SelectMany<System.Collections.Generic.List`1<System.Single>, System.Single>(CandelaValues, <>9__14_0) //(IEnumerable`1 source, Func`2 selector)
+
+		System.Single single = System.Linq.Enumerable.Max(iEnumerable) //(IEnumerable`1 source)
+
+		if (squashHistogram == False)
+            goto INSN_181BB5A95
+        endif
+
+		INSN_181BB5A95:
+		System.Collections.Generic.List`1<System.Collections.Generic.List`1<System.Single>> CandelaValues2 = iesData.<CandelaValues>k__BackingField
+
+		System.Collections.Generic.List`1/Enumerator<T> enumerator = .GetEnumerator()
+
+		if (enumerator == 0)
+            goto INSN_181BB5C58
+        endif
+		System.Collections.Generic.List`1<System.Single> list2 = new System.Collections.Generic.List`1<System.Single>()
+
+		list2..ctor()
+
+		if (squashHistogram != False)
+            goto INSN_181BB5BCB
+        endif
+
+		list2.AddRange(CandelaValues) //(IEnumerable`1 collection)
+		ulong local13 = 0
+
+		if (local13 >= )
+            goto INSN_181BB5C3B
+        endif
+
+		list2.set_Item()
+
+		System.Single single2 = UnityEngine.Mathf.Clamp01(single) //(Single value)
+		single = single2
+
+		list2.set_Item()
+		local13 += 1
+		endwhile
+    
+		goto INSN_181BB5CC6
+    
+		ulong local16 = 0
+
+		if (local16 < )
+		single = single2
+		single2 = single
+
+		list2.Add(local16) //(T item)
+		local16 += 1
+		endwhile
+    
+		goto INSN_181BB5CCB
+    
+		System.Collections.Generic.List`1<System.Collections.Generic.List`1<System.Single>> NormalizedValues = iesData.<NormalizedValues>k__BackingField
+
+		NormalizedValues.Add(list2) //(T item)
+
+		INSN_181BB5C58:
+
+		NormalizedValues.Dispose()
+
+		NormalizedValues.Dispose()
+
+		if (NormalizedValues != 0)
+        goto INSN_181BB5CD1
+    endif
+		return
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+
+		INSN_181BB5CC6:
+		throw new System.NullReferenceException()
+
+		INSN_181BB5CCB:
+		throw new System.NullReferenceException()
+
+		INSN_181BB5CD1:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x181BB5A39) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: IESLights.ParseIES
+	static System.Void EqualizeHistogram(IESLights.IESData iesData)
+		ulong local3 = 0
+		System.Int64 local4 = 0xFFFFFFFF
+		System.Collections.Generic.List`1<System.Collections.Generic.List`1<System.Single>> CandelaValues = iesData.<CandelaValues>k__BackingField
+		System.Func`2<System.Collections.Generic.List`1<System.Single>,System.Collections.Generic.IEnumerable`1<System.Single>> <>9__15_0 = IESLights.ParseIES/<>c.<>9__15_0
+
+		if (<>9__15_0 == 0)
+		    IESLights.ParseIES/<>c <>c = IESLights.ParseIES/<>c.<>9
+		    System.Func`2<System.Collections.Generic.List`1<System.Single>,System.Collections.Generic.IEnumerable`1<System.Single>> func = new System.Func`2<System.Collections.Generic.List`1<System.Single>,System.Collections.Generic.IEnumerable`1<System.Single>>()
+
+		    func..ctor(<>c, {'<EqualizeHistogram>b__15_0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		     += 24
+		    IESLights.ParseIES/<>c.<>9 = func
+		endif
+        
+
+		System.Collections.Generic.IEnumerable`1<System.Collections.Generic.List`1<System.Single>> iEnumerable = System.Linq.Enumerable.SelectMany<System.Collections.Generic.List`1<System.Single>, System.Single>(CandelaValues, <>9__15_0) //(IEnumerable`1 source, Func`2 selector)
+
+		System.Single single = System.Linq.Enumerable.Max(iEnumerable) //(IEnumerable`1 source)
+
+		System.Int32 int32 = UnityEngine.Mathf.Min()
+		System.Single[] local15 = new System.Single[int32]
+		System.Single[] local16 = new System.Single[int32]
+		System.Collections.Generic.List`1<System.Collections.Generic.List`1<System.Single>> NormalizedValues = iesData.<NormalizedValues>k__BackingField
+
+		System.Collections.Generic.List`1/Enumerator<T> enumerator = .GetEnumerator()
+
+		if (enumerator == 0)
+            goto INSN_181BB5465
+        endif
+
+		System.Collections.Generic.List`1/Enumerator<T> enumerator2 = .GetEnumerator()
+
+		if (enumerator2 == 0)
+            goto INSN_181BB53CF
+        endif
+		System.Int32 local20 = int32 - 1
+		  = single * .
+		System.Single single2 = local15[local20]
+		local15[0] = single2
+
+		INSN_181BB53CF:
+		local4 += 1
+
+		local20.Dispose()
+
+		if (local3 != 0)
+            goto INSN_181BB56C9
+        endif
+
+		if (local4 == 0xFFFFFFFF)
+            goto INSN_181BB5330
+        endif
+
+		if (constant46 != 161)
+            goto INSN_181BB5330
+        endif
+
+		INSN_181BB5465:
+		local4 += 1
+
+		local20.Dispose()
+
+		if (local3 != 0)
+            goto INSN_181BB56D9
+        endif
+
+		if (local4 == 0xFFFFFFFF)
+            goto INSN_181BB54DB
+        endif
+
+		if (constant52 != 186)
+            goto INSN_181BB54DB
+        endif
+
+		INSN_181BB54DB:
+		System.Collections.Generic.List`1<System.Single> HorizontalAngles = iesData.<HorizontalAngles>k__BackingField
+		System.Int32 _size = HorizontalAngles._size
+		System.Collections.Generic.List`1<System.Single> VerticalAngles = iesData.<VerticalAngles>k__BackingField
+		System.Int32 _size2 = VerticalAngles._size
+		System.Int32 local26 = _size2 * _size
+		ulong local27 = 0
+		ulong local28 = 0
+		System.Int32 length = local15.Length
+
+		if (local28 >= length)
+            goto INSN_181BB553A
+        endif
+		System.Single single3 = local15[local27]
+		local15[0] = single3
+		local27 += 1
+
+		INSN_181BB553A:
+		ulong local31 = 0
+
+		if (int32 <= 0)
+            goto INSN_181BB5584
+        endif
+		System.Int32 1 = 1
+
+		System.Collections.Generic.IEnumerable`1<System.Single> iEnumerable2 = System.Linq.Enumerable.Take<System.Single>(local15, 1) //(IEnumerable`1 source, Int32 count)
+
+		System.Single single4 = System.Linq.Enumerable.Sum(iEnumerable2) //(IEnumerable`1 source)
+		local16[0] = single4
+
+		INSN_181BB5584:
+		System.Collections.Generic.List`1<System.Collections.Generic.List`1<System.Single>> NormalizedValues2 = iesData.<NormalizedValues>k__BackingField
+
+		System.Collections.Generic.List`1/Enumerator<System.Single> enumerator3 = iEnumerable2.GetEnumerator()
+
+		if (enumerator3 == 0)
+            goto INSN_181BB5651
+        endif
+		ulong local37 = 0
+		System.Int32 local38 = int32 - 1
+		  =  * local16.
+
+		.set_Item()
+		local37 += 1
+		endwhile
+    
+		goto INSN_181BB5719
+    
+		System.UInt32 local39 = local4 + 1
+
+		local39.Dispose()
+
+		local39.Dispose()
+
+		if (local39 != 0)
+        goto INSN_181BB571F
+    endif
+		return
+		throw new System.IndexOutOfRangeException()
+		throw new System.NullReferenceException()
+
+		INSN_181BB56C9:
+		throw new System.NullReferenceException()
+
+		INSN_181BB56D9:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x181BB525B) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: IESLights.ParseIES
+	static System.Void FindNumberOfAnglesLine(System.String[] lines, System.Int32& lineNumber)
+		ulong local2 = 0
+		System.Int32 length = lines.Length
+
+		if (local2 < length)
+		    System.String string = lines[local2]
+
+		    System.String string2 = string.Trim()
+
+		    System.Boolean boolean = string2.StartsWith("TILT") //(String value)
+
+		    if (boolean == False)
+		        local2 += 1
+		    endif
+            
+		    System.String string3 = lines[local2]
+		    System.Int64 local10 = 1
+		    System.Char[] local11 = new System.Char[1]
+		    System.Int64 local12 = 61
+		    local11[0] = local12
+
+		    System.String[] stringArray = string3.Split(local11) //(Char[] separator)
+		    System.String local15 = stringArray[1]
+
+		    System.String string4 = local15.Trim()
+
+		    System.Boolean boolean2 = System.String.op_Inequality(string4, "NONE") //(String a, String b)
+
+		    if (boolean2 != False)
+                goto INSN_181BB585E
+            endif
+		    local2 += 1
+
+		    INSN_181BB585E:
+		    local2 += 5
+		endif
+        
+		lineNumber.m_value = local2
+		return
+		throw new System.NullReferenceException()
+		throw new System.IndexOutOfRangeException()
+		throw new System.IndexOutOfRangeException()
+		throw new System.IndexOutOfRangeException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		IESLights.IESParseException iESParseException = new IESLights.IESParseException()
+
+		iESParseException..ctor("No TILT line present.") //(String message)
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: ldarg.0
+	IL_0003: call System.Int32 System.Array::get_Length()
+	IL_0008: stloc.1
+	IL_0009: ldloc.0
+	IL_000a: ldloc.1
+	IL_000b: bge.s IL_006c
+	IL_000d: ldarg.0
+	IL_000e: ldloc.0
+	IL_000f: ldelem.any System.String
+	IL_0014: call System.String System.String::Trim()
+	IL_0019: ldstr "TILT"
+	IL_001e: call System.Boolean System.String::StartsWith(System.String)
+	IL_0023: ldc.i4.0
+	IL_0024: bne.un.s IL_002a
+	IL_0026: ldloc.0
+	IL_0027: ldc.i4.1
+	IL_0028: add
+	IL_0029: stloc.0
+	IL_002a: ldarg.0
+	IL_002b: ldloc.0
+	IL_002c: ldelem.any System.String
+	IL_0031: stloc.2
+	IL_0032: ldc.i4.1
+	IL_0033: newarr System.Char
+	IL_0038: stloc.s V_4
+	IL_003a: ldloc.s V_4
+	IL_003c: ldc.i4.0
+	IL_003d: ldloc.s V_5
+	IL_003f: stelem.any System.Char
+	IL_0044: ldloc.2
+	IL_0045: ldloc.s V_4
+	IL_0047: call System.String[] System.String::Split(System.Char[])
+	IL_004c: ldc.i4.1
+	IL_004d: ldelem.any System.String
+	IL_0052: call System.String System.String::Trim()
+	IL_0057: ldstr "NONE"
+	IL_005c: call System.Boolean System.String::op_Inequality(System.String,System.String)
+	IL_0061: ldc.i4.0
+	IL_0062: bne.un.s IL_0068
+	IL_0064: ldloc.0
+	IL_0065: ldc.i4.1
+	IL_0066: add
+	IL_0067: stloc.0
+	IL_0068: ldloc.0
+	IL_0069: ldc.i4.5
+	IL_006a: add
+	IL_006b: stloc.0
+	IL_006c: ldarg.1
+	IL_006d: ldloc.0
+	IL_006e: stfld System.Int32 System.Int32::m_value
+	IL_0073: ret
+	IL_0074: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0079: throw
+	IL_007a: newobj System.Void System.IndexOutOfRangeException::.ctor()
+	IL_007f: throw
+	IL_0080: newobj System.Void System.IndexOutOfRangeException::.ctor()
+	IL_0085: throw
+	IL_0086: newobj System.Void System.IndexOutOfRangeException::.ctor()
+	IL_008b: throw
+	IL_008c: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0091: throw
+	IL_0092: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0097: throw
+	IL_0098: newobj System.Void System.NullReferenceException::.ctor()
+	IL_009d: throw
+	IL_009e: newobj System.Void System.NullReferenceException::.ctor()
+	IL_00a3: throw
+	IL_00a4: ldstr "No TILT line present."
+	IL_00a9: newobj System.Void IESLights.IESParseException::.ctor(System.String)
+	IL_00ae: stloc.s V_6
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: IESLights.ParseIES
+	static System.Void ReadProperties(System.String[] lines, System.Int32& lineNumber, System.Int32& numberOfVerticalAngles, System.Int32& numberOfHorizontalAngles, IESLights.PhotometricType& photometricType)
+		System.Int32 13 = 13
+
+		System.Collections.Generic.List`1<System.Single> list = IESLights.ParseIES.ReadValues(lines, 13, lineNumber) //(String[] lines, Int32 numberOfValuesToFind, Int32& lineNumber)
+
+		if ( <= 3)
+		    ulong local7 = 0
+
+		    System.ThrowHelper.ThrowArgumentOutOfRangeException()
+		endif
+        
+		numberOfVerticalAngles.m_value = 13
+
+		if ( > 4)
+            goto INSN_181BB69CA
+        endif
+		ulong local9 = 0
+
+		System.ThrowHelper.ThrowArgumentOutOfRangeException()
+
+		INSN_181BB69CA:
+		numberOfHorizontalAngles.m_value = local9
+
+		if ( > 5)
+            goto INSN_181BB69E2
+        endif
+		ulong local11 = 0
+
+		System.ThrowHelper.ThrowArgumentOutOfRangeException()
+
+		INSN_181BB69E2:
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfGreaterThanAction at (0x181BB69A9) is corrupt (One of the arguments is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: IESLights.ParseIES
+	static System.Collections.Generic.List`1<System.Single> ReadValues(System.String[] lines, System.Int32 numberOfValuesToFind, System.Int32& lineNumber)
+		System.Collections.Generic.List`1<System.Single> list = new System.Collections.Generic.List`1<System.Single>()
+
+		list..ctor()
+
+		if ( < numberOfValuesToFind)
+		    System.Int32 length = lines.Length
+
+		    if (constant11 >= length)
+                goto INSN_181BB6C02
+            endif
+		    System.String string = lines[]
+
+		    System.Boolean boolean = string.Contains(",") //(String value)
+
+		    if (boolean != False)
+		        System.Char[] local9 = new System.Char[1]
+		        local9[0] = 44
+		    endif
+            
+		    System.String string2 = lines[]
+		    System.Int32 1 = 1
+
+		    System.String[] stringArray = string2.Split()
+		    ulong local13 = 0
+
+		    if (local13 < stringArray.Length)
+		        System.String string3 = stringArray[local13]
+		        ulong local15 = 0
+
+		        System.Single single = System.Single.Parse(string3) //(String s)
+
+		        list.Add(local15) //(T item)
+		        local13 += 1
+		    endwhile
+            
+		    goto INSN_181BB6B87
+            
+		endwhile
+        
+		goto INSN_181BB6B87
+        
+		return list
+
+		INSN_181BB6B87:
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfGreaterThanOrEqualToAction at (0x181BB6A8E) is corrupt (One of the arguments is null) and cannot be created as IL. Aborting here.
+
+

@@ -1,0 +1,215 @@
+Type: ChangeSettingsOnOutside
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ChangeSettingsOnOutside
+	System.Void Update()
+		ulong local2 = 0
+
+		ReferenceHub localHub = ReferenceHub.LocalHub
+		ulong local5 = 0
+
+		System.Boolean boolean = ReferenceHub.op_Inequality(localHub, local5) //(ReferenceHub left, ReferenceHub right)
+
+		if (boolean != False)
+
+		    UnityEngine.Transform transform = base.transform
+
+		    UnityEngine.Transform root = transform.root
+
+		    System.Boolean boolean2 = root.TryGetComponent<ReferenceHub>()
+
+		    if (boolean2 == False)
+                goto INSN_1804607CA
+            endif
+
+		    System.Boolean isLocalPlayer = local1.isLocalPlayer
+
+		    if (isLocalPlayer != False)
+                goto INSN_1804607CA
+            endif
+
+		    UnityEngine.Object.Destroy(this) //(Object obj)
+		endif
+        
+		return
+
+		INSN_1804607CA:
+		Outside singleton = Outside.Singleton
+		System.Action`1<System.Boolean> action = new System.Action`1<System.Boolean>()
+
+		action..ctor(this, {'Singleton_OnSetOutside' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		singleton.add_OnSetOutside(action) //(Action`1 value)
+
+		UnityEngine.Camera component = base.GetComponent<UnityEngine.Camera>()
+		this._myCamera = component
+
+		UnityEngine.Rendering.PostProcessing.PostProcessLayer component2 = base.GetComponent<UnityEngine.Rendering.PostProcessing.PostProcessLayer>()
+		this._myPostProcessLayer = component2
+		Outside singleton2 = Outside.Singleton
+
+		System.Boolean localHostIsOutside = singleton2.LocalHostIsOutside
+		UnityEngine.Camera _myCamera = this._myCamera
+		ulong local25 = 0
+
+		System.Boolean boolean3 = UnityEngine.Object.op_Equality(_myCamera, local25) //(Object x, Object y)
+
+		if (boolean3 != False)
+            goto INSN_180460920
+        endif
+
+		if (this.renderSkyboxOverFogInside == boolean3)
+            goto INSN_1804608EF
+        endif
+		UnityEngine.Rendering.PostProcessing.PostProcessLayer _myPostProcessLayer = this._myPostProcessLayer
+		UnityEngine.Rendering.PostProcessing.Fog fog = _myPostProcessLayer.fog
+		fog.excludeSkybox = localHostIsOutside
+
+		INSN_1804608EF:
+
+		if (this.changeClearFlags == False)
+            goto INSN_180460948
+        endif
+		UnityEngine.Camera _myCamera2 = this._myCamera
+		local25 += 2
+
+		_myCamera2.clearFlags = local25
+		ulong local32 = 0
+
+		base.enabled = local32
+
+		INSN_180460920:
+
+		UnityEngine.Object.Destroy(this) //(Object obj)
+
+		INSN_180460948:
+		ulong local35 = 0
+
+		base.enabled = local35
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18046076B) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ChangeSettingsOnOutside
+	System.Void OnDestroy()
+
+		System.Boolean enabled = base.enabled
+
+		if (enabled == False)
+		    Outside singleton = Outside.Singleton
+		    ulong local5 = 0
+
+		    System.Boolean boolean = UnityEngine.Object.op_Inequality(singleton, local5) //(Object x, Object y)
+
+		    if (boolean != False)
+		        Outside singleton2 = Outside.Singleton
+		        System.Action`1<System.Boolean> action = new System.Action`1<System.Boolean>()
+
+		        action..ctor(this, {'Singleton_OnSetOutside' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		        singleton2.remove_OnSetOutside(action) //(Action`1 value)
+		    endif
+            
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Boolean UnityEngine.Behaviour::get_enabled()
+	IL_0006: ldc.i4.0
+	IL_0007: bne.un.s IL_0035
+	IL_0009: ldsfld Outside Outside::Singleton
+	IL_000e: stloc.0
+	IL_000f: ldc.i4.0
+	IL_0010: stloc.1
+	IL_0011: ldloc.0
+	IL_0012: ldloc.1
+	IL_0013: call System.Boolean UnityEngine.Object::op_Inequality(UnityEngine.Object,UnityEngine.Object)
+	IL_0018: ldc.i4.0
+	IL_0019: beq.s IL_0035
+	IL_001b: ldsfld Outside Outside::Singleton
+	IL_0020: stloc.2
+	IL_0021: ldarg.0
+	IL_0022: ldftn System.Void ChangeSettingsOnOutside::Singleton_OnSetOutside(System.Boolean)
+	IL_0028: newobj System.Void System.Action`1::.ctor(System.Object,System.IntPtr)
+	IL_002d: stloc.3
+	IL_002e: ldloc.2
+	IL_002f: ldloc.3
+	IL_0030: call System.Void Outside::remove_OnSetOutside(System.Action`1)
+	IL_0035: ret
+	IL_0036: newobj System.Void System.NullReferenceException::.ctor()
+	IL_003b: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ChangeSettingsOnOutside
+	System.Void Singleton_OnSetOutside(System.Boolean isOutside)
+		UnityEngine.Camera _myCamera = this._myCamera
+		ulong local4 = 0
+
+		System.Boolean boolean = UnityEngine.Object.op_Equality(_myCamera, local4) //(Object x, Object y)
+
+		if (boolean == False)
+
+		    if (this.renderSkyboxOverFogInside != boolean)
+		        UnityEngine.Rendering.PostProcessing.PostProcessLayer _myPostProcessLayer = this._myPostProcessLayer
+		        UnityEngine.Rendering.PostProcessing.Fog fog = _myPostProcessLayer.fog
+		        fog.excludeSkybox = isOutside
+		    endif
+            
+
+		    if (this.changeClearFlags == False)
+                goto INSN_1804606A3
+            endif
+		    UnityEngine.Camera _myCamera2 = this._myCamera
+		    isOutside += 1
+
+		    _myCamera2.set_clearFlags()
+		    return
+		endif
+        
+
+		UnityEngine.Object.Destroy(this) //(Object obj)
+
+		INSN_1804606A3:
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x180460665) is corrupt (Value is reg has no variable. Stripped? Or a function param?) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ChangeSettingsOnOutside
+	System.Void .ctor()
+		this.changeClearFlags = True
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldc.i4.1
+	IL_0002: stfld System.Boolean ChangeSettingsOnOutside::changeClearFlags
+	IL_0007: ldarg.0
+	IL_0008: call System.Void UnityEngine.MonoBehaviour::.ctor()
+	IL_000d: ret
+	
+

@@ -1,0 +1,118 @@
+Type: DecontaminationScreen
+
+
+	Generated Pseudocode:
+
+	Declaring Type: LightContainmentZoneDecontamination.DecontaminationScreen
+	System.Void Start()
+
+		System.Int32 int32 = UnityEngine.Animator.StringToHash("Time") //(String name)
+		this._animHash = int32
+
+		System.Int32 int322 = UnityEngine.Animator.StringToHash("InsideLCZ") //(String name)
+		this._lczHash = int322
+		return
+
+
+Generated IL:
+	IL_0000: ldstr "Time"
+	IL_0005: call System.Int32 UnityEngine.Animator::StringToHash(System.String)
+	IL_000a: stloc.0
+	IL_000b: ldarg.0
+	IL_000c: ldloc.0
+	IL_000d: stfld System.Int32 LightContainmentZoneDecontamination.DecontaminationScreen::_animHash
+	IL_0012: ldstr "InsideLCZ"
+	IL_0017: call System.Int32 UnityEngine.Animator::StringToHash(System.String)
+	IL_001c: stloc.1
+	IL_001d: ldarg.0
+	IL_001e: ldloc.1
+	IL_001f: stfld System.Int32 LightContainmentZoneDecontamination.DecontaminationScreen::_lczHash
+	IL_0024: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: LightContainmentZoneDecontamination.DecontaminationScreen
+	System.Void Update()
+
+		if (this._singletonSet == False)
+		    LightContainmentZoneDecontamination.DecontaminationController singleton = LightContainmentZoneDecontamination.DecontaminationController.Singleton
+		    ulong local3 = 0
+
+		    System.Boolean boolean = UnityEngine.Object.op_Equality(singleton, local3) //(Object x, Object y)
+
+		    if (boolean != False)
+                goto INSN_1802CD4EF
+            endif
+		    this._singletonSet = True
+		endif
+        
+		LightContainmentZoneDecontamination.DecontaminationController singleton2 = LightContainmentZoneDecontamination.DecontaminationController.Singleton
+		LightContainmentZoneDecontamination.DecontaminationClientTimer clientTimer = singleton2.ClientTimer
+
+		System.Boolean enabled = clientTimer.enabled
+
+		if (enabled != False)
+            goto INSN_1802CD45B
+        endif
+		ulong local10 = 0
+
+		base.enabled = local10
+
+		INSN_1802CD45B:
+		LightContainmentZoneDecontamination.DecontaminationController singleton3 = LightContainmentZoneDecontamination.DecontaminationController.Singleton
+		UnityEngine.Animator animationController = this.AnimationController
+
+		if (singleton3.DecontaminationOverride == constant22)
+            goto INSN_1802CD4F5
+        endif
+		System.Boolean insideLCZ = this.InsideLCZ
+		System.Int32 _lczHash = this._lczHash
+
+		animationController.SetBool(_lczHash, insideLCZ) //(Int32 id, Boolean value)
+		UnityEngine.Animator animationController2 = this.AnimationController
+		System.Single remainingTimeInSeconds = LightContainmentZoneDecontamination.DecontaminationClientTimer.RemainingTimeInSeconds
+		System.Int32 _animHash = this._animHash
+
+		animationController2.SetFloat(_animHash, remainingTimeInSeconds) //(Int32 id, Single value)
+		TMPro.TextMeshPro countdownText = this.CountdownText
+		System.String screenTimeString = LightContainmentZoneDecontamination.DecontaminationClientTimer.ScreenTimeString
+
+		countdownText.OnTop()
+		return
+
+		INSN_1802CD4EF:
+		return
+
+		INSN_1802CD4F5:
+
+		[instruction error - managed method being called is null]
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfZeroOrNullAction at (0x1802CD47D) is corrupt (ConstantDefinition: Don't know how to get IL to load a System.Byte) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: LightContainmentZoneDecontamination.DecontaminationScreen
+	System.Void .ctor()
+		this.InsideLCZ = True
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldc.i4.1
+	IL_0002: stfld System.Boolean LightContainmentZoneDecontamination.DecontaminationScreen::InsideLCZ
+	IL_0007: ldarg.0
+	IL_0008: call System.Void UnityEngine.MonoBehaviour::.ctor()
+	IL_000d: ret
+	
+

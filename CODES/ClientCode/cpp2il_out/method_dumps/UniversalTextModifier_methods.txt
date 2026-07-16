@@ -1,0 +1,103 @@
+Type: UniversalTextModifier
+
+
+	Generated Pseudocode:
+
+	Declaring Type: UniversalTextModifier
+	System.String get_DisplayText()
+
+		if (this._usesTmp != False)
+		    TMPro.TMP_Text _tmpText = this._tmpText
+
+		    FMOD.RESULT rESULT = _tmpText.setUserData(TMPro.TMP_Text.get_text) //(IntPtr userdata)
+		    return rESULT
+		endif
+        
+		UnityEngine.UI.Text _unityText = this._unityText
+
+		FMOD.RESULT rESULT2 = _unityText.setUserData(UnityEngine.UI.Text.get_text) //(IntPtr userdata)
+		return rESULT2
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18075AD61) is corrupt (ConstantDefinition: Don't know how to get IL to load a Mono.Cecil.MethodDefinition) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: UniversalTextModifier
+	System.Void set_DisplayText(System.String value)
+
+		if (this._usesTmp == False)
+		    UnityEngine.UI.Text _unityText = this._unityText
+
+		    System.Boolean isDestroyed = _unityText.IsDestroyed()
+		    return
+		endif
+        
+		TMPro.TMP_Text _tmpText = this._tmpText
+
+		FMOD.RESULT rESULT = _tmpText.stop()
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Boolean UniversalTextModifier::_usesTmp
+	IL_0006: ldc.i4.0
+	IL_0007: bne.un.s IL_0016
+	IL_0009: ldarg.0
+	IL_000a: ldfld UnityEngine.UI.Text UniversalTextModifier::_unityText
+	IL_000f: call System.Boolean UnityEngine.UI.ICanvasElement::IsDestroyed()
+	IL_0014: stloc.0
+	IL_0015: ret
+	IL_0016: ldarg.0
+	IL_0017: ldfld TMPro.TMP_Text UniversalTextModifier::_tmpText
+	IL_001c: call FMOD.RESULT FMOD.IChannelControl::stop()
+	IL_0021: stloc.1
+	IL_0022: ret
+	IL_0023: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0028: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: UniversalTextModifier
+	System.Void Awake()
+
+		System.Boolean boolean = base.TryGetComponent<TMPro.TMP_Text>()
+		this._usesTmp = boolean
+
+		if (boolean == False)
+
+		    UnityEngine.UI.Text component = base.GetComponent<UnityEngine.UI.Text>()
+		    this._unityText = component
+		endif
+        
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18075AD02) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: UniversalTextModifier
+	System.Void .ctor()
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void UnityEngine.MonoBehaviour::.ctor()
+	IL_0006: ret
+	
+

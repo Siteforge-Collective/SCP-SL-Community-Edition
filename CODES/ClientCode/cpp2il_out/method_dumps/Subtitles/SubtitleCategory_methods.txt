@@ -1,0 +1,390 @@
+Type: SubtitleCategory
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Subtitles.SubtitleCategory
+	System.Void AddSubtitle(System.String message, System.Single duration, System.Single delay)
+		System.Collections.Generic.Queue`1<Subtitles.SubtitleCategory/Message> _messages = this._messages
+		System.String empty = System.String.Empty
+		Subtitles.SubtitleCategory/Message message = new Subtitles.SubtitleCategory/Message()
+
+		message..ctor()
+		message.<Text>k__BackingField = empty
+		message.<Duration>k__BackingField = delay
+
+		_messages.Enqueue(message) //(T item)
+		ulong local8 = 0
+		ulong local10 = 0
+		System.String[] splitSeperator = Subtitles.SubtitleCategory.SplitSeperator
+
+		System.String[] stringArray = message.Split(splitSeperator, local10) //(String[] separator, StringSplitOptions options)
+		System.Int32 length = stringArray.Length
+
+		while (local8 < length)
+		    System.String string = stringArray[local8]
+		    local8 += 1
+		endwhile
+        
+		System.Int32 length2 = stringArray.Length
+
+		if (local8 >= length2)
+            goto INSN_18039CE46
+        endif
+		System.Collections.Generic.Queue`1<Subtitles.SubtitleCategory/Message> _messages2 = this._messages
+		System.String string2 = stringArray[local8]
+
+		System.Single single = UnityEngine.Mathf.Max()
+		Subtitles.SubtitleCategory/Message message2 = new Subtitles.SubtitleCategory/Message()
+		duration = single
+
+		message2..ctor(string2, duration) //(String text, Single duration)
+
+		_messages2.Enqueue(message2) //(T item)
+		local8 += 1
+
+		INSN_18039CE46:
+		System.Collections.Generic.Queue`1<Subtitles.SubtitleCategory/Message> _messages3 = this._messages
+		System.String empty2 = System.String.Empty
+		Subtitles.SubtitleCategory/Message message3 = new Subtitles.SubtitleCategory/Message()
+
+		message3..ctor()
+		message3.<Text>k__BackingField = empty2
+		message3.<Duration>k__BackingField = delay
+
+		_messages3.Enqueue(message3) //(T item)
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AllocateInstanceAction at (0x18039CCBD) is corrupt (Could not resolve a constructor with 0 parameters.) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Subtitles.SubtitleCategory
+	System.Void ClearSubtitles()
+		System.Collections.Generic.Queue`1<Subtitles.SubtitleCategory/Message> _messages = this._messages
+
+		_messages.Clear()
+		TMPro.TextMeshProUGUI categoryText = this.CategoryText
+		this._isPlayingMessage = False
+		System.String empty = System.String.Empty
+
+		System.Boolean isDestroyed = categoryText.IsDestroyed()
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Collections.Generic.Queue`1<Subtitles.SubtitleCategory/Message> Subtitles.SubtitleCategory::_messages
+	IL_0006: call System.Void System.Collections.Generic.Queue`1::Clear()
+	IL_000b: ldarg.0
+	IL_000c: ldfld TMPro.TextMeshProUGUI Subtitles.SubtitleCategory::CategoryText
+	IL_0011: stloc.0
+	IL_0012: ldarg.0
+	IL_0013: ldc.i4.0
+	IL_0014: stfld System.Boolean Subtitles.SubtitleCategory::_isPlayingMessage
+	IL_0019: ldloc.0
+	IL_001a: call System.Boolean UnityEngine.UI.ICanvasElement::IsDestroyed()
+	IL_001f: stloc.1
+	IL_0020: ret
+	IL_0021: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0026: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Subtitles.SubtitleCategory
+	System.Void Awake()
+		this._speakerStartStringSize = "C.A.S.S.I.E :"
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldstr "C.A.S.S.I.E :"
+	IL_0006: stfld System.Int32 Subtitles.SubtitleCategory::_speakerStartStringSize
+	IL_000b: ret
+	IL_000c: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0011: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Subtitles.SubtitleCategory
+	System.Void CheckForMessageStart()
+		System.Collections.Generic.Queue`1<Subtitles.SubtitleCategory/Message> _messages = this._messages
+
+		if ( != 0)
+
+		    Subtitles.SubtitleCategory/Message message = _messages.Dequeue()
+		    this._currentMessage = message
+		    Subtitles.SubtitleCategory/Message _currentMessage = this._currentMessage
+		    System.Single Duration = _currentMessage.<Duration>k__BackingField
+		    this._timer = Duration
+		    this._isPlayingMessage = True
+		    System.String Text = _currentMessage.<Text>k__BackingField
+
+		    System.Boolean isNullOrWhiteSpace = System.String.IsNullOrWhiteSpace(Text) //(String value)
+
+		    if (isNullOrWhiteSpace == False)
+		        TMPro.TextMeshProUGUI categoryText = this.CategoryText
+		        System.Int32 _speakerStartStringSize = this._speakerStartStringSize
+
+		        categoryText.maxVisibleCharacters = _speakerStartStringSize
+		        Subtitles.SubtitleCategory/Message _currentMessage2 = this._currentMessage
+		        TMPro.TextMeshProUGUI categoryText2 = this.CategoryText
+		        System.String Text2 = _currentMessage2.<Text>k__BackingField
+		        System.String speakerNameColor = this.speakerNameColor
+
+		        System.String string = System.String.Concat("<color=", speakerNameColor, ">C.A.S.S.I.E :</color> ", Text2) //(String str0, String str1, String str2, String str3)
+
+		        System.String text = categoryText2.text
+		        TMPro.TextMeshProUGUI categoryText3 = this.CategoryText
+
+		        categoryText3.RecalculateMasking()
+		        //UNKNOWN CLASS OFFSET READ HERE
+		        this._currentMessageSize = constant18
+		    endif
+            
+		    return
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfZeroOrNullAction at (0x18039D01F) is corrupt (One of the arguments is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Subtitles.SubtitleCategory
+	System.Void CheckForMessageEnd()
+		System.Single _timer = this._timer
+		ulong local2 = 0
+
+		System.Single deltaTime = UnityEngine.Time.deltaTime
+		ulong local4 = 0
+		this._timer = _timer
+
+		if (_timer <= local4)
+		    TMPro.TextMeshProUGUI categoryText = this.CategoryText
+		    this._isPlayingMessage = False
+		    System.String empty = System.String.Empty
+
+		    System.String text = categoryText.text
+
+		    this.CheckForMessageStart()
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Single Subtitles.SubtitleCategory::_timer
+	IL_0006: stloc.0
+	IL_0007: ldc.i4.0
+	IL_0008: stloc.1
+	IL_0009: call System.Single UnityEngine.Time::get_deltaTime()
+	IL_000e: stloc.2
+	IL_000f: ldc.i4.0
+	IL_0010: stloc.3
+	IL_0011: ldarg.0
+	IL_0012: ldloc.0
+	IL_0013: stfld System.Single Subtitles.SubtitleCategory::_timer
+	IL_0018: ldloc.0
+	IL_0019: ldloc.3
+	IL_001a: bgt.s IL_003a
+	IL_001c: ldarg.0
+	IL_001d: ldfld TMPro.TextMeshProUGUI Subtitles.SubtitleCategory::CategoryText
+	IL_0022: stloc.s V_4
+	IL_0024: ldarg.0
+	IL_0025: ldc.i4.0
+	IL_0026: stfld System.Boolean Subtitles.SubtitleCategory::_isPlayingMessage
+	IL_002b: ldloc.s V_4
+	IL_002d: callvirt System.String TMPro.TMP_Text::get_text()
+	IL_0032: stloc.s V_5
+	IL_0034: ldarg.0
+	IL_0035: call System.Void Subtitles.SubtitleCategory::CheckForMessageStart()
+	IL_003a: ret
+	IL_003b: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0040: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Subtitles.SubtitleCategory
+	System.Void Update()
+
+		if (this._isPlayingMessage != False)
+		    System.Single _timer = this._timer
+		    ulong local2 = 0
+
+		    System.Single deltaTime = UnityEngine.Time.deltaTime
+		    ulong local4 = 0
+		    this._timer = _timer
+
+		    if (_timer <= local4)
+		        TMPro.TextMeshProUGUI categoryText = this.CategoryText
+		        this._isPlayingMessage = False
+		        System.String empty = System.String.Empty
+
+		        System.String text = categoryText.text
+
+		        this.CheckForMessageStart()
+		    endif
+            
+		    TMPro.TextMeshProUGUI categoryText2 = this.CategoryText
+		    System.Int32 m_maxVisibleCharacters = categoryText2.m_maxVisibleCharacters
+
+		    if (m_maxVisibleCharacters >= this._currentMessageSize)
+                goto INSN_18039D24D
+            endif
+		    m_maxVisibleCharacters += 1
+
+		    categoryText2.maxVisibleCharacters = m_maxVisibleCharacters
+		    return
+		endif
+        
+
+		this.CheckForMessageStart()
+		return
+
+		INSN_18039D24D:
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Boolean Subtitles.SubtitleCategory::_isPlayingMessage
+	IL_0006: ldc.i4.0
+	IL_0007: beq.s IL_006e
+	IL_0009: ldarg.0
+	IL_000a: ldfld System.Single Subtitles.SubtitleCategory::_timer
+	IL_000f: stloc.0
+	IL_0010: ldc.i4.0
+	IL_0011: stloc.1
+	IL_0012: call System.Single UnityEngine.Time::get_deltaTime()
+	IL_0017: stloc.2
+	IL_0018: ldc.i4.0
+	IL_0019: stloc.3
+	IL_001a: ldarg.0
+	IL_001b: ldloc.0
+	IL_001c: stfld System.Single Subtitles.SubtitleCategory::_timer
+	IL_0021: ldloc.0
+	IL_0022: ldloc.3
+	IL_0023: bgt.s IL_0043
+	IL_0025: ldarg.0
+	IL_0026: ldfld TMPro.TextMeshProUGUI Subtitles.SubtitleCategory::CategoryText
+	IL_002b: stloc.s V_4
+	IL_002d: ldarg.0
+	IL_002e: ldc.i4.0
+	IL_002f: stfld System.Boolean Subtitles.SubtitleCategory::_isPlayingMessage
+	IL_0034: ldloc.s V_4
+	IL_0036: callvirt System.String TMPro.TMP_Text::get_text()
+	IL_003b: stloc.s V_5
+	IL_003d: ldarg.0
+	IL_003e: call System.Void Subtitles.SubtitleCategory::CheckForMessageStart()
+	IL_0043: ldarg.0
+	IL_0044: ldfld TMPro.TextMeshProUGUI Subtitles.SubtitleCategory::CategoryText
+	IL_0049: stloc.s V_6
+	IL_004b: ldloc.s V_6
+	IL_004d: ldfld System.Int32 TMPro.TMP_Text::m_maxVisibleCharacters
+	IL_0052: stloc.s V_7
+	IL_0054: ldloc.s V_7
+	IL_0056: ldarg.0
+	IL_0057: ldfld System.Int32 Subtitles.SubtitleCategory::_currentMessageSize
+	IL_005c: bge.s IL_0075
+	IL_005e: ldloc.s V_7
+	IL_0060: ldc.i4.1
+	IL_0061: add
+	IL_0062: stloc.s V_7
+	IL_0064: ldloc.s V_6
+	IL_0066: ldloc.s V_7
+	IL_0068: call System.Void TMPro.TMP_Text::set_maxVisibleCharacters(System.Int32)
+	IL_006d: ret
+	IL_006e: ldarg.0
+	IL_006f: call System.Void Subtitles.SubtitleCategory::CheckForMessageStart()
+	IL_0074: ret
+	IL_0075: ret
+	IL_0076: newobj System.Void System.NullReferenceException::.ctor()
+	IL_007b: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Subtitles.SubtitleCategory
+	System.Void .ctor()
+		System.Collections.Generic.Queue`1<Subtitles.SubtitleCategory/Message> queue = new System.Collections.Generic.Queue`1<Subtitles.SubtitleCategory/Message>()
+
+		queue..ctor()
+		this._messages = queue
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: newobj System.Void System.Collections.Generic.Queue`1::.ctor()
+	IL_0005: stloc.0
+	IL_0006: ldarg.0
+	IL_0007: ldloc.0
+	IL_0008: stfld System.Collections.Generic.Queue`1<Subtitles.SubtitleCategory/Message> Subtitles.SubtitleCategory::_messages
+	IL_000d: ldarg.0
+	IL_000e: call System.Void UnityEngine.MonoBehaviour::.ctor()
+	IL_0013: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Subtitles.SubtitleCategory
+	static System.Void .cctor()
+		System.String[] local0 = new System.String[1]
+
+		if ("<split>" != 0)
+
+		    if ("<split>" == 0)
+                goto INSN_18039D2FA
+            endif
+		endif
+        
+		local0[0] = "<split>"
+		Subtitles.SubtitleCategory.SplitSeperator = local0
+		throw new System.NullReferenceException()
+
+		INSN_18039D2FA:
+
+
+Generated IL:
+	IL_0000: ldc.i4.1
+	IL_0001: newarr System.String
+	IL_0006: stloc.0
+	IL_0007: ldstr "<split>"
+	IL_000c: ldc.i4.0
+	IL_000d: beq.s IL_0017
+	IL_000f: ldstr "<split>"
+	IL_0014: ldc.i4.0
+	IL_0015: beq.s IL_0000
+	IL_0017: ldloc.0
+	IL_0018: ldc.i4.0
+	IL_0019: ldstr "<split>"
+	IL_001e: stelem.any System.String
+	IL_0023: ldloc.0
+	IL_0024: stsfld System.String[] Subtitles.SubtitleCategory::SplitSeperator
+	IL_0029: newobj System.Void System.NullReferenceException::.ctor()
+	IL_002e: throw
+	
+

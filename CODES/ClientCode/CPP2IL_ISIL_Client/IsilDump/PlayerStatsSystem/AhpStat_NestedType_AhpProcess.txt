@@ -1,0 +1,88 @@
+Type: PlayerStatsSystem.AhpStat+AhpProcess
+
+Method: System.Void .ctor(System.Single startAmount, System.Single limit, System.Single decay, System.Single efficacy, System.Single sustain, System.Boolean persistant)
+
+Disassembly:
+	push rbx
+	sub rsp,50h
+	cmp byte ptr [1826EA44Eh],0
+	mov rbx,rcx
+	movaps [rsp+40h],xmm6
+	movaps xmm6,xmm3
+	movaps [rsp+30h],xmm7
+	movaps xmm7,xmm2
+	movaps [rsp+20h],xmm8
+	movaps xmm8,xmm1
+	jne short 00000001803CA90Eh
+	mov ecx,[1822E2C98h]
+	call 0000000180294190h
+	mov byte ptr [1826EA44Eh],1
+	xor edx,edx
+	mov rcx,rbx
+	call 00000001802D5040h
+	mov rax,[1827213C8h]
+	movss xmm0,dword ptr [rsp+80h]
+	movss xmm1,dword ptr [rsp+88h]
+	mov rdx,[rax+0B8h]
+	movzx eax,byte ptr [rsp+90h]
+	inc dword ptr [rdx]
+	movss dword ptr [rbx+10h],xmm8
+	movaps xmm8,[rsp+20h]
+	movss dword ptr [rbx+14h],xmm7
+	movaps xmm7,[rsp+30h]
+	movss dword ptr [rbx+18h],xmm6
+	movaps xmm6,[rsp+40h]
+	movss dword ptr [rbx+1Ch],xmm0
+	movss dword ptr [rbx+20h],xmm1
+	mov [rbx+24h],al
+	mov rax,[1827213C8h]
+	mov rcx,[rax+0B8h]
+	mov eax,[rcx]
+	mov [rbx+28h],eax
+	add rsp,50h
+	pop rbx
+	ret
+
+ISIL:
+	001 ShiftStack -8
+	002 Move stack:0x0, rbx
+	003 ShiftStack -80
+	004 Compare [0x1826EA44E], 0
+	005 Move rbx, rcx
+	006 Move stack:0x40, xmm6
+	007 Move xmm6, xmm3
+	008 Move stack:0x30, xmm7
+	009 Move xmm7, xmm2
+	010 Move stack:0x20, xmm8
+	011 Move xmm8, xmm1
+	012 JumpIfNotEqual {16}
+	013 Move rcx, [0x1822E2C98]
+	014 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	015 Move [0x1826EA44E], 1
+	016 Move rdx, 0
+	017 Move rcx, rbx
+	018 Call 0x1802D5040, rcx, rdx, r8, r9, stack:0x0
+	019 Move rax, typeof(PlayerStatsSystem.AhpStat+AhpProcess)
+	020 Move xmm0, stack:0x80
+	021 Move xmm1, stack:0x88
+	022 Move rdx, [rax+184]
+	023 Move rax, stack:0x90
+	024 Add [rdx], [rdx], 1
+	025 Move [rbx+16], xmm8
+	026 Move xmm8, stack:0x20
+	027 Move [rbx+20], xmm7
+	028 Move xmm7, stack:0x30
+	029 Move [rbx+24], xmm6
+	030 Move xmm6, stack:0x40
+	031 Move [rbx+28], xmm0
+	032 Move [rbx+32], xmm1
+	033 Move [rbx+36], rax
+	034 Move rax, typeof(PlayerStatsSystem.AhpStat+AhpProcess)
+	035 Move rcx, [rax+184]
+	036 Move rax, [rcx]
+	037 Move [rbx+40], rax
+	038 ShiftStack 80
+	039 Move rbx, stack:0x0
+	040 ShiftStack 8
+	041 Return 
+

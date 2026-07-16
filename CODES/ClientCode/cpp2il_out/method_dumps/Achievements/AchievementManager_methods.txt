@@ -1,0 +1,365 @@
+Type: AchievementManager
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Achievements.AchievementManager
+	static System.Void Init()
+		System.Action action = new System.Action()
+		ulong local2 = 0
+
+		action..ctor(local2, {'LocalPlayerStarted' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		InventorySystem.Inventory.add_OnLocalClientStarted(action) //(Action value)
+		ulong local4 = 0
+		Achievements.AchievementHandlerBase[] handlers = Achievements.AchievementManager.Handlers
+		System.Int32 length = handlers.Length
+
+		if (local4 < length)
+		    Achievements.AchievementHandlerBase achievementHandlerBase = handlers[local4]
+
+		    System.String string = achievementHandlerBase.ToString()
+		    local4 += 1
+		endif
+        
+		return
+		throw new System.IndexOutOfRangeException()
+
+
+Generated IL:
+	IL_0000: ldloc.1
+	IL_0001: ldftn System.Void Achievements.AchievementManager::LocalPlayerStarted()
+	IL_0007: newobj System.Void System.Action::.ctor(System.Object,System.IntPtr)
+	IL_000c: stloc.0
+	IL_000d: ldc.i4.0
+	IL_000e: stloc.1
+	IL_000f: ldloc.0
+	IL_0010: call System.Void InventorySystem.Inventory::add_OnLocalClientStarted(System.Action)
+	IL_0015: ldc.i4.0
+	IL_0016: stloc.2
+	IL_0017: ldsfld Achievements.AchievementHandlerBase[] Achievements.AchievementManager::Handlers
+	IL_001c: stloc.3
+	IL_001d: ldloc.3
+	IL_001e: call System.Int32 System.Array::get_Length()
+	IL_0023: stloc.s V_4
+	IL_0025: ldloc.2
+	IL_0026: ldloc.s V_4
+	IL_0028: bge.s IL_003c
+	IL_002a: ldloc.3
+	IL_002b: ldloc.2
+	IL_002c: ldelem.any Achievements.AchievementHandlerBase
+	IL_0031: callvirt System.String System.Object::ToString()
+	IL_0036: stloc.s V_5
+	IL_0038: ldloc.2
+	IL_0039: ldc.i4.1
+	IL_003a: add
+	IL_003b: stloc.2
+	IL_003c: ret
+	IL_003d: newobj System.Void System.IndexOutOfRangeException::.ctor()
+	IL_0042: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Achievements.AchievementManager
+	static System.Void LocalPlayerStarted()
+		System.Action`1<Achievements.AchievementManager/AchievementMessage> action = new System.Action`1<Achievements.AchievementManager/AchievementMessage>()
+		ulong local1 = 0
+
+		action..ctor(local1, {'ClientMessageReceived' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		Mirror.NetworkClient.ReplaceHandler<Achievements.AchievementManager/AchievementMessage>(action, True) //(Action`1 handler, Boolean requireAuthentication)
+		ulong local2 = 0
+		Achievements.AchievementHandlerBase[] handlers = Achievements.AchievementManager.Handlers
+		System.Int32 length = handlers.Length
+
+		if (local2 < length)
+		    Achievements.AchievementHandlerBase achievementHandlerBase = handlers[local2]
+
+		    achievementHandlerBase.OnInitialize()
+		    local2 += 1
+		endif
+        
+		return
+		throw new System.IndexOutOfRangeException()
+
+
+Generated IL:
+	IL_0000: ldloc.1
+	IL_0001: ldftn System.Void Achievements.AchievementManager::ClientMessageReceived(Achievements.AchievementManager/AchievementMessage)
+	IL_0007: newobj System.Void System.Action`1::.ctor(System.Object,System.IntPtr)
+	IL_000c: stloc.0
+	IL_000d: ldc.i4.0
+	IL_000e: stloc.1
+	IL_000f: ldloc.0
+	IL_0010: ldc.i4.1
+	IL_0011: call System.Void Mirror.NetworkClient::ReplaceHandler<Achievements.AchievementManager/AchievementMessage>(System.Action`1,System.Boolean)
+	IL_0016: ldc.i4.0
+	IL_0017: stloc.2
+	IL_0018: ldsfld Achievements.AchievementHandlerBase[] Achievements.AchievementManager::Handlers
+	IL_001d: stloc.3
+	IL_001e: ldloc.3
+	IL_001f: call System.Int32 System.Array::get_Length()
+	IL_0024: stloc.s V_4
+	IL_0026: ldloc.2
+	IL_0027: ldloc.s V_4
+	IL_0029: bge.s IL_003b
+	IL_002b: ldloc.3
+	IL_002c: ldloc.2
+	IL_002d: ldelem.any Achievements.AchievementHandlerBase
+	IL_0032: callvirt System.Void Achievements.AchievementHandlerBase::OnInitialize()
+	IL_0037: ldloc.2
+	IL_0038: ldc.i4.1
+	IL_0039: add
+	IL_003a: stloc.2
+	IL_003b: ret
+	IL_003c: newobj System.Void System.IndexOutOfRangeException::.ctor()
+	IL_0041: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Achievements.AchievementManager
+	static System.Void ClientMessageReceived(Achievements.AchievementManager/AchievementMessage msg)
+		ulong local1 = 0
+		System.Collections.Generic.Dictionary`2<Achievements.AchievementName,Achievements.Achievement> achievements = Achievements.AchievementManager.Achievements
+		System.Byte local3 = msg.AchievementId
+
+		System.Boolean boolean = achievements.TryGetValue()
+
+		if (boolean != False)
+
+		    if (constant15 != 0)
+		    endif
+            
+		    return
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.Implicit4ByteFieldReadAction at (0x1805930C5) is corrupt (Local local3 has been stripped out for being unused, so doesn't have a variable.) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Achievements.AchievementManager
+	static System.Void .cctor()
+		Achievements.AchievementHandlerBase[] local0 = new Achievements.AchievementHandlerBase[8]
+		Achievements.Handlers.DidntEvenFeelThatHandler didntEvenFeelThatHandler = new Achievements.Handlers.DidntEvenFeelThatHandler()
+
+		didntEvenFeelThatHandler..ctor()
+
+		if (didntEvenFeelThatHandler != 0)
+
+		    if (didntEvenFeelThatHandler == 0)
+                goto INSN_180594D69
+            endif
+		endif
+        
+		local0[0] = didntEvenFeelThatHandler
+		Achievements.Handlers.EscapeHandler escapeHandler = new Achievements.Handlers.EscapeHandler()
+
+		escapeHandler..ctor()
+
+		if (escapeHandler == 0)
+            goto INSN_1805933EF
+        endif
+
+		if (escapeHandler == 0)
+            goto INSN_180594D89
+        endif
+
+		INSN_1805933EF:
+		local0[1] = escapeHandler
+		Achievements.Handlers.ItemPickupHandler itemPickupHandler = new Achievements.Handlers.ItemPickupHandler()
+
+		itemPickupHandler..ctor()
+
+		if (itemPickupHandler == 0)
+            goto INSN_18059343E
+        endif
+
+		if (itemPickupHandler == 0)
+            goto INSN_180594DA9
+        endif
+
+		INSN_18059343E:
+		local0[2] = itemPickupHandler
+		Achievements.Handlers.PewPewHandler pewPewHandler = new Achievements.Handlers.PewPewHandler()
+
+		pewPewHandler..ctor()
+
+		if (pewPewHandler == 0)
+            goto INSN_18059348D
+        endif
+
+		if (pewPewHandler == 0)
+            goto INSN_180594DC9
+        endif
+
+		INSN_18059348D:
+		local0[3] = pewPewHandler
+		Achievements.Handlers.RespawnHandler respawnHandler = new Achievements.Handlers.RespawnHandler()
+
+		respawnHandler..ctor()
+
+		if (respawnHandler == 0)
+            goto INSN_1805934DC
+        endif
+
+		if (respawnHandler == 0)
+            goto INSN_180594DE9
+        endif
+
+		INSN_1805934DC:
+		local0[4] = respawnHandler
+		Achievements.Handlers.Scp914UpgradeHandler scp914UpgradeHandler = new Achievements.Handlers.Scp914UpgradeHandler()
+
+		scp914UpgradeHandler..ctor()
+
+		if (scp914UpgradeHandler == 0)
+            goto INSN_18059352B
+        endif
+
+		if (scp914UpgradeHandler == 0)
+            goto INSN_180594E09
+        endif
+
+		INSN_18059352B:
+		local0[5] = scp914UpgradeHandler
+		Achievements.Handlers.TurnThemAllHandler turnThemAllHandler = new Achievements.Handlers.TurnThemAllHandler()
+
+		turnThemAllHandler..ctor()
+
+		if (turnThemAllHandler == 0)
+            goto INSN_18059357A
+        endif
+
+		if (turnThemAllHandler == 0)
+            goto INSN_180594E29
+        endif
+
+		INSN_18059357A:
+		local0[6] = turnThemAllHandler
+		Achievements.Handlers.GeneralKillsHandler generalKillsHandler = new Achievements.Handlers.GeneralKillsHandler()
+
+		generalKillsHandler..ctor()
+
+		if (generalKillsHandler == 0)
+            goto INSN_1805935C9
+        endif
+
+		if (generalKillsHandler == 0)
+            goto INSN_180594E49
+        endif
+
+		INSN_1805935C9:
+		local0[7] = generalKillsHandler
+		Achievements.AchievementManager.Handlers = local0
+		System.Collections.Generic.Dictionary`2<Achievements.AchievementName,Achievements.Achievement> dictionary = new System.Collections.Generic.Dictionary`2<Achievements.AchievementName,Achievements.Achievement>()
+
+		dictionary..ctor()
+		ulong local18 = 0
+		ulong local19 = 0
+		System.String empty = System.String.Empty
+		ulong local21 = 0
+
+		dictionary.set_Item(local21, local19) //(TKey key, TValue value)
+		System.String empty2 = System.String.Empty
+
+		dictionary.set_Item()
+		System.String empty3 = System.String.Empty
+
+		dictionary.set_Item()
+		ulong local32 = 0
+		System.String empty4 = System.String.Empty
+
+		dictionary.set_Item(3, local32) //(TKey key, TValue value)
+		ulong local34 = 0
+		System.String empty5 = System.String.Empty
+
+		dictionary.set_Item(4, local34) //(TKey key, TValue value)
+		ulong local36 = 0
+		System.String empty6 = System.String.Empty
+
+		dictionary.set_Item(5, local36) //(TKey key, TValue value)
+		ulong local38 = 0
+		System.String empty7 = System.String.Empty
+
+		dictionary.set_Item(6, local38) //(TKey key, TValue value)
+		ulong local40 = 0
+		System.String empty8 = System.String.Empty
+
+		dictionary.set_Item(7, local40) //(TKey key, TValue value)
+		ulong local42 = 0
+		System.String empty9 = System.String.Empty
+
+		dictionary.set_Item(8, local42) //(TKey key, TValue value)
+		ulong local44 = 0
+		System.String empty10 = System.String.Empty
+
+		dictionary.set_Item(9, local44) //(TKey key, TValue value)
+		ulong local46 = 0
+		System.String empty11 = System.String.Empty
+
+		dictionary.set_Item(10, local46) //(TKey key, TValue value)
+		ulong local48 = 0
+		System.String empty12 = System.String.Empty
+
+		dictionary.set_Item(11, local48) //(TKey key, TValue value)
+		ulong local50 = 0
+		System.String empty13 = System.String.Empty
+
+		dictionary.set_Item(12, local50) //(TKey key, TValue value)
+		ulong local52 = 0
+		System.String empty14 = System.String.Empty
+
+		dictionary.set_Item(13, local52) //(TKey key, TValue value)
+		ulong local54 = 0
+		System.String empty15 = System.String.Empty
+
+		dictionary.set_Item(14, local54) //(TKey key, TValue value)
+		ulong local56 = 0
+		System.String empty16 = System.String.Empty
+
+		dictionary.set_Item(15, local56) //(TKey key, TValue value)
+		ulong local58 = 0
+		System.String empty17 = System.String.Empty
+
+		dictionary.set_Item(16, local58) //(TKey key, TValue value)
+		ulong local60 = 0
+		System.String empty18 = System.String.Empty
+
+		dictionary.set_Item(17, local60) //(TKey key, TValue value)
+		ulong local62 = 0
+		System.String empty19 = System.String.Empty
+
+		dictionary.set_Item(18, local62) //(TKey key, TValue value)
+		ulong local64 = 0
+		System.String empty20 = System.String.Empty
+
+		dictionary.set_Item(19, local64) //(TKey key, TValue value)
+		ulong local66 = 0
+
+		dictionary.set_Item(20, local66) //(TKey key, TValue value)
+		ulong local67 = 0
+		System.String empty21 = System.String.Empty
+
+		dictionary.set_Item(21, local67) //(TKey key, TValue value)
+		ulong local69 = 0
+		System.String empty22 = System.String.Empty
+
+		dictionary.set_Item(22, local69) //(TKey key, TValue value)
+		ulong local71 = 0
+		System.String empty23 = System.String.Empty
+
+		dictionary.set_Item(23, local71) //(TKey key, TValue value)
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180593780) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+

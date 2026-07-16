@@ -1,0 +1,360 @@
+Type: UsableItemViewmodel
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Usables.UsableItemViewmodel
+	System.Void InitAny()
+
+		base.InitAny()
+		UnityEngine.AudioSource _equipSoundSource = this._equipSoundSource
+		ulong local4 = 0
+
+		System.Boolean boolean = UnityEngine.Object.op_Inequality(_equipSoundSource, local4) //(Object x, Object y)
+
+		if (boolean != False)
+		    UnityEngine.AudioSource _equipSoundSource2 = this._equipSoundSource
+
+		    System.Single pitch = _equipSoundSource2.pitch
+		    this._originalPitch = pitch
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void InventorySystem.Items.StandardAnimatedViemodel::InitAny()
+	IL_0006: ldarg.0
+	IL_0007: ldfld UnityEngine.AudioSource InventorySystem.Items.Usables.UsableItemViewmodel::_equipSoundSource
+	IL_000c: stloc.0
+	IL_000d: ldc.i4.0
+	IL_000e: stloc.1
+	IL_000f: ldloc.0
+	IL_0010: ldloc.1
+	IL_0011: call System.Boolean UnityEngine.Object::op_Inequality(UnityEngine.Object,UnityEngine.Object)
+	IL_0016: ldc.i4.0
+	IL_0017: beq.s IL_002c
+	IL_0019: ldarg.0
+	IL_001a: ldfld UnityEngine.AudioSource InventorySystem.Items.Usables.UsableItemViewmodel::_equipSoundSource
+	IL_001f: call System.Single UnityEngine.AudioSource::get_pitch()
+	IL_0024: stloc.2
+	IL_0025: ldarg.0
+	IL_0026: ldloc.2
+	IL_0027: stfld System.Single InventorySystem.Items.Usables.UsableItemViewmodel::_originalPitch
+	IL_002c: ret
+	IL_002d: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0032: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Usables.UsableItemViewmodel
+	System.Void InitSpectator(ReferenceHub ply, InventorySystem.Items.ItemIdentifier id, System.Boolean wasEquipped)
+		ulong local4 = 0
+
+		base.InitSpectator(ply, id, wasEquipped) //(ReferenceHub ply, ItemIdentifier id, Boolean wasEquipped)
+
+		this.InitAny()
+		System.Action`1<InventorySystem.Items.Usables.StatusMessage> action = new System.Action`1<InventorySystem.Items.Usables.StatusMessage>()
+
+		action..ctor(this, {'HandleMessage' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		InventorySystem.Items.Usables.UsableItemsController.add_OnClientStatusReceived(action) //(Action`1 value)
+
+		if (wasEquipped != False)
+		    UnityEngine.AudioSource _equipSoundSource = this._equipSoundSource
+		    ulong local10 = 0
+
+		    System.Boolean boolean = UnityEngine.Object.op_Inequality(_equipSoundSource, local10) //(Object x, Object y)
+
+		    if (boolean != False)
+		        UnityEngine.AudioSource _equipSoundSource2 = this._equipSoundSource
+
+		        _equipSoundSource2.Stop()
+		    endif
+            
+		    System.Collections.Generic.Dictionary`2<System.UInt16,System.Single> startTimes = InventorySystem.Items.Usables.UsableItemsController.StartTimes
+
+		    System.Boolean boolean2 = startTimes.TryGetValue()
+
+		    if (boolean2 != False)
+                goto INSN_18043FBEB
+            endif
+
+		    System.Single skipEquipTime = base.SkipEquipTime
+
+		    base.AnimatorForceUpdate(skipEquipTime, True) //(Single deltaTime, Boolean fastMode)
+		endif
+        
+		return
+
+		INSN_18043FBEB:
+		System.Int32 useAnimHash = InventorySystem.Items.Usables.UsableItemViewmodel.UseAnimHash
+
+		base.AnimatorSetBool(useAnimHash, True) //(Int32 hash, Boolean val)
+		ulong local21 = 0
+
+		System.Single timeSinceLevelLoad = UnityEngine.Time.timeSinceLevelLoad
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18043FBB2) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Usables.UsableItemViewmodel
+	System.Void OnUsingCancelled()
+		ulong local2 = 0
+		System.Int32 useAnimHash = InventorySystem.Items.Usables.UsableItemViewmodel.UseAnimHash
+
+		base.AnimatorSetBool(useAnimHash, local2) //(Int32 hash, Boolean val)
+		return
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: ldsfld System.Int32 InventorySystem.Items.Usables.UsableItemViewmodel::UseAnimHash
+	IL_0007: stloc.1
+	IL_0008: ldarg.0
+	IL_0009: ldloc.1
+	IL_000a: ldloc.0
+	IL_000b: call System.Void InventorySystem.Items.AnimatedViewmodelBase::AnimatorSetBool(System.Int32,System.Boolean)
+	IL_0010: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Usables.UsableItemViewmodel
+	System.Void OnUsingStarted()
+		UnityEngine.AudioSource _equipSoundSource = this._equipSoundSource
+		ulong local3 = 0
+
+		System.Boolean boolean = UnityEngine.Object.op_Inequality(_equipSoundSource, local3) //(Object x, Object y)
+
+		if (boolean != False)
+		    UnityEngine.AudioSource _equipSoundSource2 = this._equipSoundSource
+
+		    _equipSoundSource2.Stop()
+		endif
+        
+		System.Int32 useAnimHash = InventorySystem.Items.Usables.UsableItemViewmodel.UseAnimHash
+
+		base.AnimatorSetBool(useAnimHash, True) //(Int32 hash, Boolean val)
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld UnityEngine.AudioSource InventorySystem.Items.Usables.UsableItemViewmodel::_equipSoundSource
+	IL_0006: stloc.0
+	IL_0007: ldc.i4.0
+	IL_0008: stloc.1
+	IL_0009: ldloc.0
+	IL_000a: ldloc.1
+	IL_000b: call System.Boolean UnityEngine.Object::op_Inequality(UnityEngine.Object,UnityEngine.Object)
+	IL_0010: ldc.i4.0
+	IL_0011: beq.s IL_001e
+	IL_0013: ldarg.0
+	IL_0014: ldfld UnityEngine.AudioSource InventorySystem.Items.Usables.UsableItemViewmodel::_equipSoundSource
+	IL_0019: call System.Void UnityEngine.AudioSource::Stop()
+	IL_001e: ldsfld System.Int32 InventorySystem.Items.Usables.UsableItemViewmodel::UseAnimHash
+	IL_0023: stloc.2
+	IL_0024: ldarg.0
+	IL_0025: ldloc.2
+	IL_0026: ldc.i4.1
+	IL_0027: call System.Void InventorySystem.Items.AnimatedViewmodelBase::AnimatorSetBool(System.Int32,System.Boolean)
+	IL_002c: ret
+	IL_002d: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0032: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Usables.UsableItemViewmodel
+	System.Void OnEquipped()
+
+		base.OnEquipped()
+
+		InventorySystem.Items.ItemIdentifier itemId = base.ItemId
+		ReferenceHub Hub = this.<Hub>k__BackingField
+		ItemType local6 = itemId.TypeId
+
+		System.Single speedMultiplier = CustomPlayerEffects.UsableItemModifierEffectExtensions.GetSpeedMultiplier(local6, Hub) //(ItemType type, ReferenceHub player)
+		System.Int32 speedModifierHash = InventorySystem.Items.Usables.UsableItemViewmodel.SpeedModifierHash
+
+		base.AnimatorSetFloat(speedModifierHash, speedMultiplier) //(Int32 hash, Single val)
+		UnityEngine.AudioSource _equipSoundSource = this._equipSoundSource
+		ulong local12 = 0
+
+		System.Boolean boolean = UnityEngine.Object.op_Inequality(_equipSoundSource, local12) //(Object x, Object y)
+
+		if (boolean != False)
+		    UnityEngine.AudioSource _equipSoundSource2 = this._equipSoundSource
+		    System.Single local15 = speedMultiplier * this._originalPitch
+
+		    _equipSoundSource2.pitch = local15
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void InventorySystem.Items.StandardAnimatedViemodel::OnEquipped()
+	IL_0006: ldarg.0
+	IL_0007: call InventorySystem.Items.ItemIdentifier InventorySystem.Items.ItemViewmodelBase::get_ItemId()
+	IL_000c: stloc.0
+	IL_000d: ldarg.0
+	IL_000e: ldfld ReferenceHub InventorySystem.Items.ItemViewmodelBase::<Hub>k__BackingField
+	IL_0013: stloc.1
+	IL_0014: ldloc.0
+	IL_0015: ldfld ItemType InventorySystem.Items.ItemIdentifier::TypeId
+	IL_001a: ldloc.1
+	IL_001b: call System.Single CustomPlayerEffects.UsableItemModifierEffectExtensions::GetSpeedMultiplier(ItemType,ReferenceHub)
+	IL_0020: stloc.2
+	IL_0021: ldsfld System.Int32 InventorySystem.Items.Usables.UsableItemViewmodel::SpeedModifierHash
+	IL_0026: stloc.3
+	IL_0027: ldarg.0
+	IL_0028: ldloc.3
+	IL_0029: ldloc.2
+	IL_002a: call System.Void InventorySystem.Items.AnimatedViewmodelBase::AnimatorSetFloat(System.Int32,System.Single)
+	IL_002f: ldarg.0
+	IL_0030: ldfld UnityEngine.AudioSource InventorySystem.Items.Usables.UsableItemViewmodel::_equipSoundSource
+	IL_0035: stloc.s V_4
+	IL_0037: ldc.i4.0
+	IL_0038: stloc.s V_5
+	IL_003a: ldloc.s V_4
+	IL_003c: ldloc.s V_5
+	IL_003e: call System.Boolean UnityEngine.Object::op_Inequality(UnityEngine.Object,UnityEngine.Object)
+	IL_0043: ldc.i4.0
+	IL_0044: beq.s IL_0060
+	IL_0046: ldarg.0
+	IL_0047: ldfld UnityEngine.AudioSource InventorySystem.Items.Usables.UsableItemViewmodel::_equipSoundSource
+	IL_004c: stloc.s V_6
+	IL_004e: ldloc.2
+	IL_004f: ldfld System.Single InventorySystem.Items.Usables.UsableItemViewmodel::_originalPitch
+	IL_0054: mul
+	IL_0055: stloc.s V_7
+	IL_0057: ldloc.s V_6
+	IL_0059: ldloc.s V_7
+	IL_005b: call System.Void UnityEngine.AudioSource::set_pitch(System.Single)
+	IL_0060: ret
+	IL_0061: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0066: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Usables.UsableItemViewmodel
+	System.Void HandleMessage(InventorySystem.Items.Usables.StatusMessage msg)
+		InventorySystem.Items.Usables.StatusMessage/StatusType local2 = msg.Status
+
+		InventorySystem.Items.ItemIdentifier itemId = base.ItemId
+		System.Byte local5 = local2.value__
+
+		if (local5 == itemId)
+		    System.Boolean local6 = local2 == constant11
+		    System.Int32 useAnimHash = InventorySystem.Items.Usables.UsableItemViewmodel.UseAnimHash
+
+		    base.AnimatorSetBool(useAnimHash, local6) //(Int32 hash, Boolean val)
+		endif
+        
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.EqualRegisterSetAction at (0x18043F9A6) is corrupt (ConstantDefinition: Don't know how to get IL to load a System.Byte) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Usables.UsableItemViewmodel
+	System.Void OnDestroy()
+
+		if ( != 0)
+		    System.Action`1<InventorySystem.Items.Usables.StatusMessage> action = new System.Action`1<InventorySystem.Items.Usables.StatusMessage>()
+
+		    action..ctor(this, {'HandleMessage' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		    System.Action`1<InventorySystem.Items.Usables.StatusMessage> onClientStatusReceived = InventorySystem.Items.Usables.UsableItemsController.OnClientStatusReceived
+
+		    System.Delegate delegate = System.Delegate.Remove(onClientStatusReceived, action) //(Delegate source, Delegate value)
+
+		    if (delegate != 0)
+
+		        if (delegate == 0)
+                    goto INSN_18043FDB3
+                endif
+		    endif
+            
+		     += 32
+
+		    if (delegate == onClientStatusReceived)
+		    endif
+            
+		    return
+
+		    INSN_18043FDB3:
+		    throw new System.InvalidCastException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfZeroOrNullAction at (0x18043FC78) is corrupt (One of the arguments is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Usables.UsableItemViewmodel
+	System.Void .ctor()
+		this._originalPitch = 1
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldc.r4 1
+	IL_0006: stfld System.Single InventorySystem.Items.Usables.UsableItemViewmodel::_originalPitch
+	IL_000b: ldarg.0
+	IL_000c: call System.Void InventorySystem.Items.StandardAnimatedViemodel::.ctor()
+	IL_0011: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Usables.UsableItemViewmodel
+	static System.Void .cctor()
+
+		System.Int32 int32 = UnityEngine.Animator.StringToHash("IsUsing") //(String name)
+		InventorySystem.Items.Usables.UsableItemViewmodel.UseAnimHash = int32
+
+		System.Int32 int322 = UnityEngine.Animator.StringToHash("SpeedModifier") //(String name)
+		InventorySystem.Items.Usables.UsableItemViewmodel.SpeedModifierHash = int322
+		return
+
+
+Generated IL:
+	IL_0000: ldstr "IsUsing"
+	IL_0005: call System.Int32 UnityEngine.Animator::StringToHash(System.String)
+	IL_000a: stsfld System.Int32 InventorySystem.Items.Usables.UsableItemViewmodel::UseAnimHash
+	IL_000f: ldstr "SpeedModifier"
+	IL_0014: call System.Int32 UnityEngine.Animator::StringToHash(System.String)
+	IL_0019: stsfld System.Int32 InventorySystem.Items.Usables.UsableItemViewmodel::SpeedModifierHash
+	IL_001e: ret
+	
+

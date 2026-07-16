@@ -1,0 +1,50 @@
+Type: PBKDF2
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Cryptography.PBKDF2
+	static System.String Pbkdf2HashString(System.String password, System.Byte[] salt, System.Int32 iterations, System.Int32 outputBytes)
+
+		System.Byte[] byteArray = Cryptography.PBKDF2.Pbkdf2HashBytes(password, salt, iterations, outputBytes) //(String password, Byte[] salt, Int32 iterations, Int32 outputBytes)
+
+		System.String string = System.Convert.ToBase64String(byteArray) //(Byte[] inArray)
+		return string
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: ldarg.2
+	IL_0003: ldarg.3
+	IL_0004: call System.Byte[] Cryptography.PBKDF2::Pbkdf2HashBytes(System.String,System.Byte[],System.Int32,System.Int32)
+	IL_0009: call System.String System.Convert::ToBase64String(System.Byte[])
+	IL_000e: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Cryptography.PBKDF2
+	static System.Byte[] Pbkdf2HashBytes(System.String password, System.Byte[] salt, System.Int32 iterations, System.Int32 outputBytes)
+		System.Security.Cryptography.Rfc2898DeriveBytes rfc2898DeriveBytes = new System.Security.Cryptography.Rfc2898DeriveBytes()
+
+		rfc2898DeriveBytes..ctor(password, salt) //(String password, Byte[] salt)
+
+		rfc2898DeriveBytes.IterationCount = iterations
+		iterations = outputBytes
+
+		rfc2898DeriveBytes.Dispose()
+		ulong local8 = 0
+
+		if (local8 == 0)
+		    return constant9
+		    throw new System.NullReferenceException()
+		endif
+        
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.RegToRegMoveAction at (0x181AE1A18) is corrupt (Local being overwritten, {'iterations' (function parameter, type System.Int32)} has been stripped or is a parameter) and cannot be created as IL. Aborting here.
+
+

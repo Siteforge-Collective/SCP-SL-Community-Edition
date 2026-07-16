@@ -1,0 +1,310 @@
+Type: StatusBar
+
+
+	Generated Pseudocode:
+
+	Declaring Type: StatusBar
+	System.Void Awake()
+
+		UnityEngine.RectTransform component = base.GetComponent<UnityEngine.RectTransform>()
+		this.rectTransform = component
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call T UnityEngine.Component::GetComponent<UnityEngine.RectTransform>()
+	IL_0006: stloc.0
+	IL_0007: ldarg.0
+	IL_0008: ldloc.0
+	IL_0009: stfld UnityEngine.RectTransform StatusBar::rectTransform
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: StatusBar
+	System.Void OnEnable()
+
+		if (this.HiddenByDefault != False)
+		    ulong local1 = 0
+		    UnityEngine.CanvasRenderer[] targetGraphics = this.TargetGraphics
+		    System.Int32 length = targetGraphics.Length
+
+		    if (local1 < length)
+		        UnityEngine.CanvasRenderer canvasRenderer = targetGraphics[local1]
+		        ulong local6 = 0
+
+		        canvasRenderer.SetAlpha(local6) //(Single alpha)
+		        local1 += 1
+		    endif
+            
+		endif
+        
+		return
+		throw new System.IndexOutOfRangeException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Boolean StatusBar::HiddenByDefault
+	IL_0006: ldc.i4.0
+	IL_0007: beq.s IL_0034
+	IL_0009: ldc.i4.0
+	IL_000a: stloc.0
+	IL_000b: ldarg.0
+	IL_000c: ldfld UnityEngine.CanvasRenderer[] StatusBar::TargetGraphics
+	IL_0011: stloc.1
+	IL_0012: ldloc.1
+	IL_0013: call System.Int32 System.Array::get_Length()
+	IL_0018: stloc.2
+	IL_0019: ldloc.0
+	IL_001a: ldloc.2
+	IL_001b: bge.s IL_0034
+	IL_001d: ldloc.1
+	IL_001e: ldloc.0
+	IL_001f: ldelem.any UnityEngine.CanvasRenderer
+	IL_0024: stloc.3
+	IL_0025: ldc.i4.0
+	IL_0026: stloc.s V_4
+	IL_0028: ldloc.3
+	IL_0029: ldloc.s V_4
+	IL_002b: call System.Void UnityEngine.CanvasRenderer::SetAlpha(System.Single)
+	IL_0030: ldloc.0
+	IL_0031: ldc.i4.1
+	IL_0032: add
+	IL_0033: stloc.0
+	IL_0034: ret
+	IL_0035: newobj System.Void System.IndexOutOfRangeException::.ctor()
+	IL_003a: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: StatusBar
+	System.Void Move(System.Single targetY, System.Boolean bypassAnimation)
+		UnityEngine.RectTransform rectTransform = this.rectTransform
+
+		UnityEngine.Vector3 localPosition = .localPosition
+		System.Single single = localPosition.z
+
+		if (bypassAnimation == False)
+		    ulong local7 = 0
+
+		    System.Single deltaTime = UnityEngine.Time.deltaTime
+		    System.Single local9 = deltaTime * this.MoveSpeed
+		    deltaTime = targetY
+
+		    if (local9 <= deltaTime)
+		        ulong local10 = 0
+		    else
+		    endif
+            
+		    UnityEngine.RectTransform rectTransform2 = this.rectTransform
+
+		    rectTransform2.set_localPosition()
+		    return
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18039719D) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: StatusBar
+	System.Void Update()
+		ulong local2 = 0
+
+		this.UpdateBar(local2) //(Boolean bypassAnims)
+		return
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: ldarg.0
+	IL_0003: ldloc.0
+	IL_0004: call System.Void StatusBar::UpdateBar(System.Boolean)
+	IL_0009: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: StatusBar
+	System.Void UpdateBar(System.Boolean bypassAnims)
+		StatusBar masterBar = this.MasterBar
+		ulong local4 = 0
+
+		System.Boolean boolean = UnityEngine.Object.op_Inequality(masterBar, local4) //(Object x, Object y)
+
+		if (boolean != False)
+		    StatusBar masterBar2 = this.MasterBar
+		    UnityEngine.CanvasRenderer[] targetGraphics = masterBar2.TargetGraphics
+		    System.Int32 length = targetGraphics.Length
+
+		    if (length != 0)
+		        UnityEngine.CanvasRenderer local9 = targetGraphics[0]
+
+		        System.Single alpha = local9.GetAlpha()
+		        StatusBar masterBar3 = masterBar2.MasterBar
+		        ulong local14 = 0
+
+		        System.Boolean boolean2 = UnityEngine.Object.op_Equality(masterBar3, local14) //(Object x, Object y)
+
+		        if (boolean2 != False)
+                    goto INSN_180397755
+                endif
+		        StatusBar masterBar4 = masterBar2.MasterBar
+		    endif
+            
+		    UnityEngine.RectTransform rectTransform = masterBar2.rectTransform
+
+		    UnityEngine.Vector3 localPosition = .localPosition
+		    System.Single fixedDistance = this.FixedDistance
+		    ulong local21 = 0
+		    System.Single single = localPosition.z
+
+		    if (bypassAnims == False)
+                goto INSN_180397520
+            endif
+
+		    INSN_180397520:
+		    UnityEngine.CanvasRenderer[] targetGraphics2 = this.TargetGraphics
+		    UnityEngine.CanvasRenderer local24 = targetGraphics2[0]
+
+		    System.Single alpha2 = local24.GetAlpha()
+		    ulong local27 = 0
+		    UnityEngine.RectTransform rectTransform2 = this.rectTransform
+
+		    UnityEngine.Vector3 localPosition2 = .localPosition
+		    System.Single single2 = localPosition2.z
+
+		    if (local27 != 0)
+                goto INSN_180397613
+            endif
+		    ulong local32 = 0
+
+		    System.Single deltaTime = UnityEngine.Time.deltaTime
+		    System.Single local34 = deltaTime * this.MoveSpeed
+		    deltaTime = fixedDistance
+
+		    if (local34 > deltaTime)
+                goto INSN_180397613
+            endif
+
+		    INSN_180397613:
+		    UnityEngine.RectTransform rectTransform3 = this.rectTransform
+
+		    rectTransform3.set_localPosition()
+		endif
+        
+		StatusBar/AutoHideType autohideOption = this.AutohideOption
+
+		if (autohideOption == 2)
+            goto INSN_180397755
+        endif
+
+		if (autohideOption != 1)
+            goto INSN_180397694
+        endif
+		UnityEngine.UI.Slider targetSlider = this.TargetSlider
+
+		System.Boolean isDestroyed = targetSlider.IsDestroyed()
+		UnityEngine.UI.Slider targetSlider2 = this.TargetSlider
+
+		if (targetSlider2 == 0)
+            goto INSN_1803976CF
+        endif
+
+		INSN_180397694:
+
+		if (this.AutohideOption != 0)
+            goto INSN_1803976DB
+        endif
+		UnityEngine.UI.Slider targetSlider3 = this.TargetSlider
+
+		System.Boolean isDestroyed2 = targetSlider3.IsDestroyed()
+		UnityEngine.UI.Slider targetSlider4 = this.TargetSlider
+
+		if (targetSlider4 != 0)
+            goto INSN_1803976DB
+        endif
+
+		INSN_1803976CF:
+
+		INSN_1803976DB:
+
+		if (bypassAnims != False)
+            goto INSN_18039771F
+        endif
+		UnityEngine.CanvasRenderer[] targetGraphics3 = this.TargetGraphics
+		UnityEngine.CanvasRenderer local47 = targetGraphics3[0]
+
+		System.Single alpha3 = local47.GetAlpha()
+		ulong local50 = 0
+
+		System.Single deltaTime2 = UnityEngine.Time.deltaTime
+
+		INSN_18039771F:
+		deltaTime2 = local45
+
+		System.Single single3 = UnityEngine.Mathf.Sign(deltaTime2) //(Single f)
+
+		this.SetAlpha(single3) //(Single a)
+
+		INSN_180397755:
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1803974F3) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: StatusBar
+	System.Void SetAlpha(System.Single a)
+		UnityEngine.CanvasRenderer[] targetGraphics = this.TargetGraphics
+		ulong local3 = 0
+		System.Int32 length = targetGraphics.Length
+
+		if (local3 < length)
+		    UnityEngine.CanvasRenderer canvasRenderer = targetGraphics[local3]
+
+		    System.Single single = UnityEngine.Mathf.Clamp01(a) //(Single value)
+		    a = single
+
+		    canvasRenderer.SetAlpha(a) //(Single alpha)
+		    local3 += 1
+		endif
+        
+		return
+		throw new System.IndexOutOfRangeException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.RegToRegMoveAction at (0x180397375) is corrupt (Local being overwritten, {'a' (function parameter, type System.Single)} has been stripped or is a parameter) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: StatusBar
+	System.Void .ctor()
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void UnityEngine.MonoBehaviour::.ctor()
+	IL_0006: ret
+	
+

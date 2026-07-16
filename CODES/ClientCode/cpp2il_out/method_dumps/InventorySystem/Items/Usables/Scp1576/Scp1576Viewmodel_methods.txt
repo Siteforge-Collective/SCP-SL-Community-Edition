@@ -1,0 +1,350 @@
+Type: Scp1576Viewmodel
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Usables.Scp1576.Scp1576Viewmodel
+	static System.Single get_UseTime()
+		ulong local0 = 0
+
+		System.Collections.Generic.Dictionary`2<ItemType,InventorySystem.Items.ItemBase> availableItems = InventorySystem.InventoryItemLoader.AvailableItems
+
+		InventorySystem.Items.ItemBase item = availableItems.Item
+		//UNKNOWN CLASS OFFSET READ HERE
+		System.Boolean local3 =  == UsableItem
+		  = item.
+		InventorySystem.Items.Usables.Scp1576.Scp1576Viewmodel._cachedUseTime = 
+		. = 1
+		System.Single _cachedUseTime = InventorySystem.Items.Usables.Scp1576.Scp1576Viewmodel._cachedUseTime
+		return _cachedUseTime
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.UnknownClassOffsetReadAction at (0x180432C43) is corrupt (Unknown class offset read) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Usables.Scp1576.Scp1576Viewmodel
+	System.Void LateUpdate()
+		ulong local4 = 0
+
+		base.LateUpdate()
+		System.Collections.Generic.Dictionary`2<System.UInt16,System.Single> prevWeights = InventorySystem.Items.Usables.Scp1576.Scp1576Viewmodel.PrevWeights
+
+		InventorySystem.Items.ItemIdentifier itemId = base.ItemId
+
+		System.Boolean boolean = prevWeights.TryGetValue()
+
+		if (boolean == False)
+		endif
+        
+		System.Collections.Generic.Dictionary`2<System.UInt16,System.Diagnostics.Stopwatch> timersBySerial = InventorySystem.Items.Usables.Scp1576.Scp1576Viewmodel.TimersBySerial
+
+		InventorySystem.Items.ItemIdentifier itemId2 = base.ItemId
+
+		System.Boolean boolean2 = timersBySerial.TryGetValue()
+
+		if (boolean2 == False)
+            goto INSN_180432637
+        endif
+
+		if ( == 0)
+            goto INSN_180432637
+        endif
+
+		System.TimeSpan elapsed = local3.Elapsed
+		ulong local17 = 0
+		ulong local18 = 0
+
+		System.Single useTime = InventorySystem.Items.Usables.Scp1576.Scp1576Viewmodel.UseTime
+
+		if (local17 > useTime)
+            goto INSN_1804323B2
+        endif
+		ulong local20 = 0
+		this._wasCranking = True
+
+		System.Single deltaTime = UnityEngine.Time.deltaTime
+		System.Single local22 = deltaTime * 0,4
+
+		if (local2 <= local4)
+            goto INSN_18043259D
+        endif
+		UnityEngine.AudioClip _rewindClip = this._rewindClip
+
+		InventorySystem.Items.Usables.Scp1576.Scp1576Viewmodel.PlaySound(_rewindClip) //(AudioClip clip)
+
+		INSN_1804323B2:
+
+		if (this._wasCranking == False)
+            goto INSN_1804324BA
+        endif
+		UnityEngine.ParticleSystem _particles = this._particles
+
+		_particles.Play()
+		UnityEngine.AudioClip _startRecording = this._startRecording
+
+		InventorySystem.Items.Usables.Scp1576.Scp1576Viewmodel.PlaySound(_startRecording) //(AudioClip clip)
+		InventorySystem.Items.Usables.Scp1576.Scp1576Source _playbackSource = this._playbackSource
+		this._wasCranking = False
+
+		System.Boolean enabled = _playbackSource.enabled
+		System.Boolean local32 = _playbackSource != 0
+
+		_playbackSource.enabled = local32
+		System.Boolean _locallyUsed = InventorySystem.Items.Usables.Scp1576.Scp1576Item._locallyUsed
+		System.Boolean local35 = "{il2cpp field InventorySystem.Items.Usables.Scp1576.Scp1576Item->cctor_finished}" != 0
+
+		InventorySystem.Items.Usables.Scp1576.Scp1576Item.LocallyUsed = local35
+
+		INSN_1804324BA:
+		ulong local37 = 0
+
+		System.Single useTime2 = InventorySystem.Items.Usables.Scp1576.Scp1576Viewmodel.UseTime
+		UnityEngine.AudioSource _audioLoop = this._audioLoop
+
+		_audioLoop.volume = local2
+		System.Single local41 = local2 / 30
+		UnityEngine.Material _beltMaterial = this._beltMaterial
+
+		UnityEngine.Vector2 mainTextureOffset = _beltMaterial.mainTextureOffset
+		UnityEngine.Vector2 _beltSpeed = this._beltSpeed
+		ulong local46 = 0
+		System.Single single = this._beltSpeed.y
+
+		System.Single deltaTime2 = UnityEngine.Time.deltaTime
+		single = deltaTime2
+
+		UnityEngine.Vector2 vector2 = UnityEngine.Vector2.op_Multiply(_beltSpeed, single) //(Vector2 a, Single d)
+
+		UnityEngine.Vector2 vector22 = UnityEngine.Vector2.op_Addition(_beltSpeed, vector2) //(Vector2 a, Vector2 b)
+
+		_beltMaterial.mainTextureOffset = vector22
+
+		INSN_18043259D:
+		deltaTime2 = local41
+
+		System.Single single2 = UnityEngine.Mathf.Clamp01(deltaTime2) //(Single value)
+		System.Collections.Generic.Dictionary`2<System.UInt16,System.Single> prevWeights2 = InventorySystem.Items.Usables.Scp1576.Scp1576Viewmodel.PrevWeights
+
+		InventorySystem.Items.ItemIdentifier itemId3 = base.ItemId
+		throw new System.NullReferenceException()
+
+		INSN_180432637:
+		UnityEngine.ParticleSystem _particles2 = this._particles
+
+		System.Boolean isPlaying = _particles2.isPlaying
+
+		if (isPlaying == False)
+            goto INSN_180432669
+        endif
+		UnityEngine.ParticleSystem _particles3 = this._particles
+
+		_particles3.Stop()
+
+		INSN_180432669:
+		UnityEngine.AudioSource _audioLoop2 = this._audioLoop
+
+		System.Single volume = _audioLoop2.volume
+
+		if (volume <= deltaTime2)
+            goto INSN_1804326B4
+        endif
+		UnityEngine.AudioClip _endRecordClip = this._endRecordClip
+
+		InventorySystem.Items.Usables.Scp1576.Scp1576Viewmodel.PlaySound(_endRecordClip) //(AudioClip clip)
+
+		INSN_1804326B4:
+		UnityEngine.AudioSource _audioLoop3 = this._audioLoop
+		ulong local72 = 0
+
+		_audioLoop3.volume = local72
+		InventorySystem.Items.Usables.Scp1576.Scp1576Source _playbackSource2 = this._playbackSource
+		ulong local75 = 0
+
+		_playbackSource2.enabled = local75
+		ulong local77 = 0
+
+		InventorySystem.Items.Usables.Scp1576.Scp1576Item.LocallyUsed = local77
+		System.Int32 _posLayer = this._posLayer
+
+		base.AnimatorSetLayerWeight(_posLayer, single2) //(Int32 layer, Single val)
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18043225B) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Usables.Scp1576.Scp1576Viewmodel
+	static System.Void PlaySound(UnityEngine.AudioClip clip)
+		ulong local1 = 0
+		ulong local2 = 0
+
+		UnityEngine.AudioSource audioSource = AudioPooling.AudioSourcePoolManager.PlaySound()
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180432A72) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (8)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Usables.Scp1576.Scp1576Viewmodel
+	static System.Void Init()
+		System.Action`1<InventorySystem.Items.Usables.StatusMessage> action = new System.Action`1<InventorySystem.Items.Usables.StatusMessage>()
+		ulong local1 = 0
+
+		action..ctor(local1, {'OnClientStatusReceived' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		InventorySystem.Items.Usables.UsableItemsController.add_OnClientStatusReceived(action) //(Action`1 value)
+		System.Action`2<System.UInt16,System.Single> <>9__19_0 = InventorySystem.Items.Usables.Scp1576.Scp1576Viewmodel/<>c.<>9__19_0
+
+		if (<>9__19_0 == 0)
+		    InventorySystem.Items.Usables.Scp1576.Scp1576Viewmodel/<>c <>c = InventorySystem.Items.Usables.Scp1576.Scp1576Viewmodel/<>c.<>9
+		    System.Action`2<System.UInt16,System.Single> action2 = new System.Action`2<System.UInt16,System.Single>()
+
+		    action2..ctor(<>c, {'<Init>b__19_0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		     += 8
+		    InventorySystem.Items.Usables.Scp1576.Scp1576Viewmodel/<>c.<>9 = action2
+		endif
+        
+		System.Action`2<System.UInt16,System.Single> onHornPositionUpdated = InventorySystem.Items.Usables.Scp1576.Scp1576Pickup.OnHornPositionUpdated
+
+		System.Delegate delegate = System.Delegate.Combine(onHornPositionUpdated, <>9__19_0) //(Delegate a, Delegate b)
+
+		if (delegate == 0)
+            goto INSN_18043216B
+        endif
+
+		if (delegate == 0)
+            goto INSN_180432199
+        endif
+
+		INSN_18043216B:
+
+		if (Scp1576Pickup != onHornPositionUpdated)
+            goto INSN_180432140
+        endif
+		return
+
+		INSN_180432199:
+		throw new System.InvalidCastException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1804320E8) is corrupt (Mismatched instance parameter. Expecting an instance of System.Action`1, actually {'action2' (type System.Action`2<System.UInt16,System.Single>)}) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Usables.Scp1576.Scp1576Viewmodel
+	static System.Void OnClientStatusReceived(InventorySystem.Items.Usables.StatusMessage msg)
+		InventorySystem.Items.Usables.StatusMessage/StatusType local1 = msg.Status
+		InventorySystem.Items.Usables.Scp1576.Scp1576Viewmodel/<>c__DisplayClass20_0 enumeratorInstance = new InventorySystem.Items.Usables.Scp1576.Scp1576Viewmodel/<>c__DisplayClass20_0()
+
+		enumeratorInstance..ctor()
+		enumeratorInstance.msg = local1
+
+		if (local1 == constant6)
+		    System.Collections.Generic.HashSet`1<ReferenceHub> AllHubs = ReferenceHub.<AllHubs>k__BackingField
+		    System.Func`2<ReferenceHub,System.Boolean> func = new System.Func`2<ReferenceHub,System.Boolean>()
+
+		    func..ctor(enumeratorInstance, {'<OnClientStatusReceived>b__0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		    System.Boolean boolean = Utils.NonAllocLINQ.HashsetExtensions.Any<ReferenceHub>(AllHubs, func) //(HashSet`1 target, Func`2 condition)
+
+		    if (boolean != False)
+		        System.UInt16 itemSerial = enumeratorInstance.msg.ItemSerial
+		        System.Collections.Generic.Dictionary`2<System.UInt16,System.Diagnostics.Stopwatch> timersBySerial = InventorySystem.Items.Usables.Scp1576.Scp1576Viewmodel.TimersBySerial
+		        System.Func`1<System.Diagnostics.Stopwatch> <>9__20_1 = InventorySystem.Items.Usables.Scp1576.Scp1576Viewmodel/<>c.<>9__20_1
+
+		        if (<>9__20_1 == 0)
+		            InventorySystem.Items.Usables.Scp1576.Scp1576Viewmodel/<>c <>c = InventorySystem.Items.Usables.Scp1576.Scp1576Viewmodel/<>c.<>9
+		            System.Func`1<System.Diagnostics.Stopwatch> func2 = new System.Func`1<System.Diagnostics.Stopwatch>()
+
+		            func2..ctor(<>c, {'<OnClientStatusReceived>b__20_1' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		             += 16
+		            InventorySystem.Items.Usables.Scp1576.Scp1576Viewmodel/<>c.<>9 = func2
+		        endif
+                
+
+		        System.UInt16 orAdd = CollectionExtensions.GetOrAdd<System.UInt16, System.Diagnostics.Stopwatch>(timersBySerial, itemSerial, <>9__20_1) //(Dictionary`2 dictionary, TKey key, Func`1 factory)
+
+		        orAdd.Restart()
+		    endif
+            
+		    return
+		endif
+        
+
+		if (local1 != constant58)
+            goto INSN_180432964
+        endif
+		System.Collections.Generic.Dictionary`2<System.UInt16,System.Diagnostics.Stopwatch> timersBySerial2 = InventorySystem.Items.Usables.Scp1576.Scp1576Viewmodel.TimersBySerial
+
+		System.Boolean boolean2 = timersBySerial2.TryGetValue()
+
+		if (boolean2 == False)
+            goto INSN_180432964
+        endif
+
+		local2.Reset()
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfNonZeroOrNonNullAction at (0x18043279C) is corrupt (ConstantDefinition: Don't know how to get IL to load a System.Byte) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Usables.Scp1576.Scp1576Viewmodel
+	System.Void .ctor()
+		this._originalPitch = 1
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldc.r4 1
+	IL_0006: stfld System.Single InventorySystem.Items.Usables.UsableItemViewmodel::_originalPitch
+	IL_000b: ldarg.0
+	IL_000c: call System.Void InventorySystem.Items.StandardAnimatedViemodel::.ctor()
+	IL_0011: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Usables.Scp1576.Scp1576Viewmodel
+	static System.Void .cctor()
+		System.Collections.Generic.Dictionary`2<System.UInt16,System.Single> dictionary = new System.Collections.Generic.Dictionary`2<System.UInt16,System.Single>()
+
+		dictionary..ctor()
+		InventorySystem.Items.Usables.Scp1576.Scp1576Viewmodel.PrevWeights = dictionary
+		System.Collections.Generic.Dictionary`2<System.UInt16,System.Diagnostics.Stopwatch> dictionary2 = new System.Collections.Generic.Dictionary`2<System.UInt16,System.Diagnostics.Stopwatch>()
+
+		dictionary2..ctor()
+		 += 8
+		InventorySystem.Items.Usables.Scp1576.Scp1576Viewmodel.PrevWeights = dictionary2
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x180432B07) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+

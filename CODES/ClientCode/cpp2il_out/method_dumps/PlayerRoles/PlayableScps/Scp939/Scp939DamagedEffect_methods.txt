@@ -1,0 +1,327 @@
+Type: Scp939DamagedEffect
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp939.Scp939DamagedEffect
+	System.Void SpawnObject()
+
+		base.SpawnObject()
+		System.Diagnostics.Stopwatch _lastTriggered = this._lastTriggered
+
+		_lastTriggered.Restart()
+		  = this.
+		  = .
+
+		PlayerStatsSystem.HealthStat module = _lastTriggered.GetModule<PlayerStatsSystem.HealthStat>()
+		this._hpStat = module
+		  = this.
+
+		if ( == 0)
+		else
+		      = module.
+
+		    if ( == DynamicHumeShieldController)
+		    else
+		        ulong local5 = 0
+		    endif
+            
+		    ulong local6 = 0
+		endif
+        
+		this._hume = local6
+		  = this.
+		this._eventAssigned = True
+		  = local5.
+		System.Action`1<PlayerStatsSystem.DamageHandlerBase> action = new System.Action`1<PlayerStatsSystem.DamageHandlerBase>()
+
+		action..ctor(this, {'OnDamaged' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		action.add_OnThisPlayerDamaged(action) //(Action`1 value)
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.FieldToLocalAction at (0x18044CF1D) is corrupt (No further info) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp939.Scp939DamagedEffect
+	System.Void ResetObject()
+
+		base.ResetObject()
+
+		if (this._eventAssigned != False)
+		      = this.
+		    this._eventAssigned = False
+		    System.Action`1<PlayerStatsSystem.DamageHandlerBase> action = new System.Action`1<PlayerStatsSystem.DamageHandlerBase>()
+
+		    action..ctor(this, {'OnDamaged' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		    action.remove_OnThisPlayerDamaged(action) //(Action`1 value)
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.FieldToLocalAction at (0x18044CDA3) is corrupt (No further info) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp939.Scp939DamagedEffect
+	System.Void Update()
+		System.Single _totalDamageReceived = this._totalDamageReceived
+		ulong local2 = 0
+
+		if (local2 < _totalDamageReceived)
+		    ulong local3 = 0
+
+		    System.Single deltaTime = UnityEngine.Time.deltaTime
+		    System.Single local5 = deltaTime * 80
+		    ulong local7 = 0
+		    deltaTime = _totalDamageReceived
+
+		    System.Single single = UnityEngine.Mathf.Clamp(deltaTime, local7, 90) //(Single value, Single min, Single max)
+		    this._totalDamageReceived = single
+		endif
+        
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.MultiplyRegByGlobalAction at (0x18044D08A) is corrupt (Operand we were multiplying by is null or local made was stripped) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp939.Scp939DamagedEffect
+	System.Void OnDamaged(PlayerStatsSystem.DamageHandlerBase dhb)
+
+		if (dhb != 0)
+		    //UNKNOWN CLASS OFFSET READ HERE
+		    PlayerStatsSystem.HealthStat _hpStat = this._hpStat
+
+		    System.String string = _hpStat.ToString()
+		    ulong local4 = 0
+
+		    if (local4 < )
+		          = dhb.
+		        System.Diagnostics.Stopwatch _lastTriggered = this._lastTriggered
+		        this._totalDamageReceived = 
+
+		        System.TimeSpan elapsed = _lastTriggered.Elapsed
+
+		        if (_lastTriggered <= 0)
+		            PlayerStatsSystem.HealthStat _hpStat2 = this._hpStat
+
+		            System.String string2 = _hpStat2.ToString()
+		            PlayerRoles.PlayableScps.HumeShield.DynamicHumeShieldController _hume = this._hume
+		              = dhb.
+		            ulong local12 = 0
+
+		            System.Single hsCurrent = _hume.HsCurrent
+		            PlayerRoles.PlayableScps.HumeShield.DynamicHumeShieldController _hume2 = this._hume
+		              = dhb.
+		            UnityEngine.AnimationCurve shieldOverHealth = _hume2.ShieldOverHealth
+
+		            System.Single single = shieldOverHealth.Evaluate(local12) //(Single time)
+
+		            System.Boolean boolean = UnityEngine.Mathf.Approximately(single, single) //(Single a, Single b)
+
+		            if (boolean == False)
+		                  = dhb.
+
+		                if (single > local4)
+		                    PlayerRoles.PlayableScps.HumeShield.DynamicHumeShieldController _hume3 = this._hume
+
+		                    System.Single hsCurrent2 = _hume3.HsCurrent
+
+		                    if (_hume3 == 0)
+                                goto INSN_18044CD05
+                            endif
+		                endif
+                        
+		                System.Diagnostics.Stopwatch _lastTriggered2 = this._lastTriggered
+
+		                System.TimeSpan elapsed2 = _lastTriggered2.Elapsed
+
+		                if (_lastTriggered2 <= 0)
+                            goto INSN_18044CD22
+                        endif
+		                System.Single _totalDamageReceived = this._totalDamageReceived
+		            endif
+                    
+
+		            base.ServerSendRpc(True) //(Boolean toAll)
+		            System.Diagnostics.Stopwatch _lastTriggered3 = this._lastTriggered
+
+		            _lastTriggered3.Restart()
+		        endif
+                
+		    endif
+            
+		    return
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.UnknownClassOffsetReadAction at (0x18044CB31) is corrupt (Unknown class offset read) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp939.Scp939DamagedEffect
+	System.Boolean CheckDamagedConditions(PlayerStatsSystem.AttackerDamageHandler adh)
+		PlayerStatsSystem.HealthStat _hpStat = this._hpStat
+
+		System.String string = _hpStat.ToString()
+		PlayerRoles.PlayableScps.HumeShield.DynamicHumeShieldController _hume = this._hume
+		System.Single DealtHealthDamage = adh.<DealtHealthDamage>k__BackingField
+
+		System.Single hsCurrent = _hume.HsCurrent
+		PlayerRoles.PlayableScps.HumeShield.DynamicHumeShieldController _hume2 = this._hume
+		UnityEngine.AnimationCurve shieldOverHealth = _hume2.ShieldOverHealth
+
+		System.Single single = shieldOverHealth.Evaluate(DealtHealthDamage) //(Single time)
+		DealtHealthDamage = single
+		single = local9
+
+		System.Boolean boolean = UnityEngine.Mathf.Approximately(single, DealtHealthDamage) //(Single a, Single b)
+
+		if (boolean == False)
+		    System.Single AbsorbedHumeDamage = adh.<AbsorbedHumeDamage>k__BackingField
+		    ulong local16 = 0
+
+		    if (AbsorbedHumeDamage > local16)
+		        PlayerRoles.PlayableScps.HumeShield.DynamicHumeShieldController _hume3 = this._hume
+
+		        System.Single hsCurrent2 = _hume3.HsCurrent
+
+		        if (_hume3 == 0)
+                    goto INSN_18044C8D3
+                endif
+		    endif
+            
+		    System.Diagnostics.Stopwatch _lastTriggered = this._lastTriggered
+
+		    System.TimeSpan elapsed = _lastTriggered.Elapsed
+
+		    if (_lastTriggered <= 0)
+                goto INSN_18044C8B0
+            endif
+		    System.Single _totalDamageReceived = this._totalDamageReceived
+
+		    if (_totalDamageReceived >= 90)
+                goto INSN_18044C8D3
+            endif
+
+		    INSN_18044C8B0:
+		    ulong local25 = 0
+		    return local25
+		endif
+        
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.RegToRegMoveAction at (0x18044C843) is corrupt (Local local9 is a variable but it has been stripped out. Are you missing a call to RegisterUsedLocal?) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp939.Scp939DamagedEffect
+	System.Void ServerWriteRpc(Mirror.NetworkWriter writer)
+		ulong local3 = 0
+
+		System.Int32 int32 = UnityEngine.Random.Range(local3, 255) //(Int32 min, Int32 max)
+
+		writer.WriteByte(int32) //(Byte value)
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: ldc.i4 255
+	IL_0006: call System.Int32 UnityEngine.Random::Range(System.Int32,System.Int32)
+	IL_000b: stloc.0
+	IL_000c: ldarg.1
+	IL_000d: ldloc.0
+	IL_000e: call System.Void Mirror.NetworkWriter::WriteByte(System.Byte)
+	IL_0013: ret
+	IL_0014: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0019: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp939.Scp939DamagedEffect
+	System.Void ClientProcessRpc(Mirror.NetworkReader reader)
+		  = this.
+		  = this.
+
+		if (this != 0)
+		    //UNKNOWN CLASS OFFSET READ HERE
+		    ulong local2 = 0
+
+		    System.Byte byte = reader.ReadByte()
+		      = this.
+		      = this.
+		    System.Int32 damagedVariantHash = PlayerRoles.PlayableScps.Scp939.Scp939Model.DamagedVariantHash
+
+		    [instruction error - managed method being called is null]
+		      = this.
+		    System.Int32 damagedTriggerHash = PlayerRoles.PlayableScps.Scp939.Scp939Model.DamagedTriggerHash
+
+		    [instruction error - managed method being called is null]
+		      = this.
+
+		    UnityEngine.Transform transform = base.transform
+
+		    UnityEngine.AudioSource audioSource = AudioPooling.AudioSourcePoolManager.PlaySound()
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.FieldToLocalAction at (0x18044C90B) is corrupt (No further info) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp939.Scp939DamagedEffect
+	System.Void .ctor()
+		System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch()
+
+		stopwatch..ctor()
+		this._lastTriggered = stopwatch
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: newobj System.Void System.Diagnostics.Stopwatch::.ctor()
+	IL_0005: stloc.0
+	IL_0006: ldarg.0
+	IL_0007: ldloc.0
+	IL_0008: stfld System.Diagnostics.Stopwatch PlayerRoles.PlayableScps.Scp939.Scp939DamagedEffect::_lastTriggered
+	IL_000d: ldarg.0
+	IL_000e: call System.Void PlayerRoles.PlayableScps.Subroutines.ScpStandardSubroutine`1::.ctor()
+	IL_0013: ret
+	
+

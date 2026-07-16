@@ -1,0 +1,333 @@
+Type: GroupsCommand
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.GroupsCommand
+	System.String get_Command()
+		System.String Command = this.<Command>k__BackingField
+		return Command
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String CommandSystem.Commands.RemoteAdmin.GroupsCommand::<Command>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.GroupsCommand
+	System.String[] get_Aliases()
+		System.String[] Aliases = this.<Aliases>k__BackingField
+		return Aliases
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String[] CommandSystem.Commands.RemoteAdmin.GroupsCommand::<Aliases>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.GroupsCommand
+	System.String get_Description()
+		System.String Description = this.<Description>k__BackingField
+		return Description
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String CommandSystem.Commands.RemoteAdmin.GroupsCommand::<Description>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.GroupsCommand
+	System.Boolean Execute(System.ArraySegment`1<System.String> arguments, CommandSystem.ICommandSender sender, System.String& response)
+		ulong local4 = 0
+		ulong local6 = 0
+
+		System.Boolean boolean = Misc.CheckPermission()
+
+		if (boolean != False)
+		    NorthwoodLib.Pools.StringBuilderPool shared = NorthwoodLib.Pools.StringBuilderPool.Shared
+
+		    System.Text.StringBuilder stringBuilder = shared.Rent("Groups defined on this server:") //(String text)
+		    PermissionsHandler permissionsHandler = ServerStatic.PermissionsHandler
+
+		    System.Collections.Generic.Dictionary`2<System.String,UserGroup> allGroups = permissionsHandler.GetAllGroups()
+		    ulong local15 = 0
+
+		    ReferenceHub localHub = ReferenceHub.LocalHub
+		    ServerRoles serverRoles = localHub.serverRoles
+
+		    System.Collections.Generic.Dictionary`2/Enumerator<TKey,TValue> enumerator = local15.GetEnumerator()
+
+		    if (enumerator != 0)
+		        CommandSystem.Commands.RemoteAdmin.GroupsCommand/<>c__DisplayClass9_0 enumeratorInstance = new CommandSystem.Commands.RemoteAdmin.GroupsCommand/<>c__DisplayClass9_0()
+
+		        enumeratorInstance..ctor()
+		        enumeratorInstance.permentry = local4
+		        System.Object[] local23 = new System.Object[5]
+		        System.Collections.Generic.KeyValuePair`2<System.String,UserGroup> permentry = enumeratorInstance.permentry
+
+		        if (permentry != 0)
+
+		            if (local23 == 0)
+                        goto INSN_1806199F1
+                    endif
+		        endif
+                
+		        local23[0] = permentry
+		        TValue value = enumeratorInstance.permentry.value
+		          = .
+
+		        if (value == 0)
+                    goto INSN_1806194EA
+                endif
+
+		        if (value == 0)
+                    goto INSN_180619A10
+                endif
+
+		        INSN_1806194EA:
+		        local23[1] = value
+		        System.Func`2<ServerRoles/NamedColor,System.Boolean> func = new System.Func`2<ServerRoles/NamedColor,System.Boolean>()
+
+		        func..ctor(enumeratorInstance, {'<Execute>b__0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		        ServerRoles/NamedColor namedColor = System.Linq.Enumerable.FirstOrDefault<ServerRoles/NamedColor>()
+
+		        if (namedColor == 0)
+                    goto INSN_18061956D
+                endif
+		        System.String colorHex = namedColor.ColorHex
+
+		        if (colorHex == 0)
+                    goto INSN_18061956F
+                endif
+
+		        if (namedColor == 0)
+                    goto INSN_180619A2E
+                endif
+
+		        INSN_18061956D:
+
+		        INSN_18061956F:
+		        throw new System.IndexOutOfRangeException()
+		        TValue value2 = enumeratorInstance.permentry.value
+		          = .
+
+		        if (value2 == 0)
+                    goto INSN_1806195AD
+                endif
+
+		        if (local30 == 0)
+                    goto INSN_180619A3D
+                endif
+
+		        INSN_1806195AD:
+		        local23[3] = value2
+		        TValue value3 = enumeratorInstance.permentry.value
+		          = .
+
+		        if (value3 == 0)
+                    goto INSN_1806195F4
+                endif
+
+		        if (local30 == 0)
+                    goto INSN_180619A5B
+                endif
+
+		        INSN_1806195F4:
+		        local23[4] = value3
+
+		        System.Text.StringBuilder stringBuilder2 = stringBuilder.AppendFormat("
+                {0} ({1}) - <color=#{2}>{3}</color> in color {4}", local23) //(String format, Object[] args)
+		        System.Object[] local35 = new System.Object[4]
+		        System.Char[] m_ChunkChars = stringBuilder.m_ChunkChars
+
+		        if (m_ChunkChars == 0)
+                    goto INSN_18061966F
+                endif
+
+		        if (local35 == 0)
+                    goto INSN_180619A93
+                endif
+
+		        INSN_18061966F:
+		        local35[0] = m_ChunkChars
+		        System.Text.StringBuilder m_ChunkPrevious = stringBuilder.m_ChunkPrevious
+		        System.Int32 m_ChunkLength = m_ChunkPrevious.m_ChunkLength
+
+		        if (m_ChunkLength == 0)
+                    goto INSN_1806196CD
+                endif
+
+		        if (m_ChunkLength == 0)
+                    goto INSN_180619AB1
+                endif
+
+		        INSN_1806196CD:
+		        local35[1] = m_ChunkLength
+		        System.Text.StringBuilder m_ChunkPrevious2 = stringBuilder.m_ChunkPrevious
+		        System.Text.StringBuilder m_ChunkPrevious3 = m_ChunkPrevious2.m_ChunkPrevious
+
+		        if (m_ChunkPrevious3 == 0)
+                    goto INSN_180619714
+                endif
+
+		        if (m_ChunkLength == 0)
+                    goto INSN_180619ACF
+                endif
+
+		        INSN_180619714:
+		        local35[2] = m_ChunkPrevious3
+		        System.Text.StringBuilder m_ChunkPrevious4 = stringBuilder.m_ChunkPrevious
+		        System.Char[] m_ChunkChars2 = m_ChunkPrevious4.m_ChunkChars
+
+		        if (m_ChunkChars2 == 0)
+                    goto INSN_18061975B
+                endif
+
+		        if (m_ChunkLength == 0)
+                    goto INSN_180619AED
+                endif
+
+		        INSN_18061975B:
+		        local35[3] = m_ChunkChars2
+
+		        System.Text.StringBuilder stringBuilder3 = stringBuilder.AppendFormat("
+                {0} ({1}) - {2} in color {3}", local35) //(String format, Object[] args)
+		        System.Collections.Generic.Dictionary`2<PlayerPermissions,System.String> permissionCodes = PermissionsHandler.PermissionCodes
+
+		        System.Collections.Generic.Dictionary`2/Enumerator<TKey,TValue> enumerator2 = .GetEnumerator()
+
+		        if (enumerator2 == 0)
+                    goto INSN_1806198B0
+                endif
+		        TValue value4 = enumeratorInstance.permentry.value
+		          = .
+
+		        System.Boolean isPermitted = PermissionsHandler.IsPermitted()
+
+		        if (isPermitted == False)
+                    goto INSN_180619820
+                endif
+
+		        System.String string = System.String.Concat()
+
+		        System.Text.StringBuilder stringBuilder4 = stringBuilder.Append(string) //(String value)
+
+		        INSN_1806198B0:
+		         += 1
+
+		        stringBuilder.Dispose()
+
+		        if (local6 != 0)
+                    goto INSN_180619B17
+                endif
+
+		        if (0xFFFFFFFF != 0xFFFFFFFFFFFFFFFF)
+
+		            if ("{il2cpp array field local42->}" == 417)
+		            endif
+                    
+		            . = 445
+
+		            local15.Dispose()
+
+		            if (local6 != 0)
+                        goto INSN_180619B45
+                    endif
+
+		            System.Int32 hashCode = stringBuilder.GetHashCode()
+		            stringBuilder. = hashCode
+		            NorthwoodLib.Pools.StringBuilderPool shared2 = NorthwoodLib.Pools.StringBuilderPool.Shared
+
+		            shared2.Return(stringBuilder) //(StringBuilder stringBuilder)
+		        else
+		            ulong local57 = 0
+		        endif
+                
+		        return local57
+
+		        INSN_1806199F1:
+		        throw new System.IndexOutOfRangeException()
+
+		        INSN_180619A10:
+		        throw new System.IndexOutOfRangeException()
+
+		        INSN_180619A2E:
+
+		        INSN_180619A3D:
+		        throw new System.IndexOutOfRangeException()
+
+		        INSN_180619A5B:
+		        throw new System.IndexOutOfRangeException()
+		        throw new System.NullReferenceException()
+		        throw new System.NullReferenceException()
+		        throw new System.NullReferenceException()
+		        throw new System.NullReferenceException()
+		        throw new System.NullReferenceException()
+
+		        INSN_180619A93:
+		        throw new System.IndexOutOfRangeException()
+
+		        INSN_180619AB1:
+		        throw new System.IndexOutOfRangeException()
+
+		        INSN_180619ACF:
+		        throw new System.IndexOutOfRangeException()
+
+		        INSN_180619AED:
+		        throw new System.IndexOutOfRangeException()
+		        throw new System.NullReferenceException()
+		        throw new System.NullReferenceException()
+
+		        INSN_180619B17:
+		        throw new System.NullReferenceException()
+		        throw new System.NullReferenceException()
+		        throw new System.NullReferenceException()
+		        throw new System.NullReferenceException()
+		        throw new System.NullReferenceException()
+		        throw new System.NullReferenceException()
+		        throw new System.NullReferenceException()
+
+		        INSN_180619B45:
+
+
+Generated IL:
+	IL Generation Skipped due to invalid local value of type TValue
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.GroupsCommand
+	System.Void .ctor()
+		this.<Command>k__BackingField = "groups"
+		this.<Description>k__BackingField = "Lists all defined permission groups."
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldstr "groups"
+	IL_0006: stfld System.String CommandSystem.Commands.RemoteAdmin.GroupsCommand::<Command>k__BackingField
+	IL_000b: ldarg.0
+	IL_000c: ldstr "Lists all defined permission groups."
+	IL_0011: stfld System.String CommandSystem.Commands.RemoteAdmin.GroupsCommand::<Description>k__BackingField
+	IL_0016: ldarg.0
+	IL_0017: call System.Void System.Object::.ctor()
+	IL_001c: ret
+	
+

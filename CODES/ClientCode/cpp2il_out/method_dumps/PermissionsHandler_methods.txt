@@ -1,0 +1,1733 @@
+Type: PermissionsHandler
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PermissionsHandler
+	System.Void .ctor(YamlConfig& configuration, YamlConfig& sharedGroups, YamlConfig& sharedGroupsMembers)
+
+		base..ctor()
+		//UNKNOWN CLASS OFFSET READ HERE
+		YamlConfig yamlConfig = new YamlConfig()
+
+		yamlConfig..ctor()
+		this._config = yamlConfig
+		this._sharedGroups = constant11
+		this._sharedGroupsMembers = constant13
+
+		System.String string = .GetString("override_password", "none") //(String key, String def)
+		this._overridePassword = string
+
+		System.String string2 = .GetString("override_password_role", "owner") //(String key, String def)
+		this._overrideRole = string2
+		ulong local15 = 0
+
+		System.Boolean bool = .GetBool("enable_staff_access", local15) //(String key, Boolean def)
+		this.<StaffAccess>k__BackingField = bool
+
+		System.Boolean bool2 = .GetBool("enable_manager_access", True) //(String key, Boolean def)
+		this._managerAccess = bool2
+
+		System.Boolean bool3 = .GetBool("enable_banteam_access", True) //(String key, Boolean def)
+		this._banTeamAccess = bool3
+
+		System.Boolean bool4 = .GetBool("enable_banteam_reserved_slots", True) //(String key, Boolean def)
+		this._banTeamSlots = bool4
+
+		System.Boolean bool5 = .GetBool("enable_banteam_bypass_geoblocking", True) //(String key, Boolean def)
+		this._banTeamGeoBypass = bool5
+		ulong local26 = 0
+
+		System.Boolean bool6 = .GetBool("enable_northwood_access", local26) //(String key, Boolean def)
+		this.<NorthwoodAccess>k__BackingField = bool6
+
+		if (bool6 != False)
+		    System.Int32 14 = 14
+
+		    ServerConsole.AddLog("WARNING - Northwood staff access is enabled! All NW Studios staff members will have FULL Remote Admin access (this should only be used on testing servers!) you can disable this by setting 'enable_northwood_access' to false in your remote admin config file.", 14) //(String q, ConsoleColor color)
+		endif
+        
+		System.Collections.Generic.Dictionary`2<System.String,UserGroup> dictionary = new System.Collections.Generic.Dictionary`2<System.String,UserGroup>()
+
+		dictionary..ctor()
+		this._groups = dictionary
+		System.Collections.Generic.HashSet`1<System.UInt64> hashSet = new System.Collections.Generic.HashSet`1<System.UInt64>()
+
+		hashSet..ctor()
+		this._raPermissions = hashSet
+
+		System.Collections.Generic.List`1<System.String> stringList = .GetStringList("Roles") //(String key)
+
+		System.Collections.Generic.List`1<System.String> stringList2 = .GetStringList("Roles") //(String key)
+
+		if (constant67 == 0)
+            goto INSN_180383877
+        endif
+
+		System.Collections.Generic.List`1<System.String> stringList3 = .GetStringList("SharedRoles") //(String key)
+		YamlConfig sharingConfig = GameCore.ConfigFile.SharingConfig
+		ulong local38 = 0
+
+		System.String string3 = sharingConfig.GetString("groups_sharing_mode", "") //(String key, String def)
+		PermissionsHandler/<>c__DisplayClass15_0 enumeratorInstance = new PermissionsHandler/<>c__DisplayClass15_0()
+		ulong local41 = 0
+
+		enumeratorInstance.FieldGetter(local41, "", local38) //(String typeName, String fieldName, Object& val)
+
+		System.Boolean boolean = System.String.Equals(string3, "all") //(String a, String b)
+
+		if (boolean == False)
+            goto INSN_1803836DE
+        endif
+
+		stringList.AddRange(stringList3) //(IEnumerable`1 collection)
+
+		INSN_1803836DE:
+
+		System.Boolean boolean2 = System.String.Equals(string3, "opt-in") //(String a, String b)
+
+		if (boolean2 == False)
+            goto INSN_1803837B5
+        endif
+		YamlConfig sharingConfig2 = GameCore.ConfigFile.SharingConfig
+
+		System.Collections.Generic.List`1<System.String> stringList4 = sharingConfig2.GetStringList("groups_opt_in_list") //(String key)
+		enumeratorInstance.optIn = stringList4
+		System.Func`2<System.String,System.Boolean> func = new System.Func`2<System.String,System.Boolean>()
+
+		func..ctor(enumeratorInstance, {'<.ctor>b__0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		System.Collections.Generic.IEnumerable`1<System.String> iEnumerable = System.Linq.Enumerable.Where<System.String>(stringList3, func) //(IEnumerable`1 source, Func`2 predicate)
+
+		stringList.AddRange(iEnumerable) //(IEnumerable`1 collection)
+
+		INSN_1803837B5:
+
+		[instruction error - managed method being called is null]
+
+		if (iEnumerable == 0)
+            goto INSN_180383846
+        endif
+		YamlConfig sharingConfig3 = GameCore.ConfigFile.SharingConfig
+
+		System.Collections.Generic.List`1<System.String> stringList5 = sharingConfig3.GetStringList("groups_opt_out_list") //(String key)
+		enumeratorInstance.optOut = stringList5
+		System.Func`2<System.String,System.Boolean> func2 = new System.Func`2<System.String,System.Boolean>()
+
+		INSN_180383846:
+		System.Int32 7 = 7
+
+		ServerConsole.AddLog("Invalid group sharing mode set!", 7) //(String q, ConsoleColor color)
+
+		INSN_180383877:
+
+		System.Collections.Generic.IEnumerable`1<System.String> keys = .GetKeys()
+
+		System.String[] stringArray = System.Linq.Enumerable.ToArray<System.String>(keys) //(IEnumerable`1 source)
+
+		System.Collections.Generic.List`1/Enumerator<System.String> enumerator = keys.GetEnumerator()
+
+		if (enumerator == 0)
+            goto INSN_180383DCC
+        endif
+
+		System.String string4 = System.String.Concat()
+
+		System.Boolean boolean3 = CollectionExtensions.Contains<System.String>()
+
+		if (boolean3 != False)
+            goto INSN_180383964
+        endif
+
+		if (constant136 == 0)
+            goto INSN_180383964
+        endif
+
+		System.String string5 = System.String.Concat()
+
+		System.String string6 = .GetString(string5, "") //(String key, String def)
+
+		INSN_180383964:
+
+		System.String string7 = System.String.Concat()
+
+		System.String string8 = .GetString(string7, "") //(String key, String def)
+
+		System.String string9 = System.String.Concat()
+
+		System.Boolean boolean4 = CollectionExtensions.Contains<System.String>()
+
+		if (boolean4 != False)
+            goto INSN_1803839FC
+        endif
+
+		if (constant147 == 0)
+            goto INSN_1803839FC
+        endif
+
+		System.String string10 = System.String.Concat()
+
+		System.String string11 = .GetString(string10, "") //(String key, String def)
+
+		INSN_1803839FC:
+
+		System.String string12 = System.String.Concat()
+
+		System.String string13 = .GetString(string12, "") //(String key, String def)
+
+		System.String string14 = System.String.Concat()
+
+		System.Boolean boolean5 = CollectionExtensions.Contains<System.String>()
+
+		if (boolean5 != False)
+            goto INSN_180383A8F
+        endif
+
+		if (constant158 == 0)
+            goto INSN_180383A8F
+        endif
+
+		System.String string15 = System.String.Concat()
+
+		System.Boolean bool7 = .GetBool(string15, True) //(String key, Boolean def)
+
+		INSN_180383A8F:
+
+		System.String string16 = System.String.Concat()
+
+		System.Boolean bool8 = .GetBool(string16, True) //(String key, Boolean def)
+
+		System.String string17 = System.String.Concat()
+
+		System.Boolean boolean6 = CollectionExtensions.Contains<System.String>()
+
+		if (boolean6 != False)
+            goto INSN_180383B1B
+        endif
+
+		if (constant169 == 0)
+            goto INSN_180383B1B
+        endif
+
+		System.String string18 = System.String.Concat()
+		ulong local100 = 0
+
+		System.Boolean bool9 = .GetBool(string18, local100) //(String key, Boolean def)
+
+		INSN_180383B1B:
+
+		System.String string19 = System.String.Concat()
+		ulong local105 = 0
+
+		System.Boolean bool10 = .GetBool(string19, local105) //(String key, Boolean def)
+		bool9 = bool10
+
+		System.String string20 = System.String.Concat()
+
+		System.Boolean boolean7 = CollectionExtensions.Contains<System.String>()
+
+		if (boolean7 != False)
+            goto INSN_180383BA8
+        endif
+
+		if (constant178 == 0)
+            goto INSN_180383BA8
+        endif
+
+		System.String string21 = System.String.Concat()
+		ulong local113 = 0
+
+		System.Byte byte = .GetByte(string21, local113) //(String key, Byte def)
+
+		INSN_180383BA8:
+
+		System.String string22 = System.String.Concat()
+		ulong local118 = 0
+
+		System.Byte byte2 = .GetByte(string22, local118) //(String key, Byte def)
+		byte = byte2
+
+		System.String string23 = System.String.Concat()
+
+		System.Boolean boolean8 = CollectionExtensions.Contains<System.String>()
+
+		if (boolean8 != False)
+            goto INSN_180383C3C
+        endif
+		//UNKNOWN CLASS OFFSET READ HERE
+
+		if (constant181 == 0)
+            goto INSN_180383C3C
+        endif
+
+		System.String string24 = System.String.Concat()
+		ulong local126 = 0
+
+		System.Byte byte3 = .GetByte(string24, local126) //(String key, Byte def)
+
+		INSN_180383C3C:
+
+		System.String string25 = System.String.Concat()
+		ulong local131 = 0
+
+		System.Byte byte4 = .GetByte(string25, local131) //(String key, Byte def)
+		byte3 = byte4
+
+		[instruction error - managed method being called is null]
+
+		if (byte4 != constant193)
+            goto INSN_1803838DA
+        endif
+
+		System.Boolean boolean9 = System.String.Equals(string13, "") //(String a, String b)
+
+		if (boolean9 != False)
+            goto INSN_1803838DA
+        endif
+		//UNKNOWN CLASS OFFSET READ HERE
+		throw new System.NullReferenceException()
+
+		if (local136 != 0)
+            goto INSN_180383D7E
+        endif
+		//UNKNOWN CLASS OFFSET READ HERE
+		UserGroup userGroup = new UserGroup()
+		ulong local138 = 0
+
+		userGroup..ctor()
+		userGroup.BadgeColor = local138
+		userGroup.BadgeText = userGroup
+		userGroup.Permissions = 0
+		userGroup.Cover = userGroup
+		userGroup.HiddenByDefault = bool9
+
+		System.Boolean boolean10 = bool9.Contains(func) //(T item)
+		System.Boolean local140 = boolean10 == False
+		userGroup.Shared = local140
+		userGroup.KickPower = byte
+		userGroup.RequiredKickPower = byte3
+		throw new System.NullReferenceException()
+
+		INSN_180383D7E:
+
+		System.String string26 = System.String.Concat()
+		System.Int32 7 = 7
+
+		ServerConsole.AddLog(string26, 7) //(String q, ConsoleColor color)
+
+		INSN_180383DCC:
+		ulong local145 = 0
+
+		string26.Dispose()
+
+		string26.Dispose()
+
+		if (string26 != 0)
+            goto INSN_18038462B
+        endif
+
+		if (local145 == -1)
+            goto INSN_180383E42
+        endif
+
+		if (constant220 != 0x46F)
+            goto INSN_180383E4A
+        endif
+
+		INSN_180383E42:
+
+		INSN_180383E4A:
+
+		System.Collections.Generic.Dictionary`2<System.String,System.String> stringDictionary = .GetStringDictionary("Members") //(String key)
+		bool9. = stringDictionary
+		  = bool9.
+
+		if (constant223 == 0)
+            goto INSN_1803841F3
+        endif
+
+		System.Collections.Generic.Dictionary`2<System.String,System.String> stringDictionary2 = .GetStringDictionary("SharedMembers") //(String key)
+
+		if (stringDictionary2 == 0)
+            goto INSN_1803841F3
+        endif
+
+		System.Collections.Generic.Dictionary`2/Enumerator<TKey,TValue> enumerator2 = .GetEnumerator()
+
+		if (enumerator2 == 0)
+            goto INSN_180384179
+        endif
+		  = bool9.
+		throw new System.NullReferenceException()
+
+		if (local151 != 0)
+            goto INSN_180383F44
+        endif
+		  = bool9.
+		throw new System.NullReferenceException()
+
+		INSN_180383F44:
+		System.String[] local153 = new System.String[7]
+
+		if ("Duplicated group member: " == 0)
+            goto INSN_180383F8C
+        endif
+
+		if ("Duplicated group member: " == 0)
+            goto INSN_18038463B
+        endif
+
+		INSN_180383F8C:
+		local153[0] = "Duplicated group member: "
+
+		if (userGroup == 0)
+            goto INSN_180383FC6
+        endif
+
+		if ("Duplicated group member: " == 0)
+            goto INSN_180384659
+        endif
+
+		INSN_180383FC6:
+		local153[1] = userGroup
+
+		if (". Is member of " == 0)
+            goto INSN_18038400A
+        endif
+
+		if (". Is member of " == 0)
+            goto INSN_180384677
+        endif
+
+		INSN_18038400A:
+		local153[2] = ". Is member of "
+		  = bool9.
+
+		System.String item = .Item
+
+		if (item == 0)
+            goto INSN_18038405F
+        endif
+
+		if (item == 0)
+            goto INSN_180384695
+        endif
+
+		INSN_18038405F:
+		local153[3] = item
+
+		if (" and " == 0)
+            goto INSN_1803840A3
+        endif
+
+		if (" and " == 0)
+            goto INSN_1803846B3
+        endif
+
+		INSN_1803840A3:
+		local153[4] = " and "
+
+		if (item == 0)
+            goto INSN_1803840DD
+        endif
+
+		if (" and " == 0)
+            goto INSN_1803846D1
+        endif
+
+		INSN_1803840DD:
+		local153[5] = item
+
+		if ("." == 0)
+            goto INSN_180384121
+        endif
+
+		if ("." == 0)
+            goto INSN_1803846EF
+        endif
+
+		INSN_180384121:
+		local153[6] = "."
+
+		System.String string27 = System.String.Concat(local153) //(String[] values)
+		System.Int32 7 = 7
+
+		ServerConsole.AddLog(string27, 7) //(String q, ConsoleColor color)
+
+		INSN_180384179:
+		local145 += 1
+		string27. = 1370
+
+		string27.Dispose()
+
+		string27.Dispose()
+
+		if (string27 != 0)
+            goto INSN_18038471D
+        endif
+
+		if (local145 == -1)
+            goto INSN_1803841EC
+        endif
+
+		if (constant295 != 0x55A)
+            goto INSN_1803841EC
+        endif
+
+		INSN_1803841EC:
+
+		INSN_1803841F3:
+		bool9. = 1
+		System.Collections.Generic.HashSet`1<System.String> hashSet2 = new System.Collections.Generic.HashSet`1<System.String>()
+
+		hashSet2..ctor()
+		  = bool9.
+
+		if (.ctor == 0)
+            goto INSN_180384323
+        endif
+
+		System.Collections.Generic.Dictionary`2/Enumerator<TKey,TValue> enumerator3 = hashSet2.GetEnumerator()
+
+		if (enumerator3 == 0)
+            goto INSN_1803842BB
+        endif
+		  = bool9.
+		throw new System.NullReferenceException()
+
+		if (local160 != 0)
+            goto INSN_180384260
+        endif
+
+		System.Boolean boolean11 = hashSet2.Add()
+
+		INSN_1803842BB:
+		local145 += 1
+		byte3. = 1477
+
+		hashSet2.Dispose()
+
+		if (local145 != 0)
+            goto INSN_180384733
+        endif
+
+		if (local145 == -1)
+            goto INSN_180384327
+        endif
+
+		if (constant312 != 0x5C5)
+            goto INSN_180384327
+        endif
+
+		INSN_180384323:
+
+		INSN_180384327:
+
+		if ( <= 0)
+            goto INSN_1803843F8
+        endif
+
+		if ( == 0)
+            goto INSN_1803843F8
+        endif
+
+		System.Collections.Generic.HashSet`1/Enumerator<System.String> enumerator4 = hashSet2.GetEnumerator()
+
+		if (enumerator4 == 0)
+            goto INSN_1803843B9
+        endif
+		  = bool9.
+
+		System.Boolean boolean12 = hashSet2.Remove()
+
+		INSN_1803843B9:
+		hashSet2. = 1554
+
+		hashSet2.Dispose()
+
+		if (local145 != 0)
+            goto INSN_180384744
+        endif
+
+		INSN_1803843F8:
+
+		hashSet2.Clear()
+		System.Collections.Generic.Dictionary`2<System.String,System.UInt64> dictionary2 = new System.Collections.Generic.Dictionary`2<System.String,System.UInt64>()
+
+		dictionary2..ctor()
+		bool9. = dictionary2
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'PlayerPermissions' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+
+		System.String[] names = System.Enum.GetNames(typeFromHandle) //(Type enumType)
+		ulong local169 = 0
+		System.Int32 length = names.Length
+
+		if (local169 >= length)
+            goto INSN_1803845CD
+        endif
+		System.String string28 = names[local169]
+
+		System.Type typeFromHandle2 = System.Type.GetTypeFromHandle({'PlayerPermissions' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+
+		System.Object object = System.Enum.Parse(typeFromHandle2, string28) //(Type enumType, String value)
+		local176 = object
+		  = bool9.
+		throw new System.NullReferenceException()
+
+		if (local176 == 0x1000)
+            goto INSN_1803845B8
+        endif
+
+		if (local176 == 0x20000)
+            goto INSN_1803845B8
+        endif
+
+		if (local176 == 0x200000)
+            goto INSN_1803845B8
+        endif
+
+		if (local176 == 0x400000)
+            goto INSN_1803845B8
+        endif
+
+		if (local176 == 0x1000000)
+            goto INSN_1803845B8
+        endif
+
+		if (local176 == 0x8000000)
+            goto INSN_1803845B8
+        endif
+		  = bool9.
+
+		System.Boolean boolean13 = object.Add(local176) //(T item)
+
+		INSN_1803845B8:
+
+		if (local176 <= )
+            goto INSN_1803845C2
+        endif
+		bool9. = local176
+
+		INSN_1803845C2:
+		local169 += 1
+
+		INSN_1803845CD:
+
+		bool9.RefreshPermissions()
+		return
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+
+		INSN_18038462B:
+		throw new System.NullReferenceException()
+
+		INSN_18038463B:
+		throw new System.IndexOutOfRangeException()
+
+		INSN_180384659:
+		throw new System.IndexOutOfRangeException()
+
+		INSN_180384677:
+		throw new System.IndexOutOfRangeException()
+
+		INSN_180384695:
+		throw new System.IndexOutOfRangeException()
+
+		INSN_1803846B3:
+		throw new System.IndexOutOfRangeException()
+
+		INSN_1803846D1:
+		throw new System.IndexOutOfRangeException()
+
+		INSN_1803846EF:
+		throw new System.IndexOutOfRangeException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+
+		INSN_18038471D:
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+
+		INSN_180384733:
+		throw new System.NullReferenceException()
+
+		INSN_180384744:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.UnknownClassOffsetReadAction at (0x1803833CD) is corrupt (Unknown class offset read) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PermissionsHandler
+	System.UInt64 RegisterPermission(System.String name, System.Boolean remoteAdmin, System.Boolean refresh)
+		System.UInt64 _lastPerm = this._lastPerm
+
+		System.Double double = System.Math.Log()
+		ulong local8 = 0
+
+		System.Double double2 = System.Math.Pow(double, double) //(Double x, Double y)
+		ulong local10 = 0
+
+		if (_lastPerm < 0)
+		endif
+        
+		System.Collections.Generic.Dictionary`2<System.String,System.UInt64> _permissions = this._permissions
+		local8 += local10
+		this._lastPerm = local8
+		throw new System.NullReferenceException()
+
+		if (remoteAdmin == False)
+            goto INSN_180382E21
+        endif
+		System.Collections.Generic.HashSet`1<System.UInt64> _raPermissions = this._raPermissions
+		System.UInt64 _lastPerm2 = this._lastPerm
+
+		System.Boolean boolean = _raPermissions.Add(_lastPerm2) //(T item)
+
+		INSN_180382E21:
+
+		if (refresh == False)
+            goto INSN_180382E30
+        endif
+
+		this.RefreshPermissions()
+
+		INSN_180382E30:
+		System.UInt64 _lastPerm3 = this._lastPerm
+		return _lastPerm3
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180382D94) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PermissionsHandler
+	System.Void RefreshPermissions()
+		System.Collections.Generic.Dictionary`2<System.String,UserGroup> _groups = this._groups
+
+		System.Collections.Generic.Dictionary`2/Enumerator<TKey,TValue> enumerator = .GetEnumerator()
+
+		if (enumerator != 0)
+		    enumerator.getEnumeratorRetType = 0
+		endif
+        
+		ulong local5 = 0
+
+		[instruction error - managed method being called is null]
+
+		[instruction error - managed method being called is null]
+
+		if (True != 0)
+            goto INSN_180382CA2
+        endif
+
+		if (local5 == -1)
+            goto INSN_1803828E8
+        endif
+
+		INSN_1803828E8:
+		YamlConfig _config = this._config
+
+		System.Collections.Generic.Dictionary`2<System.String,System.String> stringDictionary = _config.GetStringDictionary("Permissions") //(String key)
+		YamlConfig _sharedGroups = this._sharedGroups
+
+		if (_sharedGroups == 0)
+            goto INSN_180382933
+        endif
+
+		System.Collections.Generic.Dictionary`2<System.String,System.String> stringDictionary2 = _sharedGroups.GetStringDictionary("SharedPermissions") //(String key)
+
+		INSN_180382933:
+		ulong local12 = 0
+		System.Collections.Generic.Dictionary`2<System.String,System.UInt64> _permissions = this._permissions
+
+		System.Collections.Generic.Dictionary`2/KeyCollection<System.String,System.UInt64> keys = _permissions.Keys
+
+		System.Collections.Generic.Dictionary`2/KeyCollection/Enumerator<System.String,System.UInt64> enumerator2 = _permissions.GetEnumerator()
+
+		if (enumerator2 == 0)
+            goto INSN_180382C49
+        endif
+		System.Collections.Generic.Dictionary`2<System.String,System.UInt64> _permissions2 = this._permissions
+
+		System.UInt64 item = _permissions2.Item
+		throw new System.NullReferenceException()
+
+		if (local18 != 0)
+            goto INSN_180382A31
+        endif
+
+		System.String string = System.String.Concat()
+		System.Int32 7 = 7
+
+		ServerConsole.AddLog(string, 7) //(String q, ConsoleColor color)
+
+		INSN_180382A31:
+
+		System.String item2 = string.Item
+		ulong local23 = 0
+
+		System.String[] stringArray = YamlConfig.ParseCommaSeparatedString(item2) //(String data)
+
+		if (stringArray == 0)
+            goto INSN_180382AD9
+        endif
+		ulong local25 = 0
+
+		if (local25 < stringArray.Length)
+		    System.String string2 = stringArray[local25]
+		    System.Collections.Generic.Dictionary`2<System.String,UserGroup> _groups2 = this._groups
+		    throw new System.NullReferenceException()
+
+		    if (local28 != 0)
+		        System.Collections.Generic.Dictionary`2<System.String,UserGroup> _groups3 = this._groups
+
+		        UserGroup item3 = _groups3.Item
+		    endif
+            
+		    local25 += 1
+		endwhile
+        
+		goto INSN_180382B0C
+        
+		System.Int32 7 = 7
+
+		ServerConsole.AddLog("Failed to process group permissions in remote admin config! Make sure there is no typo.", 7) //(String q, ConsoleColor color)
+		else
+		endif
+    
+
+		if (local12 != 0)
+		throw new System.NullReferenceException()
+
+		if (local32 != 0)
+            goto INSN_180382B87
+        endif
+
+		System.String string3 = System.String.Concat("Shared groups config is missing permission definition: ", local23) //(String str0, String str1)
+		System.Int32 7 = 7
+
+		ServerConsole.AddLog(string3, 7) //(String q, ConsoleColor color)
+
+		INSN_180382B87:
+
+		System.String item4 = local12.Item
+
+		System.String[] stringArray2 = YamlConfig.ParseCommaSeparatedString(item4) //(String data)
+
+		if (stringArray2 != 0)
+		    ulong local39 = 0
+
+		    while (local39 < stringArray2.Length)
+		        System.String string4 = stringArray2[local39]
+		        System.Collections.Generic.Dictionary`2<System.String,UserGroup> _groups4 = this._groups
+		        throw new System.NullReferenceException()
+
+		        if (local42 != 0)
+		            System.Collections.Generic.Dictionary`2<System.String,UserGroup> _groups5 = this._groups
+
+		            UserGroup item5 = _groups5.Item
+		        endif
+                
+		        local39 += 1
+		    endwhile
+            
+
+		    INSN_180382C49:
+		    _groups4. = 435
+
+		    _groups4.Dispose()
+
+		    _groups4.Dispose()
+
+		    if (_groups4 != 0)
+                goto INSN_180382CF1
+            endif
+		    return
+		    throw new System.NullReferenceException()
+
+		    INSN_180382CA2:
+		    throw new System.IndexOutOfRangeException()
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+		    throw new System.IndexOutOfRangeException()
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+
+		    INSN_180382CF1:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18038281E) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PermissionsHandler
+	System.Boolean IsRaPermitted(System.UInt64 permissions)
+		PermissionsHandler/<>c__DisplayClass18_0 enumeratorInstance = new PermissionsHandler/<>c__DisplayClass18_0()
+
+		enumeratorInstance..ctor()
+		enumeratorInstance.permissions = permissions
+		System.Collections.Generic.HashSet`1<System.UInt64> _raPermissions = this._raPermissions
+		System.Func`2<System.UInt64,System.Boolean> func = new System.Func`2<System.UInt64,System.Boolean>()
+
+		func..ctor(enumeratorInstance, {'<IsRaPermitted>b__0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		System.Boolean boolean = System.Linq.Enumerable.Any<System.UInt64>(_raPermissions, func) //(IEnumerable`1 source, Func`2 predicate)
+		return boolean
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: newobj System.Void PermissionsHandler/<>c__DisplayClass18_0::.ctor()
+	IL_0005: stloc.0
+	IL_0006: ldloc.0
+	IL_0007: ldarg.1
+	IL_0008: stfld System.UInt64 PermissionsHandler/<>c__DisplayClass18_0::permissions
+	IL_000d: ldarg.0
+	IL_000e: ldfld System.Collections.Generic.HashSet`1<System.UInt64> PermissionsHandler::_raPermissions
+	IL_0013: stloc.1
+	IL_0014: ldloc.0
+	IL_0015: ldftn System.Boolean PermissionsHandler/<>c__DisplayClass18_0::<IsRaPermitted>b__0(System.UInt64)
+	IL_001b: newobj System.Void System.Func`2::.ctor(System.Object,System.IntPtr)
+	IL_0020: stloc.2
+	IL_0021: ldloc.1
+	IL_0022: ldloc.2
+	IL_0023: call System.Boolean System.Linq.Enumerable::Any<System.UInt64>(System.Collections.Generic.IEnumerable`1,System.Func`2)
+	IL_0028: ret
+	IL_0029: newobj System.Void System.NullReferenceException::.ctor()
+	IL_002e: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PermissionsHandler
+	UserGroup GetGroup(System.String name)
+		System.Collections.Generic.Dictionary`2<System.String,UserGroup> _groups = this._groups
+		throw new System.NullReferenceException()
+
+		if (local3 == 0)
+		    ulong local4 = 0
+		    return local4
+		endif
+        
+		System.Collections.Generic.Dictionary`2<System.String,UserGroup> _groups2 = this._groups
+
+		UserGroup item = _groups2.Item
+
+		UserGroup userGroup = item.Clone()
+		return userGroup
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x1803820E3) is corrupt (Return value has a type of System.Int32, expecting an object of type UserGroup) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PermissionsHandler
+	System.Collections.Generic.List`1<System.String> GetAllGroupsNames()
+		System.Collections.Generic.Dictionary`2<System.String,UserGroup> _groups = this._groups
+
+		System.Collections.Generic.Dictionary`2/KeyCollection<System.String,UserGroup> keys = _groups.Keys
+
+		System.Collections.Generic.List`1<System.String> list = System.Linq.Enumerable.ToList<System.String>(keys) //(IEnumerable`1 source)
+		return list
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Collections.Generic.Dictionary`2<System.String,UserGroup> PermissionsHandler::_groups
+	IL_0006: call System.Collections.Generic.Dictionary`2/KeyCollection System.Collections.Generic.Dictionary`2::get_Keys()
+	IL_000b: call System.Collections.Generic.List`1 System.Linq.Enumerable::ToList<System.String>(System.Collections.Generic.IEnumerable`1)
+	IL_0010: ret
+	IL_0011: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0016: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PermissionsHandler
+	System.Collections.Generic.Dictionary`2<System.String,UserGroup> GetAllGroups()
+		System.Collections.Generic.Dictionary`2<System.String,UserGroup> _groups = this._groups
+
+		System.Collections.Generic.Dictionary`2/KeyCollection<System.String,UserGroup> keys = _groups.Keys
+		System.Func`2<System.String,System.String> <>9__21_0 = PermissionsHandler/<>c.<>9__21_0
+
+		if (<>9__21_0 == 0)
+		    PermissionsHandler/<>c <>c = PermissionsHandler/<>c.<>9
+		    System.Func`2<System.String,System.String> func = new System.Func`2<System.String,System.String>()
+
+		    func..ctor(<>c, {'<GetAllGroups>b__21_0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		     += 8
+		    PermissionsHandler/<>c.<>9 = func
+		endif
+        
+		System.Func`2<System.String,UserGroup> func2 = new System.Func`2<System.String,UserGroup>()
+
+		func2..ctor(this, {'<GetAllGroups>b__21_1' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		System.Collections.Generic.Dictionary`2<System.String,System.String> dictionary = System.Linq.Enumerable.ToDictionary<System.String, System.String, UserGroup>(keys, <>9__21_0, func2) //(IEnumerable`1 source, Func`2 keySelector, Func`2 elementSelector)
+		return dictionary
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x180381FCA) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PermissionsHandler
+	System.String GetPermissionName(System.UInt64 value)
+		PermissionsHandler/<>c__DisplayClass22_0 enumeratorInstance = new PermissionsHandler/<>c__DisplayClass22_0()
+
+		enumeratorInstance..ctor()
+		enumeratorInstance.value = value
+		System.Func`2<System.Collections.Generic.KeyValuePair`2<System.String,System.UInt64>,System.Boolean> func = new System.Func`2<System.Collections.Generic.KeyValuePair`2<System.String,System.UInt64>,System.Boolean>()
+
+		func..ctor(enumeratorInstance, {'<GetPermissionName>b__0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		System.Collections.Generic.KeyValuePair`2<System.String,System.UInt64> keyValuePair = System.Linq.Enumerable.FirstOrDefault<System.Collections.Generic.KeyValuePair`2<System.String,System.UInt64>>()
+		return constant11
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1803821B0) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PermissionsHandler
+	System.UInt64 GetPermissionValue(System.String name)
+		PermissionsHandler/<>c__DisplayClass23_0 enumeratorInstance = new PermissionsHandler/<>c__DisplayClass23_0()
+
+		enumeratorInstance..ctor()
+		enumeratorInstance.name = name
+		System.Func`2<System.Collections.Generic.KeyValuePair`2<System.String,System.UInt64>,System.Boolean> func = new System.Func`2<System.Collections.Generic.KeyValuePair`2<System.String,System.UInt64>,System.Boolean>()
+
+		func..ctor(enumeratorInstance, {'<GetPermissionValue>b__0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		System.Collections.Generic.KeyValuePair`2<System.String,System.UInt64> keyValuePair = System.Linq.Enumerable.FirstOrDefault<System.Collections.Generic.KeyValuePair`2<System.String,System.UInt64>>()
+		return constant12
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18038226B) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PermissionsHandler
+	System.Collections.Generic.List`1<System.String> GetAllPermissions()
+		System.Collections.Generic.Dictionary`2<System.String,System.UInt64> _permissions = this._permissions
+
+		System.Collections.Generic.Dictionary`2/KeyCollection<System.String,System.UInt64> keys = _permissions.Keys
+
+		System.Collections.Generic.List`1<System.String> list = System.Linq.Enumerable.ToList<System.String>(keys) //(IEnumerable`1 source)
+		return list
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Collections.Generic.Dictionary`2<System.String,System.UInt64> PermissionsHandler::_permissions
+	IL_0006: call System.Collections.Generic.Dictionary`2/KeyCollection System.Collections.Generic.Dictionary`2::get_Keys()
+	IL_000b: call System.Collections.Generic.List`1 System.Linq.Enumerable::ToList<System.String>(System.Collections.Generic.IEnumerable`1)
+	IL_0010: ret
+	IL_0011: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0016: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PermissionsHandler
+	System.Void SetServerAsVerified()
+		this.<IsVerified>k__BackingField = True
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldc.i4.1
+	IL_0002: stfld System.Boolean PermissionsHandler::<IsVerified>k__BackingField
+	IL_0007: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PermissionsHandler
+	System.Boolean get_BanTeamSlots()
+
+		if (this._banTeamSlots == False)
+		endif
+        
+		return True
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Boolean PermissionsHandler::_banTeamSlots
+	IL_0006: ldc.i4.0
+	IL_0007: bne.un.s IL_0009
+	IL_0009: ldc.i4.1
+	IL_000a: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PermissionsHandler
+	System.Boolean get_BanTeamBypassGeo()
+
+		if (this._banTeamGeoBypass == False)
+		endif
+        
+		return True
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Boolean PermissionsHandler::_banTeamGeoBypass
+	IL_0006: ldc.i4.0
+	IL_0007: bne.un.s IL_0009
+	IL_0009: ldc.i4.1
+	IL_000a: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PermissionsHandler
+	static System.Boolean IsPermitted(System.UInt64 permissions, PlayerPermissions check)
+		return 
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x1803826E9) is corrupt (Return value is missing) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PermissionsHandler
+	static System.Boolean IsPermitted(System.UInt64 permissions, PlayerPermissions[] check)
+
+		if (check.Length != 0)
+		    System.Func`3<System.UInt64,PlayerPermissions,System.UInt64> <>9__31_0 = PermissionsHandler/<>c.<>9__31_0
+
+		    if (<>9__31_0 == 0)
+		        PermissionsHandler/<>c <>c = PermissionsHandler/<>c.<>9
+		        System.Func`3<System.UInt64,PlayerPermissions,System.UInt64> func = new System.Func`3<System.UInt64,PlayerPermissions,System.UInt64>()
+
+		        func..ctor(<>c, {'<IsPermitted>b__31_0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		         += 16
+		        PermissionsHandler/<>c.<>9 = func
+		    endif
+            
+		    ulong local5 = 0
+
+		    PlayerPermissions playerPermissions = System.Linq.Enumerable.Aggregate<PlayerPermissions, System.UInt64>(check, local5, <>9__31_0) //(IEnumerable`1 source, TAccumulate seed, Func`3 func)
+		    return playerPermissions
+		endif
+        
+		System.Int64 local7 = 1
+		return local7
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x18038254E) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PermissionsHandler
+	System.Boolean IsPermitted(System.UInt64 permissions, System.String check)
+		System.Collections.Generic.Dictionary`2<System.String,System.UInt64> _permissions = this._permissions
+		throw new System.NullReferenceException()
+
+		if (local4 == 0)
+		    return local4
+		endif
+        
+		System.Collections.Generic.Dictionary`2<System.String,System.UInt64> _permissions2 = this._permissions
+
+		System.UInt64 item = _permissions2.Item
+		return item
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x18038261E) is corrupt (Return value has a type of System.NullReferenceException, expecting an object of type System.Boolean) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PermissionsHandler
+	System.Boolean IsPermitted(System.UInt64 permissions, System.String[] check)
+
+		if (check.Length != 0)
+		    System.Func`2<System.String,System.Boolean> func = new System.Func`2<System.String,System.Boolean>()
+
+		    func..ctor(this, {'<IsPermitted>b__33_0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		    System.Collections.Generic.IEnumerable`1<System.String> iEnumerable = System.Linq.Enumerable.Where<System.String>(check, func) //(IEnumerable`1 source, Func`2 predicate)
+		    System.Func`3<System.UInt64,System.String,System.UInt64> func2 = new System.Func`3<System.UInt64,System.String,System.UInt64>()
+
+		    func2..ctor(this, {'<IsPermitted>b__33_1' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		    ulong local6 = 0
+
+		    System.String string = System.Linq.Enumerable.Aggregate<System.String, System.UInt64>(iEnumerable, local6, func2) //(IEnumerable`1 source, TAccumulate seed, Func`3 func)
+		    return string
+		endif
+        
+		return True
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1803823FC) is corrupt (Mismatched instance parameter. Expecting an instance of System.Func`2, actually {'func2' (type System.Func`3<System.UInt64,System.String,System.UInt64>)}) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PermissionsHandler
+	static System.Boolean IsPermitted(System.UInt64 permissions, System.UInt64 check)
+		return 
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x180382686) is corrupt (Return value is missing) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PermissionsHandler
+	System.Byte[] DerivePassword(System.Byte[] serverSalt, System.Byte[] clientSalt)
+		System.String _overridePassword = this._overridePassword
+
+		System.Byte[] byteArray = RemoteAdmin.QueryProcessor.DerivePassword(_overridePassword, serverSalt, clientSalt) //(String password, Byte[] serversalt, Byte[] clientsalt)
+		return byteArray
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String PermissionsHandler::_overridePassword
+	IL_0006: ldarg.1
+	IL_0007: ldarg.2
+	IL_0008: call System.Byte[] RemoteAdmin.QueryProcessor::DerivePassword(System.String,System.Byte[],System.Byte[])
+	IL_000d: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PermissionsHandler
+	UserGroup get_OverrideGroup()
+
+		System.Boolean overrideEnabled = this.OverrideEnabled
+
+		if (overrideEnabled != False)
+		    System.Collections.Generic.Dictionary`2<System.String,UserGroup> _groups = this._groups
+		    throw new System.NullReferenceException()
+
+		    if (local5 != 0)
+		        System.Collections.Generic.Dictionary`2<System.String,UserGroup> _groups2 = this._groups
+		        System.String _overrideRole = this._overrideRole
+
+		        UserGroup item = _groups2.Item
+		        return item
+		    endif
+            
+		    ulong local9 = 0
+		    return local9
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x180384AA4) is corrupt (Return value has a type of System.Int32, expecting an object of type UserGroup) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PermissionsHandler
+	System.Boolean get_OverrideEnabled()
+		System.String _overridePassword = this._overridePassword
+
+		System.Boolean isNullOrEmpty = System.String.IsNullOrEmpty(_overridePassword) //(String value)
+
+		if (isNullOrEmpty == False)
+		    System.String _overridePassword2 = this._overridePassword
+
+		    System.Boolean boolean = System.String.Equals(_overridePassword2, "none") //(String a, String b)
+
+		    if (boolean == False)
+
+		        if (this.<IsVerified>k__BackingField != boolean)
+		            System.String _overridePassword3 = this._overridePassword
+
+		            System.String string = _overridePassword3.ToLower()
+		            System.String _overridePassword4 = this._overridePassword
+
+		            System.Boolean boolean2 = System.String.Equals(string, _overridePassword4) //(String a, String b)
+
+		            if (boolean2 == False)
+		                System.String _overridePassword5 = this._overridePassword
+
+		                System.String string2 = _overridePassword5.ToUpper()
+		                System.String _overridePassword6 = this._overridePassword
+
+		                System.Boolean boolean3 = System.String.Equals(string2, _overridePassword6) //(String a, String b)
+
+		                if (boolean3 == False)
+		                    System.String _overridePassword7 = this._overridePassword
+		                    System.Func`2<System.Char,System.Boolean> <>9__39_0 = PermissionsHandler/<>c.<>9__39_0
+
+		                    if (<>9__39_0 == 0)
+		                        PermissionsHandler/<>c <>c = PermissionsHandler/<>c.<>9
+		                        System.Func`2<System.Char,System.Boolean> func = new System.Func`2<System.Char,System.Boolean>()
+
+		                        func..ctor(<>c, {'<get_OverrideEnabled>b__39_0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		                         += 24
+		                        PermissionsHandler/<>c.<>9 = func
+		                    endif
+                            
+
+		                    System.Boolean boolean4 = System.Linq.Enumerable.Any<System.Char>(_overridePassword7, <>9__39_0) //(IEnumerable`1 source, Func`2 predicate)
+
+		                    if (boolean4 != False)
+                                goto INSN_180384A19
+                            endif
+		                    System.Int32 7 = 7
+
+		                    ServerConsole.AddLog("Override password refused, because it must contain digit or special symbol (requirement for verified servers only).", 7) //(String q, ConsoleColor color)
+		                endif
+                        
+		                ulong local25 = 0
+		                return local25
+		            endif
+                    
+		            System.Int32 7 = 7
+
+		            ServerConsole.AddLog("Override password refused, because it must contain mixed case chars (requirement for verified servers only).", 7) //(String q, ConsoleColor color)
+		            ulong local27 = 0
+		            return local27
+		            System.Int32 7 = 7
+
+		            ServerConsole.AddLog("Override password refused, because it's too short (requirement for verified servers only).", 7) //(String q, ConsoleColor color)
+		            ulong local29 = 0
+		            return local29
+		        endif
+                
+		        System.Int64 local30 = 1
+		        return local30
+		        throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x18038493E) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PermissionsHandler
+	UserGroup GetUserGroup(System.String userId)
+
+		[instruction error - managed method being called is null]
+
+		if ( == 0)
+		    System.Collections.Generic.Dictionary`2<System.String,System.String> _members = this._members
+		    throw new System.NullReferenceException()
+
+		    if (local4 != 0)
+		        System.Collections.Generic.Dictionary`2<System.String,System.String> _members2 = this._members
+		        System.Collections.Generic.Dictionary`2<System.String,UserGroup> _groups = this._groups
+
+		        System.String item = _members2.Item
+
+		        UserGroup item2 = _groups.Item
+		        return item2
+		    endif
+            
+		    ulong local9 = 0
+		    return local9
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1803822C5) is corrupt (Don't know what method is being called) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PermissionsHandler
+	System.Boolean get_IsVerified()
+		System.Boolean IsVerified = this.<IsVerified>k__BackingField
+		return IsVerified
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Boolean PermissionsHandler::<IsVerified>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PermissionsHandler
+	System.Void set_IsVerified(System.Boolean value)
+		this.<IsVerified>k__BackingField = value
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: stfld System.Boolean PermissionsHandler::<IsVerified>k__BackingField
+	IL_0007: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PermissionsHandler
+	System.UInt64 get_FullPerm()
+		System.UInt64 FullPerm = this.<FullPerm>k__BackingField
+		return FullPerm
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.UInt64 PermissionsHandler::<FullPerm>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PermissionsHandler
+	System.Void set_FullPerm(System.UInt64 value)
+		this.<FullPerm>k__BackingField = value
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: stfld System.UInt64 PermissionsHandler::<FullPerm>k__BackingField
+	IL_0007: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PermissionsHandler
+	System.Boolean get_StaffAccess()
+		System.Boolean StaffAccess = this.<StaffAccess>k__BackingField
+		return StaffAccess
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Boolean PermissionsHandler::<StaffAccess>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PermissionsHandler
+	System.Boolean get_ManagersAccess()
+
+		if (this._managerAccess == False)
+
+		    if (this.<StaffAccess>k__BackingField == False)
+		        System.Boolean IsVerified = this.<IsVerified>k__BackingField
+		        return IsVerified
+		    endif
+            
+		    return True
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Boolean PermissionsHandler::_managerAccess
+	IL_0006: ldc.i4.0
+	IL_0007: bne.un.s IL_0019
+	IL_0009: ldarg.0
+	IL_000a: ldfld System.Boolean PermissionsHandler::<StaffAccess>k__BackingField
+	IL_000f: ldc.i4.0
+	IL_0010: bne.un.s IL_0019
+	IL_0012: ldarg.0
+	IL_0013: ldfld System.Boolean PermissionsHandler::<IsVerified>k__BackingField
+	IL_0018: ret
+	IL_0019: ldc.i4.1
+	IL_001a: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PermissionsHandler
+	System.Boolean get_BanningTeamAccess()
+
+		if (this._banTeamAccess == False)
+
+		    if (this.<StaffAccess>k__BackingField == False)
+		        System.Boolean IsVerified = this.<IsVerified>k__BackingField
+		        return IsVerified
+		    endif
+            
+		    return True
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Boolean PermissionsHandler::_banTeamAccess
+	IL_0006: ldc.i4.0
+	IL_0007: bne.un.s IL_0019
+	IL_0009: ldarg.0
+	IL_000a: ldfld System.Boolean PermissionsHandler::<StaffAccess>k__BackingField
+	IL_000f: ldc.i4.0
+	IL_0010: bne.un.s IL_0019
+	IL_0012: ldarg.0
+	IL_0013: ldfld System.Boolean PermissionsHandler::<IsVerified>k__BackingField
+	IL_0018: ret
+	IL_0019: ldc.i4.1
+	IL_001a: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PermissionsHandler
+	System.Boolean get_NorthwoodAccess()
+		System.Boolean NorthwoodAccess = this.<NorthwoodAccess>k__BackingField
+		return NorthwoodAccess
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Boolean PermissionsHandler::<NorthwoodAccess>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PermissionsHandler
+	static System.Void .cctor()
+		System.Collections.Generic.Dictionary`2<PlayerPermissions,System.String> dictionary = new System.Collections.Generic.Dictionary`2<PlayerPermissions,System.String>()
+
+		dictionary..ctor()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		PermissionsHandler.PermissionCodes = dictionary
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: newobj System.Void System.Collections.Generic.Dictionary`2::.ctor()
+	IL_0005: stloc.0
+	IL_0006: newobj System.Void System.NullReferenceException::.ctor()
+	IL_000b: throw
+	IL_000c: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0011: throw
+	IL_0012: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0017: throw
+	IL_0018: newobj System.Void System.NullReferenceException::.ctor()
+	IL_001d: throw
+	IL_001e: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0023: throw
+	IL_0024: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0029: throw
+	IL_002a: newobj System.Void System.NullReferenceException::.ctor()
+	IL_002f: throw
+	IL_0030: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0035: throw
+	IL_0036: newobj System.Void System.NullReferenceException::.ctor()
+	IL_003b: throw
+	IL_003c: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0041: throw
+	IL_0042: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0047: throw
+	IL_0048: newobj System.Void System.NullReferenceException::.ctor()
+	IL_004d: throw
+	IL_004e: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0053: throw
+	IL_0054: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0059: throw
+	IL_005a: newobj System.Void System.NullReferenceException::.ctor()
+	IL_005f: throw
+	IL_0060: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0065: throw
+	IL_0066: newobj System.Void System.NullReferenceException::.ctor()
+	IL_006b: throw
+	IL_006c: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0071: throw
+	IL_0072: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0077: throw
+	IL_0078: newobj System.Void System.NullReferenceException::.ctor()
+	IL_007d: throw
+	IL_007e: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0083: throw
+	IL_0084: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0089: throw
+	IL_008a: newobj System.Void System.NullReferenceException::.ctor()
+	IL_008f: throw
+	IL_0090: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0095: throw
+	IL_0096: newobj System.Void System.NullReferenceException::.ctor()
+	IL_009b: throw
+	IL_009c: newobj System.Void System.NullReferenceException::.ctor()
+	IL_00a1: throw
+	IL_00a2: newobj System.Void System.NullReferenceException::.ctor()
+	IL_00a7: throw
+	IL_00a8: newobj System.Void System.NullReferenceException::.ctor()
+	IL_00ad: throw
+	IL_00ae: newobj System.Void System.NullReferenceException::.ctor()
+	IL_00b3: throw
+	IL_00b4: ldloc.0
+	IL_00b5: stsfld System.Collections.Generic.Dictionary`2<PlayerPermissions,System.String> PermissionsHandler::PermissionCodes
+	IL_00ba: newobj System.Void System.NullReferenceException::.ctor()
+	IL_00bf: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PermissionsHandler
+	UserGroup <GetAllGroups>b__21_1(System.String gr)
+		System.Collections.Generic.Dictionary`2<System.String,UserGroup> _groups = this._groups
+
+		UserGroup item = _groups.Item
+		return item
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Collections.Generic.Dictionary`2<System.String,UserGroup> PermissionsHandler::_groups
+	IL_0006: ldarg.1
+	IL_0007: call TValue System.Collections.Generic.Dictionary`2::get_Item(TKey)
+	IL_000c: ret
+	IL_000d: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0012: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PermissionsHandler
+	System.Boolean <IsPermitted>b__33_0(System.String c)
+		System.Collections.Generic.Dictionary`2<System.String,System.UInt64> _permissions = this._permissions
+
+		System.Boolean boolean = _permissions.ContainsKey(c) //(TKey key)
+		return boolean
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Collections.Generic.Dictionary`2<System.String,System.UInt64> PermissionsHandler::_permissions
+	IL_0006: ldarg.1
+	IL_0007: call System.Boolean System.Collections.Generic.Dictionary`2::ContainsKey(TKey)
+	IL_000c: ret
+	IL_000d: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0012: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PermissionsHandler
+	System.UInt64 <IsPermitted>b__33_1(System.UInt64 current, System.String c)
+		System.Collections.Generic.Dictionary`2<System.String,System.UInt64> _permissions = this._permissions
+
+		System.UInt64 item = _permissions.Item
+		return item
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Collections.Generic.Dictionary`2<System.String,System.UInt64> PermissionsHandler::_permissions
+	IL_0006: ldarg.2
+	IL_0007: call TValue System.Collections.Generic.Dictionary`2::get_Item(TKey)
+	IL_000c: ret
+	IL_000d: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0012: throw
+	
+

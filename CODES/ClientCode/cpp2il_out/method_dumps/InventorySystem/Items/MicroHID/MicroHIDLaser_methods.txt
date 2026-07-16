@@ -1,0 +1,305 @@
+Type: MicroHIDLaser
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.MicroHID.MicroHIDLaser
+	System.Boolean get_Firing()
+		ulong local1 = 0
+
+		if (this._thirdpersonMode != False)
+		    System.Collections.Generic.Dictionary`2<System.UInt16,InventorySystem.Items.MicroHID.HidStatusMessage> syncStates = InventorySystem.Items.MicroHID.MicroHIDHandler.SyncStates
+		    System.UInt16 _serial = this._serial
+
+		    System.Boolean boolean = syncStates.TryGetValue(_serial, local1) //(TKey key, TValue& value)
+
+		    if (boolean != False)
+		        System.Diagnostics.Stopwatch _firingWarmup = this._firingWarmup
+
+		        if ( == 4)
+
+		            if (_firingWarmup.is_running == False)
+
+		                _firingWarmup.Restart()
+		            endif
+                    
+
+		            System.TimeSpan elapsed = _firingWarmup.Elapsed
+		            return elapsed
+		        endif
+                
+
+		        _firingWarmup.Stop()
+		    endif
+            
+		    ulong local12 = 0
+		    return local12
+		endif
+        
+		InventorySystem.Items.MicroHID.MicroHIDViewmodel _hidViewmodel = this._hidViewmodel
+
+		InventorySystem.Items.MicroHID.HidState state = _hidViewmodel.State
+
+		if (state != constant24)
+            goto INSN_1804CC3CB
+        endif
+		System.Boolean _laserTriggered = this._laserTriggered
+		return _laserTriggered
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfNonZeroOrNonNullAction at (0x1804CC374) is corrupt (One of the arguments is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.MicroHID.MicroHIDLaser
+	System.Void Start()
+		ulong local1 = 0
+		InventorySystem.Items.MicroHID.MicroHIDViewmodel _hidViewmodel = this._hidViewmodel
+		ulong local4 = 0
+
+		System.Boolean boolean = UnityEngine.Object.op_Equality(_hidViewmodel, local4) //(Object x, Object y)
+		this._thirdpersonMode = boolean
+
+		if (boolean != False)
+
+		    System.Boolean boolean2 = base.TryGetComponent<InventorySystem.Items.Thirdperson.IdleThirdpersonItem>(local1) //(T& component)
+
+		    if (boolean2 != False)
+		          = local1.
+		    else
+		    endif
+            
+		    this._serial = local1
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.FieldToLocalAction at (0x1804CBCEB) is corrupt (No further info) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.MicroHID.MicroHIDLaser
+	System.Void Update()
+		ulong local1 = 0
+		ulong local3 = 0
+
+		if (this._thirdpersonMode != local1)
+		    System.Collections.Generic.Dictionary`2<System.UInt16,System.Single> syncEnergy = InventorySystem.Items.MicroHID.MicroHIDHandler.SyncEnergy
+		    System.UInt16 _serial = this._serial
+
+		    System.Boolean boolean = syncEnergy.TryGetValue(_serial, null) //(TKey key, TValue& value)
+		    UnityEngine.Transform _gauge = this._gauge
+
+		    InventorySystem.Items.MicroHID.MicroHIDViewmodel.LerpGauge(_gauge, _serial, 1) //(Transform gauge, Single energy, Single l)
+		endif
+        
+
+		if (this._thirdpersonMode == False)
+            goto INSN_1804CBF25
+        endif
+		System.Collections.Generic.Dictionary`2<System.UInt16,InventorySystem.Items.MicroHID.HidStatusMessage> syncStates = InventorySystem.Items.MicroHID.MicroHIDHandler.SyncStates
+		System.UInt16 _serial2 = this._serial
+
+		System.Boolean boolean2 = syncStates.TryGetValue(_serial2, null) //(TKey key, TValue& value)
+
+		if (boolean2 == False)
+            goto INSN_1804CBF3D
+        endif
+		System.Diagnostics.Stopwatch _firingWarmup = this._firingWarmup
+
+		if (_firingWarmup.is_running != False)
+            goto INSN_1804CBEEB
+        endif
+
+		_firingWarmup.Restart()
+		System.Diagnostics.Stopwatch _firingWarmup2 = this._firingWarmup
+
+		INSN_1804CBEEB:
+
+		System.TimeSpan elapsed = _firingWarmup2.Elapsed
+
+		_firingWarmup2.Stop()
+
+		INSN_1804CBF25:
+		InventorySystem.Items.MicroHID.MicroHIDViewmodel _hidViewmodel = this._hidViewmodel
+
+		InventorySystem.Items.MicroHID.HidState state = _hidViewmodel.State
+
+		if (state == constant41)
+            goto INSN_1804CBF44
+        endif
+
+		INSN_1804CBF3D:
+
+		INSN_1804CBF44:
+		System.Boolean _laserTriggered = this._laserTriggered
+
+		if (_laserTriggered != False)
+            goto INSN_1804CC062
+        endif
+		ulong local27 = 0
+		this._laserTriggered = False
+
+		System.Single deltaTime = UnityEngine.Time.deltaTime
+		ulong local30 = 0
+		deltaTime = local26
+
+		System.Single single = UnityEngine.Mathf.Clamp01(deltaTime) //(Single value)
+		UnityEngine.Transform _targetTransform = this._targetTransform
+		ulong local33 = 0
+		this._currentScale = single
+		System.Single local34 = single * this._lastFiringScale
+
+		_targetTransform.localScale = local30
+		UnityEngine.Light _targetLight = this._targetLight
+		System.Single _currentScale = this._currentScale
+
+		_targetLight.intensity = _currentScale
+		UnityEngine.Light _targetLight2 = this._targetLight
+		System.Single _currentScale2 = this._currentScale
+
+		_targetLight2.enabled = local30
+		return
+
+		INSN_1804CC062:
+		ulong local42 = 0
+
+		System.Single deltaTime2 = UnityEngine.Time.deltaTime
+		deltaTime2 = local44
+
+		System.Single single2 = UnityEngine.Mathf.Clamp01(deltaTime2) //(Single value)
+		this._currentScale = single2
+
+		UnityEngine.Transform transform = base.transform
+
+		UnityEngine.Vector3 position = this.position
+		UnityEngine.Transform _forwardTransform = this._forwardTransform
+
+		UnityEngine.Vector3 forward = this.forward
+		UnityEngine.LayerMask _laserMask = this._laserMask
+
+		System.Int32 int32 = UnityEngine.LayerMask.op_Implicit(_laserMask) //(LayerMask mask)
+		local34 = local61
+
+		System.Boolean boolean3 = UnityEngine.Physics.Raycast()
+
+		if (boolean3 == False)
+            goto INSN_1804CC170
+        endif
+		ulong local65 = 0
+
+		INSN_1804CC170:
+		UnityEngine.AnimationCurve _laserScaleOverDistance = this._laserScaleOverDistance
+		System.Single _currentScale3 = this._currentScale
+
+		System.Single single3 = _laserScaleOverDistance.Evaluate(_currentScale3) //(Single time)
+		UnityEngine.Transform _targetTransform2 = this._targetTransform
+		ulong local73 = 0
+		single = local71
+		this._lastFiringScale = single3
+		local34 = single3
+
+		_targetTransform2.localScale = local65
+		UnityEngine.Light _targetLight3 = this._targetLight
+		System.Single _currentScale4 = this._currentScale
+
+		_targetLight3.intensity = _currentScale4
+		UnityEngine.Light _targetLight4 = this._targetLight
+
+		_targetLight4.enabled = True
+
+		if (this._thirdpersonMode != False)
+            goto INSN_1804CC02B
+        endif
+		ExplosionCameraShake singleton = ExplosionCameraShake.singleton
+
+		singleton.Shake(0.05999999865889549) //(Single explosionForce)
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1804CBDFC) is corrupt (Found null operand in Arguments: [{'_serial' (type System.UInt16)}, ]) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.MicroHID.MicroHIDLaser
+	System.Void SpawnObject()
+		ulong local1 = 0
+		InventorySystem.Items.MicroHID.MicroHIDViewmodel _hidViewmodel = this._hidViewmodel
+		ulong local4 = 0
+
+		System.Boolean boolean = UnityEngine.Object.op_Equality(_hidViewmodel, local4) //(Object x, Object y)
+		this._thirdpersonMode = boolean
+
+		if (boolean != False)
+
+		    System.Boolean boolean2 = base.TryGetComponent<InventorySystem.Items.Thirdperson.IdleThirdpersonItem>(local1) //(T& component)
+
+		    if (boolean2 != False)
+		          = local1.
+		    else
+		    endif
+            
+		    this._serial = local1
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.FieldToLocalAction at (0x1804CBCEB) is corrupt (No further info) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.MicroHID.MicroHIDLaser
+	System.Void TriggerLaser()
+		this._laserTriggered = True
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldc.i4.1
+	IL_0002: stfld System.Boolean InventorySystem.Items.MicroHID.MicroHIDLaser::_laserTriggered
+	IL_0007: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.MicroHID.MicroHIDLaser
+	System.Void .ctor()
+		System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch()
+
+		stopwatch..ctor()
+		this._firingWarmup = stopwatch
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: newobj System.Void System.Diagnostics.Stopwatch::.ctor()
+	IL_0005: stloc.0
+	IL_0006: ldarg.0
+	IL_0007: ldloc.0
+	IL_0008: stfld System.Diagnostics.Stopwatch InventorySystem.Items.MicroHID.MicroHIDLaser::_firingWarmup
+	IL_000d: ldarg.0
+	IL_000e: call System.Void UnityEngine.MonoBehaviour::.ctor()
+	IL_0013: ret
+	
+

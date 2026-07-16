@@ -1,0 +1,180 @@
+Type: VoiceChatInGameSettings
+
+
+	Generated Pseudocode:
+
+	Declaring Type: VoiceChat.VoiceChatInGameSettings
+	System.Void Awake()
+
+		this.UpdateSettings()
+		System.Action`1<ReferenceHub> action = new System.Action`1<ReferenceHub>()
+
+		action..ctor(this, {'OnUserFlagsChanged' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		VoiceChat.VoiceChatPrivacySettings.add_OnUserFlagsChanged(action) //(Action`1 value)
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void VoiceChat.VoiceChatInGameSettings::UpdateSettings()
+	IL_0006: ldarg.0
+	IL_0007: ldftn System.Void VoiceChat.VoiceChatInGameSettings::OnUserFlagsChanged(ReferenceHub)
+	IL_000d: newobj System.Void System.Action`1::.ctor(System.Object,System.IntPtr)
+	IL_0012: call System.Void VoiceChat.VoiceChatPrivacySettings::add_OnUserFlagsChanged(System.Action`1)
+	IL_0017: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: VoiceChat.VoiceChatInGameSettings
+	System.Void OnDestroy()
+		System.Action`1<ReferenceHub> action = new System.Action`1<ReferenceHub>()
+
+		action..ctor(this, {'OnUserFlagsChanged' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		VoiceChat.VoiceChatPrivacySettings.remove_OnUserFlagsChanged(action) //(Action`1 value)
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldftn System.Void VoiceChat.VoiceChatInGameSettings::OnUserFlagsChanged(ReferenceHub)
+	IL_0007: newobj System.Void System.Action`1::.ctor(System.Object,System.IntPtr)
+	IL_000c: call System.Void VoiceChat.VoiceChatPrivacySettings::remove_OnUserFlagsChanged(System.Action`1)
+	IL_0011: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: VoiceChat.VoiceChatInGameSettings
+	System.Void OnUserFlagsChanged(ReferenceHub hub)
+
+		System.Boolean isLocalPlayer = hub.isLocalPlayer
+
+		if (isLocalPlayer != False)
+
+		    this.UpdateSettings()
+		    return
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.1
+	IL_0001: call System.Boolean Mirror.NetworkBehaviour::get_isLocalPlayer()
+	IL_0006: ldc.i4.0
+	IL_0007: beq.s IL_0010
+	IL_0009: ldarg.0
+	IL_000a: call System.Void VoiceChat.VoiceChatInGameSettings::UpdateSettings()
+	IL_000f: ret
+	IL_0010: ret
+	IL_0011: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0016: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: VoiceChat.VoiceChatInGameSettings
+	System.Void UpdateSettings()
+		ulong local1 = 0
+
+		VoiceChat.VcPrivacyFlags privacyFlags = VoiceChat.VoiceChatPrivacySettings.PrivacyFlags
+		UnityEngine.GameObject _acceptedRoot = this._acceptedRoot
+
+		_acceptedRoot.SetActive()
+		UnityEngine.GameObject _deniedRoot = this._deniedRoot
+
+		_deniedRoot.SetActive()
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181B92A34) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: VoiceChat.VoiceChatInGameSettings
+	System.Void ShowPrivacySettings()
+		VoiceChat.VoiceChatPrivacySettings Singleton = VoiceChat.VoiceChatPrivacySettings.<Singleton>k__BackingField
+		ulong local2 = 0
+
+		ToggleableMenus.ToggleableMenuController.HideCurrent()
+
+		ToggleableMenus.ToggleableMenuController.ToggleMenu(Singleton) //(ToggleableMenuBase menu)
+		UnityEngine.GameObject _simplifiedRoot = Singleton._simplifiedRoot
+		ulong local6 = 0
+
+		_simplifiedRoot.SetActive(local6) //(Boolean value)
+		UnityEngine.GameObject _advancedRoot = Singleton._advancedRoot
+
+		_advancedRoot.SetActive(True) //(Boolean value)
+		UnityEngine.GameObject _returnButton = Singleton._returnButton
+		ulong local11 = 0
+
+		_returnButton.SetActive(local11) //(Boolean value)
+		Singleton._forceOpen = False
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldsfld VoiceChat.VoiceChatPrivacySettings VoiceChat.VoiceChatPrivacySettings::<Singleton>k__BackingField
+	IL_0005: stloc.0
+	IL_0006: ldc.i4.0
+	IL_0007: stloc.1
+	IL_0008: call System.Void ToggleableMenus.ToggleableMenuController::HideCurrent()
+	IL_000d: ldloc.0
+	IL_000e: call System.Void ToggleableMenus.ToggleableMenuController::ToggleMenu(ToggleableMenus.ToggleableMenuBase)
+	IL_0013: ldloc.0
+	IL_0014: ldfld UnityEngine.GameObject VoiceChat.VoiceChatPrivacySettings::_simplifiedRoot
+	IL_0019: stloc.2
+	IL_001a: ldc.i4.0
+	IL_001b: stloc.3
+	IL_001c: ldloc.2
+	IL_001d: ldloc.3
+	IL_001e: call System.Void UnityEngine.GameObject::SetActive(System.Boolean)
+	IL_0023: ldloc.0
+	IL_0024: ldfld UnityEngine.GameObject VoiceChat.VoiceChatPrivacySettings::_advancedRoot
+	IL_0029: ldc.i4.1
+	IL_002a: call System.Void UnityEngine.GameObject::SetActive(System.Boolean)
+	IL_002f: ldloc.0
+	IL_0030: ldfld UnityEngine.GameObject VoiceChat.VoiceChatPrivacySettings::_returnButton
+	IL_0035: stloc.s V_4
+	IL_0037: ldc.i4.0
+	IL_0038: stloc.s V_5
+	IL_003a: ldloc.s V_4
+	IL_003c: ldloc.s V_5
+	IL_003e: call System.Void UnityEngine.GameObject::SetActive(System.Boolean)
+	IL_0043: ldloc.0
+	IL_0044: ldc.i4.0
+	IL_0045: stfld System.Boolean VoiceChat.VoiceChatPrivacySettings::_forceOpen
+	IL_004a: ret
+	IL_004b: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0050: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: VoiceChat.VoiceChatInGameSettings
+	System.Void .ctor()
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void UnityEngine.MonoBehaviour::.ctor()
+	IL_0006: ret
+	
+

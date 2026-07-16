@@ -1,0 +1,243 @@
+Type: Scp079CameraRotationSync
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Cameras.Scp079CameraRotationSync
+	PlayerRoles.PlayableScps.Scp079.Cameras.Scp079Camera get_CurrentCam()
+		PlayerRoles.PlayableScps.Scp079.Cameras.Scp079CurrentCameraSync _curCamSync = this._curCamSync
+
+		System.Boolean boolean = _curCamSync.TryGetCurrentCamera()
+		return local3
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1803B699E) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Cameras.Scp079CameraRotationSync
+	System.Void Update()
+		ReferenceHub _owner = this._owner
+
+		System.Boolean isLocalPlayer = _owner.isLocalPlayer
+
+		if (isLocalPlayer != False)
+		    System.Diagnostics.Stopwatch _clientSendLimit = this._clientSendLimit
+
+		    System.TimeSpan elapsed = _clientSendLimit.Elapsed
+
+		    if (_clientSendLimit <= 0)
+
+		        base.ClientSendCmd()
+		        System.Diagnostics.Stopwatch _clientSendLimit2 = this._clientSendLimit
+
+		        _clientSendLimit2.Restart()
+		    endif
+            
+		    return
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld ReferenceHub PlayerRoles.PlayableScps.Scp079.Cameras.Scp079CameraRotationSync::_owner
+	IL_0006: call System.Boolean Mirror.NetworkBehaviour::get_isLocalPlayer()
+	IL_000b: ldc.i4.0
+	IL_000c: beq.s IL_0031
+	IL_000e: ldarg.0
+	IL_000f: ldfld System.Diagnostics.Stopwatch PlayerRoles.PlayableScps.Scp079.Cameras.Scp079CameraRotationSync::_clientSendLimit
+	IL_0014: stloc.0
+	IL_0015: ldloc.0
+	IL_0016: call System.TimeSpan System.Diagnostics.Stopwatch::get_Elapsed()
+	IL_001b: stloc.1
+	IL_001c: ldloc.0
+	IL_001d: ldc.i4.0
+	IL_001e: bgt.s IL_0031
+	IL_0020: ldarg.0
+	IL_0021: call System.Void PlayerRoles.PlayableScps.Subroutines.ScpSubroutineBase::ClientSendCmd()
+	IL_0026: ldarg.0
+	IL_0027: ldfld System.Diagnostics.Stopwatch PlayerRoles.PlayableScps.Scp079.Cameras.Scp079CameraRotationSync::_clientSendLimit
+	IL_002c: call System.Void System.Diagnostics.Stopwatch::Restart()
+	IL_0031: ret
+	IL_0032: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0037: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Cameras.Scp079CameraRotationSync
+	System.Void ClientWriteCmd(Mirror.NetworkWriter writer)
+
+		base.ClientWriteCmd(writer) //(NetworkWriter writer)
+		PlayerRoles.PlayableScps.Scp079.Cameras.Scp079CurrentCameraSync _curCamSync = this._curCamSync
+
+		System.Boolean boolean = _curCamSync.TryGetCurrentCamera()
+		  = local5.
+
+		Mirror.NetworkWriterExtensions.WriteUInt16(writer, local5) //(NetworkWriter writer, UInt16 value)
+		PlayerRoles.PlayableScps.Scp079.Cameras.Scp079CurrentCameraSync _curCamSync2 = this._curCamSync
+
+		System.Boolean boolean2 = _curCamSync2.TryGetCurrentCamera()
+
+		local10.WriteAxes(writer) //(NetworkWriter writer)
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1803B6517) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Cameras.Scp079CameraRotationSync
+	System.Void ServerProcessCmd(Mirror.NetworkReader reader)
+
+		base.ServerProcessCmd(reader) //(NetworkReader reader)
+		PlayerRoles.PlayableScps.Scp079.Cameras.Scp079CurrentCameraSync _curCamSync = this._curCamSync
+
+		System.Boolean boolean = _curCamSync.TryGetCurrentCamera()
+		  = local5.
+
+		System.UInt16 uInt16 = Mirror.NetworkReaderExtensions.ReadUInt16(reader) //(NetworkReader reader)
+
+		if ( == uInt16)
+		    PlayerRoles.PlayableScps.Scp079.Scp079LostSignalHandler _lostSignalHandler = this._lostSignalHandler
+
+		    System.Boolean lost = _lostSignalHandler.Lost
+
+		    if (lost == False)
+		        PlayerRoles.PlayableScps.Scp079.Cameras.Scp079CurrentCameraSync _curCamSync2 = this._curCamSync
+
+		        System.Boolean boolean2 = _curCamSync2.TryGetCurrentCamera()
+
+		        local14.ApplyAxes(reader) //(NetworkReader reader)
+
+		        base.ServerSendRpc(True) //(Boolean toAll)
+		    endif
+            
+		    return
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1803B6607) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Cameras.Scp079CameraRotationSync
+	System.Void ServerWriteRpc(Mirror.NetworkWriter writer)
+
+		base.ClientWriteCmd(writer) //(NetworkWriter writer)
+		PlayerRoles.PlayableScps.Scp079.Cameras.Scp079CurrentCameraSync _curCamSync = this._curCamSync
+
+		System.Boolean boolean = _curCamSync.TryGetCurrentCamera()
+		  = local5.
+
+		Mirror.NetworkWriterExtensions.WriteUInt16(writer, local5) //(NetworkWriter writer, UInt16 value)
+		PlayerRoles.PlayableScps.Scp079.Cameras.Scp079CurrentCameraSync _curCamSync2 = this._curCamSync
+
+		System.Boolean boolean2 = _curCamSync2.TryGetCurrentCamera()
+
+		local10.WriteAxes(writer) //(NetworkWriter writer)
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1803B6717) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Cameras.Scp079CameraRotationSync
+	System.Void ClientProcessRpc(Mirror.NetworkReader reader)
+
+		base.ServerProcessCmd(reader) //(NetworkReader reader)
+
+		System.UInt16 uInt16 = Mirror.NetworkReaderExtensions.ReadUInt16(reader) //(NetworkReader reader)
+
+		System.Boolean boolean = PlayerRoles.PlayableScps.Scp079.Scp079InteractableBase.TryGetInteractable<PlayerRoles.PlayableScps.Scp079.Cameras.Scp079Camera>()
+
+		if (boolean != False)
+
+		    local3.ApplyAxes(reader) //(NetworkReader reader)
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1803B648A) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Cameras.Scp079CameraRotationSync
+	System.Void SpawnObject()
+		PlayerRoles.PlayerRoleBase Role = this.<Role>k__BackingField
+
+		if (Role == 0)
+		else
+		    //UNKNOWN CLASS OFFSET READ HERE
+		    ulong local3 = 0
+		endif
+        
+		this._role = Role
+		PlayerRoles.PlayableScps.Scp079.Scp079Role _role = this._role
+
+		System.Boolean boolean = _role.TryGetOwner()
+		PlayerRoles.PlayableScps.Scp079.Scp079Role _role2 = this._role
+		PlayerRoles.PlayableScps.Subroutines.SubroutineManagerModule SubroutineModule = _role2.<SubroutineModule>k__BackingField
+
+		System.Boolean boolean2 = SubroutineModule.TryGetSubroutine<PlayerRoles.PlayableScps.Scp079.Cameras.Scp079CurrentCameraSync>()
+		PlayerRoles.PlayableScps.Scp079.Scp079Role _role3 = this._role
+		PlayerRoles.PlayableScps.Subroutines.SubroutineManagerModule SubroutineModule2 = _role3.<SubroutineModule>k__BackingField
+
+		System.Boolean boolean3 = SubroutineModule2.TryGetSubroutine<PlayerRoles.PlayableScps.Scp079.Scp079LostSignalHandler>()
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.UnknownClassOffsetReadAction at (0x1803B67FE) is corrupt (Unknown class offset read) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Cameras.Scp079CameraRotationSync
+	System.Void .ctor()
+		ulong local1 = 0
+
+		System.Diagnostics.Stopwatch stopwatch = System.Diagnostics.Stopwatch.StartNew()
+		this._clientSendLimit = stopwatch
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: call System.Diagnostics.Stopwatch System.Diagnostics.Stopwatch::StartNew()
+	IL_0007: stloc.1
+	IL_0008: ldarg.0
+	IL_0009: ldloc.1
+	IL_000a: stfld System.Diagnostics.Stopwatch PlayerRoles.PlayableScps.Scp079.Cameras.Scp079CameraRotationSync::_clientSendLimit
+	IL_000f: ldarg.0
+	IL_0010: call System.Void UnityEngine.EventSystems.UIBehaviour::.ctor()
+	IL_0015: ret
+	
+

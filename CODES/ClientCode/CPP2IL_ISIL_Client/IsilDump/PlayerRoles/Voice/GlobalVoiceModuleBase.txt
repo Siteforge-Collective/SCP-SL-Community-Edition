@@ -1,0 +1,225 @@
+Type: PlayerRoles.Voice.GlobalVoiceModuleBase
+
+Method: System.Boolean get_IsSpeaking()
+
+Disassembly:
+	sub rsp,28h
+	mov rcx,[rcx+78h]
+	test rcx,rcx
+	je short 00000001803D0357h
+	mov rax,[rcx]
+	mov rdx,[rax+178h]
+	call qword ptr [rax+170h]
+	test eax,eax
+	setg al
+	add rsp,28h
+	ret
+	call 0000000180294310h
+
+ISIL:
+	001 ShiftStack -40
+	002 Move rcx, [rcx+120]
+	003 Compare rcx, 0
+	004 JumpIfEqual {12}
+	005 Move rax, [rcx]
+	006 Move rdx, [rax+376]
+	007 Call 0, rcx, rdx, r8, r9, stack:0x0, stack:0x8, stack:0x10, stack:0x18, stack:0x20, stack:0x28, stack:0x30, stack:0x38, stack:0x40
+	008 Compare rax, 0
+	009 NotImplemented "setg al"
+	010 ShiftStack 40
+	011 Return rax
+	012 Call 0x180294310, rcx, rdx, r8, r9
+
+Method: VoiceChat.VoiceChatChannel get_PrimaryChannel()
+
+Disassembly:
+	
+
+ISIL:
+No ISIL was generated
+Method: VoiceChat.VoiceChatChannel ValidateSend(VoiceChat.VoiceChatChannel channel)
+
+Disassembly:
+	push rbx
+	sub rsp,20h
+	mov rax,[rcx]
+	mov ebx,edx
+	mov rdx,[rax+2F8h]
+	call qword ptr [rax+2F0h]
+	xor ecx,ecx
+	cmp ebx,eax
+	cmove ecx,ebx
+	mov eax,ecx
+	add rsp,20h
+	pop rbx
+	ret
+
+ISIL:
+	001 ShiftStack -8
+	002 Move stack:0x0, rbx
+	003 ShiftStack -32
+	004 Move rax, [rcx]
+	005 Move rbx, rdx
+	006 Move rdx, [rax+760]
+	007 Call 0, rcx, rdx, r8, r9, stack:0x0, stack:0x8, stack:0x10, stack:0x18, stack:0x20, stack:0x28, stack:0x30, stack:0x38, stack:0x40
+	008 Move rcx, 0
+	009 Compare rbx, rax
+	010 JumpIfNotEqual {12}
+	011 Move rcx, rbx
+	012 Nop 
+	013 Move rax, rcx
+	014 ShiftStack 32
+	015 Move rbx, stack:0x0
+	016 ShiftStack 8
+	017 Return rax
+
+Method: System.Void ProcessSamples(System.Single[] data, System.Int32 len)
+
+Disassembly:
+	mov [rsp+8],rbx
+	push rdi
+	sub rsp,20h
+	mov rcx,[rcx+78h]
+	mov ebx,r8d
+	mov rdi,rdx
+	test rcx,rcx
+	je short 00000001803D0280h
+	xor edx,edx
+	call 0000000181B8EB30h
+	test rax,rax
+	je short 00000001803D0280h
+	xor r9d,r9d
+	mov r8d,ebx
+	mov rdx,rdi
+	mov rcx,rax
+	mov rbx,[rsp+30h]
+	add rsp,20h
+	pop rdi
+	jmp near ptr 0000000181B8D6C0h
+	call 0000000180294310h
+
+ISIL:
+	001 Move stack:0x8, rbx
+	002 ShiftStack -8
+	003 Move stack:0x0, rdi
+	004 ShiftStack -32
+	005 Move rcx, [rcx+120]
+	006 Move rbx, r8
+	007 Move rdi, rdx
+	008 Compare rcx, 0
+	009 JumpIfEqual {24}
+	010 Move rdx, 0
+	011 Call SingleBufferPlayback.get_Buffer, rcx, rdx
+	012 Compare rax, 0
+	013 JumpIfEqual {24}
+	014 Move r9, 0
+	015 Move r8, rbx
+	016 Move rdx, rdi
+	017 Move rcx, rax
+	018 Move rbx, stack:0x30
+	019 ShiftStack 32
+	020 Move rdi, stack:0x0
+	021 ShiftStack 8
+	022 Call PlaybackBuffer.Write, rcx, rdx, r8
+	023 Return 
+	024 Call 0x180294310, rcx, rdx, r8, r9
+
+Method: VoiceChat.VoiceChatChannel ValidateReceive(ReferenceHub speaker, VoiceChat.VoiceChatChannel channel)
+
+Disassembly:
+	mov [rsp+8],rbx
+	push rdi
+	sub rsp,20h
+	xor r9d,r9d
+	mov rbx,rcx
+	call 00000001803E16D0h
+	mov r8,[rbx]
+	mov rcx,rbx
+	mov edi,eax
+	mov rdx,[r8+2F8h]
+	call qword ptr [r8+2F0h]
+	cmp edi,eax
+	je short 00000001803D02DCh
+	lea ecx,[rdi-1]
+	cmp ecx,1
+	jbe short 00000001803D02DCh
+	lea eax,[rdi-5]
+	cmp eax,2
+	jbe short 00000001803D02DCh
+	xor eax,eax
+	mov rbx,[rsp+30h]
+	add rsp,20h
+	pop rdi
+	ret
+	mov rbx,[rsp+30h]
+	mov eax,edi
+	add rsp,20h
+	pop rdi
+	ret
+
+ISIL:
+	001 Move stack:0x8, rbx
+	002 ShiftStack -8
+	003 Move stack:0x0, rdi
+	004 ShiftStack -32
+	005 Move r9, 0
+	006 Move rbx, rcx
+	007 Call StandardVoiceModule.ValidateReceive, rcx, rdx, r8
+	008 Move r8, [rbx]
+	009 Move rcx, rbx
+	010 Move rdi, rax
+	011 Move rdx, [r8+760]
+	012 Call 0, rcx, rdx, r8, r9, stack:0x0, stack:0x8, stack:0x10, stack:0x18, stack:0x20, stack:0x28, stack:0x30, stack:0x38, stack:0x40
+	013 Compare rdi, rax
+	014 JumpIfEqual {27}
+	015 LoadAddress rcx, [rdi-1]
+	016 Compare rcx, 1
+	017 JumpIfLessOrEqual {27}
+	018 LoadAddress rax, [rdi-5]
+	019 Compare rax, 2
+	020 JumpIfLessOrEqual {27}
+	021 Move rax, 0
+	022 Move rbx, stack:0x30
+	023 ShiftStack 32
+	024 Move rdi, stack:0x0
+	025 ShiftStack 8
+	026 Return rax
+	027 Move rbx, stack:0x30
+	028 Move rax, rdi
+	029 ShiftStack 32
+	030 Move rdi, stack:0x0
+	031 ShiftStack 8
+	032 Return rax
+
+Method: VoiceChat.VoiceChatChannel ProcessInputs(System.Boolean primary, System.Boolean alt)
+
+Disassembly:
+	test dl,dl
+	je short 00000001803D0235h
+	mov rax,[rcx]
+	mov rdx,[rax+2F8h]
+	jmp qword ptr [rax+2F0h]
+	xor eax,eax
+	ret
+
+ISIL:
+	001 Compare rdx, 0
+	002 JumpIfEqual {7}
+	003 Move rax, [rcx]
+	004 Move rdx, [rax+760]
+	005 Call 0, rcx, rdx, r8, r9, stack:0x0, stack:0x8, stack:0x10, stack:0x18, stack:0x20, stack:0x28, stack:0x30, stack:0x38, stack:0x40
+	006 Return rax
+	007 Move rax, 0
+	008 Return rax
+
+Method: System.Void .ctor()
+
+Disassembly:
+	xor edx,edx
+	jmp near ptr 00000001803E1840h
+
+ISIL:
+	001 Move rdx, 0
+	002 Call StandardVoiceModule..ctor, rcx, rdx
+	003 Return 
+

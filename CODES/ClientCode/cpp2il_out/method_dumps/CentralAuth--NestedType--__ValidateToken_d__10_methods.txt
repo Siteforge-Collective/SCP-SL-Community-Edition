@@ -1,0 +1,621 @@
+Type: <_ValidateToken>d__10
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CentralAuth/<_ValidateToken>d__10
+	System.Void .ctor(System.Int32 <>1__state)
+
+		this.System.IDisposable.Dispose()
+		this.<>1__state = <>1__state
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void CentralAuth/<_ValidateToken>d__10::System.IDisposable.Dispose()
+	IL_0006: ldarg.0
+	IL_0007: ldarg.1
+	IL_0008: stfld System.Int32 CentralAuth/<_ValidateToken>d__10::<>1__state
+	IL_000d: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CentralAuth/<_ValidateToken>d__10
+	System.Void System.IDisposable.Dispose()
+
+
+Generated IL:
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CentralAuth/<_ValidateToken>d__10
+	System.Boolean MoveNext()
+		ulong local1 = 0
+		System.Int32 <>1__state = this.<>1__state
+		CentralAuth <>4__this = this.<>4__this
+
+		if (<>1__state == 0)
+		    this.<>1__state = 4294967295
+		    System.String token = this.token
+
+		    System.Boolean isNullOrEmpty = System.String.IsNullOrEmpty(token) //(String value)
+
+		    if (isNullOrEmpty == False)
+		        System.String token2 = this.token
+
+		        System.Boolean boolean = token2.Contains("<br>Signature: ") //(String value)
+
+		        if (boolean != False)
+		            System.String token3 = this.token
+		            System.Int32 4 = 4
+
+		            System.Int32 int32 = token3.IndexOf("<br>Signature: ", 4) //(String value, StringComparison comparisonType)
+		            ulong local14 = 0
+
+		            System.String string = token3.Substring(local14, int32) //(Int32 startIndex, Int32 length)
+		            System.String token4 = this.token
+		            System.Int32 4 = 4
+
+		            System.Int32 int322 = token4.IndexOf("<br>Signature: ", 4) //(String value, StringComparison comparisonType)
+
+		            System.String string2 = token4.Substring()
+
+		            System.String string3 = string2.Replace("<br>", "") //(String oldValue, String newValue)
+		            Org.BouncyCastle.Crypto.AsymmetricKeyParameter publicKey = ServerConsole.PublicKey
+
+		            System.Boolean boolean2 = Cryptography.ECDSA.Verify(string, string3, publicKey) //(String data, String signature, AsymmetricKeyParameter pubKey)
+
+		            if (boolean2 != False)
+		                System.Int64 local26 = 1
+		                System.String[] local27 = new System.String[1]
+
+		                if ("<br>" != 0)
+
+		                    if ("<br>" == 0)
+                                goto INSN_180893F25
+                            endif
+		                endif
+                        
+		                local27[0] = "<br>"
+		                ulong local29 = 0
+
+		                System.String[] stringArray = string.Split(local27, local29) //(String[] separator, StringSplitOptions options)
+		                System.Func`2<System.String,System.String[]> <>9__10_0 = CentralAuth/<>c.<>9__10_0
+
+		                if (<>9__10_0 != 0)
+                            goto INSN_180892845
+                        endif
+		                CentralAuth/<>c <>c = CentralAuth/<>c.<>9
+		                System.Func`2<System.String,System.String[]> func = new System.Func`2<System.String,System.String[]>()
+
+		                func..ctor(<>c, {'<_ValidateToken>b__10_0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		                 += 8
+		                CentralAuth/<>c.<>9 = func
+
+		                INSN_180892845:
+
+		                System.Collections.Generic.IEnumerable`1<System.String> iEnumerable = System.Linq.Enumerable.Select<System.String, System.String[]>(stringArray, func) //(IEnumerable`1 source, Func`2 selector)
+		                System.Func`2<System.String[],System.String> <>9__10_1 = CentralAuth/<>c.<>9__10_1
+
+		                if (<>9__10_1 != 0)
+                            goto INSN_180892902
+                        endif
+		                CentralAuth/<>c <>c2 = CentralAuth/<>c.<>9
+		                System.Func`2<System.String[],System.String> func2 = new System.Func`2<System.String[],System.String>()
+
+		                func2..ctor(<>c2, {'<_ValidateToken>b__10_1' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		                 += 16
+		                CentralAuth/<>c.<>9 = func2
+
+		                INSN_180892902:
+		                System.Func`2<System.String[],System.String> <>9__10_2 = CentralAuth/<>c.<>9__10_2
+
+		                if (<>9__10_2 != 0)
+                            goto INSN_18089299C
+                        endif
+		                CentralAuth/<>c <>c3 = CentralAuth/<>c.<>9
+		                System.Func`2<System.String[],System.String> func3 = new System.Func`2<System.String[],System.String>()
+
+		                func3..ctor(<>c3, {'<_ValidateToken>b__10_2' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		                 += 24
+		                CentralAuth/<>c.<>9 = func3
+
+		                INSN_18089299C:
+
+		                System.Collections.Generic.Dictionary`2<System.String[],System.String> dictionary = System.Linq.Enumerable.ToDictionary<System.String[], System.String, System.String>(iEnumerable, func2, func3) //(IEnumerable`1 source, Func`2 keySelector, Func`2 elementSelector)
+
+		                System.String item = dictionary.Item
+
+		                System.String string4 = CentralAuth.RemoveSalt(item) //(String userId)
+
+		                System.String item2 = dictionary.Item
+
+		                System.Boolean boolean3 = System.String.op_Inequality(item2, "Authentication") //(String a, String b)
+
+		                if (boolean3 != False)
+                            goto INSN_180893CE3
+                        endif
+
+		                if (this.endpoint == 0)
+                            goto INSN_180892D5F
+                        endif
+		                System.Collections.Generic.Dictionary`2<System.Net.IPEndPoint,PreauthItem> userIds = CustomLiteNetLib4MirrorTransport.UserIds
+		                throw new System.NullReferenceException()
+
+		                if (local50 == 0)
+                            goto INSN_180892AE3
+                        endif
+		                System.Collections.Generic.Dictionary`2<System.Net.IPEndPoint,PreauthItem> userIds2 = CustomLiteNetLib4MirrorTransport.UserIds
+
+		                TValue item3 = .Item
+		                System.Int32 4 = 4
+
+		                System.Boolean boolean4 = .Equals(string4, 4) //(String value, StringComparison comparisonType)
+
+		                if (boolean4 != False)
+                            goto INSN_180892D5F
+                        endif
+
+		                INSN_180892AE3:
+		                System.Collections.Generic.HashSet`1<System.String> userIdFastReload = CustomLiteNetLib4MirrorTransport.UserIdFastReload
+
+		                System.Boolean boolean5 = userIdFastReload.Contains(string4) //(T item)
+
+		                if (boolean5 != False)
+                            goto INSN_180892D5F
+                        endif
+		                System.Int32 7 = 7
+
+		                ServerConsole.AddLog("Player tried to use token issued to a different user than the preauthentication token.", 7) //(String q, ConsoleColor color)
+		                ICentralAuth icaa = this.icaa
+		                System.Int64 local60 = 4
+		                  = boolean5.
+
+		                local60.SendToClient("UserID mismatch between authentication and preauthentication token.", "red") //(String text, String color)
+		                ICentralAuth icaa2 = this.icaa
+		                  = boolean5.
+		                System.Collections.Generic.Dictionary`2<System.Net.IPEndPoint,PreauthItem> userIds3 = CustomLiteNetLib4MirrorTransport.UserIds
+		                throw new System.NullReferenceException()
+
+		                if (local66 == 0)
+                            goto INSN_180892C8F
+                        endif
+		                System.Collections.Generic.Dictionary`2<System.Net.IPEndPoint,PreauthItem> userIds4 = CustomLiteNetLib4MirrorTransport.UserIds
+
+		                TValue item4 = .Item
+
+		                INSN_180892C8F:
+
+		                System.String string5 = System.String.Concat("Preauth: ", "(null)") //(String str0, String str1)
+
+		                func3.SendToClient(string5, "red") //(String text, String color)
+		                ICentralAuth icaa3 = this.icaa
+		                  = string5.
+
+		                System.String item5 = dictionary.Item
+
+		                System.String string6 = CentralAuth.RemoveSalt(item5) //(String userId)
+
+		                System.String string7 = System.String.Concat("Auth: ", string6) //(String str0, String str1)
+
+		                func3.SendToClient(string7, "red") //(String text, String color)
+		                ICentralAuth _ica = <>4__this._ica
+
+		                INSN_180892D5F:
+
+		                System.String item6 = dictionary.Item
+
+		                System.Boolean boolean6 = System.String.op_Inequality(item6, "NO") //(String a, String b)
+
+		                if (boolean6 == False)
+                            goto INSN_180892ED9
+                        endif
+
+		                System.String item7 = dictionary.Item
+
+		                System.String string8 = System.String.Concat("Player tried to use authentication token issued only for testing. Server: ", item7, ".") //(String str0, String str1, String str2)
+		                System.Int32 7 = 7
+
+		                ServerConsole.AddLog(string8, 7) //(String q, ConsoleColor color)
+		                ICentralAuth icaa4 = this.icaa
+		                System.Int64 local90 = 4
+		                  = string8.
+
+		                local90.SendToClient("Authentication token rejected due to testing signature.", "red") //(String text, String color)
+		                ICentralAuth _ica2 = <>4__this._ica
+
+		                INSN_180892ED9:
+		                throw new System.NullReferenceException()
+
+		                if (local93 == 0)
+                            goto INSN_180893C15
+                        endif
+
+		                System.String item8 = dictionary.Item
+
+		                System.Boolean boolean7 = System.String.op_Inequality(item8, "2") //(String a, String b)
+
+		                if (boolean7 != False)
+                            goto INSN_180893C15
+                        endif
+
+		                System.String item9 = dictionary.Item
+		                ulong local98 = 0
+
+		                System.Globalization.CultureInfo invariantCulture = System.Globalization.CultureInfo.InvariantCulture
+
+		                System.DateTime dateTime = System.DateTime.ParseExact(item9, "yyyy-MM-dd HH:mm:ss", invariantCulture) //(String s, String format, IFormatProvider provider)
+
+		                System.String item10 = dictionary.Item
+		                ulong local103 = 0
+
+		                System.Globalization.CultureInfo invariantCulture2 = System.Globalization.CultureInfo.InvariantCulture
+
+		                System.DateTime dateTime2 = System.DateTime.ParseExact(item10, "yyyy-MM-dd HH:mm:ss", invariantCulture2) //(String s, String format, IFormatProvider provider)
+		                ulong local107 = 0
+
+		                System.DateTime utcNow = System.DateTime.UtcNow
+
+		                System.Boolean boolean8 = System.DateTime.op_LessThan(dateTime, utcNow) //(DateTime t1, DateTime t2)
+
+		                if (boolean8 != False)
+                            goto INSN_1808939DE
+                        endif
+		                ulong local111 = 0
+
+		                System.DateTime utcNow2 = System.DateTime.UtcNow
+
+		                System.Boolean boolean9 = System.DateTime.op_GreaterThan(dateTime2, utcNow2) //(DateTime t1, DateTime t2)
+
+		                if (boolean9 != False)
+                            goto INSN_1808938EC
+                        endif
+		                ulong local116 = 0
+
+		                System.Boolean privateBeta = GameCore.Version.PrivateBeta
+
+		                if (privateBeta == False)
+                            goto INSN_1808932ED
+                        endif
+		                throw new System.NullReferenceException()
+
+		                if (local118 == 0)
+                            goto INSN_1808930BD
+                        endif
+
+		                System.String item11 = dictionary.Item
+
+		                System.Boolean boolean10 = System.String.op_Inequality(item11, "YES") //(String a, String b)
+
+		                if (boolean10 == False)
+                            goto INSN_1808932ED
+                        endif
+
+		                INSN_1808930BD:
+		                System.Int64 local122 = 5
+		                System.String[] local123 = new System.String[5]
+
+		                if ("Player " == 0)
+                            goto INSN_180893105
+                        endif
+
+		                if ("Player " == 0)
+                            goto INSN_180893FB2
+                        endif
+
+		                INSN_180893105:
+		                local123[0] = "Player "
+
+		                System.String item12 = dictionary.Item
+
+		                if (item12 == 0)
+                            goto INSN_180893154
+                        endif
+
+		                if (item12 == 0)
+                            goto INSN_180893FD0
+                        endif
+
+		                INSN_180893154:
+		                local123[1] = item12
+
+		                if (" tried to join this server, but is not Private Beta DLC owner. Server: " == 0)
+                            goto INSN_180893198
+                        endif
+
+		                if (" tried to join this server, but is not Private Beta DLC owner. Server: " == 0)
+                            goto INSN_180893FEE
+                        endif
+
+		                INSN_180893198:
+		                local123[2] = " tried to join this server, but is not Private Beta DLC owner. Server: "
+
+		                System.String item13 = dictionary.Item
+
+		                if (item13 == 0)
+                            goto INSN_1808931E7
+                        endif
+
+		                if (item13 == 0)
+                            goto INSN_18089400C
+                        endif
+
+		                INSN_1808931E7:
+		                local123[3] = item13
+
+		                if ("." == 0)
+                            goto INSN_18089322B
+                        endif
+
+		                if ("." == 0)
+                            goto INSN_18089402A
+                        endif
+
+		                INSN_18089322B:
+		                local123[4] = "."
+
+		                System.String string9 = System.String.Concat(local123) //(String[] values)
+		                System.Int32 7 = 7
+
+		                ServerConsole.AddLog(string9, 7) //(String q, ConsoleColor color)
+		                ICentralAuth icaa5 = this.icaa
+		                System.Int64 local130 = 4
+		                  = string9.
+
+		                local130.SendToClient("Private Beta DLC ownership is required to join private beta server.", "red") //(String text, String color)
+		                ICentralAuth _ica3 = <>4__this._ica
+
+		                INSN_1808932ED:
+		                ICentralAuth icaa6 = this.icaa
+		                System.Int64 local134 = 4
+		                  = string9.
+		                local134.m_value = dictionary
+		                throw new System.NullReferenceException()
+
+		                if (local135 == 0)
+                            goto INSN_180893384
+                        endif
+
+		                System.String item14 = dictionary.Item
+
+		                [instruction error - managed method being called is null]
+
+		                if (item14 == 0)
+                            goto INSN_180893384
+                        endif
+		                string9. = 1
+
+		                INSN_180893384:
+
+		                System.String item15 = dictionary.Item
+		                throw new System.NullReferenceException()
+
+		                if (local140 == 0)
+                            goto INSN_1808933DC
+                        endif
+
+		                System.String item16 = dictionary.Item
+
+		                INSN_1808933DC:
+
+		                System.String item17 = dictionary.Item
+
+		                System.String item18 = dictionary.Item
+
+		                System.String item19 = dictionary.Item
+
+		                [instruction error - managed method being called is null]
+
+		                System.String item20 = dictionary.Item
+
+		                [instruction error - managed method being called is null]
+		                throw new System.NullReferenceException()
+
+		                if (local148 != 0)
+                            goto INSN_18089348F
+                        endif
+
+		                INSN_18089348F:
+
+		                System.String item21 = dictionary.Item
+
+		                [instruction error - managed method being called is null]
+		                throw new System.NullReferenceException()
+
+		                if (local151 == 0)
+                            goto INSN_1808934F2
+                        endif
+
+		                System.String item22 = dictionary.Item
+
+		                INSN_1808934F2:
+		                throw new System.NullReferenceException()
+
+		                if (local153 == 0)
+                            goto INSN_18089352E
+                        endif
+
+		                System.String item23 = dictionary.Item
+
+		                INSN_18089352E:
+		                throw new System.NullReferenceException()
+
+		                if (local155 == 0)
+                            goto INSN_18089356A
+                        endif
+
+		                System.String item24 = dictionary.Item
+
+		                INSN_18089356A:
+		                throw new System.NullReferenceException()
+
+		                if (local157 == 0)
+                            goto INSN_1808935A6
+                        endif
+
+		                System.String item25 = dictionary.Item
+
+		                INSN_1808935A6:
+		                throw new System.NullReferenceException()
+
+		                if (local159 != 0)
+                            goto INSN_1808935CB
+                        endif
+
+		                INSN_1808935CB:
+
+		                System.String item26 = dictionary.Item
+		                ulong local162 = 0
+
+		                [instruction error - managed method being called is null]
+		                ulong local163 = 0
+		                //UNKNOWN CLASS OFFSET READ HERE
+
+		                if (local163 >= local162)
+                            goto INSN_18089364F
+                        endif
+		                local163 += local163
+		                local163 += 1
+
+		                INSN_18089364F:
+		                  = local163.
+		                System.Int64 local171 = 4
+		                System.Object[] local172 = new System.Object[4]
+
+		                System.String item27 = dictionary.Item
+
+		                System.String string10 = CentralAuth.RemoveSalt(item27) //(String userId)
+
+		                if (string10 == 0)
+                            goto INSN_180893736
+                        endif
+
+		                if (string10 == 0)
+                            goto INSN_180894066
+                        endif
+		                 += constant393
+		                string10 += constant386
+
+		                INSN_180893736:
+		                local172[0] = string10
+		                System.Net.IPEndPoint endpoint = this.endpoint
+
+		                if (endpoint != 0)
+                            goto INSN_180893768
+                        endif
+
+		                INSN_180893768:
+
+		                System.Int32 hashCode = endpoint.GetHashCode()
+
+		                if (hashCode == 0)
+                            goto INSN_180893798
+                        endif
+
+		                if (hashCode == 0)
+                            goto INSN_180894084
+                        endif
+
+		                INSN_180893798:
+		                throw new System.IndexOutOfRangeException()
+
+		                [instruction error - managed method being called is null]
+
+		                if (local181 == 0)
+                            goto INSN_1808937EC
+                        endif
+
+		                if (local181 == 0)
+                            goto INSN_180894093
+                        endif
+
+		                INSN_1808937EC:
+		                local172[2] = local181
+		                throw new System.NullReferenceException()
+
+		                if (local182 == 0)
+                            goto INSN_18089383A
+                        endif
+
+		                System.String item28 = dictionary.Item
+
+		                INSN_18089383A:
+
+		                if ("N/A" == 0)
+                            goto INSN_18089385E
+                        endif
+
+		                if (item28 == 0)
+                            goto INSN_1808940B1
+                        endif
+
+		                INSN_18089385E:
+		                throw new System.IndexOutOfRangeException()
+
+		                System.String string11 = System.String.Format("{0} authenticated from endpoint {1}. Player ID assigned: {2}. Auth token serial number: {3}", local172) //(String format, Object[] args)
+		                System.Int32 7 = 7
+
+		                ServerConsole.AddLog(string11, 7) //(String q, ConsoleColor color)
+		                System.Int64 local192 = 1
+
+		                ServerLogs.AddLog()
+
+		                INSN_1808938EC:
+
+		                System.String item29 = dictionary.Item
+
+		                System.String string12 = System.String.Concat("Player tried to use non-issued authentication token. Server: ", item29, ".") //(String str0, String str1, String str2)
+
+
+Generated IL:
+	IL Generation Skipped due to invalid local item3 of type TValue
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CentralAuth/<_ValidateToken>d__10
+	System.Single System.Collections.Generic.IEnumerator<System.Single>.get_Current()
+		System.Single <>2__current = this.<>2__current
+		return <>2__current
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Single CentralAuth/<_ValidateToken>d__10::<>2__current
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CentralAuth/<_ValidateToken>d__10
+	System.Void System.Collections.IEnumerator.Reset()
+		System.NotSupportedException notSupportedException = new System.NotSupportedException()
+
+		notSupportedException..ctor()
+
+
+Generated IL:
+	IL_0000: newobj System.Void System.NotSupportedException::.ctor()
+	IL_0005: stloc.0
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CentralAuth/<_ValidateToken>d__10
+	System.Object System.Collections.IEnumerator.get_Current()
+		System.Single <>2__current = this.<>2__current
+		return 
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x180894225) is corrupt (Return value is missing) and cannot be created as IL. Aborting here.
+
+

@@ -1,0 +1,270 @@
+Type: InstantStatusSubEffect
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Usables.Scp244.Hypothermia.InstantStatusSubEffect
+	System.Single get_CurIntensity()
+
+		ReferenceHub hub = base.Hub
+
+		System.Single single = CustomPlayerEffects.RainbowTaste.CurrentMultiplier(hub) //(ReferenceHub ply)
+		return single
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call ReferenceHub CustomPlayerEffects.SubEffectBase::get_Hub()
+	IL_0006: call System.Single CustomPlayerEffects.RainbowTaste::CurrentMultiplier(ReferenceHub)
+	IL_000b: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Usables.Scp244.Hypothermia.InstantStatusSubEffect
+	System.Single get_VitalityMultiplier()
+
+		ReferenceHub hub = base.Hub
+
+		System.Boolean boolean = CustomPlayerEffects.Vitality.CheckPlayer(hub) //(ReferenceHub ply)
+		System.Boolean local6 = boolean == False
+		return 
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.EqualRegisterSetAction at (0x18042CEA9) is corrupt (Destination local has been stripped) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Usables.Scp244.Hypothermia.InstantStatusSubEffect
+	System.Boolean get_IsActive()
+		System.Single _currentIntensity = this._currentIntensity
+		ulong local2 = 0
+		return 
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x18042CDCE) is corrupt (Return value is missing) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Usables.Scp244.Hypothermia.InstantStatusSubEffect
+	System.Boolean get_ParamsActive()
+		return True
+
+
+Generated IL:
+	IL_0000: ldc.i4.1
+	IL_0001: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Usables.Scp244.Hypothermia.InstantStatusSubEffect
+	System.Boolean get_MovementModifierActive()
+		return True
+
+
+Generated IL:
+	IL_0000: ldc.i4.1
+	IL_0001: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Usables.Scp244.Hypothermia.InstantStatusSubEffect
+	System.Single get_MovementSpeedMultiplier()
+		System.Single _movementSpeedMultiplier = this._movementSpeedMultiplier
+
+		ReferenceHub hub = base.Hub
+
+		System.Boolean boolean = CustomPlayerEffects.Vitality.CheckPlayer(hub) //(ReferenceHub ply)
+		System.Boolean local7 = boolean == False
+
+		System.Single curIntensity = this.CurIntensity
+
+		System.Single single = UnityEngine.Mathf.LerpUnclamped(1, _movementSpeedMultiplier, curIntensity) //(Single a, Single b, Single t)
+		return single
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.EqualRegisterSetAction at (0x18042CE21) is corrupt (Destination local has been stripped) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Usables.Scp244.Hypothermia.InstantStatusSubEffect
+	System.Single get_MovementSpeedLimit()
+		return constant1
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x1803CA898) is corrupt (ConstantDefinition: Don't know how to get IL to load a Cpp2IL.Core.Analysis.ResultModels.UnknownGlobalAddr) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Usables.Scp244.Hypothermia.InstantStatusSubEffect
+	System.Single ProcessSearchTime(System.Single val)
+
+		System.Single curIntensity = this.CurIntensity
+		val = local2
+
+		System.Single single = UnityEngine.Mathf.LerpUnclamped(1, val, curIntensity) //(Single a, Single b, Single t)
+		curIntensity = single
+
+		System.Single curIntensity2 = this.CurIntensity
+		return curIntensity2
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.RegToRegMoveAction at (0x18042CA26) is corrupt (Local being overwritten, {'val' (function parameter, type System.Single)} has been stripped or is a parameter) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Usables.Scp244.Hypothermia.InstantStatusSubEffect
+	System.Void UpdateEffect(System.Single curExposure)
+		System.Single _currentIntensity = this._currentIntensity
+		ulong local3 = 0
+
+		System.Single deltaTime = UnityEngine.Time.deltaTime
+		this._currentIntensity = _currentIntensity
+
+		if (curExposure > _currentIntensity)
+		    this._currentIntensity = curExposure
+		else
+		    curExposure = _currentIntensity
+		endif
+        
+		System.Single _maxExposure = this._maxExposure
+
+		if (curExposure <= _maxExposure)
+            goto INSN_18042CB62
+        endif
+		this._currentIntensity = _maxExposure
+		curExposure = _maxExposure
+
+		INSN_18042CB62:
+		System.Single _currentIntensity2 = this._currentIntensity
+
+		ReferenceHub hub = base.Hub
+
+		System.Single single = CustomPlayerEffects.RainbowTaste.CurrentMultiplier(hub) //(ReferenceHub ply)
+		local4 = single
+
+		ReferenceHub hub2 = base.Hub
+
+		System.Boolean boolean = CustomPlayerEffects.Vitality.CheckPlayer(hub2) //(ReferenceHub ply)
+		ulong local16 = 0
+		System.Boolean local17 = boolean == False
+
+		if (boolean == False)
+            goto INSN_18042CCA9
+        endif
+		InventorySystem.Items.Firearms.Attachments.AttachmentParameterValuePair[] _weaponStats = this._weaponStats
+		System.Int32 length = _weaponStats.Length
+
+		if (local16 >= length)
+            goto INSN_18042CC92
+        endif
+		System.Collections.Generic.Dictionary`2<InventorySystem.Items.Firearms.Attachments.AttachmentParam,System.Single> _dictionarized = this._dictionarized
+		InventorySystem.Items.Firearms.Attachments.AttachmentParameterValuePair attachmentParameterValuePair = _weaponStats[local16]
+
+		System.Single single2 = UnityEngine.Mathf.LerpUnclamped()
+		_currentIntensity2 = single2
+		InventorySystem.Items.Firearms.Attachments.AttachmentParam local24 = attachmentParameterValuePair.Parameter
+		throw new System.NullReferenceException()
+		local16 += 1
+
+		INSN_18042CC92:
+		this._statsPrevIntensity = _currentIntensity2
+
+		INSN_18042CCA9:
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.RegToRegMoveAction at (0x18042CB46) is corrupt (Local being overwritten, {'curExposure' (function parameter, type System.Single)} has been stripped or is a parameter) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Usables.Scp244.Hypothermia.InstantStatusSubEffect
+	System.Void DisableEffect()
+		System.Collections.Generic.Dictionary`2<InventorySystem.Items.Firearms.Attachments.AttachmentParam,System.Single> _dictionarized = this._dictionarized
+		this._currentIntensity = 0
+
+		_dictionarized.Clear()
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Collections.Generic.Dictionary`2<InventorySystem.Items.Firearms.Attachments.AttachmentParam,System.Single> InventorySystem.Items.Usables.Scp244.Hypothermia.InstantStatusSubEffect::_dictionarized
+	IL_0006: stloc.0
+	IL_0007: ldarg.0
+	IL_0008: ldc.r4 0
+	IL_000d: stfld System.Single InventorySystem.Items.Usables.Scp244.Hypothermia.InstantStatusSubEffect::_currentIntensity
+	IL_0012: ldloc.0
+	IL_0013: call System.Void System.Collections.Generic.Dictionary`2::Clear()
+	IL_0018: ret
+	IL_0019: newobj System.Void System.NullReferenceException::.ctor()
+	IL_001e: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Usables.Scp244.Hypothermia.InstantStatusSubEffect
+	System.Boolean TryGetWeaponParam(InventorySystem.Items.Firearms.Attachments.AttachmentParam param, System.Single& val)
+		System.Int32 local3 = param.value__
+		System.Collections.Generic.Dictionary`2<InventorySystem.Items.Firearms.Attachments.AttachmentParam,System.Single> _dictionarized = this._dictionarized
+
+		System.Boolean boolean = _dictionarized.TryGetValue()
+		return boolean
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.Implicit4ByteFieldReadAction at (0x18042CA89) is corrupt (Local local3 has been stripped out for being unused, so doesn't have a variable.) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Usables.Scp244.Hypothermia.InstantStatusSubEffect
+	System.Void .ctor()
+		System.Collections.Generic.Dictionary`2<InventorySystem.Items.Firearms.Attachments.AttachmentParam,System.Single> dictionary = new System.Collections.Generic.Dictionary`2<InventorySystem.Items.Firearms.Attachments.AttachmentParam,System.Single>()
+
+		dictionary..ctor()
+		this._dictionarized = dictionary
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: newobj System.Void System.Collections.Generic.Dictionary`2::.ctor()
+	IL_0005: stloc.0
+	IL_0006: ldarg.0
+	IL_0007: ldloc.0
+	IL_0008: stfld System.Collections.Generic.Dictionary`2<InventorySystem.Items.Firearms.Attachments.AttachmentParam,System.Single> InventorySystem.Items.Usables.Scp244.Hypothermia.InstantStatusSubEffect::_dictionarized
+	IL_000d: ldarg.0
+	IL_000e: call System.Void UnityEngine.EventSystems.UIBehaviour::.ctor()
+	IL_0013: ret
+	
+

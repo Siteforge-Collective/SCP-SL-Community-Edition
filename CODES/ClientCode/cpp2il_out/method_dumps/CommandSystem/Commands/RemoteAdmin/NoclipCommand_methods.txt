@@ -1,0 +1,417 @@
+Type: NoclipCommand
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.NoclipCommand
+	System.String get_Command()
+		System.String Command = this.<Command>k__BackingField
+		return Command
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String CommandSystem.Commands.RemoteAdmin.NoclipCommand::<Command>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.NoclipCommand
+	System.String[] get_Aliases()
+		System.String[] Aliases = this.<Aliases>k__BackingField
+		return Aliases
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String[] CommandSystem.Commands.RemoteAdmin.NoclipCommand::<Aliases>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.NoclipCommand
+	System.String get_Description()
+		return "Toggles noclip on the selected player(s). Press the Left Alt key (by default) to toggle, use scroll to change speed."
+
+
+Generated IL:
+	IL_0000: ldstr "Toggles noclip on the selected player(s). Press the Left Alt key (by default) to toggle, use scroll to change speed."
+	IL_0005: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.NoclipCommand
+	System.String[] get_Usage()
+		System.String[] Usage = this.<Usage>k__BackingField
+		return Usage
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String[] CommandSystem.Commands.RemoteAdmin.NoclipCommand::<Usage>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.NoclipCommand
+	System.Boolean Execute(System.ArraySegment`1<System.String> arguments, CommandSystem.ICommandSender sender, System.String& response)
+		ulong local4 = 0
+
+		System.Boolean boolean = Misc.CheckPermission()
+
+		if (boolean != False)
+		    ulong local10 = 0
+		    System.String[] local11 = new System.String[local10]
+
+		    if (sender != 0)
+		        //UNKNOWN CLASS OFFSET READ HERE
+		        System.Int32 _count = arguments._count
+
+		        if (_count != 0)
+
+		            if (_count == 1)
+
+		                System.Boolean boolean2 = .Contains(".") //(String value)
+
+		                if (boolean2 == False)
+
+		                    System.Boolean boolean3 = .Contains("@") //(String value)
+
+		                    if (boolean3 == False)
+		                    endif
+                            
+		                    System.Collections.Generic.List`1<ReferenceHub> list = new System.Collections.Generic.List`1<ReferenceHub>()
+
+		                    list..ctor()
+		                      = sender.
+
+		                    list.Add()
+
+		                    if (_count != 0)
+
+		                        if (list == 0)
+                                    goto INSN_18061E31B
+                                endif
+		                    endif
+                            
+		                    list. = _count
+		                else
+
+		                    System.Collections.Generic.List`1<ReferenceHub> list2 = Utils.RAUtils.ProcessPlayerIdOrNamesList()
+		                endif
+                        
+
+		                System.Boolean boolean4 = Misc.TryCommandModeFromArgs()
+
+		                if (boolean4 == False)
+                            goto INSN_18061E291
+                        endif
+		                NorthwoodLib.Pools.StringBuilderPool shared = NorthwoodLib.Pools.StringBuilderPool.Shared
+
+		                System.Text.StringBuilder stringBuilder = shared.Rent()
+
+		                if (list2 == 0)
+                            goto INSN_18061E23F
+                        endif
+
+		                System.Collections.Generic.List`1/Enumerator<T> enumerator = shared.GetEnumerator()
+
+		                if (enumerator == 0)
+                            goto INSN_18061E0E8
+                        endif
+
+		                if (shared == 0)
+                            goto INSN_18061E025
+                        endif
+
+		                if (shared == 0)
+                            goto INSN_18061DF62
+                        endif
+
+		                if (shared != 1)
+                            goto INSN_18061E0DC
+                        endif
+
+		                System.Boolean isPermitted = PlayerRoles.FirstPersonControl.FpcNoclip.IsPermitted()
+
+		                if (isPermitted != False)
+                            goto INSN_18061DE1F
+                        endif
+
+		                PlayerRoles.FirstPersonControl.FpcNoclip.PermitPlayer()
+
+		                INSN_18061DE1F:
+
+		                PlayerRoles.FirstPersonControl.FpcNoclip.UnpermitPlayer()
+
+		                if ( != 0)
+                            goto INSN_18061DEBA
+                        endif
+
+		                System.String string = Misc.LoggedNameFromRefHub()
+
+		                System.String string2 = System.String.Concat()
+
+		                INSN_18061DEBA:
+
+		                System.String string3 = Misc.LoggedNameFromRefHub()
+
+		                System.String string4 = System.String.Concat(string2, " enabled noclip for player ", string3, " using noclip toggle command.") //(String str0, String str1, String str2, String str3)
+		                System.Int64 local41 = 4
+
+		                ServerLogs.AddLog()
+		                local4 += 1
+
+		                INSN_18061DF62:
+
+		                System.Boolean isPermitted2 = PlayerRoles.FirstPersonControl.FpcNoclip.IsPermitted()
+
+		                if (isPermitted2 != False)
+                            goto INSN_18061DD80
+                        endif
+
+		                PlayerRoles.FirstPersonControl.FpcNoclip.PermitPlayer()
+
+		                if (local4 == 0)
+                            goto INSN_18061DFDA
+                        endif
+
+		                System.Text.StringBuilder stringBuilder2 = stringBuilder.Append(", ") //(String value)
+
+		                INSN_18061DFDA:
+
+		                System.String string5 = Misc.LoggedNameFromRefHub()
+
+		                System.Text.StringBuilder stringBuilder3 = stringBuilder.Append(string5) //(String value)
+		                local4 += 1
+
+		                INSN_18061E025:
+
+		                System.Boolean isPermitted3 = PlayerRoles.FirstPersonControl.FpcNoclip.IsPermitted()
+
+		                if (isPermitted3 == False)
+                            goto INSN_18061DD80
+                        endif
+
+		                PlayerRoles.FirstPersonControl.FpcNoclip.UnpermitPlayer()
+
+		                if (local4 == 0)
+                            goto INSN_18061E09D
+                        endif
+
+		                System.Text.StringBuilder stringBuilder4 = stringBuilder.Append(", ") //(String value)
+
+		                INSN_18061E09D:
+
+		                System.String string6 = Misc.LoggedNameFromRefHub()
+
+		                System.Text.StringBuilder stringBuilder5 = stringBuilder.Append(string6) //(String value)
+
+		                INSN_18061E0DC:
+		                local4 += 1
+
+		                INSN_18061E0E8:
+
+		                stringBuilder.Dispose()
+
+		                stringBuilder.Dispose()
+
+		                if (stringBuilder != 0)
+                            goto INSN_18061E365
+                        endif
+		                ulong local60 = 0
+
+		                if (local4 <= 0)
+                            goto INSN_18061E23F
+                        endif
+
+		                if (stringBuilder5 != 0)
+                            goto INSN_18061E175
+                        endif
+
+		                INSN_18061E175:
+
+		                if (stringBuilder5 != 1)
+                            goto INSN_18061E23F
+                        endif
+
+		                if (local4 == 1)
+                            goto INSN_18061E1B3
+                        endif
+
+		                INSN_18061E1B3:
+
+		                System.String string7 = System.String.Format("{0} enabled noclip for player{1}{2}.", stringBuilder5, "s ", stringBuilder) //(String format, Object arg0, Object arg1, Object arg2)
+		                System.Int64 local64 = 4
+
+		                ServerLogs.AddLog()
+		                NorthwoodLib.Pools.StringBuilderPool shared2 = NorthwoodLib.Pools.StringBuilderPool.Shared
+
+		                shared2.Return(stringBuilder) //(StringBuilder stringBuilder)
+
+		                INSN_18061E23F:
+
+		                if (local4 == 1)
+                            goto INSN_18061E274
+                        endif
+
+		                INSN_18061E274:
+
+		                System.String string8 = System.String.Format()
+		                string2. = string8
+
+		                INSN_18061E291:
+		                  = string8.
+
+		                System.String string9 = System.String.Concat("Invalid option ", string8, " - leave null for toggle or use 1/0, true/false, enable/disable or on/off.") //(String str0, String str1, String str2)
+		                string2. = string9
+		            endif
+                    
+		            ulong local72 = 0
+		            return local72
+		            throw new System.NullReferenceException()
+
+		            INSN_18061E31B:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18061DAC2) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (3)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.NoclipCommand
+	System.Void .ctor()
+		this.<Command>k__BackingField = "noclip"
+		System.String[] local1 = new System.String[2]
+
+		if ("n" != 0)
+
+		    if ("n" == 0)
+                goto INSN_18061E53D
+            endif
+		endif
+        
+		local1[0] = "n"
+
+		if ("nc" == 0)
+            goto INSN_18061E447
+        endif
+
+		if ("nc" == 0)
+            goto INSN_18061E55D
+        endif
+
+		INSN_18061E447:
+		local1[1] = "nc"
+		this.<Aliases>k__BackingField = local1
+		System.String[] local2 = new System.String[2]
+
+		if ("%player%" == 0)
+            goto INSN_18061E4B7
+        endif
+
+		if ("%player%" == 0)
+            goto INSN_18061E57D
+        endif
+
+		INSN_18061E4B7:
+		local2[0] = "%player%"
+
+		if ("enable/disable (Leave blank for toggle)" == 0)
+            goto INSN_18061E4FB
+        endif
+
+		if ("enable/disable (Leave blank for toggle)" == 0)
+            goto INSN_18061E59D
+        endif
+
+		INSN_18061E4FB:
+		local2[1] = "enable/disable (Leave blank for toggle)"
+		this.<Usage>k__BackingField = local2
+
+		base..ctor()
+		return
+		throw new System.NullReferenceException()
+
+		INSN_18061E53D:
+
+		INSN_18061E55D:
+
+		INSN_18061E57D:
+
+		INSN_18061E59D:
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldstr "noclip"
+	IL_0006: stfld System.String CommandSystem.Commands.RemoteAdmin.NoclipCommand::<Command>k__BackingField
+	IL_000b: ldc.i4.2
+	IL_000c: newarr System.String
+	IL_0011: stloc.0
+	IL_0012: ldstr "n"
+	IL_0017: ldc.i4.0
+	IL_0018: beq.s IL_0022
+	IL_001a: ldstr "n"
+	IL_001f: ldc.i4.0
+	IL_0020: beq.s IL_0000
+	IL_0022: ldloc.0
+	IL_0023: ldc.i4.0
+	IL_0024: ldstr "n"
+	IL_0029: stelem.any System.String
+	IL_002e: ldstr "nc"
+	IL_0033: ldc.i4.0
+	IL_0034: beq.s IL_003e
+	IL_0036: ldstr "nc"
+	IL_003b: ldc.i4.0
+	IL_003c: beq.s IL_0000
+	IL_003e: ldloc.0
+	IL_003f: ldc.i4.1
+	IL_0040: ldstr "nc"
+	IL_0045: stelem.any System.String
+	IL_004a: ldarg.0
+	IL_004b: ldloc.0
+	IL_004c: stfld System.String[] CommandSystem.Commands.RemoteAdmin.NoclipCommand::<Aliases>k__BackingField
+	IL_0051: ldc.i4.2
+	IL_0052: newarr System.String
+	IL_0057: stloc.1
+	IL_0058: ldstr "%player%"
+	IL_005d: ldc.i4.0
+	IL_005e: beq.s IL_0068
+	IL_0060: ldstr "%player%"
+	IL_0065: ldc.i4.0
+	IL_0066: beq.s IL_0000
+	IL_0068: ldloc.1
+	IL_0069: ldc.i4.0
+	IL_006a: ldstr "%player%"
+	IL_006f: stelem.any System.String
+	IL_0074: ldstr "enable/disable (Leave blank for toggle)"
+	IL_0079: ldc.i4.0
+	IL_007a: beq.s IL_0087
+	IL_007c: ldstr "enable/disable (Leave blank for toggle)"
+	IL_0081: ldc.i4.0
+	IL_0082: beq IL_0000
+	IL_0087: ldloc.1
+	IL_0088: ldc.i4.1
+	IL_0089: ldstr "enable/disable (Leave blank for toggle)"
+	IL_008e: stelem.any System.String
+	IL_0093: ldarg.0
+	IL_0094: ldloc.1
+	IL_0095: stfld System.String[] CommandSystem.Commands.RemoteAdmin.NoclipCommand::<Usage>k__BackingField
+	IL_009a: ldarg.0
+	IL_009b: call System.Void System.Object::.ctor()
+	IL_00a0: ret
+	IL_00a1: newobj System.Void System.NullReferenceException::.ctor()
+	IL_00a6: throw
+	
+

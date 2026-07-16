@@ -1,0 +1,241 @@
+Type: ServerTime
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ServerTime
+	static System.Boolean CheckSynchronization(System.Int32 myTime)
+		System.Int32 time = ServerTime.time
+		myTime -= time
+
+		System.Int32 int32 = UnityEngine.Mathf.Abs(myTime) //(Int32 value)
+		myTime = int32
+
+		if (int32 > 2)
+		    ulong local4 = 0
+
+		    UnityEngine.Color color = UnityEngine.Color32.op_Implicit()
+
+		    GameCore.Console.AddLog()
+		endif
+        
+		System.Boolean local14 = myTime <= 2
+		return local14
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.SubtractRegFromRegAction at (0x181B7FEE5) is corrupt (SubRFromR: First operand, {'myTime' (function parameter, type System.Int32)}, has been stripped or has no variable) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ServerTime
+	System.Void Update()
+		System.Int32 timeFromStartup = this.timeFromStartup
+		this._rateLimit = False
+
+		if (timeFromStartup != 0)
+		    ServerTime.time = timeFromStartup
+		endif
+        
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Int32 ServerTime::timeFromStartup
+	IL_0006: stloc.0
+	IL_0007: ldarg.0
+	IL_0008: ldc.i4.0
+	IL_0009: stfld System.Boolean ServerTime::_rateLimit
+	IL_000e: ldloc.0
+	IL_000f: ldc.i4.0
+	IL_0010: beq.s IL_0018
+	IL_0012: ldloc.0
+	IL_0013: stsfld System.Int32 ServerTime::time
+	IL_0018: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ServerTime
+	System.Void Start()
+
+		System.Boolean isLocalPlayer = base.isLocalPlayer
+
+		if (isLocalPlayer != False)
+
+		    base.InvokeRepeating("IncreaseTime", 1, 1) //(String methodName, Single time, Single repeatRate)
+		endif
+        
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Boolean Mirror.NetworkBehaviour::get_isLocalPlayer()
+	IL_0006: ldc.i4.0
+	IL_0007: beq.s IL_001e
+	IL_0009: ldarg.0
+	IL_000a: ldstr "IncreaseTime"
+	IL_000f: ldc.r4 1
+	IL_0014: ldc.r4 1
+	IL_0019: call System.Void UnityEngine.MonoBehaviour::InvokeRepeating(System.String,System.Single,System.Single)
+	IL_001e: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ServerTime
+	System.Void IncreaseTime()
+		System.Int32 timeFromStartup = this.timeFromStartup
+		timeFromStartup += 1
+
+		this.NetworktimeFromStartup = timeFromStartup
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Int32 ServerTime::timeFromStartup
+	IL_0006: stloc.0
+	IL_0007: ldloc.0
+	IL_0008: ldc.i4.1
+	IL_0009: add
+	IL_000a: stloc.0
+	IL_000b: ldarg.0
+	IL_000c: ldloc.0
+	IL_000d: call System.Void ServerTime::set_NetworktimeFromStartup(System.Int32)
+	IL_0012: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ServerTime
+	System.Void .ctor()
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void Mirror.NetworkBehaviour::.ctor()
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ServerTime
+	System.Void MirrorProcessed()
+
+
+Generated IL:
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ServerTime
+	System.Int32 get_NetworktimeFromStartup()
+		System.Int32 timeFromStartup = this.timeFromStartup
+		return timeFromStartup
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Int32 ServerTime::timeFromStartup
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ServerTime
+	System.Void set_NetworktimeFromStartup(System.Int32 value)
+
+		System.Boolean boolean = base.SyncVarEqual<System.Int32>()
+
+		if (boolean == False)
+		    throw new System.NullReferenceException()
+		endif
+        
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181B8031F) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ServerTime
+	System.Boolean SerializeSyncVars(Mirror.NetworkWriter writer, System.Boolean forceAll)
+
+		System.Boolean boolean = base.SerializeSyncVars(writer, forceAll) //(NetworkWriter writer, Boolean initialState)
+
+		if (forceAll == False)
+		    System.UInt64 syncVarDirtyBits = this.<syncVarDirtyBits>k__BackingField
+
+		    Mirror.NetworkWriterExtensions.WriteUInt64(writer, syncVarDirtyBits) //(NetworkWriter writer, UInt64 value)
+
+		    if ( != 1)
+		        System.Int32 timeFromStartup = this.timeFromStartup
+
+		        Mirror.NetworkWriterExtensions.WriteInt32(writer, timeFromStartup) //(NetworkWriter writer, Int32 value)
+		    endif
+            
+		else
+		    System.Int32 timeFromStartup2 = this.timeFromStartup
+
+		    Mirror.NetworkWriterExtensions.WriteInt32(writer, timeFromStartup2) //(NetworkWriter writer, Int32 value)
+		endif
+        
+		return True
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfZeroOrNullAction at (0x181B80137) is corrupt (One of the arguments is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ServerTime
+	System.Void DeserializeSyncVars(Mirror.NetworkReader reader, System.Boolean initialState)
+
+		this.MirrorProcessed()
+
+		if (initialState == False)
+
+		    System.UInt64 uInt64 = Mirror.NetworkReaderExtensions.ReadUInt64(reader) //(NetworkReader reader)
+
+		    if (uInt64 == 1)
+                goto INSN_181B80085
+            endif
+		endif
+        
+
+		System.Int32 int32 = Mirror.NetworkReaderExtensions.ReadInt32(reader) //(NetworkReader reader)
+
+		System.Boolean boolean = base.SyncVarEqual<System.Int32>()
+
+		if (boolean != False)
+            goto INSN_181B80085
+        endif
+		throw new System.NullReferenceException()
+
+		INSN_181B80085:
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181B8005C) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+

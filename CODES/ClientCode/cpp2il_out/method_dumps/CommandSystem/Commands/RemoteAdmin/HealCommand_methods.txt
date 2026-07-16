@@ -1,0 +1,269 @@
+Type: HealCommand
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.HealCommand
+	System.String get_Command()
+		System.String Command = this.<Command>k__BackingField
+		return Command
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String CommandSystem.Commands.RemoteAdmin.HealCommand::<Command>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.HealCommand
+	System.String[] get_Aliases()
+		System.String[] Aliases = this.<Aliases>k__BackingField
+		return Aliases
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String[] CommandSystem.Commands.RemoteAdmin.HealCommand::<Aliases>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.HealCommand
+	System.String get_Description()
+		System.String Description = this.<Description>k__BackingField
+		return Description
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String CommandSystem.Commands.RemoteAdmin.HealCommand::<Description>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.HealCommand
+	System.String[] get_Usage()
+		System.String[] Usage = this.<Usage>k__BackingField
+		return Usage
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String[] CommandSystem.Commands.RemoteAdmin.HealCommand::<Usage>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.HealCommand
+	System.Boolean Execute(System.ArraySegment`1<System.String> arguments, CommandSystem.ICommandSender sender, System.String& response)
+		ulong local4 = 0
+
+		System.Boolean boolean = Misc.CheckPermission(sender, 0x4000, response) //(ICommandSender sender, PlayerPermissions perm, String& response)
+
+		if (boolean != False)
+		    ulong local9 = 0
+
+		    System.Collections.Generic.List`1<ReferenceHub> list = Utils.RAUtils.ProcessPlayerIdOrNamesList()
+
+		    if (local9 != 0)
+		          = local9.
+
+		        if (RAUtils != 0)
+		              = local9.
+
+		            System.Boolean boolean2 = System.Int32.TryParse()
+
+		            if (boolean2 != False)
+                        goto INSN_18061A0B7
+                    endif
+		        endif
+                
+
+		        INSN_18061A0B7:
+		        NorthwoodLib.Pools.StringBuilderPool shared = NorthwoodLib.Pools.StringBuilderPool.Shared
+
+		        System.Text.StringBuilder stringBuilder = shared.Rent()
+
+		        if (list == 0)
+                    goto INSN_18061A340
+                endif
+
+		        System.Collections.Generic.List`1/Enumerator<T> enumerator = shared.GetEnumerator()
+
+		        if (enumerator == 0)
+                    goto INSN_18061A271
+                endif
+
+		        System.Boolean boolean3 = ReferenceHub.op_Inequality()
+
+		        if (boolean3 == False)
+                    goto INSN_18061A140
+                endif
+
+		        PlayerStatsSystem.HealthStat module = .GetModule<PlayerStatsSystem.HealthStat>()
+
+		        System.Single minValue = module.MinValue
+
+		        System.Single curValue = module.CurValue
+
+		        module.ServerHeal(minValue) //(Single healAmount)
+
+		        if (local4 == 0)
+                    goto INSN_18061A228
+                endif
+
+		        System.Text.StringBuilder stringBuilder2 = stringBuilder.Append(", ") //(String value)
+
+		        INSN_18061A228:
+
+		        System.String string = Misc.LoggedNameFromRefHub()
+
+		        System.Text.StringBuilder stringBuilder3 = stringBuilder.Append(string) //(String value)
+		        local4 += 1
+
+		        INSN_18061A271:
+
+		        stringBuilder.Dispose()
+
+		        stringBuilder.Dispose()
+
+		        if (stringBuilder != 0)
+                    goto INSN_18061A473
+                endif
+		        ulong local31 = 0
+
+		        if (local4 <= 0)
+                    goto INSN_18061A340
+                endif
+
+		        if (local4 == 1)
+                    goto INSN_18061A2FA
+                endif
+
+		        INSN_18061A2FA:
+
+		        System.String string2 = System.String.Format("{0} healed player{1}{2}.", stringBuilder3, "s ", stringBuilder) //(String format, Object arg0, Object arg1, Object arg2)
+		        ulong local33 = 0
+
+		        ServerLogs.AddLog(4, string2, 1, local33) //(Modules module, String msg, ServerLogType type, Boolean init)
+
+		        INSN_18061A340:
+		        NorthwoodLib.Pools.StringBuilderPool shared2 = NorthwoodLib.Pools.StringBuilderPool.Shared
+
+		        shared2.Return(stringBuilder) //(StringBuilder stringBuilder)
+
+		        if (local4 == 1)
+                    goto INSN_18061A3B9
+                endif
+
+		        INSN_18061A3B9:
+
+		        System.String string3 = System.String.Format()
+		        response. = string3
+		        //UNKNOWN CLASS OFFSET READ HERE
+
+		        System.String string4 = CommandSystem.HelpProviderExtensions.DisplayCommandUsage(local4) //(IUsageProvider provider)
+
+		        System.String string5 = System.String.Concat()
+		        response. = string5
+		    endif
+            
+		    ulong local41 = 0
+		    return local41
+		    throw new System.NullReferenceException()
+
+		    INSN_18061A473:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18061A075) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (4)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.HealCommand
+	System.Void .ctor()
+		this.<Command>k__BackingField = "heal"
+		this.<Description>k__BackingField = "Heals player(s) a specified amount."
+		System.String[] local1 = new System.String[2]
+
+		if ("%player%" != 0)
+
+		    if ("%player%" == 0)
+                goto INSN_18061A5B4
+            endif
+		endif
+        
+		local1[0] = "%player%"
+
+		if ("Amount (0 = full)" == 0)
+            goto INSN_18061A576
+        endif
+
+		if ("Amount (0 = full)" == 0)
+            goto INSN_18061A5D4
+        endif
+
+		INSN_18061A576:
+		local1[1] = "Amount (0 = full)"
+		this.<Usage>k__BackingField = local1
+
+		base..ctor()
+		return
+		throw new System.NullReferenceException()
+
+		INSN_18061A5B4:
+
+		INSN_18061A5D4:
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldstr "heal"
+	IL_0006: stfld System.String CommandSystem.Commands.RemoteAdmin.HealCommand::<Command>k__BackingField
+	IL_000b: ldarg.0
+	IL_000c: ldstr "Heals player(s) a specified amount."
+	IL_0011: stfld System.String CommandSystem.Commands.RemoteAdmin.HealCommand::<Description>k__BackingField
+	IL_0016: ldc.i4.2
+	IL_0017: newarr System.String
+	IL_001c: stloc.0
+	IL_001d: ldstr "%player%"
+	IL_0022: ldc.i4.0
+	IL_0023: beq.s IL_002d
+	IL_0025: ldstr "%player%"
+	IL_002a: ldc.i4.0
+	IL_002b: beq.s IL_0000
+	IL_002d: ldloc.0
+	IL_002e: ldc.i4.0
+	IL_002f: ldstr "%player%"
+	IL_0034: stelem.any System.String
+	IL_0039: ldstr "Amount (0 = full)"
+	IL_003e: ldc.i4.0
+	IL_003f: beq.s IL_0049
+	IL_0041: ldstr "Amount (0 = full)"
+	IL_0046: ldc.i4.0
+	IL_0047: beq.s IL_0000
+	IL_0049: ldloc.0
+	IL_004a: ldc.i4.1
+	IL_004b: ldstr "Amount (0 = full)"
+	IL_0050: stelem.any System.String
+	IL_0055: ldarg.0
+	IL_0056: ldloc.0
+	IL_0057: stfld System.String[] CommandSystem.Commands.RemoteAdmin.HealCommand::<Usage>k__BackingField
+	IL_005c: ldarg.0
+	IL_005d: call System.Void System.Object::.ctor()
+	IL_0062: ret
+	IL_0063: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0068: throw
+	
+

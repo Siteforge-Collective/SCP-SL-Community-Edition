@@ -1,0 +1,206 @@
+Type: ScpPreferenceSlider
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.RoleAssign.ScpPreferenceSlider
+	static System.Boolean get_AnyHighlighted()
+		System.Boolean AnyHighlighted = PlayerRoles.RoleAssign.ScpPreferenceSlider.<AnyHighlighted>k__BackingField
+		return AnyHighlighted
+
+
+Generated IL:
+	IL_0000: ldsfld System.Boolean PlayerRoles.RoleAssign.ScpPreferenceSlider::<AnyHighlighted>k__BackingField
+	IL_0005: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.RoleAssign.ScpPreferenceSlider
+	static System.Void set_AnyHighlighted(System.Boolean value)
+		PlayerRoles.RoleAssign.ScpPreferenceSlider.<AnyHighlighted>k__BackingField = value
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: stsfld System.Boolean PlayerRoles.RoleAssign.ScpPreferenceSlider::<AnyHighlighted>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.RoleAssign.ScpPreferenceSlider
+	System.Void OnValueChanged(System.Single x)
+
+		System.Int32 int32 = UnityEngine.Mathf.RoundToInt(x) //(Single f)
+
+		System.String string = System.String.Concat("SpawnPreference_Role_", int32) //(Object arg0, Object arg1)
+
+		PlayerPrefsSl.Set(string, int32) //(String key, Int32 value)
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.1
+	IL_0001: call System.Int32 UnityEngine.Mathf::RoundToInt(System.Single)
+	IL_0006: stloc.0
+	IL_0007: ldstr "SpawnPreference_Role_"
+	IL_000c: ldloc.0
+	IL_000d: call System.String System.String::Concat(System.Object,System.Object)
+	IL_0012: ldloc.0
+	IL_0013: call System.Void PlayerPrefsSl::Set(System.String,System.Int32)
+	IL_0018: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.RoleAssign.ScpPreferenceSlider
+	System.Void Deselect()
+		PlayerRoles.RoleAssign.ScpPreferenceSlider _highlighted = PlayerRoles.RoleAssign.ScpPreferenceSlider._highlighted
+
+		System.Boolean boolean = UnityEngine.Object.op_Inequality(_highlighted, this) //(Object x, Object y)
+
+		if (boolean == False)
+		endif
+        
+		return
+
+
+Generated IL:
+	IL_0000: ldsfld PlayerRoles.RoleAssign.ScpPreferenceSlider PlayerRoles.RoleAssign.ScpPreferenceSlider::_highlighted
+	IL_0005: ldarg.0
+	IL_0006: call System.Boolean UnityEngine.Object::op_Inequality(UnityEngine.Object,UnityEngine.Object)
+	IL_000b: ldc.i4.0
+	IL_000c: bne.un.s IL_000e
+	IL_000e: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.RoleAssign.ScpPreferenceSlider
+	System.Void Awake()
+
+		base.Awake()
+		PlayerRoles.RoleTypeId _role = this._role
+
+		System.Int32 preference = PlayerRoles.RoleAssign.ScpSpawnPreferences.GetPreference(_role) //(RoleTypeId role)
+
+		System.Single value = this.value
+		UnityEngine.UI.Slider/SliderEvent m_OnValueChanged = this.m_OnValueChanged
+		UnityEngine.Events.UnityAction`1<System.Single> unityAction = new UnityEngine.Events.UnityAction`1<System.Single>()
+
+		unityAction..ctor(this, {'OnValueChanged' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		m_OnValueChanged.AddListener(unityAction) //(UnityAction`1 call)
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void UnityEngine.UI.Selectable::Awake()
+	IL_0006: ldarg.0
+	IL_0007: ldfld PlayerRoles.RoleTypeId PlayerRoles.RoleAssign.ScpPreferenceSlider::_role
+	IL_000c: call System.Int32 PlayerRoles.RoleAssign.ScpSpawnPreferences::GetPreference(PlayerRoles.RoleTypeId)
+	IL_0011: stloc.0
+	IL_0012: ldarg.0
+	IL_0013: callvirt System.Single UnityEngine.UI.Slider::get_value()
+	IL_0018: stloc.1
+	IL_0019: ldarg.0
+	IL_001a: ldfld UnityEngine.UI.Slider/SliderEvent UnityEngine.UI.Slider::m_OnValueChanged
+	IL_001f: stloc.2
+	IL_0020: ldarg.0
+	IL_0021: ldftn System.Void PlayerRoles.RoleAssign.ScpPreferenceSlider::OnValueChanged(System.Single)
+	IL_0027: newobj System.Void UnityEngine.Events.UnityAction`1::.ctor(System.Object,System.IntPtr)
+	IL_002c: stloc.3
+	IL_002d: ldloc.2
+	IL_002e: ldloc.3
+	IL_002f: call System.Void UnityEngine.Events.UnityEvent`1::AddListener(UnityEngine.Events.UnityAction`1)
+	IL_0034: ret
+	IL_0035: newobj System.Void System.NullReferenceException::.ctor()
+	IL_003a: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.RoleAssign.ScpPreferenceSlider
+	System.Void OnDisable()
+
+		base.OnDisable()
+
+		this.Deselect()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void UnityEngine.UI.Slider::OnDisable()
+	IL_0006: ldarg.0
+	IL_0007: call System.Void PlayerRoles.RoleAssign.ScpPreferenceSlider::Deselect()
+	IL_000c: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.RoleAssign.ScpPreferenceSlider
+	System.Void OnPointerDown(UnityEngine.EventSystems.PointerEventData eventData)
+
+		base.OnPointerDown(eventData) //(PointerEventData eventData)
+		 += 8
+		PlayerRoles.RoleAssign.ScpPreferenceSlider.<AnyHighlighted>k__BackingField = this
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x1803D8B96) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.RoleAssign.ScpPreferenceSlider
+	System.Void OnPointerUp(UnityEngine.EventSystems.PointerEventData eventData)
+
+		base.OnPointerUp(eventData) //(PointerEventData eventData)
+
+		this.Deselect()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: call System.Void UnityEngine.UI.Selectable::OnPointerUp(UnityEngine.EventSystems.PointerEventData)
+	IL_0007: ldarg.0
+	IL_0008: call System.Void PlayerRoles.RoleAssign.ScpPreferenceSlider::Deselect()
+	IL_000d: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.RoleAssign.ScpPreferenceSlider
+	System.Void .ctor()
+		this._role = 255
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldc.i4 255
+	IL_0006: conv.i8
+	IL_0007: conv.u8
+	IL_0008: stfld PlayerRoles.RoleTypeId PlayerRoles.RoleAssign.ScpPreferenceSlider::_role
+	IL_000d: ldarg.0
+	IL_000e: call System.Void UnityEngine.UI.Slider::.ctor()
+	IL_0013: ret
+	
+

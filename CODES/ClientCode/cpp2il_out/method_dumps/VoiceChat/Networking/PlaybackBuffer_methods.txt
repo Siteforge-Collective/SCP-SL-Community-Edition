@@ -1,0 +1,486 @@
+Type: PlaybackBuffer
+
+
+	Generated Pseudocode:
+
+	Declaring Type: VoiceChat.Networking.PlaybackBuffer
+	System.Single get_ReplayVolumeScale()
+		System.Single ReplayVolumeScale = this.<ReplayVolumeScale>k__BackingField
+		return ReplayVolumeScale
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Single VoiceChat.Networking.PlaybackBuffer::<ReplayVolumeScale>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: VoiceChat.Networking.PlaybackBuffer
+	System.Void set_ReplayVolumeScale(System.Single value)
+		this.<ReplayVolumeScale>k__BackingField = value
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: stfld System.Single VoiceChat.Networking.PlaybackBuffer::<ReplayVolumeScale>k__BackingField
+	IL_0007: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: VoiceChat.Networking.PlaybackBuffer
+	System.Void .ctor(System.Int32 capacity, System.Boolean endlessTapeMode)
+		ulong local3 = 0
+
+		base..ctor()
+		this._bufferSize = capacity
+		System.Collections.Generic.Dictionary`2<System.Int32,System.Collections.Generic.Queue`1<System.Single[]>> poolsOfSize = VoiceChat.Networking.PlaybackBuffer.PoolsOfSize
+
+		System.Boolean boolean = poolsOfSize.TryGetValue(capacity, local3) //(TKey key, TValue& value)
+
+		if (boolean != False)
+
+		    System.Boolean boolean2 = CollectionExtensions.TryDequeue<System.Single[]>(local3, local3) //(Queue`1 , T& element)
+
+		    if (boolean2 != False)
+		    else
+		        System.Int32 _bufferSize = this._bufferSize
+		        System.Single[] local9 = new System.Single[_bufferSize]
+		    endif
+            
+		    this.Buffer = local9
+		    this._endless = endlessTapeMode
+		    this.ReadHead = local3
+		    this.WriteHead = local3
+		    return
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: ldarg.0
+	IL_0003: call System.Void System.Object::.ctor()
+	IL_0008: ldarg.0
+	IL_0009: ldarg.1
+	IL_000a: stfld System.Int32 VoiceChat.Networking.PlaybackBuffer::_bufferSize
+	IL_000f: ldsfld System.Collections.Generic.Dictionary`2<System.Int32,System.Collections.Generic.Queue`1<System.Single[]>> VoiceChat.Networking.PlaybackBuffer::PoolsOfSize
+	IL_0014: ldarg.1
+	IL_0015: ldloc.0
+	IL_0016: call System.Boolean System.Collections.Generic.Dictionary`2::TryGetValue(TKey,TValue&)
+	IL_001b: ldc.i4.0
+	IL_001c: beq.s IL_0028
+	IL_001e: ldloc.0
+	IL_001f: ldloc.0
+	IL_0020: call System.Boolean CollectionExtensions::TryDequeue<System.Single[]>(System.Collections.Generic.Queue`1,T&)
+	IL_0025: ldc.i4.0
+	IL_0026: beq.s IL_0028
+	IL_0028: ldarg.0
+	IL_0029: ldfld System.Int32 VoiceChat.Networking.PlaybackBuffer::_bufferSize
+	IL_002e: newarr System.Single
+	IL_0033: stloc.1
+	IL_0034: ldarg.0
+	IL_0035: ldloc.1
+	IL_0036: stfld System.Single[] VoiceChat.Networking.PlaybackBuffer::Buffer
+	IL_003b: ldarg.0
+	IL_003c: ldarg.2
+	IL_003d: stfld System.Boolean VoiceChat.Networking.PlaybackBuffer::_endless
+	IL_0042: ldarg.0
+	IL_0043: ldloc.0
+	IL_0044: stfld System.Int64 VoiceChat.Networking.PlaybackBuffer::ReadHead
+	IL_0049: ldarg.0
+	IL_004a: ldloc.0
+	IL_004b: stfld System.Int64 VoiceChat.Networking.PlaybackBuffer::WriteHead
+	IL_0050: ret
+	IL_0051: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0056: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: VoiceChat.Networking.PlaybackBuffer
+	System.Int32 get_Length()
+		System.Int64 writeHead = this.WriteHead
+		return writeHead
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x181B8DA06) is corrupt (Return value has a type of System.Int64, expecting an object of type System.Int32) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: VoiceChat.Networking.PlaybackBuffer
+	System.Void Write(System.Single[] f, System.Int32 length, System.Int32 sourceIndex)
+		System.Int32 _bufferSize = this._bufferSize
+		System.Int64 writeHead = this.WriteHead
+		ulong local6 = 0
+		System.Int64 readHead = this.ReadHead
+		length -= readHead
+		length -= _bufferSize
+		length += writeHead
+
+		if (length > 0)
+
+		    if (this._endless == local6)
+		        this.ReadHead = local6
+		        this.WriteHead = local6
+		    else
+		        readHead += length
+		        this.ReadHead = readHead
+		    endif
+            
+		    _bufferSize -= length
+		    _bufferSize -= f
+
+		    System.Array.Copy()
+		    System.Single[] buffer = this.Buffer
+		    sourceIndex += 
+		    _bufferSize = length
+
+		    System.Array.Copy(f, sourceIndex, buffer, local6, _bufferSize) //(Array sourceArray, Int64 sourceIndex, Array destinationArray, Int64 destinationIndex, Int64 length)
+		    return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.SubtractRegFromRegAction at (0x181B8D7D4) is corrupt (SubRFromR: First operand, {'length' (function parameter, type System.Int32)}, has been stripped or has no variable) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: VoiceChat.Networking.PlaybackBuffer
+	System.Void Write(System.Single[] f, System.Int32 length)
+		System.Int32 _bufferSize = this._bufferSize
+		System.Int64 writeHead = this.WriteHead
+		ulong local5 = 0
+		System.Int64 readHead = this.ReadHead
+		length -= readHead
+		length -= _bufferSize
+		length += writeHead
+
+		if (length > 0)
+
+		    if (this._endless == local5)
+		        this.ReadHead = local5
+		        this.WriteHead = local5
+		    else
+		        readHead += length
+		        this.ReadHead = readHead
+		    endif
+            
+		    _bufferSize -= length
+		    _bufferSize -= f
+
+		    System.Array.Copy()
+		    System.Single[] buffer = this.Buffer
+		    _bufferSize = length
+
+		    System.Array.Copy(f, local5, buffer, local5, _bufferSize) //(Array sourceArray, Int64 sourceIndex, Array destinationArray, Int64 destinationIndex, Int64 length)
+		    return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.SubtractRegFromRegAction at (0x181B8D6F3) is corrupt (SubRFromR: First operand, {'length' (function parameter, type System.Int32)}, has been stripped or has no variable) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: VoiceChat.Networking.PlaybackBuffer
+	System.Void Write(System.Single f)
+		System.Int32 _bufferSize = this._bufferSize
+		System.Int64 readHead = this.ReadHead
+		System.Int64 writeHead = this.WriteHead
+		readHead += _bufferSize
+		ulong local5 = 0
+		this.ReadHead = local5
+		System.Single[] buffer = this.Buffer
+		System.Int32 1 = 1
+		this.WriteHead = 1
+		buffer[0] = f
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Int32 VoiceChat.Networking.PlaybackBuffer::_bufferSize
+	IL_0006: stloc.0
+	IL_0007: ldarg.0
+	IL_0008: ldfld System.Int64 VoiceChat.Networking.PlaybackBuffer::ReadHead
+	IL_000d: stloc.1
+	IL_000e: ldarg.0
+	IL_000f: ldfld System.Int64 VoiceChat.Networking.PlaybackBuffer::WriteHead
+	IL_0014: stloc.2
+	IL_0015: ldloc.1
+	IL_0016: ldloc.0
+	IL_0017: add
+	IL_0018: stloc.1
+	IL_0019: ldc.i4.0
+	IL_001a: stloc.3
+	IL_001b: ldarg.0
+	IL_001c: ldloc.3
+	IL_001d: stfld System.Int64 VoiceChat.Networking.PlaybackBuffer::ReadHead
+	IL_0022: ldarg.0
+	IL_0023: ldfld System.Single[] VoiceChat.Networking.PlaybackBuffer::Buffer
+	IL_0028: stloc.s V_4
+	IL_002a: ldarg.0
+	IL_002b: ldc.i4.1
+	IL_002c: stfld System.Int64 VoiceChat.Networking.PlaybackBuffer::WriteHead
+	IL_0031: ldloc.s V_4
+	IL_0033: ldc.i4.0
+	IL_0034: ldarg.1
+	IL_0035: stelem.any System.Single
+	IL_003a: ret
+	IL_003b: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0040: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: VoiceChat.Networking.PlaybackBuffer
+	System.Single Read()
+		System.Int64 readHead = this.ReadHead
+		ulong local2 = 0
+		return local2
+		System.Single[] buffer = this.Buffer
+		System.Int64 local4 = readHead + 1
+		this.ReadHead = local4
+		System.Single single = buffer[il2cppMethodInfo]
+		return single
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x181B8D286) is corrupt (Return value has a type of System.Int32, expecting an object of type System.Single) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: VoiceChat.Networking.PlaybackBuffer
+	System.Void ReadTo(System.Single[] arr, System.Int64 readLength, System.Int64 destinationIndex)
+		System.Int64 readHead = this.ReadHead
+		System.Single[] buffer = this.Buffer
+
+		System.Array.Copy()
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181B8D23B) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (5)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: VoiceChat.Networking.PlaybackBuffer
+	System.Void Clear()
+		ulong local1 = 0
+		this.ReadHead = local1
+		this.WriteHead = local1
+		return
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: ldarg.0
+	IL_0003: ldloc.0
+	IL_0004: stfld System.Int64 VoiceChat.Networking.PlaybackBuffer::ReadHead
+	IL_0009: ldarg.0
+	IL_000a: ldloc.0
+	IL_000b: stfld System.Int64 VoiceChat.Networking.PlaybackBuffer::WriteHead
+	IL_0010: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: VoiceChat.Networking.PlaybackBuffer
+	System.Void Reorganize()
+		System.Int64 readHead = this.ReadHead
+
+		if (readHead != constant4)
+		    System.Int64 writeHead = this.WriteHead
+		    writeHead -= readHead
+
+		    if (readHead != constant4)
+		        System.Single[] local3 = new System.Single[writeHead]
+		         += 8
+		        VoiceChat.Networking.PlaybackBuffer.PoolsOfSize = local3
+		        VoiceChat.Networking.PlaybackBuffer._organizerSize = 
+		        System.Int32 _bufferSize = this._bufferSize
+		        System.Single[] buffer = this.Buffer
+		        _bufferSize -= local3
+
+		        if (_bufferSize < writeHead)
+		            ulong local7 = 0
+		            System.Single[] _organizerArr = VoiceChat.Networking.PlaybackBuffer._organizerArr
+
+		            System.Array.Copy()
+		            System.Int32 _bufferSize2 = this._bufferSize
+		            _bufferSize -= _bufferSize2
+		            _bufferSize += local3
+		            writeHead -= _bufferSize
+		            System.Single[] _organizerArr2 = VoiceChat.Networking.PlaybackBuffer._organizerArr
+		        else
+		            ulong local13 = 0
+		            System.Single[] _organizerArr3 = VoiceChat.Networking.PlaybackBuffer._organizerArr
+		        endif
+                
+
+		        System.Array.Copy()
+		        System.Single[] buffer2 = this.Buffer
+		        System.Single[] _organizerArr4 = VoiceChat.Networking.PlaybackBuffer._organizerArr
+
+		        System.Array.Copy(_organizerArr4, buffer2, writeHead) //(Array sourceArray, Array destinationArray, Int32 length)
+		        this.WriteHead = writeHead
+		    else
+		        ulong local18 = 0
+		        this.WriteHead = local18
+		    endif
+            
+		    this.ReadHead = local18
+		endif
+        
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfZeroOrNullAction at (0x181B8D30B) is corrupt (ConstantDefinition: Don't know how to get IL to load a System.Int64) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: VoiceChat.Networking.PlaybackBuffer
+	System.Int32 AddDelay(System.Int32 samples, System.Boolean force)
+
+		if (force == False)
+
+		    System.Int32 int32 = UnityEngine.Mathf.Abs(samples) //(Int32 value)
+		    System.Int64 readHead = this.ReadHead
+		    samples = int32
+
+		    System.Int32 int322 = UnityEngine.Mathf.Min(samples, readHead) //(Int32 a, Int32 b)
+		    samples = int322
+		endif
+        
+		ulong local8 = 0
+
+		if (samples <= 0)
+            goto INSN_181B8D039
+        endif
+		System.Int64 readHead2 = this.ReadHead
+		System.Single[] buffer = this.Buffer
+		this.ReadHead = readHead2
+		local8 += 1
+		buffer[0] = local8
+
+		INSN_181B8D039:
+		return samples
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.RegToRegMoveAction at (0x181B8CFE9) is corrupt (Local being overwritten, {'samples' (function parameter, type System.Int32)} has been stripped or is a parameter) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: VoiceChat.Networking.PlaybackBuffer
+	System.Int64 SyncWith(VoiceChat.Networking.PlaybackBuffer buffer, System.Int32 delay)
+		System.Int64 writeHead = this.WriteHead
+		writeHead -= delay
+		ulong local4 = 0
+
+		if (writeHead > constant5)
+		    System.Int64 readHead = this.ReadHead
+		    System.Single[] buffer = this.Buffer
+		    this.ReadHead = readHead
+		    local4 += 1
+		    buffer[0] = local4
+		    readHead = writeHead
+		    return readHead
+		endif
+        
+		return writeHead
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfLessThanOrEqualToAction at (0x181B8D598) is corrupt (ConstantDefinition: Don't know how to get IL to load a System.Int64) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: VoiceChat.Networking.PlaybackBuffer
+	System.Int64 HeadToIndex(System.Int64 headPosition)
+		return headPosition
+
+
+Generated IL:
+	IL_0000: ldarg.1
+	IL_0001: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: VoiceChat.Networking.PlaybackBuffer
+	System.Void Dispose()
+		System.Int32 _bufferSize = this._bufferSize
+		System.Collections.Generic.Dictionary`2<System.Int32,System.Collections.Generic.Queue`1<System.Single[]>> poolsOfSize = VoiceChat.Networking.PlaybackBuffer.PoolsOfSize
+		System.Func`1<System.Collections.Generic.Queue`1<System.Single[]>> <>9__25_0 = VoiceChat.Networking.PlaybackBuffer/<>c.<>9__25_0
+
+		if (<>9__25_0 == 0)
+		    VoiceChat.Networking.PlaybackBuffer/<>c <>c = VoiceChat.Networking.PlaybackBuffer/<>c.<>9
+		    System.Func`1<System.Collections.Generic.Queue`1<System.Single[]>> func = new System.Func`1<System.Collections.Generic.Queue`1<System.Single[]>>()
+
+		    func..ctor(<>c, {'<Dispose>b__25_0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		     += 8
+		    VoiceChat.Networking.PlaybackBuffer/<>c.<>9 = func
+		endif
+        
+
+		System.Int32 orAdd = CollectionExtensions.GetOrAdd<System.Int32, System.Collections.Generic.Queue`1<System.Single[]>>(poolsOfSize, _bufferSize, <>9__25_0) //(Dictionary`2 dictionary, TKey key, Func`1 factory)
+		System.Single[] buffer = this.Buffer
+
+		orAdd.Enqueue(buffer) //(T item)
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x181B8D183) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: VoiceChat.Networking.PlaybackBuffer
+	static System.Void .cctor()
+		System.Collections.Generic.Dictionary`2<System.Int32,System.Collections.Generic.Queue`1<System.Single[]>> dictionary = new System.Collections.Generic.Dictionary`2<System.Int32,System.Collections.Generic.Queue`1<System.Single[]>>()
+
+		dictionary..ctor()
+		VoiceChat.Networking.PlaybackBuffer.PoolsOfSize = dictionary
+
+
+Generated IL:
+	IL_0000: newobj System.Void System.Collections.Generic.Dictionary`2::.ctor()
+	IL_0005: stsfld System.Collections.Generic.Dictionary`2<System.Int32,System.Collections.Generic.Queue`1<System.Single[]>> VoiceChat.Networking.PlaybackBuffer::PoolsOfSize
+	
+

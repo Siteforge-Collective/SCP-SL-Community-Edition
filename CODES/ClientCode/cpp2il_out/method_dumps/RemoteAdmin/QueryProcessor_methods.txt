@@ -1,0 +1,3992 @@
+Type: QueryProcessor
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.QueryProcessor
+	System.String get_ServerRandom()
+		ulong local1 = 0
+
+		ReferenceHub hostHub = ReferenceHub.HostHub
+		RemoteAdmin.QueryProcessor queryProcessor = hostHub.queryProcessor
+		System.String _syncServerRandom = queryProcessor._syncServerRandom
+		return _syncServerRandom
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: call ReferenceHub ReferenceHub::get_HostHub()
+	IL_0007: ldfld RemoteAdmin.QueryProcessor ReferenceHub::queryProcessor
+	IL_000c: ldfld System.String RemoteAdmin.QueryProcessor::_syncServerRandom
+	IL_0011: ret
+	IL_0012: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0017: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.QueryProcessor
+	System.Boolean get_IsHost()
+		System.String _syncServerRandom = this._syncServerRandom
+
+		System.Boolean isNullOrEmpty = System.String.IsNullOrEmpty(_syncServerRandom) //(String value)
+		System.Boolean local4 = isNullOrEmpty == False
+		return local4
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String RemoteAdmin.QueryProcessor::_syncServerRandom
+	IL_0006: call System.Boolean System.String::IsNullOrEmpty(System.String)
+	IL_000b: ldc.i4.0
+	IL_000c: ceq
+	IL_000e: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.QueryProcessor
+	System.Boolean get_GameplayData()
+		System.Boolean _gameplayData = this._gameplayData
+		return _gameplayData
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Boolean RemoteAdmin.QueryProcessor::_gameplayData
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.QueryProcessor
+	System.Void set_GameplayData(System.Boolean value)
+		this._gameplayData = value
+		this._gdDirty = True
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: stfld System.Boolean RemoteAdmin.QueryProcessor::_gameplayData
+	IL_0007: ldarg.0
+	IL_0008: ldc.i4.1
+	IL_0009: stfld System.Boolean RemoteAdmin.QueryProcessor::_gdDirty
+	IL_000e: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.QueryProcessor
+	System.Void Awake()
+
+		UnityEngine.GameObject gameObject = base.gameObject
+
+		ReferenceHub hub = ReferenceHub.GetHub(gameObject) //(GameObject player)
+		this._hub = hub
+		ReferenceHub _hub = this._hub
+		ServerRoles serverRoles = _hub.serverRoles
+		this._roles = serverRoles
+
+		RemoteAdmin.RemoteAdminCryptographicManager component = base.GetComponent<RemoteAdmin.RemoteAdminCryptographicManager>()
+		this.CryptoManager = component
+
+		GameConsoleTransmission component2 = base.GetComponent<GameConsoleTransmission>()
+		this.GCT = component2
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call UnityEngine.GameObject UnityEngine.Component::get_gameObject()
+	IL_0006: call ReferenceHub ReferenceHub::GetHub(UnityEngine.GameObject)
+	IL_000b: stloc.0
+	IL_000c: ldarg.0
+	IL_000d: ldloc.0
+	IL_000e: stfld ReferenceHub RemoteAdmin.QueryProcessor::_hub
+	IL_0013: ldarg.0
+	IL_0014: ldfld ReferenceHub RemoteAdmin.QueryProcessor::_hub
+	IL_0019: ldfld ServerRoles ReferenceHub::serverRoles
+	IL_001e: stloc.1
+	IL_001f: ldarg.0
+	IL_0020: ldloc.1
+	IL_0021: stfld ServerRoles RemoteAdmin.QueryProcessor::_roles
+	IL_0026: ldarg.0
+	IL_0027: call T UnityEngine.Component::GetComponent<RemoteAdmin.RemoteAdminCryptographicManager>()
+	IL_002c: stloc.2
+	IL_002d: ldarg.0
+	IL_002e: ldloc.2
+	IL_002f: stfld RemoteAdmin.RemoteAdminCryptographicManager RemoteAdmin.QueryProcessor::CryptoManager
+	IL_0034: ldarg.0
+	IL_0035: call T UnityEngine.Component::GetComponent<GameConsoleTransmission>()
+	IL_003a: stloc.3
+	IL_003b: ldarg.0
+	IL_003c: ldloc.3
+	IL_003d: stfld GameConsoleTransmission RemoteAdmin.QueryProcessor::GCT
+	IL_0042: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0047: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.QueryProcessor
+	System.Void Start()
+		ulong local1 = 0
+		ReferenceHub _hub = this._hub
+		Security.PlayerRateLimitHandler playerRateLimitHandler = _hub.playerRateLimitHandler
+		Security.RateLimit[] rateLimits = playerRateLimitHandler.RateLimits
+		Security.RateLimit local5 = rateLimits[2]
+		this._commandRateLimit = local5
+		Org.BouncyCastle.Security.SecureRandom secureRandom = new Org.BouncyCastle.Security.SecureRandom()
+
+		secureRandom..ctor()
+		RemoteAdmin.QueryProcessor._secureRandom = secureRandom
+		this.SignaturesCounter = local1
+
+		System.Boolean isLocalPlayer = base.isLocalPlayer
+
+		if (isLocalPlayer != False)
+		     += 8
+		    RemoteAdmin.QueryProcessor._secureRandom = local1
+
+		    Mirror.NetworkConnection connectionToClient = .connectionToClient
+		    this._conns = connectionToClient
+		    Mirror.NetworkConnection _conns = this._conns
+
+		    System.String string = _conns.ToString()
+		    this._ipAddress = string
+		    PermissionsHandler permissionsHandler = ServerStatic.PermissionsHandler
+
+		    System.Boolean overrideEnabled = permissionsHandler.OverrideEnabled
+
+		    this.NetworkOverridePasswordEnabled = overrideEnabled
+		    System.String _serverStaticRandom = RemoteAdmin.QueryProcessor._serverStaticRandom
+
+		    System.Boolean isNullOrEmpty = System.String.IsNullOrEmpty(_serverStaticRandom) //(String value)
+
+		    if (isNullOrEmpty != False)
+		        System.Security.Cryptography.RNGCryptoServiceProvider rNGCryptoServiceProvider = new System.Security.Cryptography.RNGCryptoServiceProvider()
+
+		        rNGCryptoServiceProvider..ctor()
+		        System.Int64 local23 = 32
+		        System.Byte[] local24 = new System.Byte[32]
+
+		        rNGCryptoServiceProvider.Dispose()
+
+		        if (rNGCryptoServiceProvider != 0)
+		        endif
+                
+
+		        if (local1 != 0)
+                    goto INSN_18034C5F3
+                endif
+
+		        System.String string2 = System.Convert.ToBase64String(local24) //(Byte[] inArray)
+		         += 24
+		        RemoteAdmin.QueryProcessor._secureRandom = string2
+		        System.String _serverStaticRandom2 = RemoteAdmin.QueryProcessor._serverStaticRandom
+
+		        System.String string3 = System.String.Concat("Generated round random salt: ", _serverStaticRandom2) //(String str0, String str1)
+		        System.Int32 7 = 7
+
+		        ServerConsole.AddLog(string3, 7) //(String q, ConsoleColor color)
+		    endif
+            
+
+		    System.Boolean isLocalPlayer2 = base.isLocalPlayer
+
+		    if (isLocalPlayer2 == False)
+                goto INSN_18034C2A2
+            endif
+		    ulong local35 = 0
+
+		    System.Collections.Generic.List`1<CommandSystem.ICommand> allCommands = RemoteAdmin.CommandProcessor.GetAllCommands()
+
+		    RemoteAdmin.QueryProcessor/CommandData[] commandDataArray = RemoteAdmin.QueryProcessor.ParseCommandsToStruct(allCommands) //(List`1 list)
+		     += 8
+		    RemoteAdmin.QueryProcessor._secureRandom = commandDataArray
+		    System.String _syncServerRandom = this._syncServerRandom
+
+		    System.Boolean isNullOrEmpty2 = System.String.IsNullOrEmpty(_syncServerRandom) //(String value)
+
+		    if (isNullOrEmpty2 == False)
+                goto INSN_18034C2A2
+            endif
+		    System.String _serverStaticRandom3 = RemoteAdmin.QueryProcessor._serverStaticRandom
+
+		    this.Network_syncServerRandom = _serverStaticRandom3
+		endif
+        
+		ReferenceHub _hub2 = this._hub
+		RemoteAdmin.PlayerCommandSender playerCommandSender = new RemoteAdmin.PlayerCommandSender()
+
+		playerCommandSender..ctor(_hub2) //(ReferenceHub hub)
+		this._sender = playerCommandSender
+
+		System.Boolean isLocalPlayer3 = base.isLocalPlayer
+
+		if (isLocalPlayer3 == False)
+            goto INSN_18034C5C8
+        endif
+
+		base.InvokeRepeating("RefreshPlayerList", 2, 1) //(String methodName, Single time, Single repeatRate)
+		System.Action`1<ReferenceHub> onPlayerAdded = ReferenceHub.OnPlayerAdded
+		System.Action`1<ReferenceHub> <>9__40_0 = RemoteAdmin.QueryProcessor/<>c.<>9__40_0
+
+		if (<>9__40_0 != 0)
+            goto INSN_18034C417
+        endif
+		RemoteAdmin.QueryProcessor/<>c <>c = RemoteAdmin.QueryProcessor/<>c.<>9
+		System.Action`1<ReferenceHub> action = new System.Action`1<ReferenceHub>()
+
+		action..ctor(<>c, {'<Start>b__40_0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		 += 8
+		RemoteAdmin.QueryProcessor/<>c.<>9 = action
+
+		INSN_18034C417:
+
+		System.Delegate delegate = System.Delegate.Combine(onPlayerAdded, action) //(Delegate a, Delegate b)
+
+		if (delegate == 0)
+            goto INSN_18034C46C
+        endif
+
+		if (delegate == 0)
+            goto INSN_18034C607
+        endif
+
+		INSN_18034C46C:
+		ReferenceHub.OnPlayerAdded = delegate
+		System.Action`1<ReferenceHub> onPlayerRemoved = ReferenceHub.OnPlayerRemoved
+		System.Action`1<ReferenceHub> <>9__40_1 = RemoteAdmin.QueryProcessor/<>c.<>9__40_1
+
+		if (<>9__40_1 != 0)
+            goto INSN_18034C52E
+        endif
+		RemoteAdmin.QueryProcessor/<>c <>c2 = RemoteAdmin.QueryProcessor/<>c.<>9
+		System.Action`1<ReferenceHub> action2 = new System.Action`1<ReferenceHub>()
+
+		action2..ctor(<>c2, {'<Start>b__40_1' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		 += 16
+		RemoteAdmin.QueryProcessor/<>c.<>9 = action2
+
+		INSN_18034C52E:
+
+		System.Delegate delegate2 = System.Delegate.Combine(onPlayerRemoved, action2) //(Delegate a, Delegate b)
+
+		if (delegate2 == 0)
+            goto INSN_18034C57F
+        endif
+
+		if (delegate2 == 0)
+            goto INSN_18034C5FE
+        endif
+
+		INSN_18034C57F:
+		 += 8
+		ReferenceHub.OnPlayerAdded = delegate2
+		. = 1
+
+		INSN_18034C5C8:
+		return
+		throw new System.NullReferenceException()
+
+		INSN_18034C5F3:
+
+		INSN_18034C607:
+		throw new System.InvalidCastException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x18034BF98) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.QueryProcessor
+	System.Void SetServerRandom(System.String prev, System.String random)
+
+		System.Boolean isLocalPlayer = base.isLocalPlayer
+
+		if (isLocalPlayer != False)
+
+		    System.String string = System.String.Concat("Obtained server round random: ", random) //(String str0, String str1)
+		    ulong local7 = 0
+
+		    GameCore.Console.AddDebugLog("SDAUTH", string, 2, local7) //(String debugKey, String message, MessageImportance importance, Boolean nospace)
+		endif
+        
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Boolean Mirror.NetworkBehaviour::get_isLocalPlayer()
+	IL_0006: ldc.i4.0
+	IL_0007: beq.s IL_0026
+	IL_0009: ldstr "Obtained server round random: "
+	IL_000e: ldarg.2
+	IL_000f: call System.String System.String::Concat(System.String,System.String)
+	IL_0014: stloc.0
+	IL_0015: ldc.i4.0
+	IL_0016: stloc.1
+	IL_0017: ldstr "SDAUTH"
+	IL_001c: ldloc.0
+	IL_001d: ldc.i4.2
+	IL_001e: conv.i8
+	IL_001f: conv.u8
+	IL_0020: ldloc.1
+	IL_0021: call System.Void GameCore.Console::AddDebugLog(System.String,System.String,MessageImportance,System.Boolean)
+	IL_0026: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.QueryProcessor
+	System.Void RefreshPlayerList()
+
+		System.Boolean isLocalPlayer = base.isLocalPlayer
+
+		if (isLocalPlayer != False)
+		    ServerRoles _roles = this._roles
+
+		    if (_roles.LocalRemoteAdmin != False)
+		        RemoteAdmin.UIController singleton = RemoteAdmin.UIController.Singleton
+		        ulong local6 = 0
+
+		        System.Boolean boolean = UnityEngine.Object.op_Equality(singleton, local6) //(Object x, Object y)
+
+		        if (boolean == False)
+		            RemoteAdmin.UIController singleton2 = RemoteAdmin.UIController.Singleton
+
+		            System.Boolean lockMovement = singleton2.LockMovement
+
+		            if (lockMovement != False)
+		                this._lastPlayerlistRequest = 0
+		                RemoteAdmin.UIController singleton3 = RemoteAdmin.UIController.Singleton
+		                TMPro.TMP_Dropdown PlayerSortingDropdown = singleton3.<PlayerSortingDropdown>k__BackingField
+		                System.Int32 m_Value = PlayerSortingDropdown.m_Value
+
+		                System.Collections.Generic.List`1<TMPro.TMP_Dropdown/OptionData> options = PlayerSortingDropdown.options
+		                System.Int32 _size = options._size
+		                System.Int32 local16 = _size - 1
+
+		                System.Int32 int32 = UnityEngine.Mathf.Min(m_Value, local16) //(Int32 a, Int32 b)
+		                ulong local19 = 0
+		                _size = int32
+		                  = int32.
+
+		                System.String string = local19.ToString()
+
+		                RemoteAdmin.Communication.RaPlayerList.Request()
+		            endif
+                    
+		        endif
+                
+		        return
+		        throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.FieldToLocalAction at (0x18034BAC7) is corrupt (No further info) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.QueryProcessor
+	static System.Void StaticRefreshPlayerList()
+		ulong local0 = 0
+
+		System.Boolean boolean = ReferenceHub.TryGetLocalHub(local0) //(ReferenceHub& hub)
+
+		if (boolean != False)
+
+		    System.Boolean boolean2 = ReferenceHub.TryGetHostHub(local0) //(ReferenceHub& hub)
+
+		    if (boolean2 != False)
+		          = local0.
+
+		        .RefreshPlayerList()
+		        ulong local6 = 0
+		          = local0.
+		          = local0.
+		          = local6.
+
+		        SteamManager.ChangeLobbyStatus()
+		    endif
+            
+		    return
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.FieldToLocalAction at (0x18034C6C1) is corrupt (No further info) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.QueryProcessor
+	System.Void Update()
+
+		System.Boolean isLocalPlayer = base.isLocalPlayer
+
+		if (isLocalPlayer != False)
+		    System.Single _lastPlayerlistRequest = this._lastPlayerlistRequest
+		    ulong local4 = 0
+
+		    System.Single deltaTime = UnityEngine.Time.deltaTime
+		    this._lastPlayerlistRequest = deltaTime
+		endif
+        
+
+		if (this._gdDirty == False)
+            goto INSN_18034D563
+        endif
+		this._gdDirty = False
+
+		Mirror.NetworkConnection connectionToClient = base.connectionToClient
+		System.Boolean _gameplayData = this._gameplayData
+		ulong local9 = 0
+
+		Mirror.PooledNetworkWriter writer = Mirror.NetworkWriterPool.GetWriter()
+
+		Mirror.NetworkWriterExtensions.WriteByte(writer, _gameplayData) //(NetworkWriter writer, Byte value)
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'QueryProcessor' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		ulong local14 = 0
+
+		base.SendTargetRPCInternal(connectionToClient, typeFromHandle, "TargetSyncGameplayData", writer, local14) //(NetworkConnection conn, Type invokeClass, String rpcName, NetworkWriter writer, Int32 channelId)
+
+		Mirror.NetworkWriterPool.Recycle(writer) //(PooledNetworkWriter writer)
+
+		INSN_18034D563:
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Boolean Mirror.NetworkBehaviour::get_isLocalPlayer()
+	IL_0006: ldc.i4.0
+	IL_0007: beq.s IL_001f
+	IL_0009: ldarg.0
+	IL_000a: ldfld System.Single RemoteAdmin.QueryProcessor::_lastPlayerlistRequest
+	IL_000f: stloc.0
+	IL_0010: ldc.i4.0
+	IL_0011: stloc.1
+	IL_0012: call System.Single UnityEngine.Time::get_deltaTime()
+	IL_0017: stloc.2
+	IL_0018: ldarg.0
+	IL_0019: ldloc.2
+	IL_001a: stfld System.Single RemoteAdmin.QueryProcessor::_lastPlayerlistRequest
+	IL_001f: ldarg.0
+	IL_0020: ldfld System.Boolean RemoteAdmin.QueryProcessor::_gdDirty
+	IL_0025: ldc.i4.0
+	IL_0026: beq.s IL_0079
+	IL_0028: ldarg.0
+	IL_0029: ldc.i4.0
+	IL_002a: stfld System.Boolean RemoteAdmin.QueryProcessor::_gdDirty
+	IL_002f: ldarg.0
+	IL_0030: call Mirror.NetworkConnection Mirror.NetworkBehaviour::get_connectionToClient()
+	IL_0035: stloc.3
+	IL_0036: ldarg.0
+	IL_0037: ldfld System.Boolean RemoteAdmin.QueryProcessor::_gameplayData
+	IL_003c: stloc.s V_4
+	IL_003e: ldc.i4.0
+	IL_003f: stloc.s V_5
+	IL_0041: call Mirror.PooledNetworkWriter Mirror.NetworkWriterPool::GetWriter()
+	IL_0046: stloc.s V_6
+	IL_0048: ldloc.s V_6
+	IL_004a: ldloc.s V_4
+	IL_004c: call System.Void Mirror.NetworkWriterExtensions::WriteByte(Mirror.NetworkWriter,System.Byte)
+	IL_0051: ldtoken RemoteAdmin.QueryProcessor
+	IL_0056: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+	IL_005b: stloc.s V_7
+	IL_005d: ldc.i4.0
+	IL_005e: stloc.s V_8
+	IL_0060: ldarg.0
+	IL_0061: ldloc.3
+	IL_0062: ldloc.s V_7
+	IL_0064: ldstr "TargetSyncGameplayData"
+	IL_0069: ldloc.s V_6
+	IL_006b: ldloc.s V_8
+	IL_006d: call System.Void Mirror.NetworkBehaviour::SendTargetRPCInternal(Mirror.NetworkConnection,System.Type,System.String,Mirror.NetworkWriter,System.Int32)
+	IL_0072: ldloc.s V_6
+	IL_0074: call System.Void Mirror.NetworkWriterPool::Recycle(Mirror.PooledNetworkWriter)
+	IL_0079: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.QueryProcessor
+	System.Void CmdRequestSalt(System.Byte[] clSalt)
+		ulong local2 = 0
+
+		Mirror.PooledNetworkWriter writer = Mirror.NetworkWriterPool.GetWriter()
+
+		Mirror.NetworkWriterExtensions.WriteBytesAndSize(writer, clSalt) //(NetworkWriter writer, Byte[] buffer)
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'QueryProcessor' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+
+		base.SendCommandInternal(typeFromHandle, "CmdRequestSalt", writer, local9, local8) //(Type invokeClass, String cmdName, NetworkWriter writer, Int32 channelId, Boolean requiresAuthority)
+
+		Mirror.NetworkWriterPool.Recycle(writer) //(PooledNetworkWriter writer)
+		return
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: call Mirror.PooledNetworkWriter Mirror.NetworkWriterPool::GetWriter()
+	IL_0007: stloc.1
+	IL_0008: ldloc.1
+	IL_0009: ldarg.1
+	IL_000a: call System.Void Mirror.NetworkWriterExtensions::WriteBytesAndSize(Mirror.NetworkWriter,System.Byte[])
+	IL_000f: ldtoken RemoteAdmin.QueryProcessor
+	IL_0014: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+	IL_0019: stloc.2
+	IL_001a: ldarg.0
+	IL_001b: ldloc.2
+	IL_001c: ldstr "CmdRequestSalt"
+	IL_0021: ldloc.1
+	IL_0022: ldloc.s V_5
+	IL_0024: ldloc.s V_4
+	IL_0026: call System.Void Mirror.NetworkBehaviour::SendCommandInternal(System.Type,System.String,Mirror.NetworkWriter,System.Int32,System.Boolean)
+	IL_002b: ldloc.1
+	IL_002c: call System.Void Mirror.NetworkWriterPool::Recycle(Mirror.PooledNetworkWriter)
+	IL_0031: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.QueryProcessor
+	System.Void TargetSaltGenerated(Mirror.NetworkConnection conn, System.Byte[] salt)
+		ulong local3 = 0
+
+		Mirror.PooledNetworkWriter writer = Mirror.NetworkWriterPool.GetWriter()
+
+		Mirror.NetworkWriterExtensions.WriteBytesAndSize(writer, salt) //(NetworkWriter writer, Byte[] buffer)
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'QueryProcessor' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		ulong local8 = 0
+
+		base.SendTargetRPCInternal(conn, typeFromHandle, "TargetSaltGenerated", writer, local8) //(NetworkConnection conn, Type invokeClass, String rpcName, NetworkWriter writer, Int32 channelId)
+
+		Mirror.NetworkWriterPool.Recycle(writer) //(PooledNetworkWriter writer)
+		return
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: call Mirror.PooledNetworkWriter Mirror.NetworkWriterPool::GetWriter()
+	IL_0007: stloc.1
+	IL_0008: ldloc.1
+	IL_0009: ldarg.2
+	IL_000a: call System.Void Mirror.NetworkWriterExtensions::WriteBytesAndSize(Mirror.NetworkWriter,System.Byte[])
+	IL_000f: ldtoken RemoteAdmin.QueryProcessor
+	IL_0014: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+	IL_0019: stloc.2
+	IL_001a: ldc.i4.0
+	IL_001b: stloc.3
+	IL_001c: ldarg.0
+	IL_001d: ldarg.1
+	IL_001e: ldloc.2
+	IL_001f: ldstr "TargetSaltGenerated"
+	IL_0024: ldloc.1
+	IL_0025: ldloc.3
+	IL_0026: call System.Void Mirror.NetworkBehaviour::SendTargetRPCInternal(Mirror.NetworkConnection,System.Type,System.String,Mirror.NetworkWriter,System.Int32)
+	IL_002b: ldloc.1
+	IL_002c: call System.Void Mirror.NetworkWriterPool::Recycle(Mirror.PooledNetworkWriter)
+	IL_0031: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.QueryProcessor
+	System.Void SyncCommandsToClient()
+
+		if (this._commandsSynced == False)
+		    this._commandsSynced = True
+		    RemoteAdmin.QueryProcessor/CommandData[] _commands = RemoteAdmin.QueryProcessor._commands
+		    ulong local2 = 0
+
+		    Mirror.PooledNetworkWriter writer = Mirror.NetworkWriterPool.GetWriter()
+
+		    Mirror.GeneratedNetworkCode._Write_RemoteAdmin.QueryProcessor/CommandData[](writer, _commands) //(NetworkWriter writer, CommandData[] value)
+
+		    System.Type typeFromHandle = System.Type.GetTypeFromHandle({'QueryProcessor' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		    ulong local7 = 0
+		    ulong local8 = 0
+
+		    base.SendTargetRPCInternal(local8, typeFromHandle, "TargetUpdateCommandList", writer, local7) //(NetworkConnection conn, Type invokeClass, String rpcName, NetworkWriter writer, Int32 channelId)
+
+		    Mirror.NetworkWriterPool.Recycle(writer) //(PooledNetworkWriter writer)
+		endif
+        
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Boolean RemoteAdmin.QueryProcessor::_commandsSynced
+	IL_0006: ldc.i4.0
+	IL_0007: bne.un.s IL_004d
+	IL_0009: ldarg.0
+	IL_000a: ldc.i4.1
+	IL_000b: stfld System.Boolean RemoteAdmin.QueryProcessor::_commandsSynced
+	IL_0010: ldsfld RemoteAdmin.QueryProcessor/CommandData[] RemoteAdmin.QueryProcessor::_commands
+	IL_0015: stloc.0
+	IL_0016: ldc.i4.0
+	IL_0017: stloc.1
+	IL_0018: call Mirror.PooledNetworkWriter Mirror.NetworkWriterPool::GetWriter()
+	IL_001d: stloc.2
+	IL_001e: ldloc.2
+	IL_001f: ldloc.0
+	IL_0020: call System.Void Mirror.GeneratedNetworkCode::_Write_RemoteAdmin.QueryProcessor/CommandData[](Mirror.NetworkWriter,RemoteAdmin.QueryProcessor/CommandData[])
+	IL_0025: ldtoken RemoteAdmin.QueryProcessor
+	IL_002a: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+	IL_002f: stloc.3
+	IL_0030: ldc.i4.0
+	IL_0031: stloc.s V_4
+	IL_0033: ldc.i4.0
+	IL_0034: stloc.s V_5
+	IL_0036: ldarg.0
+	IL_0037: ldloc.s V_5
+	IL_0039: ldloc.3
+	IL_003a: ldstr "TargetUpdateCommandList"
+	IL_003f: ldloc.2
+	IL_0040: ldloc.s V_4
+	IL_0042: call System.Void Mirror.NetworkBehaviour::SendTargetRPCInternal(Mirror.NetworkConnection,System.Type,System.String,Mirror.NetworkWriter,System.Int32)
+	IL_0047: ldloc.2
+	IL_0048: call System.Void Mirror.NetworkWriterPool::Recycle(Mirror.PooledNetworkWriter)
+	IL_004d: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.QueryProcessor
+	static RemoteAdmin.QueryProcessor/CommandData[] ParseCommandsToStruct(System.Collections.Generic.List`1<CommandSystem.ICommand> list)
+		System.Collections.Generic.List`1<RemoteAdmin.QueryProcessor/CommandData> list = new System.Collections.Generic.List`1<RemoteAdmin.QueryProcessor/CommandData>()
+
+		list..ctor()
+
+		System.Collections.Generic.List`1/Enumerator<RemoteAdmin.QueryProcessor/CommandData> enumerator = list.GetEnumerator()
+		ulong local5 = 0
+
+		if (enumerator != 0)
+
+		    System.Boolean isNullOrWhiteSpace = System.String.IsNullOrWhiteSpace()
+
+		    if (isNullOrWhiteSpace == False)
+
+		        if ( <= 80)
+                    goto INSN_18034A714
+                endif
+		        ulong local9 = 0
+		        System.Int32 80 = 80
+
+		        System.String string = enumerator.Substring(local9, 80) //(Int32 startIndex, Int32 length)
+
+		        System.String string2 = System.String.Concat(string, "...") //(String str0, String str1)
+		    else
+		    endif
+            
+		    ulong local14 = 0
+
+		    if (local14 == 0)
+                goto INSN_18034A76D
+            endif
+
+		    INSN_18034A76D:
+		    System.Boolean local18 = local5 != 0
+
+		    list.Add()
+
+		    if (local5 != 0)
+
+		        if (local5 < )
+		            ulong local22 = 0
+
+		            list.Add(local22) //(T item)
+		            local5 += 1
+		        endwhile
+                
+		        goto INSN_18034A9A7
+                
+
+		        list.Dispose()
+
+		        list.Dispose()
+
+		        if (list != 0)
+                    goto INSN_18034A9B7
+                endif
+
+		        RemoteAdmin.QueryProcessor/CommandData[] commandDataArray = list.ToArray()
+
+		        UnityEngine.Debug.LogWarning("[Server] function 'RemoteAdmin.QueryProcessor/CommandData[] RemoteAdmin.QueryProcessor::ParseCommandsToStruct(System.Collections.Generic.List`1<CommandSystem.ICommand>)' called when server was not active") //(Object message)
+		        ulong local25 = 0
+		        return local25
+		        throw new System.NullReferenceException()
+		        throw new System.IndexOutOfRangeException()
+
+		        INSN_18034A9A7:
+		        throw new System.NullReferenceException()
+		        throw new System.NullReferenceException()
+		        throw new System.NullReferenceException()
+
+		        INSN_18034A9B7:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18034A6D1) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.QueryProcessor
+	System.Void TargetUpdateCommandList(RemoteAdmin.QueryProcessor/CommandData[] commands)
+		ulong local2 = 0
+
+		Mirror.PooledNetworkWriter writer = Mirror.NetworkWriterPool.GetWriter()
+
+		Mirror.GeneratedNetworkCode._Write_RemoteAdmin.QueryProcessor/CommandData[](writer, commands) //(NetworkWriter writer, CommandData[] value)
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'QueryProcessor' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		ulong local7 = 0
+		ulong local8 = 0
+
+		base.SendTargetRPCInternal(local8, typeFromHandle, "TargetUpdateCommandList", writer, local7) //(NetworkConnection conn, Type invokeClass, String rpcName, NetworkWriter writer, Int32 channelId)
+
+		Mirror.NetworkWriterPool.Recycle(writer) //(PooledNetworkWriter writer)
+		return
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: call Mirror.PooledNetworkWriter Mirror.NetworkWriterPool::GetWriter()
+	IL_0007: stloc.1
+	IL_0008: ldloc.1
+	IL_0009: ldarg.1
+	IL_000a: call System.Void Mirror.GeneratedNetworkCode::_Write_RemoteAdmin.QueryProcessor/CommandData[](Mirror.NetworkWriter,RemoteAdmin.QueryProcessor/CommandData[])
+	IL_000f: ldtoken RemoteAdmin.QueryProcessor
+	IL_0014: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+	IL_0019: stloc.2
+	IL_001a: ldc.i4.0
+	IL_001b: stloc.3
+	IL_001c: ldc.i4.0
+	IL_001d: stloc.s V_4
+	IL_001f: ldarg.0
+	IL_0020: ldloc.s V_4
+	IL_0022: ldloc.2
+	IL_0023: ldstr "TargetUpdateCommandList"
+	IL_0028: ldloc.1
+	IL_0029: ldloc.3
+	IL_002a: call System.Void Mirror.NetworkBehaviour::SendTargetRPCInternal(Mirror.NetworkConnection,System.Type,System.String,Mirror.NetworkWriter,System.Int32)
+	IL_002f: ldloc.1
+	IL_0030: call System.Void Mirror.NetworkWriterPool::Recycle(Mirror.PooledNetworkWriter)
+	IL_0035: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.QueryProcessor
+	System.Void CmdSendPassword(System.Byte[] authSignature)
+		ulong local2 = 0
+
+		Mirror.PooledNetworkWriter writer = Mirror.NetworkWriterPool.GetWriter()
+
+		Mirror.NetworkWriterExtensions.WriteBytesAndSize(writer, authSignature) //(NetworkWriter writer, Byte[] buffer)
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'QueryProcessor' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+
+		base.SendCommandInternal(typeFromHandle, "CmdSendPassword", writer, local9, local8) //(Type invokeClass, String cmdName, NetworkWriter writer, Int32 channelId, Boolean requiresAuthority)
+
+		Mirror.NetworkWriterPool.Recycle(writer) //(PooledNetworkWriter writer)
+		return
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: call Mirror.PooledNetworkWriter Mirror.NetworkWriterPool::GetWriter()
+	IL_0007: stloc.1
+	IL_0008: ldloc.1
+	IL_0009: ldarg.1
+	IL_000a: call System.Void Mirror.NetworkWriterExtensions::WriteBytesAndSize(Mirror.NetworkWriter,System.Byte[])
+	IL_000f: ldtoken RemoteAdmin.QueryProcessor
+	IL_0014: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+	IL_0019: stloc.2
+	IL_001a: ldarg.0
+	IL_001b: ldloc.2
+	IL_001c: ldstr "CmdSendPassword"
+	IL_0021: ldloc.1
+	IL_0022: ldloc.s V_5
+	IL_0024: ldloc.s V_4
+	IL_0026: call System.Void Mirror.NetworkBehaviour::SendCommandInternal(System.Type,System.String,Mirror.NetworkWriter,System.Int32,System.Boolean)
+	IL_002b: ldloc.1
+	IL_002c: call System.Void Mirror.NetworkWriterPool::Recycle(Mirror.PooledNetworkWriter)
+	IL_0031: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.QueryProcessor
+	System.Void TargetReplyPassword(Mirror.NetworkConnection conn, System.Boolean b)
+		ulong local3 = 0
+
+		Mirror.PooledNetworkWriter writer = Mirror.NetworkWriterPool.GetWriter()
+
+		[instruction error - managed method being called is null]
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'QueryProcessor' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		ulong local8 = 0
+
+		base.SendTargetRPCInternal(conn, typeFromHandle, "TargetReplyPassword", writer, local8) //(NetworkConnection conn, Type invokeClass, String rpcName, NetworkWriter writer, Int32 channelId)
+
+		Mirror.NetworkWriterPool.Recycle(writer) //(PooledNetworkWriter writer)
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18034CB48) is corrupt (Don't know what method is being called) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.QueryProcessor
+	System.Void TargetAdminChatAccessDenied(Mirror.NetworkConnection conn)
+		ulong local2 = 0
+
+		Mirror.PooledNetworkWriter writer = Mirror.NetworkWriterPool.GetWriter()
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'QueryProcessor' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		ulong local6 = 0
+
+		base.SendTargetRPCInternal(conn, typeFromHandle, "TargetAdminChatAccessDenied", writer, local6) //(NetworkConnection conn, Type invokeClass, String rpcName, NetworkWriter writer, Int32 channelId)
+
+		Mirror.NetworkWriterPool.Recycle(writer) //(PooledNetworkWriter writer)
+		return
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: call Mirror.PooledNetworkWriter Mirror.NetworkWriterPool::GetWriter()
+	IL_0007: stloc.1
+	IL_0008: ldtoken RemoteAdmin.QueryProcessor
+	IL_000d: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+	IL_0012: stloc.2
+	IL_0013: ldc.i4.0
+	IL_0014: stloc.3
+	IL_0015: ldarg.0
+	IL_0016: ldarg.1
+	IL_0017: ldloc.2
+	IL_0018: ldstr "TargetAdminChatAccessDenied"
+	IL_001d: ldloc.1
+	IL_001e: ldloc.3
+	IL_001f: call System.Void Mirror.NetworkBehaviour::SendTargetRPCInternal(Mirror.NetworkConnection,System.Type,System.String,Mirror.NetworkWriter,System.Int32)
+	IL_0024: ldloc.1
+	IL_0025: call System.Void Mirror.NetworkWriterPool::Recycle(Mirror.PooledNetworkWriter)
+	IL_002a: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.QueryProcessor
+	System.Void TargetReply(Mirror.NetworkConnection conn, System.String content, System.Boolean isSuccess, System.Boolean logInConsole, System.String overrideDisplay)
+		RemoteAdmin.RemoteAdminCryptographicManager cryptoManager = this.CryptoManager
+
+		if (cryptoManager.EncryptionKey != 0)
+
+		    System.Byte[] bytes = Utf8.GetBytes(content) //(String data)
+		    RemoteAdmin.RemoteAdminCryptographicManager cryptoManager2 = this.CryptoManager
+		    System.Byte[] encryptionKey = cryptoManager2.EncryptionKey
+		    Org.BouncyCastle.Security.SecureRandom _secureRandom = RemoteAdmin.QueryProcessor._secureRandom
+
+		    System.Byte[] byteArray = Cryptography.AES.AesGcmEncrypt(bytes, encryptionKey, _secureRandom) //(Byte[] data, Byte[] secret, SecureRandom secureRandom)
+		    ulong local14 = 0
+
+		    Mirror.PooledNetworkWriter writer = Mirror.NetworkWriterPool.GetWriter()
+
+		    Mirror.NetworkWriterExtensions.WriteBytesAndSize(writer, byteArray) //(NetworkWriter writer, Byte[] buffer)
+
+		    Mirror.NetworkWriterExtensions.WriteByte(writer, isSuccess) //(NetworkWriter writer, Byte value)
+
+		    [instruction error - managed method being called is null]
+
+		    Mirror.NetworkWriterExtensions.WriteString()
+
+		    System.Type typeFromHandle = System.Type.GetTypeFromHandle({'QueryProcessor' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		    ulong local22 = 0
+
+		    base.SendTargetRPCInternal(conn, typeFromHandle, "TargetReplyEncrypted", writer, local22) //(NetworkConnection conn, Type invokeClass, String rpcName, NetworkWriter writer, Int32 channelId)
+
+		    Mirror.NetworkWriterPool.Recycle(writer) //(PooledNetworkWriter writer)
+		else
+
+		    System.Boolean isLocalPlayer = base.isLocalPlayer
+
+		    if (isLocalPlayer != False)
+
+		        System.String string = System.String.Concat("[RA output] ", content) //(String str0, String str1)
+		        System.Int32 7 = 7
+
+		        ServerConsole.AddLog(string, 7) //(String q, ConsoleColor color)
+		    else
+		        RemoteAdmin.RemoteAdminCryptographicManager cryptoManager3 = this.CryptoManager
+		        ulong local30 = 0
+
+		        if (cryptoManager3.ExchangeRequested == False)
+                    goto INSN_18034D037
+                endif
+		        ulong local31 = 0
+
+		        this.TargetReplyPlain(conn, "ERROR#ECDHE exchange was requested, please complete it on client side.", local31, local33, local32) //(NetworkConnection conn, String content, Boolean isSuccess, Boolean logInConsole, String overrideDisplay)
+		    endif
+            
+		    return
+
+		    INSN_18034D037:
+
+		    UnityEngine.Debug.LogWarning("[Server] function 'System.Void RemoteAdmin.QueryProcessor::TargetReply(Mirror.NetworkConnection,System.String,System.Boolean,System.Boolean,System.String)' called when server was not active") //(Object message)
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18034CEDE) is corrupt (Don't know what method is being called) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.QueryProcessor
+	System.Void TargetReplyPlain(Mirror.NetworkConnection conn, System.String content, System.Boolean isSuccess, System.Boolean logInConsole, System.String overrideDisplay)
+		ulong local6 = 0
+
+		Mirror.PooledNetworkWriter writer = Mirror.NetworkWriterPool.GetWriter()
+
+		Mirror.NetworkWriterExtensions.WriteString(writer, content) //(NetworkWriter writer, String value)
+
+		[instruction error - managed method being called is null]
+
+		[instruction error - managed method being called is null]
+
+		Mirror.NetworkWriterExtensions.WriteString()
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'QueryProcessor' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		ulong local14 = 0
+
+		base.SendTargetRPCInternal(conn, typeFromHandle, "TargetReplyPlain", writer, local14) //(NetworkConnection conn, Type invokeClass, String rpcName, NetworkWriter writer, Int32 channelId)
+
+		Mirror.NetworkWriterPool.Recycle(writer) //(PooledNetworkWriter writer)
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18034CC5F) is corrupt (Don't know what method is being called) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.QueryProcessor
+	System.Void TargetReplyEncrypted(Mirror.NetworkConnection conn, System.Byte[] content, System.Boolean isSuccess, System.Boolean logInConsole, System.String overrideDisplay)
+		ulong local6 = 0
+
+		Mirror.PooledNetworkWriter writer = Mirror.NetworkWriterPool.GetWriter()
+
+		Mirror.NetworkWriterExtensions.WriteBytesAndSize(writer, content) //(NetworkWriter writer, Byte[] buffer)
+
+		[instruction error - managed method being called is null]
+
+		[instruction error - managed method being called is null]
+
+		Mirror.NetworkWriterExtensions.WriteString()
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'QueryProcessor' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		ulong local14 = 0
+
+		base.SendTargetRPCInternal(conn, typeFromHandle, "TargetReplyEncrypted", writer, local14) //(NetworkConnection conn, Type invokeClass, String rpcName, NetworkWriter writer, Int32 channelId)
+
+		Mirror.NetworkWriterPool.Recycle(writer) //(PooledNetworkWriter writer)
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18034CA1F) is corrupt (Don't know what method is being called) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.QueryProcessor
+	System.Void ProcessReply(System.String content, System.Boolean isSuccess, System.Boolean logInConsole, System.String overrideDisplay, System.Boolean secure)
+		ulong local6 = 0
+		System.Int32 4 = 4
+
+		System.Boolean boolean = content.StartsWith("$", 4) //(String value, StringComparison comparisonType)
+
+		if (boolean == False)
+		    System.Int32 4 = 4
+		    System.String empty = System.String.Empty
+
+		    System.Boolean boolean2 = content.StartsWith("@", 4) //(String value, StringComparison comparisonType)
+		    System.Int32 4 = 4
+
+		    if (boolean2 == False)
+
+		        System.Boolean boolean3 = content.StartsWith("%", 4) //(String value, StringComparison comparisonType)
+
+		        if (boolean3 == False)
+		            System.Int32 4 = 4
+
+		            System.Boolean boolean4 = NorthwoodLib.StringUtils.Contains(content, "#", 4) //(String s, String value, StringComparison comparison)
+
+		            if (boolean4 != False)
+		                System.Int32 4 = 4
+
+		                System.Int32 int32 = content.IndexOf("#", 4) //(String value, StringComparison comparisonType)
+
+		                System.String string = content.Remove(int32) //(Int32 startIndex)
+		                System.Int32 4 = 4
+
+		                System.Int32 int322 = content.IndexOf("#", 4) //(String value, StringComparison comparisonType)
+		                ulong local23 = 0
+		                System.Int32 local24 = int322 + 1
+
+		                System.String string2 = content.Remove(local23, local24) //(Int32 startIndex, Int32 count)
+		            endif
+                    
+
+		            if (logInConsole == False)
+                        goto INSN_18034B0C3
+                    endif
+		            System.Int64 local26 = 8
+		            System.String[] local27 = new System.String[8]
+		            string  =  != 0 ? "" : ""
+
+		            if ("" == 0)
+                        goto INSN_18034AEC6
+                    endif
+
+		            if (local27 == 0)
+                        goto INSN_18034B84B
+                    endif
+
+		            INSN_18034AEC6:
+		            throw new System.IndexOutOfRangeException()
+
+		            if ("<color=white>[</color><link=TBRA_CommandSuccess>" == 0)
+                        goto INSN_18034AEFE
+                    endif
+
+		            if ("<color=white>[</color><link=TBRA_CommandSuccess>" == 0)
+                        goto INSN_18034B85B
+                    endif
+
+		            INSN_18034AEFE:
+		            local27[1] = "<color=white>[</color><link=TBRA_CommandSuccess>"
+		            string local30 = isSuccess != False ? "<color=green></color><color=white></link>] " : "<link=TBRA_CommandFail><color=red></color><color=white></link>]</color> <color=orange>"
+
+		            if (local30 == 0)
+                        goto INSN_18034AF46
+                    endif
+
+		            if ("<color=white>[</color><link=TBRA_CommandSuccess>" == 0)
+                        goto INSN_18034B87B
+                    endif
+
+		            INSN_18034AF46:
+		            throw new System.IndexOutOfRangeException()
+
+		            if ("[" == 0)
+                        goto INSN_18034AF81
+                    endif
+
+		            if ("[" == 0)
+                        goto INSN_18034B88B
+                    endif
+
+		            INSN_18034AF81:
+		            local27[3] = "["
+
+		            if (empty == 0)
+                        goto INSN_18034AFB7
+                    endif
+
+		            if ("[" == 0)
+                        goto INSN_18034B8AB
+                    endif
+
+		            INSN_18034AFB7:
+		            local27[4] = empty
+
+		            if ("] " == 0)
+                        goto INSN_18034AFFB
+                    endif
+
+		            if ("] " == 0)
+                        goto INSN_18034B8CB
+                    endif
+
+		            INSN_18034AFFB:
+		            local27[5] = "] "
+
+		            if (content == 0)
+                        goto INSN_18034B031
+                    endif
+
+		            if ("] " == 0)
+                        goto INSN_18034B8EB
+                    endif
+
+		            INSN_18034B031:
+		            local27[6] = content
+
+		            if ("</color>" == 0)
+                        goto INSN_18034B075
+                    endif
+
+		            if ("</color>" == 0)
+                        goto INSN_18034B90B
+                    endif
+
+		            INSN_18034B075:
+		            local27[7] = "</color>"
+
+		            System.String string3 = System.String.Concat(local27) //(String[] values)
+
+		            RemoteAdmin.TextBasedRemoteAdmin.AddLog(string3) //(String log)
+
+		            INSN_18034B0C3:
+
+		            [instruction error - managed method being called is null]
+
+		            if (string3 != 0)
+                        goto INSN_18034B50A
+                    endif
+
+		            System.Boolean boolean5 = System.String.op_Inequality()
+
+		            if (boolean5 == False)
+                        goto INSN_18034B50A
+                    endif
+		            System.String empty2 = System.String.Empty
+
+		            [instruction error - managed method being called is null]
+
+		            if (String == 0)
+                        goto INSN_18034B186
+                    endif
+
+		            System.Boolean boolean6 = System.String.Equals(empty, "WIKI") //(String a, String b)
+
+		            if (boolean6 == False)
+                        goto INSN_18034B13D
+                    endif
+
+		            UnityEngine.Application.OpenURL("https://en.scpslgame.com/index.php?title=Remote_Admin") //(String url)
+
+		            INSN_18034B13D:
+
+		            System.Boolean boolean7 = System.String.Equals(empty, "LOGOUT") //(String a, String b)
+
+		            if (boolean7 == False)
+                        goto INSN_18034B186
+                    endif
+		            RemoteAdmin.UIController singleton = RemoteAdmin.UIController.Singleton
+
+		            System.Boolean isEnabled = singleton.IsEnabled
+		            singleton.LoggedIn = False
+
+		            INSN_18034B186:
+		              = isEnabled.
+
+		            if (singleton == 0)
+                        goto INSN_18034B50A
+                    endif
+
+		            if (isSuccess == False)
+                        goto INSN_18034B1B9
+                    endif
+
+		            UnityEngine.Color green = UnityEngine.Color.green
+
+		            INSN_18034B1B9:
+
+		            UnityEngine.Color red = UnityEngine.Color.red
+		            UnityEngine.GameObject root_login = singleton.root_login
+		            ulong local55 = 0
+
+		            System.Boolean boolean8 = UnityEngine.Object.op_Equality(root_login, local55) //(Object x, Object y)
+
+		            if (boolean8 != False)
+                        goto INSN_18034B50A
+                    endif
+		            UnityEngine.GameObject root_login2 = singleton.root_login
+
+		            [instruction error - managed method being called is null]
+		            UnityEngine.GameObject root_login3 = singleton.root_login
+
+		            [instruction error - managed method being called is null]
+		        else
+		            System.DateTime expectingURL = this.ExpectingURL
+		            ulong local61 = 0
+
+		            System.DateTime now = System.DateTime.Now
+
+		            System.Boolean boolean9 = System.DateTime.op_LessThan(expectingURL, now) //(DateTime t1, DateTime t2)
+
+		            if (boolean9 != False)
+                        goto INSN_18034B52A
+                    endif
+		            System.DateTime minValue = System.DateTime.MinValue
+		            this.ExpectingURL = minValue
+		            ServerConfigSynchronizer singleton2 = ServerConfigSynchronizer.Singleton
+		            System.String remoteAdminExternalPlayerLookupMode = singleton2.RemoteAdminExternalPlayerLookupMode
+
+		            System.Boolean boolean10 = remoteAdminExternalPlayerLookupMode.Contains("disabled") //(String value)
+
+		            if (boolean10 == False)
+		                System.Int64 local70 = 1
+		                ulong local71 = 0
+
+		                System.String string4 = content.Substring(local70) //(Int32 startIndex)
+
+		                System.Int32 int323 = string4.IndexOf("%", local71) //(String value, StringComparison comparisonType)
+		                System.String empty3 = System.String.Empty
+
+		                if (int323 > 0)
+
+		                    System.Boolean boolean11 = remoteAdminExternalPlayerLookupMode.Contains("fullauth") //(String value)
+		                    string local78 = boolean11 != False ? "&" : "?"
+		                    ulong local80 = 0
+
+		                    System.String string5 = string4.Substring(local80, int323) //(Int32 startIndex, Int32 length)
+
+		                    System.String string6 = System.String.Concat(local78, "lookup=", string5) //(String str0, String str1, String str2)
+		                    System.Int32 local84 = int323 + 1
+		                endif
+                        
+
+		                System.String string7 = string4.Substring(local70) //(Int32 startIndex)
+
+		                System.Boolean boolean12 = remoteAdminExternalPlayerLookupMode.Contains("fullauth") //(String value)
+
+		                if (boolean12 != False)
+                            goto INSN_18034B43E
+                        endif
+		                ServerConfigSynchronizer singleton3 = ServerConfigSynchronizer.Singleton
+		                System.String remoteAdminExternalPlayerLookupURL = singleton3.RemoteAdminExternalPlayerLookupURL
+
+		                INSN_18034B43E:
+
+		                System.String string8 = System.String.Concat(remoteAdminExternalPlayerLookupURL, empty3) //(String str0, String str1)
+
+		                UnityEngine.Application.OpenURL(string8) //(String url)
+		                ulong local95 = 0
+
+		                Steamworks.SteamFriends.OpenWebOverlay(string8, local95) //(String url, Boolean modal)
+		            else
+
+		                RemoteAdmin.TextBasedRemoteAdmin.AddLog("<color=white>[</color><color=red><link=TBRA_InternalError> (INTERNAL ERROR)</link></color><color=white>]</color> <color=red>Server attempted to send us a URL but external lookup is disabled! (This should never happen!)</color>") //(String log)
+		            endif
+                    
+		            return
+
+		            INSN_18034B52A:
+		        endif
+                
+		        System.Int64 local99 = 5
+
+		        System.Boolean boolean13 = content.StartsWith("@@", 4) //(String value, StringComparison comparisonType)
+		        System.Boolean local102 = boolean13 != False
+		        System.Boolean local103 = local102 + 1
+
+		        System.String string9 = content.Substring(local103) //(Int32 startIndex)
+		        System.Int32 4 = 4
+
+		        System.Boolean boolean14 = string9.StartsWith("!", 4) //(String value, StringComparison comparisonType)
+
+		        if (boolean14 == False)
+                    goto INSN_18034B66F
+                endif
+		        System.Int32 4 = 4
+
+		        System.Boolean boolean15 = NorthwoodLib.StringUtils.Contains(string9, " ", 4) //(String s, String value, StringComparison comparison)
+
+		        if (boolean15 == False)
+                    goto INSN_18034B66F
+                endif
+		        System.Int32 4 = 4
+
+		        System.Int32 int324 = string9.IndexOf(" ", 4) //(String value, StringComparison comparisonType)
+		        System.Int32 local113 = int324 - 1
+		        System.Int32 1 = 1
+
+		        System.String string10 = string9.Substring(1, local113) //(Int32 startIndex, Int32 length)
+
+		        System.Boolean boolean16 = System.UInt16.TryParse()
+
+		        if (boolean16 == False)
+                    goto INSN_18034B647
+                endif
+		        System.Int32 local117 = int324 + 1
+
+		        System.String string11 = string9.Substring(local117) //(Int32 startIndex)
+
+		        INSN_18034B647:
+
+		        if (local99 > 15)
+                    goto INSN_18034B663
+                endif
+
+		        if (local99 != 0)
+                    goto INSN_18034B674
+                endif
+		        System.Int64 local120 = 4
+
+		        INSN_18034B663:
+		        System.Int64 local121 = 15
+
+		        INSN_18034B66F:
+
+		        INSN_18034B674:
+		        System.Boolean local122 = boolean13 != False
+
+		        Broadcast.AddElement()
+		    endif
+            
+		    System.Int64 local124 = 1
+		    ulong local125 = 0
+
+		    System.String string12 = content.Remove(local125, local124) //(Int32 startIndex, Int32 count)
+		    System.Char[] local127 = new System.Char[1]
+		    System.Int64 local128 = 32
+		    local127[0] = local128
+
+		    System.String[] stringArray = string12.Split(local127) //(Char[] separator)
+		    System.Int32 length = stringArray.Length
+
+		    if (length > local124)
+		        System.String local132 = stringArray[0]
+
+		        System.Boolean boolean17 = System.Int32.TryParse(local132, local6) //(String s, Int32& result)
+
+		        if (boolean17 != False)
+		            System.Collections.Generic.Dictionary`2<System.Int32,RemoteAdmin.Interfaces.IClientCommunication> clientCommunication = RemoteAdmin.Communication.CommunicationProcessor.ClientCommunication
+
+		            System.Boolean boolean18 = clientCommunication.TryGetValue(local6, local6) //(TKey key, TValue& value)
+
+		            if (boolean18 != False)
+
+		                System.Collections.Generic.IEnumerable`1<System.String> iEnumerable = System.Linq.Enumerable.Skip<System.String>(stringArray, local124) //(IEnumerable`1 source, Int32 count)
+
+		                System.String string13 = System.String.Join(" ", iEnumerable) //(String separator, IEnumerable`1 values)
+		                //UNKNOWN CLASS OFFSET READ HERE
+
+		                if (local6 >= iEnumerable)
+                            goto INSN_18034B806
+                        endif
+		                local6 += local6
+		                local6 += 1
+
+		                INSN_18034B806:
+		                  = local6.
+		                local6 += local6
+		                local6 += 1
+		                local6 += 19
+		                local6 += constant246
+		                throw new System.NullReferenceException()
+
+		                INSN_18034B84B:
+
+		                INSN_18034B85B:
+
+		                INSN_18034B87B:
+
+		                INSN_18034B88B:
+
+		                INSN_18034B8AB:
+
+		                INSN_18034B8CB:
+
+		                INSN_18034B8EB:
+
+		                INSN_18034B90B:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ConditionalGlobalStringRefToConstantAction at (0x18034AE98) is corrupt (One of the arguments is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.QueryProcessor
+	System.Void CmdSendQuery(System.String query, System.Boolean gban)
+		ulong local3 = 0
+
+		System.Boolean active = Mirror.NetworkClient.active
+
+		if (active != False)
+
+		    System.String serverRandom = this.ServerRandom
+
+		    [instruction error - managed method being called is null]
+
+		    if (serverRandom == 0)
+
+		        System.String serverRandom2 = this.ServerRandom
+
+		        if (gban == False)
+		            System.Int32 5 = 5
+
+		            System.Boolean boolean = query.StartsWith("GBAN-KICK ", 5) //(String value, StringComparison comparisonType)
+
+		            if (boolean != False)
+
+		                UnityEngine.Color magenta = UnityEngine.Color.magenta
+
+		                GameCore.Console.AddLog()
+		                return
+		            endif
+                    
+		            System.Int32 signaturesCounter = this.SignaturesCounter
+		            RemoteAdmin.RemoteAdminCryptographicManager cryptoManager = this.CryptoManager
+		            signaturesCounter += 1
+		            this.SignaturesCounter = signaturesCounter
+
+		            if (cryptoManager.EncryptionKey == 0)
+                        goto INSN_180348136
+                    endif
+
+		            System.String string = System.String.Concat(query, ":[:COUNTER:]:", cryptoManager) //(Object arg0, Object arg1, Object arg2)
+
+		            System.Byte[] bytes = Utf8.GetBytes(string) //(String data)
+		            RemoteAdmin.RemoteAdminCryptographicManager cryptoManager2 = this.CryptoManager
+		            System.Byte[] encryptionKey = cryptoManager2.EncryptionKey
+		            Org.BouncyCastle.Security.SecureRandom _secureRandom = RemoteAdmin.QueryProcessor._secureRandom
+
+		            System.Byte[] byteArray = Cryptography.AES.AesGcmEncrypt(bytes, encryptionKey, _secureRandom) //(Byte[] data, Byte[] secret, SecureRandom secureRandom)
+		            ulong local28 = 0
+
+		            Mirror.PooledNetworkWriter writer = Mirror.NetworkWriterPool.GetWriter()
+
+		            Mirror.NetworkWriterExtensions.WriteBytesAndSize(writer, byteArray) //(NetworkWriter writer, Byte[] buffer)
+
+		            System.Type typeFromHandle = System.Type.GetTypeFromHandle({'QueryProcessor' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+
+		            INSN_180348136:
+
+		            if (this.PasswordSent != False)
+                        goto INSN_1803481AD
+                    endif
+
+		            UnityEngine.Color magenta2 = UnityEngine.Color.magenta
+
+		            GameCore.Console.AddLog()
+
+		            INSN_1803481AD:
+		            ServerRoles _roles = this._roles
+
+		            if (_roles.PublicKeyAccepted != False)
+                        goto INSN_1803481E5
+                    endif
+
+		            if (_roles.RemoteAdminMode != constant95)
+                        goto INSN_1803481E5
+                    endif
+		            System.Int32 -2 = 4294967294
+
+		            System.Byte[] byteArray2 = this.HmacSign(query, -2) //(String message, Int32 counter)
+
+		            INSN_1803481E5:
+		            System.Int32 -2 = 4294967294
+
+		            System.Byte[] byteArray3 = this.EcdsaSign(query, -2) //(String message, Int32 counter)
+		            ulong local43 = 0
+
+		            Mirror.PooledNetworkWriter writer2 = Mirror.NetworkWriterPool.GetWriter()
+
+		            Mirror.NetworkWriterExtensions.WriteString(writer2, query) //(NetworkWriter writer, String value)
+
+		            Mirror.NetworkWriterExtensions.WriteInt32()
+
+		            Mirror.NetworkWriterExtensions.WriteBytesAndSize(writer2, byteArray3) //(NetworkWriter writer, Byte[] buffer)
+
+		            System.Type typeFromHandle2 = System.Type.GetTypeFromHandle({'QueryProcessor' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+
+		            base.SendCommandInternal(typeFromHandle2, "CmdSendQuery", writer2, local52, local51) //(Type invokeClass, String cmdName, NetworkWriter writer, Int32 channelId, Boolean requiresAuthority)
+
+		            Mirror.NetworkWriterPool.Recycle(writer2) //(PooledNetworkWriter writer)
+
+		            System.Boolean boolean2 = query.StartsWith("$") //(String value)
+
+		            if (boolean2 == False)
+
+		                System.String string2 = query.Replace("<", "＜") //(String oldValue, String newValue)
+
+		                System.String string3 = string2.Replace(">", "＞") //(String oldValue, String newValue)
+		                System.String empty = System.String.Empty
+
+		                System.String string4 = string3.Replace("
+                        ", empty) //(String oldValue, String newValue)
+		                System.String empty2 = System.String.Empty
+
+		                System.String string5 = string4.Replace("", empty2) //(String oldValue, String newValue)
+
+		                System.String string6 = System.String.Concat("<color=purple> ", string5, "</color>") //(String str0, String str1, String str2)
+
+		                RemoteAdmin.TextBasedRemoteAdmin.AddLog(string6) //(String log)
+
+		                UnityEngine.Color magenta3 = UnityEngine.Color.magenta
+		            endif
+                    
+
+		            UnityEngine.Color magenta4 = UnityEngine.Color.magenta
+
+		            GameCore.Console.AddLog()
+		        endif
+                
+
+		        UnityEngine.Debug.LogWarning("[Client] function 'System.Void RemoteAdmin.QueryProcessor::CmdSendQuery(System.String,System.Boolean)' called when client was not active") //(Object message)
+		        return
+		        throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180347EEE) is corrupt (Don't know what method is being called) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.QueryProcessor
+	System.Void CmdSendEncryptedQuery(System.Byte[] query)
+		ulong local2 = 0
+
+		Mirror.PooledNetworkWriter writer = Mirror.NetworkWriterPool.GetWriter()
+
+		Mirror.NetworkWriterExtensions.WriteBytesAndSize(writer, query) //(NetworkWriter writer, Byte[] buffer)
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'QueryProcessor' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+
+		base.SendCommandInternal(typeFromHandle, "CmdSendEncryptedQuery", writer, local9, local8) //(Type invokeClass, String cmdName, NetworkWriter writer, Int32 channelId, Boolean requiresAuthority)
+
+		Mirror.NetworkWriterPool.Recycle(writer) //(PooledNetworkWriter writer)
+		return
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: call Mirror.PooledNetworkWriter Mirror.NetworkWriterPool::GetWriter()
+	IL_0007: stloc.1
+	IL_0008: ldloc.1
+	IL_0009: ldarg.1
+	IL_000a: call System.Void Mirror.NetworkWriterExtensions::WriteBytesAndSize(Mirror.NetworkWriter,System.Byte[])
+	IL_000f: ldtoken RemoteAdmin.QueryProcessor
+	IL_0014: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+	IL_0019: stloc.2
+	IL_001a: ldarg.0
+	IL_001b: ldloc.2
+	IL_001c: ldstr "CmdSendEncryptedQuery"
+	IL_0021: ldloc.1
+	IL_0022: ldloc.s V_5
+	IL_0024: ldloc.s V_4
+	IL_0026: call System.Void Mirror.NetworkBehaviour::SendCommandInternal(System.Type,System.String,Mirror.NetworkWriter,System.Int32,System.Boolean)
+	IL_002b: ldloc.1
+	IL_002c: call System.Void Mirror.NetworkWriterPool::Recycle(Mirror.PooledNetworkWriter)
+	IL_0031: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.QueryProcessor
+	System.Void CmdSendQuery(System.String query, System.Int32 counter, System.Byte[] signature)
+		ulong local4 = 0
+
+		Mirror.PooledNetworkWriter writer = Mirror.NetworkWriterPool.GetWriter()
+
+		Mirror.NetworkWriterExtensions.WriteString(writer, query) //(NetworkWriter writer, String value)
+
+		Mirror.NetworkWriterExtensions.WriteInt32(writer, counter) //(NetworkWriter writer, Int32 value)
+
+		Mirror.NetworkWriterExtensions.WriteBytesAndSize(writer, signature) //(NetworkWriter writer, Byte[] buffer)
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'QueryProcessor' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+
+		base.SendCommandInternal(typeFromHandle, "CmdSendQuery", writer, local13, local12) //(Type invokeClass, String cmdName, NetworkWriter writer, Int32 channelId, Boolean requiresAuthority)
+
+		Mirror.NetworkWriterPool.Recycle(writer) //(PooledNetworkWriter writer)
+		return
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: call Mirror.PooledNetworkWriter Mirror.NetworkWriterPool::GetWriter()
+	IL_0007: stloc.1
+	IL_0008: ldloc.1
+	IL_0009: ldarg.1
+	IL_000a: call System.Void Mirror.NetworkWriterExtensions::WriteString(Mirror.NetworkWriter,System.String)
+	IL_000f: ldloc.1
+	IL_0010: ldarg.2
+	IL_0011: call System.Void Mirror.NetworkWriterExtensions::WriteInt32(Mirror.NetworkWriter,System.Int32)
+	IL_0016: ldloc.1
+	IL_0017: ldarg.3
+	IL_0018: call System.Void Mirror.NetworkWriterExtensions::WriteBytesAndSize(Mirror.NetworkWriter,System.Byte[])
+	IL_001d: ldtoken RemoteAdmin.QueryProcessor
+	IL_0022: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+	IL_0027: stloc.2
+	IL_0028: ldarg.0
+	IL_0029: ldloc.2
+	IL_002a: ldstr "CmdSendQuery"
+	IL_002f: ldloc.1
+	IL_0030: ldloc.s V_5
+	IL_0032: ldloc.s V_4
+	IL_0034: call System.Void Mirror.NetworkBehaviour::SendCommandInternal(System.Type,System.String,Mirror.NetworkWriter,System.Int32,System.Boolean)
+	IL_0039: ldloc.1
+	IL_003a: call System.Void Mirror.NetworkWriterPool::Recycle(Mirror.PooledNetworkWriter)
+	IL_003f: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.QueryProcessor
+	System.Void ProcessGameConsoleQuery(System.String query)
+		ulong local2 = 0
+
+		System.String string = query.Trim()
+		System.Char[] spaceArray = RemoteAdmin.QueryProcessor.SpaceArray
+
+		System.String[] stringArray = string.Split()
+		CommandSystem.ClientCommandHandler dotCommandHandler = RemoteAdmin.QueryProcessor.DotCommandHandler
+		System.String local10 = stringArray[0]
+
+		System.Collections.Generic.IEnumerable`1<CommandSystem.ICommand> allCommands = dotCommandHandler.AllCommands
+
+		if (allCommands == 0)
+		    GameConsoleTransmission gameConsoleTransmission = this.GCT
+
+		    Mirror.NetworkConnection connectionToClient = base.connectionToClient
+
+		    gameConsoleTransmission.SendToClient(connectionToClient, "Command not found.", "red") //(NetworkConnection connection, String text, String color)
+		    return
+		endif
+        
+		System.Int32 length = stringArray.Length
+		System.Int64 local18 = 1
+
+		if (local2 >= local18)
+            goto INSN_18034AB98
+        endif
+		local2 += local2
+
+		if ( == ICommand)
+            goto INSN_18034ABE8
+        endif
+		local2 += 1
+
+		INSN_18034AB98:
+		  = local2.
+		GameConsoleTransmission gameConsoleTransmission2 = this.GCT
+		ulong local23 = 0
+
+		Mirror.NetworkConnection connectionToClient2 = base.connectionToClient
+
+		INSN_18034ABE8:
+		local23 += local23
+		connectionToClient2 += 
+		System.String local25 = stringArray[0]
+
+		System.String string2 = local25.ToUpperInvariant()
+
+		System.String string3 = System.String.Concat()
+
+		gameConsoleTransmission2.SendToClient(connectionToClient2, string3, "") //(NetworkConnection connection, String text, String color)
+
+		System.String string4 = System.String.Concat("Command execution failed! Error: ", connectionToClient2) //(Object arg0, Object arg1)
+
+		Mirror.NetworkConnection connectionToClient3 = .connectionToClient
+
+		System.String string5 = .ToUpperInvariant()
+
+		System.String string6 = System.String.Concat(string5, "#", string4) //(String str0, String str1, String str2)
+		ulong local38 = 0
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18034AA80) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (3)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.QueryProcessor
+	System.Boolean VerifyRequestSignature(System.String message, System.Int32 counter, System.Byte[] signature, System.Boolean validateCounter)
+		ServerRoles _roles = this._roles
+
+		if (_roles.PublicKeyAccepted == False)
+
+		    if (_roles.RemoteAdminMode == constant3)
+
+		        System.Boolean boolean = this.VerifyHmacSignature()
+		        return boolean
+		    endif
+            
+
+		    System.Boolean boolean2 = this.VerifyEcdsaSignature()
+		    return boolean2
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfNonZeroOrNonNullAction at (0x18034F75A) is corrupt (ConstantDefinition: Don't know how to get IL to load a System.Byte) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.QueryProcessor
+	System.Byte[] SignRequest(System.String message, System.Int32 counter)
+		ServerRoles _roles = this._roles
+
+		if (_roles.PublicKeyAccepted == False)
+
+		    if (_roles.RemoteAdminMode == constant3)
+
+		        System.Byte[] byteArray = this.HmacSign(message, counter) //(String message, Int32 counter)
+		        return byteArray
+		    endif
+            
+
+		    System.Byte[] byteArray2 = this.EcdsaSign(message, counter) //(String message, Int32 counter)
+		    return byteArray2
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfNonZeroOrNonNullAction at (0x18034BD9A) is corrupt (ConstantDefinition: Don't know how to get IL to load a System.Byte) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.QueryProcessor
+	System.Boolean VerifyHmacSignature(System.String message, System.Int32 counter, System.Byte[] signature, System.Boolean validateCounter)
+
+		if (counter > this._signaturesCounter)
+		    this._signaturesCounter = counter
+		else
+
+		    if ( == 0)
+		    endif
+            
+
+		    if (this.OverridePasswordEnabled != False)
+		        System.Object[] local5 = new System.Object[5]
+
+		        if (message != 0)
+
+		            if (local5 == 0)
+                        goto INSN_18034F699
+                    endif
+		        endif
+                
+		        local5[0] = message
+
+		        if (":[:COUNTER:]:" == 0)
+                    goto INSN_18034F489
+                endif
+
+		        if (":[:COUNTER:]:" == 0)
+                    goto INSN_18034F6B9
+                endif
+
+		        INSN_18034F489:
+		        local5[1] = ":[:COUNTER:]:"
+
+		        if (":[:COUNTER:]:" == 0)
+                    goto INSN_18034F4D7
+                endif
+
+		        if (":[:COUNTER:]:" == 0)
+                    goto INSN_18034F6D9
+                endif
+
+		        INSN_18034F4D7:
+		        local5[2] = ":[:COUNTER:]:"
+
+		        if (":[:SALT:]:" == 0)
+                    goto INSN_18034F51B
+                endif
+
+		        if (":[:SALT:]:" == 0)
+                    goto INSN_18034F6F9
+                endif
+
+		        INSN_18034F51B:
+		        local5[3] = ":[:SALT:]:"
+
+		        System.String serverRandom = this.ServerRandom
+
+		        if (serverRandom == 0)
+                    goto INSN_18034F55E
+                endif
+
+		        if (serverRandom == 0)
+                    goto INSN_18034F719
+                endif
+
+		        INSN_18034F55E:
+		        local5[4] = serverRandom
+
+		        System.String string = System.String.Concat(local5) //(Object[] args)
+		        ulong local10 = 0
+
+		        System.Text.Encoding uTF8 = System.Text.Encoding.UTF8
+
+		        System.Text.Encoder encoder = uTF8.GetEncoder()
+
+		        System.String string2 = string.ToString()
+
+		        System.Int32 bytes = Utf8.GetBytes()
+
+		        System.Byte[] byteArray = Cryptography.Sha.Sha512Hmac()
+
+		        System.Boolean boolean = System.Linq.Enumerable.SequenceEqual<System.Byte>(byteArray, signature) //(IEnumerable`1 first, IEnumerable`1 second)
+
+		        System.Int32 int32 = boolean.CompareTo(string2) //(Object obj)
+		        return boolean
+		    endif
+            
+		    ulong local24 = 0
+		    return local24
+
+		    INSN_18034F699:
+
+		    INSN_18034F6B9:
+
+		    INSN_18034F6D9:
+
+		    INSN_18034F6F9:
+
+		    INSN_18034F719:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfNonZeroOrNonNullAction at (0x18034F3F3) is corrupt (One of the arguments is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.QueryProcessor
+	System.Boolean VerifyEcdsaSignature(System.String message, System.Int32 counter, System.Byte[] signature, System.Boolean validateCounter)
+		ServerRoles _roles = this._roles
+
+		if (_roles.PublicKeyAccepted != False)
+
+		    if (_roles.PublicKey != 0)
+
+		        if (counter > this._signaturesCounter)
+		            this._signaturesCounter = counter
+		        else
+
+		            if ( == 0)
+		            endif
+                    
+		            System.Object[] local6 = new System.Object[5]
+
+		            if (message != 0)
+
+		                if (local6 == 0)
+                            goto INSN_18034F303
+                        endif
+		            endif
+                    
+		            local6[0] = message
+
+		            if (":[:COUNTER:]:" == 0)
+                        goto INSN_18034F131
+                    endif
+
+		            if (":[:COUNTER:]:" == 0)
+                        goto INSN_18034F323
+                    endif
+
+		            INSN_18034F131:
+		            local6[1] = ":[:COUNTER:]:"
+
+		            if (":[:COUNTER:]:" == 0)
+                        goto INSN_18034F17F
+                    endif
+
+		            if (":[:COUNTER:]:" == 0)
+                        goto INSN_18034F343
+                    endif
+
+		            INSN_18034F17F:
+		            local6[2] = ":[:COUNTER:]:"
+
+		            if (":[:SALT:]:" == 0)
+                        goto INSN_18034F1C3
+                    endif
+
+		            if (":[:SALT:]:" == 0)
+                        goto INSN_18034F363
+                    endif
+
+		            INSN_18034F1C3:
+		            local6[3] = ":[:SALT:]:"
+
+		            System.String serverRandom = this.ServerRandom
+
+		            if (serverRandom == 0)
+                        goto INSN_18034F206
+                    endif
+
+		            if (serverRandom == 0)
+                        goto INSN_18034F383
+                    endif
+
+		            INSN_18034F206:
+		            local6[4] = serverRandom
+
+		            System.String string = System.String.Concat(local6) //(Object[] args)
+		            ServerRoles _roles2 = this._roles
+		            Org.BouncyCastle.Crypto.AsymmetricKeyParameter publicKey = _roles2.PublicKey
+
+		            System.Boolean boolean = Cryptography.ECDSA.VerifyBytes(string, signature, publicKey) //(String data, Byte[] signature, AsymmetricKeyParameter pubKey)
+		            return boolean
+		        endif
+                
+
+		        UnityEngine.Color red = UnityEngine.Color.red
+
+		        GameCore.Console.AddLog()
+
+		        UnityEngine.Debug.LogError("VerifyEcdsaSignature called with empty Public Key") //(Object message)
+		    endif
+            
+		    ulong local21 = 0
+		    return local21
+		    throw new System.NullReferenceException()
+
+		    INSN_18034F303:
+
+		    INSN_18034F323:
+
+		    INSN_18034F343:
+
+		    INSN_18034F363:
+
+		    INSN_18034F383:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfNonZeroOrNonNullAction at (0x18034F0A8) is corrupt (One of the arguments is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.QueryProcessor
+	System.Byte[] EcdsaSign(System.String message, System.Int32 counter)
+
+		if (counter == -2)
+		endif
+        
+		System.Object[] local4 = new System.Object[5]
+
+		if (message == 0)
+            goto INSN_180348955
+        endif
+
+		if (local4 == 0)
+            goto INSN_180348B8A
+        endif
+
+		INSN_180348955:
+		local4[0] = message
+
+		if (":[:COUNTER:]:" == 0)
+            goto INSN_180348999
+        endif
+
+		if (":[:COUNTER:]:" == 0)
+            goto INSN_180348BAA
+        endif
+
+		INSN_180348999:
+		local4[1] = ":[:COUNTER:]:"
+
+		if (":[:COUNTER:]:" == 0)
+            goto INSN_1803489E7
+        endif
+
+		if (":[:COUNTER:]:" == 0)
+            goto INSN_180348BCA
+        endif
+
+		INSN_1803489E7:
+		local4[2] = ":[:COUNTER:]:"
+
+		if (":[:SALT:]:" == 0)
+            goto INSN_180348A2B
+        endif
+
+		if (":[:SALT:]:" == 0)
+            goto INSN_180348BEA
+        endif
+
+		INSN_180348A2B:
+		local4[3] = ":[:SALT:]:"
+		ulong local5 = 0
+
+		ReferenceHub hostHub = ReferenceHub.HostHub
+		RemoteAdmin.QueryProcessor queryProcessor = hostHub.queryProcessor
+		System.String _syncServerRandom = queryProcessor._syncServerRandom
+
+		if (_syncServerRandom == 0)
+            goto INSN_180348AC1
+        endif
+
+		if (hostHub == 0)
+            goto INSN_180348C0A
+        endif
+
+		INSN_180348AC1:
+		local4[4] = _syncServerRandom
+
+		System.String string = System.String.Concat(local4) //(Object[] args)
+		Org.BouncyCastle.Crypto.AsymmetricCipherKeyPair SessionKeys = CentralAuthManager.<SessionKeys>k__BackingField
+		Org.BouncyCastle.Crypto.AsymmetricKeyParameter privateParameter = SessionKeys.privateParameter
+
+		System.Byte[] byteArray = Cryptography.ECDSA.SignBytes(string, privateParameter) //(String data, AsymmetricKeyParameter privKey)
+		return byteArray
+		throw new System.NullReferenceException()
+
+		INSN_180348B8A:
+
+		INSN_180348BAA:
+
+		INSN_180348BCA:
+
+		INSN_180348BEA:
+
+		INSN_180348C0A:
+
+
+Generated IL:
+	IL_0000: ldarg.2
+	IL_0001: ldc.i4.s -2
+	IL_0003: bne.un.s IL_0005
+	IL_0005: ldc.i4.5
+	IL_0006: newarr System.Object
+	IL_000b: stloc.0
+	IL_000c: ldarg.1
+	IL_000d: ldc.i4.0
+	IL_000e: beq.s IL_0014
+	IL_0010: ldloc.0
+	IL_0011: ldc.i4.0
+	IL_0012: beq.s IL_0000
+	IL_0014: ldloc.0
+	IL_0015: ldc.i4.0
+	IL_0016: ldarg.1
+	IL_0017: stelem.any System.Object
+	IL_001c: ldstr ":[:COUNTER:]:"
+	IL_0021: ldc.i4.0
+	IL_0022: beq.s IL_002c
+	IL_0024: ldstr ":[:COUNTER:]:"
+	IL_0029: ldc.i4.0
+	IL_002a: beq.s IL_0000
+	IL_002c: ldloc.0
+	IL_002d: ldc.i4.1
+	IL_002e: ldstr ":[:COUNTER:]:"
+	IL_0033: stelem.any System.Object
+	IL_0038: ldstr ":[:COUNTER:]:"
+	IL_003d: ldc.i4.0
+	IL_003e: beq.s IL_0048
+	IL_0040: ldstr ":[:COUNTER:]:"
+	IL_0045: ldc.i4.0
+	IL_0046: beq.s IL_0000
+	IL_0048: ldloc.0
+	IL_0049: ldc.i4.2
+	IL_004a: ldstr ":[:COUNTER:]:"
+	IL_004f: stelem.any System.Object
+	IL_0054: ldstr ":[:SALT:]:"
+	IL_0059: ldc.i4.0
+	IL_005a: beq.s IL_0064
+	IL_005c: ldstr ":[:SALT:]:"
+	IL_0061: ldc.i4.0
+	IL_0062: beq.s IL_0000
+	IL_0064: ldloc.0
+	IL_0065: ldc.i4.3
+	IL_0066: ldstr ":[:SALT:]:"
+	IL_006b: stelem.any System.Object
+	IL_0070: ldc.i4.0
+	IL_0071: stloc.1
+	IL_0072: call ReferenceHub ReferenceHub::get_HostHub()
+	IL_0077: stloc.2
+	IL_0078: ldloc.2
+	IL_0079: ldfld RemoteAdmin.QueryProcessor ReferenceHub::queryProcessor
+	IL_007e: ldfld System.String RemoteAdmin.QueryProcessor::_syncServerRandom
+	IL_0083: stloc.3
+	IL_0084: ldloc.3
+	IL_0085: ldc.i4.0
+	IL_0086: beq.s IL_008f
+	IL_0088: ldloc.2
+	IL_0089: ldc.i4.0
+	IL_008a: beq IL_0000
+	IL_008f: ldloc.0
+	IL_0090: ldc.i4.4
+	IL_0091: ldloc.3
+	IL_0092: stelem.any System.Object
+	IL_0097: ldloc.0
+	IL_0098: call System.String System.String::Concat(System.Object[])
+	IL_009d: stloc.s V_4
+	IL_009f: ldsfld Org.BouncyCastle.Crypto.AsymmetricCipherKeyPair CentralAuthManager::<SessionKeys>k__BackingField
+	IL_00a4: ldfld Org.BouncyCastle.Crypto.AsymmetricKeyParameter Org.BouncyCastle.Crypto.AsymmetricCipherKeyPair::privateParameter
+	IL_00a9: stloc.s V_5
+	IL_00ab: ldloc.s V_4
+	IL_00ad: ldloc.s V_5
+	IL_00af: call System.Byte[] Cryptography.ECDSA::SignBytes(System.String,Org.BouncyCastle.Crypto.AsymmetricKeyParameter)
+	IL_00b4: ret
+	IL_00b5: newobj System.Void System.NullReferenceException::.ctor()
+	IL_00ba: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.QueryProcessor
+	System.Byte[] HmacSign(System.String message, System.Int32 counter)
+
+		if (counter == -2)
+		endif
+        
+		System.Object[] local4 = new System.Object[5]
+
+		if (message == 0)
+            goto INSN_180348CAA
+        endif
+
+		if (local4 == 0)
+            goto INSN_180348F32
+        endif
+
+		INSN_180348CAA:
+		local4[0] = message
+
+		if (":[:COUNTER:]:" == 0)
+            goto INSN_180348CEE
+        endif
+
+		if (":[:COUNTER:]:" == 0)
+            goto INSN_180348F52
+        endif
+
+		INSN_180348CEE:
+		local4[1] = ":[:COUNTER:]:"
+
+		if (":[:COUNTER:]:" == 0)
+            goto INSN_180348D3C
+        endif
+
+		if (":[:COUNTER:]:" == 0)
+            goto INSN_180348F72
+        endif
+
+		INSN_180348D3C:
+		local4[2] = ":[:COUNTER:]:"
+
+		if (":[:SALT:]:" == 0)
+            goto INSN_180348D80
+        endif
+
+		if (":[:SALT:]:" == 0)
+            goto INSN_180348F92
+        endif
+
+		INSN_180348D80:
+		local4[3] = ":[:SALT:]:"
+		ulong local5 = 0
+
+		ReferenceHub hostHub = ReferenceHub.HostHub
+		RemoteAdmin.QueryProcessor queryProcessor = hostHub.queryProcessor
+		System.String _syncServerRandom = queryProcessor._syncServerRandom
+
+		if (_syncServerRandom == 0)
+            goto INSN_180348E16
+        endif
+
+		if (hostHub == 0)
+            goto INSN_180348FB2
+        endif
+
+		INSN_180348E16:
+		local4[4] = _syncServerRandom
+
+		System.String string = System.String.Concat(local4) //(Object[] args)
+		ulong local11 = 0
+
+		System.Text.Encoding uTF8 = System.Text.Encoding.UTF8
+
+		System.Text.Encoder encoder = uTF8.GetEncoder()
+
+		System.String string2 = string.ToString()
+
+		System.Int32 bytes = Utf8.GetBytes()
+
+		System.Byte[] byteArray = Cryptography.Sha.Sha512Hmac()
+
+		System.Int32 int32 = byteArray.CompareTo(string2) //(Object value)
+		return byteArray
+		throw new System.NullReferenceException()
+
+		INSN_180348F32:
+
+		INSN_180348F52:
+
+		INSN_180348F72:
+
+		INSN_180348F92:
+
+		INSN_180348FB2:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180348EC4) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.QueryProcessor
+	static System.Byte[] DerivePassword(System.String password, System.Byte[] serversalt, System.Byte[] clientsalt)
+
+		System.String string = System.Convert.ToBase64String(serversalt) //(Byte[] inArray)
+
+		System.String string2 = System.Convert.ToBase64String(clientsalt) //(Byte[] inArray)
+
+		System.String string3 = System.String.Concat(string, string2) //(String str0, String str1)
+
+		System.Byte[] byteArray = Cryptography.Sha.Sha512(string3) //(String message)
+
+		System.Byte[] byteArray2 = Cryptography.PBKDF2.Pbkdf2HashBytes(password, byteArray, 250, 512) //(String password, Byte[] salt, Int32 iterations, Int32 outputBytes)
+		return byteArray2
+
+
+Generated IL:
+	IL_0000: ldarg.1
+	IL_0001: call System.String System.Convert::ToBase64String(System.Byte[])
+	IL_0006: stloc.0
+	IL_0007: ldarg.2
+	IL_0008: call System.String System.Convert::ToBase64String(System.Byte[])
+	IL_000d: stloc.1
+	IL_000e: ldloc.0
+	IL_000f: ldloc.1
+	IL_0010: call System.String System.String::Concat(System.String,System.String)
+	IL_0015: call System.Byte[] Cryptography.Sha::Sha512(System.String)
+	IL_001a: stloc.2
+	IL_001b: ldarg.0
+	IL_001c: ldloc.2
+	IL_001d: ldc.i4 250
+	IL_0022: ldc.i4 512
+	IL_0027: call System.Byte[] Cryptography.PBKDF2::Pbkdf2HashBytes(System.String,System.Byte[],System.Int32,System.Int32)
+	IL_002c: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.QueryProcessor
+	System.Void TargetSyncGameplayData(Mirror.NetworkConnection conn, System.Boolean gd)
+		ulong local3 = 0
+
+		Mirror.PooledNetworkWriter writer = Mirror.NetworkWriterPool.GetWriter()
+
+		[instruction error - managed method being called is null]
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'QueryProcessor' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		ulong local8 = 0
+
+		base.SendTargetRPCInternal(conn, typeFromHandle, "TargetSyncGameplayData", writer, local8) //(NetworkConnection conn, Type invokeClass, String rpcName, NetworkWriter writer, Int32 channelId)
+
+		Mirror.NetworkWriterPool.Recycle(writer) //(PooledNetworkWriter writer)
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18034D218) is corrupt (Don't know what method is being called) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.QueryProcessor
+	System.Void OnDestroy()
+
+		System.Boolean isLocalPlayer = base.isLocalPlayer
+
+		if (isLocalPlayer != False)
+		endif
+        
+		System.Object[] local3 = new System.Object[5]
+
+		NicknameSync component = base.GetComponent<NicknameSync>()
+
+		System.String combinedName = component.CombinedName
+
+		if (combinedName == 0)
+            goto INSN_18034A294
+        endif
+
+		if (combinedName == 0)
+            goto INSN_18034A4B8
+        endif
+
+		INSN_18034A294:
+		local3[0] = combinedName
+		ReferenceHub _hub = this._hub
+		CharacterClassManager characterClassManager = _hub.characterClassManager
+
+		System.String userId = characterClassManager.UserId
+
+		System.Boolean isNullOrEmpty = System.String.IsNullOrEmpty(userId) //(String value)
+
+		if (isNullOrEmpty == False)
+            goto INSN_18034A2EF
+        endif
+
+		INSN_18034A2EF:
+		ReferenceHub _hub2 = this._hub
+		CharacterClassManager characterClassManager2 = _hub2.characterClassManager
+
+		System.String userId2 = characterClassManager2.UserId
+
+		if (userId2 == 0)
+            goto INSN_18034A333
+        endif
+
+		if (userId2 == 0)
+            goto INSN_18034A4D8
+        endif
+
+		INSN_18034A333:
+		local3[1] = userId2
+		System.String _ipAddress = this._ipAddress
+
+		if (_ipAddress == 0)
+            goto INSN_18034A370
+        endif
+
+		if (userId2 == 0)
+            goto INSN_18034A4F8
+        endif
+
+		INSN_18034A370:
+		local3[2] = _ipAddress
+		ReferenceHub _hub3 = this._hub
+
+		PlayerRoles.RoleTypeId roleId = PlayerRoles.PlayerRolesUtils.GetRoleId(_hub3) //(ReferenceHub hub)
+
+		if (roleId == constant61)
+            goto INSN_18034A3CC
+        endif
+
+		if (roleId == constant63)
+            goto INSN_18034A518
+        endif
+
+		INSN_18034A3CC:
+		local3[3] = roleId
+		ReferenceHub _hub4 = this._hub
+		PlayerRoles.PlayerRoleManager roleManager = _hub4.roleManager
+
+		PlayerRoles.PlayerRoleBase currentRole = roleManager.CurrentRole
+
+		System.String roleName = currentRole.RoleName
+
+		if (roleName == 0)
+            goto INSN_18034A43C
+        endif
+
+		if (roleName == 0)
+            goto INSN_18034A538
+        endif
+
+		INSN_18034A43C:
+		local3[4] = roleName
+
+		System.String string = System.String.Format("{0} {1} disconnected from IP address {2}. Last class: {3} ({4})", local3) //(String format, Object[] args)
+		ulong local29 = 0
+		ulong local31 = 0
+
+		ServerLogs.AddLog(1, string, local31, local29) //(Modules module, String msg, ServerLogType type, Boolean init)
+		return
+		throw new System.NullReferenceException()
+
+		INSN_18034A4B8:
+
+		INSN_18034A4D8:
+
+		INSN_18034A4F8:
+
+		INSN_18034A518:
+
+		INSN_18034A538:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfZeroOrNullAction at (0x18034A3B2) is corrupt (ConstantDefinition: Don't know how to get IL to load a System.SByte) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.QueryProcessor
+	System.Void .ctor()
+		System.DateTime minValue = System.DateTime.MinValue
+		this.ExpectingURL = minValue
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldsfld System.DateTime System.DateTime::MinValue
+	IL_0005: stloc.0
+	IL_0006: ldarg.0
+	IL_0007: ldloc.0
+	IL_0008: stfld System.DateTime RemoteAdmin.QueryProcessor::ExpectingURL
+	IL_000d: ldarg.0
+	IL_000e: call System.Void Mirror.NetworkBehaviour::.ctor()
+	IL_0013: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.QueryProcessor
+	static System.Void .cctor()
+		System.Int64 local0 = 1
+		System.Char[] local1 = new System.Char[1]
+		System.Int64 local2 = 32
+		local1[0] = local2
+		 += 40
+		RemoteAdmin.QueryProcessor._secureRandom = local1
+		ulong local3 = 0
+
+		CommandSystem.ClientCommandHandler clientCommandHandler = CommandSystem.ClientCommandHandler.Create()
+		 += 48
+		RemoteAdmin.QueryProcessor._secureRandom = clientCommandHandler
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'QueryProcessor' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		Mirror.RemoteCalls.CmdDelegate cmdDelegate = new Mirror.RemoteCalls.CmdDelegate()
+		ulong local9 = 0
+
+		cmdDelegate..ctor(local9, {'InvokeUserCode_CmdRequestSalt' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		ulong local10 = 0
+		System.Int64 local11 = 1
+
+		Mirror.RemoteCalls.RemoteCallHelper.RegisterCommandDelegate(typeFromHandle, "CmdRequestSalt", cmdDelegate, local11) //(Type invokeClass, String cmdName, CmdDelegate func, Boolean requiresAuthority)
+
+		System.Type typeFromHandle2 = System.Type.GetTypeFromHandle({'QueryProcessor' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		Mirror.RemoteCalls.CmdDelegate cmdDelegate2 = new Mirror.RemoteCalls.CmdDelegate()
+		ulong local16 = 0
+
+		cmdDelegate2..ctor(local16, {'InvokeUserCode_CmdSendPassword' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		System.Int64 local17 = 1
+
+		Mirror.RemoteCalls.RemoteCallHelper.RegisterCommandDelegate(typeFromHandle2, "CmdSendPassword", cmdDelegate2, local17) //(Type invokeClass, String cmdName, CmdDelegate func, Boolean requiresAuthority)
+
+		System.Type typeFromHandle3 = System.Type.GetTypeFromHandle({'QueryProcessor' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		Mirror.RemoteCalls.CmdDelegate cmdDelegate3 = new Mirror.RemoteCalls.CmdDelegate()
+		ulong local22 = 0
+
+		cmdDelegate3..ctor(local22, {'InvokeUserCode_CmdSendEncryptedQuery' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		System.Int64 local23 = 1
+
+		Mirror.RemoteCalls.RemoteCallHelper.RegisterCommandDelegate(typeFromHandle3, "CmdSendEncryptedQuery", cmdDelegate3, local23) //(Type invokeClass, String cmdName, CmdDelegate func, Boolean requiresAuthority)
+
+		System.Type typeFromHandle4 = System.Type.GetTypeFromHandle({'QueryProcessor' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		Mirror.RemoteCalls.CmdDelegate cmdDelegate4 = new Mirror.RemoteCalls.CmdDelegate()
+		ulong local28 = 0
+
+		cmdDelegate4..ctor(local28, {'InvokeUserCode_CmdSendQuery' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		System.Int64 local29 = 1
+
+		Mirror.RemoteCalls.RemoteCallHelper.RegisterCommandDelegate(typeFromHandle4, "CmdSendQuery", cmdDelegate4, local29) //(Type invokeClass, String cmdName, CmdDelegate func, Boolean requiresAuthority)
+
+		System.Type typeFromHandle5 = System.Type.GetTypeFromHandle({'QueryProcessor' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		Mirror.RemoteCalls.CmdDelegate cmdDelegate5 = new Mirror.RemoteCalls.CmdDelegate()
+		ulong local34 = 0
+
+		cmdDelegate5..ctor(local34, {'InvokeUserCode_TargetSaltGenerated' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		Mirror.RemoteCalls.RemoteCallHelper.RegisterRpcDelegate(typeFromHandle5, "TargetSaltGenerated", cmdDelegate5) //(Type invokeClass, String rpcName, CmdDelegate func)
+
+		System.Type typeFromHandle6 = System.Type.GetTypeFromHandle({'QueryProcessor' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		Mirror.RemoteCalls.CmdDelegate cmdDelegate6 = new Mirror.RemoteCalls.CmdDelegate()
+		ulong local40 = 0
+
+		cmdDelegate6..ctor(local40, {'InvokeUserCode_TargetUpdateCommandList' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		Mirror.RemoteCalls.RemoteCallHelper.RegisterRpcDelegate(typeFromHandle6, "TargetUpdateCommandList", cmdDelegate6) //(Type invokeClass, String rpcName, CmdDelegate func)
+
+		System.Type typeFromHandle7 = System.Type.GetTypeFromHandle({'QueryProcessor' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		Mirror.RemoteCalls.CmdDelegate cmdDelegate7 = new Mirror.RemoteCalls.CmdDelegate()
+		ulong local46 = 0
+
+		cmdDelegate7..ctor(local46, {'InvokeUserCode_TargetReplyPassword' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		Mirror.RemoteCalls.RemoteCallHelper.RegisterRpcDelegate(typeFromHandle7, "TargetReplyPassword", cmdDelegate7) //(Type invokeClass, String rpcName, CmdDelegate func)
+
+		System.Type typeFromHandle8 = System.Type.GetTypeFromHandle({'QueryProcessor' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		Mirror.RemoteCalls.CmdDelegate cmdDelegate8 = new Mirror.RemoteCalls.CmdDelegate()
+		ulong local52 = 0
+
+		cmdDelegate8..ctor(local52, {'InvokeUserCode_TargetAdminChatAccessDenied' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		Mirror.RemoteCalls.RemoteCallHelper.RegisterRpcDelegate(typeFromHandle8, "TargetAdminChatAccessDenied", cmdDelegate8) //(Type invokeClass, String rpcName, CmdDelegate func)
+
+		System.Type typeFromHandle9 = System.Type.GetTypeFromHandle({'QueryProcessor' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		Mirror.RemoteCalls.CmdDelegate cmdDelegate9 = new Mirror.RemoteCalls.CmdDelegate()
+		ulong local58 = 0
+
+		cmdDelegate9..ctor(local58, {'InvokeUserCode_TargetReplyPlain' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		Mirror.RemoteCalls.RemoteCallHelper.RegisterRpcDelegate(typeFromHandle9, "TargetReplyPlain", cmdDelegate9) //(Type invokeClass, String rpcName, CmdDelegate func)
+
+		System.Type typeFromHandle10 = System.Type.GetTypeFromHandle({'QueryProcessor' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		Mirror.RemoteCalls.CmdDelegate cmdDelegate10 = new Mirror.RemoteCalls.CmdDelegate()
+		ulong local64 = 0
+
+		cmdDelegate10..ctor(local64, {'InvokeUserCode_TargetReplyEncrypted' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		Mirror.RemoteCalls.RemoteCallHelper.RegisterRpcDelegate(typeFromHandle10, "TargetReplyEncrypted", cmdDelegate10) //(Type invokeClass, String rpcName, CmdDelegate func)
+
+		System.Type typeFromHandle11 = System.Type.GetTypeFromHandle({'QueryProcessor' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		Mirror.RemoteCalls.CmdDelegate cmdDelegate11 = new Mirror.RemoteCalls.CmdDelegate()
+		ulong local70 = 0
+
+		cmdDelegate11..ctor(local70, {'InvokeUserCode_TargetSyncGameplayData' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		Mirror.RemoteCalls.RemoteCallHelper.RegisterRpcDelegate(typeFromHandle11, "TargetSyncGameplayData", cmdDelegate11) //(Type invokeClass, String rpcName, CmdDelegate func)
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x18034F80C) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.QueryProcessor
+	System.Void MirrorProcessed()
+
+
+Generated IL:
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.QueryProcessor
+	System.String get_Network_syncServerRandom()
+		System.String _syncServerRandom = this._syncServerRandom
+		return _syncServerRandom
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String RemoteAdmin.QueryProcessor::_syncServerRandom
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.QueryProcessor
+	System.Void set_Network_syncServerRandom(System.String value)
+
+		System.Boolean boolean = base.SyncVarEqual<System.String>()
+
+		if (boolean == False)
+		    System.String _syncServerRandom = this._syncServerRandom
+
+		    base.SetSyncVar<System.String>()
+		    ulong local5 = 0
+
+		    System.Boolean localClientActive = Mirror.NetworkServer.localClientActive
+
+		    if (localClientActive != False)
+		        System.Int32 0x100000000 = 1
+
+		        System.Boolean syncVarHookGuard = base.getSyncVarHookGuard(0x100000000) //(UInt64 dirtyBit)
+
+		        if (syncVarHookGuard == False)
+		            System.Int32 0x100000000 = 1
+
+		            base.setSyncVarHookGuard(0x100000000, True) //(UInt64 dirtyBit, Boolean value)
+
+		            this.SetServerRandom(_syncServerRandom, value) //(String prev, String random)
+		            ulong local12 = 0
+		            System.Int32 0x100000000 = 1
+
+		            base.setSyncVarHookGuard(0x100000000, local12) //(UInt64 dirtyBit, Boolean value)
+		        endif
+                
+		    endif
+            
+		    return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18034FDF4) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.QueryProcessor
+	System.Boolean get_NetworkOverridePasswordEnabled()
+		System.Boolean overridePasswordEnabled = this.OverridePasswordEnabled
+		return overridePasswordEnabled
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Boolean RemoteAdmin.QueryProcessor::OverridePasswordEnabled
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.QueryProcessor
+	System.Void set_NetworkOverridePasswordEnabled(System.Boolean value)
+
+		System.Boolean boolean = base.SyncVarEqual<System.Boolean>()
+
+		if (boolean == False)
+		    throw new System.NullReferenceException()
+		endif
+        
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18034FD65) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.QueryProcessor
+	System.Void UserCode_CmdRequestSalt(System.Byte[] clSalt)
+		ulong local2 = 0
+		Security.RateLimit _commandRateLimit = this._commandRateLimit
+
+		System.Boolean boolean = _commandRateLimit.CanExecute(True) //(Boolean countUsage)
+
+		if (boolean != False)
+		    PermissionsHandler permissionsHandler = ServerStatic.PermissionsHandler
+
+		    System.Boolean overrideEnabled = permissionsHandler.OverrideEnabled
+
+		    if (overrideEnabled == False)
+                goto INSN_18034D90F
+            endif
+
+		    if (this._clientSalt == local2)
+
+		        if (clSalt != 0)
+		            this._clientSalt = clSalt
+
+		            if (this._key == local2)
+		                System.Byte[] _salt = this._salt
+
+		                if (_salt != 0)
+		                    System.Byte[] _salt2 = this._salt
+		                    PermissionsHandler permissionsHandler2 = ServerStatic.PermissionsHandler
+		                    System.Byte[] _clientSalt = this._clientSalt
+
+		                    System.Byte[] byteArray = permissionsHandler2.DerivePassword(_salt2, _clientSalt) //(Byte[] serverSalt, Byte[] clientSalt)
+		                    this._key = byteArray
+		                endif
+                        
+		                ReferenceHub _hub = this._hub
+		                GameConsoleTransmission gameConsoleTransmission = _hub.gameConsoleTransmission
+
+		                System.String string = System.Convert.ToBase64String(clSalt) //(Byte[] inArray)
+
+		                System.String string2 = System.String.Concat("Your salt ", string, " has been accepted by the server.") //(String str0, String str1, String str2)
+
+		                gameConsoleTransmission.SendToClient(string2, "cyan") //(String text, String color)
+		            endif
+                    
+
+		            if (this._salt != local2)
+                        goto INSN_18034D8EB
+                    endif
+		            System.Security.Cryptography.RNGCryptoServiceProvider rNGCryptoServiceProvider = new System.Security.Cryptography.RNGCryptoServiceProvider()
+
+		            rNGCryptoServiceProvider..ctor()
+		            System.Byte[] local24 = new System.Byte[32]
+
+		            rNGCryptoServiceProvider.Dispose()
+		            ReferenceHub _hub2 = this._hub
+		            GameConsoleTransmission gameConsoleTransmission2 = _hub2.gameConsoleTransmission
+
+		            gameConsoleTransmission2.SendToClient("Generated salt is too short. Please generate longer salt and try again!", "red") //(String text, String color)
+		        endif
+                
+		        return
+		    endif
+            
+		    ReferenceHub _hub3 = this._hub
+		    GameConsoleTransmission gameConsoleTransmission3 = _hub3.gameConsoleTransmission
+
+		    if (clSalt == 0)
+                goto INSN_18034D86C
+            endif
+
+		    INSN_18034D86C:
+
+		    if (local2 != 0)
+                goto INSN_18034D949
+            endif
+		    this._salt = 
+		    PermissionsHandler permissionsHandler3 = ServerStatic.PermissionsHandler
+		    System.Byte[] _clientSalt2 = this._clientSalt
+		    System.Byte[] _salt3 = this._salt
+
+		    System.Byte[] byteArray2 = permissionsHandler3.DerivePassword(_salt3, _clientSalt2) //(Byte[] serverSalt, Byte[] clientSalt)
+		    this._key = byteArray2
+
+		    INSN_18034D8EB:
+
+		    Mirror.NetworkConnection connectionToClient = base.connectionToClient
+		    System.Byte[] _salt4 = this._salt
+
+		    this.TargetSaltGenerated(connectionToClient, _salt4) //(NetworkConnection conn, Byte[] salt)
+
+		    INSN_18034D90F:
+		    ReferenceHub _hub4 = this._hub
+		    GameConsoleTransmission gameConsoleTransmission4 = _hub4.gameConsoleTransmission
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+
+		    INSN_18034D949:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallVirtualMethodAction at (0x18034D7B5) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.QueryProcessor
+	static System.Void InvokeUserCode_CmdRequestSalt(Mirror.NetworkBehaviour obj, Mirror.NetworkReader reader, Mirror.NetworkConnectionToClient senderConnection)
+		ulong local3 = 0
+
+		System.Byte[] byteArray = Mirror.NetworkReaderExtensions.ReadBytesAndSize(reader) //(NetworkReader reader)
+		//UNKNOWN CLASS OFFSET READ HERE
+
+		obj.UserCode_CmdRequestSalt(byteArray) //(Byte[] clSalt)
+		return
+
+		UnityEngine.Debug.LogError("Command CmdRequestSalt called on client.") //(Object message)
+		return
+		throw new System.InvalidCastException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.UnknownClassOffsetReadAction at (0x1803490CA) is corrupt (Unknown class offset read) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.QueryProcessor
+	System.Void UserCode_TargetSaltGenerated(Mirror.NetworkConnection conn, System.Byte[] salt)
+
+		if (salt != 0)
+
+		    System.String string = System.Convert.ToBase64String(salt) //(Byte[] inArray)
+
+		    System.String string2 = System.String.Concat("Obtained server's salt ", string, " from server.") //(String str0, String str1, String str2)
+
+		    UnityEngine.Color cyan = UnityEngine.Color.cyan
+
+		    GameCore.Console.AddLog()
+		    this.Salt = salt
+		endif
+        
+
+		System.String string3 = System.String.Concat("Rejected salt ", salt, " because it's too short!") //(Object arg0, Object arg1, Object arg2)
+
+		UnityEngine.Color red = UnityEngine.Color.red
+
+		GameCore.Console.AddLog()
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18034E9C9) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (4)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.QueryProcessor
+	static System.Void InvokeUserCode_TargetSaltGenerated(Mirror.NetworkBehaviour obj, Mirror.NetworkReader reader, Mirror.NetworkConnectionToClient senderConnection)
+		ulong local3 = 0
+
+		System.Boolean active = Mirror.NetworkClient.active
+
+		if (active != False)
+		    ulong local5 = 0
+
+		    Mirror.NetworkConnection readyConnection = Mirror.NetworkClient.readyConnection
+		    ulong local7 = 0
+
+		    System.Byte[] byteArray = Mirror.NetworkReaderExtensions.ReadBytesAndSize(reader) //(NetworkReader reader)
+		    //UNKNOWN CLASS OFFSET READ HERE
+
+		    if (byteArray != 0)
+
+		        System.String string = System.Convert.ToBase64String(byteArray) //(Byte[] inArray)
+
+		        System.String string2 = System.String.Concat("Obtained server's salt ", string, " from server.") //(String str0, String str1, String str2)
+
+		        UnityEngine.Color cyan = UnityEngine.Color.cyan
+
+		        GameCore.Console.AddLog()
+		        string2. = byteArray
+		    endif
+            
+
+		    System.String string3 = System.String.Concat("Rejected salt ", byteArray, " because it's too short!") //(Object arg0, Object arg1, Object arg2)
+
+		    UnityEngine.Color red = UnityEngine.Color.red
+
+		    GameCore.Console.AddLog()
+		    return
+		endif
+        
+
+		UnityEngine.Debug.LogError("TargetRPC TargetSaltGenerated called on server.") //(Object message)
+		return
+		throw new System.InvalidCastException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.UnknownClassOffsetReadAction at (0x180349D4E) is corrupt (Unknown class offset read) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.QueryProcessor
+	System.Void UserCode_TargetUpdateCommandList(RemoteAdmin.QueryProcessor/CommandData[] commands)
+		ulong local2 = 0
+		ulong local3 = 0
+		System.Collections.Generic.List`1<RemoteAdmin.QueryProcessor/CommandData> commands = RemoteAdmin.TextBasedRemoteAdmin.Commands
+
+		commands.Clear()
+		ulong local5 = 0
+		ulong local6 = 0
+
+		while (local5 < commands.Length)
+		    RemoteAdmin.QueryProcessor/<>c__DisplayClass49_0 enumeratorInstance = new RemoteAdmin.QueryProcessor/<>c__DisplayClass49_0()
+
+		    enumeratorInstance..ctor()
+		    System.Int32 0 = 0
+		    RemoteAdmin.QueryProcessor/CommandData commandData = commands[]
+		    enumeratorInstance.cmd = commandData
+		    enumeratorInstance.cmd.Description = 
+
+		    if (enumeratorInstance.cmd != 0)
+		        System.Text.RegularExpressions.Regex commandRegex = Misc.CommandRegex
+
+		        System.Boolean isMatch = commandRegex.IsMatch()
+
+		        if (isMatch != False)
+
+		            if ( == 0)
+
+		                if ( != 0)
+		                    System.Text.RegularExpressions.Regex commandDescriptionRegex = Misc.CommandDescriptionRegex
+		                    System.String description = enumeratorInstance.cmd.Description
+
+		                    System.Boolean isMatch2 = commandDescriptionRegex.IsMatch(description) //(String input)
+
+		                    if (isMatch2 == False)
+                                goto INSN_18034EFCA
+                            endif
+		                endif
+                        
+		                System.String[] usage = enumeratorInstance.cmd.Usage
+
+		                if (usage == 0)
+                            goto INSN_18034ED08
+                        endif
+		                ulong local20 = 0
+
+		                while (local20 < usage.Length)
+		                    System.String string = usage[local20]
+
+		                    System.Boolean isNullOrWhiteSpace = System.String.IsNullOrWhiteSpace(string) //(String value)
+
+		                    if (isNullOrWhiteSpace != False)
+                                goto INSN_18034EFC6
+                            endif
+		                    System.Text.RegularExpressions.Regex commandDescriptionRegex2 = Misc.CommandDescriptionRegex
+
+		                    System.Boolean isMatch3 = commandDescriptionRegex2.IsMatch(string) //(String input)
+
+		                    if (isMatch3 == False)
+                                goto INSN_18034EFC6
+                            endif
+		                    local20 += 1
+		                endwhile
+                        
+		                ulong local27 = 0
+		                System.Collections.Generic.List`1<RemoteAdmin.QueryProcessor/CommandData> commands2 = RemoteAdmin.TextBasedRemoteAdmin.Commands
+		                ulong local29 = 0
+		                RemoteAdmin.QueryProcessor/CommandData commandData2 = enumeratorInstance.cmd
+
+		                System.String string2 = commandData2.ToLowerInvariant()
+		                System.String[] usage2 = enumeratorInstance.cmd.Usage
+		                System.String description2 = enumeratorInstance.cmd.Description
+		                System.Boolean hidden = enumeratorInstance.cmd.Hidden
+		            else
+		                System.Collections.Generic.List`1<RemoteAdmin.QueryProcessor/CommandData> commands3 = RemoteAdmin.TextBasedRemoteAdmin.Commands
+		                System.Func`2<RemoteAdmin.QueryProcessor/CommandData,System.Boolean> func = new System.Func`2<RemoteAdmin.QueryProcessor/CommandData,System.Boolean>()
+
+		                func..ctor(enumeratorInstance, {'<TargetUpdateCommandList>b__0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		                RemoteAdmin.QueryProcessor/CommandData commandData3 = System.Linq.Enumerable.FirstOrDefault<RemoteAdmin.QueryProcessor/CommandData>()
+		                ulong local41 = 0
+		                ulong local42 = 0
+
+		                [instruction error - managed method being called is null]
+
+		                if (local42 != 0)
+
+		                    if (commands3 == )
+
+		                        [instruction error - managed method being called is null]
+
+		                        if (local42 != 0)
+
+		                            [instruction error - managed method being called is null]
+
+		                            if (local42 != 0)
+		                            endif
+                                    
+		                            ulong local46 = 0
+		                            System.Collections.Generic.List`1<RemoteAdmin.QueryProcessor/CommandData> commands4 = RemoteAdmin.TextBasedRemoteAdmin.Commands
+		                            ulong local48 = 0
+		                            RemoteAdmin.QueryProcessor/CommandData commandData4 = enumeratorInstance.cmd
+
+		                            System.String string3 = commandData4.ToLowerInvariant()
+		                            System.Boolean hidden2 = enumeratorInstance.cmd.Hidden
+		                        endif
+                                
+
+		                        commands4.Add()
+
+		                        INSN_18034EFC6:
+		                    endif
+                            
+		                    local6 += 1
+		                    local5 = local6
+		                endwhile
+                        
+		                return
+		                throw new System.IndexOutOfRangeException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ArrayElementReadToRegAction at (0x18034EB9C) is corrupt (Array, offset, or destination is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.QueryProcessor
+	static System.Void InvokeUserCode_TargetUpdateCommandList(Mirror.NetworkBehaviour obj, Mirror.NetworkReader reader, Mirror.NetworkConnectionToClient senderConnection)
+		ulong local3 = 0
+
+		System.Boolean active = Mirror.NetworkClient.active
+
+		if (active != False)
+		    ulong local5 = 0
+
+		    RemoteAdmin.QueryProcessor/CommandData[] commandDataArray = Mirror.GeneratedNetworkCode._Read_RemoteAdmin.QueryProcessor/CommandData[](reader) //(NetworkReader reader)
+		    //UNKNOWN CLASS OFFSET READ HERE
+
+		    obj.UserCode_TargetUpdateCommandList(commandDataArray) //(CommandData[] commands)
+		    return
+		endif
+        
+
+		UnityEngine.Debug.LogError("TargetRPC TargetUpdateCommandList called on server.") //(Object message)
+		return
+		throw new System.InvalidCastException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.UnknownClassOffsetReadAction at (0x18034A0CD) is corrupt (Unknown class offset read) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.QueryProcessor
+	System.Void UserCode_CmdSendPassword(System.Byte[] authSignature)
+		Security.RateLimit _commandRateLimit = this._commandRateLimit
+
+		System.Boolean boolean = _commandRateLimit.CanExecute(True) //(Boolean countUsage)
+
+		if (boolean != False)
+		    ServerRoles _roles = this._roles
+		    ulong local6 = 0
+
+		    if (_roles.RemoteAdmin != local6)
+                goto INSN_18034E18E
+            endif
+
+		    if (this._salt == 0)
+                goto INSN_18034E15B
+            endif
+		    System.Byte[] _clientSalt = this._clientSalt
+
+		    if (_clientSalt == 0)
+                goto INSN_18034E15B
+            endif
+		    ulong local8 = 0
+		    System.Int32 -1 = 4294967295
+
+		    System.Boolean boolean2 = this.VerifyHmacSignature("Login", -1, authSignature, local6) //(String message, Int32 counter, Byte[] signature, Boolean validateCounter)
+
+		    if (boolean2 == False)
+		        ReferenceHub _hub = this._hub
+
+		        System.String string = Misc.LoggedNameFromRefHub(_hub) //(ReferenceHub me)
+
+		        System.String string2 = System.String.Concat("Rejected override password sent by ", string, ".") //(String str0, String str1, String str2)
+		        System.Int32 7 = 7
+
+		        ServerConsole.AddLog(string2, 7) //(String q, ConsoleColor color)
+		        ReferenceHub _hub2 = this._hub
+
+		        System.String string3 = Misc.LoggedNameFromRefHub(_hub2) //(ReferenceHub me)
+
+		        System.String string4 = System.String.Concat("Rejected override password sent by ", string3, ".") //(String str0, String str1, String str2)
+		        ulong local21 = 0
+
+		        ServerLogs.AddLog(3, string4, 2, local21) //(Modules module, String msg, ServerLogType type, Boolean init)
+		    else
+		        this.PasswordTries = local8
+		        PermissionsHandler permissionsHandler = ServerStatic.PermissionsHandler
+
+		        UserGroup overrideGroup = permissionsHandler.OverrideGroup
+
+		        if (overrideGroup == 0)
+		            ReferenceHub _hub3 = this._hub
+		            GameConsoleTransmission gameConsoleTransmission = _hub3.gameConsoleTransmission
+
+		            gameConsoleTransmission.SendToClient("Non-existing group is assigned for override password!", "red") //(String text, String color)
+		        else
+		            System.String[] local28 = new System.String[5]
+
+		            if ("Assigned group " != 0)
+
+		                if ("Assigned group " == 0)
+                            goto INSN_18034E278
+                        endif
+		            endif
+                    
+		            local28[0] = "Assigned group "
+		            System.String badgeText = overrideGroup.BadgeText
+
+		            if (badgeText == 0)
+                        goto INSN_18034DEEB
+                    endif
+
+		            if ("Assigned group " == 0)
+                        goto INSN_18034E298
+                    endif
+
+		            INSN_18034DEEB:
+		            local28[1] = badgeText
+
+		            if (" to " == 0)
+                        goto INSN_18034DF2F
+                    endif
+
+		            if (" to " == 0)
+                        goto INSN_18034E2B8
+                    endif
+
+		            INSN_18034DF2F:
+		            local28[2] = " to "
+		            ReferenceHub _hub4 = this._hub
+		            NicknameSync nicknameSync = _hub4.nicknameSync
+
+		            System.String combinedName = nicknameSync.CombinedName
+
+		            if (combinedName == 0)
+                        goto INSN_18034DF8F
+                    endif
+
+		            if (combinedName == 0)
+                        goto INSN_18034E2D8
+                    endif
+
+		            INSN_18034DF8F:
+		            local28[3] = combinedName
+
+		            if (" - override password." == 0)
+                        goto INSN_18034DFD3
+                    endif
+
+		            if (" - override password." == 0)
+                        goto INSN_18034E2F8
+                    endif
+
+		            INSN_18034DFD3:
+		            local28[4] = " - override password."
+
+		            System.String string5 = System.String.Concat(local28) //(String[] values)
+		            System.Int32 7 = 7
+
+		            ServerConsole.AddLog(string5, 7) //(String q, ConsoleColor color)
+		            ServerRoles _roles2 = this._roles
+		            ulong local38 = 0
+
+		            _roles2.SetGroup(overrideGroup, True, local38, local8) //(UserGroup group, Boolean ovr, Boolean byAdmin, Boolean disp)
+		        endif
+                
+		        ReferenceHub _hub5 = this._hub
+
+		        System.String string6 = Misc.LoggedNameFromRefHub(_hub5) //(ReferenceHub me)
+
+		        System.String string7 = System.String.Concat(string6, " has been kicked from the server for sending too many invalid override passwords.") //(String str0, String str1)
+		        ulong local44 = 0
+
+		        ServerLogs.AddLog(3, string7, 2, local44) //(Modules module, String msg, ServerLogType type, Boolean init)
+
+		        Mirror.NetworkConnection connectionToClient = base.connectionToClient
+
+		        ServerConsole.Disconnect(connectionToClient, "You have been kicked for too many Remote Admin login attempts.") //(NetworkConnection conn, String message)
+		        ReferenceHub _hub6 = this._hub
+		        GameConsoleTransmission gameConsoleTransmission2 = _hub6.gameConsoleTransmission
+
+		        gameConsoleTransmission2.SendToClient("Generated salt is too short. Please rejoin the server and try again!", "red") //(String text, String color)
+		    endif
+            
+		    return
+
+		    INSN_18034E15B:
+		    ReferenceHub _hub7 = this._hub
+		    GameConsoleTransmission gameConsoleTransmission3 = _hub7.gameConsoleTransmission
+
+		    INSN_18034E18E:
+		    ulong local54 = 0
+		    this.PasswordTries = local54
+
+		    Mirror.NetworkConnection connectionToClient2 = base.connectionToClient
+		    ulong local57 = 0
+
+		    Mirror.PooledNetworkWriter writer = Mirror.NetworkWriterPool.GetWriter()
+
+		    Mirror.NetworkWriterExtensions.WriteByte(writer, {'1' (constant value of type System.Byte)}) //(NetworkWriter writer, Byte value)
+
+		    System.Type typeFromHandle = System.Type.GetTypeFromHandle({'QueryProcessor' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+
+		    base.SendTargetRPCInternal(connectionToClient2, typeFromHandle, "TargetReplyPassword", writer, local54) //(NetworkConnection conn, Type invokeClass, String rpcName, NetworkWriter writer, Int32 channelId)
+
+		    Mirror.NetworkWriterPool.Recycle(writer) //(PooledNetworkWriter writer)
+		    throw new System.NullReferenceException()
+
+		    INSN_18034E278:
+
+		    INSN_18034E298:
+
+		    INSN_18034E2B8:
+
+		    INSN_18034E2D8:
+
+		    INSN_18034E2F8:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18034E20C) is corrupt (ConstantDefinition: Don't know how to get IL to load a System.Byte) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.QueryProcessor
+	static System.Void InvokeUserCode_CmdSendPassword(Mirror.NetworkBehaviour obj, Mirror.NetworkReader reader, Mirror.NetworkConnectionToClient senderConnection)
+		ulong local3 = 0
+
+		System.Byte[] byteArray = Mirror.NetworkReaderExtensions.ReadBytesAndSize(reader) //(NetworkReader reader)
+		//UNKNOWN CLASS OFFSET READ HERE
+
+		obj.UserCode_CmdSendPassword(byteArray) //(Byte[] authSignature)
+		return
+
+		UnityEngine.Debug.LogError("Command CmdSendPassword called on client.") //(Object message)
+		return
+		throw new System.InvalidCastException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.UnknownClassOffsetReadAction at (0x18034938A) is corrupt (Unknown class offset read) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.QueryProcessor
+	System.Void UserCode_TargetReplyPassword(Mirror.NetworkConnection conn, System.Boolean b)
+		RemoteAdmin.UIController singleton = RemoteAdmin.UIController.Singleton
+		b += b
+		singleton.AwaitingLogin = b
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddRegToRegAction at (0x18034E7BB) is corrupt (AddR2R: First operand, {'b' (function parameter, type System.Boolean)}, has been stripped or has no variable) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.QueryProcessor
+	static System.Void InvokeUserCode_TargetReplyPassword(Mirror.NetworkBehaviour obj, Mirror.NetworkReader reader, Mirror.NetworkConnectionToClient senderConnection)
+		ulong local3 = 0
+
+		System.Boolean active = Mirror.NetworkClient.active
+
+		if (active != False)
+		    ulong local5 = 0
+
+		    Mirror.NetworkConnection readyConnection = Mirror.NetworkClient.readyConnection
+		    ulong local7 = 0
+
+		    System.Boolean boolean = Mirror.NetworkReaderExtensions.ReadBoolean(reader) //(NetworkReader reader)
+		    //UNKNOWN CLASS OFFSET READ HERE
+		    RemoteAdmin.UIController singleton = RemoteAdmin.UIController.Singleton
+		    singleton.AwaitingLogin = UIController
+		    return
+		endif
+        
+
+		UnityEngine.Debug.LogError("TargetRPC TargetReplyPassword called on server.") //(Object message)
+		return
+		throw new System.InvalidCastException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.UnknownClassOffsetReadAction at (0x18034997F) is corrupt (Unknown class offset read) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.QueryProcessor
+	System.Void UserCode_TargetAdminChatAccessDenied(Mirror.NetworkConnection conn)
+
+		UnityEngine.Color red = UnityEngine.Color.red
+
+		GameCore.Console.AddLog()
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18034E5D5) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (4)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.QueryProcessor
+	static System.Void InvokeUserCode_TargetAdminChatAccessDenied(Mirror.NetworkBehaviour obj, Mirror.NetworkReader reader, Mirror.NetworkConnectionToClient senderConnection)
+		ulong local3 = 0
+
+		System.Boolean active = Mirror.NetworkClient.active
+
+		if (active != False)
+		    ulong local5 = 0
+
+		    Mirror.NetworkConnection readyConnection = Mirror.NetworkClient.readyConnection
+		    //UNKNOWN CLASS OFFSET READ HERE
+
+		    UnityEngine.Color red = UnityEngine.Color.red
+
+		    GameCore.Console.AddLog()
+		    return
+		endif
+        
+
+		UnityEngine.Debug.LogError("TargetRPC TargetAdminChatAccessDenied called on server.") //(Object message)
+		return
+		throw new System.InvalidCastException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.UnknownClassOffsetReadAction at (0x18034963C) is corrupt (Unknown class offset read) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.QueryProcessor
+	System.Void UserCode_TargetReplyPlain(Mirror.NetworkConnection conn, System.String content, System.Boolean isSuccess, System.Boolean logInConsole, System.String overrideDisplay)
+
+		if (content != 0)
+
+		    if (constant5 != 0)
+		        RemoteAdmin.RemoteAdminCryptographicManager cryptoManager = this.CryptoManager
+
+		        if (cryptoManager.EncryptionKey != 0)
+                    goto INSN_18034E86B
+                endif
+
+		        if (cryptoManager.ExchangeRequested != False)
+                    goto INSN_18034E86B
+                endif
+
+		        this.ProcessReply()
+		    endif
+            
+		    return
+
+		    INSN_18034E86B:
+
+		    UnityEngine.Color magenta = UnityEngine.Color.magenta
+
+		    GameCore.Console.AddLog()
+		    return
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfZeroOrNullAction at (0x18034E814) is corrupt (ConstantDefinition: Don't know how to get IL to load a Cpp2IL.Core.Analysis.ResultModels.StackPointer) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.QueryProcessor
+	static System.Void InvokeUserCode_TargetReplyPlain(Mirror.NetworkBehaviour obj, Mirror.NetworkReader reader, Mirror.NetworkConnectionToClient senderConnection)
+		ulong local3 = 0
+
+		System.Boolean active = Mirror.NetworkClient.active
+
+		if (active != False)
+		    ulong local5 = 0
+
+		    Mirror.NetworkConnection readyConnection = Mirror.NetworkClient.readyConnection
+
+		    System.String string = Mirror.NetworkReaderExtensions.ReadString(reader) //(NetworkReader reader)
+
+		    System.Boolean boolean = Mirror.NetworkReaderExtensions.ReadBoolean(reader) //(NetworkReader reader)
+
+		    System.Boolean boolean2 = Mirror.NetworkReaderExtensions.ReadBoolean(reader) //(NetworkReader reader)
+		    ulong local13 = 0
+
+		    System.String string2 = Mirror.NetworkReaderExtensions.ReadString(reader) //(NetworkReader reader)
+		    //UNKNOWN CLASS OFFSET READ HERE
+
+		    if (string != 0)
+
+		        if (string2 != 0)
+		              = obj.
+
+		            if ( != 0)
+                        goto INSN_180349BC0
+                    endif
+
+		            if ( != 0)
+                        goto INSN_180349BC0
+                    endif
+
+		            obj.ProcessReply(string, boolean, boolean2, string2, local16) //(String content, Boolean isSuccess, Boolean logInConsole, String overrideDisplay, Boolean secure)
+		        endif
+                
+		        return
+
+		        INSN_180349BC0:
+
+		        UnityEngine.Color magenta = UnityEngine.Color.magenta
+
+		        GameCore.Console.AddLog()
+		    endif
+            
+
+		    UnityEngine.Debug.LogError("TargetRPC TargetReplyPlain called on server.") //(Object message)
+		    return
+		    throw new System.InvalidCastException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.UnknownClassOffsetReadAction at (0x180349B29) is corrupt (Unknown class offset read) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.QueryProcessor
+	System.Void UserCode_TargetReplyEncrypted(Mirror.NetworkConnection conn, System.Byte[] content, System.Boolean isSuccess, System.Boolean logInConsole, System.String overrideDisplay)
+		RemoteAdmin.RemoteAdminCryptographicManager cryptoManager = this.CryptoManager
+
+		if (cryptoManager.EncryptionKey != 0)
+
+		    if (content != 0)
+
+		        if ( != 0)
+		            RemoteAdmin.RemoteAdminCryptographicManager cryptoManager2 = this.CryptoManager
+		            System.Byte[] encryptionKey = cryptoManager2.EncryptionKey
+
+		            System.Byte[] byteArray = Cryptography.AES.AesGcmDecrypt(content, encryptionKey) //(Byte[] data, Byte[] secret)
+
+		            System.String string = Utf8.GetString(byteArray) //(Byte[] data)
+
+		            this.ProcessReply()
+		        endif
+                
+		        return
+		          = cryptoManager.
+
+		        .SendToClient("Decryption or verification of remote admin response failed.", "magenta") //(String text, String color)
+		    endif
+            
+		    ulong local16 = 0
+
+		    UnityEngine.Color magenta = UnityEngine.Color.magenta
+		    ulong local19 = 0
+
+		    GameCore.Console.AddLog("Rejected encrypted reply to remote admin request (ECHDE exchange required).", local16, local19, 1) //(String text, Color c, Boolean nospace, ConsoleLogType type)
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfZeroOrNullAction at (0x18034E661) is corrupt (One of the arguments is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.QueryProcessor
+	static System.Void InvokeUserCode_TargetReplyEncrypted(Mirror.NetworkBehaviour obj, Mirror.NetworkReader reader, Mirror.NetworkConnectionToClient senderConnection)
+		ulong local3 = 0
+
+		System.Boolean active = Mirror.NetworkClient.active
+
+		if (active != False)
+		    ulong local5 = 0
+
+		    Mirror.NetworkConnection readyConnection = Mirror.NetworkClient.readyConnection
+
+		    System.Byte[] byteArray = Mirror.NetworkReaderExtensions.ReadBytesAndSize(reader) //(NetworkReader reader)
+
+		    System.Boolean boolean = Mirror.NetworkReaderExtensions.ReadBoolean(reader) //(NetworkReader reader)
+
+		    System.Boolean boolean2 = Mirror.NetworkReaderExtensions.ReadBoolean(reader) //(NetworkReader reader)
+		    ulong local13 = 0
+
+		    System.String string = Mirror.NetworkReaderExtensions.ReadString(reader) //(NetworkReader reader)
+		    //UNKNOWN CLASS OFFSET READ HERE
+
+		    obj.UserCode_TargetReplyEncrypted(readyConnection, byteArray, boolean, boolean2, string) //(NetworkConnection conn, Byte[] content, Boolean isSuccess, Boolean logInConsole, String overrideDisplay)
+		    return
+		endif
+        
+
+		UnityEngine.Debug.LogError("TargetRPC TargetReplyEncrypted called on server.") //(Object message)
+		return
+		throw new System.InvalidCastException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.UnknownClassOffsetReadAction at (0x180349819) is corrupt (Unknown class offset read) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.QueryProcessor
+	System.Void UserCode_CmdSendEncryptedQuery(System.Byte[] query)
+		ulong local2 = 0
+		Security.RateLimit _commandRateLimit = this._commandRateLimit
+
+		System.Boolean boolean = _commandRateLimit.CanExecute(True) //(Boolean countUsage)
+
+		if (boolean != False)
+
+		    if (query != 0)
+		        ServerRoles _roles = this._roles
+
+		        if (_roles.RemoteAdmin == local2)
+                    goto INSN_18034DC06
+                endif
+		        RemoteAdmin.RemoteAdminCryptographicManager cryptoManager = this.CryptoManager
+
+		        if (cryptoManager.EncryptionKey == local2)
+                    goto INSN_18034DBDB
+                endif
+		        RemoteAdmin.RemoteAdminCryptographicManager cryptoManager2 = this.CryptoManager
+		        System.Byte[] encryptionKey = cryptoManager2.EncryptionKey
+
+		        System.Byte[] byteArray = Cryptography.AES.AesGcmDecrypt(query, encryptionKey) //(Byte[] data, Byte[] secret)
+
+		        System.String string = Utf8.GetString(byteArray) //(Byte[] data)
+
+		        System.Boolean boolean2 = string.Contains(":[:COUNTER:]:") //(String value)
+
+		        if (boolean2 == False)
+                    goto INSN_18034DB7E
+                endif
+		        System.Int32 4 = 4
+
+		        System.Int32 int32 = string.LastIndexOf(":[:COUNTER:]:", 4) //(String value, StringComparison comparisonType)
+
+		        System.String string2 = string.Substring()
+
+		        System.Boolean boolean3 = System.Int32.TryParse()
+
+		        if (boolean3 == False)
+                    goto INSN_18034DB52
+                endif
+
+		        if (boolean3 > this._signaturesCounter)
+		            this._signaturesCounter = boolean3
+		            ulong local23 = 0
+
+		            System.String string3 = string.Substring(local23, int32) //(Int32 startIndex, Int32 length)
+		            RemoteAdmin.PlayerCommandSender _sender = this._sender
+
+		            System.String string4 = RemoteAdmin.CommandProcessor.ProcessQuery(string3, _sender) //(String q, CommandSender sender)
+		            return
+		        endif
+                
+		        GameConsoleTransmission gameConsoleTransmission = this.GCT
+
+		        Mirror.NetworkConnection connectionToClient = base.connectionToClient
+
+		        gameConsoleTransmission.SendToClient(connectionToClient, "Remote admin request contains smaller signatures counter than previous request.", "magenta") //(NetworkConnection connection, String text, String color)
+		    endif
+            
+		    return
+
+		    INSN_18034DB52:
+		    GameConsoleTransmission gameConsoleTransmission2 = this.GCT
+
+		    Mirror.NetworkConnection connectionToClient2 = base.connectionToClient
+
+		    INSN_18034DB7E:
+		    GameConsoleTransmission gameConsoleTransmission3 = this.GCT
+
+		    Mirror.NetworkConnection connectionToClient3 = base.connectionToClient
+		    GameConsoleTransmission gameConsoleTransmission4 = this.GCT
+
+		    Mirror.NetworkConnection connectionToClient4 = base.connectionToClient
+		    ulong local40 = 0
+
+		    INSN_18034DBDB:
+		    RemoteAdmin.QueryProcessor processor = gameConsoleTransmission4.Processor
+
+		    Mirror.NetworkConnection connectionToClient5 = gameConsoleTransmission4.connectionToClient
+
+		    INSN_18034DC06:
+		    RemoteAdmin.QueryProcessor processor2 = gameConsoleTransmission4.Processor
+
+		    Mirror.NetworkConnection connectionToClient6 = gameConsoleTransmission4.connectionToClient
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18034DA91) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.QueryProcessor
+	static System.Void InvokeUserCode_CmdSendEncryptedQuery(Mirror.NetworkBehaviour obj, Mirror.NetworkReader reader, Mirror.NetworkConnectionToClient senderConnection)
+		ulong local3 = 0
+
+		System.Byte[] byteArray = Mirror.NetworkReaderExtensions.ReadBytesAndSize(reader) //(NetworkReader reader)
+		//UNKNOWN CLASS OFFSET READ HERE
+
+		obj.UserCode_CmdSendEncryptedQuery(byteArray) //(Byte[] query)
+		return
+
+		UnityEngine.Debug.LogError("Command CmdSendEncryptedQuery called on client.") //(Object message)
+		return
+		throw new System.InvalidCastException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.UnknownClassOffsetReadAction at (0x18034922A) is corrupt (Unknown class offset read) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.QueryProcessor
+	System.Void UserCode_CmdSendQuery(System.String query, System.Int32 counter, System.Byte[] signature)
+		Security.RateLimit _commandRateLimit = this._commandRateLimit
+
+		System.Boolean boolean = _commandRateLimit.CanExecute(True) //(Boolean countUsage)
+
+		if (boolean != False)
+
+		    if (query != 0)
+
+		        if (signature != 0)
+
+		            System.String serverRandom = this.ServerRandom
+
+		            [instruction error - managed method being called is null]
+
+		            if (serverRandom != 0)
+                        goto INSN_18034E52B
+                    endif
+		            ServerRoles _roles = this._roles
+
+		            if (_roles.RemoteAdmin == False)
+                        goto INSN_18034E4FF
+                    endif
+		            RemoteAdmin.RemoteAdminCryptographicManager cryptoManager = this.CryptoManager
+
+		            if (cryptoManager.ExchangeRequested == False)
+
+		                if (_roles.PublicKeyAccepted == False)
+
+		                    if (_roles.RemoteAdminMode == constant15)
+
+		                        System.Boolean boolean2 = this.VerifyHmacSignature(query, counter, signature, local13) //(String message, Int32 counter, Byte[] signature, Boolean validateCounter)
+		                    else
+
+		                        System.Boolean boolean3 = this.VerifyEcdsaSignature(query, counter, signature, local16) //(String message, Int32 counter, Byte[] signature, Boolean validateCounter)
+		                    endif
+                            
+
+		                    if (boolean3 == False)
+                                goto INSN_18034E462
+                            endif
+		                    RemoteAdmin.PlayerCommandSender _sender = this._sender
+
+		                    System.String string = RemoteAdmin.CommandProcessor.ProcessQuery(query, _sender) //(String q, CommandSender sender)
+
+		                    INSN_18034E462:
+		                      = _sender.
+
+		                    Mirror.NetworkConnection connectionToClient = _sender.connectionToClient
+
+		                    System.String string2 = System.String.Concat("Signature verification of request "", query, "" failed!") //(String str0, String str1, String str2)
+		                else
+		                    GameConsoleTransmission gameConsoleTransmission = this.GCT
+
+		                    Mirror.NetworkConnection connectionToClient2 = base.connectionToClient
+		                endif
+                        
+
+		                gameConsoleTransmission.SendToClient(connectionToClient2, "ECDHE exchange was requested, please use encrypted channel for remote admin commands.", "magenta") //(NetworkConnection connection, String text, String color)
+		            endif
+                    
+		            return
+
+		            INSN_18034E4FF:
+
+		            Mirror.NetworkConnection connectionToClient3 = .connectionToClient
+
+		            INSN_18034E52B:
+
+		            Mirror.NetworkConnection connectionToClient4 = .connectionToClient
+		            throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18034E39C) is corrupt (Don't know what method is being called) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.QueryProcessor
+	static System.Void InvokeUserCode_CmdSendQuery(Mirror.NetworkBehaviour obj, Mirror.NetworkReader reader, Mirror.NetworkConnectionToClient senderConnection)
+
+		System.String string = Mirror.NetworkReaderExtensions.ReadString(reader) //(NetworkReader reader)
+
+		System.Int32 int32 = Mirror.NetworkReaderExtensions.ReadInt32(reader) //(NetworkReader reader)
+		ulong local7 = 0
+
+		System.Byte[] byteArray = Mirror.NetworkReaderExtensions.ReadBytesAndSize(reader) //(NetworkReader reader)
+		//UNKNOWN CLASS OFFSET READ HERE
+
+		obj.UserCode_CmdSendQuery(string, int32, byteArray) //(String query, Int32 counter, Byte[] signature)
+		return
+
+		UnityEngine.Debug.LogError("Command CmdSendQuery called on client.") //(Object message)
+		return
+		throw new System.InvalidCastException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.UnknownClassOffsetReadAction at (0x180349515) is corrupt (Unknown class offset read) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.QueryProcessor
+	System.Void UserCode_TargetSyncGameplayData(Mirror.NetworkConnection conn, System.Boolean gd)
+		this._gameplayData = gd
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.2
+	IL_0002: stfld System.Boolean RemoteAdmin.QueryProcessor::_gameplayData
+	IL_0007: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.QueryProcessor
+	static System.Void InvokeUserCode_TargetSyncGameplayData(Mirror.NetworkBehaviour obj, Mirror.NetworkReader reader, Mirror.NetworkConnectionToClient senderConnection)
+		ulong local3 = 0
+
+		System.Boolean active = Mirror.NetworkClient.active
+
+		if (active != False)
+		    ulong local5 = 0
+
+		    Mirror.NetworkConnection readyConnection = Mirror.NetworkClient.readyConnection
+		    ulong local7 = 0
+
+		    System.Boolean boolean = Mirror.NetworkReaderExtensions.ReadBoolean(reader) //(NetworkReader reader)
+		    //UNKNOWN CLASS OFFSET READ HERE
+		    obj. = boolean
+		    return
+		endif
+        
+
+		UnityEngine.Debug.LogError("TargetRPC TargetSyncGameplayData called on server.") //(Object message)
+		return
+		throw new System.InvalidCastException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.UnknownClassOffsetReadAction at (0x180349FE4) is corrupt (Unknown class offset read) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.QueryProcessor
+	System.Boolean SerializeSyncVars(Mirror.NetworkWriter writer, System.Boolean forceAll)
+
+		System.Boolean boolean = base.SerializeSyncVars(writer, forceAll) //(NetworkWriter writer, Boolean initialState)
+
+		if (forceAll == False)
+		    System.UInt64 syncVarDirtyBits = this.<syncVarDirtyBits>k__BackingField
+
+		    Mirror.NetworkWriterExtensions.WriteUInt64(writer, syncVarDirtyBits) //(NetworkWriter writer, UInt64 value)
+
+		    if (this.SpaceArray != 1)
+		        System.String _syncServerRandom = this._syncServerRandom
+
+		        Mirror.NetworkWriterExtensions.WriteString(writer, _syncServerRandom) //(NetworkWriter writer, String value)
+		    endif
+            
+
+		    if (this.SpaceArray == 2)
+                goto INSN_18034BC0F
+            endif
+		    System.Boolean overridePasswordEnabled = this.OverridePasswordEnabled
+
+		    Mirror.NetworkWriterExtensions.WriteByte(writer, overridePasswordEnabled) //(NetworkWriter writer, Byte value)
+
+		    INSN_18034BC0F:
+		else
+		    System.String _syncServerRandom2 = this._syncServerRandom
+
+		    Mirror.NetworkWriterExtensions.WriteString(writer, _syncServerRandom2) //(NetworkWriter writer, String value)
+		    System.Boolean overridePasswordEnabled2 = this.OverridePasswordEnabled
+
+		    Mirror.NetworkWriterExtensions.WriteByte(writer, overridePasswordEnabled2) //(NetworkWriter writer, Byte value)
+		endif
+        
+		return True
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: ldarg.2
+	IL_0003: call System.Boolean Mirror.NetworkBehaviour::SerializeSyncVars(Mirror.NetworkWriter,System.Boolean)
+	IL_0008: stloc.0
+	IL_0009: ldarg.2
+	IL_000a: ldc.i4.0
+	IL_000b: bne.un.s IL_004d
+	IL_000d: ldarg.0
+	IL_000e: ldfld System.UInt64 Mirror.NetworkBehaviour::<syncVarDirtyBits>k__BackingField
+	IL_0013: stloc.1
+	IL_0014: ldarg.1
+	IL_0015: ldloc.1
+	IL_0016: call System.Void Mirror.NetworkWriterExtensions::WriteUInt64(Mirror.NetworkWriter,System.UInt64)
+	IL_001b: ldarg.0
+	IL_001c: ldfld System.Char[] RemoteAdmin.QueryProcessor::SpaceArray
+	IL_0021: ldc.i4.1
+	IL_0022: conv.i8
+	IL_0023: conv.u8
+	IL_0024: beq.s IL_0034
+	IL_0026: ldarg.0
+	IL_0027: ldfld System.String RemoteAdmin.QueryProcessor::_syncServerRandom
+	IL_002c: stloc.2
+	IL_002d: ldarg.1
+	IL_002e: ldloc.2
+	IL_002f: call System.Void Mirror.NetworkWriterExtensions::WriteString(Mirror.NetworkWriter,System.String)
+	IL_0034: ldarg.0
+	IL_0035: ldfld System.Char[] RemoteAdmin.QueryProcessor::SpaceArray
+	IL_003a: ldc.i4.2
+	IL_003b: conv.i8
+	IL_003c: conv.u8
+	IL_003d: beq.s IL_004d
+	IL_003f: ldarg.0
+	IL_0040: ldfld System.Boolean RemoteAdmin.QueryProcessor::OverridePasswordEnabled
+	IL_0045: stloc.3
+	IL_0046: ldarg.1
+	IL_0047: ldloc.3
+	IL_0048: call System.Void Mirror.NetworkWriterExtensions::WriteByte(Mirror.NetworkWriter,System.Byte)
+	IL_004d: ldarg.0
+	IL_004e: ldfld System.String RemoteAdmin.QueryProcessor::_syncServerRandom
+	IL_0053: stloc.s V_4
+	IL_0055: ldarg.1
+	IL_0056: ldloc.s V_4
+	IL_0058: call System.Void Mirror.NetworkWriterExtensions::WriteString(Mirror.NetworkWriter,System.String)
+	IL_005d: ldarg.0
+	IL_005e: ldfld System.Boolean RemoteAdmin.QueryProcessor::OverridePasswordEnabled
+	IL_0063: stloc.s V_5
+	IL_0065: ldarg.1
+	IL_0066: ldloc.s V_5
+	IL_0068: call System.Void Mirror.NetworkWriterExtensions::WriteByte(Mirror.NetworkWriter,System.Byte)
+	IL_006d: ldc.i4.1
+	IL_006e: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.QueryProcessor
+	System.Void DeserializeSyncVars(Mirror.NetworkReader reader, System.Boolean initialState)
+
+		this.MirrorProcessed()
+
+		if (initialState == False)
+
+		    System.UInt64 uInt64 = Mirror.NetworkReaderExtensions.ReadUInt64(reader) //(NetworkReader reader)
+
+		    if (uInt64 != 1)
+		        System.String _syncServerRandom = this._syncServerRandom
+
+		        System.String string = Mirror.NetworkReaderExtensions.ReadString(reader) //(NetworkReader reader)
+
+		        this.Network_syncServerRandom = string
+
+		        System.Boolean boolean = base.SyncVarEqual<System.String>()
+
+		        if (boolean == False)
+		            System.String _syncServerRandom2 = this._syncServerRandom
+
+		            this.SetServerRandom(_syncServerRandom, _syncServerRandom2) //(String prev, String random)
+		        endif
+                
+		    endif
+            
+
+		    if (uInt64 == 2)
+                goto INSN_1803488C9
+            endif
+		else
+		    System.String _syncServerRandom3 = this._syncServerRandom
+
+		    System.String string2 = Mirror.NetworkReaderExtensions.ReadString(reader) //(NetworkReader reader)
+
+		    this.Network_syncServerRandom = string2
+
+		    System.Boolean boolean2 = base.SyncVarEqual<System.String>()
+
+		    if (boolean2 == False)
+		        System.String _syncServerRandom4 = this._syncServerRandom
+
+		        this.SetServerRandom(_syncServerRandom3, _syncServerRandom4) //(String prev, String random)
+		    endif
+            
+
+		    System.Boolean boolean3 = Mirror.NetworkReaderExtensions.ReadBoolean(reader) //(NetworkReader reader)
+
+		    System.Boolean boolean4 = base.SyncVarEqual<System.Boolean>()
+
+		    if (boolean4 != False)
+                goto INSN_1803488C9
+            endif
+		    throw new System.NullReferenceException()
+
+		    INSN_1803488C9:
+		    return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1803487A9) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+

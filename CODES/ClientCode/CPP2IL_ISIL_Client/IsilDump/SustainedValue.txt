@@ -1,0 +1,267 @@
+Type: SustainedValue
+
+Method: System.Single get_Value()
+
+Disassembly:
+	movss xmm0,dword ptr [rcx+10h]
+	ret
+
+ISIL:
+	001 Move xmm0, [rcx+16]
+	002 Return xmm0
+
+Method: System.Void set_Value(System.Single value)
+
+Disassembly:
+	push rbx
+	sub rsp,30h
+	movzx eax,byte ptr [rcx+19h]
+	mov rbx,rcx
+	movss xmm0,dword ptr [18216FD30h]
+	xorps xmm3,xmm3
+	movaps [rsp+20h],xmm6
+	movaps xmm6,xmm1
+	test al,al
+	je short 000000018039E3F6h
+	comiss xmm3,xmm6
+	jbe short 000000018039E3F6h
+	movaps xmm2,xmm1
+	movss xmm1,dword ptr [rcx+10h]
+	xorps xmm2,xmm0
+	jmp short 000000018039E402h
+	movss xmm1,dword ptr [rcx+10h]
+	movaps xmm2,xmm6
+	test al,al
+	je short 000000018039E40Ah
+	comiss xmm3,xmm1
+	jbe short 000000018039E40Ah
+	xorps xmm1,xmm0
+	movss xmm0,dword ptr [rcx+14h]
+	comiss xmm0,xmm3
+	seta al
+	cmp byte ptr [rcx+18h],0
+	je short 000000018039E420h
+	comiss xmm1,xmm2
+	jmp short 000000018039E423h
+	comiss xmm2,xmm1
+	jae short 000000018039E468h
+	test al,al
+	je short 000000018039E45Dh
+	mov rcx,[rcx+20h]
+	test rcx,rcx
+	je short 000000018039E48Ch
+	xor edx,edx
+	call 0000000180BCB990h
+	xor edx,edx
+	mov [rsp+40h],rax
+	lea rcx,[rsp+40h]
+	call 0000000180DBC620h
+	movss xmm1,dword ptr [rbx+14h]
+	cvtps2pd xmm1,xmm1
+	comisd xmm0,xmm1
+	jb short 000000018039E45Dh
+	movss dword ptr [rbx+10h],xmm6
+	movaps xmm6,[rsp+20h]
+	add rsp,30h
+	pop rbx
+	ret
+	movss dword ptr [rcx+10h],xmm6
+	test al,al
+	je short 000000018039E45Dh
+	mov rcx,[rcx+20h]
+	test rcx,rcx
+	je short 000000018039E48Ch
+	xor edx,edx
+	call 0000000180BCB4E0h
+	movaps xmm6,[rsp+20h]
+	add rsp,30h
+	pop rbx
+	ret
+	call 0000000180294310h
+
+ISIL:
+	001 ShiftStack -8
+	002 Move stack:0x0, rbx
+	003 ShiftStack -48
+	004 Move rax, [rcx+25]
+	005 Move rbx, rcx
+	006 Move xmm0, [0x18216FD30]
+	007 Move xmm3, 0
+	008 Move stack:0x20, xmm6
+	009 Move xmm6, xmm1
+	010 Compare rax, 0
+	011 JumpIfEqual {18}
+	012 Compare xmm3, xmm6
+	013 JumpIfLessOrEqual {18}
+	014 Move xmm2, xmm1
+	015 Move xmm1, [rcx+16]
+	016 Xor xmm2, xmm2, xmm0
+	017 Goto {22}
+	018 Move xmm1, [rcx+16]
+	019 Move xmm2, xmm6
+	020 Compare rax, 0
+	021 JumpIfEqual {25}
+	022 Compare xmm3, xmm1
+	023 JumpIfLessOrEqual {25}
+	024 Xor xmm1, xmm1, xmm0
+	025 Move xmm0, [rcx+20]
+	026 Compare xmm0, xmm3
+	027 NotImplemented "seta al"
+	028 Compare [rcx+24], 0
+	029 JumpIfEqual {32}
+	030 Compare xmm1, xmm2
+	031 Goto {33}
+	032 Compare xmm2, xmm1
+	033 JumpIfGreaterOrEqual {55}
+	034 Compare rax, 0
+	035 JumpIfEqual {50}
+	036 Move rcx, [rcx+32]
+	037 Compare rcx, 0
+	038 JumpIfEqual {68}
+	039 Move rdx, 0
+	040 Call Stopwatch.get_Elapsed, rcx, rdx
+	041 Move rdx, 0
+	042 Move stack:0x40, rax
+	043 LoadAddress rcx, stack:0x40
+	044 Call 0x180DBC620, rcx, rdx, r8, r9
+	045 Move xmm1, [rbx+20]
+	046 Move xmm1, xmm1
+	047 NotImplemented "comisd xmm0,xmm1"
+	048 JumpIfLess {50}
+	049 Move [rbx+16], xmm6
+	050 Move xmm6, stack:0x20
+	051 ShiftStack 48
+	052 Move rbx, stack:0x0
+	053 ShiftStack 8
+	054 Return 
+	055 Move [rcx+16], xmm6
+	056 Compare rax, 0
+	057 JumpIfEqual {50}
+	058 Move rcx, [rcx+32]
+	059 Compare rcx, 0
+	060 JumpIfEqual {68}
+	061 Move rdx, 0
+	062 Call Stopwatch.Restart, rcx, rdx
+	063 Move xmm6, stack:0x20
+	064 ShiftStack 48
+	065 Move rbx, stack:0x0
+	066 ShiftStack 8
+	067 Return 
+	068 Call 0x180294310, rcx, rdx, r8, r9
+
+Method: System.Void .ctor(System.Single initialValue, System.Single sustainTime, System.Boolean inverse, System.Boolean absolute)
+
+Disassembly:
+	mov [rsp+8],rbx
+	push rdi
+	sub rsp,40h
+	cmp byte ptr [1826EA16Fh],0
+	movzx edi,r9b
+	movaps [rsp+30h],xmm6
+	mov rbx,rcx
+	movaps [rsp+20h],xmm7
+	movaps xmm6,xmm2
+	movaps xmm7,xmm1
+	jne short 000000018039E33Ch
+	mov ecx,[1822DBA18h]
+	call 0000000180294190h
+	mov byte ptr [1826EA16Fh],1
+	xor edx,edx
+	mov rcx,rbx
+	call 00000001802D5040h
+	movzx eax,byte ptr [rsp+70h]
+	xorps xmm0,xmm0
+	comiss xmm6,xmm0
+	mov [rbx+18h],dil
+	mov [rbx+19h],al
+	movss dword ptr [rbx+10h],xmm7
+	movss dword ptr [rbx+14h],xmm6
+	jbe short 000000018039E398h
+	mov rcx,[182707FD0h]
+	test byte ptr [rcx+12Fh],2
+	je short 000000018039E382h
+	cmp dword ptr [rcx+0E0h],0
+	jne short 000000018039E382h
+	call 000000018021A070h
+	xor ecx,ecx
+	call 0000000180BCB540h
+	lea rcx,[rbx+20h]
+	mov rdx,rax
+	mov [rcx],rax
+	call 0000000180293EF0h
+	mov rbx,[rsp+50h]
+	movaps xmm6,[rsp+30h]
+	movaps xmm7,[rsp+20h]
+	add rsp,40h
+	pop rdi
+	ret
+
+ISIL:
+	001 Move stack:0x8, rbx
+	002 ShiftStack -8
+	003 Move stack:0x0, rdi
+	004 ShiftStack -64
+	005 Compare [0x1826EA16F], 0
+	006 Move rdi, r9
+	007 Move stack:0x30, xmm6
+	008 Move rbx, rcx
+	009 Move stack:0x20, xmm7
+	010 Move xmm6, xmm2
+	011 Move xmm7, xmm1
+	012 JumpIfNotEqual {16}
+	013 Move rcx, [0x1822DBA18]
+	014 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	015 Move [0x1826EA16F], 1
+	016 Move rdx, 0
+	017 Move rcx, rbx
+	018 Call 0x1802D5040, rcx, rdx, r8, r9, stack:0x0
+	019 Move rax, stack:0x70
+	020 Move xmm0, 0
+	021 Compare xmm6, xmm0
+	022 Move [rbx+24], rdi
+	023 Move [rbx+25], rax
+	024 Move [rbx+16], xmm7
+	025 Move [rbx+20], xmm6
+	026 JumpIfLessOrEqual {39}
+	027 Move rcx, typeof(System.Diagnostics.Stopwatch)
+	028 Compare [rcx+303], 2
+	029 JumpIfEqual {33}
+	030 Compare [rcx+224], 0
+	031 JumpIfNotEqual {33}
+	032 Call "il2cpp_runtime_class_init_export", rcx, rdx, r8, r9
+	033 Move rcx, 0
+	034 Call Stopwatch.StartNew, rcx
+	035 LoadAddress rcx, [rbx+32]
+	036 Move rdx, rax
+	037 Move [rcx], rax
+	038 Call 0x180293EF0, rcx, rdx, r8, r9
+	039 Move rbx, stack:0x50
+	040 Move xmm6, stack:0x30
+	041 Move xmm7, stack:0x20
+	042 ShiftStack 64
+	043 Move rdi, stack:0x0
+	044 ShiftStack 8
+	045 Return 
+
+Method: System.Single ConditionalAbs(System.Single val)
+
+Disassembly:
+	cmp byte ptr [rcx+19h],0
+	je short 000000018039E2F5h
+	xorps xmm0,xmm0
+	comiss xmm0,xmm1
+	jbe short 000000018039E2F5h
+	xorps xmm1,[18216FD30h]
+	movaps xmm0,xmm1
+	ret
+
+ISIL:
+	001 Compare [rcx+25], 0
+	002 JumpIfEqual {7}
+	003 Move xmm0, 0
+	004 Compare xmm0, xmm1
+	005 JumpIfLessOrEqual {7}
+	006 Xor xmm1, xmm1, [0x18216FD30]
+	007 Move xmm0, xmm1
+	008 Return xmm0
+

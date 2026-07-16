@@ -1,0 +1,344 @@
+Type: StatSlider
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerStatsSystem.StatSlider
+	System.Void set_CustomSuffix(System.String value)
+
+		[instruction error - managed method being called is null]
+
+		if ( != 0)
+		endif
+        
+		this._suffix = value
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181B50F45) is corrupt (Don't know what method is being called) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerStatsSystem.StatSlider
+	System.String get_CustomSuffix()
+		System.String _suffix = this._suffix
+		return _suffix
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String PlayerStatsSystem.StatSlider::_suffix
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerStatsSystem.StatSlider
+	System.Int32 get_StatId()
+		System.Int32 _displayedStatId = this._displayedStatId
+		return _displayedStatId
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Int32 PlayerStatsSystem.StatSlider::_displayedStatId
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerStatsSystem.StatSlider
+	System.Void ForceUpdate()
+
+		System.Boolean boolean = this.TryGetModule()
+
+		if (boolean != False)
+
+		    System.String string = local2.ToString()
+		    this._currentValue = 
+		endif
+        
+		UnityEngine.UI.Slider _targetSlider = this._targetSlider
+
+		System.Single value = _targetSlider.value
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181B5070A) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerStatsSystem.StatSlider
+	System.Boolean TryGetModule(PlayerStatsSystem.StatBase& sb)
+		ulong local2 = 0
+		sb. = local2
+
+		System.Boolean boolean = ReferenceHub.TryGetLocalHub(local2) //(ReferenceHub& hub)
+
+		if (boolean != False)
+		      = local2.
+
+		    PlayerRoles.PlayerRoleBase currentRole = .CurrentRole
+
+		    if (currentRole != 0)
+		        ulong local9 = 0
+
+		        System.Boolean boolean2 = UnityEngine.Object.op_Equality(currentRole, local9) //(Object x, Object y)
+
+		        if (boolean2 == False)
+		              = boolean2.
+		            System.Int32 _displayedStatId = this._displayedStatId
+		            sb. = IHealthbarRole
+		            return True
+		        endif
+                
+		        ulong local12 = 0
+		        return local12
+		        throw new System.IndexOutOfRangeException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.RegToFieldAction at (0x181B50797) is corrupt (Instance or field is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerStatsSystem.StatSlider
+	System.Void Awake()
+		System.String _suffix = this._suffix
+		this._originalSuffix = _suffix
+
+		if (this._displayExactMode == 0)
+		    System.String _preferenceKey = this._preferenceKey
+		    System.Int64 local4 = 1
+
+		    System.Boolean boolean = PlayerPrefsSl.Get(_preferenceKey, local4) //(String key, Boolean defaultValue)
+		    this._displayExactMode = _preferenceKey
+		endif
+        
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String PlayerStatsSystem.StatSlider::_suffix
+	IL_0006: stloc.0
+	IL_0007: ldarg.0
+	IL_0008: ldloc.0
+	IL_0009: stfld System.String PlayerStatsSystem.StatSlider::_originalSuffix
+	IL_000e: ldarg.0
+	IL_000f: ldfld PlayerStatsSystem.StatSlider/DisplayExactMode PlayerStatsSystem.StatSlider::_displayExactMode
+	IL_0014: ldc.i4.0
+	IL_0015: bne.un.s IL_002d
+	IL_0017: ldarg.0
+	IL_0018: ldfld System.String PlayerStatsSystem.StatSlider::_preferenceKey
+	IL_001d: stloc.1
+	IL_001e: ldloc.1
+	IL_001f: ldloc.2
+	IL_0020: call System.Boolean PlayerPrefsSl::Get(System.String,System.Boolean)
+	IL_0025: stloc.3
+	IL_0026: ldarg.0
+	IL_0027: ldloc.1
+	IL_0028: stfld PlayerStatsSystem.StatSlider/DisplayExactMode PlayerStatsSystem.StatSlider::_displayExactMode
+	IL_002d: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerStatsSystem.StatSlider
+	System.Void Update()
+		. = 0
+
+		System.Boolean boolean = this.TryGetModule()
+
+		if (boolean != False)
+		    UnityEngine.UI.Slider _targetSlider = this._targetSlider
+		      = boolean.
+
+		    _targetSlider.set_minValue()
+		    UnityEngine.UI.Slider _targetSlider2 = this._targetSlider
+		      = boolean.
+
+		    _targetSlider2.set_maxValue()
+		      = boolean.
+		    System.Single _currentValue = this._currentValue
+
+		    if ( <= this._snapValueSkip)
+		          = boolean.
+		        System.Single _lerpSpeed = this._lerpSpeed
+		          = boolean.
+		        System.Single local10 = _currentValue * 0,04
+
+		        System.Single single = UnityEngine.Mathf.Max(_lerpSpeed, local10) //(Single a, Single b)
+		        local10 = single
+		          = boolean.
+		        ulong local13 = 0
+
+		        System.Single deltaTime = UnityEngine.Time.deltaTime
+		        local10 = single
+		        deltaTime = local12
+
+		        System.Single single2 = UnityEngine.Mathf.MoveTowards(deltaTime, local10, deltaTime) //(Single current, Single target, Single maxDelta)
+		    else
+		          = boolean.
+		    endif
+            
+		    this._currentValue = 
+		    UnityEngine.UI.Slider _targetSlider3 = this._targetSlider
+
+		    System.Single value = _targetSlider3.value
+
+		    this.UpdateText()
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ImmediateToFieldAction at (0x181B50CFB) is corrupt (Instance or field is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerStatsSystem.StatSlider
+	System.Void UpdateSlider(PlayerStatsSystem.StatBase stat)
+		UnityEngine.UI.Slider _targetSlider = this._targetSlider
+
+		stat.set_CurValue()
+
+		_targetSlider.set_minValue()
+		UnityEngine.UI.Slider _targetSlider2 = this._targetSlider
+
+		System.Single minValue = stat.MinValue
+
+		_targetSlider2.maxValue = minValue
+
+		System.String string = stat.ToString()
+		System.Single _currentValue = this._currentValue
+
+		if (minValue <= this._snapValueSkip)
+
+		    System.Single minValue2 = stat.MinValue
+		    _currentValue = minValue2
+
+		    stat.CurValue = minValue
+		    minValue2 = local9
+		    System.Single local12 = _currentValue * 0,04
+		    minValue = local12
+
+		    System.Single single = UnityEngine.Mathf.Max(minValue2, minValue) //(Single a, Single b)
+		    local12 = single
+
+		    System.String string2 = stat.ToString()
+		    ulong local16 = 0
+		    minValue = single
+
+		    System.Single deltaTime = UnityEngine.Time.deltaTime
+		    deltaTime = local14
+
+		    System.Single single2 = UnityEngine.Mathf.MoveTowards(deltaTime, minValue, deltaTime) //(Single current, Single target, Single maxDelta)
+		else
+
+		    System.String string3 = stat.ToString()
+		endif
+        
+		this._currentValue = minValue
+		UnityEngine.UI.Slider _targetSlider3 = this._targetSlider
+
+		System.String defaultValueExpanded = _targetSlider3.DefaultValueExpanded
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallVirtualMethodAction at (0x181B5092A) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerStatsSystem.StatSlider
+	System.Void UpdateText(PlayerStatsSystem.StatBase stat)
+		PlayerStatsSystem.StatSlider/DisplayExactMode _displayExactMode = this._displayExactMode
+
+		if (_displayExactMode != 3)
+
+		    if (_displayExactMode == 1)
+
+		        System.String string = stat.ToString()
+		    else
+
+		        stat.set_CurValue()
+
+		        System.Single minValue = stat.MinValue
+
+		        if (_displayExactMode == 1)
+		        else
+
+		            System.String string2 = stat.ToString()
+
+		            stat.set_CurValue()
+
+		            System.Single minValue2 = stat.MinValue
+
+		            stat.set_CurValue()
+		        endif
+                
+		        System.Single local8 = minValue * 100
+		        minValue2 = local8
+
+		        System.Int32 int32 = UnityEngine.Mathf.CeilToInt(minValue2) //(Single f)
+		    endif
+            
+		    UnityEngine.UI.Text _targetText = this._targetText
+
+		    System.Int32 int322 = UnityEngine.Mathf.CeilToInt(minValue2) //(Single f)
+
+		    if (_displayExactMode != 1)
+                goto INSN_181B50CA7
+            endif
+
+		    INSN_181B50CA7:
+
+		    System.String string3 = System.String.Concat(int322, "%") //(Object arg0, Object arg1)
+
+		    System.String text = _targetText.text
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallVirtualMethodAction at (0x181B50B6C) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerStatsSystem.StatSlider
+	System.Void .ctor()
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void UnityEngine.MonoBehaviour::.ctor()
+	IL_0006: ret
+	
+

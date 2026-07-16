@@ -1,0 +1,203 @@
+Type: ShotgunViewmodel
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Firearms.ShotgunViewmodel
+	InventorySystem.Items.Firearms.Modules.PumpAction get_PumpAction()
+		InventorySystem.Items.Firearms.Shotgun _shotgun = this._shotgun
+
+		_shotgun.set_EquipperModule()
+
+		if (constant5 == 0)
+		    return constant5
+		endif
+        
+		//UNKNOWN CLASS OFFSET READ HERE
+		//UNKNOWN CLASS OFFSET READ HERE
+		return constant5
+		ulong local4 = 0
+		return constant5
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallVirtualMethodAction at (0x18056B83A) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Firearms.ShotgunViewmodel
+	System.Void InitAny()
+
+		base.InitAny()
+		InventorySystem.Items.ItemBase ParentItem = this.<ParentItem>k__BackingField
+
+		if (ParentItem != 0)
+		    //UNKNOWN CLASS OFFSET READ HERE
+		    this._shotgun = ParentItem
+		    InventorySystem.Items.Firearms.Shotgun _shotgun = this._shotgun
+		    System.Action action = new System.Action()
+
+		    action..ctor(this, {'OnFire' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		    _shotgun.add_OnShotCalled(action) //(Action value)
+		    return
+		endif
+        
+
+		System.String name = base.name
+
+		System.String string = System.String.Concat("Object '", name, "' has ShotgunViewmodel component, but it's not referenced to a Shotgun item!") //(String str0, String str1, String str2)
+		System.InvalidOperationException invalidOperationException = new System.InvalidOperationException()
+
+		invalidOperationException..ctor(string) //(String message)
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.UnknownClassOffsetReadAction at (0x18056B48A) is corrupt (Unknown class offset read) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Firearms.ShotgunViewmodel
+	System.Void LateUpdate()
+
+		base.LateUpdate()
+
+		InventorySystem.Items.Firearms.Modules.PumpAction pumpAction = this.PumpAction
+		ulong local7 = 0
+
+		System.Single deltaTime = UnityEngine.Time.deltaTime
+
+		System.Single single = UnityEngine.Mathf.Clamp01(deltaTime) //(Single value)
+		this._triggerSmooth = single
+		System.Int32 4 = 4
+
+		base.AnimatorSetLayerWeight(4, single) //(Int32 layer, Single val)
+
+		InventorySystem.Items.Firearms.Modules.PumpAction pumpAction2 = this.PumpAction
+
+		System.Int32 chamberedRounds = pumpAction2.ChamberedRounds
+
+		InventorySystem.Items.Firearms.Modules.PumpAction pumpAction3 = this.PumpAction
+
+		InventorySystem.Items.Firearms.FirearmStatus predictedStatus = pumpAction3.PredictedStatus
+		UnityEngine.GameObject[] _loadedShells = this._loadedShells
+		predictedStatus -= chamberedRounds
+		ulong local21 = 0
+
+		while (local21 < _loadedShells.Length)
+		    UnityEngine.GameObject gameObject = _loadedShells[local21]
+		    System.Boolean local23 = local21 < predictedStatus
+
+		    gameObject.SetActive(local23) //(Boolean value)
+		    UnityEngine.GameObject[] _loadedShells2 = this._loadedShells
+		    local21 += 1
+		endwhile
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void InventorySystem.Items.Firearms.AnimatedFirearmViewmodel::LateUpdate()
+	IL_0006: ldarg.0
+	IL_0007: call InventorySystem.Items.Firearms.Modules.PumpAction InventorySystem.Items.Firearms.ShotgunViewmodel::get_PumpAction()
+	IL_000c: stloc.0
+	IL_000d: ldc.i4.0
+	IL_000e: stloc.1
+	IL_000f: call System.Single UnityEngine.Time::get_deltaTime()
+	IL_0014: call System.Single UnityEngine.Mathf::Clamp01(System.Single)
+	IL_0019: stloc.2
+	IL_001a: ldarg.0
+	IL_001b: ldloc.2
+	IL_001c: stfld System.Single InventorySystem.Items.Firearms.ShotgunViewmodel::_triggerSmooth
+	IL_0021: ldarg.0
+	IL_0022: ldc.i4.4
+	IL_0023: ldloc.2
+	IL_0024: call System.Void InventorySystem.Items.AnimatedViewmodelBase::AnimatorSetLayerWeight(System.Int32,System.Single)
+	IL_0029: ldarg.0
+	IL_002a: call InventorySystem.Items.Firearms.Modules.PumpAction InventorySystem.Items.Firearms.ShotgunViewmodel::get_PumpAction()
+	IL_002f: call System.Int32 InventorySystem.Items.Firearms.Modules.PumpAction::get_ChamberedRounds()
+	IL_0034: stloc.3
+	IL_0035: ldarg.0
+	IL_0036: call InventorySystem.Items.Firearms.Modules.PumpAction InventorySystem.Items.Firearms.ShotgunViewmodel::get_PumpAction()
+	IL_003b: call InventorySystem.Items.Firearms.FirearmStatus InventorySystem.Items.Firearms.Modules.PumpAction::get_PredictedStatus()
+	IL_0040: stloc.s V_4
+	IL_0042: ldarg.0
+	IL_0043: ldfld UnityEngine.GameObject[] InventorySystem.Items.Firearms.ShotgunViewmodel::_loadedShells
+	IL_0048: stloc.s V_5
+	IL_004a: ldloc.s V_4
+	IL_004c: ldloc.3
+	IL_004d: sub
+	IL_004e: stloc.s V_4
+	IL_0050: ldc.i4.0
+	IL_0051: stloc.s V_6
+	IL_0053: ldloc.s V_6
+	IL_0055: ldloc.s V_5
+	IL_0057: call System.Int32 System.Array::get_Length()
+	IL_005c: bge.s IL_0088
+	IL_005e: ldloc.s V_5
+	IL_0060: ldloc.s V_6
+	IL_0062: ldelem.any UnityEngine.GameObject
+	IL_0067: stloc.s V_7
+	IL_0069: ldloc.s V_6
+	IL_006b: ldloc.s V_4
+	IL_006d: clt
+	IL_006f: stloc.s V_8
+	IL_0071: ldloc.s V_7
+	IL_0073: ldloc.s V_8
+	IL_0075: call System.Void UnityEngine.GameObject::SetActive(System.Boolean)
+	IL_007a: ldarg.0
+	IL_007b: ldfld UnityEngine.GameObject[] InventorySystem.Items.Firearms.ShotgunViewmodel::_loadedShells
+	IL_0080: stloc.s V_9
+	IL_0082: ldloc.s V_6
+	IL_0084: ldc.i4.1
+	IL_0085: add
+	IL_0086: stloc.s V_6
+	IL_0088: ret
+	IL_0089: newobj System.Void System.NullReferenceException::.ctor()
+	IL_008e: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Firearms.ShotgunViewmodel
+	System.Void OnFire()
+
+		InventorySystem.Items.Firearms.Modules.PumpAction pumpAction = this.PumpAction
+		System.Single local3 =  * this._recoilPerShot
+
+		System.Single single = UnityEngine.Mathf.Max(local3, 1) //(Single a, Single b)
+		System.Int32 1 = 1
+
+		base.AnimatorSetLayerWeight(1, single) //(Int32 layer, Single val)
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.MultiplyRegByFieldAction at (0x18056B73E) is corrupt (Operand we were multiplying by is null or local made was stripped) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Firearms.ShotgunViewmodel
+	System.Void .ctor()
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void InventorySystem.Items.Firearms.AnimatedFirearmViewmodel::.ctor()
+	IL_0006: ret
+	
+

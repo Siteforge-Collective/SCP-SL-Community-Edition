@@ -1,0 +1,159 @@
+Type: LiquidWobble
+
+
+	Generated Pseudocode:
+
+	Declaring Type: LiquidWobble
+	System.Void Start()
+
+		UnityEngine.Renderer component = base.GetComponent<UnityEngine.Renderer>()
+		this._renderer = component
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call T UnityEngine.Component::GetComponent<UnityEngine.Renderer>()
+	IL_0006: stloc.0
+	IL_0007: ldarg.0
+	IL_0008: ldloc.0
+	IL_0009: stfld UnityEngine.Renderer LiquidWobble::_renderer
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: LiquidWobble
+	System.Void Update()
+		ulong local2 = 0
+
+		System.Single deltaTime = UnityEngine.Time.deltaTime
+		ulong local5 = 0
+		this._time = deltaTime
+
+		System.Single deltaTime2 = UnityEngine.Time.deltaTime
+		System.Single _recovery = this._recovery
+		ulong local9 = 0
+		deltaTime2 = local4
+
+		System.Single single = UnityEngine.Mathf.Lerp(deltaTime2, local9, _recovery) //(Single a, Single b, Single t)
+		System.Single _wobbleAmountToAddZ = this._wobbleAmountToAddZ
+		ulong local12 = 0
+		this._wobbleAmountToAddX = single
+
+		System.Single deltaTime3 = UnityEngine.Time.deltaTime
+		System.Single _recovery2 = this._recovery
+		ulong local16 = 0
+		deltaTime3 = _wobbleAmountToAddZ
+
+		System.Single single2 = UnityEngine.Mathf.Lerp(deltaTime3, local16, _recovery2) //(Single a, Single b, Single t)
+		_wobbleAmountToAddZ = single2
+		System.Single _wobbleSpeed = this._wobbleSpeed
+		System.Single local19 = _wobbleSpeed * 6,2831855
+		this._wobbleAmountToAddZ = _wobbleAmountToAddZ
+		this._pulse = local19
+		System.Single local20 = local19 * this._time
+		UnityEngine.Renderer _renderer = this._renderer
+		System.Single local22 = local20 * this._wobbleAmountToAddX
+		this._wobbleAmountX = local22
+		this._wobbleAmountZ = local20
+
+		UnityEngine.Material material = _renderer.GetMaterial()
+		System.Single _wobbleAmountX = this._wobbleAmountX
+
+		material.SetFloat("_WobbleZ", _wobbleAmountX) //(String name, Single value)
+		UnityEngine.Renderer _renderer2 = this._renderer
+
+		UnityEngine.Material material2 = _renderer2.GetMaterial()
+		System.Single _wobbleAmountZ = this._wobbleAmountZ
+
+		material2.SetFloat("_WobbleX", _wobbleAmountZ) //(String name, Single value)
+
+		UnityEngine.Transform transform = base.transform
+
+		UnityEngine.Vector3 position = this.position
+
+		UnityEngine.Vector3 vector3 = UnityEngine.Vector3.op_Subtraction()
+		ulong local40 = 0
+
+		System.Single deltaTime4 = UnityEngine.Time.deltaTime
+		_wobbleAmountZ = deltaTime4
+
+		UnityEngine.Vector3 vector32 = UnityEngine.Vector3.op_Division(local40, local22) //(Vector3 a, Single d)
+		System.Single single3 = vector32.z
+		this._velocity.z = single3
+
+		UnityEngine.Transform transform2 = base.transform
+
+		UnityEngine.Quaternion rotation = this.rotation
+		System.Single single4 = this._lastRotation.z
+		  = single4.
+
+		UnityEngine.Vector3 vector33 = UnityEngine.Vector3.op_Subtraction()
+		System.Single _maxWobble = this._maxWobble
+		local22 = _maxWobble
+		System.Single single5 = vector33.z
+		this._angularVelocity.z = single5
+		System.Single single6 = this._angularVelocity.z
+		System.Single local59 = single6 * 0,2
+
+		System.Single single7 = UnityEngine.Mathf.Clamp(local59, local22, _maxWobble) //(Single value, Single min, Single max)
+		System.Single _maxWobble2 = this._maxWobble
+		local22 = _maxWobble2
+		this._wobbleAmountToAddX = single7
+		UnityEngine.Vector3 _angularVelocity = this._angularVelocity
+		System.Single local65 = _angularVelocity * 0,2
+
+		System.Single single8 = UnityEngine.Mathf.Clamp(local65, local22, _maxWobble2) //(Single value, Single min, Single max)
+		this._wobbleAmountToAddZ = single8
+
+		UnityEngine.Transform transform3 = base.transform
+
+		UnityEngine.Vector3 position2 = this.position
+		System.Single single9 = position2.z
+		this._lastPosition.z = single9
+
+		UnityEngine.Transform transform4 = base.transform
+
+		UnityEngine.Quaternion rotation2 = this.rotation
+		System.Single single10 = rotation2.z
+		this._lastRotation.z = single10
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.RegToRegMoveAction at (0x1802DB4E9) is corrupt (Local local4 is a variable but it has been stripped out. Are you missing a call to RegisterUsedLocal?) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: LiquidWobble
+	System.Void .ctor()
+		this._maxWobble = 0,03
+		this._wobbleSpeed = 1
+		this._recovery = 1
+		this._time = 0,5
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldc.r4 0,03
+	IL_0006: stfld System.Single LiquidWobble::_maxWobble
+	IL_000b: ldarg.0
+	IL_000c: ldc.r4 1
+	IL_0011: stfld System.Single LiquidWobble::_wobbleSpeed
+	IL_0016: ldarg.0
+	IL_0017: ldc.r4 1
+	IL_001c: stfld System.Single LiquidWobble::_recovery
+	IL_0021: ldarg.0
+	IL_0022: ldc.r4 0,5
+	IL_0027: stfld System.Single LiquidWobble::_time
+	IL_002c: ldarg.0
+	IL_002d: call System.Void UnityEngine.MonoBehaviour::.ctor()
+	IL_0032: ret
+	
+

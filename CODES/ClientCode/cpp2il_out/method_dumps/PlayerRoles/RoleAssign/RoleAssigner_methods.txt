@@ -1,0 +1,302 @@
+Type: RoleAssigner
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.RoleAssign.RoleAssigner
+	static System.Void Init()
+		System.Action <>9__9_0 = PlayerRoles.RoleAssign.RoleAssigner/<>c.<>9__9_0
+
+		if (<>9__9_0 == 0)
+		    PlayerRoles.RoleAssign.RoleAssigner/<>c <>c = PlayerRoles.RoleAssign.RoleAssigner/<>c.<>9
+		    System.Action action = new System.Action()
+
+		    action..ctor(<>c, {'<Init>b__9_0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		     += 8
+		    PlayerRoles.RoleAssign.RoleAssigner/<>c.<>9 = action
+		endif
+        
+
+		CustomNetworkManager.add_OnClientReady(<>9__9_0) //(Action value)
+		System.Action`2<ReferenceHub,ClientInstanceMode> action2 = new System.Action`2<ReferenceHub,ClientInstanceMode>()
+		ulong local6 = 0
+
+		action2..ctor(local6, {'CheckLateJoin' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		CharacterClassManager.add_OnInstanceModeChanged(action2) //(Action`2 value)
+		System.Action action3 = new System.Action()
+		ulong local10 = 0
+
+		action3..ctor(local10, {'OnRoundStarted' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		CharacterClassManager.add_OnRoundStarted(action3) //(Action value)
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x1803D5636) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.RoleAssign.RoleAssigner
+	static System.Void OnRoundStarted()
+		YamlConfig serverConfig = GameCore.ConfigFile.ServerConfig
+
+		System.String string = serverConfig.GetString("team_respawn_queue", "4014314031441404134041434414") //(String key, String def)
+		System.Int32 m_stringLength = string.m_stringLength
+		PlayerRoles.Team[] local6 = new PlayerRoles.Team[m_stringLength]
+		 += 24
+		PlayerRoles.RoleAssign.RoleAssigner.LateJoinTimer = local6
+		PlayerRoles.Team[] local7 = new PlayerRoles.Team[m_stringLength]
+		 += 32
+		PlayerRoles.RoleAssign.RoleAssigner.LateJoinTimer = local7
+		PlayerRoles.RoleAssign.RoleAssigner._prevQueueSize = m_stringLength
+		ulong local8 = 0
+
+		if (local8 < "{il2cpp array field local6->}")
+
+		    System.Char chars = local6.Chars
+
+		    System.Type typeFromHandle = System.Type.GetTypeFromHandle({'Team' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+
+		    System.Boolean isDefined = System.Enum.IsDefined(typeFromHandle, local13) //(Type enumType, Object value)
+
+		    if (isDefined != False)
+
+		        if (local6 != 0)
+		            PlayerRoles.Team[] _humanQueue = PlayerRoles.RoleAssign.RoleAssigner._humanQueue
+		            local8 += 1
+		            local8. = local6
+		        endif
+                
+		        PlayerRoles.Team[] _totalQueue = PlayerRoles.RoleAssign.RoleAssigner._totalQueue
+		        local8 += 1
+		        local8. = local6
+		    endif
+            
+		    local8 += 1
+		endif
+        
+
+		if (local8 == 0)
+            goto INSN_1803D5E72
+        endif
+		. = 1
+		System.Diagnostics.Stopwatch lateJoinTimer = PlayerRoles.RoleAssign.RoleAssigner.LateJoinTimer
+
+		lateJoinTimer.Restart()
+		System.Func`2<ReferenceHub,System.Boolean> <>9__10_0 = PlayerRoles.RoleAssign.RoleAssigner/<>c.<>9__10_0
+
+		if (<>9__10_0 != 0)
+            goto INSN_1803D5B92
+        endif
+		PlayerRoles.RoleAssign.RoleAssigner/<>c <>c = PlayerRoles.RoleAssign.RoleAssigner/<>c.<>9
+		System.Func`2<ReferenceHub,System.Boolean> func = new System.Func`2<ReferenceHub,System.Boolean>()
+
+		func..ctor(<>c, {'<OnRoundStarted>b__10_0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		 += 16
+		PlayerRoles.RoleAssign.RoleAssigner/<>c.<>9 = func
+
+		INSN_1803D5B92:
+
+		System.Int32 int32 = Utils.NonAllocLINQ.HashsetExtensions.Count<ReferenceHub>()
+
+		if (int32 <= 0)
+            goto INSN_1803D5C0F
+        endif
+		PlayerRoles.Team[] _totalQueue2 = PlayerRoles.RoleAssign.RoleAssigner._totalQueue
+		System.Int32 1 = 1
+		local8 += 1
+		endwhile
+    
+		goto INSN_1803D5BD2
+    
+
+		PlayerRoles.RoleAssign.ScpSpawner.SpawnScps(local8) //(Int32 targetScpNumber)
+		PlayerRoles.Team[] _humanQueue2 = PlayerRoles.RoleAssign.RoleAssigner._humanQueue
+
+		PlayerRoles.RoleAssign.HumanSpawner.SpawnHumans(_humanQueue2, local8) //(Team[] queue, Int32 queueLength)
+		System.Collections.Generic.HashSet`1<ReferenceHub> AllHubs = ReferenceHub.<AllHubs>k__BackingField
+
+		System.Collections.Generic.HashSet`1/Enumerator<T> enumerator = .GetEnumerator()
+
+		if (enumerator == 0)
+        goto INSN_1803D5DDA
+    endif
+
+		System.Boolean isAlive = PlayerRoles.PlayerRolesUtils.IsAlive()
+
+		if (isAlive == False)
+        goto INSN_1803D5D40
+    endif
+		System.Collections.Generic.HashSet`1<System.String> alreadySpawnedPlayers = PlayerRoles.RoleAssign.RoleAssigner.AlreadySpawnedPlayers
+		PlayerRoles.Team local34 = _humanQueue2[8]
+
+		System.String userId = local34.UserId
+
+		System.Boolean boolean = alreadySpawnedPlayers.Add(userId) //(T item)
+
+		INSN_1803D5DDA:
+
+		alreadySpawnedPlayers.Dispose()
+
+		alreadySpawnedPlayers.Dispose()
+
+		if (alreadySpawnedPlayers != 0)
+        goto INSN_1803D5E6A
+    endif
+		return
+		throw new System.IndexOutOfRangeException()
+
+		INSN_1803D5E6A:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x1803D589B) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.RoleAssign.RoleAssigner
+	static System.Void CheckLateJoin(ReferenceHub hub, ClientInstanceMode cim)
+
+		System.Boolean boolean = PlayerRoles.RoleAssign.RoleAssigner.CheckPlayer(hub) //(ReferenceHub hub)
+
+		if (boolean != False)
+		    YamlConfig serverConfig = GameCore.ConfigFile.ServerConfig
+		    ulong local7 = 0
+
+		    System.Single float = serverConfig.GetFloat("late_join_time", local7) //(String key, Single def)
+		    System.Collections.Generic.HashSet`1<System.String> alreadySpawnedPlayers = PlayerRoles.RoleAssign.RoleAssigner.AlreadySpawnedPlayers
+		    CharacterClassManager characterClassManager = hub.characterClassManager
+
+		    System.String userId = characterClassManager.UserId
+
+		    System.Boolean boolean2 = alreadySpawnedPlayers.Add(userId) //(T item)
+
+		    if (boolean2 == False)
+                goto INSN_1803D548F
+            endif
+		    System.Diagnostics.Stopwatch lateJoinTimer = PlayerRoles.RoleAssign.RoleAssigner.LateJoinTimer
+
+		    System.TimeSpan elapsed = lateJoinTimer.Elapsed
+
+		    if (lateJoinTimer > 0)
+                goto INSN_1803D548F
+            endif
+		    PlayerRoles.PlayerRoleManager roleManager = hub.roleManager
+		    ulong local20 = 0
+
+		    PlayerRoles.RoleTypeId nextHumanRoleToSpawn = PlayerRoles.RoleAssign.HumanSpawner.NextHumanRoleToSpawn
+
+		    roleManager.ServerSetRole(nextHumanRoleToSpawn, 2, 0xFFFFFFFF) //(RoleTypeId newRole, RoleChangeReason reason, RoleSpawnFlags spawnFlags)
+		endif
+        
+		return
+
+		INSN_1803D548F:
+		PlayerRoles.PlayerRoleManager roleManager2 = hub.roleManager
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Boolean PlayerRoles.RoleAssign.RoleAssigner::CheckPlayer(ReferenceHub)
+	IL_0006: ldc.i4.0
+	IL_0007: beq.s IL_0073
+	IL_0009: ldsfld YamlConfig GameCore.ConfigFile::ServerConfig
+	IL_000e: stloc.1
+	IL_000f: ldc.i4.0
+	IL_0010: stloc.2
+	IL_0011: ldloc.1
+	IL_0012: ldstr "late_join_time"
+	IL_0017: ldloc.2
+	IL_0018: call System.Single YamlConfig::GetFloat(System.String,System.Single)
+	IL_001d: stloc.3
+	IL_001e: ldsfld System.Collections.Generic.HashSet`1<System.String> PlayerRoles.RoleAssign.RoleAssigner::AlreadySpawnedPlayers
+	IL_0023: stloc.s V_4
+	IL_0025: ldarg.0
+	IL_0026: ldfld CharacterClassManager ReferenceHub::characterClassManager
+	IL_002b: call System.String CharacterClassManager::get_UserId()
+	IL_0030: stloc.s V_5
+	IL_0032: ldloc.s V_4
+	IL_0034: ldloc.s V_5
+	IL_0036: call System.Boolean System.Collections.Generic.HashSet`1::Add(T)
+	IL_003b: ldc.i4.0
+	IL_003c: beq.s IL_0074
+	IL_003e: ldsfld System.Diagnostics.Stopwatch PlayerRoles.RoleAssign.RoleAssigner::LateJoinTimer
+	IL_0043: stloc.s V_6
+	IL_0045: ldloc.s V_6
+	IL_0047: call System.TimeSpan System.Diagnostics.Stopwatch::get_Elapsed()
+	IL_004c: stloc.s V_7
+	IL_004e: ldloc.s V_6
+	IL_0050: ldc.i4.0
+	IL_0051: bgt.s IL_0074
+	IL_0053: ldarg.0
+	IL_0054: ldfld PlayerRoles.PlayerRoleManager ReferenceHub::roleManager
+	IL_0059: stloc.s V_8
+	IL_005b: ldc.i4.0
+	IL_005c: stloc.s V_9
+	IL_005e: call PlayerRoles.RoleTypeId PlayerRoles.RoleAssign.HumanSpawner::get_NextHumanRoleToSpawn()
+	IL_0063: stloc.s V_10
+	IL_0065: ldloc.s V_8
+	IL_0067: ldloc.s V_10
+	IL_0069: ldc.i4.2
+	IL_006a: conv.i8
+	IL_006b: conv.u8
+	IL_006c: ldc.i4.m1
+	IL_006d: conv.u4
+	IL_006e: call System.Void PlayerRoles.PlayerRoleManager::ServerSetRole(PlayerRoles.RoleTypeId,PlayerRoles.RoleChangeReason,PlayerRoles.RoleSpawnFlags)
+	IL_0073: ret
+	IL_0074: ldarg.0
+	IL_0075: ldfld PlayerRoles.PlayerRoleManager ReferenceHub::roleManager
+	IL_007a: stloc.s V_12
+	IL_007c: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0081: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.RoleAssign.RoleAssigner
+	static System.Boolean CheckPlayer(ReferenceHub hub)
+		ulong local1 = 0
+
+		System.Boolean local2 = PlayerRoles.PlayerRolesUtils.IsAlive(hub) //(ReferenceHub hub)
+
+		if (local2 == False)
+		    PlayerRoles.PlayerRoleManager local3 = hub.roleManager
+		    ulong local4 = 0
+
+		    PlayerRoles.PlayerRoleBase local5 = local3.CurrentRole
+
+		    if (local5 != 0)
+		        //UNKNOWN CLASS OFFSET READ HERE
+
+
+Generated IL:
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.RoleAssign.RoleAssigner
+	static System.Void .cctor()
+		System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch()
+
+		stopwatch..ctor()
+		PlayerRoles.RoleAssign.RoleAssigner.LateJoinTimer = stopwatch
+		System.Collections.Generic.HashSet`1<System.String> hashSet = new System.Collections.Generic.HashSet`1<System.String>()
+
+		hashSet..ctor()
+		 += 8
+		PlayerRoles.RoleAssign.RoleAssigner.LateJoinTimer = hashSet
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x1803D5F32) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+

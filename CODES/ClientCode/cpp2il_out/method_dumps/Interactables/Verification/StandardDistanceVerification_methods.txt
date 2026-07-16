@@ -1,0 +1,130 @@
+Type: StandardDistanceVerification
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Verification.StandardDistanceVerification
+	System.Void .ctor(System.Single maxDistance, System.Boolean allowHandcuffedInteraction, System.Boolean cancelScp268)
+
+		base..ctor()
+		this._maxDistance = maxDistance
+		this._cancel268 = cancelScp268
+		this._allowHandcuffed = allowHandcuffedInteraction
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void System.Object::.ctor()
+	IL_0006: ldarg.0
+	IL_0007: ldarg.1
+	IL_0008: stfld System.Single Interactables.Verification.StandardDistanceVerification::_maxDistance
+	IL_000d: ldarg.0
+	IL_000e: ldarg.3
+	IL_000f: stfld System.Boolean Interactables.Verification.StandardDistanceVerification::_cancel268
+	IL_0014: ldarg.0
+	IL_0015: ldarg.2
+	IL_0016: stfld System.Boolean Interactables.Verification.StandardDistanceVerification::_allowHandcuffed
+	IL_001b: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Verification.StandardDistanceVerification
+	System.Boolean ClientCanInteract(Interactables.InteractableCollider collider, UnityEngine.RaycastHit hit)
+		System.Single _maxDistance = this._maxDistance
+		return 
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x1803FDC13) is corrupt (Return value is missing) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Verification.StandardDistanceVerification
+	System.Boolean ServerCanInteract(ReferenceHub hub, Interactables.InteractableCollider collider)
+
+		if (this._allowHandcuffed == False)
+		    InventorySystem.Inventory inventory = hub.inventory
+
+		    System.Boolean isDisarmed = InventorySystem.Disarming.DisarmedPlayers.IsDisarmed(inventory) //(Inventory inv)
+
+		    if (isDisarmed != False)
+                goto INSN_1803FDEB4
+            endif
+		endif
+        
+		Interactables.InteractionCoordinator interCoordinator = hub.interCoordinator
+
+		System.Boolean boolean = interCoordinator.AnyBlocker(1) //(BlockedInteraction interactions)
+
+		if (boolean != False)
+            goto INSN_1803FDEB4
+        endif
+		PlayerRoles.PlayerRoleManager roleManager = hub.roleManager
+
+		PlayerRoles.PlayerRoleBase currentRole = roleManager.CurrentRole
+
+		if (currentRole == 0)
+            goto INSN_1803FDEB4
+        endif
+
+		UnityEngine.Transform transform = collider.transform
+		  = transform.
+
+		UnityEngine.Vector3 position = .position
+		System.Single single = position.z
+		System.Single single2 = collider.VerificationOffset.z
+
+		UnityEngine.Vector3 vector3 = .TransformDirection()
+		System.Single single3 = vector3.z
+
+		UnityEngine.Vector3 vector32 = UnityEngine.Vector3.op_Addition()
+		System.Single single4 = vector32.z
+
+		System.Single single5 = UnityEngine.Vector3.Distance()
+		System.Single _maxDistance = this._maxDistance
+		System.Single local28 = _maxDistance * 1,4
+
+		if (single5 > local28)
+            goto INSN_1803FDEB4
+        endif
+
+		if (this._cancel268 == False)
+            goto INSN_1803FDE92
+        endif
+		PlayerEffectsController playerEffectsController = hub.playerEffectsController
+
+		CustomPlayerEffects.Invisible invisible = playerEffectsController.DisableEffect<CustomPlayerEffects.Invisible>()
+
+		INSN_1803FDE92:
+		return True
+
+		INSN_1803FDEB4:
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.FieldToLocalAction at (0x1803FDD6E) is corrupt (No further info) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Verification.StandardDistanceVerification
+	static System.Void .cctor()
+		Interactables.Verification.StandardDistanceVerification standardDistanceVerification = new Interactables.Verification.StandardDistanceVerification()
+
+		standardDistanceVerification..ctor()
+		standardDistanceVerification._maxDistance = 2,42
+		standardDistanceVerification._allowHandcuffed = False
+		Interactables.Verification.StandardDistanceVerification.Default = standardDistanceVerification
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AllocateInstanceAction at (0x1803FDEE8) is corrupt (Could not resolve a constructor with 0 parameters.) and cannot be created as IL. Aborting here.
+
+

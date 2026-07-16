@@ -1,0 +1,185 @@
+Type: PlayerRoles.PlayableScps.Scp079.GUI.Scp079CanvasScaler
+
+Method: System.Void Awake()
+
+Disassembly:
+	mov [rsp+10h],rbx
+	push rdi
+	sub rsp,20h
+	cmp byte ptr [1826EA2C6h],0
+	mov rdi,rcx
+	jne short 00000001803B73E8h
+	mov ecx,[1822F0298h]
+	call 0000000180294190h
+	mov byte ptr [1826EA2C6h],1
+	xor edx,edx
+	mov rcx,rdi
+	call 00000001802D5040h
+	mov rdx,[18270DE48h]
+	mov rcx,rdi
+	call 00000001804BCD50h
+	mov rdx,rax
+	mov [rdi+58h],rax
+	lea rcx,[rdi+58h]
+	call 0000000180293EF0h
+	mov rcx,[rdi+58h]
+	test rcx,rcx
+	je short 00000001803B7450h
+	xor edx,edx
+	call 000000018116E590h
+	mov rbx,[rsp+38h]
+	mov [rsp+30h],rax
+	movss xmm1,dword ptr [rsp+30h]
+	movss xmm0,dword ptr [rsp+34h]
+	movss dword ptr [rdi+68h],xmm1
+	divss xmm1,xmm0
+	movss dword ptr [rdi+6Ch],xmm0
+	movss dword ptr [rdi+64h],xmm1
+	add rsp,20h
+	pop rdi
+	ret
+	call 0000000180294310h
+
+ISIL:
+	001 Move stack:0x10, rbx
+	002 ShiftStack -8
+	003 Move stack:0x0, rdi
+	004 ShiftStack -32
+	005 Compare [0x1826EA2C6], 0
+	006 Move rdi, rcx
+	007 JumpIfNotEqual {11}
+	008 Move rcx, [0x1822F0298]
+	009 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	010 Move [0x1826EA2C6], 1
+	011 Move rdx, 0
+	012 Move rcx, rdi
+	013 Call 0x1802D5040, rcx, rdx, r8, r9, stack:0x0
+	014 Move rdx, [0x18270DE48]
+	015 Move rcx, rdi
+	016 Call 0x1804BCD50, rcx, rdx
+	017 Move rdx, rax
+	018 Move [rdi+88], rax
+	019 LoadAddress rcx, [rdi+88]
+	020 Call 0x180293EF0, rcx, rdx, r8, r9
+	021 Move rcx, [rdi+88]
+	022 Compare rcx, 0
+	023 JumpIfEqual {38}
+	024 Move rdx, 0
+	025 Call RectTransform.get_sizeDelta, rcx, rdx
+	026 Move rbx, stack:0x38
+	027 Move stack:0x30, rax
+	028 Move xmm1, stack:0x30
+	029 Move xmm0, stack:0x34
+	030 Move [rdi+104], xmm1
+	031 Divide xmm1, xmm1, xmm0
+	032 Move [rdi+108], xmm0
+	033 Move [rdi+100], xmm1
+	034 ShiftStack 32
+	035 Move rdi, stack:0x0
+	036 ShiftStack 8
+	037 Return 
+	038 Call 0x180294310, rcx, rdx, r8, r9
+
+Method: System.Void Update()
+
+Disassembly:
+	push rbx
+	sub rsp,30h
+	xor edx,edx
+	movaps [rsp+20h],xmm6
+	mov rbx,rcx
+	call 0000000180896F50h
+	xor ecx,ecx
+	call 0000000180FD39A0h
+	xor ecx,ecx
+	movd xmm6,eax
+	cvtdq2ps xmm6,xmm6
+	call 0000000180FD3940h
+	movd xmm0,eax
+	cvtdq2ps xmm0,xmm0
+	divss xmm6,xmm0
+	movss xmm0,dword ptr [rbx+60h]
+	ucomiss xmm0,xmm6
+	jp short 00000001803B74A1h
+	je short 00000001803B74F1h
+	mov [rsp+48h],rdi
+	mov rdi,[rbx+58h]
+	lea rcx,[rsp+40h]
+	movss dword ptr [rbx+60h],xmm6
+	xor r9d,r9d
+	divss xmm6,dword ptr [rbx+64h]
+	mov qword ptr [rsp+40h],0
+	movss xmm2,dword ptr [rbx+6Ch]
+	mulss xmm6,dword ptr [rbx+68h]
+	movaps xmm1,xmm6
+	call 0000000180FE0250h
+	test rdi,rdi
+	je short 00000001803B74FCh
+	mov rdx,[rsp+40h]
+	xor r8d,r8d
+	mov rcx,rdi
+	call 000000018116EE00h
+	mov rdi,[rsp+48h]
+	movaps xmm6,[rsp+20h]
+	add rsp,30h
+	pop rbx
+	ret
+	call 0000000180294310h
+
+ISIL:
+	001 ShiftStack -8
+	002 Move stack:0x0, rbx
+	003 ShiftStack -48
+	004 Move rdx, 0
+	005 Move stack:0x20, xmm6
+	006 Move rbx, rcx
+	007 Call 0x180896F50, rcx, rdx
+	008 Move rcx, 0
+	009 Call Screen.get_width, rcx
+	010 Move rcx, 0
+	011 Move xmm6, rax
+	012 Move xmm6, xmm6
+	013 Call Screen.get_height, rcx
+	014 Move xmm0, rax
+	015 Move xmm0, xmm0
+	016 Divide xmm6, xmm6, xmm0
+	017 Move xmm0, [rbx+96]
+	018 Compare xmm0, xmm6
+	019 NotImplemented "jp short 00000001803B74A1h"
+	020 JumpIfEqual {39}
+	021 Move stack:0x48, rdi
+	022 Move rdi, [rbx+88]
+	023 LoadAddress rcx, stack:0x40
+	024 Move [rbx+96], xmm6
+	025 Move r9, 0
+	026 Divide xmm6, xmm6, [rbx+100]
+	027 Move stack:0x40, 0
+	028 Move xmm2, [rbx+108]
+	029 Multiply xmm6, xmm6, [rbx+104]
+	030 Move xmm1, xmm6
+	031 Call 0x180FE0250, rcx, rdx, r8, r9
+	032 Compare rdi, 0
+	033 JumpIfEqual {44}
+	034 Move rdx, stack:0x40
+	035 Move r8, 0
+	036 Move rcx, rdi
+	037 Call RectTransform.set_sizeDelta, rcx, rdx
+	038 Move rdi, stack:0x48
+	039 Move xmm6, stack:0x20
+	040 ShiftStack 48
+	041 Move rbx, stack:0x0
+	042 ShiftStack 8
+	043 Return 
+	044 Call 0x180294310, rcx, rdx, r8, r9
+
+Method: System.Void .ctor()
+
+Disassembly:
+	xor edx,edx
+	jmp near ptr 0000000180896F70h
+
+ISIL:
+	001 Move rdx, 0
+	002 Call CanvasScaler..ctor, rcx, rdx
+	003 Return 
+

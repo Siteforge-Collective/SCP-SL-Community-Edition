@@ -1,0 +1,778 @@
+Type: PlayerRoles.PlayableScps.Scp079.Cameras.Scp079CameraRotationSync
+
+Method: PlayerRoles.PlayableScps.Scp079.Cameras.Scp079Camera get_CurrentCam()
+
+Disassembly:
+	sub rsp,28h
+	mov rcx,[rcx+30h]
+	test rcx,rcx
+	je short 00000001803B69ADh
+	xor r8d,r8d
+	mov qword ptr [rsp+30h],0
+	lea rdx,[rsp+30h]
+	call 00000001803B8780h
+	mov rax,[rsp+30h]
+	add rsp,28h
+	ret
+	call 0000000180294310h
+
+ISIL:
+	001 ShiftStack -40
+	002 Move rcx, [rcx+48]
+	003 Compare rcx, 0
+	004 JumpIfEqual {12}
+	005 Move r8, 0
+	006 Move stack:0x30, 0
+	007 LoadAddress rdx, stack:0x30
+	008 Call Scp079CurrentCameraSync.TryGetCurrentCamera, rcx, rdx
+	009 Move rax, stack:0x30
+	010 ShiftStack 40
+	011 Return rax
+	012 Call 0x180294310, rcx, rdx, r8, r9
+
+Method: System.Void Update()
+
+Disassembly:
+	push rbx
+	sub rsp,20h
+	mov rbx,rcx
+	mov rcx,[rcx+40h]
+	test rcx,rcx
+	je short 00000001803B68FCh
+	xor edx,edx
+	call 00000001808D55B0h
+	test al,al
+	je short 00000001803B68F6h
+	mov rcx,[rbx+48h]
+	test rcx,rcx
+	je short 00000001803B68FCh
+	xor edx,edx
+	call 0000000180BCB990h
+	xor edx,edx
+	mov [rsp+30h],rax
+	lea rcx,[rsp+30h]
+	call 0000000180DBC620h
+	movsd xmm1,qword ptr [182187980h]
+	comisd xmm1,xmm0
+	ja short 00000001803B68F6h
+	xor edx,edx
+	mov rcx,rbx
+	call 0000000180457910h
+	mov rcx,[rbx+48h]
+	test rcx,rcx
+	je short 00000001803B68FCh
+	xor edx,edx
+	call 0000000180BCB4E0h
+	add rsp,20h
+	pop rbx
+	ret
+	call 0000000180294310h
+
+ISIL:
+	001 ShiftStack -8
+	002 Move stack:0x0, rbx
+	003 ShiftStack -32
+	004 Move rbx, rcx
+	005 Move rcx, [rcx+64]
+	006 Compare rcx, 0
+	007 JumpIfEqual {36}
+	008 Move rdx, 0
+	009 Call NetworkBehaviour.get_isLocalPlayer, rcx, rdx
+	010 Compare rax, 0
+	011 JumpIfEqual {32}
+	012 Move rcx, [rbx+72]
+	013 Compare rcx, 0
+	014 JumpIfEqual {36}
+	015 Move rdx, 0
+	016 Call Stopwatch.get_Elapsed, rcx, rdx
+	017 Move rdx, 0
+	018 Move stack:0x30, rax
+	019 LoadAddress rcx, stack:0x30
+	020 Call 0x180DBC620, rcx, rdx, r8, r9
+	021 Move xmm1, [0x182187980]
+	022 NotImplemented "comisd xmm1,xmm0"
+	023 JumpIfGreater {32}
+	024 Move rdx, 0
+	025 Move rcx, rbx
+	026 Call ScpSubroutineBase.ClientSendCmd, rcx, rdx
+	027 Move rcx, [rbx+72]
+	028 Compare rcx, 0
+	029 JumpIfEqual {36}
+	030 Move rdx, 0
+	031 Call Stopwatch.Restart, rcx, rdx
+	032 ShiftStack 32
+	033 Move rbx, stack:0x0
+	034 ShiftStack 8
+	035 Return 
+	036 Call 0x180294310, rcx, rdx, r8, r9
+
+Method: System.Void ClientWriteCmd(Mirror.NetworkWriter writer)
+
+Disassembly:
+	mov [rsp+18h],rbx
+	push rdi
+	sub rsp,20h
+	cmp byte ptr [1826EA293h],0
+	mov rbx,rdx
+	mov rdi,rcx
+	jne short 00000001803B64EBh
+	mov ecx,[1822F0104h]
+	call 0000000180294190h
+	mov byte ptr [1826EA293h],1
+	xor r8d,r8d
+	mov rdx,rbx
+	mov rcx,rdi
+	call 00000001802D5040h
+	mov rcx,[rdi+30h]
+	test rcx,rcx
+	je near ptr 00000001803B659Fh
+	xor r8d,r8d
+	mov qword ptr [rsp+30h],0
+	lea rdx,[rsp+30h]
+	call 00000001803B8780h
+	mov rax,[rsp+30h]
+	test rax,rax
+	je short 00000001803B659Fh
+	mov rcx,[182759D20h]
+	mov [rsp+38h],rsi
+	movzx esi,word ptr [rax+18h]
+	test byte ptr [rcx+12Fh],2
+	je short 00000001803B654Dh
+	cmp dword ptr [rcx+0E0h],0
+	jne short 00000001803B654Dh
+	call 000000018021A070h
+	xor r8d,r8d
+	movzx edx,si
+	mov rcx,rbx
+	call 00000001818C93B0h
+	mov rcx,[rdi+30h]
+	mov rsi,[rsp+38h]
+	test rcx,rcx
+	je short 00000001803B659Fh
+	xor r8d,r8d
+	mov qword ptr [rsp+30h],0
+	lea rdx,[rsp+30h]
+	call 00000001803B8780h
+	mov rcx,[rsp+30h]
+	test rcx,rcx
+	je short 00000001803B659Fh
+	xor r8d,r8d
+	mov rdx,rbx
+	call 00000001803B6E00h
+	mov rbx,[rsp+40h]
+	add rsp,20h
+	pop rdi
+	ret
+	call 0000000180294310h
+
+ISIL:
+	001 Move stack:0x18, rbx
+	002 ShiftStack -8
+	003 Move stack:0x0, rdi
+	004 ShiftStack -32
+	005 Compare [0x1826EA293], 0
+	006 Move rbx, rdx
+	007 Move rdi, rcx
+	008 JumpIfNotEqual {12}
+	009 Move rcx, [0x1822F0104]
+	010 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	011 Move [0x1826EA293], 1
+	012 Move r8, 0
+	013 Move rdx, rbx
+	014 Move rcx, rdi
+	015 Call 0x1802D5040, rcx, rdx, r8, r9, stack:0x0
+	016 Move rcx, [rdi+48]
+	017 Compare rcx, 0
+	018 JumpIfEqual {57}
+	019 Move r8, 0
+	020 Move stack:0x30, 0
+	021 LoadAddress rdx, stack:0x30
+	022 Call Scp079CurrentCameraSync.TryGetCurrentCamera, rcx, rdx
+	023 Move rax, stack:0x30
+	024 Compare rax, 0
+	025 JumpIfEqual {57}
+	026 Move rcx, typeof(Mirror.NetworkWriterExtensions)
+	027 Move stack:0x38, rsi
+	028 Move rsi, [rax+24]
+	029 Compare [rcx+303], 2
+	030 JumpIfEqual {34}
+	031 Compare [rcx+224], 0
+	032 JumpIfNotEqual {34}
+	033 Call "il2cpp_runtime_class_init_export", rcx, rdx, r8, r9
+	034 Move r8, 0
+	035 Move rdx, rsi
+	036 Move rcx, rbx
+	037 Call NetworkWriterExtensions.WriteUInt16, rcx, rdx, r8
+	038 Move rcx, [rdi+48]
+	039 Move rsi, stack:0x38
+	040 Compare rcx, 0
+	041 JumpIfEqual {57}
+	042 Move r8, 0
+	043 Move stack:0x30, 0
+	044 LoadAddress rdx, stack:0x30
+	045 Call Scp079CurrentCameraSync.TryGetCurrentCamera, rcx, rdx
+	046 Move rcx, stack:0x30
+	047 Compare rcx, 0
+	048 JumpIfEqual {57}
+	049 Move r8, 0
+	050 Move rdx, rbx
+	051 Call Scp079Camera.WriteAxes, rcx, rdx
+	052 Move rbx, stack:0x40
+	053 ShiftStack 32
+	054 Move rdi, stack:0x0
+	055 ShiftStack 8
+	056 Return 
+	057 Call 0x180294310, rcx, rdx, r8, r9
+
+Method: System.Void ServerProcessCmd(Mirror.NetworkReader reader)
+
+Disassembly:
+	mov [rsp+18h],rbx
+	push rdi
+	sub rsp,20h
+	cmp byte ptr [1826EA294h],0
+	mov rdi,rdx
+	mov rbx,rcx
+	jne short 00000001803B65DBh
+	mov ecx,[1822F0128h]
+	call 0000000180294190h
+	mov byte ptr [1826EA294h],1
+	xor r8d,r8d
+	mov rdx,rdi
+	mov rcx,rbx
+	call 00000001802D5040h
+	mov rcx,[rbx+30h]
+	test rcx,rcx
+	je near ptr 00000001803B66B5h
+	xor r8d,r8d
+	mov qword ptr [rsp+30h],0
+	lea rdx,[rsp+30h]
+	call 00000001803B8780h
+	mov rax,[rsp+30h]
+	test rax,rax
+	je near ptr 00000001803B66B5h
+	mov rcx,[182759EA8h]
+	mov [rsp+38h],rsi
+	movzx esi,word ptr [rax+18h]
+	test byte ptr [rcx+12Fh],2
+	je short 00000001803B6641h
+	cmp dword ptr [rcx+0E0h],0
+	jne short 00000001803B6641h
+	call 000000018021A070h
+	xor edx,edx
+	mov rcx,rdi
+	call 00000001818BEE60h
+	cmp si,ax
+	mov rsi,[rsp+38h]
+	jne short 00000001803B66AAh
+	mov rcx,[rbx+38h]
+	test rcx,rcx
+	je short 00000001803B66B5h
+	xor edx,edx
+	call 00000001805190A0h
+	test al,al
+	jne short 00000001803B66AAh
+	mov rcx,[rbx+30h]
+	test rcx,rcx
+	je short 00000001803B66B5h
+	xor r8d,r8d
+	mov qword ptr [rsp+30h],0
+	lea rdx,[rsp+30h]
+	call 00000001803B8780h
+	mov rcx,[rsp+30h]
+	test rcx,rcx
+	je short 00000001803B66B5h
+	xor r8d,r8d
+	mov rdx,rdi
+	call 00000001803B69C0h
+	xor r8d,r8d
+	mov dl,1
+	mov rcx,rbx
+	call 0000000180457B00h
+	mov rbx,[rsp+40h]
+	add rsp,20h
+	pop rdi
+	ret
+	call 0000000180294310h
+
+ISIL:
+	001 Move stack:0x18, rbx
+	002 ShiftStack -8
+	003 Move stack:0x0, rdi
+	004 ShiftStack -32
+	005 Compare [0x1826EA294], 0
+	006 Move rdi, rdx
+	007 Move rbx, rcx
+	008 JumpIfNotEqual {12}
+	009 Move rcx, [0x1822F0128]
+	010 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	011 Move [0x1826EA294], 1
+	012 Move r8, 0
+	013 Move rdx, rdi
+	014 Move rcx, rbx
+	015 Call 0x1802D5040, rcx, rdx, r8, r9, stack:0x0
+	016 Move rcx, [rbx+48]
+	017 Compare rcx, 0
+	018 JumpIfEqual {69}
+	019 Move r8, 0
+	020 Move stack:0x30, 0
+	021 LoadAddress rdx, stack:0x30
+	022 Call Scp079CurrentCameraSync.TryGetCurrentCamera, rcx, rdx
+	023 Move rax, stack:0x30
+	024 Compare rax, 0
+	025 JumpIfEqual {69}
+	026 Move rcx, typeof(Mirror.NetworkReaderExtensions)
+	027 Move stack:0x38, rsi
+	028 Move rsi, [rax+24]
+	029 Compare [rcx+303], 2
+	030 JumpIfEqual {34}
+	031 Compare [rcx+224], 0
+	032 JumpIfNotEqual {34}
+	033 Call "il2cpp_runtime_class_init_export", rcx, rdx, r8, r9
+	034 Move rdx, 0
+	035 Move rcx, rdi
+	036 Call NetworkReaderExtensions.ReadUInt16, rcx, rdx
+	037 Compare rsi, rax
+	038 Move rsi, stack:0x38
+	039 JumpIfNotEqual {64}
+	040 Move rcx, [rbx+56]
+	041 Compare rcx, 0
+	042 JumpIfEqual {69}
+	043 Move rdx, 0
+	044 Call Scp079LostSignalHandler.get_Lost, rcx, rdx
+	045 Compare rax, 0
+	046 JumpIfNotEqual {64}
+	047 Move rcx, [rbx+48]
+	048 Compare rcx, 0
+	049 JumpIfEqual {69}
+	050 Move r8, 0
+	051 Move stack:0x30, 0
+	052 LoadAddress rdx, stack:0x30
+	053 Call Scp079CurrentCameraSync.TryGetCurrentCamera, rcx, rdx
+	054 Move rcx, stack:0x30
+	055 Compare rcx, 0
+	056 JumpIfEqual {69}
+	057 Move r8, 0
+	058 Move rdx, rdi
+	059 Call Scp079Camera.ApplyAxes, rcx, rdx
+	060 Move r8, 0
+	061 Move rdx, 1
+	062 Move rcx, rbx
+	063 Call ScpSubroutineBase.ServerSendRpc, rcx, rdx
+	064 Move rbx, stack:0x40
+	065 ShiftStack 32
+	066 Move rdi, stack:0x0
+	067 ShiftStack 8
+	068 Return 
+	069 Call 0x180294310, rcx, rdx, r8, r9
+
+Method: System.Void ServerWriteRpc(Mirror.NetworkWriter writer)
+
+Disassembly:
+	mov [rsp+18h],rbx
+	push rdi
+	sub rsp,20h
+	cmp byte ptr [1826EA295h],0
+	mov rbx,rdx
+	mov rdi,rcx
+	jne short 00000001803B66EBh
+	mov ecx,[1822F0138h]
+	call 0000000180294190h
+	mov byte ptr [1826EA295h],1
+	xor r8d,r8d
+	mov rdx,rbx
+	mov rcx,rdi
+	call 00000001802D5040h
+	mov rcx,[rdi+30h]
+	test rcx,rcx
+	je near ptr 00000001803B679Fh
+	xor r8d,r8d
+	mov qword ptr [rsp+30h],0
+	lea rdx,[rsp+30h]
+	call 00000001803B8780h
+	mov rax,[rsp+30h]
+	test rax,rax
+	je short 00000001803B679Fh
+	mov rcx,[182759D20h]
+	mov [rsp+38h],rsi
+	movzx esi,word ptr [rax+18h]
+	test byte ptr [rcx+12Fh],2
+	je short 00000001803B674Dh
+	cmp dword ptr [rcx+0E0h],0
+	jne short 00000001803B674Dh
+	call 000000018021A070h
+	xor r8d,r8d
+	movzx edx,si
+	mov rcx,rbx
+	call 00000001818C93B0h
+	mov rcx,[rdi+30h]
+	mov rsi,[rsp+38h]
+	test rcx,rcx
+	je short 00000001803B679Fh
+	xor r8d,r8d
+	mov qword ptr [rsp+30h],0
+	lea rdx,[rsp+30h]
+	call 00000001803B8780h
+	mov rcx,[rsp+30h]
+	test rcx,rcx
+	je short 00000001803B679Fh
+	xor r8d,r8d
+	mov rdx,rbx
+	call 00000001803B6E00h
+	mov rbx,[rsp+40h]
+	add rsp,20h
+	pop rdi
+	ret
+	call 0000000180294310h
+
+ISIL:
+	001 Move stack:0x18, rbx
+	002 ShiftStack -8
+	003 Move stack:0x0, rdi
+	004 ShiftStack -32
+	005 Compare [0x1826EA295], 0
+	006 Move rbx, rdx
+	007 Move rdi, rcx
+	008 JumpIfNotEqual {12}
+	009 Move rcx, [0x1822F0138]
+	010 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	011 Move [0x1826EA295], 1
+	012 Move r8, 0
+	013 Move rdx, rbx
+	014 Move rcx, rdi
+	015 Call 0x1802D5040, rcx, rdx, r8, r9, stack:0x0
+	016 Move rcx, [rdi+48]
+	017 Compare rcx, 0
+	018 JumpIfEqual {57}
+	019 Move r8, 0
+	020 Move stack:0x30, 0
+	021 LoadAddress rdx, stack:0x30
+	022 Call Scp079CurrentCameraSync.TryGetCurrentCamera, rcx, rdx
+	023 Move rax, stack:0x30
+	024 Compare rax, 0
+	025 JumpIfEqual {57}
+	026 Move rcx, typeof(Mirror.NetworkWriterExtensions)
+	027 Move stack:0x38, rsi
+	028 Move rsi, [rax+24]
+	029 Compare [rcx+303], 2
+	030 JumpIfEqual {34}
+	031 Compare [rcx+224], 0
+	032 JumpIfNotEqual {34}
+	033 Call "il2cpp_runtime_class_init_export", rcx, rdx, r8, r9
+	034 Move r8, 0
+	035 Move rdx, rsi
+	036 Move rcx, rbx
+	037 Call NetworkWriterExtensions.WriteUInt16, rcx, rdx, r8
+	038 Move rcx, [rdi+48]
+	039 Move rsi, stack:0x38
+	040 Compare rcx, 0
+	041 JumpIfEqual {57}
+	042 Move r8, 0
+	043 Move stack:0x30, 0
+	044 LoadAddress rdx, stack:0x30
+	045 Call Scp079CurrentCameraSync.TryGetCurrentCamera, rcx, rdx
+	046 Move rcx, stack:0x30
+	047 Compare rcx, 0
+	048 JumpIfEqual {57}
+	049 Move r8, 0
+	050 Move rdx, rbx
+	051 Call Scp079Camera.WriteAxes, rcx, rdx
+	052 Move rbx, stack:0x40
+	053 ShiftStack 32
+	054 Move rdi, stack:0x0
+	055 ShiftStack 8
+	056 Return 
+	057 Call 0x180294310, rcx, rdx, r8, r9
+
+Method: System.Void ClientProcessRpc(Mirror.NetworkReader reader)
+
+Disassembly:
+	mov [rsp+8],rbx
+	push rdi
+	sub rsp,20h
+	cmp byte ptr [1826EA296h],0
+	mov rbx,rdx
+	mov rdi,rcx
+	jne short 00000001803B641Bh
+	mov ecx,[1822F00F4h]
+	call 0000000180294190h
+	mov byte ptr [1826EA296h],1
+	xor r8d,r8d
+	mov qword ptr [rsp+38h],0
+	mov rdx,rbx
+	mov rcx,rdi
+	call 00000001802D5040h
+	mov rcx,[182759EA8h]
+	test byte ptr [rcx+12Fh],2
+	je short 00000001803B6450h
+	cmp dword ptr [rcx+0E0h],0
+	jne short 00000001803B6450h
+	call 000000018021A070h
+	xor edx,edx
+	mov rcx,rbx
+	call 00000001818BEE60h
+	mov rcx,[1827272C8h]
+	movzx edi,ax
+	test byte ptr [rcx+12Fh],2
+	je short 00000001803B647Bh
+	cmp dword ptr [rcx+0E0h],0
+	jne short 00000001803B647Bh
+	call 000000018021A070h
+	mov r8,[182766690h]
+	lea rdx,[rsp+38h]
+	movzx ecx,di
+	call 00000001809CEC50h
+	test al,al
+	je short 00000001803B64A8h
+	mov rcx,[rsp+38h]
+	test rcx,rcx
+	je short 00000001803B64B3h
+	xor r8d,r8d
+	mov rdx,rbx
+	call 00000001803B69C0h
+	mov rbx,[rsp+30h]
+	add rsp,20h
+	pop rdi
+	ret
+	call 0000000180294310h
+
+ISIL:
+	001 Move stack:0x8, rbx
+	002 ShiftStack -8
+	003 Move stack:0x0, rdi
+	004 ShiftStack -32
+	005 Compare [0x1826EA296], 0
+	006 Move rbx, rdx
+	007 Move rdi, rcx
+	008 JumpIfNotEqual {12}
+	009 Move rcx, [0x1822F00F4]
+	010 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	011 Move [0x1826EA296], 1
+	012 Move r8, 0
+	013 Move stack:0x38, 0
+	014 Move rdx, rbx
+	015 Move rcx, rdi
+	016 Call 0x1802D5040, rcx, rdx, r8, r9, stack:0x0
+	017 Move rcx, typeof(Mirror.NetworkReaderExtensions)
+	018 Compare [rcx+303], 2
+	019 JumpIfEqual {23}
+	020 Compare [rcx+224], 0
+	021 JumpIfNotEqual {23}
+	022 Call "il2cpp_runtime_class_init_export", rcx, rdx, r8, r9
+	023 Move rdx, 0
+	024 Move rcx, rbx
+	025 Call NetworkReaderExtensions.ReadUInt16, rcx, rdx
+	026 Move rcx, typeof(PlayerRoles.PlayableScps.Scp079.Scp079InteractableBase)
+	027 Move rdi, rax
+	028 Compare [rcx+303], 2
+	029 JumpIfEqual {33}
+	030 Compare [rcx+224], 0
+	031 JumpIfNotEqual {33}
+	032 Call "il2cpp_runtime_class_init_export", rcx, rdx, r8, r9
+	033 Move r8, [0x182766690]
+	034 LoadAddress rdx, stack:0x38
+	035 Move rcx, rdi
+	036 Call 0x1809CEC50, rcx, rdx, r8
+	037 Compare rax, 0
+	038 JumpIfEqual {45}
+	039 Move rcx, stack:0x38
+	040 Compare rcx, 0
+	041 JumpIfEqual {50}
+	042 Move r8, 0
+	043 Move rdx, rbx
+	044 Call Scp079Camera.ApplyAxes, rcx, rdx
+	045 Move rbx, stack:0x30
+	046 ShiftStack 32
+	047 Move rdi, stack:0x0
+	048 ShiftStack 8
+	049 Return 
+	050 Call 0x180294310, rcx, rdx, r8, r9
+
+Method: System.Void SpawnObject()
+
+Disassembly:
+	mov [rsp+8],rbx
+	push rdi
+	sub rsp,20h
+	cmp byte ptr [1826EA297h],0
+	mov rbx,rcx
+	jne short 00000001803B67D8h
+	mov ecx,[1822F016Ch]
+	call 0000000180294190h
+	mov byte ptr [1826EA297h],1
+	mov r8,[rbx+20h]
+	test r8,r8
+	jne short 00000001803B67E5h
+	xor edx,edx
+	jmp short 00000001803B681Ah
+	mov rdx,[182740398h]
+	mov rax,[r8]
+	movzx ecx,byte ptr [rdx+128h]
+	cmp [rax+128h],cl
+	jb short 00000001803B6810h
+	mov rax,[rax+0C8h]
+	cmp [rax+rcx*8-8],rdx
+	jne short 00000001803B6810h
+	mov al,1
+	jmp short 00000001803B6812h
+	xor al,al
+	xor edx,edx
+	test al,al
+	cmovne rdx,r8
+	lea rcx,[rbx+28h]
+	mov [rbx+28h],rdx
+	call 0000000180293EF0h
+	mov rcx,[rbx+28h]
+	test rcx,rcx
+	je short 00000001803B688Ah
+	lea rdx,[rbx+40h]
+	xor r8d,r8d
+	call 0000000180443A20h
+	mov rcx,[rbx+28h]
+	test rcx,rcx
+	je short 00000001803B688Ah
+	mov rcx,[rcx+78h]
+	test rcx,rcx
+	je short 00000001803B688Ah
+	mov r8,[182766150h]
+	lea rdx,[rbx+30h]
+	call 00000001809CED60h
+	mov rcx,[rbx+28h]
+	test rcx,rcx
+	je short 00000001803B688Ah
+	mov rcx,[rcx+78h]
+	test rcx,rcx
+	je short 00000001803B688Ah
+	mov r8,[182766078h]
+	lea rdx,[rbx+38h]
+	mov rbx,[rsp+30h]
+	add rsp,20h
+	pop rdi
+	jmp near ptr 00000001809CED60h
+	call 0000000180294310h
+
+ISIL:
+	001 Move stack:0x8, rbx
+	002 ShiftStack -8
+	003 Move stack:0x0, rdi
+	004 ShiftStack -32
+	005 Compare [0x1826EA297], 0
+	006 Move rbx, rcx
+	007 JumpIfNotEqual {11}
+	008 Move rcx, [0x1822F016C]
+	009 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	010 Move [0x1826EA297], 1
+	011 Move r8, [rbx+32]
+	012 Compare r8, 0
+	013 JumpIfNotEqual {16}
+	014 Move rdx, 0
+	015 Goto {32}
+	016 Move rdx, typeof(PlayerRoles.PlayableScps.Scp079.Scp079Role)
+	017 Move rax, [r8]
+	018 Move rcx, [rdx+296]
+	019 Compare [rax+296], rcx
+	020 JumpIfLess {26}
+	021 Move rax, [rax+200]
+	022 Compare [rax+0xFFFFFFF8+rcx*8], rdx
+	023 JumpIfNotEqual {26}
+	024 Move rax, 1
+	025 Goto {27}
+	026 Move rax, 0
+	027 Move rdx, 0
+	028 Compare rax, 0
+	029 JumpIfEqual {31}
+	030 Move rdx, r8
+	031 Nop 
+	032 LoadAddress rcx, [rbx+40]
+	033 Move [rbx+40], rdx
+	034 Call 0x180293EF0, rcx, rdx, r8, r9
+	035 Move rcx, [rbx+40]
+	036 Compare rcx, 0
+	037 JumpIfEqual {64}
+	038 LoadAddress rdx, [rbx+64]
+	039 Move r8, 0
+	040 Call PlayerRoleBase.TryGetOwner, rcx, rdx
+	041 Move rcx, [rbx+40]
+	042 Compare rcx, 0
+	043 JumpIfEqual {64}
+	044 Move rcx, [rcx+120]
+	045 Compare rcx, 0
+	046 JumpIfEqual {64}
+	047 Move r8, [0x182766150]
+	048 LoadAddress rdx, [rbx+48]
+	049 Call 0x1809CED60, rcx, rdx
+	050 Move rcx, [rbx+40]
+	051 Compare rcx, 0
+	052 JumpIfEqual {64}
+	053 Move rcx, [rcx+120]
+	054 Compare rcx, 0
+	055 JumpIfEqual {64}
+	056 Move r8, [0x182766078]
+	057 LoadAddress rdx, [rbx+56]
+	058 Move rbx, stack:0x30
+	059 ShiftStack 32
+	060 Move rdi, stack:0x0
+	061 ShiftStack 8
+	062 Call 0x1809CED60, rcx, rdx
+	063 Return 
+	064 Call 0x180294310, rcx, rdx, r8, r9
+
+Method: System.Void .ctor()
+
+Disassembly:
+	push rbx
+	sub rsp,20h
+	cmp byte ptr [1826EA298h],0
+	mov rbx,rcx
+	jne short 00000001803B6934h
+	mov ecx,[1822F0180h]
+	call 0000000180294190h
+	mov byte ptr [1826EA298h],1
+	mov rcx,[182707FD0h]
+	test byte ptr [rcx+12Fh],2
+	je short 00000001803B6952h
+	cmp dword ptr [rcx+0E0h],0
+	jne short 00000001803B6952h
+	call 000000018021A070h
+	xor ecx,ecx
+	call 0000000180BCB540h
+	lea rcx,[rbx+48h]
+	mov rdx,rax
+	mov [rcx],rax
+	call 0000000180293EF0h
+	xor edx,edx
+	mov rcx,rbx
+	add rsp,20h
+	pop rbx
+	jmp near ptr 00000001802CD130h
+
+ISIL:
+	001 ShiftStack -8
+	002 Move stack:0x0, rbx
+	003 ShiftStack -32
+	004 Compare [0x1826EA298], 0
+	005 Move rbx, rcx
+	006 JumpIfNotEqual {10}
+	007 Move rcx, [0x1822F0180]
+	008 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	009 Move [0x1826EA298], 1
+	010 Move rcx, typeof(System.Diagnostics.Stopwatch)
+	011 Compare [rcx+303], 2
+	012 JumpIfEqual {16}
+	013 Compare [rcx+224], 0
+	014 JumpIfNotEqual {16}
+	015 Call "il2cpp_runtime_class_init_export", rcx, rdx, r8, r9
+	016 Move rcx, 0
+	017 Call Stopwatch.StartNew, rcx
+	018 LoadAddress rcx, [rbx+72]
+	019 Move rdx, rax
+	020 Move [rcx], rax
+	021 Call 0x180293EF0, rcx, rdx, r8, r9
+	022 Move rdx, 0
+	023 Move rcx, rbx
+	024 ShiftStack 32
+	025 Move rbx, stack:0x0
+	026 ShiftStack 8
+	027 Call 0x1802CD130, rcx, rdx
+	028 Return 
+

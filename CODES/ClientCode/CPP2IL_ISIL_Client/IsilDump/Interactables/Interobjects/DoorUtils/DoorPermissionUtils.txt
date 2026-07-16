@@ -1,0 +1,289 @@
+Type: Interactables.Interobjects.DoorUtils.DoorPermissionUtils
+
+Method: System.Boolean HasFlagFast(Interactables.Interobjects.DoorUtils.KeycardPermissions perm, Interactables.Interobjects.DoorUtils.KeycardPermissions flag)
+
+Disassembly:
+	and cx,dx
+	cmp cx,dx
+	sete al
+	ret
+
+ISIL:
+	001 And rcx, rcx, rdx
+	002 Compare rcx, rdx
+	003 NotImplemented "sete al"
+	004 Return rax
+
+Method: Interactables.Interobjects.DoorUtils.KeycardPermissions TranslateObsoletePermissions(System.String[] obsoletePerms)
+
+Disassembly:
+	mov [rsp+18h],rbx
+	mov [rsp+20h],rsi
+	push rdi
+	sub rsp,20h
+	cmp byte ptr [1826FE49Dh],0
+	mov rsi,rcx
+	jne short 0000000181BA57EDh
+	mov ecx,[1822ECBD4h]
+	call 0000000180294190h
+	mov byte ptr [1826FE49Dh],1
+	xor edi,edi
+	mov [rsp+38h],rbp
+	mov [rsp+30h],di
+	mov ebx,edi
+	mov ecx,edi
+	test rsi,rsi
+	je near ptr 0000000181BA5891h
+	mov eax,[rsi+18h]
+	cmp ecx,eax
+	jge short 0000000181BA5879h
+	cmp ebx,eax
+	jae near ptr 0000000181BA5897h
+	movsxd rax,ebx
+	mov rbp,[rsi+rax*8+20h]
+	mov rax,[182739560h]
+	test byte ptr [rax+12Fh],2
+	je short 0000000181BA5845h
+	cmp dword ptr [rax+0E0h],0
+	jne short 0000000181BA5845h
+	mov rcx,rax
+	call 000000018021A070h
+	mov rax,[182739560h]
+	mov rcx,[rax+0B8h]
+	mov rcx,[rcx]
+	test rcx,rcx
+	je short 0000000181BA5891h
+	mov r9,[18273EC80h]
+	lea r8,[rsp+30h]
+	mov rdx,rbp
+	call 00000001816E62D0h
+	test al,al
+	je short 0000000181BA5873h
+	movzx eax,word ptr [rsp+30h]
+	add edi,eax
+	inc ebx
+	mov ecx,ebx
+	jmp short 0000000181BA5806h
+	mov rbp,[rsp+38h]
+	movzx eax,di
+	mov rbx,[rsp+40h]
+	mov rsi,[rsp+48h]
+	add rsp,20h
+	pop rdi
+	ret
+	call 0000000180294310h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+
+ISIL:
+	001 Move stack:0x18, rbx
+	002 Move stack:0x20, rsi
+	003 ShiftStack -8
+	004 Move stack:0x0, rdi
+	005 ShiftStack -32
+	006 Compare [0x1826FE49D], 0
+	007 Move rsi, rcx
+	008 JumpIfNotEqual {12}
+	009 Move rcx, [0x1822ECBD4]
+	010 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	011 Move [0x1826FE49D], 1
+	012 Move rdi, 0
+	013 Move stack:0x38, rbp
+	014 Move stack:0x30, rdi
+	015 Move rbx, rdi
+	016 Move rcx, rdi
+	017 Compare rsi, 0
+	018 JumpIfEqual {57}
+	019 Move rax, [rsi+24]
+	020 Compare rcx, rax
+	021 JumpIfGreaterOrEqual {49}
+	022 Compare rbx, rax
+	023 JumpIfGreaterOrEqual {59}
+	024 Move rax, rbx
+	025 Move rbp, [rsi+32+rax*8]
+	026 Move rax, typeof(Interactables.Interobjects.DoorUtils.DoorPermissionUtils)
+	027 Compare [rax+303], 2
+	028 JumpIfEqual {34}
+	029 Compare [rax+224], 0
+	030 JumpIfNotEqual {34}
+	031 Move rcx, rax
+	032 Call "il2cpp_runtime_class_init_export", rcx, rdx, r8, r9
+	033 Move rax, typeof(Interactables.Interobjects.DoorUtils.DoorPermissionUtils)
+	034 Move rcx, [rax+184]
+	035 Move rcx, [rcx]
+	036 Compare rcx, 0
+	037 JumpIfEqual {57}
+	038 Move r9, [0x18273EC80]
+	039 LoadAddress r8, stack:0x30
+	040 Move rdx, rbp
+	041 Call 0x1816E62D0, rcx, rdx, r8
+	042 Compare rax, 0
+	043 JumpIfEqual {46}
+	044 Move rax, stack:0x30
+	045 Add rdi, rdi, rax
+	046 Add rbx, rbx, 1
+	047 Move rcx, rbx
+	048 Goto {19}
+	049 Move rbp, stack:0x38
+	050 Move rax, rdi
+	051 Move rbx, stack:0x40
+	052 Move rsi, stack:0x48
+	053 ShiftStack 32
+	054 Move rdi, stack:0x0
+	055 ShiftStack 8
+	056 Return rax
+	057 Call 0x180294310, rcx, rdx, r8, r9
+	058 Interrupt 
+	059 Call 0x180294110, rcx, rdx, r8, r9
+	060 Move rcx, rax
+	061 Move rdx, 0
+	062 Call 0x1802942E0, rcx, rdx, r8, r9
+
+Method: System.Void .cctor()
+
+Disassembly:
+	push rbx
+	sub rsp,20h
+	cmp byte ptr [1826FE49Eh],0
+	jne short 0000000181BA58D1h
+	mov ecx,[1822ECBE4h]
+	call 0000000180294190h
+	mov byte ptr [1826FE49Eh],1
+	mov rcx,[182739500h]
+	call 00000001802942D0h
+	mov rdx,[182738878h]
+	mov rcx,rax
+	mov rbx,rax
+	call 000000018108A270h
+	test rbx,rbx
+	je near ptr 0000000181BA5A12h
+	mov r9,[182738818h]
+	mov r8d,10h
+	mov rdx,[1827229C8h]
+	mov rcx,rbx
+	call 0000000181466450h
+	mov r9,[182738818h]
+	mov r8d,20h
+	mov rdx,[1827229B0h]
+	mov rcx,rbx
+	call 0000000181466450h
+	mov r9,[182738818h]
+	mov r8d,40h
+	mov rdx,[182722948h]
+	mov rcx,rbx
+	call 0000000181466450h
+	mov r9,[182738818h]
+	mov r8d,80h
+	mov rdx,[182722928h]
+	mov rcx,rbx
+	call 0000000181466450h
+	mov r9,[182738818h]
+	mov r8d,100h
+	mov rdx,[1827228F0h]
+	mov rcx,rbx
+	call 0000000181466450h
+	mov r9,[182738818h]
+	mov r8d,200h
+	mov rdx,[182722888h]
+	mov rcx,rbx
+	call 0000000181466450h
+	mov r9,[182738818h]
+	mov r8d,4
+	mov rdx,[182722848h]
+	mov rcx,rbx
+	call 0000000181466450h
+	mov r9,[182738818h]
+	mov r8d,1
+	mov rdx,[182722810h]
+	mov rcx,rbx
+	call 0000000181466450h
+	mov r9,[182738818h]
+	mov r8d,2
+	mov rdx,[1827227C0h]
+	mov rcx,rbx
+	call 0000000181466450h
+	mov rax,[182739560h]
+	mov rdx,rbx
+	mov rcx,[rax+0B8h]
+	mov [rcx],rbx
+	add rsp,20h
+	pop rbx
+	jmp near ptr 0000000180293EF0h
+	call 0000000180294310h
+
+ISIL:
+	001 ShiftStack -8
+	002 Move stack:0x0, rbx
+	003 ShiftStack -32
+	004 Compare [0x1826FE49E], 0
+	005 JumpIfNotEqual {9}
+	006 Move rcx, [0x1822ECBE4]
+	007 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	008 Move [0x1826FE49E], 1
+	009 Move rcx, typeof(System.Collections.Generic.Dictionary`2<String, KeycardPermissions>)
+	010 Call "il2cpp_codegen_object_new", rcx, rdx, r8, r9
+	011 Move rdx, [0x182738878]
+	012 Move rcx, rax
+	013 Move rbx, rax
+	014 Call 0x18108A270, rcx, rdx
+	015 Compare rbx, 0
+	016 JumpIfEqual {71}
+	017 Move r9, [0x182738818]
+	018 Move r8, 16
+	019 Move rdx, "CONT_LVL_1"
+	020 Move rcx, rbx
+	021 Call 0x181466450, rcx, rdx, r8
+	022 Move r9, [0x182738818]
+	023 Move r8, 32
+	024 Move rdx, "CONT_LVL_2"
+	025 Move rcx, rbx
+	026 Call 0x181466450, rcx, rdx, r8
+	027 Move r9, [0x182738818]
+	028 Move r8, 64
+	029 Move rdx, "CONT_LVL_3"
+	030 Move rcx, rbx
+	031 Call 0x181466450, rcx, rdx, r8
+	032 Move r9, [0x182738818]
+	033 Move r8, 128
+	034 Move rdx, "ARMORY_LVL_1"
+	035 Move rcx, rbx
+	036 Call 0x181466450, rcx, rdx, r8
+	037 Move r9, [0x182738818]
+	038 Move r8, 256
+	039 Move rdx, "ARMORY_LVL_2"
+	040 Move rcx, rbx
+	041 Call 0x181466450, rcx, rdx, r8
+	042 Move r9, [0x182738818]
+	043 Move r8, 512
+	044 Move rdx, "ARMORY_LVL_3"
+	045 Move rcx, rbx
+	046 Call 0x181466450, rcx, rdx, r8
+	047 Move r9, [0x182738818]
+	048 Move r8, 4
+	049 Move rdx, "INCOM_ACC"
+	050 Move rcx, rbx
+	051 Call 0x181466450, rcx, rdx, r8
+	052 Move r9, [0x182738818]
+	053 Move r8, 1
+	054 Move rdx, "CHCKPOINT_ACC"
+	055 Move rcx, rbx
+	056 Call 0x181466450, rcx, rdx, r8
+	057 Move r9, [0x182738818]
+	058 Move r8, 2
+	059 Move rdx, "EXIT_ACC"
+	060 Move rcx, rbx
+	061 Call 0x181466450, rcx, rdx, r8
+	062 Move rax, typeof(Interactables.Interobjects.DoorUtils.DoorPermissionUtils)
+	063 Move rdx, rbx
+	064 Move rcx, [rax+184]
+	065 Move [rcx], rbx
+	066 ShiftStack 32
+	067 Move rbx, stack:0x0
+	068 ShiftStack 8
+	069 Call 0x180293EF0, rcx, rdx, r8, r9
+	070 Return 
+	071 Call 0x180294310, rcx, rdx, r8, r9
+

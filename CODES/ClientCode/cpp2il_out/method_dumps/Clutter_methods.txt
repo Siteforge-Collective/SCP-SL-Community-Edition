@@ -1,0 +1,152 @@
+Type: Clutter
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Clutter
+	System.Void SpawnClutter()
+		ulong local1 = 0
+
+		UnityEngine.GameObject gameObject = base.gameObject
+
+		System.String name = gameObject.name
+
+		System.String string = System.String.Concat("Spawning clutter component on object of name "", name, """) //(String str0, String str1, String str2)
+
+		GameCore.Console.AddDebugLog("MGCLTR", string, 4, True) //(String debugKey, String message, MessageImportance importance, Boolean nospace)
+		UnityEngine.GameObject holderObject = this.holderObject
+		this.spawned = True
+
+		System.Boolean boolean = UnityEngine.Object.op_Implicit(holderObject) //(Object exists)
+
+		if (boolean == False)
+
+		    UnityEngine.GameObject gameObject2 = base.gameObject
+		    this.holderObject = gameObject2
+		endif
+        
+		System.Collections.Generic.List`1<UnityEngine.GameObject> possiblePrefabs = this.possiblePrefabs
+		System.Int32 _size = possiblePrefabs._size
+
+		if (_size <= 0)
+            goto INSN_18046D80F
+        endif
+		ulong local16 = 0
+
+		[instruction error - managed method being called is null]
+		ulong local17 = 0
+
+		System.ThrowHelper.ThrowArgumentOutOfRangeException()
+		T[] _items = possiblePrefabs._items
+		T t = _items[boolean]
+
+		INSN_18046D80F:
+
+		UnityEngine.GameObject gameObject3 = base.gameObject
+		UnityEngine.GameObject holderObject2 = this.holderObject
+
+		UnityEngine.Transform transform = holderObject2.transform
+
+		UnityEngine.Vector3 position = holderObject2.position
+
+		UnityEngine.Vector3 vector3 = UnityEngine.Vector3.op_Multiply()
+
+		UnityEngine.Vector3 vector32 = UnityEngine.Vector3.op_Addition()
+		UnityEngine.GameObject holderObject3 = this.holderObject
+
+		UnityEngine.Transform transform2 = holderObject3.transform
+
+		UnityEngine.Quaternion rotation = holderObject3.rotation
+		ulong local40 = 0
+		UnityEngine.GameObject holderObject4 = this.holderObject
+
+		UnityEngine.Transform transform3 = holderObject4.transform
+		ulong local44 = 0
+
+		UnityEngine.Transform parent = transform3.parent
+
+		UnityEngine.GameObject gameObject4 = UnityEngine.Object.Instantiate<UnityEngine.GameObject>(gameObject3, local44, local40, parent) //(T original, Vector3 position, Quaternion rotation, Transform parent)
+
+		UnityEngine.Vector3 zero = UnityEngine.Vector3.zero
+		System.Single single = zero.z
+
+		System.Boolean boolean2 = UnityEngine.Vector3.op_Inequality()
+
+		if (boolean2 != False)
+            goto INSN_18046DA20
+        endif
+
+		UnityEngine.Transform transform4 = gameObject4.transform
+		UnityEngine.GameObject holderObject5 = this.holderObject
+
+		UnityEngine.Transform transform5 = holderObject5.transform
+
+		UnityEngine.Vector3 localScale = holderObject5.localScale
+
+		INSN_18046DA20:
+
+		UnityEngine.Transform transform6 = transform4.transform
+
+		transform6.set_localScale()
+
+		gameObject4.SetActive(True) //(Boolean value)
+
+		System.Boolean boolean3 = gameObject4.TryGetComponent<Clutter>()
+
+		if (boolean3 == False)
+            goto INSN_18046DA9C
+        endif
+
+		UnityEngine.Object.Destroy(transform4) //(Object obj)
+
+		INSN_18046DA9C:
+		UnityEngine.GameObject holderObject6 = this.holderObject
+
+		UnityEngine.Object.Destroy(holderObject6) //(Object obj)
+
+		CustomCulling.DynamicCullableBase dynamicCullableBase = gameObject4.AddComponent<CustomCulling.DynamicCullableBase>()
+		dynamicCullableBase.StaticObject = True
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL Generation Skipped due to invalid local _items of type T[]
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Clutter
+	System.Void .ctor()
+		System.Collections.Generic.List`1<UnityEngine.GameObject> list = new System.Collections.Generic.List`1<UnityEngine.GameObject>()
+
+		list..ctor()
+		this.possiblePrefabs = list
+
+		UnityEngine.Vector3 zero = UnityEngine.Vector3.zero
+		System.Single single = zero.z
+		this.clutterScale.z = single
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: newobj System.Void System.Collections.Generic.List`1::.ctor()
+	IL_0005: stloc.0
+	IL_0006: ldarg.0
+	IL_0007: ldloc.0
+	IL_0008: stfld System.Collections.Generic.List`1<UnityEngine.GameObject> Clutter::possiblePrefabs
+	IL_000d: call UnityEngine.Vector3 UnityEngine.Vector3::get_zero()
+	IL_0012: ldfld System.Single UnityEngine.Vector3::z
+	IL_0017: stloc.1
+	IL_0018: ldarg.0
+	IL_0019: ldfld UnityEngine.Vector3 Clutter::clutterScale
+	IL_001e: ldloc.1
+	IL_001f: stfld System.Single UnityEngine.Vector3::z
+	IL_0024: ldarg.0
+	IL_0025: call System.Void UnityEngine.MonoBehaviour::.ctor()
+	IL_002a: ret
+	
+

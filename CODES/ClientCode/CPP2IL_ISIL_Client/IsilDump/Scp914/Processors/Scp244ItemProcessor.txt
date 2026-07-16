@@ -1,0 +1,278 @@
+Type: Scp914.Processors.Scp244ItemProcessor
+
+Method: InventorySystem.Items.Pickups.ItemPickupBase OnPickupUpgraded(Scp914.Scp914KnobSetting setting, InventorySystem.Items.Pickups.ItemPickupBase ipb, UnityEngine.Vector3 newPosition)
+
+Disassembly:
+	mov [rsp+8],rbx
+	mov [rsp+10h],rbp
+	mov [rsp+18h],rsi
+	push rdi
+	sub rsp,40h
+	cmp byte ptr [1826FDA22h],0
+	mov rdi,r9
+	mov rbx,r8
+	movzx esi,dl
+	mov rbp,rcx
+	jne short 0000000181AB4B6Bh
+	mov ecx,[1822F6280h]
+	call 0000000180294190h
+	mov byte ptr [1826FDA22h],1
+	test rbx,rbx
+	je short 0000000181AB4BD5h
+	mov rdx,[1827442F8h]
+	mov rax,[rbx]
+	movzx ecx,byte ptr [rdx+128h]
+	cmp [rax+128h],cl
+	jb short 0000000181AB4BD5h
+	mov rax,[rax+0C8h]
+	cmp [rax+rcx*8-8],rdx
+	jne short 0000000181AB4BD5h
+	xor edx,edx
+	mov rcx,rbx
+	call 00000001804352D0h
+	test al,al
+	jne short 0000000181AB4BD5h
+	movsd xmm0,qword ptr [rdi]
+	lea r9,[rsp+30h]
+	mov eax,[rdi+8]
+	mov r8,rbx
+	movzx edx,sil
+	movsd qword ptr [rsp+30h],xmm0
+	mov rcx,rbp
+	mov [rsp+38h],eax
+	mov qword ptr [rsp+20h],0
+	call 0000000181AC6130h
+	jmp short 0000000181AB4BD7h
+	xor eax,eax
+	mov rbx,[rsp+50h]
+	mov rbp,[rsp+58h]
+	mov rsi,[rsp+60h]
+	add rsp,40h
+	pop rdi
+	ret
+
+ISIL:
+	001 Move stack:0x8, rbx
+	002 Move stack:0x10, rbp
+	003 Move stack:0x18, rsi
+	004 ShiftStack -8
+	005 Move stack:0x0, rdi
+	006 ShiftStack -64
+	007 Compare [0x1826FDA22], 0
+	008 Move rdi, r9
+	009 Move rbx, r8
+	010 Move rsi, rdx
+	011 Move rbp, rcx
+	012 JumpIfNotEqual {16}
+	013 Move rcx, [0x1822F6280]
+	014 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	015 Move [0x1826FDA22], 1
+	016 Compare rbx, 0
+	017 JumpIfEqual {42}
+	018 Move rdx, typeof(InventorySystem.Items.Usables.Scp244.Scp244DeployablePickup)
+	019 Move rax, [rbx]
+	020 Move rcx, [rdx+296]
+	021 Compare [rax+296], rcx
+	022 JumpIfLess {42}
+	023 Move rax, [rax+200]
+	024 Compare [rax+0xFFFFFFF8+rcx*8], rdx
+	025 JumpIfNotEqual {42}
+	026 Move rdx, 0
+	027 Move rcx, rbx
+	028 Call Scp244DeployablePickup.get_ModelDestroyed, rcx, rdx
+	029 Compare rax, 0
+	030 JumpIfNotEqual {42}
+	031 Move xmm0, [rdi]
+	032 LoadAddress r9, stack:0x30
+	033 Move rax, [rdi+8]
+	034 Move r8, rbx
+	035 Move rdx, rsi
+	036 Move stack:0x30, xmm0
+	037 Move rcx, rbp
+	038 Move stack:0x38, rax
+	039 Move stack:0x20, 0
+	040 Call StandardItemProcessor.OnPickupUpgraded, rcx, rdx, r8, r9
+	041 Goto {43}
+	042 Move rax, 0
+	043 Move rbx, stack:0x50
+	044 Move rbp, stack:0x58
+	045 Move rsi, stack:0x60
+	046 ShiftStack 64
+	047 Move rdi, stack:0x0
+	048 ShiftStack 8
+	049 Return rax
+
+Method: System.Void HandleOldPickup(InventorySystem.Items.Pickups.ItemPickupBase ipb, UnityEngine.Vector3 newPos)
+
+Disassembly:
+	push rbx
+	sub rsp,20h
+	cmp byte ptr [1826FDA23h],0
+	mov rbx,rdx
+	jne short 0000000181AB4AD4h
+	mov ecx,[1822F6258h]
+	call 0000000180294190h
+	mov byte ptr [1826FDA23h],1
+	test rbx,rbx
+	je short 0000000181AB4B2Ah
+	mov rdx,[1827442F8h]
+	mov rax,[rbx]
+	movzx ecx,byte ptr [rdx+128h]
+	cmp [rax+128h],cl
+	jb short 0000000181AB4B1Bh
+	mov rax,[rax+0C8h]
+	cmp [rax+rcx*8-8],rdx
+	jne short 0000000181AB4B1Bh
+	cmp byte ptr [rbx+139h],1
+	jne short 0000000181AB4B1Bh
+	xor r8d,r8d
+	mov dl,3
+	mov rcx,rbx
+	add rsp,20h
+	pop rbx
+	jmp near ptr 00000001804354F0h
+	xor edx,edx
+	mov rcx,rbx
+	add rsp,20h
+	pop rbx
+	jmp near ptr 00000001804C7C40h
+	call 0000000180294310h
+
+ISIL:
+	001 ShiftStack -8
+	002 Move stack:0x0, rbx
+	003 ShiftStack -32
+	004 Compare [0x1826FDA23], 0
+	005 Move rbx, rdx
+	006 JumpIfNotEqual {10}
+	007 Move rcx, [0x1822F6258]
+	008 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	009 Move [0x1826FDA23], 1
+	010 Compare rbx, 0
+	011 JumpIfEqual {37}
+	012 Move rdx, typeof(InventorySystem.Items.Usables.Scp244.Scp244DeployablePickup)
+	013 Move rax, [rbx]
+	014 Move rcx, [rdx+296]
+	015 Compare [rax+296], rcx
+	016 JumpIfLess {30}
+	017 Move rax, [rax+200]
+	018 Compare [rax+0xFFFFFFF8+rcx*8], rdx
+	019 JumpIfNotEqual {30}
+	020 Compare [rbx+313], 1
+	021 JumpIfNotEqual {30}
+	022 Move r8, 0
+	023 Move rdx, 3
+	024 Move rcx, rbx
+	025 ShiftStack 32
+	026 Move rbx, stack:0x0
+	027 ShiftStack 8
+	028 Call Scp244DeployablePickup.set_State, rcx, rdx
+	029 Return 
+	030 Move rdx, 0
+	031 Move rcx, rbx
+	032 ShiftStack 32
+	033 Move rbx, stack:0x0
+	034 ShiftStack 8
+	035 Call ItemPickupBase.DestroySelf, rcx, rdx
+	036 Return 
+	037 Call 0x180294310, rcx, rdx, r8, r9
+
+Method: System.Void HandleNone(InventorySystem.Items.Pickups.ItemPickupBase ipb, UnityEngine.Vector3 newPos)
+
+Disassembly:
+	push rbx
+	sub rsp,20h
+	cmp byte ptr [1826FDA24h],0
+	mov rbx,rdx
+	jne short 0000000181AB4A44h
+	mov ecx,[1822F6240h]
+	call 0000000180294190h
+	mov byte ptr [1826FDA24h],1
+	test rbx,rbx
+	je short 0000000181AB4AA5h
+	mov rdx,[1827442F8h]
+	mov rax,[rbx]
+	movzx ecx,byte ptr [rdx+128h]
+	cmp [rax+128h],cl
+	jb short 0000000181AB4A96h
+	mov rax,[rax+0C8h]
+	cmp [rax+rcx*8-8],rdx
+	jne short 0000000181AB4A96h
+	xor edx,edx
+	mov rcx,rbx
+	call 00000001804352D0h
+	test al,al
+	jne short 0000000181AB4A90h
+	xor r8d,r8d
+	mov dl,2
+	mov rcx,rbx
+	add rsp,20h
+	pop rbx
+	jmp near ptr 00000001804354F0h
+	add rsp,20h
+	pop rbx
+	ret
+	xor edx,edx
+	mov rcx,rbx
+	add rsp,20h
+	pop rbx
+	jmp near ptr 00000001804C7C40h
+	call 0000000180294310h
+
+ISIL:
+	001 ShiftStack -8
+	002 Move stack:0x0, rbx
+	003 ShiftStack -32
+	004 Compare [0x1826FDA24], 0
+	005 Move rbx, rdx
+	006 JumpIfNotEqual {10}
+	007 Move rcx, [0x1822F6240]
+	008 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	009 Move [0x1826FDA24], 1
+	010 Compare rbx, 0
+	011 JumpIfEqual {44}
+	012 Move rdx, typeof(InventorySystem.Items.Usables.Scp244.Scp244DeployablePickup)
+	013 Move rax, [rbx]
+	014 Move rcx, [rdx+296]
+	015 Compare [rax+296], rcx
+	016 JumpIfLess {37}
+	017 Move rax, [rax+200]
+	018 Compare [rax+0xFFFFFFF8+rcx*8], rdx
+	019 JumpIfNotEqual {37}
+	020 Move rdx, 0
+	021 Move rcx, rbx
+	022 Call Scp244DeployablePickup.get_ModelDestroyed, rcx, rdx
+	023 Compare rax, 0
+	024 JumpIfNotEqual {33}
+	025 Move r8, 0
+	026 Move rdx, 2
+	027 Move rcx, rbx
+	028 ShiftStack 32
+	029 Move rbx, stack:0x0
+	030 ShiftStack 8
+	031 Call Scp244DeployablePickup.set_State, rcx, rdx
+	032 Return 
+	033 ShiftStack 32
+	034 Move rbx, stack:0x0
+	035 ShiftStack 8
+	036 Return 
+	037 Move rdx, 0
+	038 Move rcx, rbx
+	039 ShiftStack 32
+	040 Move rbx, stack:0x0
+	041 ShiftStack 8
+	042 Call ItemPickupBase.DestroySelf, rcx, rdx
+	043 Return 
+	044 Call 0x180294310, rcx, rdx, r8, r9
+
+Method: System.Void .ctor()
+
+Disassembly:
+	xor edx,edx
+	jmp near ptr 0000000180FD1850h
+
+ISIL:
+	001 Move rdx, 0
+	002 Call 0x180FD1850, rcx, rdx
+	003 Return 
+

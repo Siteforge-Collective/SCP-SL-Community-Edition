@@ -1,0 +1,407 @@
+Type: AbilityHud
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.HUDs.AbilityHud
+	System.Void Setup(PlayerRoles.PlayableScps.Subroutines.AbilityCooldown cd, PlayerRoles.PlayableScps.Subroutines.AbilityCooldown duration)
+		this._cooldown = cd
+		this._duration = duration
+		UnityEngine.UI.Image _cooldownCircle = this._cooldownCircle
+
+		UnityEngine.RectTransform rectTransform = _cooldownCircle.rectTransform
+		this._rt = rectTransform
+		UnityEngine.CanvasGroup _fader = this._fader
+		this._hasDuration = rectTransform
+		ulong local8 = 0
+
+		System.Boolean boolean = UnityEngine.Object.op_Inequality(_fader, local8) //(Object x, Object y)
+		this._hasFader = boolean
+
+		System.Boolean boolean2 = this.UpdateVisibility()
+
+		if (this._hasFader == False)
+		    UnityEngine.GameObject _parent = this._parent
+
+		    _parent.SetActive(boolean2) //(Boolean value)
+		    return
+		endif
+        
+		UnityEngine.CanvasGroup _fader2 = this._fader
+		System.Boolean local16 = boolean2 != False
+
+		_fader2.alpha = boolean2
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: stfld PlayerRoles.PlayableScps.Subroutines.AbilityCooldown PlayerRoles.PlayableScps.HUDs.AbilityHud::_cooldown
+	IL_0007: ldarg.0
+	IL_0008: ldarg.2
+	IL_0009: stfld PlayerRoles.PlayableScps.Subroutines.AbilityCooldown PlayerRoles.PlayableScps.HUDs.AbilityHud::_duration
+	IL_000e: ldarg.0
+	IL_000f: ldfld UnityEngine.UI.Image PlayerRoles.PlayableScps.HUDs.AbilityHud::_cooldownCircle
+	IL_0014: call UnityEngine.RectTransform UnityEngine.UI.Graphic::get_rectTransform()
+	IL_0019: stloc.0
+	IL_001a: ldarg.0
+	IL_001b: ldloc.0
+	IL_001c: stfld UnityEngine.RectTransform PlayerRoles.PlayableScps.HUDs.AbilityHud::_rt
+	IL_0021: ldarg.0
+	IL_0022: ldfld UnityEngine.CanvasGroup PlayerRoles.PlayableScps.HUDs.AbilityHud::_fader
+	IL_0027: stloc.1
+	IL_0028: ldarg.0
+	IL_0029: ldloc.0
+	IL_002a: stfld System.Boolean PlayerRoles.PlayableScps.HUDs.AbilityHud::_hasDuration
+	IL_002f: ldc.i4.0
+	IL_0030: stloc.2
+	IL_0031: ldloc.1
+	IL_0032: ldloc.2
+	IL_0033: call System.Boolean UnityEngine.Object::op_Inequality(UnityEngine.Object,UnityEngine.Object)
+	IL_0038: stloc.3
+	IL_0039: ldarg.0
+	IL_003a: ldloc.3
+	IL_003b: stfld System.Boolean PlayerRoles.PlayableScps.HUDs.AbilityHud::_hasFader
+	IL_0040: ldarg.0
+	IL_0041: call System.Boolean PlayerRoles.PlayableScps.HUDs.AbilityHud::UpdateVisibility()
+	IL_0046: stloc.s V_4
+	IL_0048: ldarg.0
+	IL_0049: ldfld System.Boolean PlayerRoles.PlayableScps.HUDs.AbilityHud::_hasFader
+	IL_004e: ldc.i4.0
+	IL_004f: bne.un.s IL_005f
+	IL_0051: ldarg.0
+	IL_0052: ldfld UnityEngine.GameObject PlayerRoles.PlayableScps.HUDs.AbilityHud::_parent
+	IL_0057: ldloc.s V_4
+	IL_0059: call System.Void UnityEngine.GameObject::SetActive(System.Boolean)
+	IL_005e: ret
+	IL_005f: ldarg.0
+	IL_0060: ldfld UnityEngine.CanvasGroup PlayerRoles.PlayableScps.HUDs.AbilityHud::_fader
+	IL_0065: stloc.s V_5
+	IL_0067: ldloc.s V_4
+	IL_0069: ldc.i4.0
+	IL_006a: ceq
+	IL_006c: ldc.i4.0
+	IL_006d: ceq
+	IL_006f: stloc.s V_6
+	IL_0071: ldloc.s V_5
+	IL_0073: ldloc.s V_4
+	IL_0075: call System.Void UnityEngine.CanvasGroup::set_alpha(System.Single)
+	IL_007a: ret
+	IL_007b: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0080: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.HUDs.AbilityHud
+	System.Void Update(System.Boolean forceHidden)
+
+		if (forceHidden != False)
+		else
+
+		    System.Boolean boolean = this.UpdateVisibility()
+		    forceHidden = boolean
+		endif
+        
+
+		if (this._hasFader != False)
+            goto INSN_1804918CB
+        endif
+		UnityEngine.GameObject _parent = this._parent
+
+		_parent.SetActive(forceHidden) //(Boolean value)
+		return
+
+		INSN_1804918CB:
+
+		System.Single alpha = .alpha
+		ulong local9 = 0
+
+		System.Single deltaTime = UnityEngine.Time.deltaTime
+
+		if (forceHidden == False)
+            goto INSN_18049190F
+        endif
+
+		INSN_18049190F:
+
+		System.Single single = UnityEngine.Mathf.Clamp01(deltaTime) //(Single value)
+
+		.alpha = single
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.RegToRegMoveAction at (0x18049189F) is corrupt (Local being overwritten, {'forceHidden' (function parameter, type System.Boolean)} has been stripped or is a parameter) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.HUDs.AbilityHud
+	System.Boolean UpdateVisibility()
+		PlayerRoles.PlayableScps.Subroutines.AbilityCooldown _cooldown = this._cooldown
+		UnityEngine.UI.Image _cooldownCircle = this._cooldownCircle
+		System.Boolean _inverseCooldown = this._inverseCooldown
+
+		System.Single readiness = _cooldown.Readiness
+
+		if (_inverseCooldown != False)
+		endif
+        
+
+		_cooldownCircle.fillAmount = readiness
+		UnityEngine.RectTransform rectTransform = this._rt
+		System.Single single = this._startScale.z
+
+		UnityEngine.Vector3 one = UnityEngine.Vector3.one
+		System.Single single2 = one.z
+
+		UnityEngine.Vector3 vector3 = UnityEngine.Vector3.Lerp()
+		System.Single single3 = vector3.z
+
+		rectTransform.set_localScale()
+		PlayerRoles.PlayableScps.Subroutines.AbilityCooldown _cooldown2 = this._cooldown
+
+		System.String string = _cooldown2.ToString()
+		System.Boolean local18 = string == 0
+
+		if (this._hasDuration == False)
+            goto INSN_180491828
+        endif
+		PlayerRoles.PlayableScps.Subroutines.AbilityCooldown _duration = this._duration
+
+		System.String string2 = _duration.ToString()
+		UnityEngine.UI.Image _durationCircle = this._durationCircle
+
+		if (string2 != 0)
+            goto INSN_1804917D3
+        endif
+
+		if (this._showDurationAtCooldown == string2)
+            goto INSN_180491745
+        endif
+
+		INSN_180491745:
+		PlayerRoles.PlayableScps.Subroutines.AbilityCooldown _cooldown3 = this._cooldown
+
+		System.String string3 = _cooldown3.ToString()
+		System.Boolean local24 = string3 != 0
+
+		_durationCircle.enabled = local24
+		PlayerRoles.PlayableScps.Subroutines.AbilityCooldown _duration2 = this._duration
+		UnityEngine.UI.Image _durationCircle2 = this._durationCircle
+		System.Boolean _inverseDuration = this._inverseDuration
+
+		System.Single readiness2 = _duration2.Readiness
+
+		if (_inverseDuration != False)
+            goto INSN_1804917A6
+        endif
+
+		INSN_1804917A6:
+
+		_durationCircle2.fillAmount = 1
+		System.Diagnostics.Stopwatch _fullStopwatch = this._fullStopwatch
+
+		_fullStopwatch.Restart()
+
+		INSN_1804917D3:
+		ulong local35 = 0
+
+		_durationCircle2.enabled = local35
+		System.Diagnostics.Stopwatch _fullStopwatch2 = this._fullStopwatch
+
+		if (_fullStopwatch2.is_running == False)
+            goto INSN_180491828
+        endif
+
+		System.TimeSpan elapsed = _fullStopwatch2.Elapsed
+
+		if (elapsed == 0)
+            goto INSN_180491828
+        endif
+
+		INSN_180491828:
+		return True
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1804916AE) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (3)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.HUDs.AbilityHud
+	System.Boolean UpdateCooldown()
+		PlayerRoles.PlayableScps.Subroutines.AbilityCooldown _cooldown = this._cooldown
+		UnityEngine.UI.Image _cooldownCircle = this._cooldownCircle
+		System.Boolean _inverseCooldown = this._inverseCooldown
+
+		System.Single readiness = _cooldown.Readiness
+
+		if (_inverseCooldown != False)
+		endif
+        
+
+		_cooldownCircle.fillAmount = readiness
+		UnityEngine.RectTransform rectTransform = this._rt
+		System.Single single = this._startScale.z
+
+		UnityEngine.Vector3 one = UnityEngine.Vector3.one
+		System.Single single2 = one.z
+
+		UnityEngine.Vector3 vector3 = UnityEngine.Vector3.Lerp()
+		System.Single single3 = vector3.z
+
+		rectTransform.set_localScale()
+		PlayerRoles.PlayableScps.Subroutines.AbilityCooldown _cooldown2 = this._cooldown
+
+		System.String string = _cooldown2.ToString()
+		System.Boolean local18 = string == 0
+		return local18
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1804913E0) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (3)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.HUDs.AbilityHud
+	System.Boolean UpdateDuration()
+		PlayerRoles.PlayableScps.Subroutines.AbilityCooldown _duration = this._duration
+
+		System.String string = _duration.ToString()
+		UnityEngine.UI.Image _durationCircle = this._durationCircle
+
+		if (string == 0)
+
+		    if (this._showDurationAtCooldown != string)
+		    else
+		        PlayerRoles.PlayableScps.Subroutines.AbilityCooldown _cooldown = this._cooldown
+
+		        System.String string2 = _cooldown.ToString()
+		    endif
+            
+		    System.Boolean local6 = string2 != 0
+
+		    _durationCircle.enabled = local6
+		    PlayerRoles.PlayableScps.Subroutines.AbilityCooldown _duration2 = this._duration
+		    UnityEngine.UI.Image _durationCircle2 = this._durationCircle
+		    System.Boolean _inverseDuration = this._inverseDuration
+
+		    System.Single readiness = _duration2.Readiness
+
+		    if (_inverseDuration != False)
+                goto INSN_180491500
+            endif
+
+		    INSN_180491500:
+
+		    _durationCircle2.fillAmount = 1
+		    System.Diagnostics.Stopwatch _fullStopwatch = this._fullStopwatch
+
+		    _fullStopwatch.Restart()
+		    return True
+		endif
+        
+		ulong local17 = 0
+
+		_durationCircle.enabled = local17
+		System.Diagnostics.Stopwatch _fullStopwatch2 = this._fullStopwatch
+
+		if (_fullStopwatch2.is_running != False)
+            goto INSN_180491570
+        endif
+		ulong local19 = 0
+		return local19
+
+		INSN_180491570:
+
+		System.TimeSpan elapsed = _fullStopwatch2.Elapsed
+		return elapsed
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x18049156F) is corrupt (Return value has a type of System.Int32, expecting an object of type System.Boolean) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.HUDs.AbilityHud
+	System.Single FillCircle(PlayerRoles.PlayableScps.Subroutines.AbilityCooldown cd, UnityEngine.UI.Image circle, System.Boolean inverse)
+
+		System.Single readiness = cd.Readiness
+
+		if (inverse != False)
+		endif
+        
+
+		circle.fillAmount = readiness
+		return readiness
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.1
+	IL_0001: call System.Single PlayerRoles.PlayableScps.Subroutines.AbilityCooldown::get_Readiness()
+	IL_0006: stloc.0
+	IL_0007: ldarg.3
+	IL_0008: ldc.i4.0
+	IL_0009: beq.s IL_000b
+	IL_000b: ldarg.2
+	IL_000c: ldloc.0
+	IL_000d: call System.Void UnityEngine.UI.Image::set_fillAmount(System.Single)
+	IL_0012: ldloc.0
+	IL_0013: ret
+	IL_0014: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0019: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.HUDs.AbilityHud
+	System.Void .ctor()
+
+		UnityEngine.Vector3 one = UnityEngine.Vector3.one
+		System.Single single = one.z
+		this._startScale.z = single
+		System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch()
+
+		stopwatch..ctor()
+		this._fullStopwatch = stopwatch
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: call UnityEngine.Vector3 UnityEngine.Vector3::get_one()
+	IL_0005: ldfld System.Single UnityEngine.Vector3::z
+	IL_000a: stloc.0
+	IL_000b: ldarg.0
+	IL_000c: ldfld UnityEngine.Vector3 PlayerRoles.PlayableScps.HUDs.AbilityHud::_startScale
+	IL_0011: ldloc.0
+	IL_0012: stfld System.Single UnityEngine.Vector3::z
+	IL_0017: newobj System.Void System.Diagnostics.Stopwatch::.ctor()
+	IL_001c: stloc.1
+	IL_001d: ldarg.0
+	IL_001e: ldloc.1
+	IL_001f: stfld System.Diagnostics.Stopwatch PlayerRoles.PlayableScps.HUDs.AbilityHud::_fullStopwatch
+	IL_0024: ldarg.0
+	IL_0025: call System.Void System.Object::.ctor()
+	IL_002a: ret
+	
+

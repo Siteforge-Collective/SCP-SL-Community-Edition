@@ -1,0 +1,523 @@
+Type: Scp079MapGui
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Map.Scp079MapGui
+	static PlayerRoles.PlayableScps.Scp079.Cameras.Scp079Camera get_HighlightedCamera()
+		PlayerRoles.PlayableScps.Scp079.Cameras.Scp079Camera HighlightedCamera = PlayerRoles.PlayableScps.Scp079.Map.Scp079MapGui.<HighlightedCamera>k__BackingField
+		return HighlightedCamera
+
+
+Generated IL:
+	IL_0000: ldsfld PlayerRoles.PlayableScps.Scp079.Cameras.Scp079Camera PlayerRoles.PlayableScps.Scp079.Map.Scp079MapGui::<HighlightedCamera>k__BackingField
+	IL_0005: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Map.Scp079MapGui
+	static System.Void set_HighlightedCamera(PlayerRoles.PlayableScps.Scp079.Cameras.Scp079Camera value)
+		PlayerRoles.PlayableScps.Scp079.Map.Scp079MapGui.<HighlightedCamera>k__BackingField = value
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: stsfld PlayerRoles.PlayableScps.Scp079.Cameras.Scp079Camera PlayerRoles.PlayableScps.Scp079.Map.Scp079MapGui::<HighlightedCamera>k__BackingField
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Map.Scp079MapGui
+	static UnityEngine.Vector3 get_SyncVars()
+		  = .
+		il2cppMethodInfo. = Scp079MapGui
+		return il2cppMethodInfo
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.StaticFieldToRegAction at (0x1803BE4C2) is corrupt (Couldn't identify the field being read (or its type).) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Map.Scp079MapGui
+	static System.Void set_SyncVars(UnityEngine.Vector3 value)
+		System.Single single = value.z
+		. = single
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.RegToStaticFieldAction at (0x1803BE5BE) is corrupt (No further info) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Map.Scp079MapGui
+	System.Void Update()
+		ulong local1 = 0
+
+		System.Boolean mapState = PlayerRoles.PlayableScps.Scp079.Map.Scp079ToggleMapAbility.MapState
+		ulong local3 = 0
+
+		System.Single deltaTime = UnityEngine.Time.deltaTime
+		System.Single _animDuration = this._animDuration
+		ulong local8 = 0
+
+		System.Single single = UnityEngine.Mathf.Clamp(deltaTime, local8, _animDuration) //(Single value, Single min, Single max)
+		System.Boolean _prevOpen = this._prevOpen
+		this._animValue = single
+
+		if (mapState == False)
+
+		    if (_prevOpen != False)
+		    else
+
+		        if (_prevOpen == False)
+
+		            this.OnOpened()
+		        endif
+                
+
+		        this.UpdateOpen()
+		    endif
+            
+		    System.Single _animValue = this._animValue
+		    this._prevOpen = mapState
+
+		    if (_prevOpen == False)
+                goto INSN_1803BE420
+            endif
+
+		    if (mapState == False)
+                goto INSN_1803BE310
+            endif
+
+		    INSN_1803BE310:
+		    PlayerRoles.PlayableScps.Scp079.Map.Scp079MapGui/MapAnimation _closeAnim = this._closeAnim
+		    UnityEngine.AnimationCurve vertical = this._closeAnim.Vertical
+		    UnityEngine.CanvasGroup _background = this._background
+
+		    System.Single single2 = _closeAnim.Evaluate(_animValue) //(Single time)
+		    _animValue = single2
+
+		    _background.alpha = _animValue
+		    UnityEngine.CanvasGroup _compressor = this._compressor
+
+		    System.Single single3 = .Evaluate(_animValue) //(Single time)
+		    _animValue = single3
+
+		    _compressor.alpha = _animValue
+		    UnityEngine.RectTransform _scalable = this._scalable
+
+		    System.Single single4 = .Evaluate(_animValue) //(Single time)
+		    local5 = single4
+
+		    System.Single single5 = vertical.Evaluate(_animValue) //(Single time)
+		    ulong local33 = 0
+		    _animDuration = single5
+		    _animValue = local5
+
+		    _scalable.set_localScale()
+		    System.Single _animValue2 = this._animValue
+		    this._prevAnimVal = _animValue2
+
+		    INSN_1803BE420:
+		    return
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1803BE33A) is corrupt (Mismatched instance parameter. Expecting an instance of UnityEngine.AnimationCurve, actually {'_closeAnim' (type PlayerRoles.PlayableScps.Scp079.Map.Scp079MapGui/MapAnimation)}) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Map.Scp079MapGui
+	System.Void OnOpened()
+		UnityEngine.RectTransform _mapScaler = this._mapScaler
+		this._zoom = 1
+		ulong local3 = 0
+
+		UnityEngine.Vector3 one = UnityEngine.Vector3.one
+
+		_mapScaler.localScale = local3
+		PlayerRoles.PlayableScps.Scp079.Cameras.Scp079CurrentCameraSync _curCamSync = this._curCamSync
+		ulong local8 = 0
+		ulong local9 = 0
+
+		System.Boolean boolean = _curCamSync.TryGetCurrentCamera(local3) //(Scp079Camera& cam)
+		UnityEngine.MonoBehaviour[] _zoneMaps = this._zoneMaps
+		System.Int32 length = _zoneMaps.Length
+
+		if (local8 < length)
+		    UnityEngine.MonoBehaviour monoBehaviour = _zoneMaps[local8]
+
+		    if (local8 == 0)
+                goto INSN_1803BD9BF
+            endif
+
+		    if (local8 == 0)
+                goto INSN_1803BD9B3
+            endif
+		    ulong local14 = 0
+		    //UNKNOWN CLASS OFFSET READ HERE
+
+		    if (local14 < local9)
+		        local14 += local14
+		        local14 += 1
+		    endif
+            
+		      = local14.
+
+		    if (local14 != 0)
+                goto INSN_1803BD7AE
+            endif
+		    local8 += 1
+		     += IZoneMap
+		    local14 += 1
+		    local14 += 19
+		    local14 += constant35
+
+		    INSN_1803BD7AE:
+		    this._prevOffset.z = local14
+		endif
+        
+		UnityEngine.RectTransform _mapMover = this._mapMover
+
+		UnityEngine.Vector2 vector2 = UnityEngine.Vector2.op_Implicit()
+
+		_mapMover.anchoredPosition = vector2
+		return
+		UnityEngine.RectTransform _mapMover2 = this._mapMover
+		  = .
+
+		UnityEngine.Vector2 vector22 = UnityEngine.Vector2.op_Implicit()
+
+		UnityEngine.Vector3 vector3 = UnityEngine.Vector2.op_Implicit()
+
+		_mapMover2.set_localPosition()
+		UnityEngine.RectTransform _mapScaler2 = this._mapScaler
+		ulong local29 = 0
+
+		UnityEngine.Vector3 one2 = UnityEngine.Vector3.one
+		  = .
+
+		UnityEngine.Vector3 vector32 = UnityEngine.Vector3.op_Multiply()
+
+		_mapScaler2.localScale = local29
+		throw new System.NullReferenceException()
+
+		INSN_1803BD9BF:
+		throw new System.InvalidCastException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.UnknownClassOffsetReadAction at (0x1803BD73D) is corrupt (Unknown class offset read) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Map.Scp079MapGui
+	System.Void UpdateOpen()
+		ulong local1 = 0
+		PlayerRoles.PlayableScps.Scp079.Map.Scp079MapGui.<HighlightedCamera>k__BackingField = local1
+		ulong local3 = 0
+		System.Boolean LocalInstanceActive = PlayerRoles.PlayableScps.Scp079.Scp079Role.<LocalInstanceActive>k__BackingField
+
+		System.Boolean visible = UnityEngine.Cursor.visible
+
+		if (visible != False)
+		else
+		    System.Boolean local6 = LocalInstanceActive != False
+		endif
+        
+
+		if (local6 == False)
+            goto INSN_1803BDE11
+        endif
+
+		System.Single axisRaw = UnityEngine.Input.GetAxisRaw("Mouse ScrollWheel") //(String axisName)
+
+		System.Single axis = UnityEngine.Input.GetAxis("Mouse ScrollWheel") //(String axisName)
+		axis = local10
+
+		System.Single single = UnityEngine.Mathf.Clamp(axis, 0.30000001192092896, 2.0999999046325684) //(Single value, Single min, Single max)
+		UnityEngine.RectTransform _mapScaler = this._mapScaler
+		this._zoom = single
+		ulong local15 = 0
+
+		UnityEngine.Vector3 one = UnityEngine.Vector3.one
+
+		UnityEngine.Vector3 vector3 = UnityEngine.Vector3.op_Multiply()
+
+		_mapScaler.localScale = local15
+
+		System.Single axisRaw2 = UnityEngine.Input.GetAxisRaw("Mouse X") //(String axisName)
+		local14 = axisRaw2
+
+		System.Single axisRaw3 = UnityEngine.Input.GetAxisRaw("Mouse Y") //(String axisName)
+
+		System.Single axis2 = UnityEngine.Input.GetAxis("Mouse Y") //(String axisName)
+		local14 = axis2
+
+		System.Single axis3 = UnityEngine.Input.GetAxis("Mouse Y") //(String axisName)
+		local14 = axis3
+		UnityEngine.RectTransform _mapMover = this._mapMover
+
+		UnityEngine.Vector3 localPosition = .localPosition
+		System.Single sensMultiplier = SensitivitySettings.SensMultiplier
+
+		UnityEngine.Vector3 vector32 = UnityEngine.Vector2.op_Implicit()
+		System.Single single2 = vector32.z
+		System.Single local38 = sensMultiplier * 30
+		local14 = local38
+
+		UnityEngine.Vector3 vector33 = UnityEngine.Vector3.op_Multiply()
+		local14 = local40
+
+		UnityEngine.Vector3 vector34 = UnityEngine.Vector3.op_Division()
+
+		UnityEngine.Vector3 vector35 = UnityEngine.Vector3.op_Subtraction()
+		UnityEngine.RectTransform _mapMover2 = this._mapMover
+
+		_mapMover2.set_localPosition()
+		. = single2
+
+		INSN_1803BDE11:
+
+		if (LocalInstanceActive != False)
+            goto INSN_1803BDF7C
+        endif
+		UnityEngine.RectTransform _mapScaler2 = this._mapScaler
+		ulong local55 = 0
+
+		UnityEngine.Vector3 one2 = UnityEngine.Vector3.one
+		  = .
+
+		UnityEngine.Vector3 vector36 = UnityEngine.Vector3.op_Multiply()
+
+		_mapScaler2.localScale = local55
+		UnityEngine.RectTransform _mapMover3 = this._mapMover
+
+		UnityEngine.Vector3 localPosition2 = _mapScaler2.localPosition
+		  = .
+		ulong local66 = 0
+
+		System.Single deltaTime = UnityEngine.Time.deltaTime
+		System.Single local68 = deltaTime * 15
+		ulong local69 = 0
+		local52 = local68
+
+		UnityEngine.Vector3 vector37 = UnityEngine.Vector3.Lerp()
+
+		_mapMover3.set_localPosition()
+
+		INSN_1803BDF7C:
+		UnityEngine.MonoBehaviour[] _zoneMaps = this._zoneMaps
+		System.Int32 length = _zoneMaps.Length
+
+		if (local69 >= length)
+            goto INSN_1803BE015
+        endif
+		UnityEngine.MonoBehaviour monoBehaviour = _zoneMaps[local69]
+
+		if (monoBehaviour != 0)
+            goto INSN_1803BDFB9
+        endif
+
+		INSN_1803BDFB9:
+
+		if (monoBehaviour == 0)
+            goto INSN_1803BE164
+        endif
+		ulong local76 = 0
+
+		if (local6 != False)
+            goto INSN_1803BDFE0
+        endif
+
+		if (LocalInstanceActive != False)
+            goto INSN_1803BE015
+        endif
+
+		INSN_1803BDFE0:
+
+		if (monoBehaviour == 0)
+            goto INSN_1803BE00C
+        endif
+		ulong local78 = 0
+
+		INSN_1803BE00C:
+		local69 += 1
+
+		INSN_1803BE015:
+		PlayerRoles.PlayableScps.Scp079.Cameras.Scp079CurrentCameraSync _curCamSync = this._curCamSync
+		ulong local80 = 0
+
+		System.Boolean boolean = _curCamSync.TryGetCurrentCamera(local78) //(Scp079Camera& cam)
+		UnityEngine.MonoBehaviour[] _zoneMaps2 = this._zoneMaps
+		ulong local83 = 0
+		System.Int32 length2 = _zoneMaps2.Length
+
+		if (local76 >= length2)
+            goto INSN_1803BE126
+        endif
+		UnityEngine.MonoBehaviour monoBehaviour2 = _zoneMaps2[local76]
+
+		if (local76 == 0)
+            goto INSN_1803BE18C
+        endif
+
+		if (local76 == 0)
+            goto INSN_1803BE180
+        endif
+		//UNKNOWN CLASS OFFSET READ HERE
+
+		if (local83 >= local80)
+            goto INSN_1803BE0E8
+        endif
+		local83 += local83
+		local83 += 1
+
+		INSN_1803BE0E8:
+		  = local83.
+		local76 += 1
+		local6 += local6
+		local83 += 3
+		local83 += 19
+		local83 += constant95
+
+		INSN_1803BE126:
+		return
+		throw new System.NullReferenceException()
+
+		INSN_1803BE164:
+		throw new System.InvalidCastException()
+
+		INSN_1803BE18C:
+		throw new System.InvalidCastException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.RegToRegMoveAction at (0x1803BDB72) is corrupt (Local local10 is a variable but it has been stripped out. Are you missing a call to RegisterUsedLocal?) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Map.Scp079MapGui
+	System.Void EvaluateAll(System.Boolean open, System.Single val)
+
+		if (open != False)
+		else
+		    PlayerRoles.PlayableScps.Scp079.Map.Scp079MapGui/MapAnimation _closeAnim = this._closeAnim
+		    UnityEngine.AnimationCurve vertical = this._closeAnim.Vertical
+		endif
+        
+		UnityEngine.CanvasGroup _background = this._background
+
+		System.Single single = _closeAnim.Evaluate(val) //(Single time)
+		val = single
+
+		_background.alpha = val
+		UnityEngine.CanvasGroup _compressor = this._compressor
+
+		System.Single single2 = .Evaluate(val) //(Single time)
+		val = single2
+
+		_compressor.alpha = val
+		UnityEngine.RectTransform _scalable = this._scalable
+
+		System.Single single3 = .Evaluate(val) //(Single time)
+
+		System.Single single4 = vertical.Evaluate(val) //(Single time)
+		ulong local20 = 0
+		val = single4
+		val = single3
+
+		_scalable.set_localScale()
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1803BD288) is corrupt (Mismatched instance parameter. Expecting an instance of UnityEngine.AnimationCurve, actually {'_closeAnim' (type PlayerRoles.PlayableScps.Scp079.Map.Scp079MapGui/MapAnimation)}) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Map.Scp079MapGui
+	System.Void Init(PlayerRoles.PlayableScps.Scp079.Scp079Role role, ReferenceHub owner)
+		this.<Role>k__BackingField = role
+		this.<Owner>k__BackingField = owner
+		PlayerRoles.PlayableScps.Subroutines.SubroutineManagerModule SubroutineModule = role.<SubroutineModule>k__BackingField
+
+		System.Boolean boolean = SubroutineModule.TryGetSubroutine<PlayerRoles.PlayableScps.Scp079.Cameras.Scp079CurrentCameraSync>()
+		UnityEngine.MonoBehaviour[] _zoneMaps = this._zoneMaps
+		ulong local6 = 0
+		System.Int32 length = _zoneMaps.Length
+
+		if (local6 < length)
+		    UnityEngine.MonoBehaviour monoBehaviour = _zoneMaps[local6]
+
+		    if (local6 == 0)
+                goto INSN_1803BD52F
+            endif
+
+		    if (local6 == 0)
+                goto INSN_1803BD523
+            endif
+		    //UNKNOWN CLASS OFFSET READ HERE
+
+		    if (local6 < TryGetSubroutine)
+		        local6 += local6
+		        local6 += 1
+		    endif
+            
+		      = local6.
+		    local6 += 1
+		     += IZoneMap
+		    local6 += 19
+		    local6 += constant16
+		      = local6.
+		    local6 += 1
+		endif
+        
+		return
+
+		INSN_1803BD523:
+		throw new System.InvalidCastException()
+
+		INSN_1803BD52F:
+		throw new System.InvalidCastException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1803BD40D) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Map.Scp079MapGui
+	System.Void .ctor()
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void UnityEngine.MonoBehaviour::.ctor()
+	IL_0006: ret
+	
+

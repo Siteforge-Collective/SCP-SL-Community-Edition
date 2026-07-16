@@ -1,0 +1,861 @@
+Type: SteamLobby
+
+
+	Generated Pseudocode:
+
+	Declaring Type: SteamLobby
+	Steamworks.Data.Lobby get_Lobby()
+		Steamworks.Data.Lobby _lobby = this._lobby
+		return _lobby
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld Steamworks.Data.Lobby SteamLobby::_lobby
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: SteamLobby
+	System.Void Awake()
+
+		UnityEngine.GameObject gameObject = base.gameObject
+
+		UnityEngine.Object.DontDestroyOnLoad(gameObject) //(Object target)
+		ulong local5 = 0
+		SteamLobby singleton = SteamLobby.singleton
+
+		System.Boolean boolean = UnityEngine.Object.op_Equality(singleton, local5) //(Object x, Object y)
+
+		if (boolean == False)
+
+		    UnityEngine.GameObject gameObject2 = base.gameObject
+
+		    UnityEngine.Object.DestroyImmediate(gameObject2) //(Object obj)
+		else
+		    SteamLobby.singleton = this
+		endif
+        
+		UnityEngine.Events.UnityAction`2<UnityEngine.SceneManagement.Scene,UnityEngine.SceneManagement.LoadSceneMode> unityAction = new UnityEngine.Events.UnityAction`2<UnityEngine.SceneManagement.Scene,UnityEngine.SceneManagement.LoadSceneMode>()
+
+		unityAction..ctor(this, {'OnSceneLoaded' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		UnityEngine.SceneManagement.SceneManager.add_sceneLoaded(unityAction) //(UnityAction`2 value)
+		System.Action`2<Steamworks.Data.Lobby,Steamworks.SteamId> action = new System.Action`2<Steamworks.Data.Lobby,Steamworks.SteamId>()
+
+		action..ctor(this, {'OnGameLobbyJoinRequested' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		Steamworks.SteamFriends.add_OnGameLobbyJoinRequested(action) //(Action`2 value)
+		System.Action`2<Steamworks.Result,Steamworks.Data.Lobby> action2 = new System.Action`2<Steamworks.Result,Steamworks.Data.Lobby>()
+
+		action2..ctor(this, {'OnLobbyCreated' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		Steamworks.SteamMatchmaking.add_OnLobbyCreated(action2) //(Action`2 value)
+		System.Action`1<Steamworks.Data.Lobby> action3 = new System.Action`1<Steamworks.Data.Lobby>()
+
+		action3..ctor(this, {'OnLobbyEntered' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		Steamworks.SteamMatchmaking.add_OnLobbyEntered(action3) //(Action`1 value)
+		System.Action`2<Steamworks.Data.Lobby,Steamworks.Friend> action4 = new System.Action`2<Steamworks.Data.Lobby,Steamworks.Friend>()
+
+		action4..ctor(this, {'OnLobbyMemberJoined' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		Steamworks.SteamMatchmaking.add_OnLobbyMemberJoined(action4) //(Action`2 value)
+		System.Action`2<Steamworks.Data.Lobby,Steamworks.Friend> action5 = new System.Action`2<Steamworks.Data.Lobby,Steamworks.Friend>()
+
+		action5..ctor(this, {'OnLobbyMemberLeave' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		Steamworks.SteamMatchmaking.add_OnLobbyMemberLeave(action5) //(Action`2 value)
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1803979F4) is corrupt (Mismatched instance parameter. Expecting an instance of System.Action`1, actually {'action4' (type System.Action`2<Steamworks.Data.Lobby,Steamworks.Friend>)}) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: SteamLobby
+	System.Void FixedUpdate()
+		System.Single _safeTime = this._safeTime
+		ulong local2 = 0
+
+		if (_safeTime <= local2)
+
+		    if (this._waitingForSafeTime != False)
+		        this._waitingForSafeTime = False
+		        Steamworks.Data.Lobby _newLobby = this._newLobby
+
+		        System.String string = System.String.Concat("Scene changing finished. Connecting...", _newLobby) //(Object arg0, Object arg1)
+
+		        [instruction error - managed method being called is null]
+
+		        GameCore.Console.AddLog()
+		        Steamworks.Data.Lobby _newLobby2 = this._newLobby
+
+		        this.Connect(_newLobby2) //(Lobby lobby)
+		        return
+		    endif
+            
+		    ulong local12 = 0
+
+		    System.Single fixedDeltaTime = UnityEngine.Time.fixedDeltaTime
+		    System.Single _safeTime2 = this._safeTime
+		    ulong local16 = 0
+		    fixedDeltaTime = _safeTime
+
+		    System.Single single = UnityEngine.Mathf.Clamp(fixedDeltaTime, local16, _safeTime2) //(Single value, Single min, Single max)
+		    this._safeTime = single
+		endif
+        
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180397E44) is corrupt (Don't know what method is being called) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: SteamLobby
+	System.Void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, UnityEngine.SceneManagement.LoadSceneMode mode)
+
+		if (this._waitingForScene != False)
+		    throw new System.MissingMethodException()
+
+		    System.Boolean boolean = local4.Contains("Menu") //(String value)
+
+		    if (boolean != False)
+		        this._waitingForScene = False
+		        System.Single _safeTime = this._safeTime
+		        ulong local9 = 0
+
+		        System.Single single = UnityEngine.Mathf.Clamp(_safeTime, local9, 5) //(Single value, Single min, Single max)
+		        this._safeTime = single
+		        this._waitingForSafeTime = True
+		    endif
+            
+		    throw new System.MissingMethodException()
+
+		    System.Boolean boolean2 = local12.Contains("Facility") //(String value)
+
+		    if (boolean2 != False)
+                goto INSN_180398CCD
+            endif
+
+		    this.LeaveLobby()
+
+		    INSN_180398CCD:
+		    return
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180398C3F) is corrupt (Mismatched instance parameter. Expecting an instance of System.String, actually {'local4' (type System.MissingMethodException)}) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: SteamLobby
+	System.Void OnGameLobbyJoinRequested(Steamworks.Data.Lobby lobby, Steamworks.SteamId steamId)
+		ulong local3 = 0
+		ulong local4 = 0
+
+		System.Runtime.CompilerServices.AsyncVoidMethodBuilder asyncVoidMethodBuilder = System.Runtime.CompilerServices.AsyncVoidMethodBuilder.Create()
+		System.Action m_defaultContextAction = asyncVoidMethodBuilder.m_coreState.m_defaultContextAction
+		return
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: ldc.i4.0
+	IL_0003: stloc.1
+	IL_0004: call System.Runtime.CompilerServices.AsyncVoidMethodBuilder System.Runtime.CompilerServices.AsyncVoidMethodBuilder::Create()
+	IL_0009: ldfld System.Runtime.CompilerServices.AsyncMethodBuilderCore System.Runtime.CompilerServices.AsyncVoidMethodBuilder::m_coreState
+	IL_000e: ldfld System.Action System.Runtime.CompilerServices.AsyncMethodBuilderCore::m_defaultContextAction
+	IL_0013: stloc.2
+	IL_0014: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: SteamLobby
+	System.Void OnLobbyCreated(Steamworks.Result result, Steamworks.Data.Lobby lobby)
+		System.Int32 local3 = result.value__
+		System.Object[] local4 = new System.Object[4]
+
+		if ("Lobby created:" != 0)
+
+		    if ("Lobby created:" == 0)
+                goto INSN_1803986A0
+            endif
+		endif
+        
+		local4[0] = "Lobby created:"
+
+		if ("Lobby created:" == 0)
+            goto INSN_180398576
+        endif
+
+		if ("Lobby created:" == 0)
+            goto INSN_1803986C0
+        endif
+
+		INSN_180398576:
+		local4[1] = "Lobby created:"
+
+		if (" Result:" == 0)
+            goto INSN_1803985BA
+        endif
+
+		if (" Result:" == 0)
+            goto INSN_1803986E0
+        endif
+
+		INSN_1803985BA:
+		local4[2] = " Result:"
+
+		if (" Result:" == 0)
+            goto INSN_180398608
+        endif
+
+		if (" Result:" == 0)
+            goto INSN_180398700
+        endif
+
+		INSN_180398608:
+		local4[3] = " Result:"
+
+		System.String string = System.String.Concat(local4) //(Object[] args)
+
+		[instruction error - managed method being called is null]
+
+		GameCore.Console.AddLog()
+		return
+		throw new System.NullReferenceException()
+
+		INSN_1803986A0:
+
+		INSN_1803986C0:
+
+		INSN_1803986E0:
+
+		INSN_180398700:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18039863A) is corrupt (Don't know what method is being called) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: SteamLobby
+	System.Void OnLobbyEntered(Steamworks.Data.Lobby lobby)
+
+		this.ShowLobbyInfo(lobby) //(Lobby lobby)
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: call System.Void SteamLobby::ShowLobbyInfo(Steamworks.Data.Lobby)
+	IL_0007: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: SteamLobby
+	System.Void OnLobbyMemberJoined(Steamworks.Data.Lobby lobby, Steamworks.Friend friend)
+
+		System.String string = System.String.Concat(friend, " joined lobby:", friend) //(Object arg0, Object arg1, Object arg2)
+
+		[instruction error - managed method being called is null]
+
+		GameCore.Console.AddLog()
+
+		System.Boolean boolean = string.Equals("true") //(String value)
+
+		if (boolean != False)
+
+		    SteamPreLobby steamPreLobby = UnityEngine.Object.FindObjectOfType<SteamPreLobby>()
+
+		    System.String string2 = System.String.Concat("prelobby null:", steamPreLobby) //(Object arg0, Object arg1)
+		    System.Boolean local16 = string2 == 0
+
+		    UnityEngine.Debug.Log(string2) //(Object message)
+		    ulong local19 = 0
+
+		    System.Boolean boolean2 = UnityEngine.Object.op_Inequality(steamPreLobby, local19) //(Object x, Object y)
+
+		    if (boolean2 != False)
+
+		        UnityEngine.Debug.Log("OnMemberJoined") //(Object message)
+		        SteamLobby singleton = SteamLobby.singleton
+		        Steamworks.Data.Lobby _lobby = singleton._lobby
+
+		        steamPreLobby.RefreshList(_lobby) //(Lobby lobby)
+		    endif
+            
+		    return
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1803987B6) is corrupt (Don't know what method is being called) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: SteamLobby
+	System.Void OnLobbyMemberLeave(Steamworks.Data.Lobby lobby, Steamworks.Friend friend)
+
+		System.String string = System.String.Concat(friend, " left lobby:", friend) //(Object arg0, Object arg1, Object arg2)
+
+		[instruction error - managed method being called is null]
+
+		GameCore.Console.AddLog()
+
+		System.Boolean boolean = string.Equals("true") //(String value)
+
+		if (boolean != False)
+
+		    SteamPreLobby steamPreLobby = UnityEngine.Object.FindObjectOfType<SteamPreLobby>()
+
+		    System.String string2 = System.String.Concat("prelobby null:", steamPreLobby) //(Object arg0, Object arg1)
+		    System.Boolean local16 = string2 == 0
+
+		    UnityEngine.Debug.Log(string2) //(Object message)
+		    ulong local19 = 0
+
+		    System.Boolean boolean2 = UnityEngine.Object.op_Inequality(steamPreLobby, local19) //(Object x, Object y)
+
+		    if (boolean2 != False)
+
+		        UnityEngine.Debug.Log("OnMemberLeave") //(Object message)
+		        SteamLobby singleton = SteamLobby.singleton
+		        Steamworks.Data.Lobby _lobby = singleton._lobby
+
+		        steamPreLobby.RefreshList(_lobby) //(Lobby lobby)
+		    endif
+            
+		    return
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180398A16) is corrupt (Don't know what method is being called) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: SteamLobby
+	System.Void Connect(Steamworks.Data.Lobby lobby)
+
+		System.Boolean boolean = .Equals("true") //(String value)
+
+		if (boolean == False)
+
+		    [instruction error - managed method being called is null]
+
+		    if (boolean == False)
+
+		        System.String string = System.String.Concat()
+
+		        UnityEngine.Color green = UnityEngine.Color.green
+
+		        GameCore.Console.AddLog()
+
+		        NewMainMenu newMainMenu = UnityEngine.Object.FindObjectOfType<NewMainMenu>()
+		        ulong local16 = 0
+
+		        System.Boolean boolean2 = UnityEngine.Object.op_Inequality(newMainMenu, local16) //(Object x, Object y)
+
+		        if (boolean2 != False)
+                    goto INSN_180397BFE
+                endif
+
+		        System.String string2 = System.String.Concat()
+
+		        UnityEngine.Color red = UnityEngine.Color.red
+
+		        GameCore.Console.AddLog()
+		    endif
+            
+		    return
+
+		    INSN_180397BFE:
+
+		    .Connect()
+		    return
+		endif
+        
+
+		SteamPreLobby steamPreLobby = UnityEngine.Object.FindObjectOfType<SteamPreLobby>()
+		ulong local29 = 0
+
+		System.Boolean boolean3 = UnityEngine.Object.op_Inequality(steamPreLobby, local29) //(Object x, Object y)
+
+		if (boolean3 != False)
+
+		    steamPreLobby.RefreshList()
+		    UnityEngine.GameObject leaveButton = steamPreLobby.LeaveButton
+
+		    leaveButton.SetActive(True) //(Boolean value)
+		    return
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180397A9D) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: SteamLobby
+	System.Void CreateLobby(System.Int32 maxMembers, System.Boolean preLobby)
+		ulong local3 = 0
+		ulong local4 = 0
+		ulong local5 = 0
+
+		System.Runtime.CompilerServices.AsyncVoidMethodBuilder asyncVoidMethodBuilder = System.Runtime.CompilerServices.AsyncVoidMethodBuilder.Create()
+		System.Action m_defaultContextAction = asyncVoidMethodBuilder.m_coreState.m_defaultContextAction
+		return
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: ldc.i4.0
+	IL_0003: stloc.1
+	IL_0004: ldc.i4.0
+	IL_0005: stloc.2
+	IL_0006: call System.Runtime.CompilerServices.AsyncVoidMethodBuilder System.Runtime.CompilerServices.AsyncVoidMethodBuilder::Create()
+	IL_000b: ldfld System.Runtime.CompilerServices.AsyncMethodBuilderCore System.Runtime.CompilerServices.AsyncVoidMethodBuilder::m_coreState
+	IL_0010: ldfld System.Action System.Runtime.CompilerServices.AsyncMethodBuilderCore::m_defaultContextAction
+	IL_0015: stloc.3
+	IL_0016: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: SteamLobby
+	System.Void LeaveLobby()
+		Steamworks.Data.Lobby _lobby = this._lobby
+
+		if (_lobby != 0)
+		    Steamworks.Data.Lobby _lobby2 = this._lobby
+
+		    System.String string = System.String.Concat("Leaving lobby:", _lobby2) //(Object arg0, Object arg1)
+
+		    [instruction error - managed method being called is null]
+
+		    GameCore.Console.AddLog()
+		    throw new System.NullReferenceException()
+		endif
+        
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18039833D) is corrupt (Don't know what method is being called) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: SteamLobby
+	System.Void ShowLobbyInfo()
+		Steamworks.Data.Lobby _lobby = this._lobby
+
+		this.ShowLobbyInfo(_lobby) //(Lobby lobby)
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld Steamworks.Data.Lobby SteamLobby::_lobby
+	IL_0006: stloc.0
+	IL_0007: ldarg.0
+	IL_0008: ldloc.0
+	IL_0009: call System.Void SteamLobby::ShowLobbyInfo(Steamworks.Data.Lobby)
+	IL_000e: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: SteamLobby
+	System.Void ShowLobbyInfo(Steamworks.Data.Lobby lobby)
+		ulong local2 = 0
+		Steamworks.Data.Lobby _lobby = this._lobby
+
+		if (_lobby != 0)
+		    System.Int64 local5 = 11
+		    System.Object[] local6 = new System.Object[11]
+
+		    if ("[Steam Lobby Info]
+            LobbyId:" != 0)
+
+		        if ("[Steam Lobby Info]
+                LobbyId:" == 0)
+                    goto INSN_180399381
+                endif
+		    endif
+            
+		    local6[0] = "[Steam Lobby Info]
+            LobbyId:"
+
+		    if ("[Steam Lobby Info]
+            LobbyId:" == 0)
+                goto INSN_180398F09
+            endif
+
+		    if ("[Steam Lobby Info]
+            LobbyId:" == 0)
+                goto INSN_1803993A1
+            endif
+
+		    INSN_180398F09:
+		    local6[1] = "[Steam Lobby Info]
+            LobbyId:"
+
+		    if ("
+            Owner:" == 0)
+                goto INSN_180398F4D
+            endif
+
+		    if ("
+            Owner:" == 0)
+                goto INSN_1803993C1
+            endif
+
+		    INSN_180398F4D:
+		    local6[2] = "
+            Owner:"
+
+		    if ("
+            Owner:" == 0)
+                goto INSN_180398FA8
+            endif
+
+		    if ("
+            Owner:" == 0)
+                goto INSN_1803993E1
+            endif
+
+		    INSN_180398FA8:
+		    local6[3] = "
+            Owner:"
+
+		    if ("
+            IP Address:" == 0)
+                goto INSN_180398FEC
+            endif
+
+		    if ("
+            IP Address:" == 0)
+                goto INSN_180399401
+            endif
+
+		    INSN_180398FEC:
+		    local6[4] = "
+            IP Address:"
+
+		    if ("
+            IP Address:" == 0)
+                goto INSN_18039903B
+            endif
+
+		    if ("
+            IP Address:" == 0)
+                goto INSN_180399421
+            endif
+
+		    INSN_18039903B:
+		    local6[5] = "
+            IP Address:"
+
+		    if ("
+            Members(" == 0)
+                goto INSN_18039907F
+            endif
+
+		    if ("
+            Members(" == 0)
+                goto INSN_180399441
+            endif
+
+		    INSN_18039907F:
+		    local6[6] = "
+            Members("
+		    throw new System.NullReferenceException()
+
+		    if (local11 == 0)
+                goto INSN_1803990DF
+            endif
+
+		    if (local11 == 0)
+                goto INSN_180399461
+            endif
+
+		    INSN_1803990DF:
+		    local6[7] = local11
+
+		    if ("/" == 0)
+                goto INSN_180399123
+            endif
+
+		    if ("/" == 0)
+                goto INSN_180399481
+            endif
+
+		    INSN_180399123:
+		    local6[8] = "/"
+		    throw new System.NullReferenceException()
+
+		    if (local14 == 0)
+                goto INSN_18039917D
+            endif
+
+		    if (local14 == 0)
+                goto INSN_1803994A1
+            endif
+
+		    INSN_18039917D:
+		    local6[9] = local14
+
+		    if ("):
+            " == 0)
+                goto INSN_1803991C1
+            endif
+
+		    if ("):
+            " == 0)
+                goto INSN_1803994C1
+            endif
+
+		    INSN_1803991C1:
+		    local6[10] = "):
+            "
+
+		    System.String string = System.String.Concat(local6) //(Object[] args)
+
+		    if (string == 0)
+                goto INSN_1803992E3
+            endif
+		    //UNKNOWN CLASS OFFSET READ HERE
+
+		    if (local2 < string)
+		        local2 += local2
+
+		        if (local2 == string)
+                    goto INSN_1803992CE
+                endif
+		        local2 += 1
+		    endif
+            
+		      = string.
+
+		    System.String string2 = System.String.Concat(string, string, "
+            ") //(String str0, String str1, String str2)
+		endwhile
+        
+		goto INSN_1803994E1
+        
+		string += string
+		string2 += constant101
+
+		INSN_1803992E3:
+		ulong local24 = 0
+
+		if (string == 0)
+            goto INSN_180399310
+        endif
+		ulong local25 = 0
+
+		INSN_180399310:
+
+		if (local2 != 0)
+            goto INSN_1803994E7
+        endif
+
+		[instruction error - managed method being called is null]
+
+		GameCore.Console.AddLog()
+		endif
+    
+		return
+		throw new System.NullReferenceException()
+
+		INSN_180399381:
+
+		INSN_1803993A1:
+
+		INSN_1803993C1:
+
+		INSN_1803993E1:
+
+		INSN_180399401:
+
+		INSN_180399421:
+
+		INSN_180399441:
+
+		INSN_180399461:
+
+		INSN_180399481:
+
+		INSN_1803994A1:
+
+		INSN_1803994C1:
+
+		INSN_1803994E7:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.UnknownClassOffsetReadAction at (0x18039924F) is corrupt (Unknown class offset read) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: SteamLobby
+	System.Boolean IsInLobby(Steamworks.Data.Lobby lobby, System.String steamId)
+		ulong local3 = 0
+
+		if (constant5 == 0)
+            goto INSN_180398109
+        endif
+
+		System.String string = System.String.Concat()
+		ulong local10 = 0
+
+		UnityEngine.Color red = UnityEngine.Color.red
+		ulong local12 = 0
+
+		GameCore.Console.AddLog(string, local10, local12, 1) //(String text, Color c, Boolean nospace, ConsoleLogType type)
+
+		System.Boolean boolean = red.Equals(steamId) //(String value)
+
+		if (boolean != False)
+		endwhile
+        
+		goto INSN_180398221
+        
+		ulong local16 = 0
+
+		UnityEngine.Color red2 = UnityEngine.Color.red
+		ulong local18 = 0
+
+		GameCore.Console.AddLog("return true", local16, local18, 1) //(String text, Color c, Boolean nospace, ConsoleLogType type)
+
+		INSN_180398109:
+
+		if (constant5 == 0)
+            goto INSN_18039813C
+        endif
+
+		INSN_18039813C:
+
+		if (local3 != 0)
+            goto INSN_180398227
+        endif
+
+		if (local3 == -1)
+            goto INSN_18039817A
+        endif
+		return local3
+
+		INSN_18039817A:
+		Mirror.LiteNetLib4Mirror.LiteNetLib4MirrorTransport singleton = Mirror.LiteNetLib4Mirror.LiteNetLib4MirrorTransport.Singleton
+		System.String clientAddress = singleton.clientAddress
+		System.UInt16 port = singleton.port
+
+		System.String string2 = System.String.Concat(clientAddress, ":", port) //(Object arg0, Object arg1, Object arg2)
+
+		System.Boolean boolean2 = local3.Equals(string2) //(String value)
+		System.Boolean local28 = boolean2 != False
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+
+		INSN_180398221:
+		throw new System.NullReferenceException()
+
+		INSN_180398227:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfZeroOrNullAction at (0x180397FEC) is corrupt (ConstantDefinition: Don't know how to get IL to load a Cpp2IL.Core.Analysis.ResultModels.StackPointer) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: SteamLobby
+	static System.Void RefreshFriendsServer()
+		ulong local0 = 0
+		ulong local1 = 0
+
+		System.Runtime.CompilerServices.AsyncVoidMethodBuilder asyncVoidMethodBuilder = System.Runtime.CompilerServices.AsyncVoidMethodBuilder.Create()
+		System.Action m_defaultContextAction = asyncVoidMethodBuilder.m_coreState.m_defaultContextAction
+		return
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: ldc.i4.0
+	IL_0003: stloc.1
+	IL_0004: call System.Runtime.CompilerServices.AsyncVoidMethodBuilder System.Runtime.CompilerServices.AsyncVoidMethodBuilder::Create()
+	IL_0009: ldfld System.Runtime.CompilerServices.AsyncMethodBuilderCore System.Runtime.CompilerServices.AsyncVoidMethodBuilder::m_coreState
+	IL_000e: ldfld System.Action System.Runtime.CompilerServices.AsyncMethodBuilderCore::m_defaultContextAction
+	IL_0013: stloc.2
+	IL_0014: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: SteamLobby
+	System.Void .ctor()
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void UnityEngine.MonoBehaviour::.ctor()
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: SteamLobby
+	static System.Void .cctor()
+		System.Collections.Generic.List`1<System.String> list = new System.Collections.Generic.List`1<System.String>()
+
+		list..ctor()
+		 += 8
+		SteamLobby.singleton = list
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x180399550) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+

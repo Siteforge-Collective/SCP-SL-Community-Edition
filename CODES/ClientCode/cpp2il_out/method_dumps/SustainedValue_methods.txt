@@ -1,0 +1,135 @@
+Type: SustainedValue
+
+
+	Generated Pseudocode:
+
+	Declaring Type: SustainedValue
+	System.Single get_Value()
+		System.Single _peak = this._peak
+		return _peak
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Single SustainedValue::_peak
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: SustainedValue
+	System.Void set_Value(System.Single value)
+		System.Boolean _abs = this._abs
+		ulong local3 = 0
+
+		if (_abs != False)
+
+		    if (local3 > value)
+		    else
+		        System.Single _peak = this._peak
+
+		        if (_abs == False)
+                    goto INSN_18039E40A
+                endif
+		    endif
+            
+
+		    if (local3 <= _peak)
+                goto INSN_18039E40A
+            endif
+
+		    INSN_18039E40A:
+		    System.Single _susTime = this._susTime
+
+		    if (this._inverse == False)
+                goto INSN_18039E420
+            endif
+
+		    INSN_18039E420:
+
+		    if (value >= _peak)
+                goto INSN_18039E468
+            endif
+
+		    if (_abs == False)
+                goto INSN_18039E45D
+            endif
+		    System.Diagnostics.Stopwatch _lastUpdateSw = this._lastUpdateSw
+
+		    System.TimeSpan elapsed = _lastUpdateSw.Elapsed
+		    this._peak = value
+
+		    INSN_18039E45D:
+		    return
+
+		    INSN_18039E468:
+
+		    if (elapsed == 0)
+                goto INSN_18039E45D
+            endif
+
+		    .Restart()
+		    return
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18039E47C) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: SustainedValue
+	System.Void .ctor(System.Single initialValue, System.Single sustainTime, System.Boolean inverse, System.Boolean absolute)
+		ulong local5 = 0
+
+		base.FieldGetter(local5, null, inverse) //(String typeName, String fieldName, Object& val)
+		ulong local6 = 0
+		this._inverse = inverse
+		this._abs = 0
+		this._peak = initialValue
+		this._susTime = sustainTime
+
+		if (sustainTime > local6)
+		    ulong local7 = 0
+
+		    System.Diagnostics.Stopwatch stopwatch = System.Diagnostics.Stopwatch.StartNew()
+		    this._lastUpdateSw = stopwatch
+		endif
+        
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18039E341) is corrupt (Found null operand in Arguments: [{'local5' (type System.Int32)}, , {'inverse' (function parameter, type System.Boolean)}]) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: SustainedValue
+	System.Single ConditionalAbs(System.Single val)
+
+		if (this._abs != False)
+		    ulong local2 = 0
+
+		    if (local2 > val)
+		    endif
+            
+		    return val
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Boolean SustainedValue::_abs
+	IL_0006: ldc.i4.0
+	IL_0007: beq.s IL_000d
+	IL_0009: ldc.i4.0
+	IL_000a: ldarg.1
+	IL_000b: ble.s IL_000d
+	IL_000d: ldarg.1
+	IL_000e: ret
+	
+

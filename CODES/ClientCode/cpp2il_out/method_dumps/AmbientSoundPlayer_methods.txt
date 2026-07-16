@@ -1,0 +1,414 @@
+Type: AmbientSoundPlayer
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AmbientSoundPlayer
+	System.Void Start()
+
+		System.Boolean isLocalPlayer = base.isLocalPlayer
+
+		if (isLocalPlayer != False)
+
+		    System.Boolean isServer = base.isServer
+
+		    if (isServer != False)
+		        AmbientSoundPlayer/AmbientClip[] clips = this.clips
+		        ulong local6 = 0
+
+		        while (local6 < clips.Length)
+		            AmbientSoundPlayer/AmbientClip ambientClip = clips[local6]
+		            ambientClip.index = local6
+		            local6 += 1
+		            AmbientSoundPlayer/AmbientClip[] clips2 = this.clips
+		        endwhile
+                
+
+		        base.Invoke("GenerateRandom", 10) //(String methodName, Single time)
+		        return
+		    endif
+            
+		    return
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Boolean Mirror.NetworkBehaviour::get_isLocalPlayer()
+	IL_0006: ldc.i4.0
+	IL_0007: beq.s IL_004d
+	IL_0009: ldarg.0
+	IL_000a: call System.Boolean Mirror.NetworkBehaviour::get_isServer()
+	IL_000f: ldc.i4.0
+	IL_0010: beq.s IL_004d
+	IL_0012: ldarg.0
+	IL_0013: ldfld AmbientSoundPlayer/AmbientClip[] AmbientSoundPlayer::clips
+	IL_0018: stloc.0
+	IL_0019: ldc.i4.0
+	IL_001a: stloc.1
+	IL_001b: ldloc.1
+	IL_001c: ldloc.0
+	IL_001d: call System.Int32 System.Array::get_Length()
+	IL_0022: bge.s IL_003c
+	IL_0024: ldloc.0
+	IL_0025: ldloc.1
+	IL_0026: ldelem.any AmbientSoundPlayer/AmbientClip
+	IL_002b: ldloc.1
+	IL_002c: stfld System.Int32 AmbientSoundPlayer/AmbientClip::index
+	IL_0031: ldloc.1
+	IL_0032: ldc.i4.1
+	IL_0033: add
+	IL_0034: stloc.1
+	IL_0035: ldarg.0
+	IL_0036: ldfld AmbientSoundPlayer/AmbientClip[] AmbientSoundPlayer::clips
+	IL_003b: stloc.2
+	IL_003c: ldarg.0
+	IL_003d: ldstr "GenerateRandom"
+	IL_0042: ldc.r4 10
+	IL_0047: call System.Void UnityEngine.MonoBehaviour::Invoke(System.String,System.Single)
+	IL_004c: ret
+	IL_004d: ret
+	IL_004e: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0053: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AmbientSoundPlayer
+	System.Void PlaySound(System.Int32 clipID)
+		ulong local2 = 0
+		UnityEngine.GameObject audioPrefab = this.audioPrefab
+
+		UnityEngine.GameObject gameObject = UnityEngine.Object.Instantiate<UnityEngine.GameObject>(audioPrefab) //(T original)
+		System.Int32 1 = 1
+
+		[instruction error - managed method being called is null]
+		System.Int32 1 = 1
+
+		[instruction error - managed method being called is null]
+		ulong local8 = 0
+		  = local8.
+
+		UnityEngine.Vector3 vector3 = UnityEngine.Vector3.op_Multiply()
+
+		UnityEngine.Transform transform = gameObject.transform
+
+		UnityEngine.Transform transform2 = base.transform
+
+		UnityEngine.Vector3 position = this.position
+
+		UnityEngine.Vector3 vector32 = UnityEngine.Vector3.op_Addition()
+
+		transform.set_position()
+
+		UnityEngine.AudioSource component = gameObject.GetComponent<UnityEngine.AudioSource>()
+		AmbientSoundPlayer/AmbientClip[] clips = this.clips
+		AmbientSoundPlayer/AmbientClip ambientClip = clips[clipID]
+		UnityEngine.AudioClip clip = ambientClip.clip
+
+		component.clip = clip
+
+		UnityEngine.AudioSource component2 = gameObject.GetComponent<UnityEngine.AudioSource>()
+		AmbientSoundPlayer/AmbientClip[] clips2 = this.clips
+		AmbientSoundPlayer/AmbientClip ambientClip2 = clips2[clipID]
+		System.Boolean local33 = ambientClip2.is3D != local2
+
+		component2.set_spatialBlend()
+
+		UnityEngine.AudioSource component3 = gameObject.GetComponent<UnityEngine.AudioSource>()
+
+		component3.Play()
+
+		UnityEngine.Object.Destroy(gameObject, 10) //(Object obj, Single t)
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18059BDD8) is corrupt (Don't know what method is being called) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AmbientSoundPlayer
+	System.Void GenerateRandom()
+		System.Collections.Generic.List`1<AmbientSoundPlayer/AmbientClip> list = this.list
+
+		list.Clear()
+		AmbientSoundPlayer/AmbientClip[] clips = this.clips
+		ulong local3 = 0
+		ulong local4 = 0
+		System.Int32 length = clips.Length
+
+		if (local3 < length)
+		    AmbientSoundPlayer/AmbientClip ambientClip = clips[local4]
+
+		    if (ambientClip.played == False)
+		        System.Collections.Generic.List`1<AmbientSoundPlayer/AmbientClip> list2 = this.list
+
+		        list2.Add(ambientClip) //(T item)
+		    endif
+            
+		    local4 += 1
+		endif
+        
+		System.Collections.Generic.List`1<AmbientSoundPlayer/AmbientClip> list3 = this.list
+		System.Int32 _size = list3._size
+		ulong local11 = 0
+
+		System.Int32 int32 = UnityEngine.Random.Range(local11, _size) //(Int32 min, Int32 max)
+		System.Collections.Generic.List`1<AmbientSoundPlayer/AmbientClip> list4 = this.list
+		ulong local14 = 0
+
+		System.ThrowHelper.ThrowArgumentOutOfRangeException()
+		T[] _items = list4._items
+		T t = _items[int32]
+		AmbientSoundPlayer/AmbientClip[] clips2 = this.clips
+		  = .
+		AmbientSoundPlayer/AmbientClip ambientClip2 = clips2[list4]
+
+		if (ambientClip2.repeatable != False)
+            goto INSN_18059BAE7
+        endif
+		ambientClip2.played = True
+
+		INSN_18059BAE7:
+		ulong local19 = 0
+
+		Mirror.PooledNetworkWriter writer = Mirror.NetworkWriterPool.GetWriter()
+
+		Mirror.NetworkWriterExtensions.WriteInt32()
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'AmbientSoundPlayer' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+
+		base.SendRPCInternal(typeFromHandle, "RpcPlaySound", writer, local26, local25) //(Type invokeClass, String rpcName, NetworkWriter writer, Int32 channelId, Boolean includeOwner)
+
+		Mirror.NetworkWriterPool.Recycle(writer) //(PooledNetworkWriter writer)
+		ulong local29 = 0
+		System.Int32 minTime = this.minTime
+
+		[instruction error - managed method being called is null]
+
+		base.Invoke("GenerateRandom", local29) //(String methodName, Single time)
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL Generation Skipped due to invalid local _items of type T[]
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AmbientSoundPlayer
+	System.Void RpcPlaySound(System.Int32 id)
+		ulong local2 = 0
+
+		Mirror.PooledNetworkWriter writer = Mirror.NetworkWriterPool.GetWriter()
+
+		Mirror.NetworkWriterExtensions.WriteInt32(writer, id) //(NetworkWriter writer, Int32 value)
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'AmbientSoundPlayer' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		ulong local7 = 0
+
+		base.SendRPCInternal(typeFromHandle, "RpcPlaySound", writer, local7, local8) //(Type invokeClass, String rpcName, NetworkWriter writer, Int32 channelId, Boolean includeOwner)
+
+		Mirror.NetworkWriterPool.Recycle(writer) //(PooledNetworkWriter writer)
+		return
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: call Mirror.PooledNetworkWriter Mirror.NetworkWriterPool::GetWriter()
+	IL_0007: stloc.1
+	IL_0008: ldloc.1
+	IL_0009: ldarg.1
+	IL_000a: call System.Void Mirror.NetworkWriterExtensions::WriteInt32(Mirror.NetworkWriter,System.Int32)
+	IL_000f: ldtoken AmbientSoundPlayer
+	IL_0014: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+	IL_0019: stloc.2
+	IL_001a: ldc.i4.0
+	IL_001b: stloc.3
+	IL_001c: ldarg.0
+	IL_001d: ldloc.2
+	IL_001e: ldstr "RpcPlaySound"
+	IL_0023: ldloc.1
+	IL_0024: ldloc.3
+	IL_0025: ldloc.s V_4
+	IL_0027: call System.Void Mirror.NetworkBehaviour::SendRPCInternal(System.Type,System.String,Mirror.NetworkWriter,System.Int32,System.Boolean)
+	IL_002c: ldloc.1
+	IL_002d: call System.Void Mirror.NetworkWriterPool::Recycle(Mirror.PooledNetworkWriter)
+	IL_0032: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AmbientSoundPlayer
+	System.Void .ctor()
+		this.minTime = 30
+		this.maxTime = 60
+		System.Collections.Generic.List`1<AmbientSoundPlayer/AmbientClip> list = new System.Collections.Generic.List`1<AmbientSoundPlayer/AmbientClip>()
+
+		list..ctor()
+		this.list = list
+		Security.RateLimit rateLimit = new Security.RateLimit()
+		ulong local3 = 0
+		System.Int32 4 = 4
+
+		rateLimit..ctor(4, 3, local3) //(Int32 usagesAllowed, Single timeWindow, NetworkConnection conn)
+		this._ambientSoundRateLimit = rateLimit
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldc.i4.s 30
+	IL_0003: conv.i8
+	IL_0004: conv.u8
+	IL_0005: stfld System.Int32 AmbientSoundPlayer::minTime
+	IL_000a: ldarg.0
+	IL_000b: ldc.i4.s 60
+	IL_000d: conv.i8
+	IL_000e: conv.u8
+	IL_000f: stfld System.Int32 AmbientSoundPlayer::maxTime
+	IL_0014: newobj System.Void System.Collections.Generic.List`1::.ctor()
+	IL_0019: stloc.0
+	IL_001a: ldarg.0
+	IL_001b: ldloc.0
+	IL_001c: stfld System.Collections.Generic.List`1<AmbientSoundPlayer/AmbientClip> AmbientSoundPlayer::list
+	IL_0021: ldc.i4.4
+	IL_0022: ldc.r4 3
+	IL_0027: ldloc.2
+	IL_0028: newobj System.Void Security.RateLimit::.ctor(System.Int32,System.Single,Mirror.NetworkConnection)
+	IL_002d: stloc.1
+	IL_002e: ldc.i4.0
+	IL_002f: stloc.2
+	IL_0030: ldarg.0
+	IL_0031: ldloc.1
+	IL_0032: stfld Security.RateLimit AmbientSoundPlayer::_ambientSoundRateLimit
+	IL_0037: ldarg.0
+	IL_0038: call System.Void Mirror.NetworkBehaviour::.ctor()
+	IL_003d: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AmbientSoundPlayer
+	System.Void MirrorProcessed()
+
+
+Generated IL:
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AmbientSoundPlayer
+	System.Void UserCode_RpcPlaySound(System.Int32 id)
+		Security.RateLimit _ambientSoundRateLimit = this._ambientSoundRateLimit
+
+		System.Boolean boolean = _ambientSoundRateLimit.CanExecute(True) //(Boolean countUsage)
+
+		if (boolean != False)
+
+		    this.PlaySound(id) //(Int32 clipID)
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld Security.RateLimit AmbientSoundPlayer::_ambientSoundRateLimit
+	IL_0006: ldc.i4.1
+	IL_0007: call System.Boolean Security.RateLimit::CanExecute(System.Boolean)
+	IL_000c: ldc.i4.0
+	IL_000d: beq.s IL_0016
+	IL_000f: ldarg.0
+	IL_0010: ldarg.1
+	IL_0011: call System.Void AmbientSoundPlayer::PlaySound(System.Int32)
+	IL_0016: ret
+	IL_0017: newobj System.Void System.NullReferenceException::.ctor()
+	IL_001c: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AmbientSoundPlayer
+	static System.Void InvokeUserCode_RpcPlaySound(Mirror.NetworkBehaviour obj, Mirror.NetworkReader reader, Mirror.NetworkConnectionToClient senderConnection)
+		ulong local3 = 0
+
+		System.Boolean active = Mirror.NetworkClient.active
+
+		if (active != False)
+		    ulong local5 = 0
+
+		    System.Int32 int32 = Mirror.NetworkReaderExtensions.ReadInt32(reader) //(NetworkReader reader)
+		    //UNKNOWN CLASS OFFSET READ HERE
+		      = obj.
+
+		    System.Boolean boolean = .CanExecute(True) //(Boolean countUsage)
+
+		    if (boolean == False)
+                goto INSN_18059BD2D
+            endif
+
+		    obj.PlaySound(int32) //(Int32 clipID)
+		    return
+		endif
+        
+
+		UnityEngine.Debug.LogError("RPC RpcPlaySound called on server.") //(Object message)
+
+		INSN_18059BD2D:
+		return
+		throw new System.InvalidCastException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.UnknownClassOffsetReadAction at (0x18059BCC5) is corrupt (Unknown class offset read) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AmbientSoundPlayer
+	static System.Void .cctor()
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'AmbientSoundPlayer' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		Mirror.RemoteCalls.CmdDelegate cmdDelegate = new Mirror.RemoteCalls.CmdDelegate()
+		ulong local4 = 0
+
+		cmdDelegate..ctor(local4, {'InvokeUserCode_RpcPlaySound' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		Mirror.RemoteCalls.RemoteCallHelper.RegisterRpcDelegate(typeFromHandle, "RpcPlaySound", cmdDelegate) //(Type invokeClass, String rpcName, CmdDelegate func)
+		return
+
+
+Generated IL:
+	IL_0000: ldtoken AmbientSoundPlayer
+	IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+	IL_000a: stloc.0
+	IL_000b: ldloc.2
+	IL_000c: ldftn System.Void AmbientSoundPlayer::InvokeUserCode_RpcPlaySound(Mirror.NetworkBehaviour,Mirror.NetworkReader,Mirror.NetworkConnectionToClient)
+	IL_0012: newobj System.Void Mirror.RemoteCalls.CmdDelegate::.ctor(System.Object,System.IntPtr)
+	IL_0017: stloc.1
+	IL_0018: ldc.i4.0
+	IL_0019: stloc.2
+	IL_001a: ldloc.0
+	IL_001b: ldstr "RpcPlaySound"
+	IL_0020: ldloc.1
+	IL_0021: call System.Void Mirror.RemoteCalls.RemoteCallHelper::RegisterRpcDelegate(System.Type,System.String,Mirror.RemoteCalls.CmdDelegate)
+	IL_0026: ret
+	
+

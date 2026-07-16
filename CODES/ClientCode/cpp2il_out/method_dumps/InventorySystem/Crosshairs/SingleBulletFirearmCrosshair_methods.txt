@@ -1,0 +1,117 @@
+Type: SingleBulletFirearmCrosshair
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Crosshairs.SingleBulletFirearmCrosshair
+	System.Void SetupElements(System.Single innerAngle, System.Single speed, System.Boolean forceLerp)
+
+		if (forceLerp != False)
+		else
+		    ulong local4 = 0
+
+		    System.Single deltaTime = UnityEngine.Time.deltaTime
+		    System.Single local6 = deltaTime * this._lerpSpeed
+		endif
+        
+		UnityEngine.RectTransform[] _elements = this._elements
+		ulong local8 = 0
+		System.Int32 length = _elements.Length
+
+		if (local8 >= length)
+            goto INSN_1803FC846
+        endif
+		UnityEngine.RectTransform rectTransform = _elements[local8]
+
+		UnityEngine.Vector2 anchoredPosition = rectTransform.anchoredPosition
+		ulong local13 = 0
+
+		UnityEngine.Vector2 left = UnityEngine.Vector2.left
+
+		UnityEngine.Vector2 vector2 = UnityEngine.Vector2.op_Multiply(left, innerAngle) //(Vector2 a, Single d)
+		System.Single _sizeRatio = this._sizeRatio
+
+		UnityEngine.Vector2 vector22 = UnityEngine.Vector2.op_Multiply(vector2, _sizeRatio) //(Vector2 a, Single d)
+		speed = local6
+
+		UnityEngine.Vector2 vector23 = UnityEngine.Vector2.Lerp(vector2, vector22, speed) //(Vector2 a, Vector2 b, Single t)
+
+		UnityEngine.Vector2 sizeDelta = rectTransform.sizeDelta
+		UnityEngine.AnimationCurve _sizeOverSpeed = this._sizeOverSpeed
+		_sizeRatio = speed
+
+		System.Single single = _sizeOverSpeed.Evaluate(_sizeRatio) //(Single time)
+		System.Single _width = this._width
+		_sizeRatio = single
+		_width = local6
+
+		UnityEngine.Vector2 vector24 = UnityEngine.Vector2.Lerp(local8, local8, _width) //(Vector2 a, Vector2 b, Single t)
+
+		rectTransform.sizeDelta = vector24
+
+		rectTransform.anchoredPosition = vector24
+		local8 += 1
+
+		INSN_1803FC846:
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.MultiplyRegByFieldAction at (0x1803FC705) is corrupt (Operand we were multiplying by is null or local made was stripped) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Crosshairs.SingleBulletFirearmCrosshair
+	System.Void OnEnable()
+		ulong local1 = 0
+
+		this.SetupElements(local1, 20, True) //(Single innerAngle, Single speed, Boolean forceLerp)
+		return
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: ldarg.0
+	IL_0003: ldloc.0
+	IL_0004: ldc.r4 20
+	IL_0009: ldc.i4.1
+	IL_000a: call System.Void InventorySystem.Crosshairs.SingleBulletFirearmCrosshair::SetupElements(System.Single,System.Single,System.Boolean)
+	IL_000f: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Crosshairs.SingleBulletFirearmCrosshair
+	System.Void UpdateCrosshair(InventorySystem.Items.Firearms.Firearm firearm, System.Single currentInaccuracy, System.Single speed)
+		currentInaccuracy = speed
+		ulong local5 = 0
+
+		this.SetupElements(currentInaccuracy, currentInaccuracy, local5) //(Single innerAngle, Single speed, Boolean forceLerp)
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.RegToRegMoveAction at (0x1803FC8AC) is corrupt (Local being overwritten, {'currentInaccuracy' (function parameter, type System.Single)} has been stripped or is a parameter) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Crosshairs.SingleBulletFirearmCrosshair
+	System.Void .ctor()
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void UnityEngine.MonoBehaviour::.ctor()
+	IL_0006: ret
+	
+

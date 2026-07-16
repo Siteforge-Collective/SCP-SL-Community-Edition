@@ -1,0 +1,186 @@
+Type: Timed173PryableDoor
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Interobjects.Timed173PryableDoor
+	System.Void Start()
+
+		base.Start()
+		System.Diagnostics.Stopwatch _stopwatch = this._stopwatch
+		System.Action action = new System.Action()
+
+		action..ctor(_stopwatch, {'Start' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		CharacterClassManager.add_OnRoundStarted(action) //(Action value)
+
+		base.ServerChangeLock(64, True) //(DoorLockReason reason, Boolean newState)
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void Interactables.Interobjects.BasicDoor::Start()
+	IL_0006: ldarg.0
+	IL_0007: ldfld System.Diagnostics.Stopwatch Interactables.Interobjects.Timed173PryableDoor::_stopwatch
+	IL_000c: ldftn System.Void System.Diagnostics.Stopwatch::Start()
+	IL_0012: newobj System.Void System.Action::.ctor(System.Object,System.IntPtr)
+	IL_0017: call System.Void CharacterClassManager::add_OnRoundStarted(System.Action)
+	IL_001c: ldarg.0
+	IL_001d: ldc.i4.s 64
+	IL_001f: conv.u4
+	IL_0020: ldc.i4.1
+	IL_0021: call System.Void Interactables.Interobjects.DoorUtils.DoorVariant::ServerChangeLock(Interactables.Interobjects.DoorUtils.DoorLockReason,System.Boolean)
+	IL_0026: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Interobjects.Timed173PryableDoor
+	System.Void OnDestroy()
+
+		base.OnDestroy()
+		System.Diagnostics.Stopwatch _stopwatch = this._stopwatch
+		System.Action action = new System.Action()
+
+		action..ctor(_stopwatch, {'Start' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		CharacterClassManager.remove_OnRoundStarted(action) //(Action value)
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void Interactables.Interobjects.DoorUtils.DoorVariant::OnDestroy()
+	IL_0006: ldarg.0
+	IL_0007: ldfld System.Diagnostics.Stopwatch Interactables.Interobjects.Timed173PryableDoor::_stopwatch
+	IL_000c: ldftn System.Void System.Diagnostics.Stopwatch::Start()
+	IL_0012: newobj System.Void System.Action::.ctor(System.Object,System.IntPtr)
+	IL_0017: call System.Void CharacterClassManager::remove_OnRoundStarted(System.Action)
+	IL_001c: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Interobjects.Timed173PryableDoor
+	System.Void Update()
+
+		base.Update()
+		System.Single _remainingPryCooldown = this._remainingPryCooldown
+		ulong local3 = 0
+
+		if (_remainingPryCooldown > local3)
+		    ulong local4 = 0
+
+		    System.Single deltaTime = UnityEngine.Time.deltaTime
+		    this._remainingPryCooldown = _remainingPryCooldown
+		    UnityEngine.Animator mainAnimator = this.MainAnimator
+		    System.Int32 pryAnimHash = Interactables.Interobjects.PryableDoor.PryAnimHash
+
+		    mainAnimator.ResetTrigger(pryAnimHash) //(Int32 id)
+		endif
+        
+		System.Diagnostics.Stopwatch _stopwatch = this._stopwatch
+
+		if (_stopwatch.is_running == False)
+            goto INSN_1803FF60C
+        endif
+
+		System.TimeSpan elapsed = _stopwatch.Elapsed
+
+		if (_stopwatch.is_running > False)
+            goto INSN_1803FF60C
+        endif
+		System.Diagnostics.Stopwatch _stopwatch2 = this._stopwatch
+
+		_stopwatch2.Stop()
+		ulong local17 = 0
+
+		base.ServerChangeLock(64, local17) //(DoorLockReason reason, Boolean newState)
+
+		if (this._smartOpen == False)
+            goto INSN_1803FF60C
+        endif
+		System.Collections.Generic.HashSet`1<ReferenceHub> AllHubs = ReferenceHub.<AllHubs>k__BackingField
+
+		System.Collections.Generic.HashSet`1/Enumerator<T> enumerator = .GetEnumerator()
+
+		if (enumerator == 0)
+            goto INSN_1803FF5D8
+        endif
+
+		PlayerRoles.RoleTypeId roleId = PlayerRoles.PlayerRolesUtils.GetRoleId()
+
+		if (roleId != constant43)
+            goto INSN_1803FF590
+        endif
+
+		base.NetworkTargetState = True
+
+		this.Dispose()
+
+		INSN_1803FF5D8:
+
+		this.Dispose()
+
+		this.Dispose()
+
+		if (this != 0)
+            goto INSN_1803FF623
+        endif
+
+		INSN_1803FF60C:
+		return
+
+		INSN_1803FF623:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1803FF570) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Interobjects.Timed173PryableDoor
+	System.Void .ctor()
+		System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch()
+
+		stopwatch..ctor()
+		this._stopwatch = stopwatch
+		this._timeMark = 25
+		this._smartOpen = True
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: newobj System.Void System.Diagnostics.Stopwatch::.ctor()
+	IL_0005: stloc.0
+	IL_0006: ldarg.0
+	IL_0007: ldloc.0
+	IL_0008: stfld System.Diagnostics.Stopwatch Interactables.Interobjects.Timed173PryableDoor::_stopwatch
+	IL_000d: ldarg.0
+	IL_000e: ldc.r4 25
+	IL_0013: stfld System.Single Interactables.Interobjects.Timed173PryableDoor::_timeMark
+	IL_0018: ldarg.0
+	IL_0019: ldc.i4.1
+	IL_001a: stfld System.Boolean Interactables.Interobjects.Timed173PryableDoor::_smartOpen
+	IL_001f: ldarg.0
+	IL_0020: call System.Void Interactables.Interobjects.BasicDoor::.ctor()
+	IL_0025: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Interobjects.Timed173PryableDoor
+	System.Void MirrorProcessed()
+
+
+Generated IL:
+	
+

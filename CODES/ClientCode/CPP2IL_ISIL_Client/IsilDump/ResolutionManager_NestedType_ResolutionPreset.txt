@@ -1,0 +1,113 @@
+Type: ResolutionManager+ResolutionPreset
+
+Method: System.Void .ctor(UnityEngine.Resolution template)
+
+Disassembly:
+	mov [rsp+8],rbx
+	push rdi
+	sub rsp,20h
+	mov rbx,rdx
+	mov rdi,rcx
+	xor edx,edx
+	call 00000001802D5040h
+	xor edx,edx
+	mov rcx,rbx
+	call 000000018072B850h
+	xor edx,edx
+	mov [rdi+14h],eax
+	mov rcx,rbx
+	call 0000000180FD1D20h
+	mov rbx,[rsp+30h]
+	mov [rdi+10h],eax
+	add rsp,20h
+	pop rdi
+	ret
+
+ISIL:
+	001 Move stack:0x8, rbx
+	002 ShiftStack -8
+	003 Move stack:0x0, rdi
+	004 ShiftStack -32
+	005 Move rbx, rdx
+	006 Move rdi, rcx
+	007 Move rdx, 0
+	008 Call 0x1802D5040, rcx, rdx, r8, r9, stack:0x0
+	009 Move rdx, 0
+	010 Move rcx, rbx
+	011 Call 0x18072B850, rcx, rdx, r8, r9
+	012 Move rdx, 0
+	013 Move [rdi+20], rax
+	014 Move rcx, rbx
+	015 Call 0x180FD1D20, rcx, rdx, r8, r9
+	016 Move rbx, stack:0x30
+	017 Move [rdi+16], rax
+	018 ShiftStack 32
+	019 Move rdi, stack:0x0
+	020 ShiftStack 8
+	021 Return 
+
+Method: System.Void SetResolution()
+
+Disassembly:
+	mov [rsp+8],rbx
+	push rdi
+	sub rsp,20h
+	cmp byte ptr [1826E9E68h],0
+	mov rbx,rcx
+	jne short 0000000180354538h
+	mov ecx,[1822E77ACh]
+	call 0000000180294190h
+	mov byte ptr [1826E9E68h],1
+	mov rax,[18273C410h]
+	mov edi,[rbx+14h]
+	mov ebx,[rbx+10h]
+	test byte ptr [rax+12Fh],2
+	je short 0000000180354566h
+	cmp dword ptr [rax+0E0h],0
+	jne short 0000000180354566h
+	mov rcx,rax
+	call 000000018021A070h
+	mov rax,[18273C410h]
+	mov rax,[rax+0B8h]
+	xor r9d,r9d
+	mov edx,ebx
+	mov ecx,edi
+	mov r8d,[rax+4]
+	mov rbx,[rsp+30h]
+	add rsp,20h
+	pop rdi
+	jmp near ptr 0000000180FD3880h
+
+ISIL:
+	001 Move stack:0x8, rbx
+	002 ShiftStack -8
+	003 Move stack:0x0, rdi
+	004 ShiftStack -32
+	005 Compare [0x1826E9E68], 0
+	006 Move rbx, rcx
+	007 JumpIfNotEqual {11}
+	008 Move rcx, [0x1822E77AC]
+	009 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	010 Move [0x1826E9E68], 1
+	011 Move rax, typeof(ResolutionManager)
+	012 Move rdi, [rbx+20]
+	013 Move rbx, [rbx+16]
+	014 Compare [rax+303], 2
+	015 JumpIfEqual {21}
+	016 Compare [rax+224], 0
+	017 JumpIfNotEqual {21}
+	018 Move rcx, rax
+	019 Call "il2cpp_runtime_class_init_export", rcx, rdx, r8, r9
+	020 Move rax, typeof(ResolutionManager)
+	021 Move rax, [rax+184]
+	022 Move r9, 0
+	023 Move rdx, rbx
+	024 Move rcx, rdi
+	025 Move r8, [rax+4]
+	026 Move rbx, stack:0x30
+	027 ShiftStack 32
+	028 Move rdi, stack:0x0
+	029 ShiftStack 8
+	030 Call Screen.SetResolution, rcx, rdx, r8, r9
+	031 Return 
+

@@ -1,0 +1,95 @@
+Type: Hints.DoubleHintParameterFunctions
+
+Method: System.Void Serialize(Mirror.NetworkWriter writer, Hints.DoubleHintParameter value)
+
+Disassembly:
+	sub rsp,28h
+	mov r9,rdx
+	test rdx,rdx
+	je short 000000018136B347h
+	mov rax,[rdx]
+	mov rdx,rcx
+	mov rcx,r9
+	mov r8,[rax+198h]
+	add rsp,28h
+	jmp qword ptr [rax+190h]
+	call 0000000180294310h
+
+ISIL:
+	001 ShiftStack -40
+	002 Move r9, rdx
+	003 Compare rdx, 0
+	004 JumpIfEqual {12}
+	005 Move rax, [rdx]
+	006 Move rdx, rcx
+	007 Move rcx, r9
+	008 Move r8, [rax+408]
+	009 ShiftStack 40
+	010 Call 0, rcx, rdx, r8, r9, stack:0x0, stack:0x8, stack:0x10, stack:0x18, stack:0x20, stack:0x28, stack:0x30, stack:0x38, stack:0x40
+	011 Return 
+	012 Call 0x180294310, rcx, rdx, r8, r9
+
+Method: Hints.DoubleHintParameter Deserialize(Mirror.NetworkReader reader)
+
+Disassembly:
+	mov [rsp+8],rbx
+	push rdi
+	sub rsp,20h
+	cmp byte ptr [1826FDEDBh],0
+	mov rdi,rcx
+	jne short 0000000181B25968h
+	mov ecx,[1822ED258h]
+	call 0000000180294190h
+	mov byte ptr [1826FDEDBh],1
+	mov rcx,[18273A808h]
+	call 00000001802942D0h
+	xor edx,edx
+	mov rcx,rax
+	mov rbx,rax
+	call 0000000181B25B60h
+	test rbx,rbx
+	je short 0000000181B259ABh
+	mov r9,[rbx]
+	mov rdx,rdi
+	mov rcx,rbx
+	mov r8,[r9+188h]
+	call qword ptr [r9+180h]
+	mov rax,rbx
+	mov rbx,[rsp+30h]
+	add rsp,20h
+	pop rdi
+	ret
+	call 0000000180294310h
+
+ISIL:
+	001 Move stack:0x8, rbx
+	002 ShiftStack -8
+	003 Move stack:0x0, rdi
+	004 ShiftStack -32
+	005 Compare [0x1826FDEDB], 0
+	006 Move rdi, rcx
+	007 JumpIfNotEqual {11}
+	008 Move rcx, [0x1822ED258]
+	009 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	010 Move [0x1826FDEDB], 1
+	011 Move rcx, typeof(Hints.DoubleHintParameter)
+	012 Call "il2cpp_codegen_object_new", rcx, rdx, r8, r9
+	013 Move rdx, 0
+	014 Move rcx, rax
+	015 Move rbx, rax
+	016 Call DoubleHintParameter..ctor, rcx, rdx
+	017 Compare rbx, 0
+	018 JumpIfEqual {30}
+	019 Move r9, [rbx]
+	020 Move rdx, rdi
+	021 Move rcx, rbx
+	022 Move r8, [r9+392]
+	023 Call 0, rcx, rdx, r8, r9, stack:0x0, stack:0x8, stack:0x10, stack:0x18, stack:0x20, stack:0x28, stack:0x30, stack:0x38, stack:0x40
+	024 Move rax, rbx
+	025 Move rbx, stack:0x30
+	026 ShiftStack 32
+	027 Move rdi, stack:0x0
+	028 ShiftStack 8
+	029 Return rax
+	030 Call 0x180294310, rcx, rdx, r8, r9
+

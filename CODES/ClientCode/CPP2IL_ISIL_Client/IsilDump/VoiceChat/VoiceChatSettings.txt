@@ -1,0 +1,54 @@
+Type: VoiceChat.VoiceChatSettings
+
+Method: System.Void .cctor()
+
+Disassembly:
+	sub rsp,48h
+	cmp byte ptr [1826FE393h],0
+	jne short 0000000181B9809Fh
+	mov ecx,[1822D66D4h]
+	call 0000000180294190h
+	mov byte ptr [1826FE393h],1
+	xorps xmm0,xmm0
+	xor eax,eax
+	movups [rsp+20h],xmm0
+	mov [rsp+30h],rax
+	mov rax,[182715DE0h]
+	movsd xmm0,qword ptr [1821787F0h]
+	mov dword ptr [rsp+20h],1
+	mov dword ptr [rsp+24h],0BB80h
+	mov rcx,[rax+0B8h]
+	movups xmm1,[rsp+20h]
+	mov byte ptr [rsp+30h],4
+	unpcklpd xmm1,xmm0
+	movsd xmm0,qword ptr [rsp+30h]
+	movups [rcx],xmm1
+	movsd qword ptr [rcx+10h],xmm0
+	add rsp,48h
+	ret
+
+ISIL:
+	001 ShiftStack -72
+	002 Compare [0x1826FE393], 0
+	003 JumpIfNotEqual {7}
+	004 Move rcx, [0x1822D66D4]
+	005 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	006 Move [0x1826FE393], 1
+	007 Move xmm0, 0
+	008 Move rax, 0
+	009 Move stack:0x20, xmm0
+	010 Move stack:0x30, rax
+	011 Move rax, typeof(VoiceChat.VoiceChatSettings)
+	012 Move xmm0, [0x1821787F0]
+	013 Move stack:0x20, 1
+	014 Move stack:0x24, 0xBB80
+	015 Move rcx, [rax+184]
+	016 Move xmm1, stack:0x20
+	017 Move stack:0x30, 4
+	018 NotImplemented "unpcklpd xmm1,xmm0"
+	019 Move xmm0, stack:0x30
+	020 Move [rcx], xmm1
+	021 Move [rcx+16], xmm0
+	022 ShiftStack 72
+	023 Return 
+

@@ -1,0 +1,67 @@
+Type: InventorySystem.Items.Usables.Scp244.Hypothermia.PostProcessSubEffect+IntensityOverTemp
+
+Method: System.Single GetValue(InventorySystem.Items.Usables.Scp244.Hypothermia.PostProcessSubEffect fx)
+
+Disassembly:
+	mov [rsp+8],rbx
+	push rdi
+	sub rsp,20h
+	mov rbx,rdx
+	mov rdi,rcx
+	test rdx,rdx
+	je short 00000001800CBEB5h
+	cmp byte ptr [rdx+70h],0
+	je short 00000001800CBEA7h
+	mov rcx,[rcx+10h]
+	test rcx,rcx
+	je short 00000001800CBEB5h
+	movss xmm1,dword ptr [rdx+74h]
+	xor r8d,r8d
+	call 0000000181039E00h
+	cmp byte ptr [rbx+71h],0
+	je short 00000001800CBE9Ch
+	mulss xmm0,dword ptr [rdi+18h]
+	mov rbx,[rsp+30h]
+	add rsp,20h
+	pop rdi
+	ret
+	mov rbx,[rsp+30h]
+	xorps xmm0,xmm0
+	add rsp,20h
+	pop rdi
+	ret
+	call 0000000180294310h
+
+ISIL:
+	001 Move stack:0x8, rbx
+	002 ShiftStack -8
+	003 Move stack:0x0, rdi
+	004 ShiftStack -32
+	005 Move rbx, rdx
+	006 Move rdi, rcx
+	007 Compare rdx, 0
+	008 JumpIfEqual {31}
+	009 Compare [rdx+112], 0
+	010 JumpIfEqual {25}
+	011 Move rcx, [rcx+16]
+	012 Compare rcx, 0
+	013 JumpIfEqual {31}
+	014 Move xmm1, [rdx+116]
+	015 Move r8, 0
+	016 Call AnimationCurve.Evaluate, rcx, rdx
+	017 Compare [rbx+113], 0
+	018 JumpIfEqual {20}
+	019 Multiply xmm0, xmm0, [rdi+24]
+	020 Move rbx, stack:0x30
+	021 ShiftStack 32
+	022 Move rdi, stack:0x0
+	023 ShiftStack 8
+	024 Return xmm0
+	025 Move rbx, stack:0x30
+	026 Move xmm0, 0
+	027 ShiftStack 32
+	028 Move rdi, stack:0x0
+	029 ShiftStack 8
+	030 Return xmm0
+	031 Call 0x180294310, rcx, rdx, r8, r9
+

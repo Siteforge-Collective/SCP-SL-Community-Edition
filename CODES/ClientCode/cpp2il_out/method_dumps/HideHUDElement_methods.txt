@@ -1,0 +1,281 @@
+Type: HideHUDElement
+
+
+	Generated Pseudocode:
+
+	Declaring Type: HideHUDElement
+	System.Void ToggleElement(System.Boolean isEnabled)
+		UnityEngine.Behaviour[] elementsToDisable = this.elementsToDisable
+
+		if (elementsToDisable != 0)
+		    ulong local3 = 0
+		    System.Int32 length = elementsToDisable.Length
+
+		    if (local3 < length)
+		        UnityEngine.Behaviour behaviour = elementsToDisable[local3]
+		        ulong local7 = 0
+
+		        System.Boolean boolean = UnityEngine.Object.op_Inequality(behaviour, local7) //(Object x, Object y)
+
+		        if (boolean != False)
+
+		            behaviour.enabled = isEnabled
+		        endif
+                
+		        local3 += 1
+		    endif
+            
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld UnityEngine.Behaviour[] HideHUDElement::elementsToDisable
+	IL_0006: stloc.0
+	IL_0007: ldloc.0
+	IL_0008: ldc.i4.0
+	IL_0009: beq.s IL_0039
+	IL_000b: ldc.i4.0
+	IL_000c: stloc.1
+	IL_000d: ldloc.0
+	IL_000e: call System.Int32 System.Array::get_Length()
+	IL_0013: stloc.2
+	IL_0014: ldloc.1
+	IL_0015: ldloc.2
+	IL_0016: bge.s IL_0039
+	IL_0018: ldloc.0
+	IL_0019: ldloc.1
+	IL_001a: ldelem.any UnityEngine.Behaviour
+	IL_001f: stloc.3
+	IL_0020: ldc.i4.0
+	IL_0021: stloc.s V_4
+	IL_0023: ldloc.3
+	IL_0024: ldloc.s V_4
+	IL_0026: call System.Boolean UnityEngine.Object::op_Inequality(UnityEngine.Object,UnityEngine.Object)
+	IL_002b: ldc.i4.0
+	IL_002c: beq.s IL_0035
+	IL_002e: ldloc.3
+	IL_002f: ldarg.1
+	IL_0030: call System.Void UnityEngine.Behaviour::set_enabled(System.Boolean)
+	IL_0035: ldloc.1
+	IL_0036: ldc.i4.1
+	IL_0037: add
+	IL_0038: stloc.1
+	IL_0039: ret
+	IL_003a: newobj System.Void System.NullReferenceException::.ctor()
+	IL_003f: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: HideHUDElement
+	System.Void Awake()
+		System.Action`1<System.Boolean> action = new System.Action`1<System.Boolean>()
+
+		action..ctor(this, {'ToggleElement' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		ulong local2 = 0
+		System.Action`1<System.Boolean> toggleHUD = HideHUDController.ToggleHUD
+
+		System.Delegate delegate = System.Delegate.Combine(toggleHUD, action) //(Delegate a, Delegate b)
+
+		if (delegate != 0)
+
+		    if (delegate == 0)
+                goto INSN_181B2B0FA
+            endif
+		endif
+        
+
+		if (HideHUDController == toggleHUD)
+		    HideHUDController _singleton = HideHUDController._singleton
+		    ulong local8 = 0
+
+		    System.Boolean boolean = UnityEngine.Object.op_Equality(_singleton, local8) //(Object x, Object y)
+
+		    if (boolean != False)
+                goto INSN_181B2B0C9
+            endif
+		    HideHUDController _singleton2 = HideHUDController._singleton
+
+		    if (_singleton2._showHUDElements != local2)
+                goto INSN_181B2B0C9
+            endif
+		    UnityEngine.Behaviour[] elementsToDisable = this.elementsToDisable
+
+		    if (elementsToDisable == 0)
+                goto INSN_181B2B0C9
+            endif
+		    System.Int32 length = elementsToDisable.Length
+
+		    if (local2 >= length)
+                goto INSN_181B2B0C9
+            endif
+		    UnityEngine.Behaviour behaviour = elementsToDisable[local2]
+		    ulong local15 = 0
+
+		    System.Boolean boolean2 = UnityEngine.Object.op_Inequality(behaviour, local15) //(Object x, Object y)
+
+		    if (boolean2 == False)
+                goto INSN_181B2B0C5
+            endif
+		    ulong local18 = 0
+
+		    behaviour.enabled = local18
+
+		    INSN_181B2B0C5:
+		    local2 += 1
+
+		    INSN_181B2B0C9:
+		    return
+		    throw new System.IndexOutOfRangeException()
+
+		    INSN_181B2B0FA:
+		    throw new System.InvalidCastException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldftn System.Void HideHUDElement::ToggleElement(System.Boolean)
+	IL_0007: newobj System.Void System.Action`1::.ctor(System.Object,System.IntPtr)
+	IL_000c: stloc.0
+	IL_000d: ldc.i4.0
+	IL_000e: stloc.1
+	IL_000f: ldsfld System.Action`1<System.Boolean> HideHUDController::ToggleHUD
+	IL_0014: stloc.2
+	IL_0015: ldloc.2
+	IL_0016: ldloc.0
+	IL_0017: call System.Delegate System.Delegate::Combine(System.Delegate,System.Delegate)
+	IL_001c: stloc.3
+	IL_001d: ldloc.3
+	IL_001e: ldc.i4.0
+	IL_001f: beq.s IL_0028
+	IL_0021: ldloc.3
+	IL_0022: ldc.i4.0
+	IL_0023: beq IL_009e
+	IL_0028: ldtoken HideHUDController
+	IL_002d: ldloc.2
+	IL_002e: bne.un.s IL_0028
+	IL_0030: ldsfld HideHUDController HideHUDController::_singleton
+	IL_0035: stloc.s V_4
+	IL_0037: ldc.i4.0
+	IL_0038: stloc.s V_5
+	IL_003a: ldloc.s V_4
+	IL_003c: ldloc.s V_5
+	IL_003e: call System.Boolean UnityEngine.Object::op_Equality(UnityEngine.Object,UnityEngine.Object)
+	IL_0043: ldc.i4.0
+	IL_0044: bne.un.s IL_0097
+	IL_0046: ldsfld HideHUDController HideHUDController::_singleton
+	IL_004b: ldfld System.Boolean HideHUDController::_showHUDElements
+	IL_0050: ldloc.1
+	IL_0051: bne.un.s IL_0097
+	IL_0053: ldarg.0
+	IL_0054: ldfld UnityEngine.Behaviour[] HideHUDElement::elementsToDisable
+	IL_0059: stloc.s V_6
+	IL_005b: ldloc.s V_6
+	IL_005d: ldc.i4.0
+	IL_005e: beq.s IL_0097
+	IL_0060: ldloc.s V_6
+	IL_0062: call System.Int32 System.Array::get_Length()
+	IL_0067: stloc.s V_7
+	IL_0069: ldloc.1
+	IL_006a: ldloc.s V_7
+	IL_006c: bge.s IL_0097
+	IL_006e: ldloc.s V_6
+	IL_0070: ldloc.1
+	IL_0071: ldelem.any UnityEngine.Behaviour
+	IL_0076: stloc.s V_8
+	IL_0078: ldc.i4.0
+	IL_0079: stloc.s V_9
+	IL_007b: ldloc.s V_8
+	IL_007d: ldloc.s V_9
+	IL_007f: call System.Boolean UnityEngine.Object::op_Inequality(UnityEngine.Object,UnityEngine.Object)
+	IL_0084: ldc.i4.0
+	IL_0085: beq.s IL_0093
+	IL_0087: ldc.i4.0
+	IL_0088: stloc.s V_10
+	IL_008a: ldloc.s V_8
+	IL_008c: ldloc.s V_10
+	IL_008e: call System.Void UnityEngine.Behaviour::set_enabled(System.Boolean)
+	IL_0093: ldloc.1
+	IL_0094: ldc.i4.1
+	IL_0095: add
+	IL_0096: stloc.1
+	IL_0097: ret
+	IL_0098: newobj System.Void System.IndexOutOfRangeException::.ctor()
+	IL_009d: throw
+	IL_009e: newobj System.Void System.InvalidCastException::.ctor()
+	IL_00a3: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: HideHUDElement
+	System.Void OnDestroy()
+		System.Action`1<System.Boolean> action = new System.Action`1<System.Boolean>()
+
+		action..ctor(this, {'ToggleElement' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		System.Action`1<System.Boolean> toggleHUD = HideHUDController.ToggleHUD
+
+		System.Delegate delegate = System.Delegate.Remove(toggleHUD, action) //(Delegate source, Delegate value)
+
+		if (delegate != 0)
+
+		    if (delegate == 0)
+                goto INSN_181B2B1EA
+            endif
+		endif
+        
+
+		if (HideHUDController == toggleHUD)
+		    return
+
+		    INSN_181B2B1EA:
+		    throw new System.InvalidCastException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldftn System.Void HideHUDElement::ToggleElement(System.Boolean)
+	IL_0007: newobj System.Void System.Action`1::.ctor(System.Object,System.IntPtr)
+	IL_000c: stloc.0
+	IL_000d: ldsfld System.Action`1<System.Boolean> HideHUDController::ToggleHUD
+	IL_0012: stloc.1
+	IL_0013: ldloc.1
+	IL_0014: ldloc.0
+	IL_0015: call System.Delegate System.Delegate::Remove(System.Delegate,System.Delegate)
+	IL_001a: stloc.2
+	IL_001b: ldloc.2
+	IL_001c: ldc.i4.0
+	IL_001d: beq.s IL_0023
+	IL_001f: ldloc.2
+	IL_0020: ldc.i4.0
+	IL_0021: beq.s IL_002c
+	IL_0023: ldtoken HideHUDController
+	IL_0028: ldloc.1
+	IL_0029: bne.un.s IL_0023
+	IL_002b: ret
+	IL_002c: newobj System.Void System.InvalidCastException::.ctor()
+	IL_0031: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: HideHUDElement
+	System.Void .ctor()
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void UnityEngine.MonoBehaviour::.ctor()
+	IL_0006: ret
+	
+

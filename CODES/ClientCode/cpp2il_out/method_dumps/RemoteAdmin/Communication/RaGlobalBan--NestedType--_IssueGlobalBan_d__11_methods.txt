@@ -1,0 +1,374 @@
+Type: <IssueGlobalBan>d__11
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.Communication.RaGlobalBan/<IssueGlobalBan>d__11
+	System.Void .ctor(System.Int32 <>1__state)
+
+		base..ctor()
+		this.<>1__state = <>1__state
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void System.Object::.ctor()
+	IL_0006: ldarg.0
+	IL_0007: ldarg.1
+	IL_0008: stfld System.Int32 RemoteAdmin.Communication.RaGlobalBan/<IssueGlobalBan>d__11::<>1__state
+	IL_000d: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.Communication.RaGlobalBan/<IssueGlobalBan>d__11
+	System.Void System.IDisposable.Dispose()
+		ulong local1 = 0
+		System.Int32 <>1__state = this.<>1__state
+
+		if (<>1__state != -3)
+
+		    if (<>1__state == 1)
+		    endif
+            
+		    this.<>1__state = 4294967295
+		    UnityEngine.Networking.UnityWebRequest <www>5__2 = this.<www>5__2
+
+		    if (<www>5__2 != 0)
+		    endif
+            
+
+		    if (local1 != 0)
+                goto INSN_180341D73
+            endif
+		endif
+        
+		return
+
+		INSN_180341D73:
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: ldarg.0
+	IL_0003: ldfld System.Int32 RemoteAdmin.Communication.RaGlobalBan/<IssueGlobalBan>d__11::<>1__state
+	IL_0008: stloc.1
+	IL_0009: ldloc.1
+	IL_000a: ldc.i4.s -3
+	IL_000c: beq.s IL_0012
+	IL_000e: ldloc.1
+	IL_000f: ldc.i4.1
+	IL_0010: bne.un.s IL_002f
+	IL_0012: ldarg.0
+	IL_0013: ldc.i8 4294967295
+	IL_001c: conv.u8
+	IL_001d: stfld System.Int32 RemoteAdmin.Communication.RaGlobalBan/<IssueGlobalBan>d__11::<>1__state
+	IL_0022: ldarg.0
+	IL_0023: ldfld UnityEngine.Networking.UnityWebRequest RemoteAdmin.Communication.RaGlobalBan/<IssueGlobalBan>d__11::<www>5__2
+	IL_0028: ldc.i4.0
+	IL_0029: beq.s IL_002b
+	IL_002b: ldloc.0
+	IL_002c: ldc.i4.0
+	IL_002d: bne.un.s IL_0000
+	IL_002f: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.Communication.RaGlobalBan/<IssueGlobalBan>d__11
+	System.Boolean MoveNext()
+		ulong local1 = 0
+		System.Int32 <>1__state = this.<>1__state
+
+		if (<>1__state == 0)
+		    this.<>1__state = 4294967295
+		    System.String _toBanUserId = RemoteAdmin.Communication.RaGlobalBan._toBanUserId
+
+		    System.Boolean isNullOrEmpty = System.String.IsNullOrEmpty(_toBanUserId) //(String value)
+
+		    if (isNullOrEmpty == False)
+		        System.String _toBanUserId2 = RemoteAdmin.Communication.RaGlobalBan._toBanUserId
+
+		        System.String string = System.String.Concat("Issuing global ban for ", _toBanUserId2) //(String str0, String str1)
+
+		        UnityEngine.Color cyan = UnityEngine.Color.cyan
+
+		        GameCore.Console.AddLog()
+		        UnityEngine.WWWForm wWWForm = new UnityEngine.WWWForm()
+
+		        wWWForm..ctor()
+		        ulong local16 = 0
+		        System.Int64 local17 = 1
+
+		        System.String appFolder = FileManager.GetAppFolder(local17, local16, "") //(Boolean addSeparator, Boolean serverConfig, String centralConfig)
+
+		        System.String string2 = System.String.Concat(appFolder, "StaffAPI.txt") //(String str0, String str1)
+		        System.IO.StreamReader streamReader = new System.IO.StreamReader()
+
+		        streamReader..ctor(string2) //(String path)
+
+		        System.Int32 int32 = streamReader.ReadBlock()
+
+		        wWWForm.AddField()
+
+		        if (streamReader != 0)
+		        endif
+                
+
+		        if (local1 != 0)
+                    goto INSN_180341BEC
+                endif
+
+		        wWWForm.AddField("action", "ban") //(String fieldName, String value)
+		        System.String _toBanUserId3 = RemoteAdmin.Communication.RaGlobalBan._toBanUserId
+
+		        wWWForm.AddField("userid", _toBanUserId3) //(String fieldName, String value)
+		        System.String _toBanUserId2 = RemoteAdmin.Communication.RaGlobalBan._toBanUserId2
+
+		        if (_toBanUserId2 != 0)
+                    goto INSN_1803414FF
+                endif
+
+		        INSN_1803414FF:
+
+		        wWWForm.AddField("userid2", "N/A") //(String fieldName, String value)
+		        System.String _toBanAuth = RemoteAdmin.Communication.RaGlobalBan._toBanAuth
+
+		        System.String string3 = NorthwoodLib.StringUtils.Base64Encode(_toBanAuth) //(String plainText)
+
+		        wWWForm.AddField("auth", string3) //(String fieldName, String value)
+		        System.String MasterUrl = CentralServer.<MasterUrl>k__BackingField
+
+		        System.String string4 = System.String.Concat(MasterUrl, "v5/globalbanning.php") //(String str0, String str1)
+
+		        UnityEngine.Networking.UnityWebRequest unityWebRequest = UnityEngine.Networking.UnityWebRequest.Post(string4, wWWForm) //(String uri, WWWForm formData)
+		        this.<www>5__2 = unityWebRequest
+		        this.<>1__state = 4294967293
+		        UnityEngine.Networking.UnityWebRequest <www>5__2 = this.<www>5__2
+
+		        UnityEngine.Networking.UnityWebRequestAsyncOperation unityWebRequestAsyncOperation = <www>5__2.SendWebRequest()
+
+		        System.Single single = MEC.Timing.WaitUntilDone(unityWebRequestAsyncOperation) //(AsyncOperation operation)
+		        this.<>2__current = single
+		        this.<>1__state = 1
+		    else
+
+		        UnityEngine.Color yellow = UnityEngine.Color.yellow
+
+		        GameCore.Console.AddLog()
+		    else
+
+		        if (<>1__state == 1)
+		            this.<>1__state = 4294967293
+		            UnityEngine.Networking.UnityWebRequest <www>5__22 = this.<www>5__2
+
+		            System.String error = <www>5__22.error
+
+		            System.Boolean isNullOrEmpty2 = System.String.IsNullOrEmpty(error) //(String value)
+		            UnityEngine.Networking.UnityWebRequest <www>5__23 = this.<www>5__2
+
+		            if (isNullOrEmpty2 != False)
+
+		                UnityEngine.Networking.DownloadHandler downloadHandler = <www>5__23.downloadHandler
+
+		                System.String text = downloadHandler.text
+
+		                System.Boolean boolean = System.String.Equals(text, "Banned") //(String a, String b)
+
+		                if (boolean == False)
+		                    UnityEngine.Networking.UnityWebRequest <www>5__24 = this.<www>5__2
+
+		                    UnityEngine.Networking.DownloadHandler downloadHandler2 = <www>5__24.downloadHandler
+
+		                    System.String text2 = downloadHandler2.text
+
+		                    System.String string5 = System.String.Concat("Server error during global ban issuance: ", text2) //(String str0, String str1)
+
+		                    UnityEngine.Color red = UnityEngine.Color.red
+
+		                    GameCore.Console.AddLog()
+		                else
+
+		                    UnityEngine.Color cyan2 = UnityEngine.Color.cyan
+
+		                    GameCore.Console.AddLog()
+		                    ulong local78 = 0
+
+		                    ReferenceHub localHub = ReferenceHub.LocalHub
+		                    RemoteAdmin.QueryProcessor queryProcessor = localHub.queryProcessor
+		                    System.String _toBan = RemoteAdmin.Communication.RaGlobalBan._toBan
+
+		                    System.String string6 = System.String.Concat("GBAN-KICK ", _toBan) //(String str0, String str1)
+		                    System.Int64 local85 = 1
+
+		                    queryProcessor.CmdSendQuery(string6, local85) //(String query, Boolean gban)
+
+		                    UnityEngine.Color green = UnityEngine.Color.green
+
+		                    GameCore.Console.AddLog()
+		                    System.String _toBan2 = RemoteAdmin.Communication.RaGlobalBan._toBan
+
+		                    System.String string7 = System.String.Concat("ID on this server: ", _toBan2) //(String str0, String str1)
+
+		                    UnityEngine.Color green2 = UnityEngine.Color.green
+
+		                    GameCore.Console.AddLog()
+		                    System.String _toBanUserId4 = RemoteAdmin.Communication.RaGlobalBan._toBanUserId
+
+		                    System.String string8 = System.String.Concat("User ID: ", _toBanUserId4) //(String str0, String str1)
+
+		                    UnityEngine.Color green3 = UnityEngine.Color.green
+
+		                    GameCore.Console.AddLog()
+
+		                    UnityEngine.Color green4 = UnityEngine.Color.green
+
+		                    GameCore.Console.AddLog()
+
+		                    UnityEngine.Color green5 = UnityEngine.Color.green
+
+		                    GameCore.Console.AddLog()
+
+		                    UnityEngine.Color green6 = UnityEngine.Color.green
+
+		                    GameCore.Console.AddLog()
+
+		                    UnityEngine.Color green7 = UnityEngine.Color.green
+
+		                    GameCore.Console.AddLog()
+		                    System.String empty = System.String.Empty
+		                     += 16
+		                    RemoteAdmin.Communication.RaGlobalBan._toBan = empty
+		                    System.String empty2 = System.String.Empty
+		                     += 24
+		                    RemoteAdmin.Communication.RaGlobalBan._toBan = empty2
+		                    System.String empty3 = System.String.Empty
+		                     += 32
+		                    RemoteAdmin.Communication.RaGlobalBan._toBan = empty3
+		                    System.String empty4 = System.String.Empty
+		                    RemoteAdmin.Communication.RaGlobalBan._toBan = empty4
+		                    System.String empty5 = System.String.Empty
+		                     += 8
+		                    RemoteAdmin.Communication.RaGlobalBan._toBan = empty5
+		                else
+
+		                    System.String error2 = <www>5__23.error
+
+		                    System.String string9 = System.String.Concat("Error during global ban issuance: ", error2) //(String str0, String str1)
+
+		                    UnityEngine.Color red2 = UnityEngine.Color.red
+
+		                    GameCore.Console.AddLog()
+		                endif
+                        
+		                this.<>1__state = 4294967295
+		                UnityEngine.Networking.UnityWebRequest <www>5__25 = this.<www>5__2
+
+		                if (<www>5__25 == 0)
+                            goto INSN_180341B89
+                        endif
+
+		                INSN_180341B89:
+		                this.<www>5__2 = local1
+		            else
+		                ulong local137 = 0
+
+		                .System.IDisposable.Dispose()
+		            endif
+                    
+		            return local137
+		            throw new System.NullReferenceException()
+		            throw new System.NullReferenceException()
+
+		            INSN_180341BEC:
+		            throw new System.NullReferenceException()
+		            throw new System.NullReferenceException()
+		            throw new System.NullReferenceException()
+		            throw new System.NullReferenceException()
+		            throw new System.NullReferenceException()
+		            throw new System.NullReferenceException()
+		            throw new System.NullReferenceException()
+		            throw new System.NullReferenceException()
+		            throw new System.NullReferenceException()
+		            throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180341391) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (4)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.Communication.RaGlobalBan/<IssueGlobalBan>d__11
+	System.Void <>m__Finally1()
+		UnityEngine.Networking.UnityWebRequest <www>5__2 = this.<www>5__2
+		this.<>1__state = 4294967295
+
+		if (<www>5__2 != 0)
+		endif
+        
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld UnityEngine.Networking.UnityWebRequest RemoteAdmin.Communication.RaGlobalBan/<IssueGlobalBan>d__11::<www>5__2
+	IL_0006: stloc.0
+	IL_0007: ldarg.0
+	IL_0008: ldc.i8 4294967295
+	IL_0011: conv.u8
+	IL_0012: stfld System.Int32 RemoteAdmin.Communication.RaGlobalBan/<IssueGlobalBan>d__11::<>1__state
+	IL_0017: ldloc.0
+	IL_0018: ldc.i4.0
+	IL_0019: beq.s IL_001b
+	IL_001b: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.Communication.RaGlobalBan/<IssueGlobalBan>d__11
+	System.Single System.Collections.Generic.IEnumerator<System.Single>.get_Current()
+		System.Single <>2__current = this.<>2__current
+		return <>2__current
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Single RemoteAdmin.Communication.RaGlobalBan/<IssueGlobalBan>d__11::<>2__current
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.Communication.RaGlobalBan/<IssueGlobalBan>d__11
+	System.Void System.Collections.IEnumerator.Reset()
+		System.NotSupportedException notSupportedException = new System.NotSupportedException()
+
+		notSupportedException..ctor()
+
+
+Generated IL:
+	IL_0000: newobj System.Void System.NotSupportedException::.ctor()
+	IL_0005: stloc.0
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.Communication.RaGlobalBan/<IssueGlobalBan>d__11
+	System.Object System.Collections.IEnumerator.get_Current()
+		System.Single <>2__current = this.<>2__current
+		return 
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x180341CD5) is corrupt (Return value is missing) and cannot be created as IL. Aborting here.
+
+

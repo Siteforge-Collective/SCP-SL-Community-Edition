@@ -1,0 +1,310 @@
+Type: DisarmedPlayers
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Disarming.DisarmedPlayers
+	static System.Void Init()
+		System.Action action = new System.Action()
+		ulong local2 = 0
+
+		action..ctor(local2, {'Update' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		StaticUnityMethods.add_OnUpdate(action) //(Action value)
+		PlayerRoles.PlayerRoleManager/RoleChanged <>9__2_0 = InventorySystem.Disarming.DisarmedPlayers/<>c.<>9__2_0
+
+		if (<>9__2_0 == 0)
+		    InventorySystem.Disarming.DisarmedPlayers/<>c <>c = InventorySystem.Disarming.DisarmedPlayers/<>c.<>9
+		    PlayerRoles.PlayerRoleManager/RoleChanged roleChanged = new PlayerRoles.PlayerRoleManager/RoleChanged()
+
+		    roleChanged..ctor(<>c, {'<Init>b__2_0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		     += 8
+		    InventorySystem.Disarming.DisarmedPlayers/<>c.<>9 = roleChanged
+		endif
+        
+
+		PlayerRoles.PlayerRoleManager.add_OnRoleChanged(<>9__2_0) //(RoleChanged value)
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x1803E6613) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Disarming.DisarmedPlayers
+	static System.Void Update()
+		ulong local0 = 0
+		  = .
+
+		if (local0 < )
+		      = .
+
+		    System.Boolean boolean = InventorySystem.Disarming.DisarmedPlayers.ValidateEntry()
+
+		    if (boolean != False)
+		        local0 += 1
+		    endif
+            
+		      = .
+
+		    .RemoveAt(local0) //(Int32 index)
+		      = .
+		    ulong local3 = 0
+
+		    Utils.Networking.NetworkUtils.SendToAuthenticated<InventorySystem.Disarming.DisarmedPlayersListMessage>(local0, local3) //(T message, Int32 channelId)
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.StaticFieldToRegAction at (0x1803E6ACF) is corrupt (Couldn't identify the field being read (or its type).) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Disarming.DisarmedPlayers
+	static System.Boolean ValidateEntry(InventorySystem.Disarming.DisarmedPlayers/DisarmedEntry entry)
+		ulong local1 = 0
+
+		if (entry != 0)
+		    System.UInt32 local3 = entry.DisarmedPlayer
+
+		    System.Boolean boolean = ReferenceHub.TryGetHubNetID(local3, local1) //(UInt32 netId, ReferenceHub& hub)
+
+		    if (boolean != False)
+		        System.UInt32 local6 = entry.DisarmedPlayer
+
+		        System.Boolean boolean2 = ReferenceHub.TryGetHubNetID(local6, local1) //(UInt32 netId, ReferenceHub& hub)
+
+		        if (boolean2 != False)
+
+		            System.Boolean isHuman = PlayerRoles.PlayerRolesUtils.IsHuman(local1) //(ReferenceHub hub)
+
+		            if (isHuman != False)
+
+		                System.Boolean isHuman2 = PlayerRoles.PlayerRolesUtils.IsHuman(local1) //(ReferenceHub hub)
+
+		                if (isHuman2 != False)
+
+		                    PlayerRoles.Faction faction = PlayerRoles.PlayerRolesUtils.GetFaction(local1) //(ReferenceHub hub)
+
+		                    PlayerRoles.Faction faction2 = PlayerRoles.PlayerRolesUtils.GetFaction(local1) //(ReferenceHub hub)
+
+		                    if (faction != faction2)
+		                          = local1.
+
+		                        PlayerRoles.PlayerRoleBase currentRole = local1.CurrentRole
+		                        ulong local18 = 0
+		                          = currentRole.
+		                          = local1.
+
+		                        PlayerRoles.PlayerRoleBase currentRole2 = local18.CurrentRole
+		                          = currentRole2.
+
+		                        UnityEngine.Vector3 vector3 = UnityEngine.Vector3.op_Subtraction()
+		                        System.Single single = vector3.z
+		                          = local1.
+
+		                        InventorySystem.InventoryExtensions.ServerDropEverything(local1) //(Inventory inv)
+		                        return True
+		                    endif
+                            
+		                endif
+                        
+		                return True
+		                throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.FieldToLocalAction at (0x1803E6D18) is corrupt (No further info) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Disarming.DisarmedPlayers
+	static System.Boolean IsDisarmed(InventorySystem.Inventory inv)
+		ulong local1 = 0
+		  = .
+
+		System.Collections.Generic.List`1/Enumerator<T> enumerator = .GetEnumerator()
+
+		if (enumerator != 0)
+
+		    System.UInt32 netId = inv.netId
+
+		    if ( == netId)
+
+		        inv.Dispose()
+		    else
+		        ulong local6 = 0
+
+		        [instruction error - managed method being called is null]
+
+		        [instruction error - managed method being called is null]
+
+		        if (DisarmedPlayers != 0)
+                    goto INSN_1803E67E6
+                endif
+
+		        if (local6 == -1)
+                    goto INSN_1803E67C7
+                endif
+		    endif
+            
+		    return local1
+
+		    INSN_1803E67C7:
+		    ulong local7 = 0
+		    return local7
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+
+		    INSN_1803E67E6:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.StaticFieldToRegAction at (0x1803E66C9) is corrupt (Couldn't identify the field being read (or its type).) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Disarming.DisarmedPlayers
+	static System.Void SetDisarmedStatus(InventorySystem.Inventory inv, InventorySystem.Inventory disarmer)
+		ulong local2 = 0
+		  = .
+
+		if (local2 < disarmer.OnLocalClientStarted)
+		      = .
+
+		    System.UInt32 netId = inv.netId
+
+		    if (DisarmedPlayers != netId)
+		        local2 += 1
+		    endif
+            
+		      = .
+
+		    .RemoveAt(local2) //(Int32 index)
+		endif
+        
+		ulong local6 = 0
+
+		System.Boolean boolean = UnityEngine.Object.op_Inequality(disarmer, local6) //(Object x, Object y)
+
+		if (boolean == False)
+            goto INSN_1803E69D5
+        endif
+		  = .
+
+		System.UInt32 netId2 = inv.netId
+
+		System.UInt32 netId3 = disarmer.netId
+
+		disarmer.Add(netId2) //(T item)
+
+		INSN_1803E69D5:
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.StaticFieldToRegAction at (0x1803E686F) is corrupt (Couldn't identify the field being read (or its type).) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Disarming.DisarmedPlayers
+	static System.Boolean CanDisarm(ReferenceHub disarmerHub, ReferenceHub targetHub)
+
+		PlayerRoles.Faction faction = PlayerRoles.PlayerRolesUtils.GetFaction(disarmerHub) //(ReferenceHub hub)
+
+		PlayerRoles.Faction faction2 = PlayerRoles.PlayerRolesUtils.GetFaction(targetHub) //(ReferenceHub hub)
+
+		if (faction != faction2)
+
+		    System.Boolean isHuman = PlayerRoles.PlayerRolesUtils.IsHuman(disarmerHub) //(ReferenceHub hub)
+
+		    if (isHuman != False)
+
+		        System.Boolean isHuman2 = PlayerRoles.PlayerRolesUtils.IsHuman(targetHub) //(ReferenceHub hub)
+
+		        if (isHuman2 != False)
+		            Interactables.InteractionCoordinator interCoordinator = targetHub.interCoordinator
+
+		            System.Boolean boolean = interCoordinator.AnyBlocker(4) //(BlockedInteraction interactions)
+
+		            if (boolean == False)
+		                InventorySystem.Inventory inventory = disarmerHub.inventory
+		                InventorySystem.Items.ItemBase _curInstance = inventory._curInstance
+		                ulong local16 = 0
+
+		                System.Boolean boolean2 = UnityEngine.Object.op_Inequality(_curInstance, local16) //(Object x, Object y)
+
+		                if (boolean2 != False)
+
+		                    if (boolean2 != False)
+		                    endif
+                            
+		                    ulong local19 = 0
+		                    return local19
+		                    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x1803E6474) is corrupt (Return value has a type of System.Int32, expecting an object of type System.Boolean) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Disarming.DisarmedPlayers
+	static System.Boolean CanUndisarm(ReferenceHub disarmerHub, ReferenceHub targetHub)
+		InventorySystem.Inventory inventory = targetHub.inventory
+
+		System.Boolean isDisarmed = InventorySystem.Disarming.DisarmedPlayers.IsDisarmed(inventory) //(Inventory inv)
+
+		if (isDisarmed != False)
+
+		    System.Boolean isHuman = PlayerRoles.PlayerRolesUtils.IsHuman(disarmerHub) //(ReferenceHub hub)
+
+		    if (isHuman != False)
+
+		        System.Boolean isHuman2 = PlayerRoles.PlayerRolesUtils.IsHuman(targetHub) //(ReferenceHub hub)
+
+		        if (isHuman2 != False)
+		            return True
+		        endif
+                
+		        ulong local9 = 0
+		        return local9
+		        throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x1803E651F) is corrupt (Return value has a type of System.Int32, expecting an object of type System.Boolean) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Disarming.DisarmedPlayers
+	static System.Void .cctor()
+		System.Collections.Generic.List`1<InventorySystem.Disarming.DisarmedPlayers/DisarmedEntry> list = new System.Collections.Generic.List`1<InventorySystem.Disarming.DisarmedPlayers/DisarmedEntry>()
+
+		list..ctor()
+		. = list
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.RegToStaticFieldAction at (0x1803E6F10) is corrupt (No further info) and cannot be created as IL. Aborting here.
+
+

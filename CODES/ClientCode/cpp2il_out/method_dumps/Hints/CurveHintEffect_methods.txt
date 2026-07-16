@@ -1,0 +1,219 @@
+Type: CurveHintEffect
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Hints.CurveHintEffect
+	UnityEngine.AnimationCurve get_Curve()
+		UnityEngine.AnimationCurve _curve = this._curve
+		return _curve
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld UnityEngine.AnimationCurve Hints.CurveHintEffect::_curve
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Hints.CurveHintEffect
+	System.Void set_Curve(UnityEngine.AnimationCurve value)
+		ulong local2 = 0
+		ulong local3 = 0
+
+		if (value != 0)
+
+		    System.Int32 length = value.length
+
+		    if (length > 0)
+
+		        System.Int32 length2 = value.length
+		        System.Int32 local9 = length2 - 1
+
+		        UnityEngine.Keyframe item = .Item
+		        System.Single m_OutWeight = item.m_OutWeight
+
+		        UnityEngine.Keyframe item2 = .Item
+		        System.Single m_OutWeight2 = item2.m_OutWeight
+		    else
+		        ulong local20 = 0
+		    endif
+            
+		    this.<IterationScalar>k__BackingField = local20
+		    this._curve = value
+		    return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.PlusOneOrMinusOneAction at (0x181B25898) is corrupt (Local made was stripped) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Hints.CurveHintEffect
+	System.Single get_IterationScalar()
+		System.Single IterationScalar = this.<IterationScalar>k__BackingField
+		return IterationScalar
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Single Hints.CurveHintEffect::<IterationScalar>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Hints.CurveHintEffect
+	System.Void set_IterationScalar(System.Single value)
+		this.<IterationScalar>k__BackingField = value
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: stfld System.Single Hints.CurveHintEffect::<IterationScalar>k__BackingField
+	IL_0007: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Hints.CurveHintEffect
+	System.Single EvaluateCurve(System.Single progress)
+		UnityEngine.AnimationCurve _curve = this._curve
+		System.Single IterationScalar = this.<IterationScalar>k__BackingField
+
+		System.Single single = _curve.Evaluate(IterationScalar) //(Single time)
+		return single
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld UnityEngine.AnimationCurve Hints.CurveHintEffect::_curve
+	IL_0006: stloc.0
+	IL_0007: ldarg.0
+	IL_0008: ldfld System.Single Hints.CurveHintEffect::<IterationScalar>k__BackingField
+	IL_000d: stloc.1
+	IL_000e: ldloc.0
+	IL_000f: ldloc.1
+	IL_0010: call System.Single UnityEngine.AnimationCurve::Evaluate(System.Single)
+	IL_0015: ret
+	IL_0016: newobj System.Void System.NullReferenceException::.ctor()
+	IL_001b: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Hints.CurveHintEffect
+	System.Void .ctor(System.Single startScalar, System.Single durationScalar)
+		startScalar = durationScalar
+
+		base..ctor(startScalar) //(Single durationScalar)
+		this.<StartScalar>k__BackingField = startScalar
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.RegToRegMoveAction at (0x181B2581B) is corrupt (Local being overwritten, {'startScalar' (function parameter, type System.Single)} has been stripped or is a parameter) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Hints.CurveHintEffect
+	System.Void .ctor(UnityEngine.AnimationCurve curve, System.Single startScalar, System.Single durationScalar)
+
+		base..ctor(durationScalar) //(Single durationScalar)
+		this.<StartScalar>k__BackingField = startScalar
+
+		if (curve != 0)
+
+		    this.Curve = curve
+		    return
+		endif
+        
+		System.ArgumentNullException argumentNullException = new System.ArgumentNullException()
+
+		argumentNullException..ctor("curve") //(String paramName)
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.3
+	IL_0002: call System.Void Hints.DisplayableObject`1::.ctor(System.Single)
+	IL_0007: ldarg.0
+	IL_0008: ldarg.2
+	IL_0009: stfld System.Single Hints.HintEffect::<StartScalar>k__BackingField
+	IL_000e: ldarg.1
+	IL_000f: ldc.i4.0
+	IL_0010: beq.s IL_001a
+	IL_0012: ldarg.0
+	IL_0013: ldarg.1
+	IL_0014: call System.Void Hints.CurveHintEffect::set_Curve(UnityEngine.AnimationCurve)
+	IL_0019: ret
+	IL_001a: ldstr "curve"
+	IL_001f: newobj System.Void System.ArgumentNullException::.ctor(System.String)
+	IL_0024: stloc.0
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Hints.CurveHintEffect
+	System.Void Deserialize(Mirror.NetworkReader reader)
+
+		base.Deserialize(reader) //(NetworkReader reader)
+
+		UnityEngine.AnimationCurve animationCurve = Utils.Networking.AnimationCurveReaderWriter.ReadAnimationCurve(reader) //(NetworkReader reader)
+
+		this.Curve = animationCurve
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: call System.Void Hints.HintEffect::Deserialize(Mirror.NetworkReader)
+	IL_0007: ldarg.1
+	IL_0008: call UnityEngine.AnimationCurve Utils.Networking.AnimationCurveReaderWriter::ReadAnimationCurve(Mirror.NetworkReader)
+	IL_000d: stloc.0
+	IL_000e: ldarg.0
+	IL_000f: ldloc.0
+	IL_0010: call System.Void Hints.CurveHintEffect::set_Curve(UnityEngine.AnimationCurve)
+	IL_0015: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Hints.CurveHintEffect
+	System.Void Serialize(Mirror.NetworkWriter writer)
+
+		base.Serialize(writer) //(NetworkWriter writer)
+		UnityEngine.AnimationCurve _curve = this._curve
+
+		Utils.Networking.AnimationCurveReaderWriter.WriteAnimationCurve(writer, _curve) //(NetworkWriter writer, AnimationCurve animationCurve)
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: call System.Void Hints.HintEffect::Serialize(Mirror.NetworkWriter)
+	IL_0007: ldarg.0
+	IL_0008: ldfld UnityEngine.AnimationCurve Hints.CurveHintEffect::_curve
+	IL_000d: stloc.0
+	IL_000e: ldarg.1
+	IL_000f: ldloc.0
+	IL_0010: call System.Void Utils.Networking.AnimationCurveReaderWriter::WriteAnimationCurve(Mirror.NetworkWriter,UnityEngine.AnimationCurve)
+	IL_0015: ret
+	
+

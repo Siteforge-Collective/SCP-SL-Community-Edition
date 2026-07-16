@@ -1,0 +1,311 @@
+Type: DecontaminationClientTimer
+
+
+	Generated Pseudocode:
+
+	Declaring Type: LightContainmentZoneDecontamination.DecontaminationClientTimer
+	System.Void UpdateTimer(System.Single serverTime)
+		System.Single clientTimer = this.ClientTimer
+		clientTimer = serverTime
+
+		if (clientTimer <= this.maxDeviation)
+		    ulong local4 = 0
+
+		    System.Single deltaTime = UnityEngine.Time.deltaTime
+		    UnityEngine.AnimationCurve deviationSpeedup = this.deviationSpeedup
+		    serverTime = clientTimer
+
+		    System.Single single = deviationSpeedup.Evaluate(serverTime) //(Single time)
+		    this.ClientTimer = single
+		else
+		    this.ClientTimer = serverTime
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.RegToRegMoveAction at (0x18052A78A) is corrupt (Local being overwritten, {'serverTime' (function parameter, type System.Single)} has been stripped or is a parameter) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: LightContainmentZoneDecontamination.DecontaminationClientTimer
+	System.Void Update()
+		LightContainmentZoneDecontamination.DecontaminationController singleton = LightContainmentZoneDecontamination.DecontaminationController.Singleton
+
+		if (singleton.DecontaminationOverride != constant7)
+
+		    if (singleton.DecontaminationOverride <= constant7)
+		    else
+		        UnityEngine.AnimationCurve scaledTimer = this.ScaledTimer
+		        System.Single clientTimer = this.ClientTimer
+
+		        System.Single single = scaledTimer.Evaluate(clientTimer) //(Single time)
+		    endif
+            
+		    LightContainmentZoneDecontamination.DecontaminationController singleton2 = LightContainmentZoneDecontamination.DecontaminationController.Singleton
+
+		    if (singleton2.DecontaminationOverride == constant12)
+                goto INSN_18052A8BF
+            endif
+		    LightContainmentZoneDecontamination.DecontaminationClientTimer.RemainingTimeInSeconds = single
+
+		    if (singleton2.DecontaminationOverride != constant12)
+                goto INSN_18052A8E9
+            endif
+
+		    if (singleton2.DecontaminationOverride <= constant12)
+                goto INSN_18052A8E9
+            endif
+		    ulong local10 = 0
+
+		    base.enabled = local10
+		endif
+        
+		return
+
+		INSN_18052A8E9:
+		ulong local11 = 0
+		local11 += 1
+
+		System.Int32 int32 = UnityEngine.Mathf.FloorToInt()
+		System.Single local15 =  * 99
+
+		System.Int32 int322 = UnityEngine.Mathf.RoundToInt(local15) //(Single f)
+
+		if (int32 != 0)
+            goto INSN_18052A96F
+        endif
+
+		INSN_18052A96F:
+
+		if (local11 != this._lastMinutes)
+            goto INSN_18052A983
+        endif
+
+		if (int32 != this._lastSeconds)
+            goto INSN_18052A983
+        endif
+
+		if (local11 == this._lastMilliseconds)
+            goto INSN_18052A8BF
+        endif
+
+		INSN_18052A983:
+		NorthwoodLib.Pools.StringBuilderPool shared = NorthwoodLib.Pools.StringBuilderPool.Shared
+		System.Int32 8 = 8
+
+		System.Text.StringBuilder stringBuilder = shared.Rent(8) //(Int32 capacity)
+
+		LightContainmentZoneDecontamination.DecontaminationClientTimer.AppendDigits(stringBuilder, local11) //(StringBuilder builder, Int32 time)
+
+		System.Text.StringBuilder stringBuilder2 = stringBuilder.Append("<size=") //(String value)
+		System.Int32 1 = 1
+
+		System.Text.StringBuilder stringBuilder3 = stringBuilder.Append(1) //(Int32 value)
+
+		System.Text.StringBuilder stringBuilder4 = stringBuilder.Append("> </size>:<size=") //(String value)
+		System.Int32 10 = 10
+
+		System.Text.StringBuilder stringBuilder5 = stringBuilder.Append(10) //(Int32 value)
+
+		System.Text.StringBuilder stringBuilder6 = stringBuilder.Append("> </size>") //(String value)
+
+		LightContainmentZoneDecontamination.DecontaminationClientTimer.AppendDigits(stringBuilder, int32) //(StringBuilder builder, Int32 time)
+
+		System.Text.StringBuilder stringBuilder7 = stringBuilder.Append("<size=") //(String value)
+		System.Int32 1 = 1
+
+		System.Text.StringBuilder stringBuilder8 = stringBuilder.Append(1) //(Int32 value)
+
+		System.Text.StringBuilder stringBuilder9 = stringBuilder.Append("> </size>.<size=") //(String value)
+		System.Int32 1 = 1
+
+		System.Text.StringBuilder stringBuilder10 = stringBuilder.Append(1) //(Int32 value)
+
+		System.Text.StringBuilder stringBuilder11 = stringBuilder.Append("> </size>") //(String value)
+
+		LightContainmentZoneDecontamination.DecontaminationClientTimer.AppendDigits(stringBuilder, local11) //(StringBuilder builder, Int32 time)
+
+		System.Int32 hashCode = stringBuilder.GetHashCode()
+		 += 8
+		LightContainmentZoneDecontamination.DecontaminationClientTimer.RemainingTimeInSeconds = hashCode
+		NorthwoodLib.Pools.StringBuilderPool shared2 = NorthwoodLib.Pools.StringBuilderPool.Shared
+
+		shared2.Return(stringBuilder) //(StringBuilder stringBuilder)
+		this._lastMinutes = local11
+		this._lastSeconds = int32
+		this._lastMilliseconds = local11
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfZeroOrNullAction at (0x18052A836) is corrupt (ConstantDefinition: Don't know how to get IL to load a System.Byte) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: LightContainmentZoneDecontamination.DecontaminationClientTimer
+	static System.Void AppendDigits(System.Text.StringBuilder builder, System.Int32 time)
+
+		System.Text.StringBuilder stringBuilder = builder.Append(time) //(Int32 value)
+
+		System.Text.StringBuilder stringBuilder2 = builder.Append("<size=") //(String value)
+		System.Int32 20 = 20
+
+		System.Text.StringBuilder stringBuilder3 = builder.Append(20) //(Int32 value)
+
+		System.Text.StringBuilder stringBuilder4 = builder.Append("> </size>") //(String value)
+		stringBuilder4 += stringBuilder4
+		time -= stringBuilder4
+
+		System.Text.StringBuilder stringBuilder5 = builder.Append(time) //(Int32 value)
+		return
+
+		System.Text.StringBuilder stringBuilder6 = builder.Append("0") //(String value)
+
+		System.Text.StringBuilder stringBuilder7 = builder.Append("<size=") //(String value)
+		System.Int32 20 = 20
+
+		System.Text.StringBuilder stringBuilder8 = builder.Append(20) //(Int32 value)
+
+		System.Text.StringBuilder stringBuilder9 = builder.Append("> </size>") //(String value)
+
+		System.Text.StringBuilder stringBuilder10 = builder.Append()
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.SubtractRegFromRegAction at (0x18052A5B4) is corrupt (SubRFromR: First operand, {'time' (function parameter, type System.Int32)}, has been stripped or has no variable) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: LightContainmentZoneDecontamination.DecontaminationClientTimer
+	static System.Void AppendColon(System.Text.StringBuilder builder)
+
+		System.Text.StringBuilder stringBuilder = builder.Append("<size=") //(String value)
+		System.Int32 1 = 1
+
+		System.Text.StringBuilder stringBuilder2 = builder.Append(1) //(Int32 value)
+
+		System.Text.StringBuilder stringBuilder3 = builder.Append("> </size>:<size=") //(String value)
+		System.Int32 10 = 10
+
+		System.Text.StringBuilder stringBuilder4 = builder.Append(10) //(Int32 value)
+
+		System.Text.StringBuilder stringBuilder5 = builder.Append("> </size>") //(String value)
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldstr "<size="
+	IL_0006: call System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+	IL_000b: stloc.0
+	IL_000c: ldarg.0
+	IL_000d: ldc.i4.1
+	IL_000e: call System.Text.StringBuilder System.Text.StringBuilder::Append(System.Int32)
+	IL_0013: stloc.1
+	IL_0014: ldarg.0
+	IL_0015: ldstr "> </size>:<size="
+	IL_001a: call System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+	IL_001f: stloc.2
+	IL_0020: ldarg.0
+	IL_0021: ldc.i4.s 10
+	IL_0023: call System.Text.StringBuilder System.Text.StringBuilder::Append(System.Int32)
+	IL_0028: stloc.3
+	IL_0029: ldarg.0
+	IL_002a: ldstr "> </size>"
+	IL_002f: call System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+	IL_0034: stloc.s V_4
+	IL_0036: ret
+	IL_0037: newobj System.Void System.NullReferenceException::.ctor()
+	IL_003c: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: LightContainmentZoneDecontamination.DecontaminationClientTimer
+	static System.Void AppendDot(System.Text.StringBuilder builder)
+
+		System.Text.StringBuilder stringBuilder = builder.Append("<size=") //(String value)
+		System.Int32 1 = 1
+
+		System.Text.StringBuilder stringBuilder2 = builder.Append(1) //(Int32 value)
+
+		System.Text.StringBuilder stringBuilder3 = builder.Append("> </size>.<size=") //(String value)
+		System.Int32 1 = 1
+
+		System.Text.StringBuilder stringBuilder4 = builder.Append(1) //(Int32 value)
+
+		System.Text.StringBuilder stringBuilder5 = builder.Append("> </size>") //(String value)
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldstr "<size="
+	IL_0006: call System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+	IL_000b: stloc.0
+	IL_000c: ldarg.0
+	IL_000d: ldc.i4.1
+	IL_000e: call System.Text.StringBuilder System.Text.StringBuilder::Append(System.Int32)
+	IL_0013: stloc.1
+	IL_0014: ldarg.0
+	IL_0015: ldstr "> </size>.<size="
+	IL_001a: call System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+	IL_001f: stloc.2
+	IL_0020: ldarg.0
+	IL_0021: ldc.i4.1
+	IL_0022: call System.Text.StringBuilder System.Text.StringBuilder::Append(System.Int32)
+	IL_0027: stloc.3
+	IL_0028: ldarg.0
+	IL_0029: ldstr "> </size>"
+	IL_002e: call System.Text.StringBuilder System.Text.StringBuilder::Append(System.String)
+	IL_0033: stloc.s V_4
+	IL_0035: ret
+	IL_0036: newobj System.Void System.NullReferenceException::.ctor()
+	IL_003b: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: LightContainmentZoneDecontamination.DecontaminationClientTimer
+	System.Void .ctor()
+		this.maxDeviation = 2
+		this._lastMinutes = 18446744073709551615
+		this._lastMilliseconds = 4294967295
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldc.r4 2
+	IL_0006: stfld System.Single LightContainmentZoneDecontamination.DecontaminationClientTimer::maxDeviation
+	IL_000b: ldarg.0
+	IL_000c: ldc.i4.m1
+	IL_000d: conv.i8
+	IL_000e: conv.u8
+	IL_000f: stfld System.Int32 LightContainmentZoneDecontamination.DecontaminationClientTimer::_lastMinutes
+	IL_0014: ldarg.0
+	IL_0015: ldc.i8 4294967295
+	IL_001e: conv.u8
+	IL_001f: stfld System.Int32 LightContainmentZoneDecontamination.DecontaminationClientTimer::_lastMilliseconds
+	IL_0024: ldarg.0
+	IL_0025: call System.Void UnityEngine.MonoBehaviour::.ctor()
+	IL_002a: ret
+	
+

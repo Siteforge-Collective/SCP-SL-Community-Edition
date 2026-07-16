@@ -1,0 +1,305 @@
+Type: Scp1576Pickup
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Usables.Scp1576.Scp1576Pickup
+	static System.Void add_OnHornPositionUpdated(System.Action`2<System.UInt16,System.Single> value)
+		System.Action`2<System.UInt16,System.Single> onHornPositionUpdated = InventorySystem.Items.Usables.Scp1576.Scp1576Pickup.OnHornPositionUpdated
+
+		System.Delegate delegate = System.Delegate.Combine(onHornPositionUpdated, value) //(Delegate a, Delegate b)
+
+		if (delegate != 0)
+
+		    if (delegate == 0)
+                goto INSN_180430229
+            endif
+		endif
+        
+
+		if (Scp1576Pickup == onHornPositionUpdated)
+		    return
+
+		    INSN_180430229:
+		    throw new System.InvalidCastException()
+
+
+Generated IL:
+	IL_0000: ldsfld System.Action`2<System.UInt16,System.Single> InventorySystem.Items.Usables.Scp1576.Scp1576Pickup::OnHornPositionUpdated
+	IL_0005: stloc.0
+	IL_0006: ldloc.0
+	IL_0007: ldarg.0
+	IL_0008: call System.Delegate System.Delegate::Combine(System.Delegate,System.Delegate)
+	IL_000d: stloc.1
+	IL_000e: ldloc.1
+	IL_000f: ldc.i4.0
+	IL_0010: beq.s IL_0016
+	IL_0012: ldloc.1
+	IL_0013: ldc.i4.0
+	IL_0014: beq.s IL_001f
+	IL_0016: ldtoken InventorySystem.Items.Usables.Scp1576.Scp1576Pickup
+	IL_001b: ldloc.0
+	IL_001c: bne.un.s IL_0016
+	IL_001e: ret
+	IL_001f: newobj System.Void System.InvalidCastException::.ctor()
+	IL_0024: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Usables.Scp1576.Scp1576Pickup
+	static System.Void remove_OnHornPositionUpdated(System.Action`2<System.UInt16,System.Single> value)
+		System.Action`2<System.UInt16,System.Single> onHornPositionUpdated = InventorySystem.Items.Usables.Scp1576.Scp1576Pickup.OnHornPositionUpdated
+
+		System.Delegate delegate = System.Delegate.Remove(onHornPositionUpdated, value) //(Delegate source, Delegate value)
+
+		if (delegate != 0)
+
+		    if (delegate == 0)
+                goto INSN_180430309
+            endif
+		endif
+        
+
+		if (Scp1576Pickup == onHornPositionUpdated)
+		    return
+
+		    INSN_180430309:
+		    throw new System.InvalidCastException()
+
+
+Generated IL:
+	IL_0000: ldsfld System.Action`2<System.UInt16,System.Single> InventorySystem.Items.Usables.Scp1576.Scp1576Pickup::OnHornPositionUpdated
+	IL_0005: stloc.0
+	IL_0006: ldloc.0
+	IL_0007: ldarg.0
+	IL_0008: call System.Delegate System.Delegate::Remove(System.Delegate,System.Delegate)
+	IL_000d: stloc.1
+	IL_000e: ldloc.1
+	IL_000f: ldc.i4.0
+	IL_0010: beq.s IL_0016
+	IL_0012: ldloc.1
+	IL_0013: ldc.i4.0
+	IL_0014: beq.s IL_001f
+	IL_0016: ldtoken InventorySystem.Items.Usables.Scp1576.Scp1576Pickup
+	IL_001b: ldloc.0
+	IL_001c: bne.un.s IL_0016
+	IL_001e: ret
+	IL_001f: newobj System.Void System.InvalidCastException::.ctor()
+	IL_0024: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Usables.Scp1576.Scp1576Pickup
+	System.Single get_HornPos()
+		System.Single local2 =  / 255
+		return local2
+
+
+Generated IL:
+	Don't know how to write IL for Cpp2IL.Core.Analysis.Actions.x86.Important.DivideRegByGlobalAction. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Usables.Scp1576.Scp1576Pickup
+	System.Void set_HornPos(System.Single value)
+		System.Single local2 = value * 255
+
+		System.Int32 int32 = UnityEngine.Mathf.RoundToInt(local2) //(Single f)
+		ulong local6 = 0
+
+		System.Int32 int322 = UnityEngine.Mathf.Clamp(int32, local6, 255) //(Int32 value, Int32 min, Int32 max)
+
+		this.Network_syncHorn = int322
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.1
+	IL_0001: ldc.r4 255
+	IL_0006: mul
+	IL_0007: call System.Int32 UnityEngine.Mathf::RoundToInt(System.Single)
+	IL_000c: stloc.0
+	IL_000d: ldc.i4.0
+	IL_000e: stloc.1
+	IL_000f: ldloc.0
+	IL_0010: ldloc.1
+	IL_0011: ldc.i4 255
+	IL_0016: call System.Int32 UnityEngine.Mathf::Clamp(System.Int32,System.Int32,System.Int32)
+	IL_001b: stloc.2
+	IL_001c: ldarg.0
+	IL_001d: ldloc.2
+	IL_001e: call System.Void InventorySystem.Items.Usables.Scp1576.Scp1576Pickup::set_Network_syncHorn(System.Byte)
+	IL_0023: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Usables.Scp1576.Scp1576Pickup
+	System.Void Update()
+		System.Byte _syncHorn = this._syncHorn
+
+		if (this._prevSyncHorn != _syncHorn)
+		    UnityEngine.Transform _horn = this._horn
+		    System.Single single = this._posZero.z
+		    System.Single single2 = this._posOne.z
+		    System.Single local5 =  / 255
+
+		    UnityEngine.Vector3 vector3 = UnityEngine.Vector3.Lerp()
+		    System.Single single3 = vector3.z
+		    ulong local9 = 0
+
+		    _horn.set_localPosition()
+		    System.Action`2<System.UInt16,System.Single> onHornPositionUpdated = InventorySystem.Items.Usables.Scp1576.Scp1576Pickup.OnHornPositionUpdated
+
+		    if (onHornPositionUpdated != 0)
+		        System.UInt16 serial = this.Info.Serial
+
+		        onHornPositionUpdated.Invoke(serial, local9) //(T1 arg1, T2 arg2)
+		    endif
+            
+		    System.Byte _syncHorn2 = this._syncHorn
+		    this._prevSyncHorn = _syncHorn2
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Don't know how to write IL for Cpp2IL.Core.Analysis.Actions.x86.Important.DivideRegByGlobalAction. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Usables.Scp1576.Scp1576Pickup
+	System.Void .ctor()
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void InventorySystem.Items.Pickups.CollisionDetectionPickup::.ctor()
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Usables.Scp1576.Scp1576Pickup
+	System.Void MirrorProcessed()
+
+
+Generated IL:
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Usables.Scp1576.Scp1576Pickup
+	System.Byte get_Network_syncHorn()
+		System.Byte _syncHorn = this._syncHorn
+		return _syncHorn
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Byte InventorySystem.Items.Usables.Scp1576.Scp1576Pickup::_syncHorn
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Usables.Scp1576.Scp1576Pickup
+	System.Void set_Network_syncHorn(System.Byte value)
+
+		System.Boolean boolean = base.SyncVarEqual<System.Byte>()
+
+		if (boolean == False)
+		    throw new System.NullReferenceException()
+		endif
+        
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1804303F5) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Usables.Scp1576.Scp1576Pickup
+	System.Boolean SerializeSyncVars(Mirror.NetworkWriter writer, System.Boolean forceAll)
+
+		System.Boolean boolean = base.SerializeSyncVars(writer, forceAll) //(NetworkWriter writer, Boolean forceAll)
+
+		if (forceAll == False)
+		    System.UInt64 syncVarDirtyBits = this.<syncVarDirtyBits>k__BackingField
+
+		    Mirror.NetworkWriterExtensions.WriteUInt64(writer, syncVarDirtyBits) //(NetworkWriter writer, UInt64 value)
+
+		    if ( != 1)
+		        System.Byte _syncHorn = this._syncHorn
+
+		        Mirror.NetworkWriterExtensions.WriteByte(writer, _syncHorn) //(NetworkWriter writer, Byte value)
+		    endif
+            
+		else
+		    System.Byte _syncHorn2 = this._syncHorn
+
+		    Mirror.NetworkWriterExtensions.WriteByte(writer, _syncHorn2) //(NetworkWriter writer, Byte value)
+		endif
+        
+		return True
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfZeroOrNullAction at (0x18042FF67) is corrupt (One of the arguments is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Usables.Scp1576.Scp1576Pickup
+	System.Void DeserializeSyncVars(Mirror.NetworkReader reader, System.Boolean initialState)
+
+		base.DeserializeSyncVars(reader, initialState) //(NetworkReader reader, Boolean initialState)
+
+		if (initialState == False)
+
+		    System.UInt64 uInt64 = Mirror.NetworkReaderExtensions.ReadUInt64(reader) //(NetworkReader reader)
+
+		    if (uInt64 == 1)
+                goto INSN_18042FEC2
+            endif
+		endif
+        
+
+		[instruction error - managed method being called is null]
+
+		System.Boolean boolean = base.SyncVarEqual<System.Byte>()
+
+		if (boolean != False)
+            goto INSN_18042FEC2
+        endif
+		throw new System.NullReferenceException()
+
+		INSN_18042FEC2:
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18042FE5E) is corrupt (Don't know what method is being called) and cannot be created as IL. Aborting here.
+
+

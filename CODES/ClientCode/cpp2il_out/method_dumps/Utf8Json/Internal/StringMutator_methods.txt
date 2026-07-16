@@ -1,0 +1,110 @@
+Type: StringMutator
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Utf8Json.Internal.StringMutator
+	static System.String Original(System.String s)
+		return s
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Utf8Json.Internal.StringMutator
+	static System.String ToCamelCase(System.String s)
+
+		System.Boolean isNullOrEmpty = System.String.IsNullOrEmpty(s) //(String value)
+
+		if (isNullOrEmpty == False)
+		    ulong local4 = 0
+
+		    System.Boolean isLower = System.Char.IsLower(s, local4) //(String s, Int32 index)
+
+		    if (isLower == False)
+
+		        System.Char[] charArray = s.ToCharArray()
+		        System.Char local8 = charArray[0]
+
+		        System.Char char = System.Char.ToLowerInvariant(local8) //(Char c)
+		        charArray[0] = char
+		        ulong local12 = 0
+
+		        System.String string = local12.CreateString(charArray) //(Char[] val)
+		        return string
+		    endif
+            
+		    return s
+		    throw new System.IndexOutOfRangeException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180A089D7) is corrupt (Mismatched instance parameter. Expecting an instance of System.String, actually {'local12' (type System.Int32)}) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Utf8Json.Internal.StringMutator
+	static System.String ToSnakeCase(System.String s)
+
+		System.Boolean isNullOrEmpty = System.String.IsNullOrEmpty(s) //(String value)
+
+		if (isNullOrEmpty == False)
+		    System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder()
+
+		    stringBuilder..ctor()
+		    ulong local5 = 0
+
+		    while (local5 < s.m_stringLength)
+
+		        System.Char chars = s.Chars
+
+		        System.Boolean isUpper = System.Char.IsUpper(chars) //(Char c)
+
+		        if (isUpper != False)
+
+		            if (local5 != 0)
+		                System.Int32 -1 = 4294967295
+
+		                System.Char chars2 = s.Chars
+
+		                System.Boolean isUpper2 = System.Char.IsUpper(chars2) //(Char c)
+
+		                if (isUpper2 == False)
+
+		                    System.Text.StringBuilder stringBuilder2 = stringBuilder.Append("_") //(String value)
+
+		                    System.Char char = System.Char.ToLowerInvariant(chars) //(Char c)
+		                    chars = char
+		                else
+
+		                    System.Char char2 = System.Char.ToLowerInvariant(chars) //(Char c)
+		                    chars = char2
+		                endif
+                        
+		            endif
+                    
+
+		            System.Text.StringBuilder stringBuilder3 = stringBuilder.Append(chars) //(Char value)
+		            local5 += 1
+		        endwhile
+                
+
+		        stringBuilder.GetObjectData()
+		        return constant35
+		    endif
+            
+		    return s
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180A08BCA) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+

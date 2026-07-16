@@ -1,0 +1,225 @@
+Type: InventoryDrawersController
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Drawers.InventoryDrawersController
+	System.Void Start()
+		System.Action`3<ReferenceHub,InventorySystem.Items.ItemIdentifier,InventorySystem.Items.ItemIdentifier> action = new System.Action`3<ReferenceHub,InventorySystem.Items.ItemIdentifier,InventorySystem.Items.ItemIdentifier>()
+
+		action..ctor(this, {'ItemChanged' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		InventorySystem.Inventory.add_OnCurrentItemChanged(action) //(Action`3 value)
+		PlayerRoles.PlayerRoleManager/RoleChanged roleChanged = new PlayerRoles.PlayerRoleManager/RoleChanged()
+
+		roleChanged..ctor(this, {'RecolorDetails' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		PlayerRoles.PlayerRoleManager.add_OnRoleChanged(roleChanged) //(RoleChanged value)
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1803EDFC7) is corrupt (Mismatched instance parameter. Expecting an instance of System.Action`3, actually {'roleChanged' (type PlayerRoles.PlayerRoleManager/RoleChanged)}) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Drawers.InventoryDrawersController
+	System.Void OnDestroy()
+		System.Action`3<ReferenceHub,InventorySystem.Items.ItemIdentifier,InventorySystem.Items.ItemIdentifier> action = new System.Action`3<ReferenceHub,InventorySystem.Items.ItemIdentifier,InventorySystem.Items.ItemIdentifier>()
+
+		action..ctor(this, {'ItemChanged' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		InventorySystem.Inventory.remove_OnCurrentItemChanged(action) //(Action`3 value)
+		PlayerRoles.PlayerRoleManager/RoleChanged roleChanged = new PlayerRoles.PlayerRoleManager/RoleChanged()
+
+		roleChanged..ctor(this, {'RecolorDetails' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		PlayerRoles.PlayerRoleManager.remove_OnRoleChanged(roleChanged) //(RoleChanged value)
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1803EDE07) is corrupt (Mismatched instance parameter. Expecting an instance of System.Action`3, actually {'roleChanged' (type PlayerRoles.PlayerRoleManager/RoleChanged)}) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Drawers.InventoryDrawersController
+	System.Void RecolorDetails(ReferenceHub hub, PlayerRoles.PlayerRoleBase prevRole, PlayerRoles.PlayerRoleBase newRole)
+
+		System.Boolean isLocalPlayer = hub.isLocalPlayer
+
+		if (isLocalPlayer != False)
+
+		    PlayerRoles.Team team = .Team
+		    UnityEngine.UI.Graphic[] _detailsToRecolor = this._detailsToRecolor
+		    ulong local8 = 0
+		    System.Int32 length = _detailsToRecolor.Length
+
+		    if (local8 < length)
+		        UnityEngine.UI.Graphic graphic = _detailsToRecolor[local8]
+
+		        System.Boolean isDestroyed = .IsDestroyed()
+		          = isDestroyed.
+
+		        UnityEngine.Color color = graphic.color
+		        local8 += 1
+		    endif
+            
+		    return
+		    throw new System.IndexOutOfRangeException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallVirtualMethodAction at (0x1803EDE6E) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Drawers.InventoryDrawersController
+	System.Void Update()
+
+		if (this._active != False)
+		    UnityEngine.CanvasGroup _inventoryGroup = this._inventoryGroup
+
+		    System.Single alpha = _inventoryGroup.alpha
+		    UnityEngine.CanvasGroup _thisGroup = this._thisGroup
+
+		    System.Single alpha2 = _thisGroup.alpha
+
+		    if (_thisGroup != 0)
+		        UnityEngine.CanvasGroup _thisGroup2 = this._thisGroup
+
+		        _thisGroup2.alpha = 1
+		    endif
+            
+		    InventorySystem.Drawers.IItemAlertDrawer _alertToTrack = this._alertToTrack
+		    TMPro.TextMeshProUGUI _alertText = this._alertText
+
+		    if (_alertToTrack == 0)
+                goto INSN_1803EE08E
+            endif
+
+		    if ( != 0)
+                goto INSN_1803EE09F
+            endif
+
+		    INSN_1803EE08E:
+		    System.String empty = System.String.Empty
+
+		    INSN_1803EE09F:
+
+		    System.String text = _alertText.text
+		    InventorySystem.Drawers.IItemProgressbarDrawer _progressbarToTrack = this._progressbarToTrack
+
+		    if (_progressbarToTrack == 0)
+                goto INSN_1803EE100
+            endif
+		    UnityEngine.UI.Slider _progressbarSlider = this._progressbarSlider
+
+		    if (text != 0)
+                goto INSN_1803EE110
+            endif
+
+		    UnityEngine.GameObject gameObject = _progressbarSlider.gameObject
+		    ulong local20 = 0
+
+		    gameObject.SetActive(local20) //(Boolean value)
+
+		    INSN_1803EE100:
+		endif
+        
+		return
+
+		INSN_1803EE110:
+
+		UnityEngine.GameObject gameObject2 = .gameObject
+
+		gameObject2.SetActive(True) //(Boolean value)
+		InventorySystem.Drawers.IItemProgressbarDrawer _progressbarToTrack2 = this._progressbarToTrack
+		UnityEngine.UI.Slider _progressbarSlider2 = this._progressbarSlider
+
+		_progressbarSlider2.set_minValue()
+		InventorySystem.Drawers.IItemProgressbarDrawer _progressbarToTrack3 = this._progressbarToTrack
+		UnityEngine.UI.Slider _progressbarSlider3 = this._progressbarSlider
+
+		_progressbarSlider3.set_maxValue()
+		InventorySystem.Drawers.IItemProgressbarDrawer _progressbarToTrack4 = this._progressbarToTrack
+		UnityEngine.UI.Slider _progressbarSlider4 = this._progressbarSlider
+
+		System.Single value = _progressbarSlider4.value
+		InventorySystem.Drawers.IItemProgressbarDrawer _progressbarToTrack5 = this._progressbarToTrack
+		UnityEngine.RectTransform _progressbarSliderRect = this._progressbarSliderRect
+
+		_progressbarSliderRect.set_sizeDelta()
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfNonZeroOrNonNullAction at (0x1803EE08C) is corrupt (One of the arguments is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Drawers.InventoryDrawersController
+	System.Void ItemChanged(ReferenceHub hub, InventorySystem.Items.ItemIdentifier prevItem, InventorySystem.Items.ItemIdentifier newItem)
+		ulong local4 = 0
+
+		System.Boolean isLocalPlayer = hub.isLocalPlayer
+
+		if (isLocalPlayer != False)
+		    InventorySystem.Inventory inventory = hub.inventory
+		    InventorySystem.InventoryInfo userInventory = inventory.UserInventory
+		    System.Collections.Generic.Dictionary`2<System.UInt16,InventorySystem.Items.ItemBase> items = userInventory.Items
+
+		    System.Boolean boolean = items.TryGetValue()
+
+		    if (boolean != False)
+		        System.Boolean local11 = boolean != False
+		    endif
+            
+		    this._active = local4
+		    this._alertToTrack = boolean
+		    TMPro.TextMeshProUGUI _alertText = this._alertText
+		    System.String empty = System.String.Empty
+
+		    System.String text = _alertText.text
+		    this._progressbarToTrack = text
+		    UnityEngine.UI.Slider _progressbarSlider = this._progressbarSlider
+
+		    UnityEngine.GameObject gameObject = _progressbarSlider.gameObject
+		    ulong local19 = 0
+
+		    gameObject.SetActive(local19) //(Boolean value)
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1803EDC94) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Drawers.InventoryDrawersController
+	System.Void .ctor()
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void UnityEngine.MonoBehaviour::.ctor()
+	IL_0006: ret
+	
+

@@ -1,0 +1,170 @@
+Type: AES
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Cryptography.AES
+	static System.Byte[] AesGcmEncrypt(System.Byte[] data, System.Byte[] secret, Org.BouncyCastle.Security.SecureRandom secureRandom)
+		ulong local3 = 0
+		System.Int32 32 = 32
+		System.Byte[] local4 = new System.Byte[0]
+		System.Int32 length = local4.Length
+
+		secureRandom.NextBytes(local4) //(Byte[] buf)
+		Org.BouncyCastle.Crypto.Engines.AesEngine aesEngine = new Org.BouncyCastle.Crypto.Engines.AesEngine()
+
+		aesEngine..ctor()
+		Org.BouncyCastle.Crypto.Modes.GcmBlockCipher gcmBlockCipher = new Org.BouncyCastle.Crypto.Modes.GcmBlockCipher()
+
+		gcmBlockCipher..ctor(aesEngine) //(IBlockCipher c)
+		Org.BouncyCastle.Crypto.Parameters.KeyParameter keyParameter = new Org.BouncyCastle.Crypto.Parameters.KeyParameter()
+
+		keyParameter..ctor(secret) //(Byte[] key)
+		Org.BouncyCastle.Crypto.Parameters.AeadParameters aeadParameters = new Org.BouncyCastle.Crypto.Parameters.AeadParameters()
+
+		aeadParameters..ctor(keyParameter, 128, local4) //(KeyParameter key, Int32 macSize, Byte[] nonce)
+
+		System.Int32 blockSize = gcmBlockCipher.GetBlockSize()
+		System.Int32 length2 = data.Length
+
+		gcmBlockCipher.Init()
+		System.Byte[] local17 = new System.Byte[0]
+		System.Int32 length3 = data.Length
+		ulong local20 = 0
+
+		gcmBlockCipher.ProcessAadBytes(data, local20, length3) //(Byte[] inBytes, Int32 inOff, Int32 len)
+
+		System.Int32 int32 = gcmBlockCipher.DoFinal()
+		System.IO.MemoryStream memoryStream = new System.IO.MemoryStream()
+
+		memoryStream..ctor()
+		System.IO.BinaryWriter binaryWriter = new System.IO.BinaryWriter()
+
+		binaryWriter..ctor(memoryStream) //(Stream output)
+
+		binaryWriter.Write(local4) //(Byte value)
+
+		binaryWriter.Write(local17) //(Byte value)
+
+		if (binaryWriter != 0)
+		endif
+        
+
+		if (local3 != 0)
+            goto INSN_181ACBCA6
+        endif
+
+		if (0xFFFFFFFF == 0xFFFFFFFFFFFFFFFF)
+            goto INSN_181ACBC2F
+        endif
+
+		INSN_181ACBC2F:
+
+		memoryStream.set_Capacity()
+		. = 154
+
+		if (memoryStream == 0)
+            goto INSN_181ACBC77
+        endif
+
+		INSN_181ACBC77:
+
+		if (local3 != 0)
+            goto INSN_181ACBCB6
+        endif
+		return 0xFFFFFFFF
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+
+		INSN_181ACBCA6:
+		throw new System.NullReferenceException()
+
+		INSN_181ACBCB6:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallVirtualMethodAction at (0x181ACBB0A) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Cryptography.AES
+	static System.Byte[] AesGcmDecrypt(System.Byte[] data, System.Byte[] secret)
+		ulong local2 = 0
+		System.IO.MemoryStream memoryStream = new System.IO.MemoryStream()
+
+		memoryStream..ctor(data) //(Byte[] buffer)
+		System.IO.BinaryReader binaryReader = new System.IO.BinaryReader()
+
+		binaryReader..ctor(memoryStream) //(Stream input)
+		System.Int32 32 = 32
+
+		System.Int32 int32 = binaryReader.Read()
+		Org.BouncyCastle.Crypto.Engines.AesEngine aesEngine = new Org.BouncyCastle.Crypto.Engines.AesEngine()
+
+		aesEngine..ctor()
+		Org.BouncyCastle.Crypto.Modes.GcmBlockCipher gcmBlockCipher = new Org.BouncyCastle.Crypto.Modes.GcmBlockCipher()
+
+		gcmBlockCipher..ctor(aesEngine) //(IBlockCipher c)
+		Org.BouncyCastle.Crypto.Parameters.KeyParameter keyParameter = new Org.BouncyCastle.Crypto.Parameters.KeyParameter()
+
+		keyParameter..ctor()
+		Org.BouncyCastle.Crypto.Parameters.AeadParameters aeadParameters = new Org.BouncyCastle.Crypto.Parameters.AeadParameters()
+
+		aeadParameters..ctor()
+
+		System.Int32 blockSize = gcmBlockCipher.GetBlockSize()
+		  = blockSize.
+
+		System.Int32 int322 = binaryReader.Read()
+		  = int322.
+
+		gcmBlockCipher.Init()
+		System.Byte[] local19 = new System.Byte[0]
+		  = int322.
+
+		gcmBlockCipher.ProcessAadBytes()
+
+		System.Int32 int323 = gcmBlockCipher.DoFinal()
+		System.Int64 local24 = 0xFFFFFFFF
+
+		if (binaryReader != 0)
+		endif
+        
+
+		if (local2 != 0)
+            goto INSN_181ACB992
+        endif
+
+		if (local24 == 0xFFFFFFFF)
+            goto INSN_181ACB92E
+        endif
+
+		INSN_181ACB92E:
+
+		if (memoryStream == 0)
+            goto INSN_181ACB958
+        endif
+
+		INSN_181ACB958:
+
+		if (local2 != 0)
+            goto INSN_181ACB99D
+        endif
+		return local19
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+
+		INSN_181ACB992:
+
+		INSN_181ACB99D:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallVirtualMethodAction at (0x181ACB774) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (3)) and cannot be created as IL. Aborting here.
+
+

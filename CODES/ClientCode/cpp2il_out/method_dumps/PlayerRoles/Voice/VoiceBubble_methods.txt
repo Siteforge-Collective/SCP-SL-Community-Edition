@@ -1,0 +1,295 @@
+Type: VoiceBubble
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.Voice.VoiceBubble
+	System.Boolean get_IsHidden()
+		PlayerRoles.Voice.VoiceModuleBase _voiceModule = this._voiceModule
+		ulong local2 = 0
+		System.Diagnostics.Stopwatch _sustainSw = this._sustainSw
+		PlayerRoles.PlayerRoleBase Role = _voiceModule.<Role>k__BackingField
+
+		System.TimeSpan elapsed = _sustainSw.Elapsed
+
+		if (_sustainSw <= 0)
+
+		    System.Boolean boolean = Role.TryGetOwner(local2) //(ReferenceHub& hub)
+
+		    if (boolean != False)
+
+		        System.Boolean isLocalPlayer = local2.isLocalPlayer
+
+		        if (isLocalPlayer == False)
+
+		            System.Boolean boolean2 = PlayerRoles.Spectating.SpectatorTargetTracker.TryGetTrackedPlayer(local2) //(ReferenceHub& hub)
+
+		            if (boolean2 == False)
+		                return boolean2
+		            endif
+                    
+
+		            System.Boolean boolean3 = ReferenceHub.op_Equality(local2, local2) //(ReferenceHub left, ReferenceHub right)
+		            return boolean3
+		        endif
+                
+		        return True
+		        throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1803E3696) is corrupt (Mismatched instance parameter. Expecting an instance of Mirror.NetworkBehaviour, actually {'local2' (type System.Int32)}) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.Voice.VoiceBubble
+	System.Void OnEnable()
+		this._isCulled = False
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldc.i4.0
+	IL_0002: stfld System.Boolean PlayerRoles.Voice.VoiceBubble::_isCulled
+	IL_0007: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.Voice.VoiceBubble
+	System.Void OnDisable()
+		this._isCulled = True
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldc.i4.1
+	IL_0002: stfld System.Boolean PlayerRoles.Voice.VoiceBubble::_isCulled
+	IL_0007: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.Voice.VoiceBubble
+	System.Void Awake()
+
+		UnityEngine.Transform transform = base.transform
+		this._t = transform
+		PlayerRoles.Voice.VoiceBubble/Bubble[] _serializedOverrides = this._serializedOverrides
+		System.Action`1<PlayerRoles.Voice.VoiceBubble/Bubble> action = new System.Action`1<PlayerRoles.Voice.VoiceBubble/Bubble>()
+
+		action..ctor(this, {'<Awake>b__14_0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		CollectionExtensions.ForEach<PlayerRoles.Voice.VoiceBubble/Bubble>()
+
+		UnityEngine.GameObject gameObject = base.gameObject
+		ulong local7 = 0
+
+		System.Boolean isHUDVisible = HideHUDController.IsHUDVisible
+
+		gameObject.SetActive(isHUDVisible) //(Boolean value)
+
+		UnityEngine.GameObject gameObject2 = base.gameObject
+		System.Action`1<System.Boolean> action2 = new System.Action`1<System.Boolean>()
+
+		action2..ctor(gameObject2, {'SetActive' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		HideHUDController.add_ToggleHUD(action2) //(Action`1 value)
+		System.Action action3 = new System.Action()
+
+		action3..ctor(this, {'UpdateIcon' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		MainCameraController.add_OnUpdated(action3) //(Action value)
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1803E300F) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.Voice.VoiceBubble
+	System.Void OnDestroy()
+
+		UnityEngine.GameObject gameObject = base.gameObject
+		System.Action`1<System.Boolean> action = new System.Action`1<System.Boolean>()
+
+		action..ctor(gameObject, {'SetActive' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		HideHUDController.remove_ToggleHUD(action) //(Action`1 value)
+		System.Action action2 = new System.Action()
+
+		action2..ctor(this, {'UpdateIcon' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		MainCameraController.remove_OnUpdated(action2) //(Action value)
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1803E315B) is corrupt (Mismatched instance parameter. Expecting an instance of System.Action`1, actually {'action2' (type System.Action)}) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.Voice.VoiceBubble
+	System.Void UpdateIcon()
+
+		if (this._isCulled == False)
+		    PlayerRoles.Voice.VoiceModuleBase _voiceModule = this._voiceModule
+
+		    VoiceChat.Codec.OpusDecoder decoder = _voiceModule.Decoder
+
+		    if (decoder != 0)
+		        System.Diagnostics.Stopwatch _sustainSw = this._sustainSw
+
+		        _sustainSw.Restart()
+		    endif
+            
+		    PlayerRoles.Voice.VoiceModuleBase _voiceModule2 = this._voiceModule
+		    System.Collections.Generic.Dictionary`2<VoiceChat.VoiceChatChannel,PlayerRoles.Voice.VoiceBubble/Bubble> _overrides = this._overrides
+		    VoiceChat.VoiceChatChannel _lastChannel = _voiceModule2._lastChannel
+
+		    System.Boolean boolean = _overrides.TryGetValue(_lastChannel, null) //(TKey key, TValue& value)
+
+		    if (boolean == False)
+                goto INSN_1803E354E
+            endif
+		    PlayerRoles.Voice.VoiceModuleBase _voiceModule3 = this._voiceModule
+		    ulong local11 = 0
+		    System.Diagnostics.Stopwatch _sustainSw2 = this._sustainSw
+		    PlayerRoles.PlayerRoleBase Role = _voiceModule3.<Role>k__BackingField
+
+		    System.TimeSpan elapsed = _sustainSw2.Elapsed
+		    ulong local16 = 0
+
+		    if (_sustainSw2 > 0)
+                goto INSN_1803E354E
+            endif
+
+		    System.Boolean boolean2 = Role.TryGetOwner(local16) //(ReferenceHub& hub)
+
+		    if (boolean2 == False)
+                goto INSN_1803E354E
+            endif
+
+		    System.Boolean isLocalPlayer = Role.isLocalPlayer
+
+		    if (isLocalPlayer != False)
+                goto INSN_1803E354E
+            endif
+
+		    System.Boolean boolean3 = PlayerRoles.Spectating.SpectatorTargetTracker.TryGetTrackedPlayer()
+
+		    if (boolean3 == False)
+                goto INSN_1803E33B8
+            endif
+
+		    System.Boolean boolean4 = ReferenceHub.op_Equality()
+
+		    if (boolean4 != False)
+                goto INSN_1803E354E
+            endif
+
+		    INSN_1803E33B8:
+		    ulong local25 = 0
+		    UnityEngine.Transform _currentCamera = MainCameraController._currentCamera
+		    PlayerRoles.FirstPersonControl.FirstPersonMovementModule _fpc = this._fpc
+
+		    UnityEngine.Vector3 position = .position
+
+		    System.Single single = UnityEngine.Vector3.Distance()
+		    UnityEngine.SpriteRenderer _rend = this._rend
+
+		    _rend.enabled = True
+		    UnityEngine.SpriteRenderer _rend2 = this._rend
+
+		    _rend2.set_sprite()
+		    UnityEngine.Gradient _colorOverNormalizedDistance = this._colorOverNormalizedDistance
+		    UnityEngine.SpriteRenderer _rend3 = this._rend
+
+		    UnityEngine.Color color = _rend2.Evaluate()
+
+		    _rend3.set_color()
+		    UnityEngine.Transform transform = this._t
+
+		    UnityEngine.Vector3 forward = _rend3.forward
+
+		    transform.set_forward()
+		endif
+        
+		return
+
+		INSN_1803E354E:
+		UnityEngine.SpriteRenderer _rend4 = this._rend
+		ulong local50 = 0
+
+		_rend4.enabled = local50
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1803E32BD) is corrupt (Found null operand in Arguments: [{'_lastChannel' (type VoiceChat.VoiceChatChannel)}, ]) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.Voice.VoiceBubble
+	System.Void .ctor()
+		System.Collections.Generic.Dictionary`2<VoiceChat.VoiceChatChannel,PlayerRoles.Voice.VoiceBubble/Bubble> dictionary = new System.Collections.Generic.Dictionary`2<VoiceChat.VoiceChatChannel,PlayerRoles.Voice.VoiceBubble/Bubble>()
+
+		dictionary..ctor()
+		this._overrides = dictionary
+		ulong local2 = 0
+
+		System.Diagnostics.Stopwatch stopwatch = System.Diagnostics.Stopwatch.StartNew()
+		this._sustainSw = stopwatch
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: newobj System.Void System.Collections.Generic.Dictionary`2::.ctor()
+	IL_0005: stloc.0
+	IL_0006: ldarg.0
+	IL_0007: ldloc.0
+	IL_0008: stfld System.Collections.Generic.Dictionary`2<VoiceChat.VoiceChatChannel,PlayerRoles.Voice.VoiceBubble/Bubble> PlayerRoles.Voice.VoiceBubble::_overrides
+	IL_000d: ldc.i4.0
+	IL_000e: stloc.1
+	IL_000f: call System.Diagnostics.Stopwatch System.Diagnostics.Stopwatch::StartNew()
+	IL_0014: stloc.2
+	IL_0015: ldarg.0
+	IL_0016: ldloc.2
+	IL_0017: stfld System.Diagnostics.Stopwatch PlayerRoles.Voice.VoiceBubble::_sustainSw
+	IL_001c: ldarg.0
+	IL_001d: call System.Void UnityEngine.MonoBehaviour::.ctor()
+	IL_0022: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.Voice.VoiceBubble
+	System.Void <Awake>b__14_0(PlayerRoles.Voice.VoiceBubble/Bubble x)
+		System.Collections.Generic.Dictionary`2<VoiceChat.VoiceChatChannel,PlayerRoles.Voice.VoiceBubble/Bubble> _overrides = this._overrides
+
+		_overrides.Add()
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1803E31F6) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+

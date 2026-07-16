@@ -1,0 +1,692 @@
+Type: PlayerRoles.PlayerRoleLoader
+
+Method: System.Collections.Generic.Dictionary`2<PlayerRoles.RoleTypeId, PlayerRoles.PlayerRoleBase> get_AllRoles()
+
+Disassembly:
+	sub rsp,28h
+	cmp byte ptr [1826EA80Dh],0
+	jne short 000000018044428Fh
+	mov ecx,[1822D4EACh]
+	call 0000000180294190h
+	mov byte ptr [1826EA80Dh],1
+	mov rcx,[1827446F8h]
+	test byte ptr [rcx+12Fh],2
+	je short 00000001804442B4h
+	cmp dword ptr [rcx+0E0h],0
+	jne short 00000001804442B4h
+	call 000000018021A070h
+	mov rcx,[1827446F8h]
+	mov rax,[rcx+0B8h]
+	cmp byte ptr [rax],0
+	jne short 00000001804442E5h
+	test byte ptr [rcx+12Fh],2
+	je short 00000001804442D7h
+	cmp dword ptr [rcx+0E0h],0
+	jne short 00000001804442D7h
+	call 000000018021A070h
+	xor ecx,ecx
+	call 0000000180443EC0h
+	mov rcx,[1827446F8h]
+	test byte ptr [rcx+12Fh],2
+	je short 0000000180444313h
+	cmp dword ptr [rcx+0E0h],0
+	jne short 0000000180444313h
+	call 000000018021A070h
+	mov rax,[1827446F8h]
+	mov rax,[rax+0B8h]
+	mov rax,[rax+8]
+	add rsp,28h
+	ret
+	mov rax,[rcx+0B8h]
+	mov rax,[rax+8]
+	add rsp,28h
+	ret
+
+ISIL:
+	001 ShiftStack -40
+	002 Compare [0x1826EA80D], 0
+	003 JumpIfNotEqual {7}
+	004 Move rcx, [0x1822D4EAC]
+	005 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	006 Move [0x1826EA80D], 1
+	007 Move rcx, typeof(PlayerRoles.PlayerRoleLoader)
+	008 Compare [rcx+303], 2
+	009 JumpIfEqual {14}
+	010 Compare [rcx+224], 0
+	011 JumpIfNotEqual {14}
+	012 Call "il2cpp_runtime_class_init_export", rcx, rdx, r8, r9
+	013 Move rcx, typeof(PlayerRoles.PlayerRoleLoader)
+	014 Move rax, [rcx+184]
+	015 Compare [rax], 0
+	016 JumpIfNotEqual {25}
+	017 Compare [rcx+303], 2
+	018 JumpIfEqual {22}
+	019 Compare [rcx+224], 0
+	020 JumpIfNotEqual {22}
+	021 Call "il2cpp_runtime_class_init_export", rcx, rdx, r8, r9
+	022 Move rcx, 0
+	023 Call PlayerRoleLoader.LoadRoles, rcx
+	024 Move rcx, typeof(PlayerRoles.PlayerRoleLoader)
+	025 Compare [rcx+303], 2
+	026 JumpIfEqual {35}
+	027 Compare [rcx+224], 0
+	028 JumpIfNotEqual {35}
+	029 Call "il2cpp_runtime_class_init_export", rcx, rdx, r8, r9
+	030 Move rax, typeof(PlayerRoles.PlayerRoleLoader)
+	031 Move rax, [rax+184]
+	032 Move rax, [rax+8]
+	033 ShiftStack 40
+	034 Return rax
+	035 Move rax, [rcx+184]
+	036 Move rax, [rax+8]
+	037 ShiftStack 40
+	038 Return rax
+
+Method: System.Boolean TryGetRoleTemplate(PlayerRoles.RoleTypeId itemType, out T result)
+
+Disassembly:
+	push rbx
+	push rbp
+	push rsi
+	sub rsp,20h
+	cmp byte ptr [1826EE823h],0
+	mov rbp,r8
+	mov rsi,rdx
+	movzx ebx,cl
+	jne short 00000001809CEA0Ch
+	mov ecx,[1822D4E74h]
+	call 0000000180294190h
+	mov byte ptr [1826EE823h],1
+	mov rcx,[1827446F8h]
+	mov qword ptr [rsp+58h],0
+	test byte ptr [rcx+12Fh],2
+	je short 00000001809CEA33h
+	cmp dword ptr [rcx+0E0h],0
+	jne short 00000001809CEA33h
+	call 000000018021A070h
+	xor ecx,ecx
+	call 0000000180444270h
+	test rax,rax
+	je near ptr 00000001809CEAFBh
+	mov r9,[182743B58h]
+	lea r8,[rsp+58h]
+	movzx edx,bl
+	mov [rsp+40h],rdi
+	mov rcx,rax
+	call 00000001814780E0h
+	test al,al
+	je near ptr 00000001809CEAE9h
+	mov rax,[rbp+30h]
+	mov [rsp+48h],r14
+	mov r14,[rsp+58h]
+	mov rbx,[rax]
+	mov rdi,rbx
+	test byte ptr [rbx+12Eh],1
+	jne short 00000001809CEA93h
+	mov rcx,rbx
+	call 00000001802582A0h
+	mov rax,[rbp+30h]
+	mov rdi,[rax]
+	test byte ptr [rdi+12Eh],1
+	jne short 00000001809CEAA4h
+	mov rcx,rdi
+	call 00000001802582A0h
+	mov rdx,rdi
+	mov rcx,r14
+	call 0000000180293F00h
+	mov r14,[rsp+48h]
+	mov rdi,rax
+	test rax,rax
+	je short 00000001809CEAE9h
+	mov rdx,rbx
+	mov rcx,rax
+	call 0000000180293F00h
+	test rax,rax
+	je short 00000001809CEB01h
+	mov rdx,rax
+	mov [rsi],rax
+	mov rcx,rsi
+	call 0000000180293EF0h
+	mov rdi,[rsp+40h]
+	mov al,1
+	add rsp,20h
+	pop rsi
+	pop rbp
+	pop rbx
+	ret
+	mov rdi,[rsp+40h]
+	xor eax,eax
+	mov [rsi],rax
+	add rsp,20h
+	pop rsi
+	pop rbp
+	pop rbx
+	ret
+	call 0000000180294310h
+	int 3
+	mov rdx,rbx
+	mov rcx,rdi
+	call 0000000180293F30h
+
+ISIL:
+	001 ShiftStack -8
+	002 Move stack:0x0, rbx
+	003 ShiftStack -8
+	004 Move stack:0x0, rbp
+	005 ShiftStack -8
+	006 Move stack:0x0, rsi
+	007 ShiftStack -32
+	008 Compare [0x1826EE823], 0
+	009 Move rbp, r8
+	010 Move rsi, rdx
+	011 Move rbx, rcx
+	012 JumpIfNotEqual {16}
+	013 Move rcx, [0x1822D4E74]
+	014 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	015 Move [0x1826EE823], 1
+	016 Move rcx, typeof(PlayerRoles.PlayerRoleLoader)
+	017 Move stack:0x58, 0
+	018 Compare [rcx+303], 2
+	019 JumpIfEqual {23}
+	020 Compare [rcx+224], 0
+	021 JumpIfNotEqual {23}
+	022 Call "il2cpp_runtime_class_init_export", rcx, rdx, r8, r9
+	023 Move rcx, 0
+	024 Call PlayerRoleLoader.get_AllRoles, rcx
+	025 Compare rax, 0
+	026 JumpIfEqual {87}
+	027 Move r9, [0x182743B58]
+	028 LoadAddress r8, stack:0x58
+	029 Move rdx, rbx
+	030 Move stack:0x40, rdi
+	031 Move rcx, rax
+	032 Call 0x1814780E0, rcx, rdx, r8
+	033 Compare rax, 0
+	034 JumpIfEqual {76}
+	035 Move rax, [rbp+48]
+	036 Move stack:0x48, r14
+	037 Move r14, stack:0x58
+	038 Move rbx, [rax]
+	039 Move rdi, rbx
+	040 Compare [rbx+302], 1
+	041 JumpIfNotEqual {46}
+	042 Move rcx, rbx
+	043 Call 0x1802582A0, rcx, rdx, r8, r9
+	044 Move rax, [rbp+48]
+	045 Move rdi, [rax]
+	046 Compare [rdi+302], 1
+	047 JumpIfNotEqual {50}
+	048 Move rcx, rdi
+	049 Call 0x1802582A0, rcx, rdx, r8, r9
+	050 Move rdx, rdi
+	051 Move rcx, r14
+	052 Call 0x180293F00, rcx, rdx, r8, r9
+	053 Move r14, stack:0x48
+	054 Move rdi, rax
+	055 Compare rax, 0
+	056 JumpIfEqual {76}
+	057 Move rdx, rbx
+	058 Move rcx, rax
+	059 Call 0x180293F00, rcx, rdx, r8, r9
+	060 Compare rax, 0
+	061 JumpIfEqual {89}
+	062 Move rdx, rax
+	063 Move [rsi], rax
+	064 Move rcx, rsi
+	065 Call 0x180293EF0, rcx, rdx, r8, r9
+	066 Move rdi, stack:0x40
+	067 Move rax, 1
+	068 ShiftStack 32
+	069 Move rsi, stack:0x0
+	070 ShiftStack 8
+	071 Move rbp, stack:0x0
+	072 ShiftStack 8
+	073 Move rbx, stack:0x0
+	074 ShiftStack 8
+	075 Return rax
+	076 Move rdi, stack:0x40
+	077 Move rax, 0
+	078 Move [rsi], rax
+	079 ShiftStack 32
+	080 Move rsi, stack:0x0
+	081 ShiftStack 8
+	082 Move rbp, stack:0x0
+	083 ShiftStack 8
+	084 Move rbx, stack:0x0
+	085 ShiftStack 8
+	086 Return rax
+	087 Call 0x180294310, rcx, rdx, r8, r9
+	088 Interrupt 
+	089 Move rdx, rbx
+	090 Move rcx, rdi
+	091 Call 0x180293F30, rcx, rdx, r8, r9
+
+Method: System.Void LoadRoles()
+
+Disassembly:
+	push rbp
+	push rdi
+	push r14
+	sub rsp,30h
+	lea rbp,[rsp+20h]
+	mov [rbp+30h],rbx
+	mov [rbp+40h],rsi
+	cmp byte ptr [1826EA80Eh],0
+	jne short 0000000180443EF1h
+	mov ecx,[1822D4E6Ch]
+	call 0000000180294190h
+	mov byte ptr [1826EA80Eh],1
+	mov eax,[rsp]
+	sub rsp,10h
+	mov eax,[rsp]
+	mov rcx,[182722920h]
+	call 00000001802942D0h
+	mov rbx,rax
+	mov rdx,[182743F98h]
+	mov rcx,rax
+	call 000000018108A270h
+	mov rax,[1827446F8h]
+	test byte ptr [rax+12Fh],2
+	je short 0000000180443F41h
+	cmp dword ptr [rax+0E0h],0
+	jne short 0000000180443F41h
+	mov rcx,rax
+	call 000000018021A070h
+	mov rax,[1827446F8h]
+	mov rcx,[rax+0B8h]
+	add rcx,8
+	mov [rcx],rbx
+	mov rdx,rbx
+	call 0000000180293EF0h
+	mov rdx,[182707D50h]
+	mov rcx,[1827152E8h]
+	call 00000001808025B0h
+	mov rsi,rax
+	mov rcx,[1827228E8h]
+	test byte ptr [rcx+12Fh],2
+	je short 0000000180443F92h
+	cmp dword ptr [rcx+0E0h],0
+	jne short 0000000180443F92h
+	call 000000018021A070h
+	mov rcx,[1827228E8h]
+	mov rax,[rcx+0B8h]
+	mov rbx,[rax+8]
+	test rbx,rbx
+	jne short 000000018044400Eh
+	test byte ptr [rcx+12Fh],2
+	je short 0000000180443FBFh
+	cmp [rcx+0E0h],ebx
+	jne short 0000000180443FBFh
+	call 000000018021A070h
+	mov rcx,[1827228E8h]
+	mov rax,[rcx+0B8h]
+	mov rdi,[rax]
+	mov rcx,[1827228B0h]
+	call 00000001802942D0h
+	mov rbx,rax
+	mov r9,[182711BE0h]
+	mov r8,[18270D3C8h]
+	mov rdx,rdi
+	mov rcx,rax
+	call 0000000180368A70h
+	mov rax,[1827228E8h]
+	mov rcx,[rax+0B8h]
+	add rcx,8
+	mov [rcx],rbx
+	mov rdx,rbx
+	call 0000000180293EF0h
+	mov r8,[182769DA0h]
+	mov rdx,rbx
+	mov rcx,rsi
+	call 0000000180AC8680h
+	xor ebx,ebx
+	test rsi,rsi
+	je near ptr 00000001804441F3h
+	cmp ebx,[rsi+18h]
+	jge near ptr 00000001804440DBh
+	movsxd rdi,ebx
+	jae near ptr 00000001804441D4h
+	mov rdi,[rsi+rdi*8+20h]
+	mov rax,[1827446F8h]
+	test byte ptr [rax+12Fh],2
+	je short 000000018044406Ah
+	cmp dword ptr [rax+0E0h],0
+	jne short 000000018044406Ah
+	mov rcx,rax
+	call 000000018021A070h
+	mov rax,[1827446F8h]
+	mov rax,[rax+0B8h]
+	mov r14,[rax+8]
+	test rdi,rdi
+	je near ptr 00000001804441EEh
+	mov rax,[rdi]
+	mov rdx,[rax+178h]
+	mov rcx,rdi
+	call qword ptr [rax+170h]
+	test r14,r14
+	je near ptr 00000001804441E9h
+	mov r9,[182743F58h]
+	mov r8,rdi
+	movzx edx,al
+	mov rcx,r14
+	call 000000018147E980h
+	mov rax,[18273B018h]
+	mov rcx,[rax+0B8h]
+	mov rcx,[rcx]
+	test rcx,rcx
+	je near ptr 00000001804441E4h
+	xor r8d,r8d
+	mov rdx,rdi
+	call 0000000181B2F7C0h
+	inc ebx
+	jmp near ptr 0000000180444022h
+	mov rax,[1827446F8h]
+	test byte ptr [rax+12Fh],2
+	je short 0000000180444103h
+	cmp dword ptr [rax+0E0h],0
+	jne short 0000000180444103h
+	mov rcx,rax
+	call 000000018021A070h
+	mov rax,[1827446F8h]
+	mov rax,[rax+0B8h]
+	mov byte ptr [rax],1
+	mov rax,[1827446F8h]
+	mov rcx,[rax+0B8h]
+	mov rcx,[rcx+10h]
+	test rcx,rcx
+	je short 000000018044412Ch
+	xor edx,edx
+	call 0000000180D9A080h
+	nop
+	jmp near ptr 00000001804441BDh
+	mov rcx,[rbp+38h]
+	test rcx,rcx
+	je near ptr 00000001804441CEh
+	mov rax,[rcx]
+	mov rdx,[rax+188h]
+	call qword ptr [rax+180h]
+	xor r8d,r8d
+	mov rdx,rax
+	mov rcx,[1827152A8h]
+	call 00000001811169D0h
+	mov rbx,rax
+	mov rcx,[182701D10h]
+	test byte ptr [rcx+12Fh],2
+	je short 0000000180444181h
+	cmp dword ptr [rcx+0E0h],0
+	jne short 0000000180444181h
+	call 000000018021A070h
+	xor edx,edx
+	mov rcx,rbx
+	call 0000000181044800h
+	mov rax,[1827446F8h]
+	test byte ptr [rax+12Fh],2
+	je short 00000001804441B3h
+	cmp dword ptr [rax+0E0h],0
+	jne short 00000001804441B3h
+	mov rcx,rax
+	call 000000018021A070h
+	mov rax,[1827446F8h]
+	mov rax,[rax+0B8h]
+	mov byte ptr [rax],0
+	mov rbx,[rbp+30h]
+	mov rsi,[rbp+40h]
+	lea rsp,[rbp+10h]
+	pop r14
+	pop rdi
+	pop rbp
+	ret
+	call 0000000180294310h
+	nop
+	call 0000000180294110h
+	nop
+	xor edx,edx
+	mov rcx,rax
+	call 00000001802942E0h
+	call 0000000180294310h
+	call 0000000180294310h
+	call 0000000180294310h
+	call 0000000180294310h
+
+ISIL:
+	001 ShiftStack -8
+	002 Move stack:0x0, rbp
+	003 ShiftStack -8
+	004 Move stack:0x0, rdi
+	005 ShiftStack -8
+	006 Move stack:0x0, r14
+	007 ShiftStack -48
+	008 LoadAddress rbp, stack:0x20
+	009 Move [rbp+48], rbx
+	010 Move [rbp+64], rsi
+	011 Compare [0x1826EA80E], 0
+	012 JumpIfNotEqual {16}
+	013 Move rcx, [0x1822D4E6C]
+	014 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	015 Move [0x1826EA80E], 1
+	016 Move rax, stack:0x0
+	017 ShiftStack -16
+	018 Move rax, stack:0x0
+	019 Move rcx, typeof(System.Collections.Generic.Dictionary`2<RoleTypeId, PlayerRoleBase>)
+	020 Call "il2cpp_codegen_object_new", rcx, rdx, r8, r9
+	021 Move rbx, rax
+	022 Move rdx, [0x182743F98]
+	023 Move rcx, rax
+	024 Call 0x18108A270, rcx, rdx
+	025 Move rax, typeof(PlayerRoles.PlayerRoleLoader)
+	026 Compare [rax+303], 2
+	027 JumpIfEqual {33}
+	028 Compare [rax+224], 0
+	029 JumpIfNotEqual {33}
+	030 Move rcx, rax
+	031 Call "il2cpp_runtime_class_init_export", rcx, rdx, r8, r9
+	032 Move rax, typeof(PlayerRoles.PlayerRoleLoader)
+	033 Move rcx, [rax+184]
+	034 Add rcx, rcx, 8
+	035 Move [rcx], rbx
+	036 Move rdx, rbx
+	037 Call 0x180293EF0, rcx, rdx, r8, r9
+	038 Move rdx, [0x182707D50]
+	039 Move rcx, "Defined Roles"
+	040 Call 0x1808025B0, rcx, rdx
+	041 Move rsi, rax
+	042 Move rcx, typeof(PlayerRoles.PlayerRoleLoader+<>c)
+	043 Compare [rcx+303], 2
+	044 JumpIfEqual {49}
+	045 Compare [rcx+224], 0
+	046 JumpIfNotEqual {49}
+	047 Call "il2cpp_runtime_class_init_export", rcx, rdx, r8, r9
+	048 Move rcx, typeof(PlayerRoles.PlayerRoleLoader+<>c)
+	049 Move rax, [rcx+184]
+	050 Move rbx, [rax+8]
+	051 Compare rbx, 0
+	052 JumpIfNotEqual {75}
+	053 Compare [rcx+303], 2
+	054 JumpIfEqual {59}
+	055 Compare [rcx+224], rbx
+	056 JumpIfNotEqual {59}
+	057 Call "il2cpp_runtime_class_init_export", rcx, rdx, r8, r9
+	058 Move rcx, typeof(PlayerRoles.PlayerRoleLoader+<>c)
+	059 Move rax, [rcx+184]
+	060 Move rdi, [rax]
+	061 Move rcx, typeof(System.Comparison`1<PlayerRoleBase>)
+	062 Call "il2cpp_codegen_object_new", rcx, rdx, r8, r9
+	063 Move rbx, rax
+	064 Move r9, [0x182711BE0]
+	065 Move r8, [0x18270D3C8]
+	066 Move rdx, rdi
+	067 Move rcx, rax
+	068 Call 0x180368A70, rcx, rdx, r8
+	069 Move rax, typeof(PlayerRoles.PlayerRoleLoader+<>c)
+	070 Move rcx, [rax+184]
+	071 Add rcx, rcx, 8
+	072 Move [rcx], rbx
+	073 Move rdx, rbx
+	074 Call 0x180293EF0, rcx, rdx, r8, r9
+	075 Move r8, [0x182769DA0]
+	076 Move rdx, rbx
+	077 Move rcx, rsi
+	078 Call 0x180AC8680, rcx, rdx, r8
+	079 Move rbx, 0
+	080 Compare rsi, 0
+	081 JumpIfEqual {189}
+	082 Compare rbx, [rsi+24]
+	083 JumpIfGreaterOrEqual {120}
+	084 Move rdi, rbx
+	085 JumpIfGreaterOrEqual {181}
+	086 Move rdi, [rsi+32+rdi*8]
+	087 Move rax, typeof(PlayerRoles.PlayerRoleLoader)
+	088 Compare [rax+303], 2
+	089 JumpIfEqual {95}
+	090 Compare [rax+224], 0
+	091 JumpIfNotEqual {95}
+	092 Move rcx, rax
+	093 Call "il2cpp_runtime_class_init_export", rcx, rdx, r8, r9
+	094 Move rax, typeof(PlayerRoles.PlayerRoleLoader)
+	095 Move rax, [rax+184]
+	096 Move r14, [rax+8]
+	097 Compare rdi, 0
+	098 JumpIfEqual {188}
+	099 Move rax, [rdi]
+	100 Move rdx, [rax+376]
+	101 Move rcx, rdi
+	102 Call 0, rcx, rdx, r8, r9, stack:0x0, stack:0x8, stack:0x10, stack:0x18, stack:0x20, stack:0x28, stack:0x30, stack:0x38, stack:0x40
+	103 Compare r14, 0
+	104 JumpIfEqual {187}
+	105 Move r9, [0x182743F58]
+	106 Move r8, rdi
+	107 Move rdx, rax
+	108 Move rcx, r14
+	109 Call 0x18147E980, rcx, rdx, r8
+	110 Move rax, typeof(GameObjectPools.PoolManager)
+	111 Move rcx, [rax+184]
+	112 Move rcx, [rcx]
+	113 Compare rcx, 0
+	114 JumpIfEqual {186}
+	115 Move r8, 0
+	116 Move rdx, rdi
+	117 Call PoolManager.TryAddPool, rcx, rdx
+	118 Add rbx, rbx, 1
+	119 Goto {80}
+	120 Move rax, typeof(PlayerRoles.PlayerRoleLoader)
+	121 Compare [rax+303], 2
+	122 JumpIfEqual {128}
+	123 Compare [rax+224], 0
+	124 JumpIfNotEqual {128}
+	125 Move rcx, rax
+	126 Call "il2cpp_runtime_class_init_export", rcx, rdx, r8, r9
+	127 Move rax, typeof(PlayerRoles.PlayerRoleLoader)
+	128 Move rax, [rax+184]
+	129 Move [rax], 1
+	130 Move rax, typeof(PlayerRoles.PlayerRoleLoader)
+	131 Move rcx, [rax+184]
+	132 Move rcx, [rcx+16]
+	133 Compare rcx, 0
+	134 JumpIfEqual {138}
+	135 Move rdx, 0
+	136 Call 0x180D9A080, rcx, rdx
+	137 Nop 
+	138 Goto {169}
+	139 Move rcx, [rbp+56]
+	140 Compare rcx, 0
+	141 JumpIfEqual {179}
+	142 Move rax, [rcx]
+	143 Move rdx, [rax+392]
+	144 Call 0, rcx, rdx, r8, r9, stack:0x0, stack:0x8, stack:0x10, stack:0x18, stack:0x20, stack:0x28, stack:0x30, stack:0x38, stack:0x40
+	145 Move r8, 0
+	146 Move rdx, rax
+	147 Move rcx, "Error while loading roles from the resources folder: "
+	148 Call String.Concat, rcx, rdx, r8
+	149 Move rbx, rax
+	150 Move rcx, typeof(UnityEngine.Debug)
+	151 Compare [rcx+303], 2
+	152 JumpIfEqual {156}
+	153 Compare [rcx+224], 0
+	154 JumpIfNotEqual {156}
+	155 Call "il2cpp_runtime_class_init_export", rcx, rdx, r8, r9
+	156 Move rdx, 0
+	157 Move rcx, rbx
+	158 Call Debug.LogError, rcx, rdx
+	159 Move rax, typeof(PlayerRoles.PlayerRoleLoader)
+	160 Compare [rax+303], 2
+	161 JumpIfEqual {167}
+	162 Compare [rax+224], 0
+	163 JumpIfNotEqual {167}
+	164 Move rcx, rax
+	165 Call "il2cpp_runtime_class_init_export", rcx, rdx, r8, r9
+	166 Move rax, typeof(PlayerRoles.PlayerRoleLoader)
+	167 Move rax, [rax+184]
+	168 Move [rax], 0
+	169 Move rbx, [rbp+48]
+	170 Move rsi, [rbp+64]
+	171 LoadAddress rsp, [rbp+16]
+	172 Move r14, stack:0x0
+	173 ShiftStack 8
+	174 Move rdi, stack:0x0
+	175 ShiftStack 8
+	176 Move rbp, stack:0x0
+	177 ShiftStack 8
+	178 Return 
+	179 Call 0x180294310, rcx, rdx, r8, r9
+	180 Nop 
+	181 Call 0x180294110, rcx, rdx, r8, r9
+	182 Nop 
+	183 Move rdx, 0
+	184 Move rcx, rax
+	185 Call 0x1802942E0, rcx, rdx, r8, r9
+	186 Call 0x180294310, rcx, rdx, r8, r9
+	187 Call 0x180294310, rcx, rdx, r8, r9
+	188 Call 0x180294310, rcx, rdx, r8, r9
+	189 Call 0x180294310, rcx, rdx, r8, r9
+
+Method: System.Void .cctor()
+
+Disassembly:
+	push rbx
+	sub rsp,20h
+	cmp byte ptr [1826EA80Fh],0
+	jne short 0000000180444221h
+	mov ecx,[1822D4E98h]
+	call 0000000180294190h
+	mov byte ptr [1826EA80Fh],1
+	mov rcx,[182722920h]
+	call 00000001802942D0h
+	mov rdx,[182743F98h]
+	mov rcx,rax
+	mov rbx,rax
+	call 000000018108A270h
+	mov rcx,[1827446F8h]
+	mov rdx,rbx
+	mov rcx,[rcx+0B8h]
+	add rcx,8
+	mov [rcx],rbx
+	add rsp,20h
+	pop rbx
+	jmp near ptr 0000000180293EF0h
+
+ISIL:
+	001 ShiftStack -8
+	002 Move stack:0x0, rbx
+	003 ShiftStack -32
+	004 Compare [0x1826EA80F], 0
+	005 JumpIfNotEqual {9}
+	006 Move rcx, [0x1822D4E98]
+	007 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	008 Move [0x1826EA80F], 1
+	009 Move rcx, typeof(System.Collections.Generic.Dictionary`2<RoleTypeId, PlayerRoleBase>)
+	010 Call "il2cpp_codegen_object_new", rcx, rdx, r8, r9
+	011 Move rdx, [0x182743F98]
+	012 Move rcx, rax
+	013 Move rbx, rax
+	014 Call 0x18108A270, rcx, rdx
+	015 Move rcx, typeof(PlayerRoles.PlayerRoleLoader)
+	016 Move rdx, rbx
+	017 Move rcx, [rcx+184]
+	018 Add rcx, rcx, 8
+	019 Move [rcx], rbx
+	020 ShiftStack 32
+	021 Move rbx, stack:0x0
+	022 ShiftStack 8
+	023 Call 0x180293EF0, rcx, rdx, r8, r9
+	024 Return 
+

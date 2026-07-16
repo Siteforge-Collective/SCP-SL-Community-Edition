@@ -1,0 +1,605 @@
+Type: OperationalGuide
+
+
+	Generated Pseudocode:
+
+	Declaring Type: OperationalGuide.OperationalGuide
+	System.Void ButtonChangeTab(System.Int32 index)
+		OperationalGuide.OperationalTabController[] tabs = this.Tabs
+		ulong local3 = 0
+
+		while (local3 < tabs.Length)
+		    OperationalGuide.OperationalTabController operationalTabController = tabs[local3]
+
+		    UnityEngine.GameObject gameObject = operationalTabController.gameObject
+		    System.Boolean local7 = local3 == index
+
+		    gameObject.SetActive(local7) //(Boolean value)
+
+		    if (local3 == index)
+		        OperationalGuide.OperationalTabController[] tabs2 = this.Tabs
+		        OperationalGuide.OperationalTabController operationalTabController2 = tabs2[local3]
+
+		        operationalTabController2.EnablePage()
+		    endif
+            
+		    OperationalGuide.OperationalTabController[] tabs3 = this.Tabs
+		    local3 += 1
+		endwhile
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld OperationalGuide.OperationalTabController[] OperationalGuide.OperationalGuide::Tabs
+	IL_0006: stloc.0
+	IL_0007: ldc.i4.0
+	IL_0008: stloc.1
+	IL_0009: ldloc.1
+	IL_000a: ldloc.0
+	IL_000b: call System.Int32 System.Array::get_Length()
+	IL_0010: bge.s IL_004c
+	IL_0012: ldloc.0
+	IL_0013: ldloc.1
+	IL_0014: ldelem.any OperationalGuide.OperationalTabController
+	IL_0019: call UnityEngine.GameObject UnityEngine.Component::get_gameObject()
+	IL_001e: stloc.2
+	IL_001f: ldloc.1
+	IL_0020: ldarg.1
+	IL_0021: ceq
+	IL_0023: stloc.3
+	IL_0024: ldloc.2
+	IL_0025: ldloc.3
+	IL_0026: call System.Void UnityEngine.GameObject::SetActive(System.Boolean)
+	IL_002b: ldloc.1
+	IL_002c: ldarg.1
+	IL_002d: bne.un.s IL_0040
+	IL_002f: ldarg.0
+	IL_0030: ldfld OperationalGuide.OperationalTabController[] OperationalGuide.OperationalGuide::Tabs
+	IL_0035: ldloc.1
+	IL_0036: ldelem.any OperationalGuide.OperationalTabController
+	IL_003b: call System.Void OperationalGuide.OperationalTabController::EnablePage()
+	IL_0040: ldarg.0
+	IL_0041: ldfld OperationalGuide.OperationalTabController[] OperationalGuide.OperationalGuide::Tabs
+	IL_0046: stloc.s V_4
+	IL_0048: ldloc.1
+	IL_0049: ldc.i4.1
+	IL_004a: add
+	IL_004b: stloc.1
+	IL_004c: ret
+	IL_004d: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0052: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: OperationalGuide.OperationalGuide
+	static System.Void ChangeZoom(UnityEngine.Transform transform, System.Boolean increase, System.Boolean panImage)
+
+		UnityEngine.Vector3 localScale = .localScale
+
+		if (panImage != False)
+
+		    UnityEngine.Vector3 localPosition = .localPosition
+
+		    System.Single axis = UnityEngine.Input.GetAxis("Mouse X") //(String axisName)
+		    ulong local12 = 0
+
+		    System.Single axis2 = UnityEngine.Input.GetAxis("Mouse Y") //(String axisName)
+		    System.Single local14 = axis2 * 50
+		    System.Single local17 = axis * 50
+
+		    UnityEngine.Vector3 vector3 = UnityEngine.Vector3.op_Addition()
+		    System.Single single = vector3.z
+
+		    transform.localPosition = local12
+		    return
+		endif
+        
+
+		if (increase != False)
+            goto INSN_181B6B7BA
+        endif
+
+		INSN_181B6B7BA:
+		System.Single minZoom = OperationalGuide.OperationalGuide.MinZoom
+
+		if (minZoom <= )
+
+		    UnityEngine.Vector3 localScale2 = .localScale
+		      = .
+
+		    if (increase == False)
+                goto INSN_181B6B852
+            endif
+
+		    INSN_181B6B852:
+
+		    UnityEngine.Vector3 vector32 = UnityEngine.Vector3.op_Multiply()
+
+		    UnityEngine.Vector3 vector33 = UnityEngine.Vector3.op_Addition()
+
+		    transform.set_localScale()
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181B6B664) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: OperationalGuide.OperationalGuide
+	System.Void Update()
+		System.Int32 27 = 27
+
+		System.Boolean keyDownInt = UnityEngine.Input.GetKeyDownInt(27) //(KeyCode key)
+
+		if (keyDownInt != False)
+
+		    this.BackCurrentPage()
+		endif
+        
+
+		System.Boolean keyDownInt2 = UnityEngine.Input.GetKeyDownInt(276) //(KeyCode key)
+
+		if (keyDownInt2 == False)
+            goto INSN_181B6BC63
+        endif
+
+		OperationalGuide.OperationalTabController activeTab = this.GetActiveTab()
+		System.Int32 -1 = 4294967295
+
+		activeTab.IncrementIndex(-1) //(Int32 index)
+
+		INSN_181B6BC63:
+
+		System.Boolean keyDownInt3 = UnityEngine.Input.GetKeyDownInt(275) //(KeyCode key)
+
+		if (keyDownInt3 == False)
+            goto INSN_181B6BC95
+        endif
+
+		OperationalGuide.OperationalTabController activeTab2 = this.GetActiveTab()
+		System.Int32 1 = 1
+
+		activeTab2.IncrementIndex(1) //(Int32 index)
+
+		INSN_181B6BC95:
+		UnityEngine.GameObject fullscreenPannable = this.FullscreenPannable
+
+		System.Boolean activeSelf = fullscreenPannable.activeSelf
+
+		if (activeSelf == False)
+            goto INSN_181B6BD4F
+        endif
+		System.Int32 2 = 2
+
+		System.Boolean mouseButton = UnityEngine.Input.GetMouseButton(2) //(Int32 button)
+		ulong local19 = 0
+
+		if (mouseButton != False)
+            goto INSN_181B6BCD7
+        endif
+
+		System.Single axis = UnityEngine.Input.GetAxis("Mouse ScrollWheel") //(String axisName)
+
+		if (mouseButton == False)
+            goto INSN_181B6BD4F
+        endif
+
+		INSN_181B6BCD7:
+		UnityEngine.UI.RawImage fullscreenPannableImage = this.FullscreenPannableImage
+
+		UnityEngine.Transform transform = fullscreenPannableImage.transform
+
+		System.Single axis2 = UnityEngine.Input.GetAxis("Mouse ScrollWheel") //(String axisName)
+		ulong local27 = 0
+		System.Int32 2 = 2
+
+		System.Boolean mouseButton2 = UnityEngine.Input.GetMouseButton(2) //(Int32 button)
+
+		OperationalGuide.OperationalGuide.ChangeZoom(transform, local27, mouseButton2) //(Transform transform, Boolean increase, Boolean panImage)
+
+		INSN_181B6BD4F:
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldc.i4.s 27
+	IL_0002: call System.Boolean UnityEngine.Input::GetKeyDownInt(UnityEngine.KeyCode)
+	IL_0007: ldc.i4.0
+	IL_0008: beq.s IL_0010
+	IL_000a: ldarg.0
+	IL_000b: call System.Void OperationalGuide.OperationalGuide::BackCurrentPage()
+	IL_0010: ldc.i4 276
+	IL_0015: conv.u4
+	IL_0016: call System.Boolean UnityEngine.Input::GetKeyDownInt(UnityEngine.KeyCode)
+	IL_001b: ldc.i4.0
+	IL_001c: beq.s IL_002a
+	IL_001e: ldarg.0
+	IL_001f: call OperationalGuide.OperationalTabController OperationalGuide.OperationalGuide::GetActiveTab()
+	IL_0024: ldc.i4.m1
+	IL_0025: call System.Void OperationalGuide.OperationalTabController::IncrementIndex(System.Int32)
+	IL_002a: ldc.i4 275
+	IL_002f: conv.u4
+	IL_0030: call System.Boolean UnityEngine.Input::GetKeyDownInt(UnityEngine.KeyCode)
+	IL_0035: ldc.i4.0
+	IL_0036: beq.s IL_0044
+	IL_0038: ldarg.0
+	IL_0039: call OperationalGuide.OperationalTabController OperationalGuide.OperationalGuide::GetActiveTab()
+	IL_003e: ldc.i4.1
+	IL_003f: call System.Void OperationalGuide.OperationalTabController::IncrementIndex(System.Int32)
+	IL_0044: ldarg.0
+	IL_0045: ldfld UnityEngine.GameObject OperationalGuide.OperationalGuide::FullscreenPannable
+	IL_004a: call System.Boolean UnityEngine.GameObject::get_activeSelf()
+	IL_004f: ldc.i4.0
+	IL_0050: beq.s IL_009b
+	IL_0052: ldc.i4.2
+	IL_0053: call System.Boolean UnityEngine.Input::GetMouseButton(System.Int32)
+	IL_0058: stloc.0
+	IL_0059: ldc.i4.0
+	IL_005a: stloc.1
+	IL_005b: ldloc.0
+	IL_005c: ldc.i4.0
+	IL_005d: bne.un.s IL_006e
+	IL_005f: ldstr "Mouse ScrollWheel"
+	IL_0064: call System.Single UnityEngine.Input::GetAxis(System.String)
+	IL_0069: stloc.2
+	IL_006a: ldloc.0
+	IL_006b: ldc.i4.0
+	IL_006c: beq.s IL_009b
+	IL_006e: ldarg.0
+	IL_006f: ldfld UnityEngine.UI.RawImage OperationalGuide.OperationalGuide::FullscreenPannableImage
+	IL_0074: call UnityEngine.Transform UnityEngine.Component::get_transform()
+	IL_0079: stloc.3
+	IL_007a: ldstr "Mouse ScrollWheel"
+	IL_007f: call System.Single UnityEngine.Input::GetAxis(System.String)
+	IL_0084: stloc.s V_4
+	IL_0086: ldc.i4.0
+	IL_0087: stloc.s V_5
+	IL_0089: ldc.i4.2
+	IL_008a: call System.Boolean UnityEngine.Input::GetMouseButton(System.Int32)
+	IL_008f: stloc.s V_6
+	IL_0091: ldloc.3
+	IL_0092: ldloc.s V_5
+	IL_0094: ldloc.s V_6
+	IL_0096: call System.Void OperationalGuide.OperationalGuide::ChangeZoom(UnityEngine.Transform,System.Boolean,System.Boolean)
+	IL_009b: ret
+	IL_009c: newobj System.Void System.NullReferenceException::.ctor()
+	IL_00a1: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: OperationalGuide.OperationalGuide
+	OperationalGuide.OperationalTabController GetActiveTab()
+		OperationalGuide.OperationalTabController[] tabs = this.Tabs
+		ulong local2 = 0
+
+		while (local2 < tabs.Length)
+		    OperationalGuide.OperationalTabController operationalTabController = tabs[local2]
+
+		    UnityEngine.GameObject gameObject = operationalTabController.gameObject
+
+		    System.Boolean activeSelf = gameObject.activeSelf
+		    OperationalGuide.OperationalTabController[] tabs2 = this.Tabs
+
+		    if (activeSelf == False)
+		        local2 += 1
+		    endwhile
+            
+		    goto INSN_181B6B97C
+            
+		    OperationalGuide.OperationalTabController operationalTabController2 = tabs2[local2]
+		    return operationalTabController2
+
+		    INSN_181B6B97C:
+		    ulong local10 = 0
+		    return local10
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x181B6B98D) is corrupt (Return value has a type of System.Int32, expecting an object of type OperationalGuide.OperationalTabController) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: OperationalGuide.OperationalGuide
+	System.Void BackCurrentPage()
+		UnityEngine.GameObject fullscreenPannable = this.FullscreenPannable
+
+		System.Boolean activeSelf = fullscreenPannable.activeSelf
+
+		if (activeSelf == False)
+		    OperationalGuide.OperationalTabController[] tabs = this.Tabs
+		    ulong local5 = 0
+		    ulong local6 = 0
+
+		    while (local6 < tabs.Length)
+		        OperationalGuide.OperationalTabController local7 = tabs[]
+
+		        UnityEngine.GameObject gameObject = local7.gameObject
+
+		        System.Boolean activeSelf2 = gameObject.activeSelf
+
+		        if (activeSelf2 != False)
+		            OperationalGuide.OperationalTabController[] tabs2 = this.Tabs
+		            OperationalGuide.OperationalTabController local13 = tabs2[]
+		            OperationalGuide.OperationalPage[] pages = local13.Pages
+		            ulong local15 = 0
+
+		            if (local15 < pages.Length)
+		                OperationalGuide.OperationalPage operationalPage = pages[local15]
+
+		                UnityEngine.GameObject gameObject2 = operationalPage.gameObject
+
+		                System.Boolean activeSelf3 = gameObject2.activeSelf
+
+		                if (activeSelf3 != False)
+
+		                    operationalPage.ForceTurnOff()
+		                    OperationalGuide.OperationalTabController[] tabs3 = this.Tabs
+		                    OperationalGuide.OperationalTabController local23 = tabs3[]
+
+		                    UnityEngine.GameObject gameObject3 = local23.gameObject
+		                    ulong local27 = 0
+
+		                    gameObject3.SetActive(local27) //(Boolean value)
+		                endif
+                        
+		                local15 += 1
+		            endwhile
+                    
+		            goto INSN_181B6B4CD
+                    
+		            OperationalGuide.OperationalTabController[] tabs4 = this.Tabs
+		            local5 += 1
+		            local6 = local5
+		        endwhile
+                
+		    else
+		        UnityEngine.GameObject fullscreenPannable2 = this.FullscreenPannable
+		    endif
+            
+		    ulong local32 = 0
+
+		    fullscreenPannable2.SetActive(local32) //(Boolean value)
+		    return
+
+		    INSN_181B6B4CD:
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Don't know how to write IL for Cpp2IL.Core.Analysis.Actions.x86.Important.RegOffsetArrayValueReadRegToRegAction. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: OperationalGuide.OperationalGuide
+	System.Void ToggleCurrentPage()
+		OperationalGuide.OperationalTabController[] tabs = this.Tabs
+		ulong local2 = 0
+		ulong local3 = 0
+
+		while (local3 < tabs.Length)
+		    OperationalGuide.OperationalTabController operationalTabController = tabs[local2]
+
+		    UnityEngine.GameObject gameObject = operationalTabController.gameObject
+
+		    System.Boolean activeSelf = gameObject.activeSelf
+
+		    if (activeSelf != False)
+		        OperationalGuide.OperationalTabController[] tabs2 = this.Tabs
+		        OperationalGuide.OperationalTabController operationalTabController2 = tabs2[local2]
+		        OperationalGuide.OperationalPage[] pages = operationalTabController2.Pages
+		        ulong local12 = 0
+
+		        if (local12 < pages.Length)
+		            OperationalGuide.OperationalPage operationalPage = pages[local12]
+		            UnityEngine.GameObject descriptionPage = operationalPage.DescriptionPage
+		            ulong local16 = 0
+
+		            System.Boolean boolean = UnityEngine.Object.op_Equality(descriptionPage, local16) //(Object x, Object y)
+
+		            if (boolean == False)
+
+		                UnityEngine.GameObject gameObject2 = operationalPage.gameObject
+
+		                System.Boolean activeSelf2 = gameObject2.activeSelf
+
+		                if (activeSelf2 != False)
+
+		                    System.String string = operationalPage.ToString()
+		                endif
+                        
+		                local12 += 1
+		            endwhile
+                    
+		            goto INSN_181B6BBB7
+                    
+		            OperationalGuide.OperationalTabController[] tabs3 = this.Tabs
+		            local2 += 1
+		            local3 = local2
+		        endwhile
+                
+		        return
+
+		        INSN_181B6BBB7:
+		        throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld OperationalGuide.OperationalTabController[] OperationalGuide.OperationalGuide::Tabs
+	IL_0006: stloc.0
+	IL_0007: ldc.i4.0
+	IL_0008: stloc.1
+	IL_0009: ldc.i4.0
+	IL_000a: stloc.2
+	IL_000b: ldloc.2
+	IL_000c: ldloc.0
+	IL_000d: call System.Int32 System.Array::get_Length()
+	IL_0012: bge IL_0098
+	IL_0017: ldloc.0
+	IL_0018: ldloc.1
+	IL_0019: ldelem.any OperationalGuide.OperationalTabController
+	IL_001e: call UnityEngine.GameObject UnityEngine.Component::get_gameObject()
+	IL_0023: call System.Boolean UnityEngine.GameObject::get_activeSelf()
+	IL_0028: ldc.i4.0
+	IL_0029: beq.s IL_008a
+	IL_002b: ldarg.0
+	IL_002c: ldfld OperationalGuide.OperationalTabController[] OperationalGuide.OperationalGuide::Tabs
+	IL_0031: ldloc.1
+	IL_0032: ldelem.any OperationalGuide.OperationalTabController
+	IL_0037: ldfld OperationalGuide.OperationalPage[] OperationalGuide.OperationalTabController::Pages
+	IL_003c: stloc.3
+	IL_003d: ldc.i4.0
+	IL_003e: stloc.s V_4
+	IL_0040: ldloc.s V_4
+	IL_0042: ldloc.3
+	IL_0043: call System.Int32 System.Array::get_Length()
+	IL_0048: bge.s IL_008a
+	IL_004a: ldloc.3
+	IL_004b: ldloc.s V_4
+	IL_004d: ldelem.any OperationalGuide.OperationalPage
+	IL_0052: stloc.s V_5
+	IL_0054: ldloc.s V_5
+	IL_0056: ldfld UnityEngine.GameObject OperationalGuide.OperationalPage::DescriptionPage
+	IL_005b: stloc.s V_6
+	IL_005d: ldc.i4.0
+	IL_005e: stloc.s V_7
+	IL_0060: ldloc.s V_6
+	IL_0062: ldloc.s V_7
+	IL_0064: call System.Boolean UnityEngine.Object::op_Equality(UnityEngine.Object,UnityEngine.Object)
+	IL_0069: ldc.i4.0
+	IL_006a: bne.un.s IL_0084
+	IL_006c: ldloc.s V_5
+	IL_006e: call UnityEngine.GameObject UnityEngine.Component::get_gameObject()
+	IL_0073: call System.Boolean UnityEngine.GameObject::get_activeSelf()
+	IL_0078: ldc.i4.0
+	IL_0079: beq.s IL_0084
+	IL_007b: ldloc.s V_5
+	IL_007d: callvirt System.String UnityEngine.Object::ToString()
+	IL_0082: stloc.s V_8
+	IL_0084: ldloc.s V_4
+	IL_0086: ldc.i4.1
+	IL_0087: add
+	IL_0088: stloc.s V_4
+	IL_008a: ldarg.0
+	IL_008b: ldfld OperationalGuide.OperationalTabController[] OperationalGuide.OperationalGuide::Tabs
+	IL_0090: stloc.s V_9
+	IL_0092: ldloc.1
+	IL_0093: ldc.i4.1
+	IL_0094: add
+	IL_0095: stloc.1
+	IL_0096: ldloc.1
+	IL_0097: stloc.2
+	IL_0098: ret
+	IL_0099: newobj System.Void System.NullReferenceException::.ctor()
+	IL_009e: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: OperationalGuide.OperationalGuide
+	System.Void Awake()
+		 += 24
+		OperationalGuide.OperationalGuide.MinZoom = this
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x181B6B316) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: OperationalGuide.OperationalGuide
+	System.Void OnEnable()
+		UnityEngine.GameObject camera = this.Camera
+
+		camera.SetActive(True) //(Boolean value)
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld UnityEngine.GameObject OperationalGuide.OperationalGuide::Camera
+	IL_0006: ldc.i4.1
+	IL_0007: call System.Void UnityEngine.GameObject::SetActive(System.Boolean)
+	IL_000c: ret
+	IL_000d: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0012: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: OperationalGuide.OperationalGuide
+	System.Void OnDisable()
+		UnityEngine.GameObject camera = this.Camera
+		ulong local3 = 0
+
+		camera.SetActive(local3) //(Boolean value)
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld UnityEngine.GameObject OperationalGuide.OperationalGuide::Camera
+	IL_0006: stloc.0
+	IL_0007: ldc.i4.0
+	IL_0008: stloc.1
+	IL_0009: ldloc.0
+	IL_000a: ldloc.1
+	IL_000b: call System.Void UnityEngine.GameObject::SetActive(System.Boolean)
+	IL_0010: ret
+	IL_0011: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0016: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: OperationalGuide.OperationalGuide
+	System.Void .ctor()
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void UnityEngine.MonoBehaviour::.ctor()
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: OperationalGuide.OperationalGuide
+	static System.Void .cctor()
+		. = 1104674816
+		ulong local1 = 0
+		. = local1
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ImmediateToFieldAction at (0x181B6BDAD) is corrupt (Instance or field is null) and cannot be created as IL. Aborting here.
+
+

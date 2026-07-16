@@ -1,0 +1,634 @@
+Type: Scp079AuxManager
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Scp079AuxManager
+	System.UInt16 get_Compressed()
+		System.Single _aux = this._aux
+
+		System.Int32 int32 = UnityEngine.Mathf.FloorToInt(_aux) //(Single f)
+
+		System.Int32 int322 = UnityEngine.Mathf.Min(int32, 0xFFFF) //(Int32 a, Int32 b)
+		return int322
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x18050F0D5) is corrupt (Return value has a type of System.Int32, expecting an object of type System.UInt16) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Scp079AuxManager
+	System.Single get_RegenSpeed()
+		System.Single[] _regenerationPerTier = this._regenerationPerTier
+		PlayerRoles.PlayableScps.Scp079.Scp079TierManager _tierManager = this._tierManager
+
+		System.Int32 accessTierIndex = _tierManager.AccessTierIndex
+		System.Single single = _regenerationPerTier[accessTierIndex]
+		ulong local6 = 0
+
+		if (this._abilitiesCount > local6)
+		    PlayerRoles.PlayableScps.Scp079.Scp079AbilityBase[] _abilities = this._abilities
+		    PlayerRoles.PlayableScps.Scp079.Scp079AbilityBase scp079AbilityBase = _abilities[local6]
+
+		    scp079AbilityBase.ResetObject()
+		    local6 += 1
+		endif
+        
+		return single
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Single[] PlayerRoles.PlayableScps.Scp079.Scp079AuxManager::_regenerationPerTier
+	IL_0006: stloc.0
+	IL_0007: ldarg.0
+	IL_0008: ldfld PlayerRoles.PlayableScps.Scp079.Scp079TierManager PlayerRoles.PlayableScps.Scp079.Scp079AuxManager::_tierManager
+	IL_000d: call System.Int32 PlayerRoles.PlayableScps.Scp079.Scp079TierManager::get_AccessTierIndex()
+	IL_0012: stloc.1
+	IL_0013: ldloc.0
+	IL_0014: ldloc.1
+	IL_0015: ldelem.any System.Single
+	IL_001a: stloc.2
+	IL_001b: ldc.i4.0
+	IL_001c: stloc.3
+	IL_001d: ldarg.0
+	IL_001e: ldfld System.Int32 PlayerRoles.PlayableScps.Scp079.Scp079AuxManager::_abilitiesCount
+	IL_0023: ldloc.3
+	IL_0024: ble.s IL_003b
+	IL_0026: ldarg.0
+	IL_0027: ldfld PlayerRoles.PlayableScps.Scp079.Scp079AbilityBase[] PlayerRoles.PlayableScps.Scp079.Scp079AuxManager::_abilities
+	IL_002c: ldloc.3
+	IL_002d: ldelem.any PlayerRoles.PlayableScps.Scp079.Scp079AbilityBase
+	IL_0032: callvirt System.Void PlayerRoles.PlayableScps.Subroutines.ScpStandardSubroutine`1::ResetObject()
+	IL_0037: ldloc.3
+	IL_0038: ldc.i4.1
+	IL_0039: add
+	IL_003a: stloc.3
+	IL_003b: ldloc.2
+	IL_003c: ret
+	IL_003d: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0042: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Scp079AuxManager
+	System.Single get_CurrentAux()
+		System.Single _aux = this._aux
+		return _aux
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Single PlayerRoles.PlayableScps.Scp079.Scp079AuxManager::_aux
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Scp079AuxManager
+	System.Void set_CurrentAux(System.Single value)
+		PlayerRoles.PlayableScps.Scp079.Scp079TierManager _tierManager = this._tierManager
+		System.Single[] _maxPerTier = this._maxPerTier
+
+		System.Int32 accessTierIndex = _tierManager.AccessTierIndex
+		System.Single single = _maxPerTier[accessTierIndex]
+		ulong local8 = 0
+
+		System.Single single2 = UnityEngine.Mathf.Clamp(value, local8, single) //(Single value, Single min, Single max)
+		this._aux = single2
+		this._valueDirty = True
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld PlayerRoles.PlayableScps.Scp079.Scp079TierManager PlayerRoles.PlayableScps.Scp079.Scp079AuxManager::_tierManager
+	IL_0006: stloc.0
+	IL_0007: ldarg.0
+	IL_0008: ldfld System.Single[] PlayerRoles.PlayableScps.Scp079.Scp079AuxManager::_maxPerTier
+	IL_000d: stloc.1
+	IL_000e: ldloc.0
+	IL_000f: call System.Int32 PlayerRoles.PlayableScps.Scp079.Scp079TierManager::get_AccessTierIndex()
+	IL_0014: stloc.2
+	IL_0015: ldloc.1
+	IL_0016: ldloc.2
+	IL_0017: ldelem.any System.Single
+	IL_001c: stloc.3
+	IL_001d: ldc.i4.0
+	IL_001e: stloc.s V_4
+	IL_0020: ldarg.1
+	IL_0021: ldloc.s V_4
+	IL_0023: ldloc.3
+	IL_0024: call System.Single UnityEngine.Mathf::Clamp(System.Single,System.Single,System.Single)
+	IL_0029: stloc.s V_5
+	IL_002b: ldarg.0
+	IL_002c: ldloc.s V_5
+	IL_002e: stfld System.Single PlayerRoles.PlayableScps.Scp079.Scp079AuxManager::_aux
+	IL_0033: ldarg.0
+	IL_0034: ldc.i4.1
+	IL_0035: stfld System.Boolean PlayerRoles.PlayableScps.Scp079.Scp079AuxManager::_valueDirty
+	IL_003a: ret
+	IL_003b: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0040: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Scp079AuxManager
+	System.Int32 get_CurrentAuxFloored()
+		System.Single _aux = this._aux
+
+		System.Int32 int32 = UnityEngine.Mathf.FloorToInt(_aux) //(Single f)
+		return int32
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Single PlayerRoles.PlayableScps.Scp079.Scp079AuxManager::_aux
+	IL_0006: call System.Int32 UnityEngine.Mathf::FloorToInt(System.Single)
+	IL_000b: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Scp079AuxManager
+	System.Single get_MaxAux()
+		System.Single[] _maxPerTier = this._maxPerTier
+		PlayerRoles.PlayableScps.Scp079.Scp079TierManager _tierManager = this._tierManager
+
+		System.Int32 accessTierIndex = _tierManager.AccessTierIndex
+		System.Single single = _maxPerTier[accessTierIndex]
+		return single
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Single[] PlayerRoles.PlayableScps.Scp079.Scp079AuxManager::_maxPerTier
+	IL_0006: stloc.0
+	IL_0007: ldarg.0
+	IL_0008: ldfld PlayerRoles.PlayableScps.Scp079.Scp079TierManager PlayerRoles.PlayableScps.Scp079.Scp079AuxManager::_tierManager
+	IL_000d: call System.Int32 PlayerRoles.PlayableScps.Scp079.Scp079TierManager::get_AccessTierIndex()
+	IL_0012: stloc.1
+	IL_0013: ldloc.0
+	IL_0014: ldloc.1
+	IL_0015: ldelem.any System.Single
+	IL_001a: ret
+	IL_001b: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0020: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Scp079AuxManager
+	System.Void Start()
+		System.Int64 local1 = 7
+
+		System.String string = Translations.Get<PlayerRoles.PlayableScps.Scp079.Scp079HudTranslation>()
+		PlayerRoles.PlayableScps.Scp079.Scp079AuxManager._textEtaFormat = string
+		System.Int64 local3 = 8
+
+		System.String string2 = Translations.Get<PlayerRoles.PlayableScps.Scp079.Scp079HudTranslation>()
+		 += 8
+		PlayerRoles.PlayableScps.Scp079.Scp079AuxManager._textEtaFormat = string2
+		System.Int64 local5 = 41
+
+		System.String string3 = Translations.Get<PlayerRoles.PlayableScps.Scp079.Scp079HudTranslation>()
+		 += 16
+		PlayerRoles.PlayableScps.Scp079.Scp079AuxManager._textEtaFormat = string3
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18050EAF9) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Scp079AuxManager
+	System.Void Update()
+		ulong local2 = 0
+
+		System.Single deltaTime = UnityEngine.Time.deltaTime
+
+		System.Single regenSpeed = this.RegenSpeed
+
+		this.CurrentAux = regenSpeed
+
+		if (this._valueDirty != False)
+		    regenSpeed = local7
+
+		    System.Int32 int32 = UnityEngine.Mathf.FloorToInt(regenSpeed) //(Single f)
+
+		    System.Int32 int322 = UnityEngine.Mathf.Min(int32, 0xFFFF) //(Int32 a, Int32 b)
+		    this._valueDirty = False
+
+		    if (int322 != this._prevSent)
+		        this._prevSent = int322
+		        System.Func`2<ReferenceHub,System.Boolean> func = new System.Func`2<ReferenceHub,System.Boolean>()
+
+		        func..ctor(this, {'<SyncValues>b__26_0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		        base.ServerSendRpc(func) //(Func`2 condition)
+		    endif
+            
+		endif
+        
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.RegToRegMoveAction at (0x18050EEA3) is corrupt (Local local7 is a variable but it has been stripped out. Are you missing a call to RegisterUsedLocal?) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Scp079AuxManager
+	System.Void Regenerate()
+		ulong local2 = 0
+
+		System.Single deltaTime = UnityEngine.Time.deltaTime
+
+		System.Single regenSpeed = this.RegenSpeed
+
+		this.CurrentAux = regenSpeed
+		return
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: call System.Single UnityEngine.Time::get_deltaTime()
+	IL_0007: stloc.1
+	IL_0008: ldarg.0
+	IL_0009: call System.Single PlayerRoles.PlayableScps.Scp079.Scp079AuxManager::get_RegenSpeed()
+	IL_000e: stloc.2
+	IL_000f: ldarg.0
+	IL_0010: ldloc.2
+	IL_0011: call System.Void PlayerRoles.PlayableScps.Scp079.Scp079AuxManager::set_CurrentAux(System.Single)
+	IL_0016: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Scp079AuxManager
+	System.Void OnRoleChanged(ReferenceHub hub, PlayerRoles.PlayerRoleBase prev, PlayerRoles.PlayerRoleBase cur)
+
+		if (cur != 0)
+		    //UNKNOWN CLASS OFFSET READ HERE
+
+		    base.ServerSendRpc(hub) //(ReferenceHub target)
+		endif
+        
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.UnknownClassOffsetReadAction at (0x18050E739) is corrupt (Unknown class offset read) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Scp079AuxManager
+	System.Void SyncValues()
+
+		if (this._valueDirty != False)
+		    System.Single _aux = this._aux
+
+		    System.Int32 int32 = UnityEngine.Mathf.FloorToInt(_aux) //(Single f)
+
+		    System.Int32 int322 = UnityEngine.Mathf.Min(int32, 0xFFFF) //(Int32 a, Int32 b)
+		    this._valueDirty = False
+
+		    if (int322 != this._prevSent)
+		        this._prevSent = int322
+		        System.Func`2<ReferenceHub,System.Boolean> func = new System.Func`2<ReferenceHub,System.Boolean>()
+
+		        func..ctor(this, {'<SyncValues>b__26_0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		        base.ServerSendRpc(func) //(Func`2 condition)
+		    endif
+            
+		endif
+        
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Boolean PlayerRoles.PlayableScps.Scp079.Scp079AuxManager::_valueDirty
+	IL_0006: ldc.i4.0
+	IL_0007: beq.s IL_004a
+	IL_0009: ldarg.0
+	IL_000a: ldfld System.Single PlayerRoles.PlayableScps.Scp079.Scp079AuxManager::_aux
+	IL_000f: call System.Int32 UnityEngine.Mathf::FloorToInt(System.Single)
+	IL_0014: ldc.i4 65535
+	IL_0019: call System.Int32 UnityEngine.Mathf::Min(System.Int32,System.Int32)
+	IL_001e: stloc.0
+	IL_001f: ldarg.0
+	IL_0020: ldc.i4.0
+	IL_0021: stfld System.Boolean PlayerRoles.PlayableScps.Scp079.Scp079AuxManager::_valueDirty
+	IL_0026: ldloc.0
+	IL_0027: ldarg.0
+	IL_0028: ldfld System.UInt16 PlayerRoles.PlayableScps.Scp079.Scp079AuxManager::_prevSent
+	IL_002d: beq.s IL_004a
+	IL_002f: ldarg.0
+	IL_0030: ldloc.0
+	IL_0031: stfld System.UInt16 PlayerRoles.PlayableScps.Scp079.Scp079AuxManager::_prevSent
+	IL_0036: ldarg.0
+	IL_0037: ldftn System.Boolean PlayerRoles.PlayableScps.Scp079.Scp079AuxManager::<SyncValues>b__26_0(ReferenceHub)
+	IL_003d: newobj System.Void System.Func`2::.ctor(System.Object,System.IntPtr)
+	IL_0042: stloc.1
+	IL_0043: ldarg.0
+	IL_0044: ldloc.1
+	IL_0045: call System.Void PlayerRoles.PlayableScps.Subroutines.ScpSubroutineBase::ServerSendRpc(System.Func`2)
+	IL_004a: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Scp079AuxManager
+	System.String GenerateETA(System.Single requiredAux)
+		PlayerRoles.PlayableScps.Scp079.Scp079TierManager _tierManager = this._tierManager
+		System.Single[] _maxPerTier = this._maxPerTier
+
+		System.Int32 accessTierIndex = _tierManager.AccessTierIndex
+
+		if (requiredAux <= "{il2cpp array field local3->}")
+
+		    System.Single regenSpeed = this.RegenSpeed
+		    ulong local8 = 0
+
+		    if (local8 < regenSpeed)
+		        ulong local11 = 0
+
+		        System.Single single = UnityEngine.Mathf.Max(local11, requiredAux) //(Single a, Single b)
+
+		        System.Int32 int32 = UnityEngine.Mathf.CeilToInt(single) //(Single f)
+
+		        System.String string = this.GenerateCustomETA(int32) //(Int32 secondsRemaining)
+		        return string
+		    endif
+            
+		    System.String empty = System.String.Empty
+		endif
+        
+		System.String _textHigherTierRequired = PlayerRoles.PlayableScps.Scp079.Scp079AuxManager._textHigherTierRequired
+		return _textHigherTierRequired
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld PlayerRoles.PlayableScps.Scp079.Scp079TierManager PlayerRoles.PlayableScps.Scp079.Scp079AuxManager::_tierManager
+	IL_0006: stloc.0
+	IL_0007: ldarg.0
+	IL_0008: ldfld System.Single[] PlayerRoles.PlayableScps.Scp079.Scp079AuxManager::_maxPerTier
+	IL_000d: stloc.1
+	IL_000e: ldloc.0
+	IL_000f: call System.Int32 PlayerRoles.PlayableScps.Scp079.Scp079TierManager::get_AccessTierIndex()
+	IL_0014: stloc.2
+	IL_0015: ldarg.1
+	IL_0016: ldstr "{il2cpp array field local3->}"
+	IL_001b: bgt.s IL_003f
+	IL_001d: ldarg.0
+	IL_001e: call System.Single PlayerRoles.PlayableScps.Scp079.Scp079AuxManager::get_RegenSpeed()
+	IL_0023: stloc.3
+	IL_0024: ldc.i4.0
+	IL_0025: ldloc.3
+	IL_0026: bge.s IL_003f
+	IL_0028: ldc.i4.0
+	IL_0029: ldarg.1
+	IL_002a: call System.Single UnityEngine.Mathf::Max(System.Single,System.Single)
+	IL_002f: call System.Int32 UnityEngine.Mathf::CeilToInt(System.Single)
+	IL_0034: stloc.s V_4
+	IL_0036: ldarg.0
+	IL_0037: ldloc.s V_4
+	IL_0039: call System.String PlayerRoles.PlayableScps.Scp079.Scp079AuxManager::GenerateCustomETA(System.Int32)
+	IL_003e: ret
+	IL_003f: ldsfld System.String PlayerRoles.PlayableScps.Scp079.Scp079AuxManager::_textHigherTierRequired
+	IL_0044: ret
+	IL_0045: newobj System.Void System.NullReferenceException::.ctor()
+	IL_004a: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Scp079AuxManager
+	System.String GenerateCustomETA(System.Int32 secondsRemaining)
+		System.String _textEtaFormat = PlayerRoles.PlayableScps.Scp079.Scp079AuxManager._textEtaFormat
+
+		System.String string = System.String.Format()
+		return string
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18050E506) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Scp079AuxManager
+	System.Void SpawnObject()
+
+		base.SpawnObject()
+		PlayerRoles.PlayerRoleManager/RoleChanged roleChanged = new PlayerRoles.PlayerRoleManager/RoleChanged()
+
+		roleChanged..ctor(this, {'OnRoleChanged' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		PlayerRoles.PlayerRoleManager.add_OnRoleChanged(roleChanged) //(RoleChanged value)
+		  = this.
+
+		System.Boolean boolean = roleChanged.TryGetSubroutine<PlayerRoles.PlayableScps.Scp079.Scp079TierManager>()
+		  = boolean.
+		PlayerRoles.PlayableScps.Scp079.Scp079AbilityBase[] local5 = new PlayerRoles.PlayableScps.Scp079.Scp079AbilityBase[0]
+		this._abilities = local5
+		ulong local6 = 0
+		this._abilitiesCount = local6
+
+		if ( > 0)
+
+		    if ( != 0)
+		          = local6.
+
+		        if ( == Scp079AbilityBase)
+		            PlayerRoles.PlayableScps.Scp079.Scp079AbilityBase[] _abilities = this._abilities
+
+		            if (local6 == 0)
+                        goto INSN_18050EA8D
+                    endif
+		            throw new System.IndexOutOfRangeException()
+		        endif
+                
+		        local6 += 1
+		    endif
+            
+		    System.Single[] _maxPerTier = this._maxPerTier
+		    System.Single local11 = _maxPerTier[0]
+
+		    this.CurrentAux = local11
+		    return
+		    throw new System.NullReferenceException()
+
+		    INSN_18050EA8D:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.FieldToLocalAction at (0x18050E93D) is corrupt (No further info) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Scp079AuxManager
+	System.Void ResetObject()
+
+		base.ResetObject()
+		PlayerRoles.PlayerRoleManager/RoleChanged roleChanged = new PlayerRoles.PlayerRoleManager/RoleChanged()
+
+		roleChanged..ctor(this, {'OnRoleChanged' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		PlayerRoles.PlayerRoleManager.remove_OnRoleChanged(roleChanged) //(RoleChanged value)
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void PlayerRoles.PlayableScps.Subroutines.ScpStandardSubroutine`1::ResetObject()
+	IL_0006: ldarg.0
+	IL_0007: ldftn System.Void PlayerRoles.PlayableScps.Scp079.Scp079AuxManager::OnRoleChanged(ReferenceHub,PlayerRoles.PlayerRoleBase,PlayerRoles.PlayerRoleBase)
+	IL_000d: newobj System.Void PlayerRoles.PlayerRoleManager/RoleChanged::.ctor(System.Object,System.IntPtr)
+	IL_0012: call System.Void PlayerRoles.PlayerRoleManager::remove_OnRoleChanged(PlayerRoles.PlayerRoleManager/RoleChanged)
+	IL_0017: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Scp079AuxManager
+	System.Void ServerWriteRpc(Mirror.NetworkWriter writer)
+
+		base.ClientWriteCmd(writer) //(NetworkWriter writer)
+		System.UInt16 _prevSent = this._prevSent
+
+		Mirror.NetworkWriterExtensions.WriteUInt16(writer, _prevSent) //(NetworkWriter writer, UInt16 value)
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: call System.Void PlayerRoles.PlayableScps.Subroutines.ScpSubroutineBase::ClientWriteCmd(Mirror.NetworkWriter)
+	IL_0007: ldarg.0
+	IL_0008: ldfld System.UInt16 PlayerRoles.PlayableScps.Scp079.Scp079AuxManager::_prevSent
+	IL_000d: stloc.0
+	IL_000e: ldarg.1
+	IL_000f: ldloc.0
+	IL_0010: call System.Void Mirror.NetworkWriterExtensions::WriteUInt16(Mirror.NetworkWriter,System.UInt16)
+	IL_0015: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Scp079AuxManager
+	System.Void ClientProcessRpc(Mirror.NetworkReader reader)
+
+		base.ServerProcessCmd(reader) //(NetworkReader reader)
+		ulong local3 = 0
+
+		System.UInt16 uInt16 = Mirror.NetworkReaderExtensions.ReadUInt16(reader) //(NetworkReader reader)
+
+		this.CurrentAux = local3
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: call System.Void PlayerRoles.PlayableScps.Subroutines.ScpSubroutineBase::ServerProcessCmd(Mirror.NetworkReader)
+	IL_0007: ldc.i4.0
+	IL_0008: stloc.0
+	IL_0009: ldarg.1
+	IL_000a: call System.UInt16 Mirror.NetworkReaderExtensions::ReadUInt16(Mirror.NetworkReader)
+	IL_000f: stloc.1
+	IL_0010: ldarg.0
+	IL_0011: ldloc.0
+	IL_0012: call System.Void PlayerRoles.PlayableScps.Scp079.Scp079AuxManager::set_CurrentAux(System.Single)
+	IL_0017: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Scp079AuxManager
+	System.Boolean WriteLevelUpNotification(System.Text.StringBuilder sb, System.Int32 newLevel)
+		System.Single[] _maxPerTier = this._maxPerTier
+		System.String _textNewMaxAux = PlayerRoles.PlayableScps.Scp079.Scp079AuxManager._textNewMaxAux
+		System.Single single = _maxPerTier[newLevel]
+
+		System.Text.StringBuilder stringBuilder = sb.AppendFormat()
+		return True
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18050EFB6) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Scp079AuxManager
+	System.Void .ctor()
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void PlayerRoles.PlayableScps.Subroutines.ScpStandardSubroutine`1::.ctor()
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Scp079AuxManager
+	System.Boolean <SyncValues>b__26_0(ReferenceHub x)
+		  = this.
+
+		System.Boolean boolean = ReferenceHub.op_Equality(x, x) //(ReferenceHub left, ReferenceHub right)
+
+		if (boolean != False)
+		    return True
+		endif
+        
+		  = this.
+
+		System.Boolean isSpectatedBy = PlayerRoles.Spectating.SpectatorNetworking.IsSpectatedBy(x, x) //(ReferenceHub target, ReferenceHub spectator)
+		return isSpectatedBy
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.FieldToLocalAction at (0x18050ECD7) is corrupt (No further info) and cannot be created as IL. Aborting here.
+
+

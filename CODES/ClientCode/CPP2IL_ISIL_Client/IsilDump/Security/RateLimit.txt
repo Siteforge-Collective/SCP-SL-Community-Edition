@@ -1,0 +1,233 @@
+Type: Security.RateLimit
+
+Method: System.Void .ctor(System.Int32 usagesAllowed, System.Single timeWindow, Mirror.NetworkConnection conn = null)
+
+Disassembly:
+	mov [rsp+8],rbx
+	mov [rsp+10h],rsi
+	push rdi
+	sub rsp,30h
+	mov ebx,edx
+	movaps [rsp+20h],xmm6
+	xor edx,edx
+	mov rsi,r9
+	movaps xmm6,xmm2
+	mov rdi,rcx
+	call 00000001802D5040h
+	lea rcx,[rdi+20h]
+	mov rdx,rsi
+	mov [rcx],rsi
+	movss dword ptr [rdi+18h],xmm6
+	mov [rdi+10h],ebx
+	mov rbx,[rsp+40h]
+	mov rsi,[rsp+48h]
+	movaps xmm6,[rsp+20h]
+	add rsp,30h
+	pop rdi
+	jmp near ptr 0000000180293EF0h
+
+ISIL:
+	001 Move stack:0x8, rbx
+	002 Move stack:0x10, rsi
+	003 ShiftStack -8
+	004 Move stack:0x0, rdi
+	005 ShiftStack -48
+	006 Move rbx, rdx
+	007 Move stack:0x20, xmm6
+	008 Move rdx, 0
+	009 Move rsi, r9
+	010 Move xmm6, xmm2
+	011 Move rdi, rcx
+	012 Call 0x1802D5040, rcx, rdx, r8, r9, stack:0x0
+	013 LoadAddress rcx, [rdi+32]
+	014 Move rdx, rsi
+	015 Move [rcx], rsi
+	016 Move [rdi+24], xmm6
+	017 Move [rdi+16], rbx
+	018 Move rbx, stack:0x40
+	019 Move rsi, stack:0x48
+	020 Move xmm6, stack:0x20
+	021 ShiftStack 48
+	022 Move rdi, stack:0x0
+	023 ShiftStack 8
+	024 Call 0x180293EF0, rcx, rdx, r8, r9
+	025 Return 
+
+Method: System.Boolean CanExecute(System.Boolean countUsage = True)
+
+Disassembly:
+	mov [rsp+8],rbx
+	push rdi
+	sub rsp,20h
+	cmp byte ptr [1826FDA47h],0
+	movzx edi,dl
+	mov rbx,rcx
+	jne short 0000000181AA9E2Bh
+	mov ecx,[1822DEBF0h]
+	call 0000000180294190h
+	mov byte ptr [1826FDA47h],1
+	cmp dword ptr [rbx+10h],0
+	jl short 0000000181AA9E63h
+	movss xmm1,dword ptr [rbx+18h]
+	xorps xmm0,xmm0
+	comiss xmm1,xmm0
+	jb short 0000000181AA9E70h
+	xor ecx,ecx
+	call 0000000180FDACF0h
+	subss xmm0,dword ptr [rbx+1Ch]
+	comiss xmm0,dword ptr [rbx+18h]
+	jbe short 0000000181AA9E70h
+	xor ecx,ecx
+	mov dword ptr [rbx+14h],1
+	call 0000000180FDACF0h
+	movss dword ptr [rbx+1Ch],xmm0
+	mov al,1
+	mov rbx,[rsp+30h]
+	add rsp,20h
+	pop rdi
+	ret
+	mov ecx,[rbx+14h]
+	movsxd rax,dword ptr [rbx+10h]
+	cmp rcx,rax
+	jge short 0000000181AA9E94h
+	test dil,dil
+	je short 0000000181AA9E63h
+	lea eax,[rcx+1]
+	mov [rbx+14h],eax
+	mov al,1
+	mov rbx,[rsp+30h]
+	add rsp,20h
+	pop rdi
+	ret
+	mov rcx,[182743558h]
+	test byte ptr [rcx+12Fh],2
+	je short 0000000181AA9EB9h
+	cmp dword ptr [rcx+0E0h],0
+	jne short 0000000181AA9EB9h
+	call 000000018021A070h
+	mov rcx,[182743558h]
+	mov rax,[rcx+0B8h]
+	cmp byte ptr [rax+5Dh],0
+	je short 0000000181AA9EF8h
+	mov rbx,[rbx+20h]
+	test rbx,rbx
+	je short 0000000181AA9EF8h
+	test byte ptr [rcx+12Fh],2
+	je short 0000000181AA9EE6h
+	cmp dword ptr [rcx+0E0h],0
+	jne short 0000000181AA9EE6h
+	call 000000018021A070h
+	mov rdx,[182709A98h]
+	xor r8d,r8d
+	mov rcx,rbx
+	call 0000000181ABBC50h
+	mov rbx,[rsp+30h]
+	xor al,al
+	add rsp,20h
+	pop rdi
+	ret
+
+ISIL:
+	001 Move stack:0x8, rbx
+	002 ShiftStack -8
+	003 Move stack:0x0, rdi
+	004 ShiftStack -32
+	005 Compare [0x1826FDA47], 0
+	006 Move rdi, rdx
+	007 Move rbx, rcx
+	008 JumpIfNotEqual {12}
+	009 Move rcx, [0x1822DEBF0]
+	010 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	011 Move [0x1826FDA47], 1
+	012 Compare [rbx+16], 0
+	013 JumpIfLess {27}
+	014 Move xmm1, [rbx+24]
+	015 Move xmm0, 0
+	016 Compare xmm1, xmm0
+	017 JumpIfLess {33}
+	018 Move rcx, 0
+	019 Call Time.get_fixedUnscaledTime, rcx
+	020 Subtract xmm0, xmm0, [rbx+28]
+	021 Compare xmm0, [rbx+24]
+	022 JumpIfLessOrEqual {33}
+	023 Move rcx, 0
+	024 Move [rbx+20], 1
+	025 Call Time.get_fixedUnscaledTime, rcx
+	026 Move [rbx+28], xmm0
+	027 Move rax, 1
+	028 Move rbx, stack:0x30
+	029 ShiftStack 32
+	030 Move rdi, stack:0x0
+	031 ShiftStack 8
+	032 Return rax
+	033 Move rcx, [rbx+20]
+	034 Move rax, [rbx+16]
+	035 Compare rcx, rax
+	036 JumpIfGreaterOrEqual {47}
+	037 Compare rdi, 0
+	038 JumpIfEqual {27}
+	039 LoadAddress rax, [rcx+1]
+	040 Move [rbx+20], rax
+	041 Move rax, 1
+	042 Move rbx, stack:0x30
+	043 ShiftStack 32
+	044 Move rdi, stack:0x0
+	045 ShiftStack 8
+	046 Return rax
+	047 Move rcx, typeof(ServerConsole)
+	048 Compare [rcx+303], 2
+	049 JumpIfEqual {54}
+	050 Compare [rcx+224], 0
+	051 JumpIfNotEqual {54}
+	052 Call "il2cpp_runtime_class_init_export", rcx, rdx, r8, r9
+	053 Move rcx, typeof(ServerConsole)
+	054 Move rax, [rcx+184]
+	055 Compare [rax+93], 0
+	056 JumpIfEqual {69}
+	057 Move rbx, [rbx+32]
+	058 Compare rbx, 0
+	059 JumpIfEqual {69}
+	060 Compare [rcx+303], 2
+	061 JumpIfEqual {65}
+	062 Compare [rcx+224], 0
+	063 JumpIfNotEqual {65}
+	064 Call "il2cpp_runtime_class_init_export", rcx, rdx, r8, r9
+	065 Move rdx, "Reason: Exceeding rate limit."
+	066 Move r8, 0
+	067 Move rcx, rbx
+	068 Call ServerConsole.Disconnect, rcx, rdx, r8
+	069 Move rbx, stack:0x30
+	070 Move rax, 0
+	071 ShiftStack 32
+	072 Move rdi, stack:0x0
+	073 ShiftStack 8
+	074 Return rax
+
+Method: System.Void Reset()
+
+Disassembly:
+	push rbx
+	sub rsp,20h
+	mov rbx,rcx
+	mov dword ptr [rcx+14h],0
+	xor ecx,ecx
+	call 0000000180FDACF0h
+	movss dword ptr [rbx+1Ch],xmm0
+	add rsp,20h
+	pop rbx
+	ret
+
+ISIL:
+	001 ShiftStack -8
+	002 Move stack:0x0, rbx
+	003 ShiftStack -32
+	004 Move rbx, rcx
+	005 Move [rcx+20], 0
+	006 Move rcx, 0
+	007 Call Time.get_fixedUnscaledTime, rcx
+	008 Move [rbx+28], xmm0
+	009 ShiftStack 32
+	010 Move rbx, stack:0x0
+	011 ShiftStack 8
+	012 Return 
+

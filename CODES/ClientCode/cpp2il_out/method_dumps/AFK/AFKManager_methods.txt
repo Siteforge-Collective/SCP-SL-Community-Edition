@@ -1,0 +1,523 @@
+Type: AFKManager
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AFK.AFKManager
+	static System.Void add_OnAFKKick(AFK.AFKManager/AFKKick value)
+		AFK.AFKManager/AFKKick onAFKKick = AFK.AFKManager.OnAFKKick
+
+		System.Delegate delegate = System.Delegate.Combine(onAFKKick, value) //(Delegate a, Delegate b)
+
+		if (delegate != 0)
+
+		    if (delegate == 0)
+                goto INSN_180592D96
+            endif
+		endif
+        
+
+		if (AFKManager == onAFKKick)
+		    return
+
+		    INSN_180592D96:
+		    throw new System.InvalidCastException()
+
+
+Generated IL:
+	IL_0000: ldsfld AFK.AFKManager/AFKKick AFK.AFKManager::OnAFKKick
+	IL_0005: stloc.0
+	IL_0006: ldloc.0
+	IL_0007: ldarg.0
+	IL_0008: call System.Delegate System.Delegate::Combine(System.Delegate,System.Delegate)
+	IL_000d: stloc.1
+	IL_000e: ldloc.1
+	IL_000f: ldc.i4.0
+	IL_0010: beq.s IL_0016
+	IL_0012: ldloc.1
+	IL_0013: ldc.i4.0
+	IL_0014: beq.s IL_001f
+	IL_0016: ldtoken AFK.AFKManager
+	IL_001b: ldloc.0
+	IL_001c: bne.un.s IL_0016
+	IL_001e: ret
+	IL_001f: newobj System.Void System.InvalidCastException::.ctor()
+	IL_0024: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AFK.AFKManager
+	static System.Void remove_OnAFKKick(AFK.AFKManager/AFKKick value)
+		AFK.AFKManager/AFKKick onAFKKick = AFK.AFKManager.OnAFKKick
+
+		System.Delegate delegate = System.Delegate.Remove(onAFKKick, value) //(Delegate source, Delegate value)
+
+		if (delegate != 0)
+
+		    if (delegate == 0)
+                goto INSN_180592E86
+            endif
+		endif
+        
+
+		if (AFKManager == onAFKKick)
+		    return
+
+		    INSN_180592E86:
+		    throw new System.InvalidCastException()
+
+
+Generated IL:
+	IL_0000: ldsfld AFK.AFKManager/AFKKick AFK.AFKManager::OnAFKKick
+	IL_0005: stloc.0
+	IL_0006: ldloc.0
+	IL_0007: ldarg.0
+	IL_0008: call System.Delegate System.Delegate::Remove(System.Delegate,System.Delegate)
+	IL_000d: stloc.1
+	IL_000e: ldloc.1
+	IL_000f: ldc.i4.0
+	IL_0010: beq.s IL_0016
+	IL_0012: ldloc.1
+	IL_0013: ldc.i4.0
+	IL_0014: beq.s IL_001f
+	IL_0016: ldtoken AFK.AFKManager
+	IL_001b: ldloc.0
+	IL_001c: bne.un.s IL_0016
+	IL_001e: ret
+	IL_001f: newobj System.Void System.InvalidCastException::.ctor()
+	IL_0024: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AFK.AFKManager
+	static System.Void Init()
+		System.Action onConfigReloaded = GameCore.ConfigFile.OnConfigReloaded
+		System.Action action = new System.Action()
+		ulong local3 = 0
+
+		action..ctor(local3, {'ConfigReloaded' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		System.Delegate delegate = System.Delegate.Combine(onConfigReloaded, action) //(Delegate a, Delegate b)
+		ulong local6 = 0
+
+		if (delegate != 0)
+
+		    if (delegate == 0)
+                goto INSN_180592612
+            endif
+		endif
+        
+		GameCore.ConfigFile.OnConfigReloaded = local6
+
+		INSN_180592612:
+		throw new System.InvalidCastException()
+
+
+Generated IL:
+	IL_0000: ldsfld System.Action GameCore.ConfigFile::OnConfigReloaded
+	IL_0005: stloc.0
+	IL_0006: ldloc.2
+	IL_0007: ldftn System.Void AFK.AFKManager::ConfigReloaded()
+	IL_000d: newobj System.Void System.Action::.ctor(System.Object,System.IntPtr)
+	IL_0012: stloc.1
+	IL_0013: ldc.i4.0
+	IL_0014: stloc.2
+	IL_0015: ldloc.0
+	IL_0016: ldloc.1
+	IL_0017: call System.Delegate System.Delegate::Combine(System.Delegate,System.Delegate)
+	IL_001c: stloc.3
+	IL_001d: ldc.i4.0
+	IL_001e: stloc.s V_4
+	IL_0020: ldloc.3
+	IL_0021: ldc.i4.0
+	IL_0022: beq.s IL_0028
+	IL_0024: ldloc.3
+	IL_0025: ldc.i4.0
+	IL_0026: beq.s IL_002f
+	IL_0028: ldloc.s V_4
+	IL_002a: stsfld System.Action GameCore.ConfigFile::OnConfigReloaded
+	IL_002f: newobj System.Void System.InvalidCastException::.ctor()
+	IL_0034: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AFK.AFKManager
+	static System.Void ConfigReloaded()
+		YamlConfig serverConfig = GameCore.ConfigFile.ServerConfig
+		ulong local2 = 0
+
+		System.Boolean bool = serverConfig.GetBool("constantly_check_afk", local2) //(String key, Boolean def)
+		AFK.AFKManager._constantlyCheck = bool
+		YamlConfig serverConfig2 = GameCore.ConfigFile.ServerConfig
+
+		System.Single float = serverConfig2.GetFloat("afk_time", 90) //(String key, Single def)
+		AFK.AFKManager._kickTime = float
+		YamlConfig serverConfig3 = GameCore.ConfigFile.ServerConfig
+
+		System.String string = serverConfig3.GetString("afk_kick_message", "AFK") //(String key, String def)
+		 += 24
+		AFK.AFKManager.OnAFKKick = string
+		ulong local10 = 0
+		. = 1
+		System.Action`1<ReferenceHub> onPlayerAdded = ReferenceHub.OnPlayerAdded
+		System.Action`1<ReferenceHub> action = new System.Action`1<ReferenceHub>()
+		ulong local13 = 0
+
+		action..ctor(local13, {'AddPlayer' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		System.Delegate delegate = System.Delegate.Combine(onPlayerAdded, action) //(Delegate a, Delegate b)
+		ulong local16 = 0
+
+		if (delegate != 0)
+
+		    if (delegate == 0)
+                goto INSN_18059252D
+            endif
+		endif
+        
+		ReferenceHub.OnPlayerAdded = local16
+		System.Action`1<ReferenceHub> onPlayerRemoved = ReferenceHub.OnPlayerRemoved
+		System.Action`1<ReferenceHub> action2 = new System.Action`1<ReferenceHub>()
+		ulong local19 = 0
+
+		action2..ctor(local19, {'RemovePlayer' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		System.Delegate delegate2 = System.Delegate.Combine(onPlayerRemoved, action2) //(Delegate a, Delegate b)
+
+		if (delegate2 == 0)
+            goto INSN_1805922B4
+        endif
+
+		if (delegate2 == 0)
+            goto INSN_180592524
+        endif
+
+		INSN_1805922B4:
+		 += 8
+		ReferenceHub.OnPlayerAdded = delegate2
+		System.Action action3 = new System.Action()
+		ulong local24 = 0
+
+		action3..ctor(local24, {'OnUpdate' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		StaticUnityMethods.add_OnUpdate(action3) //(Action value)
+		PlayerRoles.PlayerRoleManager/RoleChanged roleChanged = new PlayerRoles.PlayerRoleManager/RoleChanged()
+		ulong local28 = 0
+
+		roleChanged..ctor(local28, {'RoleChange' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		PlayerRoles.PlayerRoleManager.add_OnRoleChanged(roleChanged) //(RoleChanged value)
+		return
+
+		if ( == 2)
+            goto INSN_18059235D
+        endif
+
+		if ( != 0)
+            goto INSN_18059235D
+        endif
+
+		INSN_18059235D:
+		. = 0
+		System.Action`1<ReferenceHub> onPlayerAdded2 = ReferenceHub.OnPlayerAdded
+		System.Action`1<ReferenceHub> action4 = new System.Action`1<ReferenceHub>()
+		ulong local32 = 0
+
+		action4..ctor(local32, {'AddPlayer' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		System.Delegate delegate3 = System.Delegate.Remove(onPlayerAdded2, action4) //(Delegate source, Delegate value)
+
+		if (delegate3 == 0)
+            goto INSN_18059241A
+        endif
+
+		if (delegate3 == 0)
+            goto INSN_180592542
+        endif
+
+		INSN_18059241A:
+		ReferenceHub.OnPlayerAdded = delegate3
+		System.Action`1<ReferenceHub> onPlayerRemoved2 = ReferenceHub.OnPlayerRemoved
+		System.Action`1<ReferenceHub> action5 = new System.Action`1<ReferenceHub>()
+		ulong local38 = 0
+
+		action5..ctor(local38, {'RemovePlayer' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		System.Delegate delegate4 = System.Delegate.Remove(onPlayerRemoved2, action5) //(Delegate source, Delegate value)
+
+		if (delegate4 == 0)
+            goto INSN_180592493
+        endif
+
+		if (delegate4 == 0)
+            goto INSN_180592539
+        endif
+
+		INSN_180592493:
+		 += 8
+		ReferenceHub.OnPlayerAdded = delegate4
+		System.Action action6 = new System.Action()
+		ulong local43 = 0
+
+		action6..ctor(local43, {'OnUpdate' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		StaticUnityMethods.remove_OnUpdate(action6) //(Action value)
+		PlayerRoles.PlayerRoleManager/RoleChanged roleChanged2 = new PlayerRoles.PlayerRoleManager/RoleChanged()
+		ulong local47 = 0
+
+		roleChanged2..ctor(local47, {'RoleChange' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		PlayerRoles.PlayerRoleManager.remove_OnRoleChanged(roleChanged2) //(RoleChanged value)
+		return
+		throw new System.NullReferenceException()
+
+		INSN_18059252D:
+		throw new System.InvalidCastException()
+
+		INSN_180592542:
+		throw new System.InvalidCastException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x180592135) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AFK.AFKManager
+	static System.Void AddPlayer(ReferenceHub hub)
+		ulong local1 = 0
+
+		ReferenceHub hostHub = ReferenceHub.HostHub
+
+		System.Boolean boolean = ReferenceHub.op_Equality(hub, hostHub) //(ReferenceHub left, ReferenceHub right)
+
+		if (boolean == False)
+		    System.Collections.Generic.Dictionary`2<ReferenceHub,System.Diagnostics.Stopwatch> aFKTimers = AFK.AFKManager.AFKTimers
+		    throw new System.NullReferenceException()
+
+		    if (local6 == 0)
+		        ServerRoles serverRoles = hub.serverRoles
+		        System.UInt64 permissions = serverRoles.Permissions
+
+		        System.Boolean isPermitted = PermissionsHandler.IsPermitted(permissions, 0x400000) //(UInt64 permissions, PlayerPermissions check)
+
+		        if (isPermitted == False)
+		            System.Collections.Generic.Dictionary`2<ReferenceHub,System.Diagnostics.Stopwatch> aFKTimers2 = AFK.AFKManager.AFKTimers
+		            ulong local12 = 0
+
+		            System.Diagnostics.Stopwatch stopwatch = System.Diagnostics.Stopwatch.StartNew()
+		            throw new System.NullReferenceException()
+		        endif
+                
+		    endif
+            
+		    return
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: call ReferenceHub ReferenceHub::get_HostHub()
+	IL_0007: stloc.1
+	IL_0008: ldarg.0
+	IL_0009: ldloc.1
+	IL_000a: call System.Boolean ReferenceHub::op_Equality(ReferenceHub,ReferenceHub)
+	IL_000f: ldc.i4.0
+	IL_0010: bne.un.s IL_0052
+	IL_0012: ldsfld System.Collections.Generic.Dictionary`2<ReferenceHub,System.Diagnostics.Stopwatch> AFK.AFKManager::AFKTimers
+	IL_0017: stloc.2
+	IL_0018: newobj System.Void System.NullReferenceException::.ctor()
+	IL_001d: throw
+	IL_001e: ldloc.3
+	IL_001f: ldc.i4.0
+	IL_0020: bne.un.s IL_0052
+	IL_0022: ldarg.0
+	IL_0023: ldfld ServerRoles ReferenceHub::serverRoles
+	IL_0028: ldfld System.UInt64 ServerRoles::Permissions
+	IL_002d: ldc.i4 4194304
+	IL_0032: conv.u4
+	IL_0033: call System.Boolean PermissionsHandler::IsPermitted(System.UInt64,PlayerPermissions)
+	IL_0038: ldc.i4.0
+	IL_0039: bne.un.s IL_0052
+	IL_003b: ldsfld System.Collections.Generic.Dictionary`2<ReferenceHub,System.Diagnostics.Stopwatch> AFK.AFKManager::AFKTimers
+	IL_0040: stloc.s V_4
+	IL_0042: ldc.i4.0
+	IL_0043: stloc.s V_5
+	IL_0045: call System.Diagnostics.Stopwatch System.Diagnostics.Stopwatch::StartNew()
+	IL_004a: stloc.s V_6
+	IL_004c: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0051: throw
+	IL_0052: ret
+	IL_0053: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0058: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AFK.AFKManager
+	static System.Void RemovePlayer(ReferenceHub hub)
+		System.Collections.Generic.Dictionary`2<ReferenceHub,System.Diagnostics.Stopwatch> aFKTimers = AFK.AFKManager.AFKTimers
+
+		System.Boolean boolean = aFKTimers.Remove(hub) //(TKey key)
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldsfld System.Collections.Generic.Dictionary`2<ReferenceHub,System.Diagnostics.Stopwatch> AFK.AFKManager::AFKTimers
+	IL_0005: ldarg.0
+	IL_0006: call System.Boolean System.Collections.Generic.Dictionary`2::Remove(TKey)
+	IL_000b: stloc.0
+	IL_000c: ret
+	IL_000d: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0012: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AFK.AFKManager
+	static System.Void RoleChange(ReferenceHub hub, PlayerRoles.PlayerRoleBase oldRole, PlayerRoles.PlayerRoleBase newRole)
+		System.Collections.Generic.Dictionary`2<ReferenceHub,System.Diagnostics.Stopwatch> aFKTimers = AFK.AFKManager.AFKTimers
+
+		System.Boolean boolean = aFKTimers.TryGetValue()
+
+		if (boolean != False)
+		    ServerRoles serverRoles = hub.serverRoles
+		    System.UInt64 permissions = serverRoles.Permissions
+
+		    System.Boolean isPermitted = PermissionsHandler.IsPermitted(permissions, 0x400000) //(UInt64 permissions, PlayerPermissions check)
+
+		    if (isPermitted != False)
+                goto INSN_180592BEB
+            endif
+		    ulong local10 = 0
+
+		    ReferenceHub hostHub = ReferenceHub.HostHub
+
+		    System.Boolean boolean2 = ReferenceHub.op_Equality(hub, hostHub) //(ReferenceHub left, ReferenceHub right)
+
+		    if (boolean2 != False)
+                goto INSN_180592BEB
+            endif
+
+		    local3.Restart()
+		endif
+        
+		return
+
+		INSN_180592BEB:
+		System.Collections.Generic.Dictionary`2<ReferenceHub,System.Diagnostics.Stopwatch> aFKTimers2 = AFK.AFKManager.AFKTimers
+
+		System.Boolean boolean3 = aFKTimers2.Remove(hub) //(TKey key)
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180592B34) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AFK.AFKManager
+	static System.Void OnUpdate()
+		System.Collections.Generic.HashSet`1<ReferenceHub> AllHubs = ReferenceHub.<AllHubs>k__BackingField
+
+		System.Collections.Generic.HashSet`1/Enumerator<T> enumerator = .GetEnumerator()
+
+		if (enumerator != 0)
+		    System.Collections.Generic.Dictionary`2<ReferenceHub,System.Diagnostics.Stopwatch> aFKTimers = AFK.AFKManager.AFKTimers
+
+		    System.Boolean boolean = aFKTimers.TryGetValue()
+
+		    if (boolean != False)
+
+		        if ( != 0)
+
+		            PlayerRoles.PlayerRoleBase currentRole = aFKTimers.CurrentRole
+
+		            if (currentRole != 0)
+		                ulong local7 = 0
+
+		                if (currentRole == 0)
+                            goto INSN_1805928E7
+                        endif
+
+		                System.TimeSpan elapsed = local7.Elapsed
+		                System.Single _kickTime = AFK.AFKManager._kickTime
+		                ulong local12 = 0
+
+		                .Reset()
+		                AFK.AFKManager/AFKKick onAFKKick = AFK.AFKManager.OnAFKKick
+
+		                if (onAFKKick == 0)
+                            goto INSN_1805928AE
+                        endif
+
+		                onAFKKick.Invoke(local12) //(ReferenceHub userHub)
+
+		                INSN_1805928AE:
+		                System.String _kickMessage = AFK.AFKManager._kickMessage
+
+		                System.Boolean boolean2 = BanPlayer.KickUser()
+
+		                INSN_1805928E7:
+
+		                .Reset()
+
+		                .Restart()
+		            endif
+                    
+
+		            [instruction error - managed method being called is null]
+
+		            [instruction error - managed method being called is null]
+
+		            if (ReferenceHub != 0)
+                        goto INSN_1805929AC
+                    endif
+		            return
+		            throw new System.NullReferenceException()
+		            throw new System.NullReferenceException()
+		            throw new System.NullReferenceException()
+		            throw new System.NullReferenceException()
+		            throw new System.NullReferenceException()
+		            throw new System.NullReferenceException()
+		            throw new System.NullReferenceException()
+		            throw new System.NullReferenceException()
+
+		            INSN_1805929AC:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1805926F1) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AFK.AFKManager
+	static System.Void .cctor()
+		System.Collections.Generic.Dictionary`2<ReferenceHub,System.Diagnostics.Stopwatch> dictionary = new System.Collections.Generic.Dictionary`2<ReferenceHub,System.Diagnostics.Stopwatch>()
+
+		dictionary..ctor()
+		 += 8
+		AFK.AFKManager.OnAFKKick = dictionary
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x180592C90) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+

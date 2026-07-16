@@ -1,0 +1,565 @@
+Type: Scp173BreakneckSpeedsAbility
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp173.Scp173BreakneckSpeedsAbility
+	System.Single get_Elapsed()
+		System.Diagnostics.Stopwatch _duration = this._duration
+
+		System.TimeSpan elapsed = _duration.Elapsed
+		return 
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x18037065D) is corrupt (Return value is missing) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp173.Scp173BreakneckSpeedsAbility
+	System.Boolean get_IsActive()
+		System.Diagnostics.Stopwatch _duration = this._duration
+		System.Boolean is_running = _duration.is_running
+		return is_running
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Diagnostics.Stopwatch PlayerRoles.PlayableScps.Scp173.Scp173BreakneckSpeedsAbility::_duration
+	IL_0006: ldfld System.Boolean System.Diagnostics.Stopwatch::is_running
+	IL_000b: ret
+	IL_000c: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0011: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp173.Scp173BreakneckSpeedsAbility
+	System.Void set_IsActive(System.Boolean value)
+		System.Diagnostics.Stopwatch _duration = this._duration
+
+		if (value != _duration.is_running)
+
+		    if (value == False)
+
+		        _duration.Reset()
+		    else
+
+		        _duration.Start()
+		        this._disableTime = 0
+		    endif
+            
+
+		    if (value != False)
+                goto INSN_18037078A
+            endif
+		    PlayerRoles.PlayableScps.Subroutines.AbilityCooldown cooldown = this.Cooldown
+
+		    System.Boolean isReady = cooldown.IsReady
+
+		    INSN_18037078A:
+
+		    base.ServerSendRpc(True) //(Boolean toAll)
+		    System.Action onToggled = this.OnToggled
+
+		    if (onToggled == 0)
+                goto INSN_1803707A7
+            endif
+
+		    onToggled.Invoke()
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Diagnostics.Stopwatch PlayerRoles.PlayableScps.Scp173.Scp173BreakneckSpeedsAbility::_duration
+	IL_0006: stloc.0
+	IL_0007: ldarg.1
+	IL_0008: ldloc.0
+	IL_0009: ldfld System.Boolean System.Diagnostics.Stopwatch::is_running
+	IL_000e: beq.s IL_0053
+	IL_0010: ldarg.1
+	IL_0011: ldc.i4.0
+	IL_0012: bne.un.s IL_001a
+	IL_0014: ldloc.0
+	IL_0015: call System.Void System.Diagnostics.Stopwatch::Reset()
+	IL_001a: ldloc.0
+	IL_001b: call System.Void System.Diagnostics.Stopwatch::Start()
+	IL_0020: ldarg.0
+	IL_0021: ldc.r4 0
+	IL_0026: stfld System.Single PlayerRoles.PlayableScps.Scp173.Scp173BreakneckSpeedsAbility::_disableTime
+	IL_002b: ldarg.1
+	IL_002c: ldc.i4.0
+	IL_002d: bne.un.s IL_003b
+	IL_002f: ldarg.0
+	IL_0030: ldfld PlayerRoles.PlayableScps.Subroutines.AbilityCooldown PlayerRoles.PlayableScps.Scp173.Scp173BreakneckSpeedsAbility::Cooldown
+	IL_0035: callvirt System.Boolean PlayerRoles.PlayableScps.Subroutines.AbilityCooldown::get_IsReady()
+	IL_003a: stloc.1
+	IL_003b: ldarg.0
+	IL_003c: ldc.i4.1
+	IL_003d: call System.Void PlayerRoles.PlayableScps.Subroutines.ScpSubroutineBase::ServerSendRpc(System.Boolean)
+	IL_0042: ldarg.0
+	IL_0043: ldfld System.Action PlayerRoles.PlayableScps.Scp173.Scp173BreakneckSpeedsAbility::OnToggled
+	IL_0048: stloc.2
+	IL_0049: ldloc.2
+	IL_004a: ldc.i4.0
+	IL_004b: beq.s IL_0053
+	IL_004d: ldloc.2
+	IL_004e: call System.Void System.Action::Invoke()
+	IL_0053: ret
+	IL_0054: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0059: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp173.Scp173BreakneckSpeedsAbility
+	ActionName get_TargetKey()
+		return 6
+
+
+Generated IL:
+	IL_0000: ldc.i4.6
+	IL_0001: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp173.Scp173BreakneckSpeedsAbility
+	System.Void UpdateServerside()
+		System.Diagnostics.Stopwatch _duration = this._duration
+
+		if (_duration.is_running != False)
+		    System.Single _disableTime = this._disableTime
+		    ulong local3 = 0
+
+		    if (_disableTime > local3)
+                goto INSN_1803702DA
+            endif
+		    PlayerRoles.PlayableScps.Scp173.Scp173ObserversTracker _observersTracker = this._observersTracker
+
+		    if (_observersTracker._curObservers > 0)
+
+		        System.TimeSpan elapsed = _duration.Elapsed
+		        ulong local8 = 0
+		        this._disableTime = local8
+		    endif
+            
+		    return
+
+		    INSN_1803702DA:
+
+		    System.TimeSpan elapsed2 = _duration.Elapsed
+		    System.Single _disableTime2 = this._disableTime
+		    ulong local13 = 0
+
+		    if (_disableTime2 <= local13)
+		        ulong local15 = 0
+
+		        this.IsActive = local15
+		        return
+		        throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Diagnostics.Stopwatch PlayerRoles.PlayableScps.Scp173.Scp173BreakneckSpeedsAbility::_duration
+	IL_0006: stloc.0
+	IL_0007: ldloc.0
+	IL_0008: ldfld System.Boolean System.Diagnostics.Stopwatch::is_running
+	IL_000d: ldc.i4.0
+	IL_000e: beq.s IL_003d
+	IL_0010: ldarg.0
+	IL_0011: ldfld System.Single PlayerRoles.PlayableScps.Scp173.Scp173BreakneckSpeedsAbility::_disableTime
+	IL_0016: stloc.1
+	IL_0017: ldc.i4.0
+	IL_0018: stloc.2
+	IL_0019: ldloc.1
+	IL_001a: ldloc.2
+	IL_001b: bgt.s IL_003e
+	IL_001d: ldarg.0
+	IL_001e: ldfld PlayerRoles.PlayableScps.Scp173.Scp173ObserversTracker PlayerRoles.PlayableScps.Scp173.Scp173BreakneckSpeedsAbility::_observersTracker
+	IL_0023: ldfld System.Int32 PlayerRoles.PlayableScps.Scp173.Scp173ObserversTracker::_curObservers
+	IL_0028: ldc.i4.0
+	IL_0029: ble.s IL_003d
+	IL_002b: ldloc.0
+	IL_002c: call System.TimeSpan System.Diagnostics.Stopwatch::get_Elapsed()
+	IL_0031: stloc.3
+	IL_0032: ldc.i4.0
+	IL_0033: stloc.s V_4
+	IL_0035: ldarg.0
+	IL_0036: ldloc.s V_4
+	IL_0038: stfld System.Single PlayerRoles.PlayableScps.Scp173.Scp173BreakneckSpeedsAbility::_disableTime
+	IL_003d: ret
+	IL_003e: ldloc.0
+	IL_003f: call System.TimeSpan System.Diagnostics.Stopwatch::get_Elapsed()
+	IL_0044: stloc.s V_5
+	IL_0046: ldarg.0
+	IL_0047: ldfld System.Single PlayerRoles.PlayableScps.Scp173.Scp173BreakneckSpeedsAbility::_disableTime
+	IL_004c: stloc.s V_6
+	IL_004e: ldc.i4.0
+	IL_004f: stloc.s V_7
+	IL_0051: ldloc.s V_6
+	IL_0053: ldloc.s V_7
+	IL_0055: bgt.s IL_0051
+	IL_0057: ldc.i4.0
+	IL_0058: stloc.s V_8
+	IL_005a: ldarg.0
+	IL_005b: ldloc.s V_8
+	IL_005d: call System.Void PlayerRoles.PlayableScps.Scp173.Scp173BreakneckSpeedsAbility::set_IsActive(System.Boolean)
+	IL_0062: ret
+	IL_0063: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0068: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp173.Scp173BreakneckSpeedsAbility
+	System.Void OnKeyDown()
+
+		base.OnKeyDown()
+
+		base.ClientSendCmd()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void PlayerRoles.PlayableScps.Subroutines.ScpKeySubroutine`1::OnKeyDown()
+	IL_0006: ldarg.0
+	IL_0007: call System.Void PlayerRoles.PlayableScps.Subroutines.ScpSubroutineBase::ClientSendCmd()
+	IL_000c: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp173.Scp173BreakneckSpeedsAbility
+	System.Void Update()
+
+		base.Update()
+		  = this.
+
+		System.Boolean isLocalPlayer = this.isLocalPlayer
+
+		if (isLocalPlayer == False)
+		      = this.
+
+		    System.Boolean isLocallySpectated = PlayerRoles.Spectating.SpectatorNetworking.IsLocallySpectated()
+
+		    if (isLocallySpectated == False)
+		        UnityEngine.Rendering.PostProcessing.PostProcessVolume _ppVolume = this._ppVolume
+		        ulong local7 = 0
+
+		        _ppVolume.enabled = local7
+		    else
+		        UnityEngine.Rendering.PostProcessing.PostProcessVolume _ppVolume2 = this._ppVolume
+
+		        _ppVolume2.enabled = 2.350988701644575E-38
+		        UnityEngine.Rendering.PostProcessing.PostProcessVolume _ppVolume3 = this._ppVolume
+		        System.Diagnostics.Stopwatch _duration = this._duration
+		        ulong local13 = 0
+		        System.Boolean local14 = _duration.is_running != local13
+		        ulong local15 = 0
+
+		        System.Single deltaTime = UnityEngine.Time.deltaTime
+		        System.Single _ppLerpSpeed = this._ppLerpSpeed
+		        deltaTime = local12
+
+		        System.Single single = UnityEngine.Mathf.Lerp(deltaTime, 2.350988701644575E-38, _ppLerpSpeed) //(Single a, Single b, Single t)
+		        _ppVolume3.weight = single
+		    endif
+            
+		    System.Diagnostics.Stopwatch _duration2 = this._duration
+
+		    if (_duration2.is_running == False)
+                goto INSN_18037052F
+            endif
+		    System.Single _disableTime = this._disableTime
+		    ulong local21 = 0
+
+		    if (_disableTime > local21)
+                goto INSN_18037053F
+            endif
+		    PlayerRoles.PlayableScps.Scp173.Scp173ObserversTracker _observersTracker = this._observersTracker
+
+		    if (_observersTracker._curObservers <= 0)
+                goto INSN_18037052F
+            endif
+
+		    System.TimeSpan elapsed = _duration2.Elapsed
+		    ulong local26 = 0
+		    this._disableTime = local26
+
+		    INSN_18037052F:
+		    return
+
+		    INSN_18037053F:
+
+		    System.TimeSpan elapsed2 = .Elapsed
+		    System.Single _disableTime2 = this._disableTime
+		    ulong local31 = 0
+
+		    if (_disableTime2 > local31)
+                goto INSN_18037052F
+            endif
+		    ulong local33 = 0
+
+		    this.IsActive = local33
+		    return
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.FieldToLocalAction at (0x18037035D) is corrupt (No further info) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp173.Scp173BreakneckSpeedsAbility
+	System.Void Awake()
+
+		base.Awake()
+
+		base.GetSubroutine<PlayerRoles.PlayableScps.Scp173.Scp173ObserversTracker>()
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18036FFB6) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp173.Scp173BreakneckSpeedsAbility
+	System.Void ServerProcessCmd(Mirror.NetworkReader reader)
+		System.Diagnostics.Stopwatch _duration = this._duration
+
+		if (_duration.is_running == False)
+		    PlayerRoles.PlayableScps.Subroutines.AbilityCooldown cooldown = this.Cooldown
+
+		    System.String string = cooldown.ToString()
+
+		    if (string != 0)
+
+		        this.IsActive = True
+		        return
+		    endif
+            
+		    return
+		endif
+        
+
+		System.TimeSpan elapsed = _duration.Elapsed
+		ulong local9 = 0
+		ulong local11 = 0
+
+		this.IsActive = local11
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Diagnostics.Stopwatch PlayerRoles.PlayableScps.Scp173.Scp173BreakneckSpeedsAbility::_duration
+	IL_0006: stloc.0
+	IL_0007: ldloc.0
+	IL_0008: ldfld System.Boolean System.Diagnostics.Stopwatch::is_running
+	IL_000d: ldc.i4.0
+	IL_000e: bne.un.s IL_0027
+	IL_0010: ldarg.0
+	IL_0011: ldfld PlayerRoles.PlayableScps.Subroutines.AbilityCooldown PlayerRoles.PlayableScps.Scp173.Scp173BreakneckSpeedsAbility::Cooldown
+	IL_0016: callvirt System.String System.Object::ToString()
+	IL_001b: ldc.i4.0
+	IL_001c: beq.s IL_0026
+	IL_001e: ldarg.0
+	IL_001f: ldc.i4.1
+	IL_0020: call System.Void PlayerRoles.PlayableScps.Scp173.Scp173BreakneckSpeedsAbility::set_IsActive(System.Boolean)
+	IL_0025: ret
+	IL_0026: ret
+	IL_0027: ldloc.0
+	IL_0028: call System.TimeSpan System.Diagnostics.Stopwatch::get_Elapsed()
+	IL_002d: stloc.1
+	IL_002e: ldc.i4.0
+	IL_002f: stloc.2
+	IL_0030: ldc.i4.0
+	IL_0031: stloc.3
+	IL_0032: ldarg.0
+	IL_0033: ldloc.3
+	IL_0034: call System.Void PlayerRoles.PlayableScps.Scp173.Scp173BreakneckSpeedsAbility::set_IsActive(System.Boolean)
+	IL_0039: ret
+	IL_003a: newobj System.Void System.NullReferenceException::.ctor()
+	IL_003f: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp173.Scp173BreakneckSpeedsAbility
+	System.Void ServerWriteRpc(Mirror.NetworkWriter writer)
+		System.Diagnostics.Stopwatch _duration = this._duration
+		System.Boolean is_running = _duration.is_running
+
+		Mirror.NetworkWriterExtensions.WriteByte(writer, is_running) //(NetworkWriter writer, Byte value)
+		System.Diagnostics.Stopwatch _duration2 = this._duration
+
+		if (_duration2.is_running == False)
+		    PlayerRoles.PlayableScps.Subroutines.AbilityCooldown cooldown = this.Cooldown
+
+		    cooldown.WriteCooldown(writer) //(NetworkWriter writer)
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Diagnostics.Stopwatch PlayerRoles.PlayableScps.Scp173.Scp173BreakneckSpeedsAbility::_duration
+	IL_0006: ldfld System.Boolean System.Diagnostics.Stopwatch::is_running
+	IL_000b: stloc.0
+	IL_000c: ldarg.1
+	IL_000d: ldloc.0
+	IL_000e: call System.Void Mirror.NetworkWriterExtensions::WriteByte(Mirror.NetworkWriter,System.Byte)
+	IL_0013: ldarg.0
+	IL_0014: ldfld System.Diagnostics.Stopwatch PlayerRoles.PlayableScps.Scp173.Scp173BreakneckSpeedsAbility::_duration
+	IL_0019: ldfld System.Boolean System.Diagnostics.Stopwatch::is_running
+	IL_001e: ldc.i4.0
+	IL_001f: bne.un.s IL_002d
+	IL_0021: ldarg.0
+	IL_0022: ldfld PlayerRoles.PlayableScps.Subroutines.AbilityCooldown PlayerRoles.PlayableScps.Scp173.Scp173BreakneckSpeedsAbility::Cooldown
+	IL_0027: ldarg.1
+	IL_0028: call System.Void PlayerRoles.PlayableScps.Subroutines.AbilityCooldown::WriteCooldown(Mirror.NetworkWriter)
+	IL_002d: ret
+	IL_002e: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0033: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp173.Scp173BreakneckSpeedsAbility
+	System.Void ClientProcessRpc(Mirror.NetworkReader reader)
+
+		System.Boolean boolean = Mirror.NetworkReaderExtensions.ReadBoolean(reader) //(NetworkReader reader)
+
+		this.IsActive = boolean
+		System.Diagnostics.Stopwatch _duration = this._duration
+
+		if (_duration.is_running == False)
+		    PlayerRoles.PlayableScps.Subroutines.AbilityCooldown cooldown = this.Cooldown
+
+		    cooldown.ReadCooldown(reader) //(NetworkReader reader)
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.1
+	IL_0001: call System.Boolean Mirror.NetworkReaderExtensions::ReadBoolean(Mirror.NetworkReader)
+	IL_0006: stloc.0
+	IL_0007: ldarg.0
+	IL_0008: ldloc.0
+	IL_0009: call System.Void PlayerRoles.PlayableScps.Scp173.Scp173BreakneckSpeedsAbility::set_IsActive(System.Boolean)
+	IL_000e: ldarg.0
+	IL_000f: ldfld System.Diagnostics.Stopwatch PlayerRoles.PlayableScps.Scp173.Scp173BreakneckSpeedsAbility::_duration
+	IL_0014: ldfld System.Boolean System.Diagnostics.Stopwatch::is_running
+	IL_0019: ldc.i4.0
+	IL_001a: bne.un.s IL_0028
+	IL_001c: ldarg.0
+	IL_001d: ldfld PlayerRoles.PlayableScps.Subroutines.AbilityCooldown PlayerRoles.PlayableScps.Scp173.Scp173BreakneckSpeedsAbility::Cooldown
+	IL_0022: ldarg.1
+	IL_0023: call System.Void PlayerRoles.PlayableScps.Subroutines.AbilityCooldown::ReadCooldown(Mirror.NetworkReader)
+	IL_0028: ret
+	IL_0029: newobj System.Void System.NullReferenceException::.ctor()
+	IL_002e: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp173.Scp173BreakneckSpeedsAbility
+	System.Void ResetObject()
+
+		base.ResetObject()
+		UnityEngine.Rendering.PostProcessing.PostProcessVolume _ppVolume = this._ppVolume
+		_ppVolume.weight = 0
+		ulong local3 = 0
+
+		this.IsActive = local3
+		PlayerRoles.PlayableScps.Subroutines.AbilityCooldown cooldown = this.Cooldown
+
+		cooldown.Clear()
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void PlayerRoles.PlayableScps.Subroutines.ScpKeySubroutine`1::ResetObject()
+	IL_0006: ldarg.0
+	IL_0007: ldfld UnityEngine.Rendering.PostProcessing.PostProcessVolume PlayerRoles.PlayableScps.Scp173.Scp173BreakneckSpeedsAbility::_ppVolume
+	IL_000c: ldc.r4 0
+	IL_0011: stfld System.Single UnityEngine.Rendering.PostProcessing.PostProcessVolume::weight
+	IL_0016: ldc.i4.0
+	IL_0017: stloc.0
+	IL_0018: ldarg.0
+	IL_0019: ldloc.0
+	IL_001a: call System.Void PlayerRoles.PlayableScps.Scp173.Scp173BreakneckSpeedsAbility::set_IsActive(System.Boolean)
+	IL_001f: ldarg.0
+	IL_0020: ldfld PlayerRoles.PlayableScps.Subroutines.AbilityCooldown PlayerRoles.PlayableScps.Scp173.Scp173BreakneckSpeedsAbility::Cooldown
+	IL_0025: call System.Void PlayerRoles.PlayableScps.Subroutines.AbilityCooldown::Clear()
+	IL_002a: ret
+	IL_002b: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0030: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp173.Scp173BreakneckSpeedsAbility
+	System.Void .ctor()
+		System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch()
+
+		stopwatch..ctor()
+		this._duration = stopwatch
+		PlayerRoles.PlayableScps.Subroutines.AbilityCooldown abilityCooldown = new PlayerRoles.PlayableScps.Subroutines.AbilityCooldown()
+
+		abilityCooldown..ctor()
+		this.Cooldown = abilityCooldown
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: newobj System.Void System.Diagnostics.Stopwatch::.ctor()
+	IL_0005: stloc.0
+	IL_0006: ldarg.0
+	IL_0007: ldloc.0
+	IL_0008: stfld System.Diagnostics.Stopwatch PlayerRoles.PlayableScps.Scp173.Scp173BreakneckSpeedsAbility::_duration
+	IL_000d: newobj System.Void PlayerRoles.PlayableScps.Subroutines.AbilityCooldown::.ctor()
+	IL_0012: stloc.1
+	IL_0013: ldarg.0
+	IL_0014: ldloc.1
+	IL_0015: stfld PlayerRoles.PlayableScps.Subroutines.AbilityCooldown PlayerRoles.PlayableScps.Scp173.Scp173BreakneckSpeedsAbility::Cooldown
+	IL_001a: ldarg.0
+	IL_001b: call System.Void PlayerRoles.PlayableScps.Subroutines.ScpKeySubroutine`1::.ctor()
+	IL_0020: ret
+	
+

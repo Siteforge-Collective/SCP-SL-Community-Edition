@@ -1,0 +1,470 @@
+Type: InventorySystem.Items.Firearms.Modules.PumpMessageHandler
+
+Method: System.Void Serialize(Mirror.NetworkWriter writer, InventorySystem.Items.Firearms.Modules.ShotgunResyncMessage value)
+
+Disassembly:
+	mov [rsp+8],rbx
+	push rdi
+	sub rsp,40h
+	cmp byte ptr [1826EB528h],0
+	mov rbx,rdx
+	mov rdi,rcx
+	jne short 0000000180569AEBh
+	mov ecx,[1822DAB88h]
+	call 0000000180294190h
+	mov byte ptr [1826EB528h],1
+	mov rcx,[182759D20h]
+	test byte ptr [rcx+12Fh],2
+	je short 0000000180569B09h
+	cmp dword ptr [rcx+0E0h],0
+	jne short 0000000180569B09h
+	call 000000018021A070h
+	movzx edx,word ptr [rbx]
+	xor r8d,r8d
+	mov rcx,rdi
+	call 00000001818C93B0h
+	movsd xmm0,qword ptr [rbx]
+	mov eax,[rbx+8]
+	movsd qword ptr [rsp+20h],xmm0
+	mov [rsp+38h],eax
+	test rdi,rdi
+	je short 0000000180569B50h
+	mov rdx,[rsp+20h]
+	xor r8d,r8d
+	shr rdx,20h
+	mov rcx,rdi
+	shl dl,4
+	or dl,al
+	mov rbx,[rsp+50h]
+	add rsp,40h
+	pop rdi
+	jmp near ptr 00000001818CA4C0h
+	call 0000000180294310h
+
+ISIL:
+	001 Move stack:0x8, rbx
+	002 ShiftStack -8
+	003 Move stack:0x0, rdi
+	004 ShiftStack -64
+	005 Compare [0x1826EB528], 0
+	006 Move rbx, rdx
+	007 Move rdi, rcx
+	008 JumpIfNotEqual {12}
+	009 Move rcx, [0x1822DAB88]
+	010 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	011 Move [0x1826EB528], 1
+	012 Move rcx, typeof(Mirror.NetworkWriterExtensions)
+	013 Compare [rcx+303], 2
+	014 JumpIfEqual {18}
+	015 Compare [rcx+224], 0
+	016 JumpIfNotEqual {18}
+	017 Call "il2cpp_runtime_class_init_export", rcx, rdx, r8, r9
+	018 Move rdx, [rbx]
+	019 Move r8, 0
+	020 Move rcx, rdi
+	021 Call NetworkWriterExtensions.WriteUInt16, rcx, rdx, r8
+	022 Move xmm0, [rbx]
+	023 Move rax, [rbx+8]
+	024 Move stack:0x20, xmm0
+	025 Move stack:0x38, rax
+	026 Compare rdi, 0
+	027 JumpIfEqual {40}
+	028 Move rdx, stack:0x20
+	029 Move r8, 0
+	030 ShiftRight rdx, 32
+	031 Move rcx, rdi
+	032 ShiftLeft rdx, 4
+	033 Or rdx, rdx, rax
+	034 Move rbx, stack:0x50
+	035 ShiftStack 64
+	036 Move rdi, stack:0x0
+	037 ShiftStack 8
+	038 Call NetworkWriter.WriteByte, rcx, rdx
+	039 Return 
+	040 Call 0x180294310, rcx, rdx, r8, r9
+
+Method: InventorySystem.Items.Firearms.Modules.ShotgunResyncMessage Deserialize(Mirror.NetworkReader reader)
+
+Disassembly:
+	mov [rsp+8],rbx
+	mov [rsp+10h],rsi
+	push rdi
+	sub rsp,20h
+	cmp byte ptr [1826EB529h],0
+	mov rbx,rdx
+	mov rdi,rcx
+	jne short 0000000180569950h
+	mov ecx,[1822DAB54h]
+	call 0000000180294190h
+	mov byte ptr [1826EB529h],1
+	mov rcx,[182759EA8h]
+	test byte ptr [rcx+12Fh],2
+	je short 000000018056996Eh
+	cmp dword ptr [rcx+0E0h],0
+	jne short 000000018056996Eh
+	call 000000018021A070h
+	xor edx,edx
+	mov rcx,rbx
+	call 00000001818BEE60h
+	movzx esi,ax
+	test rbx,rbx
+	je short 00000001805699B7h
+	xor edx,edx
+	mov rcx,rbx
+	call 00000001818BF710h
+	xor ecx,ecx
+	mov [rdi+2],cx
+	mov rbx,[rsp+30h]
+	movzx ecx,al
+	mov eax,ecx
+	mov [rdi],si
+	mov rsi,[rsp+38h]
+	shr eax,4
+	and ecx,0Fh
+	mov [rdi+4],eax
+	mov [rdi+8],ecx
+	mov rax,rdi
+	add rsp,20h
+	pop rdi
+	ret
+	call 0000000180294310h
+
+ISIL:
+	001 Move stack:0x8, rbx
+	002 Move stack:0x10, rsi
+	003 ShiftStack -8
+	004 Move stack:0x0, rdi
+	005 ShiftStack -32
+	006 Compare [0x1826EB529], 0
+	007 Move rbx, rdx
+	008 Move rdi, rcx
+	009 JumpIfNotEqual {13}
+	010 Move rcx, [0x1822DAB54]
+	011 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	012 Move [0x1826EB529], 1
+	013 Move rcx, typeof(Mirror.NetworkReaderExtensions)
+	014 Compare [rcx+303], 2
+	015 JumpIfEqual {19}
+	016 Compare [rcx+224], 0
+	017 JumpIfNotEqual {19}
+	018 Call "il2cpp_runtime_class_init_export", rcx, rdx, r8, r9
+	019 Move rdx, 0
+	020 Move rcx, rbx
+	021 Call NetworkReaderExtensions.ReadUInt16, rcx, rdx
+	022 Move rsi, rax
+	023 Compare rbx, 0
+	024 JumpIfEqual {44}
+	025 Move rdx, 0
+	026 Move rcx, rbx
+	027 Call NetworkReader.ReadByte, rcx, rdx
+	028 Move rcx, 0
+	029 Move [rdi+2], rcx
+	030 Move rbx, stack:0x30
+	031 Move rcx, rax
+	032 Move rax, rcx
+	033 Move [rdi], rsi
+	034 Move rsi, stack:0x38
+	035 ShiftRight rax, 4
+	036 And rcx, rcx, 15
+	037 Move [rdi+4], rax
+	038 Move [rdi+8], rcx
+	039 Move rax, rdi
+	040 ShiftStack 32
+	041 Move rdi, stack:0x0
+	042 ShiftStack 8
+	043 Return rax
+	044 Call 0x180294310, rcx, rdx, r8, r9
+
+Method: System.Void Init()
+
+Disassembly:
+	push rdi
+	sub rsp,20h
+	cmp byte ptr [1826EB52Ah],0
+	jne short 00000001805699E1h
+	mov ecx,[1822DAB6Ch]
+	call 0000000180294190h
+	mov byte ptr [1826EB52Ah],1
+	mov rcx,[182735E58h]
+	test byte ptr [rcx+12Fh],2
+	je short 0000000180569A06h
+	cmp dword ptr [rcx+0E0h],0
+	jne short 0000000180569A06h
+	call 000000018021A070h
+	mov rcx,[182735E58h]
+	mov rax,[rcx+0B8h]
+	mov rdi,[rax+8]
+	test rdi,rdi
+	jne short 0000000180569A88h
+	test byte ptr [rcx+12Fh],2
+	mov [rsp+30h],rbx
+	je short 0000000180569A38h
+	cmp [rcx+0E0h],edi
+	jne short 0000000180569A38h
+	call 000000018021A070h
+	mov rcx,[182735E58h]
+	mov rax,[rcx+0B8h]
+	mov rcx,[182718CC0h]
+	mov rbx,[rax]
+	call 00000001802942D0h
+	mov r8,[18273BDA8h]
+	xor r9d,r9d
+	mov rdx,rbx
+	mov rcx,rax
+	mov rdi,rax
+	call 0000000180368A70h
+	mov rax,[182735E58h]
+	mov rdx,rdi
+	mov rcx,[rax+0B8h]
+	add rcx,8
+	mov [rcx],rdi
+	call 0000000180293EF0h
+	mov rbx,[rsp+30h]
+	mov rcx,[182742310h]
+	test byte ptr [rcx+12Fh],2
+	je short 0000000180569AA6h
+	cmp dword ptr [rcx+0E0h],0
+	jne short 0000000180569AA6h
+	call 000000018021A070h
+	xor edx,edx
+	mov rcx,rdi
+	add rsp,20h
+	pop rdi
+	jmp near ptr 0000000181AF2470h
+
+ISIL:
+	001 ShiftStack -8
+	002 Move stack:0x0, rdi
+	003 ShiftStack -32
+	004 Compare [0x1826EB52A], 0
+	005 JumpIfNotEqual {9}
+	006 Move rcx, [0x1822DAB6C]
+	007 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	008 Move [0x1826EB52A], 1
+	009 Move rcx, typeof(InventorySystem.Items.Firearms.Modules.PumpMessageHandler+<>c)
+	010 Compare [rcx+303], 2
+	011 JumpIfEqual {16}
+	012 Compare [rcx+224], 0
+	013 JumpIfNotEqual {16}
+	014 Call "il2cpp_runtime_class_init_export", rcx, rdx, r8, r9
+	015 Move rcx, typeof(InventorySystem.Items.Firearms.Modules.PumpMessageHandler+<>c)
+	016 Move rax, [rcx+184]
+	017 Move rdi, [rax+8]
+	018 Compare rdi, 0
+	019 JumpIfNotEqual {44}
+	020 Compare [rcx+303], 2
+	021 Move stack:0x30, rbx
+	022 JumpIfEqual {27}
+	023 Compare [rcx+224], rdi
+	024 JumpIfNotEqual {27}
+	025 Call "il2cpp_runtime_class_init_export", rcx, rdx, r8, r9
+	026 Move rcx, typeof(InventorySystem.Items.Firearms.Modules.PumpMessageHandler+<>c)
+	027 Move rax, [rcx+184]
+	028 Move rcx, typeof(System.Action)
+	029 Move rbx, [rax]
+	030 Call "il2cpp_codegen_object_new", rcx, rdx, r8, r9
+	031 Move r8, [0x18273BDA8]
+	032 Move r9, 0
+	033 Move rdx, rbx
+	034 Move rcx, rax
+	035 Move rdi, rax
+	036 Call 0x180368A70, rcx, rdx, r8
+	037 Move rax, typeof(InventorySystem.Items.Firearms.Modules.PumpMessageHandler+<>c)
+	038 Move rdx, rdi
+	039 Move rcx, [rax+184]
+	040 Add rcx, rcx, 8
+	041 Move [rcx], rdi
+	042 Call 0x180293EF0, rcx, rdx, r8, r9
+	043 Move rbx, stack:0x30
+	044 Move rcx, typeof(CustomNetworkManager)
+	045 Compare [rcx+303], 2
+	046 JumpIfEqual {50}
+	047 Compare [rcx+224], 0
+	048 JumpIfNotEqual {50}
+	049 Call "il2cpp_runtime_class_init_export", rcx, rdx, r8, r9
+	050 Move rdx, 0
+	051 Move rcx, rdi
+	052 ShiftStack 32
+	053 Move rdi, stack:0x0
+	054 ShiftStack 8
+	055 Call CustomNetworkManager.add_OnClientReady, rcx, rdx
+	056 Return 
+
+Method: System.Void ClientMsgReceived(InventorySystem.Items.Firearms.Modules.ShotgunResyncMessage msg)
+
+Disassembly:
+	mov [rsp+8],rbx
+	push rdi
+	sub rsp,30h
+	cmp byte ptr [1826EB52Bh],0
+	mov rdi,rcx
+	jne short 00000001805697C8h
+	mov ecx,[1822DAB2Ch]
+	call 0000000180294190h
+	mov byte ptr [1826EB52Bh],1
+	mov rcx,[1827450D0h]
+	xor ebx,ebx
+	mov [rsp+50h],rbx
+	mov [rsp+58h],rbx
+	test byte ptr [rcx+12Fh],2
+	je short 00000001805697F1h
+	cmp [rcx+0E0h],ebx
+	jne short 00000001805697F1h
+	call 000000018021A070h
+	xor edx,edx
+	lea rcx,[rsp+50h]
+	call 000000018033D730h
+	test al,al
+	je near ptr 0000000180569904h
+	mov rax,[rsp+50h]
+	test rax,rax
+	je near ptr 000000018056990Fh
+	mov rcx,[rax+78h]
+	test rcx,rcx
+	je near ptr 000000018056990Fh
+	mov rax,[rcx+48h]
+	test rax,rax
+	je near ptr 000000018056990Fh
+	mov rcx,[rax+10h]
+	test rcx,rcx
+	je near ptr 000000018056990Fh
+	mov r9,[18273DAB8h]
+	lea r8,[rsp+58h]
+	movzx edx,word ptr [rdi]
+	call 00000001814780E0h
+	test al,al
+	je near ptr 0000000180569904h
+	mov rdx,[rsp+58h]
+	test rdx,rdx
+	je near ptr 0000000180569904h
+	mov r8,[182735E28h]
+	mov rax,[rdx]
+	movzx ecx,byte ptr [r8+128h]
+	cmp [rax+128h],cl
+	jb near ptr 0000000180569904h
+	mov rax,[rax+0C8h]
+	cmp [rax+rcx*8-8],r8
+	jne short 0000000180569904h
+	mov rcx,rdx
+	test rdx,rdx
+	je short 0000000180569904h
+	mov rax,[rdx]
+	mov rdx,[rax+388h]
+	call qword ptr [rax+380h]
+	test rax,rax
+	je short 0000000180569904h
+	mov r8,[1827360C8h]
+	mov rcx,[rax]
+	movzx edx,byte ptr [r8+128h]
+	cmp [rcx+128h],dl
+	jb short 0000000180569904h
+	mov rcx,[rcx+0C8h]
+	cmp [rcx+rdx*8-8],r8
+	jne short 0000000180569904h
+	movsd xmm0,qword ptr [rdi]
+	xor r8d,r8d
+	movsd qword ptr [rsp+20h],xmm0
+	mov rcx,rax
+	mov rdx,[rsp+20h]
+	mov rbx,rax
+	shr rdx,20h
+	call 0000000180569640h
+	mov edx,[rdi+8]
+	xor r8d,r8d
+	mov rcx,rbx
+	call 00000001805696D0h
+	mov rbx,[rsp+40h]
+	add rsp,30h
+	pop rdi
+	ret
+	call 0000000180294310h
+
+ISIL:
+	001 Move stack:0x8, rbx
+	002 ShiftStack -8
+	003 Move stack:0x0, rdi
+	004 ShiftStack -48
+	005 Compare [0x1826EB52B], 0
+	006 Move rdi, rcx
+	007 JumpIfNotEqual {11}
+	008 Move rcx, [0x1822DAB2C]
+	009 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	010 Move [0x1826EB52B], 1
+	011 Move rcx, typeof(ReferenceHub)
+	012 Move rbx, 0
+	013 Move stack:0x50, rbx
+	014 Move stack:0x58, rbx
+	015 Compare [rcx+303], 2
+	016 JumpIfEqual {20}
+	017 Compare [rcx+224], rbx
+	018 JumpIfNotEqual {20}
+	019 Call "il2cpp_runtime_class_init_export", rcx, rdx, r8, r9
+	020 Move rdx, 0
+	021 LoadAddress rcx, stack:0x50
+	022 Call ReferenceHub.TryGetLocalHub, rcx, rdx
+	023 Compare rax, 0
+	024 JumpIfEqual {82}
+	025 Move rax, stack:0x50
+	026 Compare rax, 0
+	027 JumpIfEqual {87}
+	028 Move rcx, [rax+120]
+	029 Compare rcx, 0
+	030 JumpIfEqual {87}
+	031 Move rax, [rcx+72]
+	032 Compare rax, 0
+	033 JumpIfEqual {87}
+	034 Move rcx, [rax+16]
+	035 Compare rcx, 0
+	036 JumpIfEqual {87}
+	037 Move r9, [0x18273DAB8]
+	038 LoadAddress r8, stack:0x58
+	039 Move rdx, [rdi]
+	040 Call 0x1814780E0, rcx, rdx, r8
+	041 Compare rax, 0
+	042 JumpIfEqual {82}
+	043 Move rdx, stack:0x58
+	044 Compare rdx, 0
+	045 JumpIfEqual {82}
+	046 Move r8, typeof(InventorySystem.Items.Firearms.Shotgun)
+	047 Move rax, [rdx]
+	048 Move rcx, [r8+296]
+	049 Compare [rax+296], rcx
+	050 JumpIfLess {82}
+	051 Move rax, [rax+200]
+	052 Compare [rax+0xFFFFFFF8+rcx*8], r8
+	053 JumpIfNotEqual {82}
+	054 Move rcx, rdx
+	055 Compare rdx, 0
+	056 JumpIfEqual {82}
+	057 Move rax, [rdx]
+	058 Move rdx, [rax+904]
+	059 Call 0, rcx, rdx, r8, r9, stack:0x0, stack:0x8, stack:0x10, stack:0x18, stack:0x20, stack:0x28, stack:0x30, stack:0x38, stack:0x40
+	060 Compare rax, 0
+	061 JumpIfEqual {82}
+	062 Move r8, typeof(InventorySystem.Items.Firearms.Modules.PumpAction)
+	063 Move rcx, [rax]
+	064 Move rdx, [r8+296]
+	065 Compare [rcx+296], rdx
+	066 JumpIfLess {82}
+	067 Move rcx, [rcx+200]
+	068 Compare [rcx+0xFFFFFFF8+rdx*8], r8
+	069 JumpIfNotEqual {82}
+	070 Move xmm0, [rdi]
+	071 Move r8, 0
+	072 Move stack:0x20, xmm0
+	073 Move rcx, rax
+	074 Move rdx, stack:0x20
+	075 Move rbx, rax
+	076 ShiftRight rdx, 32
+	077 Call PumpAction.set_ChamberedRounds, rcx, rdx
+	078 Move rdx, [rdi+8]
+	079 Move r8, 0
+	080 Move rcx, rbx
+	081 Call PumpAction.set_CockedHammers, rcx, rdx
+	082 Move rbx, stack:0x40
+	083 ShiftStack 48
+	084 Move rdi, stack:0x0
+	085 ShiftStack 8
+	086 Return 
+	087 Call 0x180294310, rcx, rdx, r8, r9
+

@@ -1,0 +1,310 @@
+Type: MimicryPreviewPlayback
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp939.Mimicry.MimicryPreviewPlayback
+	System.String SamplesToString(System.Single samples)
+		System.Single local2 = samples / 48000
+		System.Single local4 = local2 * 10
+
+		System.Int32 int32 = UnityEngine.Mathf.CeilToInt(local4) //(Single f)
+		System.Single local7 = local4 / 10
+		return int32
+
+
+Generated IL:
+	Don't know how to write IL for Cpp2IL.Core.Analysis.Actions.x86.Important.DivideRegByGlobalAction. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp939.Mimicry.MimicryPreviewPlayback
+	System.Int32 get_MaxSamples()
+
+		if (this._playbackSet != False)
+		    VoiceChat.Networking.PlaybackBuffer _playback = this._playback
+
+		    System.Int32 length = _playback.Length
+		    return length
+		endif
+        
+		ulong local4 = 0
+		return local4
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Boolean PlayerRoles.PlayableScps.Scp939.Mimicry.MimicryPreviewPlayback::_playbackSet
+	IL_0006: ldc.i4.0
+	IL_0007: beq.s IL_0015
+	IL_0009: ldarg.0
+	IL_000a: ldfld VoiceChat.Networking.PlaybackBuffer PlayerRoles.PlayableScps.Scp939.Mimicry.MimicryPreviewPlayback::_playback
+	IL_000f: call System.Int32 VoiceChat.Networking.PlaybackBuffer::get_Length()
+	IL_0014: ret
+	IL_0015: ldc.i4.0
+	IL_0016: ret
+	IL_0017: newobj System.Void System.NullReferenceException::.ctor()
+	IL_001c: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp939.Mimicry.MimicryPreviewPlayback
+	System.Single ReadSample()
+		VoiceChat.Networking.PlaybackBuffer _playback = this._playback
+
+		System.Single single = _playback.Read()
+		return single
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld VoiceChat.Networking.PlaybackBuffer PlayerRoles.PlayableScps.Scp939.Mimicry.MimicryPreviewPlayback::_playback
+	IL_0006: call System.Single VoiceChat.Networking.PlaybackBuffer::Read()
+	IL_000b: ret
+	IL_000c: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0011: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp939.Mimicry.MimicryPreviewPlayback
+	System.Boolean get_IsEmpty()
+
+		if (this._playbackSet == False)
+		    return True
+		endif
+        
+		VoiceChat.Networking.PlaybackBuffer _playback = this._playback
+		System.Int64 writeHead = _playback.WriteHead
+		System.Boolean local3 = _playback.ReadHead == writeHead
+		return local3
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Boolean PlayerRoles.PlayableScps.Scp939.Mimicry.MimicryPreviewPlayback::_playbackSet
+	IL_0006: ldc.i4.0
+	IL_0007: bne.un.s IL_000b
+	IL_0009: ldc.i4.1
+	IL_000a: ret
+	IL_000b: ldarg.0
+	IL_000c: ldfld VoiceChat.Networking.PlaybackBuffer PlayerRoles.PlayableScps.Scp939.Mimicry.MimicryPreviewPlayback::_playback
+	IL_0011: stloc.0
+	IL_0012: ldloc.0
+	IL_0013: ldfld System.Int64 VoiceChat.Networking.PlaybackBuffer::WriteHead
+	IL_0018: stloc.1
+	IL_0019: ldloc.0
+	IL_001a: ldfld System.Int64 VoiceChat.Networking.PlaybackBuffer::ReadHead
+	IL_001f: ldloc.1
+	IL_0020: ceq
+	IL_0022: ret
+	IL_0023: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0028: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp939.Mimicry.MimicryPreviewPlayback
+	System.Void StartPreview(VoiceChat.Networking.PlaybackBuffer pb)
+
+		if (this._playbackSet == False)
+		    System.Single[] buffer = pb.Buffer
+		    VoiceChat.Networking.PlaybackBuffer playbackBuffer = new VoiceChat.Networking.PlaybackBuffer()
+		    System.Int32 length = buffer.Length
+
+		    playbackBuffer..ctor(length, True) //(Int32 capacity, Boolean endlessTapeMode)
+		    this._playback = playbackBuffer
+		    this._playbackSet = True
+		else
+		    VoiceChat.Networking.PlaybackBuffer _playback = this._playback
+
+		    _playback.Clear()
+		endif
+        
+
+		System.Int32 length2 = pb.Length
+		this._duration = length2
+		System.Single[] buffer2 = pb.Buffer
+
+		pb.Write(buffer2, length2) //(Single[] f, Int32 length)
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Boolean PlayerRoles.PlayableScps.Scp939.Mimicry.MimicryPreviewPlayback::_playbackSet
+	IL_0006: ldc.i4.0
+	IL_0007: bne.un.s IL_002d
+	IL_0009: ldarg.1
+	IL_000a: ldfld System.Single[] VoiceChat.Networking.PlaybackBuffer::Buffer
+	IL_000f: stloc.0
+	IL_0010: ldloc.2
+	IL_0011: ldc.i4.1
+	IL_0012: newobj System.Void VoiceChat.Networking.PlaybackBuffer::.ctor(System.Int32,System.Boolean)
+	IL_0017: stloc.1
+	IL_0018: ldloc.0
+	IL_0019: call System.Int32 System.Array::get_Length()
+	IL_001e: stloc.2
+	IL_001f: ldarg.0
+	IL_0020: ldloc.1
+	IL_0021: stfld VoiceChat.Networking.PlaybackBuffer PlayerRoles.PlayableScps.Scp939.Mimicry.MimicryPreviewPlayback::_playback
+	IL_0026: ldarg.0
+	IL_0027: ldc.i4.1
+	IL_0028: stfld System.Boolean PlayerRoles.PlayableScps.Scp939.Mimicry.MimicryPreviewPlayback::_playbackSet
+	IL_002d: ldarg.0
+	IL_002e: ldfld VoiceChat.Networking.PlaybackBuffer PlayerRoles.PlayableScps.Scp939.Mimicry.MimicryPreviewPlayback::_playback
+	IL_0033: call System.Void VoiceChat.Networking.PlaybackBuffer::Clear()
+	IL_0038: ldarg.1
+	IL_0039: call System.Int32 VoiceChat.Networking.PlaybackBuffer::get_Length()
+	IL_003e: stloc.3
+	IL_003f: ldarg.0
+	IL_0040: ldloc.3
+	IL_0041: stfld System.Int32 PlayerRoles.PlayableScps.Scp939.Mimicry.MimicryPreviewPlayback::_duration
+	IL_0046: ldarg.1
+	IL_0047: ldfld System.Single[] VoiceChat.Networking.PlaybackBuffer::Buffer
+	IL_004c: stloc.s V_4
+	IL_004e: ldarg.1
+	IL_004f: ldloc.s V_4
+	IL_0051: ldloc.3
+	IL_0052: call System.Void VoiceChat.Networking.PlaybackBuffer::Write(System.Single[],System.Int32)
+	IL_0057: ret
+	IL_0058: newobj System.Void System.NullReferenceException::.ctor()
+	IL_005d: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp939.Mimicry.MimicryPreviewPlayback
+	System.Void StopPreview()
+
+		if (this._playbackSet != False)
+		    VoiceChat.Networking.PlaybackBuffer _playback = this._playback
+
+		    _playback.Clear()
+		    return
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Boolean PlayerRoles.PlayableScps.Scp939.Mimicry.MimicryPreviewPlayback::_playbackSet
+	IL_0006: ldc.i4.0
+	IL_0007: beq.s IL_0015
+	IL_0009: ldarg.0
+	IL_000a: ldfld VoiceChat.Networking.PlaybackBuffer PlayerRoles.PlayableScps.Scp939.Mimicry.MimicryPreviewPlayback::_playback
+	IL_000f: call System.Void VoiceChat.Networking.PlaybackBuffer::Clear()
+	IL_0014: ret
+	IL_0015: ret
+	IL_0016: newobj System.Void System.NullReferenceException::.ctor()
+	IL_001b: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp939.Mimicry.MimicryPreviewPlayback
+	System.Void UpdateProgress(UnityEngine.UI.Slider timeline, TMPro.TextMeshProUGUI elapsed, TMPro.TextMeshProUGUI duration)
+
+		if (this._playbackSet != False)
+		    System.Int32 _duration = this._duration
+		    VoiceChat.Networking.PlaybackBuffer _playback = this._playback
+
+		    System.Int32 length = _playback.Length
+		    _duration -= length
+		    ulong local9 = 0
+
+		    timeline.minValue = local9
+
+		    timeline.maxValue = local9
+
+		    System.Single value = timeline.value
+
+		    System.String string = this.SamplesToString(local9) //(Single samples)
+
+		    System.String text = elapsed.text
+
+		    System.String string2 = this.SamplesToString(local9) //(Single samples)
+
+		    System.String text2 = duration.text
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Boolean PlayerRoles.PlayableScps.Scp939.Mimicry.MimicryPreviewPlayback::_playbackSet
+	IL_0006: ldc.i4.0
+	IL_0007: beq.s IL_0059
+	IL_0009: ldarg.0
+	IL_000a: ldfld System.Int32 PlayerRoles.PlayableScps.Scp939.Mimicry.MimicryPreviewPlayback::_duration
+	IL_000f: stloc.0
+	IL_0010: ldarg.0
+	IL_0011: ldfld VoiceChat.Networking.PlaybackBuffer PlayerRoles.PlayableScps.Scp939.Mimicry.MimicryPreviewPlayback::_playback
+	IL_0016: call System.Int32 VoiceChat.Networking.PlaybackBuffer::get_Length()
+	IL_001b: stloc.1
+	IL_001c: ldloc.0
+	IL_001d: ldloc.1
+	IL_001e: sub
+	IL_001f: stloc.0
+	IL_0020: ldc.i4.0
+	IL_0021: stloc.2
+	IL_0022: ldarg.1
+	IL_0023: ldloc.2
+	IL_0024: call System.Void UnityEngine.UI.Slider::set_minValue(System.Single)
+	IL_0029: ldarg.1
+	IL_002a: ldloc.2
+	IL_002b: call System.Void UnityEngine.UI.Slider::set_maxValue(System.Single)
+	IL_0030: ldarg.1
+	IL_0031: callvirt System.Single UnityEngine.UI.Slider::get_value()
+	IL_0036: stloc.3
+	IL_0037: ldarg.0
+	IL_0038: ldloc.2
+	IL_0039: call System.String PlayerRoles.PlayableScps.Scp939.Mimicry.MimicryPreviewPlayback::SamplesToString(System.Single)
+	IL_003e: stloc.s V_4
+	IL_0040: ldarg.2
+	IL_0041: callvirt System.String TMPro.TMP_Text::get_text()
+	IL_0046: stloc.s V_5
+	IL_0048: ldarg.0
+	IL_0049: ldloc.2
+	IL_004a: call System.String PlayerRoles.PlayableScps.Scp939.Mimicry.MimicryPreviewPlayback::SamplesToString(System.Single)
+	IL_004f: stloc.s V_6
+	IL_0051: ldarg.3
+	IL_0052: callvirt System.String TMPro.TMP_Text::get_text()
+	IL_0057: stloc.s V_7
+	IL_0059: ret
+	IL_005a: newobj System.Void System.NullReferenceException::.ctor()
+	IL_005f: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp939.Mimicry.MimicryPreviewPlayback
+	System.Void .ctor()
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void VoiceChat.Playbacks.VoiceChatPlaybackBase::.ctor()
+	IL_0006: ret
+	
+

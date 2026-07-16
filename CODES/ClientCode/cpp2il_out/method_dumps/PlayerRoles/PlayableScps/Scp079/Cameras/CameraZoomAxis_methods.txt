@@ -1,0 +1,295 @@
+Type: CameraZoomAxis
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Cameras.CameraZoomAxis
+	System.Single get_CurrentZoom()
+		UnityEngine.AnimationCurve _magnificationCurve = this._magnificationCurve
+		System.Single CurValue = this.<CurValue>k__BackingField
+
+		System.Single single = _magnificationCurve.Evaluate(CurValue) //(Single time)
+		return single
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld UnityEngine.AnimationCurve PlayerRoles.PlayableScps.Scp079.Cameras.CameraZoomAxis::_magnificationCurve
+	IL_0006: stloc.0
+	IL_0007: ldarg.0
+	IL_0008: ldfld System.Single PlayerRoles.PlayableScps.Scp079.Cameras.CameraAxisBase::<CurValue>k__BackingField
+	IL_000d: stloc.1
+	IL_000e: ldloc.0
+	IL_000f: ldloc.1
+	IL_0010: call System.Single UnityEngine.AnimationCurve::Evaluate(System.Single)
+	IL_0015: ret
+	IL_0016: newobj System.Void System.NullReferenceException::.ctor()
+	IL_001b: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Cameras.CameraZoomAxis
+	System.Void Update(PlayerRoles.PlayableScps.Scp079.Cameras.Scp079Camera cam)
+		ulong local3 = 0
+
+		System.Boolean boolean = UnityEngine.Object.op_Inequality(cam, local3) //(Object x, Object y)
+
+		if (boolean != False)
+
+		    System.Boolean isUsedByLocalPlayer = cam.IsUsedByLocalPlayer
+
+		    if (isUsedByLocalPlayer != False)
+
+		        if (cam._isActive != False)
+		            ulong local7 = 0
+
+		            System.Single axisRaw = UnityEngine.Input.GetAxisRaw("Mouse ScrollWheel") //(String axisName)
+
+		            System.Single axis = UnityEngine.Input.GetAxis("Mouse ScrollWheel") //(String axisName)
+		            ulong local10 = 0
+		            System.Diagnostics.Stopwatch _cooldownStopwatch = this._cooldownStopwatch
+
+		            System.TimeSpan elapsed = _cooldownStopwatch.Elapsed
+		            System.Single _val = this._val
+
+		            if (axis <= local10)
+		            endif
+                    
+
+		            base.TargetValue = _val
+		            System.Diagnostics.Stopwatch _cooldownStopwatch2 = this._cooldownStopwatch
+
+		            _cooldownStopwatch2.Restart()
+		        endif
+                
+
+		        base.Update(cam) //(Scp079Camera cam)
+		        return
+		        throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: ldarg.1
+	IL_0003: ldloc.0
+	IL_0004: call System.Boolean UnityEngine.Object::op_Inequality(UnityEngine.Object,UnityEngine.Object)
+	IL_0009: ldc.i4.0
+	IL_000a: beq.s IL_0066
+	IL_000c: ldarg.1
+	IL_000d: call System.Boolean PlayerRoles.PlayableScps.Scp079.Cameras.Scp079Camera::get_IsUsedByLocalPlayer()
+	IL_0012: ldc.i4.0
+	IL_0013: beq.s IL_0066
+	IL_0015: ldarg.1
+	IL_0016: ldfld System.Boolean PlayerRoles.PlayableScps.Scp079.Cameras.Scp079Camera::_isActive
+	IL_001b: ldc.i4.0
+	IL_001c: beq.s IL_0066
+	IL_001e: ldc.i4.0
+	IL_001f: stloc.1
+	IL_0020: ldstr "Mouse ScrollWheel"
+	IL_0025: call System.Single UnityEngine.Input::GetAxisRaw(System.String)
+	IL_002a: stloc.2
+	IL_002b: ldstr "Mouse ScrollWheel"
+	IL_0030: call System.Single UnityEngine.Input::GetAxis(System.String)
+	IL_0035: stloc.3
+	IL_0036: ldc.i4.0
+	IL_0037: stloc.s V_4
+	IL_0039: ldarg.0
+	IL_003a: ldfld System.Diagnostics.Stopwatch PlayerRoles.PlayableScps.Scp079.Cameras.CameraZoomAxis::_cooldownStopwatch
+	IL_003f: call System.TimeSpan System.Diagnostics.Stopwatch::get_Elapsed()
+	IL_0044: stloc.s V_5
+	IL_0046: ldarg.0
+	IL_0047: ldfld System.Single PlayerRoles.PlayableScps.Scp079.Cameras.CameraAxisBase::_val
+	IL_004c: stloc.s V_6
+	IL_004e: ldloc.3
+	IL_004f: ldloc.s V_4
+	IL_0051: bgt.s IL_0053
+	IL_0053: ldarg.0
+	IL_0054: ldloc.s V_6
+	IL_0056: call System.Void PlayerRoles.PlayableScps.Scp079.Cameras.CameraAxisBase::set_TargetValue(System.Single)
+	IL_005b: ldarg.0
+	IL_005c: ldfld System.Diagnostics.Stopwatch PlayerRoles.PlayableScps.Scp079.Cameras.CameraZoomAxis::_cooldownStopwatch
+	IL_0061: call System.Void System.Diagnostics.Stopwatch::Restart()
+	IL_0066: ldarg.0
+	IL_0067: ldarg.1
+	IL_0068: call System.Void PlayerRoles.PlayableScps.Scp079.Cameras.CameraAxisBase::Update(PlayerRoles.PlayableScps.Scp079.Cameras.Scp079Camera)
+	IL_006d: ret
+	IL_006e: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0073: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Cameras.CameraZoomAxis
+	System.Void Awake(PlayerRoles.PlayableScps.Scp079.Cameras.Scp079Camera cam)
+		UnityEngine.Transform _zoomBone = this._zoomBone
+		this._wasEverSet = False
+
+		UnityEngine.Vector3 localPosition = .localPosition
+		UnityEngine.Transform _zoomBone2 = this._zoomBone
+		System.Single single = localPosition.z
+
+		UnityEngine.Vector3 localEulerAngles = .localEulerAngles
+		UnityEngine.Transform _zoomBone3 = this._zoomBone
+		System.Single single2 = localEulerAngles.z
+
+		UnityEngine.Vector3 localScale = .localScale
+		System.Single single3 = localScale.z
+		this._unzoomedOffset = 0
+		this._unzoomedOffset.rotation.y = 0
+		this._unzoomedOffset.scale.z = single3
+		ulong local15 = 0
+
+		base.TargetValue = local15
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1803B1315) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Cameras.CameraZoomAxis
+	System.Void OnValueChanged(System.Single newValue, PlayerRoles.PlayableScps.Scp079.Cameras.Scp079Camera cam)
+		newValue = local4
+
+		System.Single single = UnityEngine.Mathf.InverseLerp()
+		local4 = single
+		UnityEngine.Transform _zoomBone = this._zoomBone
+		  = this.
+		  = this.
+		ulong local8 = 0
+
+		UnityEngine.Vector3 vector3 = UnityEngine.Vector3.Lerp()
+
+		_zoomBone.set_localPosition(null) //(Vector3 value)
+		UnityEngine.Transform _zoomBone2 = this._zoomBone
+
+		UnityEngine.Quaternion quaternion = UnityEngine.Quaternion.Euler()
+
+		UnityEngine.Quaternion quaternion2 = UnityEngine.Quaternion.Euler()
+
+		UnityEngine.Quaternion quaternion3 = UnityEngine.Quaternion.Lerp()
+
+		_zoomBone2.set_localRotation(null) //(Quaternion value)
+		UnityEngine.Transform _zoomBone3 = this._zoomBone
+
+		UnityEngine.Vector3 vector32 = UnityEngine.Vector3.Lerp()
+
+		_zoomBone3.set_localScale(null) //(Vector3 value)
+		UnityEngine.AudioSource soundEffectSource = this.SoundEffectSource
+
+		System.Boolean loop = soundEffectSource.loop
+
+		if (loop == False)
+
+		    if (loop != False)
+		        UnityEngine.AudioSource soundEffectSource2 = this.SoundEffectSource
+
+		        soundEffectSource2.Play()
+		        System.Single _val = this._val
+		        this._lastSoundZoom = _val
+		    endif
+            
+		    return
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.RegToRegMoveAction at (0x1803B142D) is corrupt (Local being overwritten, {'newValue' (function parameter, type System.Single)} has been stripped or is a parameter) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Cameras.CameraZoomAxis
+	System.Void UpdateInputs()
+		ulong local1 = 0
+
+		System.Single axisRaw = UnityEngine.Input.GetAxisRaw("Mouse ScrollWheel") //(String axisName)
+
+		System.Single axis = UnityEngine.Input.GetAxis("Mouse ScrollWheel") //(String axisName)
+		ulong local4 = 0
+		System.Diagnostics.Stopwatch _cooldownStopwatch = this._cooldownStopwatch
+
+		System.TimeSpan elapsed = _cooldownStopwatch.Elapsed
+		System.Single _val = this._val
+
+		if (axis <= local4)
+		endif
+        
+
+		base.TargetValue = _val
+		System.Diagnostics.Stopwatch _cooldownStopwatch2 = this._cooldownStopwatch
+
+		_cooldownStopwatch2.Restart()
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: ldstr "Mouse ScrollWheel"
+	IL_0007: call System.Single UnityEngine.Input::GetAxisRaw(System.String)
+	IL_000c: stloc.1
+	IL_000d: ldstr "Mouse ScrollWheel"
+	IL_0012: call System.Single UnityEngine.Input::GetAxis(System.String)
+	IL_0017: stloc.2
+	IL_0018: ldc.i4.0
+	IL_0019: stloc.3
+	IL_001a: ldarg.0
+	IL_001b: ldfld System.Diagnostics.Stopwatch PlayerRoles.PlayableScps.Scp079.Cameras.CameraZoomAxis::_cooldownStopwatch
+	IL_0020: call System.TimeSpan System.Diagnostics.Stopwatch::get_Elapsed()
+	IL_0025: stloc.s V_4
+	IL_0027: ldarg.0
+	IL_0028: ldfld System.Single PlayerRoles.PlayableScps.Scp079.Cameras.CameraAxisBase::_val
+	IL_002d: stloc.s V_5
+	IL_002f: ldloc.2
+	IL_0030: ldloc.3
+	IL_0031: bgt.s IL_0033
+	IL_0033: ldarg.0
+	IL_0034: ldloc.s V_5
+	IL_0036: call System.Void PlayerRoles.PlayableScps.Scp079.Cameras.CameraAxisBase::set_TargetValue(System.Single)
+	IL_003b: ldarg.0
+	IL_003c: ldfld System.Diagnostics.Stopwatch PlayerRoles.PlayableScps.Scp079.Cameras.CameraZoomAxis::_cooldownStopwatch
+	IL_0041: call System.Void System.Diagnostics.Stopwatch::Restart()
+	IL_0046: ret
+	IL_0047: newobj System.Void System.NullReferenceException::.ctor()
+	IL_004c: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Cameras.CameraZoomAxis
+	System.Void .ctor()
+		ulong local1 = 0
+
+		System.Diagnostics.Stopwatch stopwatch = System.Diagnostics.Stopwatch.StartNew()
+		this._cooldownStopwatch = stopwatch
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: call System.Diagnostics.Stopwatch System.Diagnostics.Stopwatch::StartNew()
+	IL_0007: stloc.1
+	IL_0008: ldarg.0
+	IL_0009: ldloc.1
+	IL_000a: stfld System.Diagnostics.Stopwatch PlayerRoles.PlayableScps.Scp079.Cameras.CameraZoomAxis::_cooldownStopwatch
+	IL_000f: ldarg.0
+	IL_0010: call System.Void System.Object::.ctor()
+	IL_0015: ret
+	
+

@@ -1,0 +1,1029 @@
+Type: Intercom
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.Voice.Intercom
+	static PlayerRoles.Voice.IntercomState get_State()
+		return 4
+		PlayerRoles.Voice.Intercom _singleton = PlayerRoles.Voice.Intercom._singleton
+		System.Byte _state = _singleton._state
+		return _state
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x1803D4173) is corrupt (Return value has a type of System.Byte, expecting an object of type PlayerRoles.Voice.IntercomState) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.Voice.Intercom
+	static System.Void set_State(PlayerRoles.Voice.IntercomState value)
+		System.Int32 local1 = value.value__
+		System.Int32 local2 = local1 - 1
+		PlayerRoles.Voice.Intercom _singleton = PlayerRoles.Voice.Intercom._singleton
+
+		if (local2 != 0)
+
+		    if (local2 != 0)
+
+		        if (local2 != 1)
+		        else
+		            ulong local5 = 0
+
+		            _singleton.RpcPlayClip(local5) //(Boolean state)
+		            ReferenceHub _curSpeaker = _singleton._curSpeaker
+		            ulong local8 = 0
+
+		            System.Boolean boolean = ReferenceHub.op_Inequality(_curSpeaker, local8) //(ReferenceHub left, ReferenceHub right)
+
+		            if (boolean != False)
+		                ReferenceHub _curSpeaker2 = _singleton._curSpeaker
+		                ServerRoles serverRoles = _curSpeaker2.serverRoles
+
+		                if (serverRoles.BypassMode != False)
+		                    ulong local12 = 0
+
+		                    _singleton.Network_nextTime = local12
+
+		                    _singleton.Network_state = local1
+		                    return
+		                endif
+                        
+		                ulong local15 = 0
+
+		                System.Double time = Mirror.NetworkTime.time
+		                System.Single _cooldownTime = _singleton._cooldownTime
+
+		                _singleton.Network_nextTime = _cooldownTime
+
+		                _singleton.Network_state = local1
+		                return
+		            endif
+                    
+		            ulong local20 = 0
+
+		            System.Double time2 = Mirror.NetworkTime.time
+		        endif
+                
+		        ulong local23 = 0
+
+		        System.Double time3 = Mirror.NetworkTime.time
+		        System.Single _wakeupTime = _singleton._wakeupTime
+
+		        _singleton.Network_nextTime = _wakeupTime
+		        System.Int64 local28 = 1
+
+		        _singleton.RpcPlayClip(local28) //(Boolean state)
+		    endif
+            
+
+		    _singleton.Network_state = local1
+		    return
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: stloc.0
+	IL_0002: ldloc.0
+	IL_0003: ldc.i4.1
+	IL_0004: sub
+	IL_0005: stloc.1
+	IL_0006: ldsfld PlayerRoles.Voice.Intercom PlayerRoles.Voice.Intercom::_singleton
+	IL_000b: stloc.2
+	IL_000c: ldloc.1
+	IL_000d: ldc.i4.0
+	IL_000e: beq IL_008d
+	IL_0013: ldloc.1
+	IL_0014: ldc.i4.0
+	IL_0015: beq.s IL_0083
+	IL_0017: ldloc.1
+	IL_0018: ldc.i4.1
+	IL_0019: beq.s IL_001b
+	IL_001b: ldc.i4.0
+	IL_001c: stloc.3
+	IL_001d: ldloc.2
+	IL_001e: ldloc.3
+	IL_001f: call System.Void PlayerRoles.Voice.Intercom::RpcPlayClip(System.Boolean)
+	IL_0024: ldloc.2
+	IL_0025: ldfld ReferenceHub PlayerRoles.Voice.Intercom::_curSpeaker
+	IL_002a: stloc.s V_4
+	IL_002c: ldc.i4.0
+	IL_002d: stloc.s V_5
+	IL_002f: ldloc.s V_4
+	IL_0031: ldloc.s V_5
+	IL_0033: call System.Boolean ReferenceHub::op_Inequality(ReferenceHub,ReferenceHub)
+	IL_0038: ldc.i4.0
+	IL_0039: beq.s IL_0061
+	IL_003b: ldloc.2
+	IL_003c: ldfld ReferenceHub PlayerRoles.Voice.Intercom::_curSpeaker
+	IL_0041: ldfld ServerRoles ReferenceHub::serverRoles
+	IL_0046: ldfld System.Boolean ServerRoles::BypassMode
+	IL_004b: ldc.i4.0
+	IL_004c: beq.s IL_0061
+	IL_004e: ldc.i4.0
+	IL_004f: stloc.s V_6
+	IL_0051: ldloc.2
+	IL_0052: ldloc.s V_6
+	IL_0054: call System.Void PlayerRoles.Voice.Intercom::set_Network_nextTime(System.Double)
+	IL_0059: ldloc.2
+	IL_005a: ldloc.0
+	IL_005b: call System.Void PlayerRoles.Voice.Intercom::set_Network_state(System.Byte)
+	IL_0060: ret
+	IL_0061: ldc.i4.0
+	IL_0062: stloc.s V_7
+	IL_0064: call System.Double Mirror.NetworkTime::get_time()
+	IL_0069: stloc.s V_8
+	IL_006b: ldloc.2
+	IL_006c: ldfld System.Single PlayerRoles.Voice.Intercom::_cooldownTime
+	IL_0071: stloc.s V_9
+	IL_0073: ldloc.2
+	IL_0074: ldloc.s V_9
+	IL_0076: call System.Void PlayerRoles.Voice.Intercom::set_Network_nextTime(System.Double)
+	IL_007b: ldloc.2
+	IL_007c: ldloc.0
+	IL_007d: call System.Void PlayerRoles.Voice.Intercom::set_Network_state(System.Byte)
+	IL_0082: ret
+	IL_0083: ldc.i4.0
+	IL_0084: stloc.s V_10
+	IL_0086: call System.Double Mirror.NetworkTime::get_time()
+	IL_008b: stloc.s V_11
+	IL_008d: ldc.i4.0
+	IL_008e: stloc.s V_12
+	IL_0090: call System.Double Mirror.NetworkTime::get_time()
+	IL_0095: stloc.s V_13
+	IL_0097: ldloc.2
+	IL_0098: ldfld System.Single PlayerRoles.Voice.Intercom::_wakeupTime
+	IL_009d: stloc.s V_14
+	IL_009f: ldloc.2
+	IL_00a0: ldloc.s V_14
+	IL_00a2: call System.Void PlayerRoles.Voice.Intercom::set_Network_nextTime(System.Double)
+	IL_00a7: ldloc.2
+	IL_00a8: ldloc.s V_15
+	IL_00aa: call System.Void PlayerRoles.Voice.Intercom::RpcPlayClip(System.Boolean)
+	IL_00af: ldloc.2
+	IL_00b0: ldloc.0
+	IL_00b1: call System.Void PlayerRoles.Voice.Intercom::set_Network_state(System.Byte)
+	IL_00b6: ret
+	IL_00b7: newobj System.Void System.NullReferenceException::.ctor()
+	IL_00bc: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.Voice.Intercom
+	System.Single get_RemainingTime()
+		ulong local1 = 0
+
+		System.Double time = Mirror.NetworkTime.time
+		ulong local4 = 0
+
+		System.Single single = UnityEngine.Mathf.Max(time, local4) //(Single a, Single b)
+		return single
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: call System.Double Mirror.NetworkTime::get_time()
+	IL_0007: stloc.1
+	IL_0008: ldc.i4.0
+	IL_0009: stloc.2
+	IL_000a: ldloc.1
+	IL_000b: ldloc.2
+	IL_000c: call System.Single UnityEngine.Mathf::Max(System.Single,System.Single)
+	IL_0011: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.Voice.Intercom
+	System.Boolean get_BypassMode()
+		ulong local1 = 0
+
+		PlayerRoles.Voice.IntercomState state = PlayerRoles.Voice.Intercom.State
+
+		if (state == 2)
+
+		    if (state == 2)
+		        return True
+		    endif
+            
+		    ulong local4 = 0
+		    return local4
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x1803D4010) is corrupt (Return value has a type of System.Int32, expecting an object of type System.Boolean) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.Voice.Intercom
+	System.Void Awake()
+		PlayerRoles.Voice.Intercom._singleton = this
+		. = 1
+		System.Action onConfigReloaded = GameCore.ConfigFile.OnConfigReloaded
+		System.Action action = new System.Action()
+
+		action..ctor(this, {'ReloadConfigs' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		System.Delegate delegate = System.Delegate.Combine(onConfigReloaded, action) //(Delegate a, Delegate b)
+		ulong local6 = 0
+
+		if (delegate != 0)
+
+		    if (delegate == 0)
+                goto INSN_1803D28C4
+            endif
+		endif
+        
+		GameCore.ConfigFile.OnConfigReloaded = local6
+		System.Action action2 = new System.Action()
+
+		action2..ctor(this, {'SetupPos' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		MapGeneration.SeedSynchronizer.add_OnMapGenerated(action2) //(Action value)
+		YamlConfig serverConfig = GameCore.ConfigFile.ServerConfig
+
+		System.Single float = serverConfig.GetFloat("intercom_cooldown", 120) //(String key, Single def)
+		this._cooldownTime = float
+		YamlConfig serverConfig2 = GameCore.ConfigFile.ServerConfig
+
+		System.Single float2 = serverConfig2.GetFloat("intercom_max_speech_time", 20) //(String key, Single def)
+		this._speechTime = float2
+
+		UnityEngine.Transform transform = base.transform
+
+		UnityEngine.Vector3 position = .position
+		System.Single single = position.z
+		System.Single _range = this._range
+		this._worldPos.z = single
+		this._rangeSqr = _range
+		return
+
+		System.String name = base.name
+
+		System.String string = System.String.Concat("Multiple instances of Intercom detected. Last name: '", name, "'") //(String str0, String str1, String str2)
+		System.InvalidOperationException invalidOperationException = new System.InvalidOperationException()
+
+		invalidOperationException..ctor(string) //(String message)
+
+		INSN_1803D28C4:
+		throw new System.InvalidCastException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ImmediateToFieldAction at (0x1803D2672) is corrupt (Instance or field is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.Voice.Intercom
+	System.Void Update()
+		ulong local1 = 0
+		PlayerRoles.Voice.Intercom _singleton = PlayerRoles.Voice.Intercom._singleton
+		System.Byte _state = _singleton._state
+
+		if (_state != constant38)
+
+		    if (_state != constant38)
+
+		        if (_state != constant38)
+
+		            if (_state == constant39)
+		                ulong local4 = 0
+
+		                System.Double time = Mirror.NetworkTime.time
+		                ulong local7 = 0
+
+		                PlayerRoles.Voice.Intercom.State = local7
+		            endif
+                    
+		            return
+		        endif
+                
+		        ReferenceHub _curSpeaker = this._curSpeaker
+		        ulong local10 = 0
+
+		        System.Boolean boolean = ReferenceHub.op_Inequality(_curSpeaker, local10) //(ReferenceHub left, ReferenceHub right)
+
+		        if (boolean == False)
+                    goto INSN_1803D3B32
+                endif
+		        ReferenceHub _curSpeaker2 = this._curSpeaker
+		        PlayerRoles.PlayerRoleManager roleManager = _curSpeaker2.roleManager
+
+		        PlayerRoles.PlayerRoleBase currentRole = roleManager.CurrentRole
+
+		        System.Boolean boolean2 = this.CheckRange(_curSpeaker2) //(ReferenceHub hub)
+
+		        if (boolean2 == False)
+                    goto INSN_1803D3B32
+                endif
+		        //UNKNOWN CLASS OFFSET READ HERE
+		        System.Boolean local18 =  == HumanRole
+		          = currentRole.
+
+		        if ( == 0)
+                    goto INSN_1803D3B32
+                endif
+
+		        VoiceChat.VcMuteFlags flags = VoiceChat.VoiceChatMutes.GetFlags(_curSpeaker2) //(ReferenceHub hub)
+
+		        if (flags != 0)
+                    goto INSN_1803D3B32
+                endif
+		        System.Diagnostics.Stopwatch _sustain = this._sustain
+
+		        _sustain.Restart()
+
+		        INSN_1803D3B32:
+		        System.Diagnostics.Stopwatch _sustain2 = this._sustain
+
+		        System.TimeSpan elapsed = _sustain2.Elapsed
+
+		        if (elapsed == 0)
+                    goto INSN_1803D3BBB
+                endif
+		        ulong local28 = 0
+
+		        System.Double time2 = Mirror.NetworkTime.time
+
+		        INSN_1803D3BBB:
+		        System.Int32 3 = 3
+		    endif
+            
+		    ulong local32 = 0
+
+		    System.Double time3 = Mirror.NetworkTime.time
+		    System.Diagnostics.Stopwatch _sustain3 = this._sustain
+
+		    _sustain3.Restart()
+		    System.Int32 2 = 2
+		endif
+        
+		System.Func`2<ReferenceHub,System.Boolean> func = new System.Func`2<ReferenceHub,System.Boolean>()
+
+		func..ctor(this, {'CheckPlayer' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		System.Boolean boolean3 = Utils.NonAllocLINQ.HashsetExtensions.TryGetFirst<ReferenceHub>()
+
+		if (boolean3 != False)
+		    this._curSpeaker = local1
+		    System.Int32 1 = 1
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfZeroOrNullAction at (0x1803D3987) is corrupt (ConstantDefinition: Don't know how to get IL to load a System.Byte) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.Voice.Intercom
+	System.Void OnDestroy()
+		System.Action onConfigReloaded = GameCore.ConfigFile.OnConfigReloaded
+		System.Action action = new System.Action()
+
+		action..ctor(this, {'ReloadConfigs' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		System.Delegate delegate = System.Delegate.Remove(onConfigReloaded, action) //(Delegate source, Delegate value)
+		ulong local6 = 0
+
+		if (delegate != 0)
+
+		    if (delegate == 0)
+                goto INSN_1803D32D4
+            endif
+		endif
+        
+		GameCore.ConfigFile.OnConfigReloaded = local6
+		System.Action action2 = new System.Action()
+
+		action2..ctor(this, {'SetupPos' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		MapGeneration.SeedSynchronizer.remove_OnMapGenerated(action2) //(Action value)
+		. = 0
+		return
+
+		INSN_1803D32D4:
+		throw new System.InvalidCastException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ImmediateToFieldAction at (0x1803D32CA) is corrupt (Instance or field is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.Voice.Intercom
+	System.Void OnDrawGizmosSelected()
+
+		UnityEngine.Color green = UnityEngine.Color.green
+
+		UnityEngine.Gizmos.set_color()
+
+		UnityEngine.Transform transform = base.transform
+
+		UnityEngine.Vector3 position = .position
+		System.Single single = position.z
+
+		UnityEngine.Gizmos.DrawWireSphere()
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1803D3304) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.Voice.Intercom
+	System.Void SetupPos()
+
+		UnityEngine.Transform transform = base.transform
+
+		UnityEngine.Vector3 position = .position
+		System.Single single = position.z
+		System.Single _range = this._range
+		this._worldPos.z = single
+		this._rangeSqr = _range
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1803D36C0) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.Voice.Intercom
+	System.Void ReloadConfigs()
+		YamlConfig serverConfig = GameCore.ConfigFile.ServerConfig
+
+		System.Single float = serverConfig.GetFloat("intercom_cooldown", 120) //(String key, Single def)
+		this._cooldownTime = float
+		YamlConfig serverConfig2 = GameCore.ConfigFile.ServerConfig
+
+		System.Single float2 = serverConfig2.GetFloat("intercom_max_speech_time", 20) //(String key, Single def)
+		this._speechTime = float2
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldsfld YamlConfig GameCore.ConfigFile::ServerConfig
+	IL_0005: ldstr "intercom_cooldown"
+	IL_000a: ldc.r4 120
+	IL_000f: call System.Single YamlConfig::GetFloat(System.String,System.Single)
+	IL_0014: stloc.0
+	IL_0015: ldarg.0
+	IL_0016: ldloc.0
+	IL_0017: stfld System.Single PlayerRoles.Voice.Intercom::_cooldownTime
+	IL_001c: ldsfld YamlConfig GameCore.ConfigFile::ServerConfig
+	IL_0021: ldstr "intercom_max_speech_time"
+	IL_0026: ldc.r4 20
+	IL_002b: call System.Single YamlConfig::GetFloat(System.String,System.Single)
+	IL_0030: stloc.1
+	IL_0031: ldarg.0
+	IL_0032: ldloc.1
+	IL_0033: stfld System.Single PlayerRoles.Voice.Intercom::_speechTime
+	IL_0038: ret
+	IL_0039: newobj System.Void System.NullReferenceException::.ctor()
+	IL_003e: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.Voice.Intercom
+	System.Boolean CheckRange(ReferenceHub hub)
+		PlayerRoles.PlayerRoleManager roleManager = hub.roleManager
+		ulong local3 = 0
+
+		PlayerRoles.PlayerRoleBase currentRole = roleManager.CurrentRole
+
+		if (currentRole != 0)
+		    //UNKNOWN CLASS OFFSET READ HERE
+		      = currentRole.
+		    //UNKNOWN CLASS OFFSET READ HERE
+		    System.Single single = this._worldPos.z
+
+		    UnityEngine.Vector3 vector3 = UnityEngine.Vector3.op_Subtraction()
+		    System.Single single2 = vector3.z
+		    System.Single _rangeSqr = this._rangeSqr
+		    return single2
+		endif
+        
+		ulong local11 = 0
+		return local11
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.UnknownClassOffsetReadAction at (0x1803D2C34) is corrupt (Unknown class offset read) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.Voice.Intercom
+	System.Boolean CheckPlayer(ReferenceHub hub)
+		PlayerRoles.PlayerRoleManager roleManager = hub.roleManager
+
+		PlayerRoles.PlayerRoleBase currentRole = roleManager.CurrentRole
+
+		System.Boolean boolean = this.CheckRange(hub) //(ReferenceHub hub)
+
+		if (boolean != False)
+		    //UNKNOWN CLASS OFFSET READ HERE
+		    System.Boolean local7 =  == HumanRole
+		      = currentRole.
+
+		    if ( != 0)
+
+		        VoiceChat.VcMuteFlags flags = VoiceChat.VoiceChatMutes.GetFlags(hub) //(ReferenceHub hub)
+
+		        if (flags == 0)
+		            return True
+		        endif
+                
+		        ulong local11 = 0
+		        return local11
+		        throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.UnknownClassOffsetReadAction at (0x1803D2B3B) is corrupt (Unknown class offset read) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.Voice.Intercom
+	System.Void RpcPlayClip(System.Boolean state)
+		ulong local2 = 0
+
+		Mirror.PooledNetworkWriter writer = Mirror.NetworkWriterPool.GetWriter()
+
+		Mirror.NetworkWriterExtensions.WriteByte(writer, state) //(NetworkWriter writer, Byte value)
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'Intercom' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		ulong local7 = 0
+
+		base.SendRPCInternal(typeFromHandle, "RpcPlayClip", writer, local7, local8) //(Type invokeClass, String rpcName, NetworkWriter writer, Int32 channelId, Boolean includeOwner)
+
+		Mirror.NetworkWriterPool.Recycle(writer) //(PooledNetworkWriter writer)
+		return
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: call Mirror.PooledNetworkWriter Mirror.NetworkWriterPool::GetWriter()
+	IL_0007: stloc.1
+	IL_0008: ldloc.1
+	IL_0009: ldarg.1
+	IL_000a: call System.Void Mirror.NetworkWriterExtensions::WriteByte(Mirror.NetworkWriter,System.Byte)
+	IL_000f: ldtoken PlayerRoles.Voice.Intercom
+	IL_0014: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+	IL_0019: stloc.2
+	IL_001a: ldc.i4.0
+	IL_001b: stloc.3
+	IL_001c: ldarg.0
+	IL_001d: ldloc.2
+	IL_001e: ldstr "RpcPlayClip"
+	IL_0023: ldloc.1
+	IL_0024: ldloc.3
+	IL_0025: ldloc.s V_4
+	IL_0027: call System.Void Mirror.NetworkBehaviour::SendRPCInternal(System.Type,System.String,Mirror.NetworkWriter,System.Int32,System.Boolean)
+	IL_002c: ldloc.1
+	IL_002d: call System.Void Mirror.NetworkWriterPool::Recycle(Mirror.PooledNetworkWriter)
+	IL_0032: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.Voice.Intercom
+	static System.Boolean CheckPerms(ReferenceHub hub)
+
+		VoiceChat.VcMuteFlags flags = VoiceChat.VoiceChatMutes.GetFlags(hub) //(ReferenceHub hub)
+
+		if (flags == 0)
+		    ulong local3 = 0
+
+		    PlayerRoles.Voice.IntercomState state = PlayerRoles.Voice.Intercom.State
+		    System.Int32 local5 = state.value__
+		    PlayerRoles.Voice.Intercom _singleton = PlayerRoles.Voice.Intercom._singleton
+		    System.Collections.Generic.HashSet`1<ReferenceHub> _adminOverrides = _singleton._adminOverrides
+
+		    System.Boolean boolean = _adminOverrides.Contains(hub) //(T item)
+
+		    if (boolean != False)
+		        return True
+		    endif
+            
+
+		    if (local5 != 2)
+                goto INSN_1803D2A93
+            endif
+		    PlayerRoles.Voice.Intercom _singleton2 = PlayerRoles.Voice.Intercom._singleton
+
+		    System.Boolean boolean2 = _singleton2.CheckRange(hub) //(ReferenceHub hub)
+
+		    if (boolean2 == False)
+                goto INSN_1803D2A93
+            endif
+		    PlayerRoles.Voice.Intercom _singleton3 = PlayerRoles.Voice.Intercom._singleton
+		    ReferenceHub _curSpeaker = _singleton3._curSpeaker
+
+		    System.Boolean boolean3 = ReferenceHub.op_Equality(_curSpeaker, hub) //(ReferenceHub left, ReferenceHub right)
+		    return boolean3
+		endif
+        
+		ulong local16 = 0
+		return local16
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x1803D2A9F) is corrupt (Return value has a type of System.Int32, expecting an object of type System.Boolean) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.Voice.Intercom
+	static System.Boolean TrySetOverride(ReferenceHub ply, System.Boolean newState)
+		ulong local3 = 0
+
+		System.Boolean boolean = ReferenceHub.op_Equality(ply, local3) //(ReferenceHub left, ReferenceHub right)
+
+		if (boolean == False)
+		    PlayerRoles.Voice.Intercom _singleton = PlayerRoles.Voice.Intercom._singleton
+		    System.Collections.Generic.HashSet`1<ReferenceHub> _adminOverrides = _singleton._adminOverrides
+
+		    if (newState != False)
+
+		        System.Boolean boolean2 = _adminOverrides.Add(ply) //(T item)
+		        return True
+		    endif
+            
+
+		    System.Boolean boolean3 = _adminOverrides.Remove(ply) //(T item)
+		    return boolean3
+		endif
+        
+		ulong local9 = 0
+		return local9
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x1803D3816) is corrupt (Return value has a type of System.Int32, expecting an object of type System.Boolean) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.Voice.Intercom
+	System.Void .ctor()
+		System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch()
+
+		stopwatch..ctor()
+		this._sustain = stopwatch
+		ulong local3 = 0
+
+		System.Diagnostics.Stopwatch stopwatch2 = System.Diagnostics.Stopwatch.StartNew()
+		this._clipSw = stopwatch2
+		System.Collections.Generic.HashSet`1<ReferenceHub> hashSet = new System.Collections.Generic.HashSet`1<ReferenceHub>()
+
+		hashSet..ctor()
+		this._adminOverrides = hashSet
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: newobj System.Void System.Diagnostics.Stopwatch::.ctor()
+	IL_0005: stloc.0
+	IL_0006: ldarg.0
+	IL_0007: ldloc.0
+	IL_0008: stfld System.Diagnostics.Stopwatch PlayerRoles.Voice.Intercom::_sustain
+	IL_000d: ldc.i4.0
+	IL_000e: stloc.1
+	IL_000f: call System.Diagnostics.Stopwatch System.Diagnostics.Stopwatch::StartNew()
+	IL_0014: stloc.2
+	IL_0015: ldarg.0
+	IL_0016: ldloc.2
+	IL_0017: stfld System.Diagnostics.Stopwatch PlayerRoles.Voice.Intercom::_clipSw
+	IL_001c: newobj System.Void System.Collections.Generic.HashSet`1::.ctor()
+	IL_0021: stloc.3
+	IL_0022: ldarg.0
+	IL_0023: ldloc.3
+	IL_0024: stfld System.Collections.Generic.HashSet`1<ReferenceHub> PlayerRoles.Voice.Intercom::_adminOverrides
+	IL_0029: ldarg.0
+	IL_002a: call System.Void Mirror.NetworkBehaviour::.ctor()
+	IL_002f: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.Voice.Intercom
+	System.Void MirrorProcessed()
+
+
+Generated IL:
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.Voice.Intercom
+	System.Byte get_Network_state()
+		System.Byte _state = this._state
+		return _state
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Byte PlayerRoles.Voice.Intercom::_state
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.Voice.Intercom
+	System.Void set_Network_state(System.Byte value)
+
+		System.Boolean boolean = base.SyncVarEqual<System.Byte>()
+
+		if (boolean == False)
+		    throw new System.NullReferenceException()
+		endif
+        
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1803D4255) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.Voice.Intercom
+	System.Double get_Network_nextTime()
+		return 
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x1803D4028) is corrupt (Return value is missing) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.Voice.Intercom
+	System.Void set_Network_nextTime(System.Double value)
+
+		System.Boolean boolean = base.SyncVarEqual<System.Double>()
+
+		if (boolean == False)
+
+		    base.SetSyncVar<System.Double>()
+		endif
+        
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1803D41C4) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.Voice.Intercom
+	System.Void UserCode_RpcPlayClip(System.Boolean state)
+		System.Diagnostics.Stopwatch _clipSw = this._clipSw
+
+		System.TimeSpan elapsed = _clipSw.Elapsed
+
+		if (_clipSw <= 0)
+
+		    if (state != False)
+		    else
+		        UnityEngine.AudioClip _endClip = this._endClip
+		    endif
+            
+		    ulong local9 = 0
+
+		    UnityEngine.AudioSource audioSource = AudioPooling.AudioSourcePoolManager.PlaySound()
+		    System.Diagnostics.Stopwatch _clipSw2 = this._clipSw
+
+		    _clipSw2.Restart()
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1803D3DDB) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (8)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.Voice.Intercom
+	static System.Void InvokeUserCode_RpcPlayClip(Mirror.NetworkBehaviour obj, Mirror.NetworkReader reader, Mirror.NetworkConnectionToClient senderConnection)
+		ulong local3 = 0
+
+		System.Boolean active = Mirror.NetworkClient.active
+
+		if (active != False)
+		    ulong local5 = 0
+
+		    System.Boolean boolean = Mirror.NetworkReaderExtensions.ReadBoolean(reader) //(NetworkReader reader)
+		    //UNKNOWN CLASS OFFSET READ HERE
+		      = obj.
+
+		    System.TimeSpan elapsed = .Elapsed
+		      = obj.
+
+		    if (boolean != False)
+		          = obj.
+		    else
+		          = obj.
+		    endif
+            
+		    ulong local10 = 0
+
+		    UnityEngine.AudioSource audioSource = AudioPooling.AudioSourcePoolManager.PlaySound()
+		      = obj.
+
+		    boolean.Restart()
+		    return
+		endif
+        
+
+		UnityEngine.Debug.LogError("RPC RpcPlayClip called on server.") //(Object message)
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.UnknownClassOffsetReadAction at (0x1803D303A) is corrupt (Unknown class offset read) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.Voice.Intercom
+	static System.Void .cctor()
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'Intercom' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		Mirror.RemoteCalls.CmdDelegate cmdDelegate = new Mirror.RemoteCalls.CmdDelegate()
+		ulong local4 = 0
+
+		cmdDelegate..ctor(local4, {'InvokeUserCode_RpcPlayClip' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		Mirror.RemoteCalls.RemoteCallHelper.RegisterRpcDelegate(typeFromHandle, "RpcPlayClip", cmdDelegate) //(Type invokeClass, String rpcName, CmdDelegate func)
+		return
+
+
+Generated IL:
+	IL_0000: ldtoken PlayerRoles.Voice.Intercom
+	IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+	IL_000a: stloc.0
+	IL_000b: ldloc.2
+	IL_000c: ldftn System.Void PlayerRoles.Voice.Intercom::InvokeUserCode_RpcPlayClip(Mirror.NetworkBehaviour,Mirror.NetworkReader,Mirror.NetworkConnectionToClient)
+	IL_0012: newobj System.Void Mirror.RemoteCalls.CmdDelegate::.ctor(System.Object,System.IntPtr)
+	IL_0017: stloc.1
+	IL_0018: ldc.i4.0
+	IL_0019: stloc.2
+	IL_001a: ldloc.0
+	IL_001b: ldstr "RpcPlayClip"
+	IL_0020: ldloc.1
+	IL_0021: call System.Void Mirror.RemoteCalls.RemoteCallHelper::RegisterRpcDelegate(System.Type,System.String,Mirror.RemoteCalls.CmdDelegate)
+	IL_0026: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.Voice.Intercom
+	System.Boolean SerializeSyncVars(Mirror.NetworkWriter writer, System.Boolean forceAll)
+
+		System.Boolean boolean = base.SerializeSyncVars(writer, forceAll) //(NetworkWriter writer, Boolean initialState)
+
+		if (forceAll == False)
+		    System.UInt64 syncVarDirtyBits = this.<syncVarDirtyBits>k__BackingField
+
+		    Mirror.NetworkWriterExtensions.WriteUInt64(writer, syncVarDirtyBits) //(NetworkWriter writer, UInt64 value)
+
+		    if ( != 1)
+		        System.Byte _state = this._state
+
+		        Mirror.NetworkWriterExtensions.WriteByte(writer, _state) //(NetworkWriter writer, Byte value)
+		    endif
+            
+
+		    if ( == 2)
+                goto INSN_1803D363B
+            endif
+
+		    Mirror.NetworkWriterExtensions.WriteDouble(writer, syncVarDirtyBits) //(NetworkWriter writer, Double value)
+
+		    INSN_1803D363B:
+		else
+		    System.Byte _state2 = this._state
+
+		    Mirror.NetworkWriterExtensions.WriteByte(writer, _state2) //(NetworkWriter writer, Byte value)
+
+		    Mirror.NetworkWriterExtensions.WriteDouble(writer, _state2) //(NetworkWriter writer, Double value)
+		endif
+        
+		return True
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfZeroOrNullAction at (0x1803D35BB) is corrupt (One of the arguments is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.Voice.Intercom
+	System.Void DeserializeSyncVars(Mirror.NetworkReader reader, System.Boolean initialState)
+
+		this.MirrorProcessed()
+
+		if (initialState == False)
+
+		    System.UInt64 uInt64 = Mirror.NetworkReaderExtensions.ReadUInt64(reader) //(NetworkReader reader)
+
+		    if (uInt64 != 1)
+
+		        [instruction error - managed method being called is null]
+
+		        System.Boolean boolean = base.SyncVarEqual<System.Byte>()
+
+		        if (boolean == False)
+		            throw new System.NullReferenceException()
+		        endif
+                
+		    endif
+            
+
+		    if (uInt64 == 2)
+                goto INSN_1803D2F6F
+            endif
+		else
+
+		    [instruction error - managed method being called is null]
+
+		    System.Boolean boolean2 = base.SyncVarEqual<System.Byte>()
+
+		    if (boolean2 == False)
+		        throw new System.NullReferenceException()
+		    endif
+            
+
+		    System.Double double = Mirror.NetworkReaderExtensions.ReadDouble(reader) //(NetworkReader reader)
+
+		    System.Boolean boolean3 = base.SyncVarEqual<System.Double>()
+
+		    if (boolean3 != False)
+                goto INSN_1803D2F6F
+            endif
+
+		    base.SetSyncVar<System.Double>()
+
+		    INSN_1803D2F6F:
+		    return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1803D2DE4) is corrupt (Don't know what method is being called) and cannot be created as IL. Aborting here.
+
+

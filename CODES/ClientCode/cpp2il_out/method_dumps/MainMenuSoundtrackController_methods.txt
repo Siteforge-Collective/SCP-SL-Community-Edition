@@ -1,0 +1,548 @@
+Type: MainMenuSoundtrackController
+
+
+	Generated Pseudocode:
+
+	Declaring Type: MainMenuSoundtrackController
+	System.Void Awake()
+		UnityEngine.Events.UnityAction`2<UnityEngine.SceneManagement.Scene,UnityEngine.SceneManagement.LoadSceneMode> unityAction = new UnityEngine.Events.UnityAction`2<UnityEngine.SceneManagement.Scene,UnityEngine.SceneManagement.LoadSceneMode>()
+
+		unityAction..ctor(this, {'OnSceneLoaded' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		UnityEngine.SceneManagement.SceneManager.add_sceneLoaded(unityAction) //(UnityAction`2 value)
+
+		CustomNetworkManager componentInParent = base.GetComponentInParent<CustomNetworkManager>()
+		this.cnm = componentInParent
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldftn System.Void MainMenuSoundtrackController::OnSceneLoaded(UnityEngine.SceneManagement.Scene,UnityEngine.SceneManagement.LoadSceneMode)
+	IL_0007: newobj System.Void UnityEngine.Events.UnityAction`2::.ctor(System.Object,System.IntPtr)
+	IL_000c: call System.Void UnityEngine.SceneManagement.SceneManager::add_sceneLoaded(UnityEngine.Events.UnityAction`2)
+	IL_0011: ldarg.0
+	IL_0012: call T UnityEngine.Component::GetComponentInParent<CustomNetworkManager>()
+	IL_0017: stloc.0
+	IL_0018: ldarg.0
+	IL_0019: ldloc.0
+	IL_001a: stfld CustomNetworkManager MainMenuSoundtrackController::cnm
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: MainMenuSoundtrackController
+	System.Void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, UnityEngine.SceneManagement.LoadSceneMode mode)
+		throw new System.MissingMethodException()
+
+		System.Boolean boolean = local4.Contains("Menu") //(String value)
+
+		if (boolean != False)
+		    throw new System.MissingMethodException()
+
+		    if (local8 != 0)
+		        ulong local10 = 0
+
+		        System.Int32 int32 = PlayerPrefsSl.Get("MenuTheme", local10) //(String key, Int32 defaultValue)
+
+		        if (int32 > 0)
+
+		            NewMainMenu newMainMenu = UnityEngine.Object.FindObjectOfType<NewMainMenu>()
+
+		            System.Boolean boolean2 = UnityEngine.Object.op_Implicit(newMainMenu) //(Object exists)
+
+		            if (boolean2 != False)
+		                this.SoundtrackState = 1
+		                UnityEngine.AudioSource toposThemeSource = this.ToposThemeSource
+
+		                toposThemeSource.Stop()
+		                UnityEngine.AudioClip[] altTracks = this.AltTracks
+		                UnityEngine.AudioSource toposThemeSource2 = this.ToposThemeSource
+		                UnityEngine.AudioClip audioClip = altTracks[int32]
+
+		                toposThemeSource2.clip = audioClip
+		                UnityEngine.AudioSource toposThemeSource3 = this.ToposThemeSource
+
+		                toposThemeSource3.loop = True
+		                UnityEngine.AudioSource toposThemeSource4 = this.ToposThemeSource
+
+		                toposThemeSource4.volume = 1
+		                UnityEngine.AudioSource toposThemeSource5 = this.ToposThemeSource
+
+		                toposThemeSource5.Play()
+		                UnityEngine.AudioSource toposThemeSource6 = this.ToposThemeSource
+		                ulong local29 = 0
+
+		                toposThemeSource6.time = local29
+		                return
+		            endif
+                    
+		            UnityEngine.AudioSource toposThemeSource7 = this.ToposThemeSource
+		            this.SoundtrackState = 0
+
+		            toposThemeSource7.Stop()
+		            UnityEngine.AudioSource toposThemeSource8 = this.ToposThemeSource
+
+		            toposThemeSource8.volume = 1
+		            UnityEngine.AudioSource intenseThemeSource = this.IntenseThemeSource
+		            ulong local36 = 0
+
+		            intenseThemeSource.volume = local36
+		            UnityEngine.AudioSource toposThemeSource9 = this.ToposThemeSource
+		            ulong local39 = 0
+
+		            toposThemeSource9.loop = local39
+		            UnityEngine.AudioSource toposThemeSource10 = this.ToposThemeSource
+		            UnityEngine.AudioClip introClip = this.IntroClip
+
+		            toposThemeSource10.clip = introClip
+		            UnityEngine.AudioSource toposThemeSource11 = this.ToposThemeSource
+		            UnityEngine.AudioClip introClip2 = this.IntroClip
+
+		            toposThemeSource11.PlayOneShot(introClip2) //(AudioClip clip)
+		            return
+		            UnityEngine.AudioSource toposThemeSource12 = this.ToposThemeSource
+		            this.SoundtrackState = 4
+
+		            toposThemeSource12.Stop()
+		            UnityEngine.AudioSource intenseThemeSource2 = this.IntenseThemeSource
+
+		            intenseThemeSource2.Stop()
+		            UnityEngine.AudioSource retroThemeSource = this.RetroThemeSource
+
+		            retroThemeSource.Play()
+		            return
+		        endif
+                
+		        this.SoundtrackState = 3
+		        return
+		        throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1802E1EEE) is corrupt (Mismatched instance parameter. Expecting an instance of System.String, actually {'local4' (type System.MissingMethodException)}) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: MainMenuSoundtrackController
+	System.Void LateUpdate()
+
+		if (this.DebugMode != False)
+
+		    if (this.DebugTrigger != False)
+		        MainMenuSoundtrackController/MenuSoundtrackState debugOverride = this.DebugOverride
+		        this.SoundtrackState = debugOverride
+		        this.DebugTrigger = False
+		    endif
+            
+		    UnityEngine.AudioSource toposThemeSource = this.ToposThemeSource
+
+		    UnityEngine.AudioClip clip = toposThemeSource.clip
+		    UnityEngine.AudioClip toposClip = this.ToposClip
+
+		    System.Boolean boolean = UnityEngine.Object.op_Equality(clip, toposClip) //(Object x, Object y)
+
+		    if (boolean == False)
+                goto INSN_1802E1838
+            endif
+		    UnityEngine.AudioSource toposThemeSource2 = this.ToposThemeSource
+
+		    System.Single time = toposThemeSource2.time
+		    System.Single toposLength = this.ToposLength
+
+		    if (toposLength > time)
+                goto INSN_1802E181F
+            endif
+		    System.Single toposMetric = this.ToposMetric
+		    ulong local14 = 0
+
+		    System.Single deltaTime = UnityEngine.Time.deltaTime
+		    UnityEngine.AudioSource toposThemeSource3 = this.ToposThemeSource
+
+		    System.Single pitch = toposThemeSource3.pitch
+
+		    INSN_1802E181F:
+		    UnityEngine.AudioSource toposThemeSource4 = this.ToposThemeSource
+
+		    System.Single time2 = toposThemeSource4.time
+		    this.ToposMetric = time2
+
+		    INSN_1802E1838:
+		    System.Single toposMetric2 = this.ToposMetric
+		    System.Single toposLength2 = this.ToposLength
+
+		    if (toposMetric2 <= toposLength2)
+                goto INSN_1802E1850
+            endif
+		    this.ToposMetric = toposMetric2
+
+		    INSN_1802E1850:
+
+		    if (this.SoundtrackState != 1)
+                goto INSN_1802E1894
+            endif
+
+		    if (this.DebugMode != False)
+                goto INSN_1802E1894
+            endif
+		    CustomNetworkManager customNetworkManager = this.cnm
+
+		    System.Boolean boolean2 = customNetworkManager.ShouldPlayIntensive()
+
+		    if (boolean2 == False)
+                goto INSN_1802E1894
+            endif
+		    this.SoundtrackState = 2
+
+		    INSN_1802E1894:
+
+		    if (this.SoundtrackState != 0)
+                goto INSN_1802E193D
+            endif
+		    UnityEngine.AudioSource toposThemeSource5 = this.ToposThemeSource
+
+		    System.Boolean isPlaying = toposThemeSource5.isPlaying
+
+		    if (isPlaying != False)
+                goto INSN_1802E193D
+            endif
+		    UnityEngine.AudioSource toposThemeSource6 = this.ToposThemeSource
+
+		    toposThemeSource6.Stop()
+		    UnityEngine.AudioSource toposThemeSource7 = this.ToposThemeSource
+		    UnityEngine.AudioClip toposClip2 = this.ToposClip
+
+		    toposThemeSource7.clip = toposClip2
+		    UnityEngine.AudioSource toposThemeSource8 = this.ToposThemeSource
+
+		    toposThemeSource8.loop = True
+		    UnityEngine.AudioSource toposThemeSource9 = this.ToposThemeSource
+
+		    toposThemeSource9.Play()
+		    UnityEngine.AudioSource toposThemeSource10 = this.ToposThemeSource
+		    ulong local41 = 0
+
+		    toposThemeSource10.time = local41
+		    this.ToposMetric = 0
+		    this.SoundtrackState = 1
+
+		    INSN_1802E193D:
+		    MainMenuSoundtrackController/MenuSoundtrackState soundtrackState = this.SoundtrackState
+
+		    if (soundtrackState == 2)
+                goto INSN_1802E1BD8
+            endif
+
+		    if (soundtrackState != 4)
+                goto INSN_1802E19A7
+            endif
+		    UnityEngine.AudioSource retroThemeSource = this.RetroThemeSource
+
+		    System.Boolean isPlaying2 = retroThemeSource.isPlaying
+
+		    if (isPlaying2 != False)
+                goto INSN_1802E19A7
+            endif
+		    UnityEngine.AudioSource toposThemeSource11 = this.ToposThemeSource
+
+		    toposThemeSource11.Stop()
+		    UnityEngine.AudioSource intenseThemeSource = this.IntenseThemeSource
+
+		    intenseThemeSource.Stop()
+		    UnityEngine.AudioSource retroThemeSource2 = this.RetroThemeSource
+
+		    retroThemeSource2.Play()
+
+		    INSN_1802E19A7:
+		    UnityEngine.AudioSource intenseThemeSource2 = this.IntenseThemeSource
+		    MainMenuSoundtrackController/MenuSoundtrackState soundtrackState2 = this.SoundtrackState
+
+		    System.Single volume = intenseThemeSource2.volume
+		    ulong local56 = 0
+		    toposMetric = volume
+
+		    System.Single deltaTime2 = UnityEngine.Time.deltaTime
+		    System.Single local58 = deltaTime2 / 6
+
+		    intenseThemeSource2.volume = toposMetric
+		    ulong local61 = 0
+		    System.Boolean local62 = soundtrackState2 == 5
+		    System.Boolean local64 = this.SoundtrackState == 3
+
+		    if (this.SoundtrackState != 3)
+                goto INSN_1802E1A35
+            endif
+		    UnityEngine.AudioSource toposThemeSource12 = this.ToposThemeSource
+
+		    System.Single volume2 = toposThemeSource12.volume
+		    ulong local68 = 0
+		    toposMetric = volume2
+
+		    System.Single deltaTime3 = UnityEngine.Time.deltaTime
+		    System.Single local70 = deltaTime3 * 0,5
+
+		    INSN_1802E1A35:
+		    System.Single fadeoffAnim = this.fadeoffAnim
+		    ulong local72 = 0
+
+		    System.Single deltaTime4 = UnityEngine.Time.deltaTime
+		    UnityEngine.AudioSource intenseThemeSource3 = this.IntenseThemeSource
+		    this.fadeoffAnim = deltaTime4
+
+		    System.Single volume3 = intenseThemeSource3.volume
+
+		    if (volume3 > local61)
+                goto INSN_1802E1A6E
+            endif
+		    System.Single fadeoffAnim2 = this.fadeoffAnim
+
+		    if (fadeoffAnim2 <= 1)
+                goto INSN_1802E1AA3
+            endif
+
+		    INSN_1802E1A6E:
+		    UnityEngine.AnimationCurve fadeoffAnimationCurve = this.FadeoffAnimationCurve
+		    UnityEngine.AudioSource toposThemeSource13 = this.ToposThemeSource
+		    System.Single fadeoffAnim3 = this.fadeoffAnim
+
+		    System.Single single = fadeoffAnimationCurve.Evaluate(fadeoffAnim3) //(Single time)
+		    fadeoffAnim3 = single
+
+		    toposThemeSource13.volume = fadeoffAnim3
+
+		    INSN_1802E1AA3:
+
+		    if (soundtrackState2 != 5)
+                goto INSN_1802E1B31
+            endif
+		    UnityEngine.AudioSource intenseThemeSource4 = this.IntenseThemeSource
+
+		    System.Single volume4 = intenseThemeSource4.volume
+		    UnityEngine.AudioSource lobbyThemeSource = this.LobbyThemeSource
+
+		    System.Boolean isPlaying3 = lobbyThemeSource.isPlaying
+
+		    if (isPlaying3 != False)
+                goto INSN_1802E1AF9
+            endif
+		    UnityEngine.AudioSource lobbyThemeSource2 = this.LobbyThemeSource
+
+		    lobbyThemeSource2.Play()
+
+		    INSN_1802E1AF9:
+		    UnityEngine.AudioSource toposThemeSource14 = this.ToposThemeSource
+		    UnityEngine.AudioSource lobbyThemeSource3 = this.LobbyThemeSource
+
+		    System.Single volume5 = toposThemeSource14.volume
+
+		    lobbyThemeSource3.volume = 1
+
+		    INSN_1802E1B31:
+		    UnityEngine.AudioSource lobbyThemeSource4 = this.LobbyThemeSource
+
+		    System.Single volume6 = lobbyThemeSource4.volume
+		    ulong local100 = 0
+		    fadeoffAnim = volume6
+
+		    System.Single deltaTime5 = UnityEngine.Time.deltaTime
+		    System.Single local102 = deltaTime5 * 0,1
+		    ulong local104 = 0
+
+		    System.Single single2 = UnityEngine.Mathf.Max(local104, fadeoffAnim) //(Single a, Single b)
+		    fadeoffAnim = single2
+
+		    lobbyThemeSource4.volume = fadeoffAnim
+		    UnityEngine.AudioSource lobbyThemeSource5 = this.LobbyThemeSource
+
+		    System.Single volume7 = lobbyThemeSource5.volume
+
+		    if (lobbyThemeSource5 != 0)
+                goto INSN_1802E1DE5
+            endif
+		    UnityEngine.AudioSource lobbyThemeSource6 = this.LobbyThemeSource
+
+		    lobbyThemeSource6.Stop()
+
+		    INSN_1802E1BD8:
+
+		    if (this.DebugMode != False)
+                goto INSN_1802E1C03
+            endif
+		    CustomNetworkManager customNetworkManager2 = this.cnm
+
+		    System.Boolean boolean3 = customNetworkManager2.ShouldPlayIntensive()
+
+		    if (boolean3 != False)
+                goto INSN_1802E1C03
+            endif
+		    this.SoundtrackState = 1
+
+		    INSN_1802E1C03:
+		    UnityEngine.AudioSource intenseThemeSource5 = this.IntenseThemeSource
+
+		    System.Single volume8 = intenseThemeSource5.volume
+		    UnityEngine.AudioSource intenseThemeSource6 = this.IntenseThemeSource
+
+		    System.Single volume9 = intenseThemeSource6.volume
+		    ulong local121 = 0
+		    fadeoffAnim = volume9
+
+		    System.Single deltaTime6 = UnityEngine.Time.deltaTime
+		    System.Single local123 = deltaTime6 * 0,5
+		    fadeoffAnim = local123
+
+		    intenseThemeSource6.volume = fadeoffAnim
+		    UnityEngine.AudioSource intenseThemeSource7 = this.IntenseThemeSource
+
+		    System.Single time3 = intenseThemeSource7.time
+
+		    if (time3 <= this.IntenseOldToposFadeoffTime)
+                goto INSN_1802E1CAB
+            endif
+		    UnityEngine.AudioSource toposThemeSource15 = this.ToposThemeSource
+
+		    System.Single volume10 = toposThemeSource15.volume
+		    ulong local131 = 0
+		    fadeoffAnim = volume10
+
+		    System.Single deltaTime7 = UnityEngine.Time.deltaTime
+		    System.Single local133 = deltaTime7 * 0,5
+
+		    toposThemeSource15.volume = fadeoffAnim
+
+		    INSN_1802E1CAB:
+		    UnityEngine.AudioSource intenseThemeSource8 = this.IntenseThemeSource
+
+		    System.Single volume11 = intenseThemeSource8.volume
+		    ulong local138 = 0
+
+		    if (volume11 <= local138)
+                goto INSN_1802E1D29
+            endif
+		    UnityEngine.AudioSource intenseThemeSource9 = this.IntenseThemeSource
+		    volume11 = local139
+		    System.Single local141 = volume11 * 0,5
+		    System.Single intenseDropTime = this.IntenseDropTime
+		    System.Single toposMetric3 = this.ToposMetric
+		    ulong local144 = 0
+		    local144 += 1
+
+		    intenseThemeSource9.time = intenseDropTime
+
+		    INSN_1802E1D29:
+		    UnityEngine.AudioSource toposThemeSource16 = this.ToposThemeSource
+
+		    System.Single volume12 = toposThemeSource16.volume
+		    UnityEngine.AudioSource intenseThemeSource10 = this.IntenseThemeSource
+
+		    System.Single time4 = intenseThemeSource10.time
+		    UnityEngine.AudioClip toposClip3 = this.ToposClip
+		    fadeoffAnim = time4
+
+		    System.Single length = toposClip3.length
+
+		    if (fadeoffAnim <= length)
+                goto INSN_1802E1DA6
+            endif
+		    UnityEngine.AudioClip toposClip4 = this.ToposClip
+
+		    System.Single length2 = toposClip4.length
+		    UnityEngine.AudioClip toposClip5 = this.ToposClip
+
+		    INSN_1802E1DA6:
+
+		    if (local138 <= fadeoffAnim)
+                goto INSN_1802E1DCD
+            endif
+		    UnityEngine.AudioClip toposClip6 = this.ToposClip
+
+		    System.Single length3 = toposClip6.length
+
+		    if (local138 > fadeoffAnim)
+                goto INSN_1802E1DB0
+            endif
+
+		    INSN_1802E1DCD:
+		    UnityEngine.AudioSource toposThemeSource17 = this.ToposThemeSource
+		    intenseDropTime = fadeoffAnim
+
+		    toposThemeSource17.time = intenseDropTime
+
+		    INSN_1802E1DE5:
+
+		    if (this.SoundtrackState != 5)
+                goto INSN_1802E1E3C
+            endif
+
+		    System.Boolean boolean4 = ReferenceHub.TryGetLocalHub()
+
+		    if (boolean4 == False)
+                goto INSN_1802E1E3C
+            endif
+		      = local1.
+		    this.SoundtrackState = 3
+
+		    INSN_1802E1E3C:
+		    MainMenuSoundtrackController/MenuSoundtrackState soundtrackState3 = this.SoundtrackState
+
+		    if (soundtrackState3 == 3)
+                goto INSN_1802E1E60
+            endif
+
+		    if (this.DebugMode != False)
+                goto INSN_1802E1E54
+            endif
+
+		    if (soundtrackState3 != 5)
+                goto INSN_1802E1E59
+            endif
+
+		    INSN_1802E1E54:
+
+		    if (soundtrackState3 == 5)
+                goto INSN_1802E1E60
+            endif
+
+		    INSN_1802E1E59:
+		    this.fadeoffAnim = 0
+
+		    INSN_1802E1E60:
+
+		    if (this.SoundtrackState == 4)
+                goto INSN_1802E1E76
+            endif
+		    UnityEngine.AudioSource retroThemeSource3 = this.RetroThemeSource
+
+		    retroThemeSource3.Stop()
+
+		    INSN_1802E1E76:
+		    return
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Don't know how to write IL for Cpp2IL.Core.Analysis.Actions.x86.Important.DivideRegByGlobalAction. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: MainMenuSoundtrackController
+	System.Void .ctor()
+		this.ToposLength = 5,1
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldc.r4 5,1
+	IL_0006: stfld System.Single MainMenuSoundtrackController::ToposLength
+	IL_000b: ldarg.0
+	IL_000c: call System.Void UnityEngine.MonoBehaviour::.ctor()
+	IL_0011: ret
+	
+

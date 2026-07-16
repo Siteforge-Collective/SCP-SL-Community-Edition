@@ -1,0 +1,197 @@
+Type: FirearmAnimatorEventsBase
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Firearms.FirearmAnimatorEventsBase
+	InventorySystem.Items.Firearms.Firearm get_TargetFirearm()
+		ulong local1 = 0
+
+		if (this._cacheSet == local1)
+
+		    System.Boolean boolean = base.TryGetComponent<UnityEngine.Animator>(local1) //(T& component)
+
+		    if (boolean == False)
+
+		        System.String name = base.name
+
+		        System.String string = System.String.Concat("Firearm ", name, " does not have an animator.") //(String str0, String str1, String str2)
+
+		        UnityEngine.Debug.LogError(string) //(Object message)
+		    else
+		        ulong local9 = 0
+
+		        local1.cullingMode = local9
+		    endif
+            
+
+		    System.Boolean boolean2 = base.TryGetComponent<InventorySystem.Items.Firearms.Firearm>(local1) //(T& component)
+
+		    if (boolean2 != False)
+                goto INSN_18066A11F
+            endif
+		    this.IsServerController = local1
+
+		    InventorySystem.Items.Firearms.AnimatedFirearmViewmodel componentInParent = base.GetComponentInParent<InventorySystem.Items.Firearms.AnimatedFirearmViewmodel>()
+		    this._afv = componentInParent
+		    InventorySystem.Items.Firearms.AnimatedFirearmViewmodel _afv = this._afv
+		    InventorySystem.Items.ItemBase ParentItem = _afv.<ParentItem>k__BackingField
+
+		    if (ParentItem == 0)
+                goto INSN_18066A10B
+            endif
+		    //UNKNOWN CLASS OFFSET READ HERE
+		    ulong local14 = 0
+
+		    INSN_18066A10B:
+		    this._cachedFirearm = ParentItem
+
+		    INSN_18066A11F:
+		    this._cachedFirearm = local1
+		    this.IsServerController = True
+		    this._cacheSet = True
+		    return local14
+		endif
+        
+		InventorySystem.Items.Firearms.Firearm _cachedFirearm = this._cachedFirearm
+		return _cachedFirearm
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18066A07D) is corrupt (Mismatched instance parameter. Expecting an instance of UnityEngine.Animator, actually {'local1' (type System.Int32)}) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Firearms.FirearmAnimatorEventsBase
+	System.Void set_TargetFirearm(InventorySystem.Items.Firearms.Firearm value)
+		this._cachedFirearm = value
+		this._cacheSet = True
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: stfld InventorySystem.Items.Firearms.Firearm InventorySystem.Items.Firearms.FirearmAnimatorEventsBase::_cachedFirearm
+	IL_0007: ldarg.0
+	IL_0008: ldc.i4.1
+	IL_0009: stfld System.Boolean InventorySystem.Items.Firearms.FirearmAnimatorEventsBase::_cacheSet
+	IL_000e: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Firearms.FirearmAnimatorEventsBase
+	System.Void ModifyUserAmmo(System.Int32 ammoToModify)
+
+		InventorySystem.Items.Firearms.Firearm targetFirearm = this.TargetFirearm
+
+		InventorySystem.Inventory ownerInventory = targetFirearm.OwnerInventory
+
+		InventorySystem.Items.Firearms.Firearm targetFirearm2 = this.TargetFirearm
+
+		InventorySystem.Items.Firearms.FirearmBaseStats baseStats = targetFirearm2.BaseStats
+		System.Single local10 = baseStats.BaseDamage
+
+		InventorySystem.InventoryExtensions.ServerAddAmmo()
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.Implicit4ByteFieldReadAction at (0x180669CF6) is corrupt (Local local10 has been stripped out for being unused, so doesn't have a variable.) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Firearms.FirearmAnimatorEventsBase
+	System.Void PlaySound(System.Int32 soundId)
+
+		InventorySystem.Items.Firearms.Firearm targetFirearm = this.TargetFirearm
+		InventorySystem.Items.Firearms.FirearmAudioClip[] audioClips = targetFirearm.AudioClips
+
+		if (soundId < audioClips.Length)
+
+		    InventorySystem.Items.Firearms.Firearm targetFirearm2 = this.TargetFirearm
+		    InventorySystem.Items.Firearms.FirearmAudioClip[] audioClips2 = targetFirearm2.AudioClips
+		    targetFirearm2 += targetFirearm2
+		    System.Boolean isServerController = this.IsServerController
+
+		    if (isServerController != )
+
+		        InventorySystem.Items.Firearms.Firearm targetFirearm3 = this.TargetFirearm
+
+		        InventorySystem.Items.Firearms.FirearmExtensions.ServerSendAudioMessage(targetFirearm3, soundId) //(Firearm firearm, Byte clipId)
+		    endif
+            
+
+		    if (this.IsServerController != False)
+                goto INSN_180669F8B
+            endif
+		    InventorySystem.Items.Firearms.AnimatedFirearmViewmodel _afv = this._afv
+
+		    if ( != 0)
+                goto INSN_180669F8B
+            endif
+
+		    InventorySystem.Items.Firearms.Firearm targetFirearm4 = this.TargetFirearm
+
+		    System.Boolean isLocalPlayer = targetFirearm4.IsLocalPlayer
+
+		    if (isLocalPlayer != False)
+                goto INSN_180669F08
+            endif
+
+		    if ( != 0)
+                goto INSN_180669F8B
+            endif
+
+		    InventorySystem.Items.Firearms.Firearm targetFirearm5 = this.TargetFirearm
+		    ReferenceHub Owner = targetFirearm5.<Owner>k__BackingField
+
+		    System.Boolean isLocallySpectated = PlayerRoles.Spectating.SpectatorNetworking.IsLocallySpectated(Owner) //(ReferenceHub target)
+
+		    if (isLocallySpectated == False)
+                goto INSN_180669F8B
+            endif
+
+		    INSN_180669F08:
+
+		    InventorySystem.Items.Firearms.Firearm targetFirearm6 = this.TargetFirearm
+		    InventorySystem.Items.ItemViewmodelBase viewModel = targetFirearm6.ViewModel
+
+		    UnityEngine.Transform transform = viewModel.transform
+		    ulong local28 = 0
+
+		    UnityEngine.AudioSource audioSource = AudioPooling.AudioSourcePoolManager.PlaySound()
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfZeroOrNullAction at (0x180669E51) is corrupt (One of the arguments is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Firearms.FirearmAnimatorEventsBase
+	System.Void .ctor()
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void UnityEngine.MonoBehaviour::.ctor()
+	IL_0006: ret
+	
+

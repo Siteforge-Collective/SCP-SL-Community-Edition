@@ -1,0 +1,631 @@
+Type: Scp079TierManager
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Scp079TierManager
+	System.Int32[] get_AbsoluteThresholds()
+		System.Int32[] AbsoluteThresholds = this.<AbsoluteThresholds>k__BackingField
+		return AbsoluteThresholds
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Int32[] PlayerRoles.PlayableScps.Scp079.Scp079TierManager::<AbsoluteThresholds>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Scp079TierManager
+	System.Void set_AbsoluteThresholds(System.Int32[] value)
+		this.<AbsoluteThresholds>k__BackingField = value
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: stfld System.Int32[] PlayerRoles.PlayableScps.Scp079.Scp079TierManager::<AbsoluteThresholds>k__BackingField
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Scp079TierManager
+	System.Int32 get_TotalExp()
+		System.Int32 _totalExp = this._totalExp
+		return _totalExp
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Int32 PlayerRoles.PlayableScps.Scp079.Scp079TierManager::_totalExp
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Scp079TierManager
+	System.Void set_TotalExp(System.Int32 value)
+		System.Action onExpChanged = this.OnExpChanged
+		this._totalExp = value
+
+		if (onExpChanged != 0)
+
+		    onExpChanged.Invoke()
+		endif
+        
+		System.Int32 _thresholdsCount = this._thresholdsCount
+		ulong local5 = 0
+
+		if (_thresholdsCount <= 0)
+            goto INSN_180300C8C
+        endif
+		System.Int32[] AbsoluteThresholds = this.<AbsoluteThresholds>k__BackingField
+		System.Int32 int32 = AbsoluteThresholds[local5]
+		local5 += 1
+		local5 += 1
+		endwhile
+    
+		goto INSN_180300D58
+    
+		System.Int32 _accessTier = this._accessTier
+
+		if (_accessTier == local5)
+        goto INSN_180300CCC
+    endif
+		local5 -= _accessTier
+
+		if (local5 <= 0)
+        goto INSN_180300CB9
+    endif
+		System.Action onLevelledUp = this.OnLevelledUp
+
+		if (onLevelledUp == 0)
+        goto INSN_180300CB3
+    endif
+
+		onLevelledUp.Invoke()
+
+		INSN_180300CB3:
+
+		if (onLevelledUp != 0)
+        goto INSN_180300CA0
+    endif
+
+		INSN_180300CB9:
+		System.Action onTierChanged = this.OnTierChanged
+		this._accessTier = local5
+
+		if (onTierChanged == 0)
+        goto INSN_180300CCC
+    endif
+
+		onTierChanged.Invoke()
+
+		INSN_180300CCC:
+		this._valueDirty = True
+		return
+
+		INSN_180300D58:
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Action PlayerRoles.PlayableScps.Scp079.Scp079TierManager::OnExpChanged
+	IL_0006: stloc.0
+	IL_0007: ldarg.0
+	IL_0008: ldarg.1
+	IL_0009: stfld System.Int32 PlayerRoles.PlayableScps.Scp079.Scp079TierManager::_totalExp
+	IL_000e: ldloc.0
+	IL_000f: ldc.i4.0
+	IL_0010: beq.s IL_0018
+	IL_0012: ldloc.0
+	IL_0013: call System.Void System.Action::Invoke()
+	IL_0018: ldarg.0
+	IL_0019: ldfld System.Int32 PlayerRoles.PlayableScps.Scp079.Scp079TierManager::_thresholdsCount
+	IL_001e: stloc.1
+	IL_001f: ldc.i4.0
+	IL_0020: stloc.2
+	IL_0021: ldloc.1
+	IL_0022: ldc.i4.0
+	IL_0023: ble.s IL_003a
+	IL_0025: ldarg.0
+	IL_0026: ldfld System.Int32[] PlayerRoles.PlayableScps.Scp079.Scp079TierManager::<AbsoluteThresholds>k__BackingField
+	IL_002b: ldloc.2
+	IL_002c: ldelem.any System.Int32
+	IL_0031: stloc.3
+	IL_0032: ldloc.2
+	IL_0033: ldc.i4.1
+	IL_0034: add
+	IL_0035: stloc.2
+	IL_0036: ldloc.2
+	IL_0037: ldc.i4.1
+	IL_0038: add
+	IL_0039: stloc.2
+	IL_003a: ldarg.0
+	IL_003b: ldfld System.Int32 PlayerRoles.PlayableScps.Scp079.Scp079TierManager::_accessTier
+	IL_0040: stloc.s V_4
+	IL_0042: ldloc.s V_4
+	IL_0044: ldloc.2
+	IL_0045: beq.s IL_0084
+	IL_0047: ldloc.2
+	IL_0048: ldloc.s V_4
+	IL_004a: sub
+	IL_004b: stloc.2
+	IL_004c: ldloc.2
+	IL_004d: ldc.i4.0
+	IL_004e: ble.s IL_0069
+	IL_0050: ldarg.0
+	IL_0051: ldfld System.Action PlayerRoles.PlayableScps.Scp079.Scp079TierManager::OnLevelledUp
+	IL_0056: stloc.s V_5
+	IL_0058: ldloc.s V_5
+	IL_005a: ldc.i4.0
+	IL_005b: beq.s IL_0064
+	IL_005d: ldloc.s V_5
+	IL_005f: call System.Void System.Action::Invoke()
+	IL_0064: ldloc.s V_5
+	IL_0066: ldc.i4.0
+	IL_0067: bne.un.s IL_0064
+	IL_0069: ldarg.0
+	IL_006a: ldfld System.Action PlayerRoles.PlayableScps.Scp079.Scp079TierManager::OnTierChanged
+	IL_006f: stloc.s V_6
+	IL_0071: ldarg.0
+	IL_0072: ldloc.2
+	IL_0073: stfld System.Int32 PlayerRoles.PlayableScps.Scp079.Scp079TierManager::_accessTier
+	IL_0078: ldloc.s V_6
+	IL_007a: ldc.i4.0
+	IL_007b: beq.s IL_0084
+	IL_007d: ldloc.s V_6
+	IL_007f: call System.Void System.Action::Invoke()
+	IL_0084: ldarg.0
+	IL_0085: ldc.i4.1
+	IL_0086: stfld System.Boolean PlayerRoles.PlayableScps.Scp079.Scp079TierManager::_valueDirty
+	IL_008b: ret
+	IL_008c: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0091: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Scp079TierManager
+	System.Int32 get_RelativeExp()
+		System.Int32 _accessTier = this._accessTier
+		System.Int32 _thresholdsCount = this._thresholdsCount
+		ulong local4 = 0
+
+		System.Int32 int32 = UnityEngine.Mathf.Clamp(_accessTier, local4, _thresholdsCount) //(Int32 value, Int32 min, Int32 max)
+		System.Int32 _totalExp = this._totalExp
+		System.Int32[] AbsoluteThresholds = this.<AbsoluteThresholds>k__BackingField
+		System.Int32 int322 = AbsoluteThresholds[int32]
+
+		System.Int32 nextLevelThreshold = this.NextLevelThreshold
+		_totalExp -= int322
+
+		System.Int32 int323 = UnityEngine.Mathf.FloorToInt()
+
+		System.Int32 int324 = UnityEngine.Mathf.Min(nextLevelThreshold, int323) //(Int32 a, Int32 b)
+		return int324
+
+		System.Int32 int325 = UnityEngine.Mathf.FloorToInt()
+		return int325
+		throw new System.IndexOutOfRangeException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180300AFC) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Scp079TierManager
+	System.Int32 get_NextLevelThreshold()
+		System.Int32 _accessTier = this._accessTier
+		System.Int32 _thresholdsCount = this._thresholdsCount
+		ulong local4 = 0
+
+		System.Int32 int32 = UnityEngine.Mathf.Clamp(_accessTier, local4, _thresholdsCount) //(Int32 value, Int32 min, Int32 max)
+		System.Int32 _thresholdsCount2 = this._thresholdsCount
+
+		if (int32 < _thresholdsCount2)
+		    System.Int32[] _levelupThresholds = this._levelupThresholds
+		    System.Int32 _accessTier2 = this._accessTier
+		    _thresholdsCount = local8
+		    ulong local11 = 0
+
+		    System.Int32 int322 = UnityEngine.Mathf.Clamp(_accessTier2, local11, _thresholdsCount) //(Int32 value, Int32 min, Int32 max)
+		    System.Int32 int323 = _levelupThresholds[int322]
+		    return int323
+		endif
+        
+		return -1
+		throw new System.IndexOutOfRangeException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.RegToRegMoveAction at (0x1803009BD) is corrupt (Local local8 is a variable but it has been stripped out. Are you missing a call to RegisterUsedLocal?) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Scp079TierManager
+	System.Int32 get_AccessTierIndex()
+		System.Int32 _accessTier = this._accessTier
+		System.Int32 _thresholdsCount = this._thresholdsCount
+		ulong local4 = 0
+
+		System.Int32 int32 = UnityEngine.Mathf.Clamp(_accessTier, local4, _thresholdsCount) //(Int32 value, Int32 min, Int32 max)
+		return int32
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Int32 PlayerRoles.PlayableScps.Scp079.Scp079TierManager::_accessTier
+	IL_0006: stloc.0
+	IL_0007: ldarg.0
+	IL_0008: ldfld System.Int32 PlayerRoles.PlayableScps.Scp079.Scp079TierManager::_thresholdsCount
+	IL_000d: stloc.1
+	IL_000e: ldc.i4.0
+	IL_000f: stloc.2
+	IL_0010: ldloc.0
+	IL_0011: ldloc.2
+	IL_0012: ldloc.1
+	IL_0013: call System.Int32 UnityEngine.Mathf::Clamp(System.Int32,System.Int32,System.Int32)
+	IL_0018: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Scp079TierManager
+	System.Void set_AccessTierIndex(System.Int32 value)
+		System.Int32 _accessTier = this._accessTier
+
+		if (_accessTier != value)
+		    value -= _accessTier
+
+		    if (value > 0)
+		        System.Action onLevelledUp = this.OnLevelledUp
+
+		        if (onLevelledUp != 0)
+
+		            onLevelledUp.Invoke()
+		        endif
+                
+
+		        if (onLevelledUp == 0)
+		        endif
+                
+		        System.Action onTierChanged = this.OnTierChanged
+		        this._accessTier = value
+
+		        if (onTierChanged == 0)
+                    goto INSN_180300C01
+                endif
+
+		        onTierChanged.Invoke()
+		    endif
+            
+		    return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.SubtractRegFromRegAction at (0x180300BB8) is corrupt (SubRFromR: First operand, {'value' (function parameter, type System.Int32)}, has been stripped or has no variable) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Scp079TierManager
+	System.Int32 get_AccessTierLevel()
+		System.Int32 _accessTier = this._accessTier
+		System.Int32 _thresholdsCount = this._thresholdsCount
+		ulong local4 = 0
+
+		System.Int32 int32 = UnityEngine.Mathf.Clamp(_accessTier, local4, _thresholdsCount) //(Int32 value, Int32 min, Int32 max)
+		int32 += 1
+		return int32
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Int32 PlayerRoles.PlayableScps.Scp079.Scp079TierManager::_accessTier
+	IL_0006: stloc.0
+	IL_0007: ldarg.0
+	IL_0008: ldfld System.Int32 PlayerRoles.PlayableScps.Scp079.Scp079TierManager::_thresholdsCount
+	IL_000d: stloc.1
+	IL_000e: ldc.i4.0
+	IL_000f: stloc.2
+	IL_0010: ldloc.0
+	IL_0011: ldloc.2
+	IL_0012: ldloc.1
+	IL_0013: call System.Int32 UnityEngine.Mathf::Clamp(System.Int32,System.Int32,System.Int32)
+	IL_0018: stloc.3
+	IL_0019: ldloc.3
+	IL_001a: ldc.i4.1
+	IL_001b: add
+	IL_001c: stloc.3
+	IL_001d: ldloc.3
+	IL_001e: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Scp079TierManager
+	System.Void Update()
+
+		if (this._valueDirty != False)
+
+		    base.ServerSendRpc(True) //(Boolean toAll)
+		    this._valueDirty = False
+		endif
+        
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Boolean PlayerRoles.PlayableScps.Scp079.Scp079TierManager::_valueDirty
+	IL_0006: ldc.i4.0
+	IL_0007: beq.s IL_0017
+	IL_0009: ldarg.0
+	IL_000a: ldc.i4.1
+	IL_000b: call System.Void PlayerRoles.PlayableScps.Subroutines.ScpSubroutineBase::ServerSendRpc(System.Boolean)
+	IL_0010: ldarg.0
+	IL_0011: ldc.i4.0
+	IL_0012: stfld System.Boolean PlayerRoles.PlayableScps.Scp079.Scp079TierManager::_valueDirty
+	IL_0017: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Scp079TierManager
+	System.Void Awake()
+
+		base.Awake()
+		System.Int32[] _levelupThresholds = this._levelupThresholds
+		ulong local2 = 0
+		System.Int32 length = _levelupThresholds.Length
+		this._thresholdsCount = length
+		System.Int32[] local4 = new System.Int32[length]
+		this.<AbsoluteThresholds>k__BackingField = local4
+
+		if (this._thresholdsCount > local2)
+		    System.Int32[] _levelupThresholds2 = this._levelupThresholds
+		    System.Int32[] AbsoluteThresholds = this.<AbsoluteThresholds>k__BackingField
+		    local2 += 1
+		    AbsoluteThresholds[0] = local2
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void PlayerRoles.PlayableScps.Subroutines.ScpStandardSubroutine`1::Awake()
+	IL_0006: ldarg.0
+	IL_0007: ldfld System.Int32[] PlayerRoles.PlayableScps.Scp079.Scp079TierManager::_levelupThresholds
+	IL_000c: stloc.0
+	IL_000d: ldc.i4.0
+	IL_000e: stloc.1
+	IL_000f: ldloc.0
+	IL_0010: call System.Int32 System.Array::get_Length()
+	IL_0015: stloc.2
+	IL_0016: ldarg.0
+	IL_0017: ldloc.2
+	IL_0018: stfld System.Int32 PlayerRoles.PlayableScps.Scp079.Scp079TierManager::_thresholdsCount
+	IL_001d: ldloc.2
+	IL_001e: newarr System.Int32
+	IL_0023: stloc.3
+	IL_0024: ldarg.0
+	IL_0025: ldloc.3
+	IL_0026: stfld System.Int32[] PlayerRoles.PlayableScps.Scp079.Scp079TierManager::<AbsoluteThresholds>k__BackingField
+	IL_002b: ldarg.0
+	IL_002c: ldfld System.Int32 PlayerRoles.PlayableScps.Scp079.Scp079TierManager::_thresholdsCount
+	IL_0031: ldloc.1
+	IL_0032: ble.s IL_0051
+	IL_0034: ldarg.0
+	IL_0035: ldfld System.Int32[] PlayerRoles.PlayableScps.Scp079.Scp079TierManager::_levelupThresholds
+	IL_003a: stloc.s V_4
+	IL_003c: ldarg.0
+	IL_003d: ldfld System.Int32[] PlayerRoles.PlayableScps.Scp079.Scp079TierManager::<AbsoluteThresholds>k__BackingField
+	IL_0042: stloc.s V_5
+	IL_0044: ldloc.1
+	IL_0045: ldc.i4.1
+	IL_0046: add
+	IL_0047: stloc.1
+	IL_0048: ldloc.s V_5
+	IL_004a: ldc.i4.0
+	IL_004b: ldloc.1
+	IL_004c: stelem.any System.Int32
+	IL_0051: ret
+	IL_0052: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0057: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Scp079TierManager
+	System.Void SpawnObject()
+
+		base.SpawnObject()
+		ulong local2 = 0
+
+		this.TotalExp = local2
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void PlayerRoles.PlayableScps.Subroutines.ScpStandardSubroutine`1::SpawnObject()
+	IL_0006: ldc.i4.0
+	IL_0007: stloc.0
+	IL_0008: ldarg.0
+	IL_0009: ldloc.0
+	IL_000a: call System.Void PlayerRoles.PlayableScps.Scp079.Scp079TierManager::set_TotalExp(System.Int32)
+	IL_000f: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Scp079TierManager
+	System.Void ServerGrantExperience(System.Int32 amount, PlayerRoles.PlayableScps.Scp079.Scp079HudTranslation reason)
+		System.Int32 local3 = reason.value__
+
+		if (amount > 0)
+		    System.Collections.Generic.Queue`1<System.Collections.Generic.KeyValuePair`2<PlayerRoles.PlayableScps.Scp079.Scp079HudTranslation,System.Int32>> _expGainQueue = this._expGainQueue
+		    amount = local3
+
+		    _expGainQueue.Enqueue()
+		    System.Int32 _totalExp = this._totalExp
+		    _totalExp += amount
+
+		    this.TotalExp = _totalExp
+		endif
+        
+		return
+		System.InvalidOperationException invalidOperationException = new System.InvalidOperationException()
+
+		invalidOperationException..ctor("SCP-079 experience cannot be granted by local player!") //(String message)
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.Implicit4ByteFieldReadAction at (0x180300446) is corrupt (Local local3 has been stripped out for being unused, so doesn't have a variable.) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Scp079TierManager
+	System.Void ServerWriteRpc(Mirror.NetworkWriter writer)
+
+		base.ClientWriteCmd(writer) //(NetworkWriter writer)
+		System.Int32 _totalExp = this._totalExp
+
+		Mirror.NetworkWriterExtensions.WriteUInt16(writer, _totalExp) //(NetworkWriter writer, UInt16 value)
+		System.Collections.Generic.Queue`1<System.Collections.Generic.KeyValuePair`2<PlayerRoles.PlayableScps.Scp079.Scp079HudTranslation,System.Int32>> _expGainQueue = this._expGainQueue
+
+		System.Boolean boolean = CollectionExtensions.TryDequeue<System.Collections.Generic.KeyValuePair`2<PlayerRoles.PlayableScps.Scp079.Scp079HudTranslation,System.Int32>>()
+
+		if (boolean != False)
+
+		    writer.WriteByte(local3) //(Byte value)
+
+		    System.Int32 int32 = UnityEngine.Mathf.Min()
+
+		    writer.WriteByte(int32) //(Byte value)
+		    System.Collections.Generic.Queue`1<System.Collections.Generic.KeyValuePair`2<PlayerRoles.PlayableScps.Scp079.Scp079HudTranslation,System.Int32>> _expGainQueue2 = this._expGainQueue
+
+		    System.Boolean boolean2 = CollectionExtensions.TryDequeue<System.Collections.Generic.KeyValuePair`2<PlayerRoles.PlayableScps.Scp079.Scp079HudTranslation,System.Int32>>()
+
+		    if (boolean2 == False)
+		    endwhile
+            
+		    goto INSN_18030068D
+            
+		    return
+
+		    INSN_18030068D:
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180300606) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Scp079TierManager
+	System.Void ClientProcessRpc(Mirror.NetworkReader reader)
+
+		base.ServerProcessCmd(reader) //(NetworkReader reader)
+
+		System.UInt16 uInt16 = Mirror.NetworkReaderExtensions.ReadUInt16(reader) //(NetworkReader reader)
+		  = this.
+
+		System.Boolean isSpectated = .IsSpectated
+
+		if (isSpectated == False)
+
+		    if (isSpectated == False)
+
+		        this.TotalExp = uInt16
+		        return
+		    endif
+            
+		    System.Int32 position = reader.Position
+
+		    System.Int32 length = reader.Length
+
+		    if (position >= length)
+                goto INSN_18030035E
+            endif
+
+		    System.Byte byte = reader.ReadByte()
+
+		    System.Byte byte2 = reader.ReadByte()
+		    System.Object[] local16 = new System.Object[1]
+
+		    if (local16 == 0)
+                goto INSN_180300332
+            endif
+
+		    if (local16 == 0)
+                goto INSN_180300402
+            endif
+
+		    INSN_180300332:
+		    local16[0] = local16
+
+		    PlayerRoles.PlayableScps.Scp079.GUI.Scp079NotificationManager.AddNotification()
+
+		    INSN_18030035E:
+
+		    this.TotalExp = uInt16
+		    return
+		    throw new System.NullReferenceException()
+
+		    INSN_180300402:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.FieldToLocalAction at (0x18030023C) is corrupt (No further info) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Scp079TierManager
+	System.Void .ctor()
+		System.Collections.Generic.Queue`1<System.Collections.Generic.KeyValuePair`2<PlayerRoles.PlayableScps.Scp079.Scp079HudTranslation,System.Int32>> queue = new System.Collections.Generic.Queue`1<System.Collections.Generic.KeyValuePair`2<PlayerRoles.PlayableScps.Scp079.Scp079HudTranslation,System.Int32>>()
+
+		queue..ctor()
+		this._expGainQueue = queue
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: newobj System.Void System.Collections.Generic.Queue`1::.ctor()
+	IL_0005: stloc.0
+	IL_0006: ldarg.0
+	IL_0007: ldloc.0
+	IL_0008: stfld System.Collections.Generic.Queue`1<System.Collections.Generic.KeyValuePair`2<PlayerRoles.PlayableScps.Scp079.Scp079HudTranslation,System.Int32>> PlayerRoles.PlayableScps.Scp079.Scp079TierManager::_expGainQueue
+	IL_000d: ldarg.0
+	IL_000e: call System.Void PlayerRoles.PlayableScps.Subroutines.ScpStandardSubroutine`1::.ctor()
+	IL_0013: ret
+	
+

@@ -1,0 +1,616 @@
+Type: AuthenticatorQuery
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Authenticator.AuthenticatorQuery
+	static System.Boolean SendData(System.Collections.Generic.IEnumerable`1<System.String> data)
+		System.String MasterUrl = CentralServer.<MasterUrl>k__BackingField
+
+		System.String string = System.String.Concat(MasterUrl, "v5/authenticator.php") //(String str0, String str1)
+
+		System.String string2 = HttpQuery.ToPostArgs(data) //(IEnumerable`1 data)
+
+		System.String string3 = HttpQuery.Post(string, string2) //(String url, String data)
+
+		System.Boolean boolean = string3.StartsWith("{"") //(String value)
+
+		if (boolean != False)
+
+		    System.Boolean boolean2 = Authenticator.AuthenticatorQuery.ProcessResponse(string3) //(String response)
+		else
+
+		    System.Boolean boolean3 = Authenticator.AuthenticatorQuery.ProcessLegacyResponse(string3) //(String response)
+		endif
+        
+
+		System.Int32 int32 = string3.CompareTo()
+
+		System.String string4 = System.String.Concat()
+		System.Int32 4 = 4
+
+		ServerConsole.AddLog(string4, 4) //(String q, ConsoleColor color)
+		ulong local17 = 0
+		return local17
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallVirtualMethodAction at (0x1804E41E1) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Authenticator.AuthenticatorQuery
+	static System.Void SendContactAddress()
+		System.Collections.Generic.List`1<System.String> list = new System.Collections.Generic.List`1<System.String>()
+
+		list..ctor()
+		System.String string = ServerConsole.Ip
+
+		System.String string2 = System.String.Concat("ip=", string) //(String str0, String str1)
+
+		list.Add(string2) //(T item)
+		ulong local4 = 0
+
+		System.UInt16 portToReport = ServerConsole.PortToReport
+
+		System.String string3 = System.String.Concat("port=", portToReport) //(Object arg0, Object arg1)
+
+		list.Add(string3) //(T item)
+
+		list.Add("version=2") //(T item)
+		YamlConfig serverConfig = GameCore.ConfigFile.ServerConfig
+
+		System.String string4 = serverConfig.GetString("contact_email", "") //(String key, String def)
+
+		System.String string5 = NorthwoodLib.StringUtils.Base64Encode(string4) //(String plainText)
+
+		System.String string6 = System.String.Concat("address=", string5) //(String str0, String str1)
+
+		list.Add(string6) //(T item)
+		System.String password = ServerConsole.Password
+
+		[instruction error - managed method being called is null]
+
+		if (ServerConsole == 0)
+		    System.String password2 = ServerConsole.Password
+
+		    System.String string7 = System.String.Concat("passcode=", password2) //(String str0, String str1)
+
+		    list.Add(string7) //(T item)
+		endif
+        
+		System.String MasterUrl = CentralServer.<MasterUrl>k__BackingField
+
+		System.String string8 = System.String.Concat(MasterUrl, "v5/contactaddress.php") //(String str0, String str1)
+
+		System.String string9 = HttpQuery.ToPostArgs(list) //(IEnumerable`1 data)
+
+		System.String string10 = HttpQuery.Post(string8, string9) //(String url, String data)
+		return
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1804E3F5D) is corrupt (Don't know what method is being called) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Authenticator.AuthenticatorQuery
+	static System.Boolean ProcessResponse(System.String response)
+		ulong local3 = 0
+
+		AuthenticatorResponse authenticatorResponse = JsonSerialize.FromJson<AuthenticatorResponse>()
+
+		[instruction error - managed method being called is null]
+
+		if (authenticatorResponse == 0)
+
+		    [instruction error - managed method being called is null]
+
+		    if (authenticatorResponse == 0)
+		         += 104
+		        CustomLiteNetLib4MirrorTransport.RequestWriter = 
+		         += 112
+		        CustomLiteNetLib4MirrorTransport.RequestWriter = response
+		        System.Int32 10 = 10
+
+		        ServerConsole.AddLog("Verification challenge and response have been obtained.", 10) //(String q, ConsoleColor color)
+		    endif
+            
+
+		    [instruction error - managed method being called is null]
+
+		    if (authenticatorResponse != 0)
+                goto INSN_1804E3623
+            endif
+		    System.Int32 7 = 7
+
+		    ServerConsole.AddLog("Received verification token from central server.", 7) //(String q, ConsoleColor color)
+
+		    Authenticator.AuthenticatorQuery.SaveNewToken(response) //(String token)
+
+		    INSN_1804E3623:
+
+		    if ( == 0)
+                goto INSN_1804E365D
+            endif
+
+		    if ( == 0)
+                goto INSN_1804E365D
+            endif
+
+		    if (local3 < )
+
+		        Authenticator.AuthenticatorQuery.HandleAction(local3) //(String action)
+		        local3 += 1
+		    endwhile
+            
+		    goto INSN_1804E3AF9
+            
+
+		    if ( == 0)
+                goto INSN_1804E36D2
+            endif
+
+		    if ( == 0)
+                goto INSN_1804E36D2
+            endif
+
+		    if (local3 < )
+
+		        System.String string = System.String.Concat("[MESSAGE FROM CENTRAL SERVER] ", local3) //(String str0, String str1)
+		        System.Int32 11 = 11
+
+		        ServerConsole.AddLog(string, 11) //(String q, ConsoleColor color)
+		        local3 += 1
+		    endwhile
+            
+		    goto INSN_1804E3B0D
+            
+
+		    if ( == 0)
+                goto INSN_1804E3756
+            endif
+
+		    if ( == 0)
+                goto INSN_1804E3756
+            endif
+
+		    if (local3 < )
+
+		        System.String string2 = System.String.Concat("Authentication token of player ", local3, " has been confirmed by central server.") //(String str0, String str1, String str2)
+		        System.Int32 7 = 7
+
+		        ServerConsole.AddLog(string2, 7) //(String q, ConsoleColor color)
+		        local3 += 1
+		    endwhile
+            
+		    goto INSN_1804E3B21
+            
+
+		    if ( == 0)
+                goto INSN_1804E3A0E
+            endif
+
+		    if ( == 0)
+                goto INSN_1804E3A0E
+            endif
+		    System.Collections.Generic.HashSet`1<ReferenceHub> AllHubs = ReferenceHub.<AllHubs>k__BackingField
+
+		    System.Collections.Generic.HashSet`1/Enumerator<T> enumerator = .GetEnumerator()
+
+		    if (enumerator == 0)
+                goto INSN_1804E39E4
+            endif
+		    Authenticator.AuthenticatorQuery/<>c__DisplayClass2_0 enumeratorInstance = new Authenticator.AuthenticatorQuery/<>c__DisplayClass2_0()
+		    ulong local21 = 0
+
+		    enumeratorInstance..ctor()
+		    enumeratorInstance.ccm = local21
+		    System.Func`2<AuthenticatiorAuthReject,System.Boolean> func = new System.Func`2<AuthenticatiorAuthReject,System.Boolean>()
+
+		    func..ctor(enumeratorInstance, {'<ProcessResponse>b__0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		    System.Boolean boolean = System.Linq.Enumerable.All<AuthenticatiorAuthReject>()
+
+		    if (boolean != False)
+                goto INSN_1804E3820
+            endif
+		    System.Func`2<AuthenticatiorAuthReject,System.Boolean> func2 = new System.Func`2<AuthenticatiorAuthReject,System.Boolean>()
+
+		    func2..ctor(enumeratorInstance, {'<ProcessResponse>b__1' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		    AuthenticatiorAuthReject authenticatiorAuthReject = System.Linq.Enumerable.FirstOrDefault<AuthenticatiorAuthReject>()
+
+		    System.String userId = func2.UserId
+
+		    System.String string3 = System.String.Concat()
+		    System.Int32 7 = 7
+
+		    ServerConsole.AddLog(string3, 7) //(String q, ConsoleColor color)
+
+		    GameConsoleTransmission component = string3.GetComponent<GameConsoleTransmission>()
+
+		    Mirror.NetworkConnection connectionToClient = string3.connectionToClient
+
+		    component.SendToClient()
+
+		    Mirror.NetworkConnection connectionToClient2 = component.connectionToClient
+
+		    ServerConsole.Disconnect()
+
+		    INSN_1804E39E4:
+
+		    connectionToClient2.Dispose()
+
+		    if (local3 != 0)
+                goto INSN_1804E3B4B
+            endif
+
+		    INSN_1804E3A0E:
+
+		    System.String string4 = System.String.Concat()
+		    System.Int32 4 = 4
+
+		    ServerConsole.AddLog(string4, 4) //(String q, ConsoleColor color)
+
+		    System.Int32 int32 = string4.CompareTo()
+
+		    System.String string5 = System.String.Concat()
+		    System.Int32 4 = 4
+
+		    ServerConsole.AddLog(string5, 4) //(String q, ConsoleColor color)
+		    ulong local44 = 0
+		    return local44
+		    throw new System.NullReferenceException()
+		    throw new System.IndexOutOfRangeException()
+
+		    INSN_1804E3AF9:
+		    throw new System.NullReferenceException()
+		    throw new System.IndexOutOfRangeException()
+
+		    INSN_1804E3B0D:
+		    throw new System.NullReferenceException()
+		    throw new System.IndexOutOfRangeException()
+
+		    INSN_1804E3B21:
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+
+		    INSN_1804E3B4B:
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1804E34DD) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Authenticator.AuthenticatorQuery
+	static System.Boolean ProcessLegacyResponse(System.String response)
+
+		System.Boolean boolean = System.String.Equals(response, "YES") //(String a, String b)
+
+		if (boolean == False)
+
+		    System.Boolean boolean2 = response.StartsWith("New code generated:") //(String value)
+
+		    if (boolean2 != False)
+                goto INSN_1804E3224
+            endif
+
+		    System.Boolean boolean3 = response.Contains(":Restart:") //(String value)
+
+		    if (boolean3 != False)
+                goto INSN_1804E3208
+            endif
+
+		    System.Boolean boolean4 = response.Contains(":RoundRestart:") //(String value)
+
+		    if (boolean4 != False)
+                goto INSN_1804E31EC
+            endif
+
+		    System.Boolean boolean5 = response.Contains(":UpdateData:") //(String value)
+
+		    if (boolean5 != False)
+                goto INSN_1804E31D0
+            endif
+
+		    System.Boolean boolean6 = response.Contains(":RefreshKey:") //(String value)
+
+		    if (boolean6 != False)
+                goto INSN_1804E31B4
+            endif
+
+		    System.Boolean boolean7 = response.Contains(":Message - ") //(String value)
+
+		    if (boolean7 != False)
+                goto INSN_1804E3122
+            endif
+
+		    System.Boolean boolean8 = response.Contains(":GetContactAddress:") //(String value)
+
+		    if (boolean8 != False)
+                goto INSN_1804E3106
+            endif
+
+		    System.Boolean boolean9 = response.Contains("Server is not verified.") //(String value)
+
+		    if (boolean9 != False)
+                goto INSN_1804E30F8
+            endif
+
+		    System.String string = System.String.Concat("Could not update data on server list (legacy)- ", response) //(String str0, String str1)
+		    System.Int32 4 = 4
+
+		    ServerConsole.AddLog(string, 4) //(String q, ConsoleColor color)
+		endif
+        
+		return True
+
+		INSN_1804E30F8:
+		ulong local22 = 0
+		return local22
+
+		INSN_1804E3106:
+
+		Authenticator.AuthenticatorQuery.HandleAction("GetContactAddress") //(String action)
+		return True
+
+		INSN_1804E3122:
+		System.Int32 4 = 4
+
+		System.Int32 int32 = .IndexOf(":Message - ", 4) //(String value, StringComparison comparisonType)
+
+		System.String string2 = response.Substring()
+		System.Int32 4 = 4
+
+		System.Int32 int322 = string2.IndexOf(":::", 4) //(String value, StringComparison comparisonType)
+		ulong local31 = 0
+
+		System.String string3 = string2.Substring(local31, int322) //(Int32 startIndex, Int32 length)
+
+		System.String string4 = System.String.Concat("[MESSAGE FROM CENTRAL SERVER] ", string3) //(String str0, String str1)
+		System.Int32 11 = 11
+
+		INSN_1804E31B4:
+
+		Authenticator.AuthenticatorQuery.HandleAction("RefreshKey") //(String action)
+		return True
+
+		INSN_1804E31D0:
+
+		Authenticator.AuthenticatorQuery.HandleAction("UpdateData") //(String action)
+		return True
+
+		INSN_1804E31EC:
+
+		Authenticator.AuthenticatorQuery.HandleAction("RoundRestart") //(String action)
+		return True
+
+		INSN_1804E3208:
+
+		Authenticator.AuthenticatorQuery.HandleAction("Restart") //(String action)
+		return True
+
+		INSN_1804E3224:
+		PermissionsHandler permissionsHandler = ServerStatic.PermissionsHandler
+
+		permissionsHandler.SetServerAsVerified()
+		System.Int32 26 = 26
+
+		System.String folderPath = System.Environment.GetFolderPath(26) //(SpecialFolder folder)
+
+		System.String string5 = System.String.Concat(folderPath, "/SCP Secret Laboratory/verkey.txt") //(String str0, String str1)
+
+		System.IO.File.Delete(string5) //(String path)
+		System.Int32 4 = 4
+
+		ServerConsole.AddLog("New password could not be saved.", 4) //(String q, ConsoleColor color)
+		System.IO.StreamWriter streamWriter = new System.IO.StreamWriter()
+
+		streamWriter..ctor(string5) //(String path)
+		System.Int32 4 = 4
+
+		System.Int32 int323 = string4.IndexOf(":", 4) //(String value, StringComparison comparisonType)
+		ulong local53 = 0
+
+		System.String string6 = string4.Remove(local53, int323) //(Int32 startIndex, Int32 count)
+		System.Int32 4 = 4
+
+		System.Int32 int324 = string4.IndexOf(":", 4) //(String value, StringComparison comparisonType)
+
+		System.String string7 = string6.Remove(int324) //(Int32 startIndex)
+
+		System.Boolean boolean10 = string7.Contains(":") //(String value)
+
+		if (boolean10 != False)
+		    System.String empty = System.String.Empty
+
+		    System.String string8 = string7.Replace(":", empty) //(String oldValue, String newValue)
+		endwhile
+        
+		goto INSN_1804E3442
+        
+
+		streamWriter.WriteLine(string8) //(Char[] buffer, Int32 index, Int32 count)
+
+		System.IFormatProvider formatProvider = streamWriter.FormatProvider
+		System.Int32 4 = 4
+
+		ServerConsole.AddLog("New password saved.", 4) //(String q, ConsoleColor color)
+		. = 1
+		System.Int32 4 = 4
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+
+		INSN_1804E3442:
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x1804E3105) is corrupt (Return value has a type of System.Int32, expecting an object of type System.Boolean) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Authenticator.AuthenticatorQuery
+	static System.Void HandleAction(System.String action)
+
+		System.Boolean boolean = System.String.Equals(action, "Restart") //(String a, String b)
+
+		if (boolean != False)
+
+		    ServerConsole.AddOutputEntry()
+		    System.Int32 4 = 4
+
+		    ServerConsole.AddLog("Server restart requested by central server.", 4) //(String q, ConsoleColor color)
+
+		    Shutdown.Quit(True) //(Boolean quit)
+		    return
+		endif
+        
+
+		System.Boolean boolean2 = System.String.Equals(action, "RoundRestart") //(String a, String b)
+
+		if (boolean2 == False)
+            goto INSN_1804E2E37
+        endif
+		System.Int32 4 = 4
+
+		ServerConsole.AddLog("Round restart requested by central server.", 4) //(String q, ConsoleColor color)
+
+		System.Boolean boolean3 = ReferenceHub.TryGetLocalHub()
+
+		if (boolean3 == False)
+            goto INSN_1804E2E2C
+        endif
+		  = local2.
+		ulong local13 = 0
+
+		RoundRestarting.RoundRestart.InitiateRoundRestart()
+
+		INSN_1804E2E2C:
+		return
+
+		INSN_1804E2E37:
+
+		System.Boolean boolean4 = System.String.Equals(action, "UpdateData") //(String a, String b)
+
+		if (boolean4 == False)
+            goto INSN_1804E2E8B
+        endif
+		. = 1
+		return
+
+		INSN_1804E2E8B:
+
+		System.Boolean boolean5 = System.String.Equals(action, "RefreshKey") //(String a, String b)
+
+		if (boolean5 == False)
+            goto INSN_1804E2ED1
+        endif
+		ulong local18 = 0
+
+		ServerConsole.RunRefreshPublicKeyOnce()
+		return
+
+		INSN_1804E2ED1:
+
+		System.Boolean boolean6 = System.String.Equals(action, "GetContactAddress") //(String a, String b)
+
+		if (boolean6 == False)
+            goto INSN_1804E2E2C
+        endif
+		System.Threading.ThreadStart threadStart = new System.Threading.ThreadStart()
+		ulong local23 = 0
+
+		threadStart..ctor(local23, {'SendContactAddress' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		System.Threading.Thread thread = new System.Threading.Thread()
+
+		thread..ctor(threadStart) //(ThreadStart start)
+
+		thread.Name = "SCP:SL Response to central servers (contact data request)"
+		System.Int32 1 = 1
+
+		thread.Priority = 1
+
+		thread.IsBackground = True
+
+		thread.Start()
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1804E2D5F) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Authenticator.AuthenticatorQuery
+	static System.Void SaveNewToken(System.String token)
+		PermissionsHandler permissionsHandler = ServerStatic.PermissionsHandler
+
+		permissionsHandler.SetServerAsVerified()
+		System.Int32 26 = 26
+
+		System.String folderPath = System.Environment.GetFolderPath(26) //(SpecialFolder folder)
+
+		System.String string = System.String.Concat(folderPath, "/SCP Secret Laboratory/verkey.txt") //(String str0, String str1)
+
+		System.IO.File.Delete(string) //(String path)
+
+		System.Int32 int32 = string.CompareTo()
+
+		System.String string2 = System.String.Concat()
+		System.Int32 4 = 4
+
+		ServerConsole.AddLog(string2, 4) //(String q, ConsoleColor color)
+		System.IO.StreamWriter streamWriter = new System.IO.StreamWriter()
+
+		streamWriter..ctor(string) //(String path)
+
+		streamWriter.WriteLine(token) //(Char[] buffer, Int32 index, Int32 count)
+
+		System.IFormatProvider formatProvider = streamWriter.FormatProvider
+		System.Int32 4 = 4
+
+		ServerConsole.AddLog("New verification token saved.", 4) //(String q, ConsoleColor color)
+		. = 1
+		. = 1
+		ServerConsole singleton = ServerConsole.singleton
+		  = singleton.
+
+		System.String string3 = System.String.Concat()
+		System.Int32 4 = 4
+
+		ServerConsole.AddLog(string3, 4) //(String q, ConsoleColor color)
+		return
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallVirtualMethodAction at (0x1804E3C27) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+

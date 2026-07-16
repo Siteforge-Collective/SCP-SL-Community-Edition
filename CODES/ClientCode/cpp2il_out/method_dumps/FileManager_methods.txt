@@ -1,0 +1,1244 @@
+Type: FileManager
+
+
+	Generated Pseudocode:
+
+	Declaring Type: FileManager
+	static System.Void RefreshAppFolder()
+		ulong local0 = 0
+		YamlConfig hosterPolicy = GameCore.ConfigFile.HosterPolicy
+		ulong local3 = 0
+
+		System.Boolean bool = hosterPolicy.GetBool("gamedir_for_configs", local3) //(String key, Boolean def)
+
+		if (bool != False)
+		else
+		    System.Int32 26 = 26
+
+		    System.String folderPath = System.Environment.GetFolderPath(26) //(SpecialFolder folder)
+		    System.Char directorySeparatorChar = System.IO.Path.DirectorySeparatorChar
+
+		    System.String string = System.String.Concat()
+		endif
+        
+		FileManager._appfolder = string
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181B0FC44) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (3)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: FileManager
+	static System.String GetAppFolder(System.Boolean addSeparator, System.Boolean serverConfig, System.String centralConfig)
+		ulong local3 = 0
+		System.String _appfolder = FileManager._appfolder
+
+		[instruction error - managed method being called is null]
+
+		if (constant10 != 0)
+		    ulong local6 = 0
+
+		    FileManager.RefreshAppFolder()
+		endif
+        
+
+		if (serverConfig == False)
+            goto INSN_181B0ECF8
+        endif
+		System.String _configfolder = FileManager._configfolder
+
+		[instruction error - managed method being called is null]
+
+		if (constant24 != 0)
+            goto INSN_181B0ECF8
+        endif
+
+		[instruction error - managed method being called is null]
+
+		if (constant24 == 0)
+            goto INSN_181B0ECF8
+        endif
+		System.String _configfolder2 = FileManager._configfolder
+
+		if (addSeparator == False)
+            goto INSN_181B0ECDB
+        endif
+		System.Char directorySeparatorChar = System.IO.Path.DirectorySeparatorChar
+
+		System.String string = System.String.Concat()
+		return string
+
+		INSN_181B0ECDB:
+
+		System.String string2 = System.String.Concat(_configfolder2, "") //(String str0, String str1)
+		return string2
+
+		INSN_181B0ECF8:
+		System.String _appfolder2 = FileManager._appfolder
+		System.Char directorySeparatorChar2 = System.IO.Path.DirectorySeparatorChar
+
+		if (_configfolder2 == 0)
+            goto INSN_181B0EF3D
+        endif
+
+		[instruction error - managed method being called is null]
+
+		if ("" == 0)
+            goto INSN_181B0EEA1
+        endif
+		System.UInt16 ServerPort = ServerStatic.<ServerPort>k__BackingField
+
+		INSN_181B0EEA1:
+
+		if (addSeparator == False)
+            goto INSN_181B0EF25
+        endif
+		System.Char directorySeparatorChar3 = System.IO.Path.DirectorySeparatorChar
+
+		INSN_181B0EF25:
+
+		System.String string3 = System.String.Concat("config/", "nondedicated", "") //(String str0, String str1, String str2)
+
+		INSN_181B0EF3D:
+
+		System.String string4 = System.String.Concat(_appfolder2, "", string3) //(String str0, String str1, String str2)
+		return string4
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181B0EB8C) is corrupt (Don't know what method is being called) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: FileManager
+	static System.String StripPath(System.String path)
+		ulong local1 = 0
+
+		System.String string = path.Replace(""", "") //(String oldValue, String newValue)
+
+		System.String string2 = string.Trim()
+
+		System.Boolean boolean = string2.EndsWith("\") //(String value)
+
+		if (boolean == False)
+
+		    System.Boolean boolean2 = string2.EndsWith("/") //(String value)
+
+		    if (boolean2 == False)
+		        System.Char directorySeparatorChar = System.IO.Path.DirectorySeparatorChar
+
+		        System.Boolean boolean3 = string2.EndsWith()
+
+		        if (boolean3 == False)
+                    goto INSN_181B103DD
+                endif
+		    endif
+            
+		    System.Int32 m_stringLength = string2.m_stringLength
+		    ulong local16 = 0
+
+		    System.String string3 = string2.Substring(local16, m_stringLength) //(Int32 startIndex, Int32 length)
+
+		    INSN_181B103DD:
+		    return string3
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181B103B3) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: FileManager
+	static System.Void SetAppFolder(System.String path)
+
+		System.String string = FileManager.StripPath(path) //(String path)
+
+		System.Boolean boolean = System.IO.Directory.Exists(string) //(String path)
+
+		if (boolean != False)
+		else
+		endif
+        
+		FileManager._appfolder = ""
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.String FileManager::StripPath(System.String)
+	IL_0006: call System.Boolean System.IO.Directory::Exists(System.String)
+	IL_000b: ldc.i4.0
+	IL_000c: beq.s IL_000e
+	IL_000e: ldstr ""
+	IL_0013: stsfld System.String FileManager::_appfolder
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: FileManager
+	static System.Void SetConfigFolder(System.String path)
+
+		System.String string = FileManager.StripPath(path) //(String path)
+
+		System.Boolean boolean = System.IO.Directory.Exists(string) //(String path)
+
+		if (boolean != False)
+		else
+		endif
+        
+		 += 8
+		FileManager._appfolder = ""
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x181B10269) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: FileManager
+	static System.String ReplacePathSeparators(System.String path)
+		System.Char directorySeparatorChar = System.IO.Path.DirectorySeparatorChar
+
+		System.String string = path.Replace({'47' (constant value of type System.Char)}, directorySeparatorChar) //(Char oldChar, Char newChar)
+		System.Char directorySeparatorChar2 = System.IO.Path.DirectorySeparatorChar
+
+		System.String string2 = string.Replace({'92' (constant value of type System.Char)}, directorySeparatorChar2) //(Char oldChar, Char newChar)
+		return string2
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181B10065) is corrupt (ConstantDefinition: Don't know how to get IL to load a System.Char) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: FileManager
+	static System.Char GetPathSeparator()
+		System.Char directorySeparatorChar = System.IO.Path.DirectorySeparatorChar
+		return directorySeparatorChar
+
+
+Generated IL:
+	IL_0000: ldsfld System.Char System.IO.Path::DirectorySeparatorChar
+	IL_0005: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: FileManager
+	static System.Boolean FileExists(System.String path)
+
+		System.Boolean boolean = System.IO.File.Exists(path) //(String path)
+		return boolean
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Boolean System.IO.File::Exists(System.String)
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: FileManager
+	static System.Boolean DictionaryExists(System.String path)
+
+		System.Boolean boolean = System.IO.Directory.Exists(path) //(String path)
+		return boolean
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Boolean System.IO.Directory::Exists(System.String)
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: FileManager
+	static System.Void FileCreate(System.String path)
+
+		System.IO.FileStream fileStream = System.IO.File.Create(path) //(String path)
+
+		fileStream.Dispose()
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.IO.FileStream System.IO.File::Create(System.String)
+	IL_0006: call System.Void System.IO.Stream::Dispose()
+	IL_000b: ret
+	IL_000c: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0011: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: FileManager
+	static System.IO.FileStream FileStreamCreate(System.String path)
+
+		System.IO.FileStream fileStream = System.IO.File.Create(path) //(String path)
+		return fileStream
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.IO.FileStream System.IO.File::Create(System.String)
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: FileManager
+	static System.String[] ReadAllLines(System.String path)
+		ulong local1 = 0
+		NorthwoodLib.Pools.ListPool`1<T> shared = NorthwoodLib.Pools.ListPool`1.Shared
+
+		System.Collections.Generic.List`1<T> list = shared.Rent()
+		System.IO.StreamReader streamReader = new System.IO.StreamReader()
+
+		streamReader..ctor(path) //(String path)
+
+		System.Int32 int32 = streamReader.ReadBlock()
+
+		if (int32 != 0)
+
+		    list.Add()
+		endwhile
+        
+		goto INSN_181B0F90D
+        
+
+		if (streamReader == 0)
+            goto INSN_181B0F88B
+        endif
+
+		INSN_181B0F88B:
+
+		if (local1 != 0)
+            goto INSN_181B0F913
+        endif
+
+		System.String[] stringArray = list.ToArray()
+		NorthwoodLib.Pools.ListPool`1<T> shared2 = NorthwoodLib.Pools.ListPool`1.Shared
+
+		shared2.Return(list) //(List`1 list)
+		return stringArray
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+
+		INSN_181B0F90D:
+		throw new System.NullReferenceException()
+
+		INSN_181B0F913:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallVirtualMethodAction at (0x181B0F838) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (3)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: FileManager
+	static System.Collections.Generic.List`1<System.String> ReadAllLinesList(System.String path)
+		ulong local1 = 0
+		System.Collections.Generic.List`1<System.String> list = new System.Collections.Generic.List`1<System.String>()
+
+		list..ctor()
+		System.IO.StreamReader streamReader = new System.IO.StreamReader()
+
+		streamReader..ctor(path) //(String path)
+
+		System.Int32 int32 = streamReader.ReadBlock()
+
+		if (int32 != 0)
+
+		    list.Add()
+		endwhile
+        
+		goto INSN_181B0F1D6
+        
+
+		if (streamReader == 0)
+            goto INSN_181B0F1B8
+        endif
+
+		INSN_181B0F1B8:
+
+		if (local1 != 0)
+            goto INSN_181B0F1DC
+        endif
+		return list
+		throw new System.NullReferenceException()
+
+		INSN_181B0F1D6:
+		throw new System.NullReferenceException()
+
+		INSN_181B0F1DC:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallVirtualMethodAction at (0x181B0F169) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (3)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: FileManager
+	static System.Void ReadAllLinesList(System.String path, System.Collections.Generic.List`1<System.String> list)
+		ulong local2 = 0
+
+		list.Clear()
+		System.IO.StreamReader streamReader = new System.IO.StreamReader()
+
+		streamReader..ctor(path) //(String path)
+
+		System.Int32 int32 = streamReader.ReadBlock()
+
+		if (int32 != 0)
+
+		    list.Add()
+		endwhile
+        
+		goto INSN_181B0F0AD
+        
+
+		if (streamReader == 0)
+            goto INSN_181B0F098
+        endif
+
+		INSN_181B0F098:
+
+		if (local2 != 0)
+            goto INSN_181B0F0B3
+        endif
+		return
+
+		INSN_181B0F0AD:
+		throw new System.NullReferenceException()
+
+		INSN_181B0F0B3:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallVirtualMethodAction at (0x181B0F052) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (3)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: FileManager
+	static System.String[] ReadAllLinesSafe(System.String path)
+		ulong local1 = 0
+		NorthwoodLib.Pools.ListPool`1<T> shared = NorthwoodLib.Pools.ListPool`1.Shared
+
+		System.Collections.Generic.List`1<T> list = shared.Rent()
+		System.IO.FileStream fileStream = new System.IO.FileStream()
+
+		fileStream..ctor()
+		System.IO.StreamReader streamReader = new System.IO.StreamReader()
+
+		streamReader..ctor(fileStream) //(Stream stream)
+
+		System.Int32 int32 = streamReader.ReadBlock()
+
+		if (int32 != 0)
+
+		    list.Add()
+		endwhile
+        
+		goto INSN_181B0F754
+        
+
+		if (streamReader == 0)
+            goto INSN_181B0F696
+        endif
+
+		INSN_181B0F696:
+
+		if (local1 != 0)
+            goto INSN_181B0F75A
+        endif
+
+		if (0xFFFFFFFF == 0xFFFFFFFFFFFFFFFF)
+            goto INSN_181B0F6B1
+        endif
+
+		INSN_181B0F6B1:
+
+		if (streamReader == 0)
+            goto INSN_181B0F6D2
+        endif
+
+		INSN_181B0F6D2:
+
+		if (local1 != 0)
+            goto INSN_181B0F765
+        endif
+
+		System.String[] stringArray = list.ToArray()
+		NorthwoodLib.Pools.ListPool`1<T> shared2 = NorthwoodLib.Pools.ListPool`1.Shared
+
+		shared2.Return(list) //(List`1 list)
+		return stringArray
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+
+		INSN_181B0F754:
+		throw new System.NullReferenceException()
+
+		INSN_181B0F75A:
+
+		INSN_181B0F765:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AllocateInstanceAction at (0x181B0F5CC) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (4)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: FileManager
+	static System.Collections.Generic.List`1<System.String> ReadAllLinesSafeList(System.String path)
+		ulong local1 = 0
+		System.Collections.Generic.List`1<System.String> list = new System.Collections.Generic.List`1<System.String>()
+
+		list..ctor()
+		System.IO.FileStream fileStream = new System.IO.FileStream()
+		System.Int32 1 = 1
+		System.Int32 3 = 3
+
+		fileStream..ctor()
+		System.IO.StreamReader streamReader = new System.IO.StreamReader()
+
+		streamReader..ctor(fileStream) //(Stream stream)
+
+		System.Int32 int32 = streamReader.ReadBlock()
+
+		if (int32 != 0)
+
+		    list.Add()
+		endwhile
+        
+		goto INSN_181B0F50C
+        
+
+		if (streamReader == 0)
+            goto INSN_181B0F4B6
+        endif
+
+		INSN_181B0F4B6:
+
+		if (local1 != 0)
+            goto INSN_181B0F512
+        endif
+
+		if (0xFFFFFFFF == 0xFFFFFFFFFFFFFFFF)
+            goto INSN_181B0F4CD
+        endif
+
+		INSN_181B0F4CD:
+
+		if (streamReader == 0)
+            goto INSN_181B0F4EE
+        endif
+
+		INSN_181B0F4EE:
+
+		if (local1 != 0)
+            goto INSN_181B0F51D
+        endif
+		return list
+		throw new System.NullReferenceException()
+
+		INSN_181B0F50C:
+		throw new System.NullReferenceException()
+
+		INSN_181B0F512:
+
+		INSN_181B0F51D:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AllocateInstanceAction at (0x181B0F3F1) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (4)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: FileManager
+	static System.Void ReadAllLinesSafeList(System.String path, System.Collections.Generic.List`1<System.String> list)
+		ulong local2 = 0
+
+		list.Clear()
+		System.IO.FileStream fileStream = new System.IO.FileStream()
+		System.Int32 1 = 1
+		System.Int32 3 = 3
+
+		fileStream..ctor()
+		System.IO.StreamReader streamReader = new System.IO.StreamReader()
+
+		streamReader..ctor(fileStream) //(Stream stream)
+
+		System.Int32 int32 = streamReader.ReadBlock()
+
+		if (int32 != 0)
+
+		    list.Add()
+		endwhile
+        
+		goto INSN_181B0F35D
+        
+
+		if (streamReader == 0)
+            goto INSN_181B0F315
+        endif
+
+		INSN_181B0F315:
+
+		if (local2 != 0)
+            goto INSN_181B0F363
+        endif
+
+		if (local2 == -1)
+            goto INSN_181B0F32B
+        endif
+
+		INSN_181B0F32B:
+
+		if (streamReader == 0)
+            goto INSN_181B0F348
+        endif
+
+		INSN_181B0F348:
+
+		if (local2 != 0)
+            goto INSN_181B0F36E
+        endif
+		return
+
+		INSN_181B0F35D:
+		throw new System.NullReferenceException()
+
+		INSN_181B0F363:
+
+		INSN_181B0F36E:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AllocateInstanceAction at (0x181B0F261) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (4)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: FileManager
+	static System.String ReadAllText(System.String path)
+
+		System.String string = System.IO.File.ReadAllText(path) //(String path)
+		return string
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.String System.IO.File::ReadAllText(System.String)
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: FileManager
+	static System.String ReadAllTextSafe(System.String path)
+		ulong local1 = 0
+		System.IO.FileStream fileStream = new System.IO.FileStream()
+		System.Int32 1 = 1
+		System.Int32 3 = 3
+
+		fileStream..ctor()
+		System.IO.StreamReader streamReader = new System.IO.StreamReader()
+
+		streamReader..ctor(fileStream) //(Stream stream)
+
+		System.Int32 int32 = streamReader.Read()
+
+		if (streamReader != 0)
+		endif
+        
+
+		if (local1 != 0)
+            goto INSN_181B0FA95
+        endif
+
+		if (0xFFFFFFFF == 0xFFFFFFFFFFFFFFFF)
+            goto INSN_181B0FA4E
+        endif
+
+		INSN_181B0FA4E:
+
+		if (fileStream == 0)
+            goto INSN_181B0FA78
+        endif
+
+		INSN_181B0FA78:
+
+		if (local1 != 0)
+            goto INSN_181B0FAA0
+        endif
+		return int32
+		throw new System.NullReferenceException()
+
+		INSN_181B0FA95:
+
+		INSN_181B0FAA0:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AllocateInstanceAction at (0x181B0F979) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (4)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: FileManager
+	static System.Void WriteToFile(System.Collections.Generic.IEnumerable`1<System.String> data, System.String path, System.Boolean removeempty)
+
+		if (removeempty != False)
+		    System.Func`2<System.String,System.Boolean> <>9__22_0 = FileManager/<>c.<>9__22_0
+
+		    if (<>9__22_0 == 0)
+		        FileManager/<>c <>c = FileManager/<>c.<>9
+		        System.Func`2<System.String,System.Boolean> func = new System.Func`2<System.String,System.Boolean>()
+
+		        func..ctor(<>c, {'<WriteToFile>b__22_0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		         += 8
+		        FileManager/<>c.<>9 = func
+		    endif
+            
+
+		    System.Collections.Generic.IEnumerable`1<System.String> iEnumerable = System.Linq.Enumerable.Where<System.String>(data, <>9__22_0) //(IEnumerable`1 source, Func`2 predicate)
+		endif
+        
+		System.Text.Encoding utf8Encoding = FileManager.Utf8Encoding
+
+		System.IO.File.WriteAllLines(path, data, utf8Encoding) //(String path, IEnumerable`1 contents, Encoding encoding)
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x181B108A6) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: FileManager
+	static System.Void WriteStringToFile(System.String data, System.String path)
+		System.Text.Encoding utf8Encoding = FileManager.Utf8Encoding
+
+		System.IO.File.WriteAllText(path, data, utf8Encoding) //(String path, String contents, Encoding encoding)
+		return
+
+
+Generated IL:
+	IL_0000: ldsfld System.Text.Encoding FileManager::Utf8Encoding
+	IL_0005: stloc.0
+	IL_0006: ldarg.1
+	IL_0007: ldarg.0
+	IL_0008: ldloc.0
+	IL_0009: call System.Void System.IO.File::WriteAllText(System.String,System.String,System.Text.Encoding)
+	IL_000e: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: FileManager
+	static System.Void WriteToFileSafe(System.Collections.Generic.IEnumerable`1<System.String> data, System.String path, System.Boolean removeempty)
+		ulong local3 = 0
+		System.IO.FileStream fileStream = new System.IO.FileStream()
+		System.Int32 2 = 2
+		System.Int32 4 = 4
+
+		fileStream..ctor()
+		System.Text.Encoding utf8Encoding = FileManager.Utf8Encoding
+		System.IO.StreamWriter streamWriter = new System.IO.StreamWriter()
+
+		streamWriter..ctor(fileStream, utf8Encoding) //(Stream stream, Encoding encoding)
+
+		System.String string = System.String.Join("
+        ", data) //(String separator, IEnumerable`1 values)
+
+		streamWriter.Write(string) //(Char[] buffer, Int32 index, Int32 count)
+
+		if (streamWriter != 0)
+		endif
+        
+
+		if (local3 != 0)
+            goto INSN_181B107AC
+        endif
+
+		if (0xFFFFFFFF == 0xFFFFFFFFFFFFFFFF)
+            goto INSN_181B1076C
+        endif
+
+		INSN_181B1076C:
+
+		if (fileStream == 0)
+            goto INSN_181B1078C
+        endif
+
+		INSN_181B1078C:
+
+		if (local3 != 0)
+            goto INSN_181B107B7
+        endif
+		return
+		throw new System.NullReferenceException()
+
+		INSN_181B107AC:
+
+		INSN_181B107B7:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AllocateInstanceAction at (0x181B10667) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (4)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: FileManager
+	static System.Void WriteStringToFileSafe(System.String data, System.String path)
+		ulong local2 = 0
+		System.IO.FileStream fileStream = new System.IO.FileStream()
+		System.Int32 2 = 2
+		System.Int32 4 = 4
+
+		fileStream..ctor()
+		System.Text.Encoding utf8Encoding = FileManager.Utf8Encoding
+		System.IO.StreamWriter streamWriter = new System.IO.StreamWriter()
+
+		streamWriter..ctor(fileStream, utf8Encoding) //(Stream stream, Encoding encoding)
+
+		streamWriter.Write(data) //(Char[] buffer, Int32 index, Int32 count)
+
+		if (streamWriter != 0)
+		endif
+        
+
+		if (local2 != 0)
+            goto INSN_181B10579
+        endif
+
+		if (0xFFFFFFFF == 0xFFFFFFFFFFFFFFFF)
+            goto INSN_181B10539
+        endif
+
+		INSN_181B10539:
+
+		if (fileStream == 0)
+            goto INSN_181B10559
+        endif
+
+		INSN_181B10559:
+
+		if (local2 != 0)
+            goto INSN_181B10584
+        endif
+		return
+		throw new System.NullReferenceException()
+
+		INSN_181B10579:
+
+		INSN_181B10584:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AllocateInstanceAction at (0x181B10447) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (4)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: FileManager
+	static System.Void AppendFile(System.String data, System.String path, System.Boolean newLine)
+
+		System.String[] stringArray = FileManager.ReadAllLines(path) //(String path)
+
+		if (newLine != False)
+		    System.Int32 length = stringArray.Length
+
+		    if (length != 0)
+		        System.String string = stringArray[length]
+		        ulong local7 = 0
+
+		        System.String newLine = System.Environment.NewLine
+
+		        System.Boolean boolean = string.EndsWith(newLine) //(String value)
+
+		        if (boolean == False)
+		            System.Int32 length2 = stringArray.Length
+		            System.Int32 local12 = length2 - 1
+		            System.String string2 = stringArray[local12]
+
+		            System.Boolean boolean2 = string2.EndsWith("
+                    ") //(String value)
+
+		            if (boolean2 == False)
+		                ulong local16 = 0
+
+		                System.String newLine2 = System.Environment.NewLine
+
+		                System.String string3 = System.String.Concat(newLine2, data) //(String str0, String str1)
+		            else
+		            endif
+                    
+		            System.Text.Encoding utf8Encoding = FileManager.Utf8Encoding
+
+		            System.IO.File.AppendAllText(path, data, utf8Encoding) //(String path, String contents, Encoding encoding)
+		            return
+		            throw new System.IndexOutOfRangeException()
+
+
+Generated IL:
+	IL_0000: ldarg.1
+	IL_0001: call System.String[] FileManager::ReadAllLines(System.String)
+	IL_0006: stloc.0
+	IL_0007: ldarg.2
+	IL_0008: ldc.i4.0
+	IL_0009: beq.s IL_0061
+	IL_000b: ldloc.0
+	IL_000c: call System.Int32 System.Array::get_Length()
+	IL_0011: stloc.1
+	IL_0012: ldloc.1
+	IL_0013: ldc.i4.0
+	IL_0014: beq.s IL_0061
+	IL_0016: ldloc.0
+	IL_0017: ldloc.1
+	IL_0018: ldelem.any System.String
+	IL_001d: stloc.2
+	IL_001e: ldc.i4.0
+	IL_001f: stloc.3
+	IL_0020: call System.String System.Environment::get_NewLine()
+	IL_0025: stloc.s V_4
+	IL_0027: ldloc.2
+	IL_0028: ldloc.s V_4
+	IL_002a: call System.Boolean System.String::EndsWith(System.String)
+	IL_002f: ldc.i4.0
+	IL_0030: bne.un.s IL_0061
+	IL_0032: ldloc.0
+	IL_0033: call System.Int32 System.Array::get_Length()
+	IL_0038: ldc.i4.1
+	IL_0039: sub
+	IL_003a: stloc.s V_5
+	IL_003c: ldloc.0
+	IL_003d: ldloc.s V_5
+	IL_003f: ldelem.any System.String
+	IL_0044: ldstr "
+"
+	IL_0049: call System.Boolean System.String::EndsWith(System.String)
+	IL_004e: ldc.i4.0
+	IL_004f: bne.un.s IL_0061
+	IL_0051: ldc.i4.0
+	IL_0052: stloc.s V_6
+	IL_0054: call System.String System.Environment::get_NewLine()
+	IL_0059: ldarg.0
+	IL_005a: call System.String System.String::Concat(System.String,System.String)
+	IL_005f: stloc.s V_7
+	IL_0061: ldsfld System.Text.Encoding FileManager::Utf8Encoding
+	IL_0066: stloc.s V_8
+	IL_0068: ldarg.1
+	IL_0069: ldarg.0
+	IL_006a: ldloc.s V_8
+	IL_006c: call System.Void System.IO.File::AppendAllText(System.String,System.String,System.Text.Encoding)
+	IL_0071: ret
+	IL_0072: newobj System.Void System.IndexOutOfRangeException::.ctor()
+	IL_0077: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: FileManager
+	static System.Void AppendFileSafe(System.String data, System.String path, System.Boolean newLine)
+		ulong local3 = 0
+		System.IO.FileStream fileStream = new System.IO.FileStream()
+		System.Int32 2 = 2
+		System.Int32 6 = 6
+
+		fileStream..ctor()
+		System.Text.Encoding utf8Encoding = FileManager.Utf8Encoding
+		System.IO.StreamWriter streamWriter = new System.IO.StreamWriter()
+
+		streamWriter..ctor(fileStream, utf8Encoding) //(Stream stream, Encoding encoding)
+
+		if (newLine != False)
+
+		    System.String string = System.String.Concat("
+            ", data) //(String str0, String str1)
+		endif
+        
+
+		streamWriter.Write(data) //(Char[] buffer, Int32 index, Int32 count)
+
+		if (streamWriter == 0)
+            goto INSN_181B0E5C5
+        endif
+
+		INSN_181B0E5C5:
+
+		if (local3 != 0)
+            goto INSN_181B0E621
+        endif
+
+		if (0xFFFFFFFF == 0xFFFFFFFFFFFFFFFF)
+            goto INSN_181B0E5DC
+        endif
+
+		INSN_181B0E5DC:
+
+		if (fileStream == 0)
+            goto INSN_181B0E5FC
+        endif
+
+		INSN_181B0E5FC:
+
+		if (local3 != 0)
+            goto INSN_181B0E62C
+        endif
+		return
+		throw new System.NullReferenceException()
+
+		INSN_181B0E621:
+
+		INSN_181B0E62C:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AllocateInstanceAction at (0x181B0E4D0) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (4)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: FileManager
+	static System.Void RenameFile(System.String path, System.String newpath)
+
+		System.IO.File.Move(path, newpath) //(String sourceFileName, String destFileName)
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: call System.Void System.IO.File::Move(System.String,System.String)
+	IL_0007: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: FileManager
+	static System.Void DeleteFile(System.String path)
+
+		System.IO.File.Delete(path) //(String path)
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void System.IO.File::Delete(System.String)
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: FileManager
+	static System.Void ReplaceLine(System.Int32 line, System.String text, System.String path)
+
+		System.String[] stringArray = FileManager.ReadAllLines(path) //(String path)
+
+		if (text != 0)
+
+		    if (stringArray == 0)
+                goto INSN_181B0FF9D
+            endif
+		endif
+        
+		path. = text
+		System.Text.Encoding utf8Encoding = FileManager.Utf8Encoding
+
+		System.IO.File.WriteAllLines(path, stringArray, utf8Encoding) //(String path, IEnumerable`1 contents, Encoding encoding)
+		return
+		throw new System.NullReferenceException()
+
+		INSN_181B0FF9D:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.RegToFieldAction at (0x181B0FF1D) is corrupt (Instance or field is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: FileManager
+	static System.Void RemoveEmptyLines(System.String path)
+
+		System.String[] stringArray = FileManager.ReadAllLines(path) //(String path)
+		System.Func`2<System.String,System.Boolean> <>9__31_0 = FileManager/<>c.<>9__31_0
+
+		if (<>9__31_0 == 0)
+		    FileManager/<>c <>c = FileManager/<>c.<>9
+		    System.Func`2<System.String,System.Boolean> func = new System.Func`2<System.String,System.Boolean>()
+
+		    func..ctor(<>c, {'<RemoveEmptyLines>b__31_0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		     += 16
+		    FileManager/<>c.<>9 = func
+		endif
+        
+
+		System.Collections.Generic.IEnumerable`1<System.String> iEnumerable = System.Linq.Enumerable.Where<System.String>(stringArray, <>9__31_0) //(IEnumerable`1 source, Func`2 predicate)
+
+		System.String[] stringArray2 = System.Linq.Enumerable.ToArray<System.String>(iEnumerable) //(IEnumerable`1 source)
+
+		if (stringArray == stringArray2)
+            goto INSN_181B0FE59
+        endif
+		System.Text.Encoding utf8Encoding = FileManager.Utf8Encoding
+
+		System.IO.File.WriteAllLines(path, stringArray2, utf8Encoding) //(String path, IEnumerable`1 contents, Encoding encoding)
+
+		INSN_181B0FE59:
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x181B0FD98) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: FileManager
+	static System.Void DirectoryCopy(System.String sourceDirName, System.String destDirName, System.Boolean copySubDirs, System.Boolean overwrite)
+		System.IO.DirectoryInfo directoryInfo = new System.IO.DirectoryInfo()
+
+		directoryInfo..ctor(sourceDirName) //(String path)
+
+		System.String name = directoryInfo.Name
+
+		if (name != 0)
+
+		    System.IO.DirectoryInfo[] directories = directoryInfo.GetDirectories()
+
+		    System.Boolean boolean = System.IO.Directory.Exists(destDirName) //(String path)
+
+		    if (boolean != False)
+
+		        System.IO.Directory.Delete(destDirName, True) //(String path, Boolean recursive)
+		    endif
+            
+
+		    System.IO.DirectoryInfo directoryInfo2 = System.IO.Directory.CreateDirectory(destDirName) //(String path)
+
+		    System.IO.FileInfo[] files = directoryInfo.GetFiles()
+		    ulong local16 = 0
+		    System.Int32 length = files.Length
+
+		    if (local16 >= length)
+                goto INSN_181B0E962
+            endif
+		    System.IO.FileInfo fileInfo = files[local16]
+
+		    System.String fullName = fileInfo.FullName
+
+		    System.String string = System.IO.Path.Combine(destDirName, fullName) //(String path1, String path2)
+
+		    System.IO.FileInfo fileInfo2 = fileInfo.CopyTo(string, overwrite) //(String destFileName, Boolean overwrite)
+		    local16 += 1
+
+		    INSN_181B0E962:
+
+		    if (copySubDirs == False)
+                goto INSN_181B0EA3E
+            endif
+		    ulong local24 = 0
+		    System.Int32 length2 = directories.Length
+
+		    if (local24 >= length2)
+                goto INSN_181B0EA3E
+            endif
+		    System.IO.DirectoryInfo directoryInfo3 = directories[local24]
+
+		    System.String fullName2 = directoryInfo3.FullName
+
+		    System.String string2 = System.IO.Path.Combine(destDirName, fullName2) //(String path1, String path2)
+
+		    directoryInfo3.GetObjectData()
+
+		    FileManager.DirectoryCopy(string2, string2, overwrite, True) //(String sourceDirName, String destDirName, Boolean copySubDirs, Boolean overwrite)
+		    local24 += 1
+
+		    INSN_181B0EA3E:
+		    return
+		    throw new System.IndexOutOfRangeException()
+		endif
+        
+
+		System.String string3 = System.String.Concat("Source directory does not exist or could not be found: ", sourceDirName) //(String str0, String str1)
+		System.IO.DirectoryNotFoundException directoryNotFoundException = new System.IO.DirectoryNotFoundException()
+
+		directoryNotFoundException..ctor(string3) //(String message)
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallVirtualMethodAction at (0x181B0E9F6) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: FileManager
+	static System.Void .cctor()
+		FileManager._appfolder = ""
+		 += 8
+		FileManager._appfolder = ""
+		System.Text.UTF8Encoding uTF8Encoding = new System.Text.UTF8Encoding()
+		ulong local2 = 0
+
+		uTF8Encoding..ctor(local2) //(Boolean encoderShouldEmitUTF8Identifier)
+		 += 16
+		FileManager._appfolder = uTF8Encoding
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x181B10973) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+

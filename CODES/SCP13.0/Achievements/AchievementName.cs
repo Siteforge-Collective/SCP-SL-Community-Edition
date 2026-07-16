@@ -1,0 +1,39 @@
+namespace Achievements
+{
+	public enum AchievementName
+	{
+		TurnThemAll = 0,
+		Pacified = 1,
+		MelancholyOfDecay = 2,
+		DontBlink = 3,
+		LightsOut = 4,
+		ItsAlwaysLeft = 5,
+		AccessGranted = 6,
+		DeltaCommand = 7,
+		ProceedWithCaution = 8,
+		Friendship = 9,
+		ForScience = 10,
+		IsThisThingOn = 11,
+		FireInTheHole = 12,
+		HeWillBeBack = 13,
+		BePoliteBeEfficient = 14,
+		ExecutiveAccess = 15,
+		SecureContainProtect = 16,
+		TMinus = 17,
+		ChangeInCommand = 18,
+		ThatCanBeUseful = 19,
+		JustResources = 20,
+		ThatWasClose = 21,
+		SomethingDoneRight = 22,
+		WalkItOff = 23,
+		AnomalouslyEfficient = 24,
+		MicrowaveMeal = 25,
+		EscapeArtist = 26,
+		Escape207 = 27,
+		CrisisAverted = 28,
+		DidntEvenFeelThat = 29,
+		IllPassThanks = 30,
+		Overcurrent = 31,
+		PropertyOfChaos = 32
+	}
+}

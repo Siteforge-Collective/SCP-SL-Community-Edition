@@ -1,0 +1,616 @@
+Type: BloodEffectsSystem
+
+
+	Generated Pseudocode:
+
+	Declaring Type: BloodEffectsSystem
+	System.Void Awake()
+		BloodEffectsSystem.LocalPlayerSingleton = this
+
+		UnityEngine.Rendering.PostProcessing.PostProcessVolume component = base.GetComponent<UnityEngine.Rendering.PostProcessing.PostProcessVolume>()
+
+		UnityEngine.Rendering.PostProcessing.PostProcessProfile profile = component.profile
+
+		UnityEngine.Rendering.PostProcessing.ColorGrading setting = profile.GetSetting<UnityEngine.Rendering.PostProcessing.ColorGrading>()
+		this._bloodGrayScale = setting
+
+		PostProcessing.BloodHit setting2 = profile.GetSetting<PostProcessing.BloodHit>()
+		this._bloodHit = setting2
+		ulong local7 = 0
+		System.Int32 3 = 3
+
+		System.Int32 int32 = UnityEngine.Random.Range(local7, 3) //(Int32 min, Int32 max)
+		this._fullScapeRoundRobin = int32
+		System.Action onTargetChanged = PlayerRoles.Spectating.SpectatorTargetTracker.OnTargetChanged
+		System.Action action = new System.Action()
+
+		action..ctor(this, {'<Awake>b__0_0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		System.Delegate delegate = System.Delegate.Combine(onTargetChanged, action) //(Delegate a, Delegate b)
+		ulong local14 = 0
+
+		if (delegate != 0)
+
+		    if (delegate == 0)
+                goto INSN_1804E939F
+            endif
+		endif
+        
+		 += 96
+		PlayerRoles.Spectating.SpectatorTargetTracker._trackedTransformSet = local14
+		throw new System.NullReferenceException()
+
+		INSN_1804E939F:
+		throw new System.InvalidCastException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x1804E9383) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: BloodEffectsSystem
+	System.Boolean get_DisableHurtEffect()
+		System.Boolean DisableHurtEffect = this.<DisableHurtEffect>k__BackingField
+		return DisableHurtEffect
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Boolean BloodEffectsSystem::<DisableHurtEffect>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: BloodEffectsSystem
+	System.Void set_DisableHurtEffect(System.Boolean value)
+		this.<DisableHurtEffect>k__BackingField = value
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: stfld System.Boolean BloodEffectsSystem::<DisableHurtEffect>k__BackingField
+	IL_0007: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: BloodEffectsSystem
+	System.Void AddPulseBlood(UnityEngine.Vector3 hitDir, System.Single opacityMultiplier)
+		ulong local3 = 0
+
+		System.Boolean active = Mirror.NetworkClient.active
+
+		if (active != False)
+		    System.Single single = hitDir.z
+
+		    UnityEngine.Vector3 vector3 = UnityEngine.Vector3.op_Multiply()
+		    ulong local8 = 0
+		    System.Single single2 = vector3.z
+		    hitDir.z = single2
+
+		    if (constant17 > local8)
+		        PostProcessing.BloodHit _bloodHit = this._bloodHit
+		        UnityEngine.Rendering.PostProcessing.FloatParameter hit_Right = _bloodHit.Hit_Right
+		        hit_Right. = constant17
+		    endif
+            
+
+		    if (local8 <= constant17)
+                goto INSN_1804E8E99
+            endif
+		    PostProcessing.BloodHit _bloodHit2 = this._bloodHit
+		    UnityEngine.Rendering.PostProcessing.FloatParameter hit_Left = _bloodHit2.Hit_Left
+		    hit_Left. = constant17
+
+		    INSN_1804E8E99:
+		    System.Single single3 = hitDir.z
+
+		    if (single3 <= local8)
+                goto INSN_1804E8ED9
+            endif
+		    PostProcessing.BloodHit _bloodHit3 = this._bloodHit
+		    UnityEngine.Rendering.PostProcessing.FloatParameter hit_Up = _bloodHit3.Hit_Up
+		    hit_Up. = single3
+
+		    INSN_1804E8ED9:
+
+		    if (local8 <= )
+                goto INSN_1804E8F49
+            endif
+		    PostProcessing.BloodHit _bloodHit4 = this._bloodHit
+		    UnityEngine.Rendering.PostProcessing.FloatParameter hit_Down = _bloodHit4.Hit_Down
+		    hit_Down. = single3
+		    return
+		endif
+        
+
+		UnityEngine.Debug.LogWarning("[Client] function 'System.Void BloodEffectsSystem::AddPulseBlood(UnityEngine.Vector3,System.Single)' called when client was not active") //(Object message)
+
+		INSN_1804E8F49:
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1804E8E1F) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: BloodEffectsSystem
+	System.Void AddScrapeBlood(UnityEngine.Vector3 hitDir, System.Single opacityMultiplier)
+		ulong local3 = 0
+
+		System.Boolean active = Mirror.NetworkClient.active
+
+		if (active != False)
+		    System.Single single = hitDir.z
+
+		    UnityEngine.Vector3 vector3 = UnityEngine.Vector3.op_Multiply()
+		    ulong local8 = 0
+		    System.Single single2 = vector3.z
+		    hitDir.z = single2
+
+		    if (constant17 > local8)
+		        PostProcessing.BloodHit _bloodHit = this._bloodHit
+		        UnityEngine.Rendering.PostProcessing.FloatParameter blood_Hit_Right = _bloodHit.Blood_Hit_Right
+		        blood_Hit_Right. = constant17
+		    endif
+            
+
+		    if (local8 <= constant17)
+                goto INSN_1804E9079
+            endif
+		    PostProcessing.BloodHit _bloodHit2 = this._bloodHit
+		    UnityEngine.Rendering.PostProcessing.FloatParameter blood_Hit_Left = _bloodHit2.Blood_Hit_Left
+		    blood_Hit_Left. = constant17
+
+		    INSN_1804E9079:
+		    System.Single single3 = hitDir.z
+
+		    if (single3 <= local8)
+                goto INSN_1804E90B9
+            endif
+		    PostProcessing.BloodHit _bloodHit3 = this._bloodHit
+		    UnityEngine.Rendering.PostProcessing.FloatParameter blood_Hit_Up = _bloodHit3.Blood_Hit_Up
+		    blood_Hit_Up. = single3
+
+		    INSN_1804E90B9:
+
+		    if (local8 <= )
+                goto INSN_1804E9129
+            endif
+		    PostProcessing.BloodHit _bloodHit4 = this._bloodHit
+		    UnityEngine.Rendering.PostProcessing.FloatParameter blood_Hit_Down = _bloodHit4.Blood_Hit_Down
+		    blood_Hit_Down. = single3
+		    return
+		endif
+        
+
+		UnityEngine.Debug.LogWarning("[Client] function 'System.Void BloodEffectsSystem::AddScrapeBlood(UnityEngine.Vector3,System.Single)' called when client was not active") //(Object message)
+
+		INSN_1804E9129:
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1804E8FFF) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: BloodEffectsSystem
+	System.Void AddScrapes(System.Single opacity)
+		ulong local2 = 0
+
+		System.Boolean active = Mirror.NetworkClient.active
+
+		if (active != False)
+		    System.Int32 _fullScapeRoundRobin = this._fullScapeRoundRobin
+
+		    if (_fullScapeRoundRobin != 0)
+
+		        if (_fullScapeRoundRobin != 0)
+
+		            if (_fullScapeRoundRobin == 1)
+		                PostProcessing.BloodHit _bloodHit = this._bloodHit
+		            else
+		                PostProcessing.BloodHit _bloodHit2 = this._bloodHit
+		            else
+		                PostProcessing.BloodHit _bloodHit3 = this._bloodHit
+		                UnityEngine.Rendering.PostProcessing.FloatParameter blood_Hit_Full_1 = _bloodHit3.Blood_Hit_Full_1
+		            endif
+                    
+		            blood_Hit_Full_1. = opacity
+		        endif
+                
+
+		        if (this._fullScapeRoundRobin != 3)
+                    goto INSN_1804E9231
+                endif
+		        this._fullScapeRoundRobin = 0
+		        return
+		    endif
+            
+
+		    UnityEngine.Debug.LogWarning("[Client] function 'System.Void BloodEffectsSystem::AddScrapes(System.Single)' called when client was not active") //(Object message)
+
+		    INSN_1804E9231:
+		    return
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.RegToFieldAction at (0x1804E91E5) is corrupt (Instance or field is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: BloodEffectsSystem
+	System.Void ResetScrapes()
+		ulong local1 = 0
+
+		System.Boolean active = Mirror.NetworkClient.active
+
+		if (active != False)
+		    PostProcessing.BloodHit _bloodHit = this._bloodHit
+		    UnityEngine.Rendering.PostProcessing.FloatParameter blood_Hit_Right = _bloodHit.Blood_Hit_Right
+		    ulong local5 = 0
+		    blood_Hit_Right. = local5
+		    PostProcessing.BloodHit _bloodHit2 = this._bloodHit
+		    UnityEngine.Rendering.PostProcessing.FloatParameter blood_Hit_Left = _bloodHit2.Blood_Hit_Left
+		    blood_Hit_Left. = local5
+		    PostProcessing.BloodHit _bloodHit3 = this._bloodHit
+		    UnityEngine.Rendering.PostProcessing.FloatParameter blood_Hit_Up = _bloodHit3.Blood_Hit_Up
+		    blood_Hit_Up. = local5
+		    PostProcessing.BloodHit _bloodHit4 = this._bloodHit
+		    UnityEngine.Rendering.PostProcessing.FloatParameter blood_Hit_Down = _bloodHit4.Blood_Hit_Down
+		    blood_Hit_Down. = local5
+		    PostProcessing.BloodHit _bloodHit5 = this._bloodHit
+		    UnityEngine.Rendering.PostProcessing.FloatParameter blood_Hit_Full_1 = _bloodHit5.Blood_Hit_Full_1
+		    blood_Hit_Full_1. = local5
+		    PostProcessing.BloodHit _bloodHit6 = this._bloodHit
+		    UnityEngine.Rendering.PostProcessing.FloatParameter blood_Hit_Full_2 = _bloodHit6.Blood_Hit_Full_2
+		    blood_Hit_Full_2. = local5
+		    PostProcessing.BloodHit _bloodHit7 = this._bloodHit
+		    UnityEngine.Rendering.PostProcessing.FloatParameter blood_Hit_Full_3 = _bloodHit7.Blood_Hit_Full_3
+		    blood_Hit_Full_3. = local5
+		    return
+		endif
+        
+
+		UnityEngine.Debug.LogWarning("[Client] function 'System.Void BloodEffectsSystem::ResetScrapes()' called when client was not active") //(Object message)
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.RegToFieldAction at (0x1804E985D) is corrupt (Instance or field is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: BloodEffectsSystem
+	System.Void FadePulseBlood(System.Single speed)
+		PostProcessing.BloodHit _bloodHit = this._bloodHit
+		UnityEngine.Rendering.PostProcessing.FloatParameter hit_Right = _bloodHit.Hit_Right
+		  = hit_Right.
+
+		System.Single single = UnityEngine.Mathf.Lerp()
+		hit_Right. = single
+		PostProcessing.BloodHit _bloodHit2 = this._bloodHit
+		UnityEngine.Rendering.PostProcessing.FloatParameter hit_Left = _bloodHit2.Hit_Left
+		  = hit_Left.
+		ulong local10 = 0
+
+		System.Single single2 = UnityEngine.Mathf.Lerp(single, local10, speed) //(Single a, Single b, Single t)
+		hit_Left. = single2
+		PostProcessing.BloodHit _bloodHit3 = this._bloodHit
+		UnityEngine.Rendering.PostProcessing.FloatParameter hit_Up = _bloodHit3.Hit_Up
+		  = hit_Up.
+		ulong local15 = 0
+
+		System.Single single3 = UnityEngine.Mathf.Lerp(single2, local15, speed) //(Single a, Single b, Single t)
+		hit_Up. = single3
+		PostProcessing.BloodHit _bloodHit4 = this._bloodHit
+		UnityEngine.Rendering.PostProcessing.FloatParameter hit_Down = _bloodHit4.Hit_Down
+		  = hit_Down.
+		ulong local20 = 0
+
+		System.Single single4 = UnityEngine.Mathf.Lerp(single3, local20, speed) //(Single a, Single b, Single t)
+		hit_Down. = single4
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.FieldToLocalAction at (0x1804E940D) is corrupt (No further info) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: BloodEffectsSystem
+	System.Void FadeScrapeBlood(System.Single speed)
+		PostProcessing.BloodHit _bloodHit = this._bloodHit
+		UnityEngine.Rendering.PostProcessing.FloatParameter blood_Hit_Right = _bloodHit.Blood_Hit_Right
+		  = blood_Hit_Right.
+
+		System.Single single = UnityEngine.Mathf.Lerp()
+		blood_Hit_Right. = single
+		PostProcessing.BloodHit _bloodHit2 = this._bloodHit
+		UnityEngine.Rendering.PostProcessing.FloatParameter blood_Hit_Left = _bloodHit2.Blood_Hit_Left
+		  = blood_Hit_Left.
+		ulong local10 = 0
+
+		System.Single single2 = UnityEngine.Mathf.Lerp(single, local10, speed) //(Single a, Single b, Single t)
+		blood_Hit_Left. = single2
+		PostProcessing.BloodHit _bloodHit3 = this._bloodHit
+		UnityEngine.Rendering.PostProcessing.FloatParameter blood_Hit_Up = _bloodHit3.Blood_Hit_Up
+		  = blood_Hit_Up.
+		ulong local15 = 0
+
+		System.Single single3 = UnityEngine.Mathf.Lerp(single2, local15, speed) //(Single a, Single b, Single t)
+		blood_Hit_Up. = single3
+		PostProcessing.BloodHit _bloodHit4 = this._bloodHit
+		UnityEngine.Rendering.PostProcessing.FloatParameter blood_Hit_Down = _bloodHit4.Blood_Hit_Down
+		  = blood_Hit_Down.
+		ulong local20 = 0
+
+		System.Single single4 = UnityEngine.Mathf.Lerp(single3, local20, speed) //(Single a, Single b, Single t)
+		blood_Hit_Down. = single4
+		PostProcessing.BloodHit _bloodHit5 = this._bloodHit
+		UnityEngine.Rendering.PostProcessing.FloatParameter blood_Hit_Full_1 = _bloodHit5.Blood_Hit_Full_1
+		  = blood_Hit_Full_1.
+		ulong local25 = 0
+
+		System.Single single5 = UnityEngine.Mathf.Lerp(single4, local25, speed) //(Single a, Single b, Single t)
+		blood_Hit_Full_1. = single5
+		PostProcessing.BloodHit _bloodHit6 = this._bloodHit
+		UnityEngine.Rendering.PostProcessing.FloatParameter blood_Hit_Full_2 = _bloodHit6.Blood_Hit_Full_2
+		  = blood_Hit_Full_2.
+		ulong local30 = 0
+
+		System.Single single6 = UnityEngine.Mathf.Lerp(single5, local30, speed) //(Single a, Single b, Single t)
+		blood_Hit_Full_2. = single6
+		PostProcessing.BloodHit _bloodHit7 = this._bloodHit
+		UnityEngine.Rendering.PostProcessing.FloatParameter blood_Hit_Full_3 = _bloodHit7.Blood_Hit_Full_3
+		  = blood_Hit_Full_3.
+		ulong local35 = 0
+
+		System.Single single7 = UnityEngine.Mathf.Lerp(single6, local35, speed) //(Single a, Single b, Single t)
+		blood_Hit_Full_3. = single7
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.FieldToLocalAction at (0x1804E954D) is corrupt (No further info) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: BloodEffectsSystem
+	System.Void Update()
+		ulong local1 = 0
+
+		System.Boolean boolean = ReferenceHub.TryGetLocalHub(local1) //(ReferenceHub& hub)
+
+		if (boolean != False)
+		    ulong local4 = 0
+
+		    if (this.<DisableHurtEffect>k__BackingField == local1)
+		          = local1.
+
+		        PlayerRoles.PlayerRoleBase currentRole = .CurrentRole
+
+		        if (currentRole != 0)
+		            ulong local8 = 0
+
+		            System.Boolean boolean2 = UnityEngine.Object.op_Equality(currentRole, local8) //(Object x, Object y)
+
+		            if (boolean2 == False)
+
+		                PlayerStatsSystem.HealthStat module = boolean2.GetModule<PlayerStatsSystem.HealthStat>()
+
+		                System.Single normalizedValue = module.NormalizedValue
+		            else
+		                ulong local13 = 0
+		            endif
+                    
+		            ulong local14 = 0
+
+		            if (this._instantUpdate != local1)
+                        goto INSN_1804E9B3E
+                    endif
+		            System.Single _dyingRatio = this._dyingRatio
+		            System.Single healthLerpSpeed = this.HealthLerpSpeed
+
+		            System.Single single = UnityEngine.Mathf.Lerp(_dyingRatio, local14, healthLerpSpeed) //(Single a, Single b, Single t)
+
+		            INSN_1804E9B3E:
+		            ulong local19 = 0
+
+		            System.Boolean active = Mirror.NetworkClient.active
+
+		            if (active == False)
+                        goto INSN_1804E9C58
+                    endif
+		            PostProcessing.BloodHit _bloodHit = this._bloodHit
+		            UnityEngine.Rendering.PostProcessing.FloatParameter blood_Hit_Right = _bloodHit.Blood_Hit_Right
+		            blood_Hit_Right. = local1
+		            PostProcessing.BloodHit _bloodHit2 = this._bloodHit
+		            UnityEngine.Rendering.PostProcessing.FloatParameter blood_Hit_Left = _bloodHit2.Blood_Hit_Left
+		            blood_Hit_Left. = local1
+		            PostProcessing.BloodHit _bloodHit3 = this._bloodHit
+		            UnityEngine.Rendering.PostProcessing.FloatParameter blood_Hit_Up = _bloodHit3.Blood_Hit_Up
+		            blood_Hit_Up. = local1
+		            PostProcessing.BloodHit _bloodHit4 = this._bloodHit
+		            UnityEngine.Rendering.PostProcessing.FloatParameter blood_Hit_Down = _bloodHit4.Blood_Hit_Down
+		            blood_Hit_Down. = local1
+		            PostProcessing.BloodHit _bloodHit5 = this._bloodHit
+		            UnityEngine.Rendering.PostProcessing.FloatParameter blood_Hit_Full_1 = _bloodHit5.Blood_Hit_Full_1
+		            blood_Hit_Full_1. = local1
+		            PostProcessing.BloodHit _bloodHit6 = this._bloodHit
+		            UnityEngine.Rendering.PostProcessing.FloatParameter blood_Hit_Full_2 = _bloodHit6.Blood_Hit_Full_2
+		            blood_Hit_Full_2. = local1
+		            PostProcessing.BloodHit _bloodHit7 = this._bloodHit
+		            UnityEngine.Rendering.PostProcessing.FloatParameter blood_Hit_Full_3 = _bloodHit7.Blood_Hit_Full_3
+		            blood_Hit_Full_3. = local1
+
+		            INSN_1804E9C58:
+
+		            UnityEngine.Debug.LogWarning("[Client] function 'System.Void BloodEffectsSystem::ResetScrapes()' called when client was not active") //(Object message)
+		            this._instantUpdate = local1
+		            this._dyingRatio = single
+		            UnityEngine.Rendering.PostProcessing.ColorGrading _bloodGrayScale = this._bloodGrayScale
+		            UnityEngine.AnimationCurve grayscaleAnimationCurve = this.grayscaleAnimationCurve
+		            UnityEngine.Rendering.PostProcessing.FloatParameter saturation = _bloodGrayScale.saturation
+
+		            System.Single single2 = grayscaleAnimationCurve.Evaluate(single) //(Single time)
+		            System.Single local41 = single2 * -100
+		            saturation. = local41
+		            PostProcessing.BloodHit _bloodHit8 = this._bloodHit
+		            UnityEngine.AnimationCurve vignetteAnimationCurve = this.vignetteAnimationCurve
+		            UnityEngine.Rendering.PostProcessing.FloatParameter hit_Full = _bloodHit8.Hit_Full
+		            System.Single _dyingRatio2 = this._dyingRatio
+
+		            System.Single single3 = vignetteAnimationCurve.Evaluate(_dyingRatio2) //(Single time)
+		            hit_Full. = single3
+		            PostProcessing.BloodHit _bloodHit9 = this._bloodHit
+		            UnityEngine.Rendering.PostProcessing.FloatParameter hit_Right = _bloodHit9.Hit_Right
+		              = hit_Right.
+		            healthLerpSpeed = local48
+		            ulong local51 = 0
+		            single3 = _dyingRatio
+
+		            System.Single single4 = UnityEngine.Mathf.Lerp(single3, local51, healthLerpSpeed) //(Single a, Single b, Single t)
+		            hit_Right. = single4
+		            PostProcessing.BloodHit _bloodHit10 = this._bloodHit
+		            UnityEngine.Rendering.PostProcessing.FloatParameter hit_Left = _bloodHit10.Hit_Left
+		              = hit_Left.
+		            healthLerpSpeed = local48
+		            ulong local56 = 0
+
+		            System.Single single5 = UnityEngine.Mathf.Lerp(single4, local56, healthLerpSpeed) //(Single a, Single b, Single t)
+		            hit_Left. = single5
+		            PostProcessing.BloodHit _bloodHit11 = this._bloodHit
+		            UnityEngine.Rendering.PostProcessing.FloatParameter hit_Up = _bloodHit11.Hit_Up
+		              = hit_Up.
+		            healthLerpSpeed = local48
+		            ulong local61 = 0
+
+		            System.Single single6 = UnityEngine.Mathf.Lerp(single5, local61, healthLerpSpeed) //(Single a, Single b, Single t)
+		            hit_Up. = single6
+		            PostProcessing.BloodHit _bloodHit12 = this._bloodHit
+		            UnityEngine.Rendering.PostProcessing.FloatParameter hit_Down = _bloodHit12.Hit_Down
+		              = hit_Down.
+		            healthLerpSpeed = local48
+		            ulong local66 = 0
+
+		            System.Single single7 = UnityEngine.Mathf.Lerp(single6, local66, healthLerpSpeed) //(Single a, Single b, Single t)
+		            hit_Down. = single7
+		            System.Single scrapeBloodDeductSpeed = this.ScrapeBloodDeductSpeed
+
+		            this.FadeScrapeBlood(scrapeBloodDeductSpeed) //(Single speed)
+		        endif
+                
+		        return
+		        throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.FieldToLocalAction at (0x1804E9A04) is corrupt (No further info) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: BloodEffectsSystem
+	System.Single GetDeadAmount(ReferenceHub hub)
+
+		if (this.<DisableHurtEffect>k__BackingField == False)
+		    PlayerRoles.PlayerRoleManager roleManager = hub.roleManager
+
+		    PlayerRoles.PlayerRoleBase currentRole = roleManager.CurrentRole
+
+		    if (currentRole != 0)
+		        ulong local6 = 0
+
+		        System.Boolean boolean = UnityEngine.Object.op_Equality(currentRole, local6) //(Object x, Object y)
+
+		        if (boolean == False)
+
+		            PlayerStatsSystem.HealthStat module = boolean.GetModule<PlayerStatsSystem.HealthStat>()
+
+		            System.Single normalizedValue = module.NormalizedValue
+		            return constant22
+		        endif
+                
+		        ulong local11 = 0
+		        return local11
+		        throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1804E97A6) is corrupt (Mismatched instance parameter. Expecting an instance of PlayerStatsSystem.PlayerStats, actually {'boolean' (type System.Boolean)}) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: BloodEffectsSystem
+	System.Void .ctor()
+		this.HealthLerpSpeed = 0,1
+		this.PulseBloodDeductSpeed = 0,2
+		this.ScrapeBloodDeductSpeed = 5
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldc.r4 0,1
+	IL_0006: stfld System.Single BloodEffectsSystem::HealthLerpSpeed
+	IL_000b: ldarg.0
+	IL_000c: ldc.r4 0,2
+	IL_0011: stfld System.Single BloodEffectsSystem::PulseBloodDeductSpeed
+	IL_0016: ldarg.0
+	IL_0017: ldc.r4 5
+	IL_001c: stfld System.Single BloodEffectsSystem::ScrapeBloodDeductSpeed
+	IL_0021: ldarg.0
+	IL_0022: call System.Void UnityEngine.MonoBehaviour::.ctor()
+	IL_0027: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: BloodEffectsSystem
+	System.Void <Awake>b__0_0()
+		this._instantUpdate = True
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldc.i4.1
+	IL_0002: stfld System.Boolean BloodEffectsSystem::_instantUpdate
+	IL_0007: ret
+	
+

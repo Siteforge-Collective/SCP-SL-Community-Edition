@@ -1,0 +1,188 @@
+Type: FirearmPickup
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Firearms.FirearmPickup
+	System.Void OnDistributed()
+		this.Distributed = True
+		InventorySystem.Items.Pickups.PickupSyncInfo info = this.Info
+
+		System.UInt32 randomAttachmentsCode = InventorySystem.Items.Firearms.Attachments.AttachmentsUtils.GetRandomAttachmentsCode()
+
+		this.set_NetworkStatus()
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18066EF45) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Firearms.FirearmPickup
+	System.Void Update()
+		InventorySystem.Items.Firearms.FirearmWorldmodel _worldmodel = this._worldmodel
+
+		System.Boolean boolean = _worldmodel.ApplyStatus()
+
+		if (boolean != False)
+		    UnityEngine.Rigidbody rigidbody = this.Rb
+
+		    rigidbody.ResetCenterOfMass()
+		    UnityEngine.Rigidbody rigidbody2 = this.Rb
+
+		    rigidbody2.ResetInertiaTensor()
+		    return
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18066F063) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Firearms.FirearmPickup
+	System.Void .ctor()
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void InventorySystem.Items.Pickups.CollisionDetectionPickup::.ctor()
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Firearms.FirearmPickup
+	System.Void MirrorProcessed()
+
+
+Generated IL:
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Firearms.FirearmPickup
+	InventorySystem.Items.Firearms.FirearmStatus get_NetworkStatus()
+		InventorySystem.Items.Firearms.FirearmStatus status = this.Status
+		return status
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld InventorySystem.Items.Firearms.FirearmStatus InventorySystem.Items.Firearms.FirearmPickup::Status
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Firearms.FirearmPickup
+	System.Void set_NetworkStatus(InventorySystem.Items.Firearms.FirearmStatus value)
+
+		System.Boolean boolean = base.SyncVarEqual<InventorySystem.Items.Firearms.FirearmStatus>()
+
+		if (boolean == False)
+		    throw new System.NullReferenceException()
+		endif
+        
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18066F104) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Firearms.FirearmPickup
+	System.Boolean SerializeSyncVars(Mirror.NetworkWriter writer, System.Boolean forceAll)
+
+		System.Boolean boolean = base.SerializeSyncVars(writer, forceAll) //(NetworkWriter writer, Boolean forceAll)
+
+		if (forceAll == False)
+		    System.UInt64 syncVarDirtyBits = this.<syncVarDirtyBits>k__BackingField
+
+		    Mirror.NetworkWriterExtensions.WriteUInt64(writer, syncVarDirtyBits) //(NetworkWriter writer, UInt64 value)
+
+		    if ( != 1)
+		        InventorySystem.Items.Firearms.FirearmStatus status = this.Status
+
+		        Mirror.GeneratedNetworkCode._Write_InventorySystem.Items.Firearms.FirearmStatus(writer, status) //(NetworkWriter writer, FirearmStatus value)
+		    endif
+            
+		else
+		    InventorySystem.Items.Firearms.FirearmStatus status2 = this.Status
+
+		    Mirror.GeneratedNetworkCode._Write_InventorySystem.Items.Firearms.FirearmStatus(writer, status2) //(NetworkWriter writer, FirearmStatus value)
+		endif
+        
+		return True
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfZeroOrNullAction at (0x18066EFF7) is corrupt (One of the arguments is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Firearms.FirearmPickup
+	System.Void DeserializeSyncVars(Mirror.NetworkReader reader, System.Boolean initialState)
+
+		base.DeserializeSyncVars(reader, initialState) //(NetworkReader reader, Boolean initialState)
+
+		if (initialState == False)
+
+		    System.UInt64 uInt64 = Mirror.NetworkReaderExtensions.ReadUInt64(reader) //(NetworkReader reader)
+
+		    if (uInt64 == 1)
+                goto INSN_18066EF0F
+            endif
+		endif
+        
+
+		InventorySystem.Items.Firearms.FirearmStatus firearmStatus = Mirror.GeneratedNetworkCode._Read_InventorySystem.Items.Firearms.FirearmStatus(reader) //(NetworkReader reader)
+
+		this.NetworkStatus = firearmStatus
+
+		INSN_18066EF0F:
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: ldarg.2
+	IL_0003: call System.Void InventorySystem.Items.Pickups.ItemPickupBase::DeserializeSyncVars(Mirror.NetworkReader,System.Boolean)
+	IL_0008: ldarg.2
+	IL_0009: ldc.i4.0
+	IL_000a: bne.un.s IL_0017
+	IL_000c: ldarg.1
+	IL_000d: call System.UInt64 Mirror.NetworkReaderExtensions::ReadUInt64(Mirror.NetworkReader)
+	IL_0012: ldc.i4.1
+	IL_0013: conv.i8
+	IL_0014: conv.u8
+	IL_0015: beq.s IL_0025
+	IL_0017: ldarg.1
+	IL_0018: call InventorySystem.Items.Firearms.FirearmStatus Mirror.GeneratedNetworkCode::_Read_InventorySystem.Items.Firearms.FirearmStatus(Mirror.NetworkReader)
+	IL_001d: stloc.0
+	IL_001e: ldarg.0
+	IL_001f: ldloc.0
+	IL_0020: call System.Void InventorySystem.Items.Firearms.FirearmPickup::set_NetworkStatus(InventorySystem.Items.Firearms.FirearmStatus)
+	IL_0025: ret
+	
+

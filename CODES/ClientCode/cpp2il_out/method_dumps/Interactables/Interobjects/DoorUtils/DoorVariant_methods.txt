@@ -1,0 +1,901 @@
+Type: DoorVariant
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Interobjects.DoorUtils.DoorVariant
+	Interactables.Verification.IVerificationRule get_VerificationRule()
+		Interactables.Verification.StandardDistanceVerification default = Interactables.Verification.StandardDistanceVerification.Default
+		return default
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x181BA7CD5) is corrupt (Return value has a type of Interactables.Verification.StandardDistanceVerification, expecting an object of type Interactables.Verification.IVerificationRule) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Interobjects.DoorUtils.DoorVariant
+	MapGeneration.RoomIdentifier[] get_Rooms()
+		MapGeneration.RoomIdentifier[] Rooms = this.<Rooms>k__BackingField
+		return Rooms
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld MapGeneration.RoomIdentifier[] Interactables.Interobjects.DoorUtils.DoorVariant::<Rooms>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Interobjects.DoorUtils.DoorVariant
+	System.Void set_Rooms(MapGeneration.RoomIdentifier[] value)
+		this.<Rooms>k__BackingField = value
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: stfld MapGeneration.RoomIdentifier[] Interactables.Interobjects.DoorUtils.DoorVariant::<Rooms>k__BackingField
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Interobjects.DoorUtils.DoorVariant
+	System.Void ServerInteract(ReferenceHub ply, System.Byte colliderId)
+		System.UInt16 activeLocks = this.ActiveLocks
+
+		if (activeLocks != constant22)
+		    ServerRoles serverRoles = ply.serverRoles
+
+		    if (serverRoles.BypassMode == False)
+
+		        if (728 > activeLocks)
+                    goto INSN_181BA7412
+                endif
+
+		        if (activeLocks <= constant27)
+
+		            if (activeLocks <= constant28)
+
+		                if (256 <= activeLocks)
+                            goto INSN_181BA72CD
+                        endif
+		            else
+		            else
+
+		                System.Boolean isSCP = PlayerRoles.PlayerRolesUtils.IsSCP(ply, True) //(ReferenceHub hub, Boolean includeZombies)
+
+		                if (isSCP != False)
+		                endif
+                        
+
+		                this.PermissionsDenied(ply, colliderId) //(ReferenceHub ply, Byte colliderId)
+
+		                if (constant35 == 0)
+                            goto INSN_181BA744F
+                        endif
+
+		                PlayerRoles.RoleTypeId roleId = PlayerRoles.PlayerRolesUtils.GetRoleId(ply) //(ReferenceHub hub)
+
+		                if (roleId == constant38)
+                            goto INSN_181BA7511
+                        endif
+		                Interactables.Interobjects.DoorUtils.DoorPermissions requiredPermissions = this.RequiredPermissions
+		                InventorySystem.Inventory inventory = ply.inventory
+		                InventorySystem.Items.ItemBase _curInstance = inventory._curInstance
+
+		                if (requiredPermissions.RequiredPermissions == constant45)
+                            goto INSN_181BA7511
+                        endif
+		                ulong local13 = 0
+
+		                System.Boolean boolean = ReferenceHub.op_Inequality(ply, local13) //(ReferenceHub left, ReferenceHub right)
+
+		                if (boolean == False)
+                            goto INSN_181BA7469
+                        endif
+		                ServerRoles serverRoles2 = ply.serverRoles
+
+		                if (serverRoles2.BypassMode != False)
+                            goto INSN_181BA7511
+                        endif
+		                ulong local17 = 0
+
+		                System.Boolean boolean2 = UnityEngine.Object.op_Equality(_curInstance, local17) //(Object x, Object y)
+
+		                if (boolean2 == False)
+                            goto INSN_181BA7469
+                        endif
+
+		                System.Boolean isSCP2 = PlayerRoles.PlayerRolesUtils.IsSCP(ply, True) //(ReferenceHub hub, Boolean includeZombies)
+
+		                if (isSCP2 == False)
+                            goto INSN_181BA74C2
+                        endif
+		                Interactables.Interobjects.DoorUtils.KeycardPermissions requiredPermissions2 = requiredPermissions.RequiredPermissions
+		                System.UInt16 local22 = requiredPermissions2.value__
+
+		                INSN_181BA7412:
+		                ulong local23 = 0
+		            endif
+                    
+
+		            if (local23 == 0)
+                        goto INSN_181BA7435
+                    endif
+
+		            if (this.TargetState == False)
+                        goto INSN_181BA742B
+                    endif
+
+		            if (local23 == 2)
+                        goto INSN_181BA7435
+                    endif
+
+		            INSN_181BA742B:
+
+		            if (local23 == 1)
+
+		                INSN_181BA7435:
+
+		                Interactables.Verification.IVerificationRule verificationRule = this.VerificationRule
+
+		                INSN_181BA744F:
+		                return
+
+		                INSN_181BA7469:
+
+		                if (constant74 == 0)
+                            goto INSN_181BA74C2
+                        endif
+		                  = verificationRule.
+
+		                if ( != KeycardItem)
+                            goto INSN_181BA74C2
+                        endif
+		                System.Boolean local26 = verificationRule == "{il2cpp field on {'constant73' (constant value of type Cpp2IL.Core.Analysis.ResultModels.StackPointer)}, offset 0x10}"
+
+		                if (0 != 0)
+                            goto INSN_181BA7511
+                        endif
+
+		                INSN_181BA74C2:
+
+		                System.Boolean boolean3 = this.AnticheatPassageApproved()
+		                System.Int32 2 = 2
+
+		                Interactables.Interobjects.DoorUtils.DoorEvents.TriggerAction()
+
+		                INSN_181BA7511:
+		                System.Boolean local29 = this.TargetState == False
+
+		                System.Boolean boolean4 = base.SyncVarEqual<System.Boolean>()
+
+		                if (boolean4 != False)
+                            goto INSN_181BA7571
+                        endif
+		                throw new System.NullReferenceException()
+
+		                INSN_181BA7571:
+		                this._triggerPlayer = 0
+
+		                UnityEngine.Debug.LogWarning("[Server] function 'System.Void Interactables.Interobjects.DoorUtils.DoorVariant::ServerInteract(ReferenceHub,System.Byte)' called when server was not active") //(Object message)
+		                return
+		                throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfZeroOrNullAction at (0x181BA7261) is corrupt (ConstantDefinition: Don't know how to get IL to load a System.UInt16) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Interobjects.DoorUtils.DoorVariant
+	System.Void ServerChangeLock(Interactables.Interobjects.DoorUtils.DoorLockReason reason, System.Boolean newState)
+		System.UInt16 activeLocks = this.ActiveLocks
+
+		if (newState == False)
+		else
+		endif
+        
+
+		if (activeLocks == null)
+            goto INSN_181BA70EB
+        endif
+
+		if (newState != False)
+            goto INSN_181BA70B5
+        endif
+
+		if (activeLocks == constant24)
+            goto INSN_181BA70EB
+        endif
+
+		INSN_181BA70B5:
+
+		if (activeLocks != constant31)
+            goto INSN_181BA70EB
+        endif
+		ulong local5 = 0
+
+		Interactables.Interobjects.DoorUtils.DoorEvents.TriggerAction(this, 3, local5) //(DoorVariant variant, DoorAction action, ReferenceHub user)
+
+		INSN_181BA70EB:
+
+		System.Boolean boolean = base.SyncVarEqual<System.UInt16>()
+
+		if (boolean != False)
+            goto INSN_181BA7141
+        endif
+		throw new System.NullReferenceException()
+
+		INSN_181BA7141:
+		return
+
+		UnityEngine.Debug.LogWarning("[Server] function 'System.Void Interactables.Interobjects.DoorUtils.DoorVariant::ServerChangeLock(Interactables.Interobjects.DoorUtils.DoorLockReason,System.Boolean)' called when server was not active") //(Object message)
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfZeroOrNullAction at (0x181BA708E) is corrupt (ConstantDefinition: Don't know how to get IL to load a System.UInt16) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Interobjects.DoorUtils.DoorVariant
+	System.Void LockChanged(System.UInt16 prevValue)
+
+
+Generated IL:
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Interobjects.DoorUtils.DoorVariant
+	System.Void TargetStateChanged()
+
+
+Generated IL:
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Interobjects.DoorUtils.DoorVariant
+	System.Void Start()
+
+		UnityEngine.BoxCollider[] componentsInChildren = base.GetComponentsInChildren<UnityEngine.BoxCollider>()
+		this._colliders = componentsInChildren
+		. = 1
+		System.Int32 _serverDoorIdClock = Interactables.Interobjects.DoorUtils.DoorVariant._serverDoorIdClock
+
+		this.NetworkDoorId = _serverDoorIdClock
+		System.Collections.Generic.HashSet`1<Interactables.Interobjects.DoorUtils.DoorVariant> allDoors = Interactables.Interobjects.DoorUtils.DoorVariant.AllDoors
+
+		System.Boolean boolean = allDoors.Add(this) //(T item)
+
+		this.RegisterRooms()
+		return
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ImmediateToFieldAction at (0x181BA777C) is corrupt (Instance or field is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Interobjects.DoorUtils.DoorVariant
+	System.Void OnDestroy()
+		ulong local1 = 0
+		System.Collections.Generic.HashSet`1<Interactables.Interobjects.DoorUtils.DoorVariant> allDoors = Interactables.Interobjects.DoorUtils.DoorVariant.AllDoors
+
+		System.Boolean boolean = allDoors.Remove(this) //(T item)
+		MapGeneration.RoomIdentifier[] Rooms = this.<Rooms>k__BackingField
+
+		if (Rooms != 0)
+		    System.Int32 length = Rooms.Length
+
+		    if (local1 < length)
+		        MapGeneration.RoomIdentifier roomIdentifier = Rooms[local1]
+		        System.Collections.Generic.Dictionary`2<MapGeneration.RoomIdentifier,System.Collections.Generic.HashSet`1<Interactables.Interobjects.DoorUtils.DoorVariant>> doorsByRoom = Interactables.Interobjects.DoorUtils.DoorVariant.DoorsByRoom
+
+		        System.Boolean boolean2 = doorsByRoom.TryGetValue(roomIdentifier, local1) //(TKey key, TValue& value)
+
+		        if (boolean2 != False)
+
+		            System.Boolean boolean3 = local1.Remove(this) //(T item)
+		        endif
+                
+		        local1 += 1
+		    endif
+            
+		    return
+		    throw new System.IndexOutOfRangeException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181BA6950) is corrupt (Mismatched instance parameter. Expecting an instance of System.Collections.Generic.HashSet`1, actually {'local1' (type System.Int32)}) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Interobjects.DoorUtils.DoorVariant
+	System.Void Update()
+		System.Byte _existenceCooldown = this._existenceCooldown
+		ulong local2 = 0
+
+		if (_existenceCooldown != constant4)
+		    this._existenceCooldown = _existenceCooldown
+		else
+		    System.UInt16 _prevLock = this._prevLock
+
+		    if (_prevLock != this.ActiveLocks)
+
+		        System.Boolean isConsideredOpen = this.IsConsideredOpen()
+		        System.UInt16 activeLocks = this.ActiveLocks
+		        this._prevLock = activeLocks
+		    endif
+            
+		    System.Boolean targetState = this.TargetState
+
+		    if (this._prevState == targetState)
+                goto INSN_181BA79CE
+            endif
+
+		    this.LockChanged()
+		    System.Boolean local8 = this.TargetState == local2
+
+		    Interactables.Interobjects.DoorUtils.DoorEvents.TriggerAction()
+		    ulong local10 = 0
+		    this._triggerPlayer = local2
+
+		    if (constant7 == 0)
+                goto INSN_181BA79C7
+            endif
+		    Interactables.Interobjects.DoorUtils.DoorVariant/CollisionsDisablingReasons _collidersStatus = this._collidersStatus
+
+		    if (this.TargetState != local2)
+                goto INSN_181BA797C
+            endif
+		    this._collidersActivationPending = True
+
+		    INSN_181BA797C:
+		    UnityEngine.BoxCollider[] _colliders = this._colliders
+		    this._collidersStatus = _collidersStatus
+		    System.Int32 length = _colliders.Length
+
+		    if (local2 >= length)
+                goto INSN_181BA79C7
+            endif
+		    UnityEngine.BoxCollider boxCollider = _colliders[local2]
+
+		    boxCollider.isTrigger = local10
+		    local2 += 1
+
+		    INSN_181BA79C7:
+		    System.Boolean targetState2 = this.TargetState
+		    this._prevState = targetState2
+		endif
+        
+
+		if (this._collidersActivationPending == local2)
+            goto INSN_181BA7A31
+        endif
+
+		this.LockBypassDenied()
+
+		if (constant22 != 0)
+            goto INSN_181BA7A31
+        endif
+		UnityEngine.BoxCollider[] _colliders2 = this._colliders
+		this._collidersActivationPending = local2
+		System.Int32 length2 = _colliders2.Length
+
+		if (local2 >= length2)
+            goto INSN_181BA7A31
+        endif
+		UnityEngine.BoxCollider boxCollider2 = _colliders2[local2]
+
+		boxCollider2.set_isTrigger()
+		local2 += 1
+
+		INSN_181BA7A31:
+		return
+		throw new System.IndexOutOfRangeException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfZeroOrNullAction at (0x181BA789A) is corrupt (ConstantDefinition: Don't know how to get IL to load a System.Byte) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Interobjects.DoorUtils.DoorVariant
+	System.Void SetColliders()
+		UnityEngine.BoxCollider[] _colliders = this._colliders
+		ulong local2 = 0
+		System.Int32 length = _colliders.Length
+
+		if (local2 < length)
+		    UnityEngine.BoxCollider boxCollider = _colliders[local2]
+
+		    boxCollider.isTrigger = local2
+		    local2 += 1
+		endif
+        
+		return
+		throw new System.IndexOutOfRangeException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld UnityEngine.BoxCollider[] Interactables.Interobjects.DoorUtils.DoorVariant::_colliders
+	IL_0006: stloc.0
+	IL_0007: ldc.i4.0
+	IL_0008: stloc.1
+	IL_0009: ldloc.0
+	IL_000a: call System.Int32 System.Array::get_Length()
+	IL_000f: stloc.2
+	IL_0010: ldloc.1
+	IL_0011: ldloc.2
+	IL_0012: bge.s IL_0025
+	IL_0014: ldloc.0
+	IL_0015: ldloc.1
+	IL_0016: ldelem.any UnityEngine.BoxCollider
+	IL_001b: ldloc.1
+	IL_001c: call System.Void UnityEngine.Collider::set_isTrigger(System.Boolean)
+	IL_0021: ldloc.1
+	IL_0022: ldc.i4.1
+	IL_0023: add
+	IL_0024: stloc.1
+	IL_0025: ret
+	IL_0026: newobj System.Void System.IndexOutOfRangeException::.ctor()
+	IL_002b: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Interobjects.DoorUtils.DoorVariant
+	System.Void RegisterRooms()
+		ulong local1 = 0
+
+		UnityEngine.Transform transform = base.transform
+
+		UnityEngine.Vector3 position = .position
+		System.Single single = position.z
+		UnityEngine.Vector3[] worldDirections = Interactables.Interobjects.DoorUtils.DoorVariant.WorldDirections
+		System.Int32 0 = 0
+
+		UnityEngine.Vector3 vector3 = UnityEngine.Vector3.op_Addition()
+		System.Single single2 = vector3.z
+
+		UnityEngine.Vector3Int vector3Int = MapGeneration.RoomIdUtils.PositionToCoords()
+		System.Int32 int32 = vector3Int.m_Z
+		System.Collections.Generic.Dictionary`2<UnityEngine.Vector3Int,MapGeneration.RoomIdentifier> roomsByCoordinates = MapGeneration.RoomIdentifier.RoomsByCoordinates
+
+		System.Boolean boolean = roomsByCoordinates.TryGetValue()
+
+		if (boolean != False)
+		    System.Collections.Generic.Dictionary`2<MapGeneration.RoomIdentifier,System.Collections.Generic.HashSet`1<Interactables.Interobjects.DoorUtils.DoorVariant>> doorsByRoom = Interactables.Interobjects.DoorUtils.DoorVariant.DoorsByRoom
+		    System.Func`1<System.Collections.Generic.HashSet`1<Interactables.Interobjects.DoorUtils.DoorVariant>> <>9__38_0 = Interactables.Interobjects.DoorUtils.DoorVariant/<>c.<>9__38_0
+
+		    if (<>9__38_0 == 0)
+		        Interactables.Interobjects.DoorUtils.DoorVariant/<>c <>c = Interactables.Interobjects.DoorUtils.DoorVariant/<>c.<>9
+		        System.Func`1<System.Collections.Generic.HashSet`1<Interactables.Interobjects.DoorUtils.DoorVariant>> func = new System.Func`1<System.Collections.Generic.HashSet`1<Interactables.Interobjects.DoorUtils.DoorVariant>>()
+
+		        func..ctor(<>c, {'<RegisterRooms>b__38_0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		         += 8
+		        Interactables.Interobjects.DoorUtils.DoorVariant/<>c.<>9 = func
+		    endif
+            
+
+		    MapGeneration.RoomIdentifier orAdd = CollectionExtensions.GetOrAdd<MapGeneration.RoomIdentifier, System.Collections.Generic.HashSet`1<Interactables.Interobjects.DoorUtils.DoorVariant>>(doorsByRoom, local1, <>9__38_0) //(Dictionary`2 dictionary, TKey key, Func`1 factory)
+
+		    System.Boolean boolean2 = orAdd.Add(this) //(T item)
+
+		    if (boolean2 == False)
+                goto INSN_181BA6D2A
+            endif
+		    MapGeneration.RoomIdentifier[] roomsNonAlloc = Interactables.Interobjects.DoorUtils.DoorVariant.RoomsNonAlloc
+
+		    if (local1 == 0)
+                goto INSN_181BA6D09
+            endif
+
+		    if (constant72 == 0)
+                goto INSN_181BA6DD3
+            endif
+
+		    INSN_181BA6D09:
+		    local1 += 4
+		    local1.m_value = local1
+		    local1 += 1
+		endif
+        
+		local1 += 1
+		MapGeneration.RoomIdentifier[] local23 = new MapGeneration.RoomIdentifier[local1]
+		this.<Rooms>k__BackingField = local23
+		MapGeneration.RoomIdentifier[] Rooms = this.<Rooms>k__BackingField
+		MapGeneration.RoomIdentifier[] roomsNonAlloc2 = Interactables.Interobjects.DoorUtils.DoorVariant.RoomsNonAlloc
+
+		System.Array.Copy(roomsNonAlloc2, Rooms, local1) //(Array sourceArray, Array destinationArray, Int32 length)
+		return
+		throw new System.NullReferenceException()
+
+		INSN_181BA6DD3:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181BA6A11) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Interobjects.DoorUtils.DoorVariant
+	static System.Void Init()
+		System.Action <>9__39_0 = Interactables.Interobjects.DoorUtils.DoorVariant/<>c.<>9__39_0
+
+		if (<>9__39_0 == 0)
+		    Interactables.Interobjects.DoorUtils.DoorVariant/<>c <>c = Interactables.Interobjects.DoorUtils.DoorVariant/<>c.<>9
+		    System.Action action = new System.Action()
+
+		    action..ctor(<>c, {'<Init>b__39_0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		     += 24
+		    Interactables.Interobjects.DoorUtils.DoorVariant/<>c.<>9 = action
+		endif
+        
+
+		MapGeneration.SeedSynchronizer.add_OnMapGenerated(<>9__39_0) //(Action value)
+		System.Action`1<MapGeneration.RoomIdentifier> <>9__39_1 = Interactables.Interobjects.DoorUtils.DoorVariant/<>c.<>9__39_1
+
+		if (<>9__39_1 != 0)
+            goto INSN_181BA680C
+        endif
+		Interactables.Interobjects.DoorUtils.DoorVariant/<>c <>c2 = Interactables.Interobjects.DoorUtils.DoorVariant/<>c.<>9
+		System.Action`1<MapGeneration.RoomIdentifier> action2 = new System.Action`1<MapGeneration.RoomIdentifier>()
+
+		action2..ctor(<>c2, {'<Init>b__39_1' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		 += 32
+		Interactables.Interobjects.DoorUtils.DoorVariant/<>c.<>9 = action2
+
+		INSN_181BA680C:
+
+		MapGeneration.RoomIdentifier.add_OnRemoved(action2) //(Action`1 value)
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x181BA6737) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Interobjects.DoorUtils.DoorVariant
+	System.Void .ctor()
+		this._existenceCooldown = 255
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldc.i4 255
+	IL_0006: conv.i8
+	IL_0007: conv.u8
+	IL_0008: stfld System.Byte Interactables.Interobjects.DoorUtils.DoorVariant::_existenceCooldown
+	IL_000d: ldarg.0
+	IL_000e: call System.Void Mirror.NetworkBehaviour::.ctor()
+	IL_0013: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Interobjects.DoorUtils.DoorVariant
+	static System.Void .cctor()
+		System.Collections.Generic.HashSet`1<Interactables.Interobjects.DoorUtils.DoorVariant> hashSet = new System.Collections.Generic.HashSet`1<Interactables.Interobjects.DoorUtils.DoorVariant>()
+
+		hashSet..ctor()
+		Interactables.Interobjects.DoorUtils.DoorVariant.AllDoors = hashSet
+		System.Collections.Generic.Dictionary`2<MapGeneration.RoomIdentifier,System.Collections.Generic.HashSet`1<Interactables.Interobjects.DoorUtils.DoorVariant>> dictionary = new System.Collections.Generic.Dictionary`2<MapGeneration.RoomIdentifier,System.Collections.Generic.HashSet`1<Interactables.Interobjects.DoorUtils.DoorVariant>>()
+
+		dictionary..ctor()
+		 += 8
+		Interactables.Interobjects.DoorUtils.DoorVariant.AllDoors = dictionary
+		System.Int64 local2 = 4
+		MapGeneration.RoomIdentifier[] local3 = new MapGeneration.RoomIdentifier[4]
+		 += 24
+		Interactables.Interobjects.DoorUtils.DoorVariant.AllDoors = local3
+		System.Int64 local4 = 4
+		UnityEngine.Vector3[] local5 = new UnityEngine.Vector3[4]
+
+		UnityEngine.Vector3 forward = UnityEngine.Vector3.forward
+		System.Single single = forward.z
+		local5[1] = single
+
+		UnityEngine.Vector3 back = UnityEngine.Vector3.back
+		System.Single single2 = back.z
+		local5[2] = single2
+
+		UnityEngine.Vector3 left = UnityEngine.Vector3.left
+		System.Single single3 = left.z
+		local5[4] = single3
+
+		UnityEngine.Vector3 right = UnityEngine.Vector3.right
+		System.Single single4 = right.z
+		local5[5] = single4
+		 += 32
+		Interactables.Interobjects.DoorUtils.DoorVariant.AllDoors = local5
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x181BA7AF7) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Interobjects.DoorUtils.DoorVariant
+	System.Void MirrorProcessed()
+
+
+Generated IL:
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Interobjects.DoorUtils.DoorVariant
+	System.Boolean get_NetworkTargetState()
+		System.Boolean targetState = this.TargetState
+		return targetState
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Boolean Interactables.Interobjects.DoorUtils.DoorVariant::TargetState
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Interobjects.DoorUtils.DoorVariant
+	System.Void set_NetworkTargetState(System.Boolean value)
+
+		System.Boolean boolean = base.SyncVarEqual<System.Boolean>()
+
+		if (boolean == False)
+		    throw new System.NullReferenceException()
+		endif
+        
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181BA7E22) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Interobjects.DoorUtils.DoorVariant
+	System.UInt16 get_NetworkActiveLocks()
+		System.UInt16 activeLocks = this.ActiveLocks
+		return activeLocks
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.UInt16 Interactables.Interobjects.DoorUtils.DoorVariant::ActiveLocks
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Interobjects.DoorUtils.DoorVariant
+	System.Void set_NetworkActiveLocks(System.UInt16 value)
+
+		System.Boolean boolean = base.SyncVarEqual<System.UInt16>()
+
+		if (boolean == False)
+		    throw new System.NullReferenceException()
+		endif
+        
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181BA7D21) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Interobjects.DoorUtils.DoorVariant
+	System.Byte get_NetworkDoorId()
+		System.Byte doorId = this.DoorId
+		return doorId
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Byte Interactables.Interobjects.DoorUtils.DoorVariant::DoorId
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Interobjects.DoorUtils.DoorVariant
+	System.Void set_NetworkDoorId(System.Byte value)
+
+		System.Boolean boolean = base.SyncVarEqual<System.Byte>()
+
+		if (boolean == False)
+		    throw new System.NullReferenceException()
+		endif
+        
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181BA7DA2) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Interobjects.DoorUtils.DoorVariant
+	System.Boolean SerializeSyncVars(Mirror.NetworkWriter writer, System.Boolean forceAll)
+
+		System.Boolean boolean = base.SerializeSyncVars(writer, forceAll) //(NetworkWriter writer, Boolean initialState)
+
+		if (forceAll == False)
+		    System.UInt64 syncVarDirtyBits = this.<syncVarDirtyBits>k__BackingField
+
+		    Mirror.NetworkWriterExtensions.WriteUInt64(writer, syncVarDirtyBits) //(NetworkWriter writer, UInt64 value)
+
+		    if ( != 1)
+		        System.Boolean targetState = this.TargetState
+
+		        Mirror.NetworkWriterExtensions.WriteByte(writer, targetState) //(NetworkWriter writer, Byte value)
+		    endif
+            
+
+		    if ( == 2)
+                goto INSN_181BA6F0A
+            endif
+		    System.UInt16 activeLocks = this.ActiveLocks
+
+		    Mirror.NetworkWriterExtensions.WriteUInt16(writer, activeLocks) //(NetworkWriter writer, UInt16 value)
+
+		    INSN_181BA6F0A:
+
+		    if ( == 4)
+                goto INSN_181BA6F43
+            endif
+		    System.Byte doorId = this.DoorId
+
+		    Mirror.NetworkWriterExtensions.WriteByte(writer, doorId) //(NetworkWriter writer, Byte value)
+
+		    INSN_181BA6F43:
+		else
+		    System.Boolean targetState2 = this.TargetState
+
+		    Mirror.NetworkWriterExtensions.WriteByte(writer, targetState2) //(NetworkWriter writer, Byte value)
+		    System.UInt16 activeLocks2 = this.ActiveLocks
+
+		    Mirror.NetworkWriterExtensions.WriteUInt16(writer, activeLocks2) //(NetworkWriter writer, UInt16 value)
+		    System.Byte doorId2 = this.DoorId
+
+		    Mirror.NetworkWriterExtensions.WriteByte(writer, doorId2) //(NetworkWriter writer, Byte value)
+		endif
+        
+		return True
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfZeroOrNullAction at (0x181BA6E9B) is corrupt (One of the arguments is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Interobjects.DoorUtils.DoorVariant
+	System.Void DeserializeSyncVars(Mirror.NetworkReader reader, System.Boolean initialState)
+
+		this.TargetStateChanged()
+
+		if (initialState == False)
+
+		    System.UInt64 uInt64 = Mirror.NetworkReaderExtensions.ReadUInt64(reader) //(NetworkReader reader)
+
+		    if (uInt64 != 1)
+
+		        System.Boolean boolean = Mirror.NetworkReaderExtensions.ReadBoolean(reader) //(NetworkReader reader)
+
+		        System.Boolean boolean2 = base.SyncVarEqual<System.Boolean>()
+
+		        if (boolean2 == False)
+		            throw new System.NullReferenceException()
+		        endif
+                
+
+		        if (uInt64 == 2)
+                    goto INSN_181BA64EA
+                endif
+
+		        System.UInt16 uInt16 = Mirror.NetworkReaderExtensions.ReadUInt16(reader) //(NetworkReader reader)
+
+		        System.Boolean boolean3 = base.SyncVarEqual<System.UInt16>()
+
+		        if (boolean3 != False)
+                    goto INSN_181BA64EA
+                endif
+		        throw new System.NullReferenceException()
+
+		        INSN_181BA64EA:
+
+		        if (uInt64 == 4)
+                    goto INSN_181BA6668
+                endif
+		    else
+
+		        System.Boolean boolean4 = Mirror.NetworkReaderExtensions.ReadBoolean(reader) //(NetworkReader reader)
+		        initialState = boolean4
+
+		        System.Boolean boolean5 = base.SyncVarEqual<System.Boolean>()
+
+		        if (boolean5 == False)
+		            throw new System.NullReferenceException()
+		        endif
+                
+
+		        System.UInt16 uInt162 = Mirror.NetworkReaderExtensions.ReadUInt16(reader) //(NetworkReader reader)
+
+		        System.Boolean boolean6 = base.SyncVarEqual<System.UInt16>()
+
+		        if (boolean6 != False)
+                    goto INSN_181BA6603
+                endif
+		        throw new System.NullReferenceException()
+		    endif
+            
+
+		    [instruction error - managed method being called is null]
+
+		    System.Boolean boolean7 = base.SyncVarEqual<System.Byte>()
+
+		    if (boolean7 != False)
+                goto INSN_181BA6668
+            endif
+		    throw new System.NullReferenceException()
+
+		    INSN_181BA6668:
+		    return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181BA6434) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+

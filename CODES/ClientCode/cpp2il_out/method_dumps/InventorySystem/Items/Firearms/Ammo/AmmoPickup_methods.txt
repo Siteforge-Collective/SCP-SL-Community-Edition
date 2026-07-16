@@ -1,0 +1,292 @@
+Type: AmmoPickup
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Firearms.Ammo.AmmoPickup
+	System.Int32 get_MaxAmmo()
+		System.Int32 _maxDisplayedValue = this._maxDisplayedValue
+		return _maxDisplayedValue
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Int32 InventorySystem.Items.Firearms.Ammo.AmmoPickup::_maxDisplayedValue
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Firearms.Ammo.AmmoPickup
+	UnityEngine.Material GetDigitMaterial(System.Int32 digit)
+		ulong local2 = 0
+		System.Collections.Generic.Dictionary`2<ItemType,System.Collections.Generic.Dictionary`2<System.Int32,UnityEngine.Material>> digitMaterials = InventorySystem.Items.Firearms.Ammo.AmmoPickup.DigitMaterials
+
+		System.Boolean boolean = digitMaterials.TryGetValue()
+
+		if (boolean == False)
+		    System.Collections.Generic.Dictionary`2<System.Int32,UnityEngine.Material> dictionary = new System.Collections.Generic.Dictionary`2<System.Int32,UnityEngine.Material>()
+
+		    dictionary..ctor()
+		    System.Collections.Generic.Dictionary`2<ItemType,System.Collections.Generic.Dictionary`2<System.Int32,UnityEngine.Material>> digitMaterials2 = InventorySystem.Items.Firearms.Ammo.AmmoPickup.DigitMaterials
+		    throw new System.NullReferenceException()
+		endif
+        
+
+		System.Boolean boolean2 = local2.TryGetValue(digit, local2) //(TKey key, TValue& value)
+
+		if (boolean2 != False)
+            goto INSN_180478E9D
+        endif
+		UnityEngine.Material _targetDigitMaterial = this._targetDigitMaterial
+		UnityEngine.Material material = new UnityEngine.Material()
+
+		material..ctor(_targetDigitMaterial) //(Material source)
+		ulong local14 = 0
+
+		UnityEngine.Vector2 up = UnityEngine.Vector2.up
+
+		UnityEngine.Vector2 vector2 = UnityEngine.Vector2.op_Multiply()
+
+		UnityEngine.Vector2 vector22 = UnityEngine.Vector2.op_Division(vector2, 10) //(Vector2 a, Single d)
+
+		material.mainTextureOffset = vector22
+		throw new System.NullReferenceException()
+
+		INSN_180478E9D:
+		return material
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180478D55) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Firearms.Ammo.AmmoPickup
+	System.Void Update()
+
+		if (this._roundingValue != 0)
+		    System.UInt16 savedAmmo = this.SavedAmmo
+
+		    if (savedAmmo != this._prevAmmo)
+		        System.Int32 _minDisplayedValue = this._minDisplayedValue
+		        System.Int32 _maxDisplayedValue = this._maxDisplayedValue
+
+		        System.Int32 int32 = UnityEngine.Mathf.Clamp(savedAmmo, _minDisplayedValue, _maxDisplayedValue) //(Int32 value, Int32 min, Int32 max)
+		        _maxDisplayedValue = int32
+
+		        if (_minDisplayedValue != 0)
+		            _maxDisplayedValue += 1
+		            int32 = _maxDisplayedValue
+
+		            if (_minDisplayedValue == 0)
+		            endif
+                    
+		            System.Single local8 =  / 10
+
+		            System.Int32 int322 = UnityEngine.Mathf.FloorToInt(local8) //(Single f)
+
+		            UnityEngine.Material digitMaterial = this.GetDigitMaterial(int322) //(Int32 digit)
+		            System.UInt64 local14 = (System.UInt64) _maxDisplayedValue / 10
+		            local14 += local14
+		            local14 += local14
+		            _maxDisplayedValue -= local14
+
+		            UnityEngine.Material digitMaterial2 = this.GetDigitMaterial(_maxDisplayedValue) //(Int32 digit)
+		            UnityEngine.Renderer[] _firstDigits = this._firstDigits
+		            ulong local17 = 0
+		            System.Int32 length = _firstDigits.Length
+
+		            if (local17 >= length)
+                        goto INSN_180479175
+                    endif
+		            UnityEngine.Renderer renderer = _firstDigits[local17]
+
+		            renderer.SetMaterial(digitMaterial) //(Material m)
+
+		            if (this._hideFirstDigitBelow10 == local17)
+                        goto INSN_18047916F
+                    endif
+
+		            UnityEngine.GameObject gameObject = renderer.gameObject
+		            System.Boolean local23 = _maxDisplayedValue <= 10
+
+		            gameObject.SetActive(local23) //(Boolean value)
+
+		            INSN_18047916F:
+		            local17 += 1
+
+		            INSN_180479175:
+		            UnityEngine.Renderer[] _secondDigits = this._secondDigits
+		            System.Int32 length2 = _secondDigits.Length
+
+		            if (local17 >= length2)
+                        goto INSN_1804791AC
+                    endif
+		            UnityEngine.Renderer renderer2 = _secondDigits[local17]
+
+		            renderer2.SetMaterial(digitMaterial2) //(Material m)
+		            local17 += 1
+
+		            INSN_1804791AC:
+		            System.UInt16 savedAmmo2 = this.SavedAmmo
+		            this._prevAmmo = savedAmmo2
+		        endif
+                
+		    endif
+            
+		    return
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Don't know how to write IL for Cpp2IL.Core.Analysis.Actions.x86.Important.DivideRegByGlobalAction. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Firearms.Ammo.AmmoPickup
+	System.Void .ctor()
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void InventorySystem.Items.Pickups.ItemPickupBase::.ctor()
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Firearms.Ammo.AmmoPickup
+	static System.Void .cctor()
+		System.Collections.Generic.Dictionary`2<ItemType,System.Collections.Generic.Dictionary`2<System.Int32,UnityEngine.Material>> dictionary = new System.Collections.Generic.Dictionary`2<ItemType,System.Collections.Generic.Dictionary`2<System.Int32,UnityEngine.Material>>()
+
+		dictionary..ctor()
+		InventorySystem.Items.Firearms.Ammo.AmmoPickup.DigitMaterials = dictionary
+
+
+Generated IL:
+	IL_0000: newobj System.Void System.Collections.Generic.Dictionary`2::.ctor()
+	IL_0005: stsfld System.Collections.Generic.Dictionary`2<ItemType,System.Collections.Generic.Dictionary`2<System.Int32,UnityEngine.Material>> InventorySystem.Items.Firearms.Ammo.AmmoPickup::DigitMaterials
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Firearms.Ammo.AmmoPickup
+	System.Void MirrorProcessed()
+
+
+Generated IL:
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Firearms.Ammo.AmmoPickup
+	System.UInt16 get_NetworkSavedAmmo()
+		System.UInt16 savedAmmo = this.SavedAmmo
+		return savedAmmo
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.UInt16 InventorySystem.Items.Firearms.Ammo.AmmoPickup::SavedAmmo
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Firearms.Ammo.AmmoPickup
+	System.Void set_NetworkSavedAmmo(System.UInt16 value)
+
+		System.Boolean boolean = base.SyncVarEqual<System.UInt16>()
+
+		if (boolean == False)
+		    throw new System.NullReferenceException()
+		endif
+        
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1804792E4) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Firearms.Ammo.AmmoPickup
+	System.Boolean SerializeSyncVars(Mirror.NetworkWriter writer, System.Boolean forceAll)
+
+		System.Boolean boolean = base.SerializeSyncVars(writer, forceAll) //(NetworkWriter writer, Boolean forceAll)
+
+		if (forceAll == False)
+		    System.UInt64 syncVarDirtyBits = this.<syncVarDirtyBits>k__BackingField
+
+		    Mirror.NetworkWriterExtensions.WriteUInt64(writer, syncVarDirtyBits) //(NetworkWriter writer, UInt64 value)
+
+		    if ( != 2)
+		        System.UInt16 savedAmmo = this.SavedAmmo
+
+		        Mirror.NetworkWriterExtensions.WriteUInt16(writer, savedAmmo) //(NetworkWriter writer, UInt16 value)
+		    endif
+            
+		else
+		    System.UInt16 savedAmmo2 = this.SavedAmmo
+
+		    Mirror.NetworkWriterExtensions.WriteUInt16(writer, savedAmmo2) //(NetworkWriter writer, UInt16 value)
+		endif
+        
+		return True
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfZeroOrNullAction at (0x180478F47) is corrupt (One of the arguments is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Firearms.Ammo.AmmoPickup
+	System.Void DeserializeSyncVars(Mirror.NetworkReader reader, System.Boolean initialState)
+
+		base.DeserializeSyncVars(reader, initialState) //(NetworkReader reader, Boolean initialState)
+
+		if (initialState == False)
+
+		    System.UInt64 uInt64 = Mirror.NetworkReaderExtensions.ReadUInt64(reader) //(NetworkReader reader)
+
+		    if (uInt64 == 2)
+                goto INSN_180478CB2
+            endif
+		endif
+        
+
+		System.UInt16 uInt16 = Mirror.NetworkReaderExtensions.ReadUInt16(reader) //(NetworkReader reader)
+
+		System.Boolean boolean = base.SyncVarEqual<System.UInt16>()
+
+		if (boolean != False)
+            goto INSN_180478CB2
+        endif
+		throw new System.NullReferenceException()
+
+		INSN_180478CB2:
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180478C85) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+

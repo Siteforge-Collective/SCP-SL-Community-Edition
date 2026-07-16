@@ -1,0 +1,707 @@
+Type: InventoryGuiController
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.GUI.InventoryGuiController
+	static System.Boolean get_InventoryVisible()
+		InventorySystem.GUI.InventoryGuiController singleton = InventorySystem.GUI.InventoryGuiController.Singleton
+		ulong local2 = 0
+
+		System.Boolean boolean = UnityEngine.Object.op_Inequality(singleton, local2) //(Object x, Object y)
+
+		if (boolean == False)
+		    return boolean
+		endif
+        
+		InventorySystem.GUI.InventoryGuiController singleton2 = InventorySystem.GUI.InventoryGuiController.Singleton
+
+		FMOD.RESULT rESULT = singleton2.setUserData(ToggleableMenus.ToggleableMenuBase.get_IsEnabled) //(IntPtr userdata)
+		return rESULT
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1803EF3CE) is corrupt (ConstantDefinition: Don't know how to get IL to load a Mono.Cecil.MethodDefinition) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.GUI.InventoryGuiController
+	static System.Void set_InventoryVisible(System.Boolean value)
+		InventorySystem.GUI.InventoryGuiController singleton = InventorySystem.GUI.InventoryGuiController.Singleton
+		ulong local3 = 0
+
+		System.Boolean boolean = UnityEngine.Object.op_Equality(singleton, local3) //(Object x, Object y)
+
+		if (boolean == False)
+		    InventorySystem.GUI.InventoryGuiController singleton2 = InventorySystem.GUI.InventoryGuiController.Singleton
+
+		    System.Boolean isEnabled = singleton2.IsEnabled
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldsfld InventorySystem.GUI.InventoryGuiController InventorySystem.GUI.InventoryGuiController::Singleton
+	IL_0005: stloc.0
+	IL_0006: ldc.i4.0
+	IL_0007: stloc.1
+	IL_0008: ldloc.0
+	IL_0009: ldloc.1
+	IL_000a: call System.Boolean UnityEngine.Object::op_Equality(UnityEngine.Object,UnityEngine.Object)
+	IL_000f: ldc.i4.0
+	IL_0010: bne.un.s IL_001d
+	IL_0012: ldsfld InventorySystem.GUI.InventoryGuiController InventorySystem.GUI.InventoryGuiController::Singleton
+	IL_0017: callvirt System.Boolean ToggleableMenus.ToggleableMenuBase::get_IsEnabled()
+	IL_001c: stloc.2
+	IL_001d: ret
+	IL_001e: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0023: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.GUI.InventoryGuiController
+	static System.Boolean get_ItemsSafeForInteraction()
+		InventorySystem.GUI.InventoryGuiController singleton = InventorySystem.GUI.InventoryGuiController.Singleton
+		UnityEngine.CanvasGroup _toggleablePart = singleton._toggleablePart
+
+		System.Single alpha = _toggleablePart.alpha
+		ulong local4 = 0
+
+		if (alpha <= local4)
+		    ulong local5 = 0
+
+		    System.Boolean visible = UnityEngine.Cursor.visible
+
+		    if (visible == False)
+		        System.Diagnostics.Stopwatch cooldownStopwatch = InventorySystem.GUI.InventoryGuiController.CooldownStopwatch
+
+		        if (cooldownStopwatch.is_running != False)
+		            System.Diagnostics.Stopwatch cooldownStopwatch2 = InventorySystem.GUI.InventoryGuiController.CooldownStopwatch
+
+		            System.TimeSpan elapsed = cooldownStopwatch2.Elapsed
+
+		            if (cooldownStopwatch2 > 0)
+                        goto INSN_1803EF5C2
+                    endif
+		            System.Diagnostics.Stopwatch cooldownStopwatch3 = InventorySystem.GUI.InventoryGuiController.CooldownStopwatch
+
+		            cooldownStopwatch3.Stop()
+		        endif
+                
+		        return True
+		    endif
+            
+		    System.Diagnostics.Stopwatch cooldownStopwatch4 = InventorySystem.GUI.InventoryGuiController.CooldownStopwatch
+
+		    if (cooldownStopwatch4.is_running != False)
+                goto INSN_1803EF5C2
+            endif
+		    System.Diagnostics.Stopwatch cooldownStopwatch5 = InventorySystem.GUI.InventoryGuiController.CooldownStopwatch
+
+		    cooldownStopwatch5.Restart()
+
+		    INSN_1803EF5C2:
+		    ulong local17 = 0
+		    return local17
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x1803EF5C8) is corrupt (Return value has a type of System.Int32, expecting an object of type System.Boolean) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.GUI.InventoryGuiController
+	System.Boolean get_CanToggle()
+
+		System.Boolean lockMovement = this.LockMovement
+
+		if (lockMovement != False)
+		    return True
+		endif
+        
+		ulong local2 = 0
+
+		System.Boolean boolean = InventorySystem.GUI.InventoryGuiController.CanInventoryBeDisplayed()
+		return boolean
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: callvirt System.Boolean ToggleableMenus.ToggleableMenuBase::get_LockMovement()
+	IL_0006: ldc.i4.0
+	IL_0007: beq.s IL_000b
+	IL_0009: ldc.i4.1
+	IL_000a: ret
+	IL_000b: ldc.i4.0
+	IL_000c: stloc.0
+	IL_000d: call System.Boolean InventorySystem.GUI.InventoryGuiController::CanInventoryBeDisplayed()
+	IL_0012: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.GUI.InventoryGuiController
+	static InventorySystem.GUI.IInventoryGuiDisplayType get_DisplayController()
+		InventorySystem.GUI.InventoryGuiController singleton = InventorySystem.GUI.InventoryGuiController.Singleton
+		InventorySystem.GUI.RadialInventory _displaySettings = singleton._displaySettings
+		return _displaySettings
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x1803EF2EE) is corrupt (Return value has a type of InventorySystem.GUI.RadialInventory, expecting an object of type InventorySystem.GUI.IInventoryGuiDisplayType) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.GUI.InventoryGuiController
+	static InventorySystem.Inventory get_UserInventory()
+		ulong local0 = 0
+
+		ReferenceHub localHub = ReferenceHub.LocalHub
+		InventorySystem.Inventory inventory = localHub.inventory
+		return inventory
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: call ReferenceHub ReferenceHub::get_LocalHub()
+	IL_0007: ldfld InventorySystem.Inventory ReferenceHub::inventory
+	IL_000c: ret
+	IL_000d: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0012: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.GUI.InventoryGuiController
+	System.Void ItemsModified(ReferenceHub hub)
+
+		System.Boolean isLocalPlayer = hub.isLocalPlayer
+
+		if (isLocalPlayer != False)
+		    ulong local4 = 0
+
+		    InventorySystem.GUI.IInventoryGuiDisplayType displayController = InventorySystem.GUI.InventoryGuiController.DisplayController
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.1
+	IL_0001: call System.Boolean Mirror.NetworkBehaviour::get_isLocalPlayer()
+	IL_0006: ldc.i4.0
+	IL_0007: beq.s IL_0011
+	IL_0009: ldc.i4.0
+	IL_000a: stloc.0
+	IL_000b: call InventorySystem.GUI.IInventoryGuiDisplayType InventorySystem.GUI.InventoryGuiController::get_DisplayController()
+	IL_0010: stloc.1
+	IL_0011: ret
+	IL_0012: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0017: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.GUI.InventoryGuiController
+	System.Void AmmoModified(ReferenceHub hub)
+
+		System.Boolean isLocalPlayer = hub.isLocalPlayer
+
+		if (isLocalPlayer != False)
+		    ulong local4 = 0
+
+		    InventorySystem.GUI.IInventoryGuiDisplayType displayController = InventorySystem.GUI.InventoryGuiController.DisplayController
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.1
+	IL_0001: call System.Boolean Mirror.NetworkBehaviour::get_isLocalPlayer()
+	IL_0006: ldc.i4.0
+	IL_0007: beq.s IL_0011
+	IL_0009: ldc.i4.0
+	IL_000a: stloc.0
+	IL_000b: call InventorySystem.GUI.IInventoryGuiDisplayType InventorySystem.GUI.InventoryGuiController::get_DisplayController()
+	IL_0010: stloc.1
+	IL_0011: ret
+	IL_0012: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0017: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.GUI.InventoryGuiController
+	System.Void RoleChanged(ReferenceHub hub, PlayerRoles.PlayerRoleBase oldRole, PlayerRoles.PlayerRoleBase newRole)
+
+		System.Boolean isLocalPlayer = hub.isLocalPlayer
+
+		if (isLocalPlayer != False)
+		    ulong local6 = 0
+
+		    InventorySystem.GUI.IInventoryGuiDisplayType displayController = InventorySystem.GUI.InventoryGuiController.DisplayController
+		    ulong local9 = 0
+
+		    InventorySystem.GUI.IInventoryGuiDisplayType displayController2 = InventorySystem.GUI.InventoryGuiController.DisplayController
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.1
+	IL_0001: call System.Boolean Mirror.NetworkBehaviour::get_isLocalPlayer()
+	IL_0006: ldc.i4.0
+	IL_0007: beq.s IL_0019
+	IL_0009: ldc.i4.0
+	IL_000a: stloc.0
+	IL_000b: call InventorySystem.GUI.IInventoryGuiDisplayType InventorySystem.GUI.InventoryGuiController::get_DisplayController()
+	IL_0010: stloc.1
+	IL_0011: ldc.i4.0
+	IL_0012: stloc.2
+	IL_0013: call InventorySystem.GUI.IInventoryGuiDisplayType InventorySystem.GUI.InventoryGuiController::get_DisplayController()
+	IL_0018: stloc.3
+	IL_0019: ret
+	IL_001a: newobj System.Void System.NullReferenceException::.ctor()
+	IL_001f: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.GUI.InventoryGuiController
+	System.Void Awake()
+
+		base.Awake()
+		InventorySystem.GUI.InventoryGuiController.Singleton = this
+
+		System.Boolean isEnabled = this.IsEnabled
+		System.Action`1<ReferenceHub> action = new System.Action`1<ReferenceHub>()
+
+		action..ctor(this, {'ItemsModified' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		InventorySystem.Inventory.add_OnItemsModified(action) //(Action`1 value)
+		System.Action`1<ReferenceHub> action2 = new System.Action`1<ReferenceHub>()
+
+		action2..ctor(this, {'AmmoModified' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		System.Action`1<ReferenceHub> onAmmoModified = InventorySystem.Inventory.OnAmmoModified
+
+		System.Delegate delegate = System.Delegate.Combine(onAmmoModified, action2) //(Delegate a, Delegate b)
+
+		if (delegate != 0)
+
+		    if (delegate == 0)
+                goto INSN_1803EE4FE
+            endif
+		endif
+        
+		 += 8
+
+		if (delegate == onAmmoModified)
+		    PlayerRoles.PlayerRoleManager/RoleChanged roleChanged = new PlayerRoles.PlayerRoleManager/RoleChanged()
+
+		    roleChanged..ctor(this, {'RoleChanged' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		    PlayerRoles.PlayerRoleManager.add_OnRoleChanged(roleChanged) //(RoleChanged value)
+		    return
+
+		    INSN_1803EE4FE:
+		    throw new System.InvalidCastException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x1803EE4A2) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.GUI.InventoryGuiController
+	System.Void OnDestroy()
+
+		base.OnDestroy()
+		System.Action`1<ReferenceHub> action = new System.Action`1<ReferenceHub>()
+
+		action..ctor(this, {'ItemsModified' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		System.Action`1<ReferenceHub> onItemsModified = InventorySystem.Inventory.OnItemsModified
+
+		System.Delegate delegate = System.Delegate.Remove(onItemsModified, action) //(Delegate source, Delegate value)
+
+		if (delegate != 0)
+
+		    if (delegate == 0)
+                goto INSN_1803EE98E
+            endif
+		endif
+        
+
+		if (delegate == onItemsModified)
+		    System.Action`1<ReferenceHub> action2 = new System.Action`1<ReferenceHub>()
+
+		    action2..ctor(this, {'AmmoModified' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		    System.Action`1<ReferenceHub> onAmmoModified = InventorySystem.Inventory.OnAmmoModified
+
+		    System.Delegate delegate2 = System.Delegate.Remove(onAmmoModified, action2) //(Delegate source, Delegate value)
+
+		    if (delegate2 == 0)
+                goto INSN_1803EE903
+            endif
+
+		    if (delegate2 == 0)
+                goto INSN_1803EE997
+            endif
+
+		    INSN_1803EE903:
+		     += 8
+
+		    if (delegate2 != onAmmoModified)
+                goto INSN_1803EE8D4
+            endif
+		    PlayerRoles.PlayerRoleManager/RoleChanged roleChanged = new PlayerRoles.PlayerRoleManager/RoleChanged()
+
+		    roleChanged..ctor(this, {'RoleChanged' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		    PlayerRoles.PlayerRoleManager.remove_OnRoleChanged(roleChanged) //(RoleChanged value)
+		    return
+
+		    INSN_1803EE98E:
+		    throw new System.InvalidCastException()
+
+		    INSN_1803EE997:
+		    throw new System.InvalidCastException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x1803EE932) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.GUI.InventoryGuiController
+	System.Void Update()
+		ulong local1 = 0
+		ulong local2 = 0
+		ulong local3 = 0
+
+		this.RefreshAnimations(local3) //(Boolean forceNoAnimations)
+		ulong local4 = 0
+
+		System.Boolean inventoryVisible = InventorySystem.GUI.InventoryGuiController.InventoryVisible
+
+		if (inventoryVisible != False)
+		    ulong local6 = 0
+
+		    System.Boolean boolean = InventorySystem.GUI.InventoryGuiController.CanInventoryBeDisplayed()
+
+		    if (boolean == False)
+
+		        System.Boolean isEnabled = this.IsEnabled
+		    endif
+            
+		    ulong local10 = 0
+
+		    InventorySystem.GUI.IInventoryGuiDisplayType displayController = InventorySystem.GUI.InventoryGuiController.DisplayController
+		    ulong local12 = 0
+
+		    ReferenceHub localHub = ReferenceHub.LocalHub
+		    //UNKNOWN CLASS OFFSET READ HERE
+
+		    if (local1 >= local2)
+                goto INSN_1803EEF17
+            endif
+		    local1 += local1
+		    local1 += 1
+
+		    INSN_1803EEF17:
+		      = local1.
+
+		    if (local1 == 2)
+                goto INSN_1803EEF9F
+            endif
+
+		    if (local1 != 1)
+                goto INSN_1803EF0A1
+            endif
+		    ulong local16 = 0
+
+		    InventorySystem.Inventory userInventory = InventorySystem.GUI.InventoryGuiController.UserInventory
+		    ulong local19 = 0
+
+		    userInventory.CmdDropItem(local1, local19) //(UInt16 itemSerial, Boolean tryThrow)
+		    local1 += local1
+		    userInventory += constant28
+
+		    INSN_1803EEF9F:
+		    ulong local20 = 0
+
+		    InventorySystem.Inventory userInventory2 = InventorySystem.GUI.InventoryGuiController.UserInventory
+		    ulong local22 = 0
+
+		    Mirror.PooledNetworkWriter writer = Mirror.NetworkWriterPool.GetWriter()
+
+		    Mirror.NetworkWriterExtensions.WriteUInt16(writer, local1) //(NetworkWriter writer, UInt16 value)
+
+		    System.Type typeFromHandle = System.Type.GetTypeFromHandle({'Inventory' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+
+		    userInventory2.SendCommandInternal(typeFromHandle, "CmdSelectItem", writer, local1, local27) //(Type invokeClass, String cmdName, NetworkWriter writer, Int32 channelId, Boolean requiresAuthority)
+
+		    Mirror.NetworkWriterPool.Recycle(writer) //(PooledNetworkWriter writer)
+		endif
+        
+		System.Boolean _prevVisible = this._prevVisible
+		ulong local30 = 0
+
+		System.Boolean inventoryVisible2 = InventorySystem.GUI.InventoryGuiController.InventoryVisible
+
+		if (_prevVisible == inventoryVisible2)
+            goto INSN_1803EF124
+        endif
+		ulong local32 = 0
+
+		InventorySystem.GUI.IInventoryGuiDisplayType displayController2 = InventorySystem.GUI.InventoryGuiController.DisplayController
+		ulong local34 = 0
+
+		System.Boolean inventoryVisible3 = InventorySystem.GUI.InventoryGuiController.InventoryVisible
+		ulong local37 = 0
+
+		System.Boolean inventoryVisible4 = InventorySystem.GUI.InventoryGuiController.InventoryVisible
+		this._prevVisible = inventoryVisible4
+
+		INSN_1803EF124:
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.UnknownClassOffsetReadAction at (0x1803EEEE2) is corrupt (Unknown class offset read) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.GUI.InventoryGuiController
+	System.Void RefreshAnimations(System.Boolean forceNoAnimations)
+		ulong local2 = 0
+
+		System.Boolean inventoryVisible = InventorySystem.GUI.InventoryGuiController.InventoryVisible
+		UnityEngine.CanvasGroup _toggleablePart = this._toggleablePart
+
+		if (inventoryVisible == False)
+
+		    UnityEngine.GameObject gameObject = _toggleablePart.gameObject
+
+		    System.Boolean activeSelf = gameObject.activeSelf
+
+		    if (activeSelf != False)
+		        UnityEngine.CanvasGroup _toggleablePart2 = this._toggleablePart
+
+		        if (forceNoAnimations != False)
+                    goto INSN_1803EEB9B
+                endif
+
+		        System.Single alpha = _toggleablePart2.alpha
+		        ulong local12 = 0
+
+		        System.Single deltaTime = UnityEngine.Time.deltaTime
+		        System.Byte inventoryFadeSpeed = InventorySystem.GUI.InventoryGuiController.InventoryFadeSpeed
+		        deltaTime = alpha
+
+		        System.Single single = UnityEngine.Mathf.Clamp01(deltaTime) //(Single value)
+
+		        _toggleablePart2.alpha = single
+		        UnityEngine.CanvasGroup _toggleablePart3 = this._toggleablePart
+
+		        System.Single alpha2 = _toggleablePart3.alpha
+		        ulong local21 = 0
+		        UnityEngine.CanvasGroup _toggleablePart4 = this._toggleablePart
+
+		        UnityEngine.GameObject gameObject2 = _toggleablePart4.gameObject
+		        ulong local26 = 0
+
+		        gameObject2.SetActive(local26) //(Boolean value)
+		    endif
+            
+		    return
+
+		    INSN_1803EEB9B:
+		    ulong local28 = 0
+
+		    .alpha = local28
+		endif
+        
+
+		UnityEngine.GameObject gameObject3 = _toggleablePart.gameObject
+
+		System.Boolean activeSelf2 = gameObject3.activeSelf
+
+		if (activeSelf2 != False)
+            goto INSN_1803EEC05
+        endif
+		UnityEngine.CanvasGroup _toggleablePart5 = this._toggleablePart
+
+		UnityEngine.GameObject gameObject4 = _toggleablePart5.gameObject
+
+		gameObject4.SetActive(True) //(Boolean value)
+
+		INSN_1803EEC05:
+		UnityEngine.CanvasGroup _toggleablePart6 = this._toggleablePart
+
+		System.Single alpha3 = _toggleablePart6.alpha
+		UnityEngine.CanvasGroup _toggleablePart7 = this._toggleablePart
+
+		if (forceNoAnimations == False)
+            goto INSN_1803EEC41
+        endif
+
+		INSN_1803EEC41:
+
+		System.Single alpha4 = _toggleablePart7.alpha
+		ulong local43 = 0
+
+		System.Single deltaTime2 = UnityEngine.Time.deltaTime
+		System.Byte inventoryFadeSpeed2 = InventorySystem.GUI.InventoryGuiController.InventoryFadeSpeed
+
+		System.Single single2 = UnityEngine.Mathf.Clamp01(deltaTime2) //(Single value)
+
+		_toggleablePart7.alpha = single2
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1803EEBAD) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.GUI.InventoryGuiController
+	static System.Boolean CanInventoryBeDisplayed()
+
+		System.Boolean boolean = ReferenceHub.TryGetLocalHub()
+
+		if (boolean != False)
+
+		    System.Boolean isHuman = PlayerRoles.PlayerRolesUtils.IsHuman()
+
+		    if (isHuman != False)
+		        ulong local5 = 0
+
+		        InventorySystem.Inventory userInventory = InventorySystem.GUI.InventoryGuiController.UserInventory
+		        InventorySystem.Items.ItemBase _curInstance = userInventory._curInstance
+		        ulong local9 = 0
+
+		        System.Boolean boolean2 = UnityEngine.Object.op_Inequality(_curInstance, local9) //(Object x, Object y)
+
+		        if (boolean2 != False)
+		            ulong local11 = 0
+
+		            InventorySystem.Inventory userInventory2 = InventorySystem.GUI.InventoryGuiController.UserInventory
+
+		            if (userInventory2 != 0)
+
+		                if (userInventory2 == 0)
+                            goto INSN_1803EE667
+                        endif
+		            endif
+                    
+		              = local0.
+
+		            System.Boolean boolean3 = _curInstance.AnyBlocker(2) //(BlockedInteraction interactions)
+		            System.Boolean local17 = boolean3 == False
+		            return local17
+		        endif
+                
+		        ulong local18 = 0
+		        return local18
+		        throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1803EE55D) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.GUI.InventoryGuiController
+	System.Void OnToggled()
+		ulong local1 = 0
+
+		System.Boolean boolean = InventorySystem.GUI.InventoryGuiController.CanInventoryBeDisplayed()
+		System.Boolean local3 = boolean == False
+
+		this.RefreshAnimations(local3) //(Boolean forceNoAnimations)
+		return
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: call System.Boolean InventorySystem.GUI.InventoryGuiController::CanInventoryBeDisplayed()
+	IL_0007: ldc.i4.0
+	IL_0008: ceq
+	IL_000a: stloc.1
+	IL_000b: ldarg.0
+	IL_000c: ldloc.1
+	IL_000d: call System.Void InventorySystem.GUI.InventoryGuiController::RefreshAnimations(System.Boolean)
+	IL_0012: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.GUI.InventoryGuiController
+	System.Void .ctor()
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void UnityEngine.EventSystems.UIBehaviour::.ctor()
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.GUI.InventoryGuiController
+	static System.Void .cctor()
+		System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch()
+
+		stopwatch..ctor()
+		 += 8
+		InventorySystem.GUI.InventoryGuiController.Singleton = stopwatch
+		. = 10
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x1803EF19B) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+

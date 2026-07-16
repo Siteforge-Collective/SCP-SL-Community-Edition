@@ -1,0 +1,199 @@
+Type: InventorySystem.Items.Firearms.BasicMessages.RequestMessage
+
+Method: System.Void .ctor(System.UInt16 serial, InventorySystem.Items.Firearms.BasicMessages.RequestType request)
+
+Disassembly:
+	mov [rcx+10h],dx
+	mov [rcx+12h],r8b
+	ret
+	int 3
+	int 3
+	int 3
+	int 3
+	int 3
+	int 3
+	int 3
+	movzx eax,word ptr [rcx]
+	mov [rdx],ax
+	movzx eax,byte ptr [rcx+2]
+	mov [rdx+4],eax
+	ret
+	int 3
+	int 3
+	movzx eax,word ptr [rcx]
+	mov [rdx],ax
+	cmp dword ptr [rcx+4],0
+	setne al
+	mov [rdx+2],al
+	ret
+
+ISIL:
+	001 Move [rcx+16], rdx
+	002 Move [rcx+18], r8
+	003 Return 
+	004 Interrupt 
+	005 Interrupt 
+	006 Interrupt 
+	007 Interrupt 
+	008 Interrupt 
+	009 Interrupt 
+	010 Interrupt 
+	011 Move rax, [rcx]
+	012 Move [rdx], rax
+	013 Move rax, [rcx+2]
+	014 Move [rdx+4], rax
+	015 Return 
+	016 Interrupt 
+	017 Interrupt 
+	018 Move rax, [rcx]
+	019 Move [rdx], rax
+	020 Compare [rcx+4], 0
+	021 NotImplemented "setne al"
+	022 Move [rdx+2], rax
+	023 Return 
+
+Method: System.Void Deserialize(Mirror.NetworkReader reader)
+
+Disassembly:
+	mov [rsp+8],rbx
+	push rdi
+	sub rsp,20h
+	cmp byte ptr [1826EC049h],0
+	mov rbx,rdx
+	mov rdi,rcx
+	jne short 00000001800F844Bh
+	mov ecx,[1822E7260h]
+	call 0000000180294190h
+	mov byte ptr [1826EC049h],1
+	mov rcx,[182759EA8h]
+	test byte ptr [rcx+12Fh],2
+	je short 00000001800F8469h
+	cmp dword ptr [rcx+0E0h],0
+	jne short 00000001800F8469h
+	call 000000018021A070h
+	xor edx,edx
+	mov rcx,rbx
+	call 00000001818BEE60h
+	mov [rdi+10h],ax
+	test rbx,rbx
+	je short 00000001800F8494h
+	xor edx,edx
+	mov rcx,rbx
+	call 00000001818BF710h
+	mov rbx,[rsp+30h]
+	mov [rdi+12h],al
+	add rsp,20h
+	pop rdi
+	ret
+	call 0000000180294310h
+
+ISIL:
+	001 Move stack:0x8, rbx
+	002 ShiftStack -8
+	003 Move stack:0x0, rdi
+	004 ShiftStack -32
+	005 Compare [0x1826EC049], 0
+	006 Move rbx, rdx
+	007 Move rdi, rcx
+	008 JumpIfNotEqual {12}
+	009 Move rcx, [0x1822E7260]
+	010 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	011 Move [0x1826EC049], 1
+	012 Move rcx, typeof(Mirror.NetworkReaderExtensions)
+	013 Compare [rcx+303], 2
+	014 JumpIfEqual {18}
+	015 Compare [rcx+224], 0
+	016 JumpIfNotEqual {18}
+	017 Call "il2cpp_runtime_class_init_export", rcx, rdx, r8, r9
+	018 Move rdx, 0
+	019 Move rcx, rbx
+	020 Call NetworkReaderExtensions.ReadUInt16, rcx, rdx
+	021 Move [rdi+16], rax
+	022 Compare rbx, 0
+	023 JumpIfEqual {33}
+	024 Move rdx, 0
+	025 Move rcx, rbx
+	026 Call NetworkReader.ReadByte, rcx, rdx
+	027 Move rbx, stack:0x30
+	028 Move [rdi+18], rax
+	029 ShiftStack 32
+	030 Move rdi, stack:0x0
+	031 ShiftStack 8
+	032 Return 
+	033 Call 0x180294310, rcx, rdx, r8, r9
+
+Method: System.Void Serialize(Mirror.NetworkWriter writer)
+
+Disassembly:
+	mov [rsp+8],rbx
+	mov [rsp+10h],rsi
+	push rdi
+	sub rsp,20h
+	cmp byte ptr [1826EC04Ah],0
+	mov rbx,rdx
+	mov rdi,rcx
+	jne short 00000001800F84D0h
+	mov ecx,[1822E7280h]
+	call 0000000180294190h
+	mov byte ptr [1826EC04Ah],1
+	mov rcx,[182759D20h]
+	movzx esi,word ptr [rdi+10h]
+	test byte ptr [rcx+12Fh],2
+	je short 00000001800F84F2h
+	cmp dword ptr [rcx+0E0h],0
+	jne short 00000001800F84F2h
+	call 000000018021A070h
+	xor r8d,r8d
+	movzx edx,si
+	mov rcx,rbx
+	call 00000001818C93B0h
+	test rbx,rbx
+	je short 00000001800F8523h
+	movzx edx,byte ptr [rdi+12h]
+	xor r8d,r8d
+	mov rcx,rbx
+	mov rbx,[rsp+30h]
+	mov rsi,[rsp+38h]
+	add rsp,20h
+	pop rdi
+	jmp near ptr 00000001818CA4C0h
+	call 0000000180294310h
+
+ISIL:
+	001 Move stack:0x8, rbx
+	002 Move stack:0x10, rsi
+	003 ShiftStack -8
+	004 Move stack:0x0, rdi
+	005 ShiftStack -32
+	006 Compare [0x1826EC04A], 0
+	007 Move rbx, rdx
+	008 Move rdi, rcx
+	009 JumpIfNotEqual {13}
+	010 Move rcx, [0x1822E7280]
+	011 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	012 Move [0x1826EC04A], 1
+	013 Move rcx, typeof(Mirror.NetworkWriterExtensions)
+	014 Move rsi, [rdi+16]
+	015 Compare [rcx+303], 2
+	016 JumpIfEqual {20}
+	017 Compare [rcx+224], 0
+	018 JumpIfNotEqual {20}
+	019 Call "il2cpp_runtime_class_init_export", rcx, rdx, r8, r9
+	020 Move r8, 0
+	021 Move rdx, rsi
+	022 Move rcx, rbx
+	023 Call NetworkWriterExtensions.WriteUInt16, rcx, rdx, r8
+	024 Compare rbx, 0
+	025 JumpIfEqual {36}
+	026 Move rdx, [rdi+18]
+	027 Move r8, 0
+	028 Move rcx, rbx
+	029 Move rbx, stack:0x30
+	030 Move rsi, stack:0x38
+	031 ShiftStack 32
+	032 Move rdi, stack:0x0
+	033 ShiftStack 8
+	034 Call NetworkWriter.WriteByte, rcx, rdx
+	035 Return 
+	036 Call 0x180294310, rcx, rdx, r8, r9
+

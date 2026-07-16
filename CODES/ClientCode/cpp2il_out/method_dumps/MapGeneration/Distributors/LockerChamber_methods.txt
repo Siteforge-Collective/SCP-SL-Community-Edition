@@ -1,0 +1,440 @@
+Type: LockerChamber
+
+
+	Generated Pseudocode:
+
+	Declaring Type: MapGeneration.Distributors.LockerChamber
+	System.Boolean get_CanInteract()
+
+		System.Boolean animatorSet = this.AnimatorSet
+
+		if (animatorSet != False)
+		    System.Diagnostics.Stopwatch _stopwatch = this._stopwatch
+
+		    if (_stopwatch.is_running != False)
+
+		        System.TimeSpan elapsed = _stopwatch.Elapsed
+		        System.Diagnostics.Stopwatch _stopwatch2 = this._stopwatch
+
+		        _stopwatch2.Stop()
+		    endif
+            
+		    return True
+		endif
+        
+		ulong local10 = 0
+		return local10
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x1802DD6B8) is corrupt (Return value has a type of System.Int32, expecting an object of type System.Boolean) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: MapGeneration.Distributors.LockerChamber
+	System.Void SpawnItem(ItemType id, System.Int32 amount)
+		System.Int32 local3 = id.value__
+		ulong local4 = 0
+
+		if (local3 != -1)
+		    ulong local5 = 0
+
+		    System.Collections.Generic.Dictionary`2<ItemType,InventorySystem.Items.ItemBase> availableItems = InventorySystem.InventoryItemLoader.AvailableItems
+
+		    System.Boolean boolean = availableItems.TryGetValue()
+
+		    if (boolean != False)
+
+		        if (amount > 0)
+		            UnityEngine.Transform _spawnpoint = this._spawnpoint
+		              = boolean.
+
+		            UnityEngine.Vector3 position = availableItems.position
+		            UnityEngine.Transform _spawnpoint2 = this._spawnpoint
+
+		            UnityEngine.Quaternion rotation = availableItems.rotation
+
+		            InventorySystem.Items.Pickups.ItemPickupBase itemPickupBase = UnityEngine.Object.Instantiate<InventorySystem.Items.Pickups.ItemPickupBase>()
+
+		            UnityEngine.Transform transform = itemPickupBase.transform
+		            UnityEngine.Transform _spawnpoint3 = this._spawnpoint
+
+		            transform.parentInternal = _spawnpoint3
+		            itemPickupBase.Info = local3
+
+		            [instruction error - managed method being called is null]
+		            itemPickupBase.Info.Weight = 
+		            System.Collections.Generic.HashSet`1<InventorySystem.Items.Pickups.ItemPickupBase> _content = this._content
+
+		            System.Boolean boolean2 = _content.Add(itemPickupBase) //(T item)
+
+		            if (boolean2 != False)
+		            endif
+                    
+
+		            System.Boolean boolean3 = itemPickupBase.TryGetComponent<UnityEngine.Rigidbody>()
+
+		            if (boolean3 == False)
+                        goto INSN_1802DD411
+                    endif
+
+		            itemPickupBase.isKinematic = True
+
+		            UnityEngine.Transform transform2 = itemPickupBase.transform
+		            ulong local28 = 0
+
+		            UnityEngine.Vector3 zero = UnityEngine.Vector3.zero
+
+		            transform2.localPosition = local28
+
+		            UnityEngine.Transform transform3 = transform2.transform
+		            ulong local34 = 0
+
+		            UnityEngine.Quaternion identity = UnityEngine.Quaternion.identity
+
+		            transform3.localRotation = local34
+		            System.Collections.Generic.HashSet`1<UnityEngine.Rigidbody> bodiesToUnfreeze = MapGeneration.Distributors.SpawnablesDistributorBase.BodiesToUnfreeze
+
+		            System.Boolean boolean4 = bodiesToUnfreeze.Add(local34) //(T item)
+
+		            INSN_1802DD411:
+
+		            if (this._spawnOnFirstChamberOpening != False)
+                        goto INSN_1802DD423
+                    endif
+
+		            MapGeneration.Distributors.ItemDistributor.SpawnPickup(itemPickupBase) //(ItemPickupBase ipb)
+
+		            INSN_1802DD423:
+		            System.Collections.Generic.HashSet`1<InventorySystem.Items.Pickups.ItemPickupBase> _toBeSpawned = this._toBeSpawned
+
+		            System.Boolean boolean5 = _toBeSpawned.Add(itemPickupBase) //(T item)
+		            local4 += 1
+		        endif
+                
+		    endif
+            
+		    return
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1802DD183) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: MapGeneration.Distributors.LockerChamber
+	System.Void SetDoor(System.Boolean doorStatus, UnityEngine.AudioClip beepClip)
+
+		if (doorStatus != this._prevDoor)
+		    this.IsOpen = doorStatus
+		    this._prevDoor = doorStatus
+
+		    System.Boolean animatorSet = this.AnimatorSet
+
+		    if (animatorSet != False)
+		        UnityEngine.Animator _animator = this._animator
+		        System.Int32 doorHash = MapGeneration.Distributors.LockerChamber.DoorHash
+
+		        _animator.SetBool(doorHash, doorStatus) //(Int32 id, Boolean value)
+		        this._targetCooldown = 1
+		        System.Diagnostics.Stopwatch _stopwatch = this._stopwatch
+
+		        _stopwatch.Restart()
+		        System.Diagnostics.Stopwatch _stopwatch2 = MapGeneration.SeedSynchronizer._stopwatch
+
+		        System.TimeSpan elapsed = _stopwatch2.Elapsed
+		        ulong local16 = 0
+		        UnityEngine.AudioSource _audioSource = this._audioSource
+		        ulong local19 = 0
+
+		        System.Boolean boolean = UnityEngine.Object.op_Inequality(_audioSource, local19) //(Object x, Object y)
+
+		        if (boolean != False)
+		            UnityEngine.AudioSource _audioSource2 = this._audioSource
+
+		            if (doorStatus != False)
+		            else
+		                UnityEngine.AudioClip _closeClip = this._closeClip
+		            endif
+                    
+
+		            _audioSource2.PlayOneShot(_closeClip) //(AudioClip clip)
+
+		            if (this.RequiredPermissions <= constant43)
+                        goto INSN_1802DCDCA
+                    endif
+		            UnityEngine.Animator _animator2 = this._animator
+		            System.Int32 grantedHash = MapGeneration.Distributors.LockerChamber.GrantedHash
+
+		            _animator2.SetTrigger(grantedHash) //(Int32 id)
+		            UnityEngine.AudioSource _audioSource3 = this._audioSource
+
+		            _audioSource3.PlayOneShot(beepClip) //(AudioClip clip)
+		        endif
+                
+
+		        if (doorStatus == False)
+                    goto INSN_1802DD08A
+                endif
+
+		        if (this._wasEverOpened != False)
+                    goto INSN_1802DD08A
+                endif
+		        this._wasEverOpened = True
+		        System.Collections.Generic.HashSet`1<InventorySystem.Items.Pickups.ItemPickupBase> _content = this._content
+
+		        System.Collections.Generic.HashSet`1/Enumerator<T> enumerator = .GetEnumerator()
+
+		        if (enumerator == 0)
+                    goto INSN_1802DCF59
+                endif
+
+		        System.Boolean boolean2 = UnityEngine.Object.op_Equality()
+
+		        if (boolean2 != False)
+                    goto INSN_1802DCE90
+                endif
+		          = doorStatus.
+		          = doorStatus.
+		          = doorStatus.
+		        ulong local36 = 0
+
+		        doorStatus.NetworkInfo = local36
+
+		        INSN_1802DCF59:
+		        ulong local38 = 0
+
+		        doorStatus.Dispose()
+
+		        doorStatus.Dispose()
+
+		        if (doorStatus != False)
+                    goto INSN_1802DD0AC
+                endif
+
+		        if (local38 == -1)
+                    goto INSN_1802DCFC0
+                endif
+
+		        INSN_1802DCFC0:
+
+		        if (this._spawnOnFirstChamberOpening == False)
+                    goto INSN_1802DD08A
+                endif
+		        System.Collections.Generic.HashSet`1<InventorySystem.Items.Pickups.ItemPickupBase> _toBeSpawned = this._toBeSpawned
+
+		        System.Collections.Generic.HashSet`1/Enumerator<T> enumerator2 = doorStatus.GetEnumerator()
+
+		        if (enumerator2 == 0)
+                    goto INSN_1802DD053
+                endif
+
+		        System.Boolean boolean3 = UnityEngine.Object.op_Equality()
+
+		        if (boolean3 != False)
+                    goto INSN_1802DD000
+                endif
+
+		        MapGeneration.Distributors.ItemDistributor.SpawnPickup()
+
+		        INSN_1802DD053:
+		        . = 346
+
+		        doorStatus.Dispose()
+
+		        doorStatus.Dispose()
+
+		        if (doorStatus != False)
+                    goto INSN_1802DD0B4
+                endif
+		    endif
+            
+		    return
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+
+		    INSN_1802DD0AC:
+
+		    INSN_1802DD0B4:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfLessThanOrEqualToAction at (0x1802DCD66) is corrupt (ConstantDefinition: Don't know how to get IL to load a System.UInt16) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: MapGeneration.Distributors.LockerChamber
+	System.Void PlayDenied(UnityEngine.AudioClip deniedClip)
+		System.Diagnostics.Stopwatch _stopwatch = this._stopwatch
+		this._targetCooldown = 0,4
+
+		_stopwatch.Restart()
+
+		System.Boolean animatorSet = this.AnimatorSet
+
+		if (animatorSet != False)
+		    UnityEngine.Animator _animator = this._animator
+		    System.Int32 deniedHash = MapGeneration.Distributors.LockerChamber.DeniedHash
+
+		    _animator.SetTrigger(deniedHash) //(Int32 id)
+		    UnityEngine.AudioSource _audioSource = this._audioSource
+		    ulong local11 = 0
+
+		    System.Boolean boolean = UnityEngine.Object.op_Inequality(_audioSource, local11) //(Object x, Object y)
+
+		    if (boolean != False)
+		        UnityEngine.AudioSource _audioSource2 = this._audioSource
+
+		        _audioSource2.PlayOneShot(deniedClip) //(AudioClip clip)
+		    endif
+            
+		    return
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Diagnostics.Stopwatch MapGeneration.Distributors.LockerChamber::_stopwatch
+	IL_0006: stloc.0
+	IL_0007: ldarg.0
+	IL_0008: ldc.r4 0,4
+	IL_000d: stfld System.Single MapGeneration.Distributors.LockerChamber::_targetCooldown
+	IL_0012: ldloc.0
+	IL_0013: call System.Void System.Diagnostics.Stopwatch::Restart()
+	IL_0018: ldarg.0
+	IL_0019: call System.Boolean MapGeneration.Distributors.LockerChamber::get_AnimatorSet()
+	IL_001e: ldc.i4.0
+	IL_001f: beq.s IL_0056
+	IL_0021: ldarg.0
+	IL_0022: ldfld UnityEngine.Animator MapGeneration.Distributors.LockerChamber::_animator
+	IL_0027: stloc.1
+	IL_0028: ldsfld System.Int32 MapGeneration.Distributors.LockerChamber::DeniedHash
+	IL_002d: stloc.2
+	IL_002e: ldloc.1
+	IL_002f: ldloc.2
+	IL_0030: call System.Void UnityEngine.Animator::SetTrigger(System.Int32)
+	IL_0035: ldarg.0
+	IL_0036: ldfld UnityEngine.AudioSource MapGeneration.Distributors.LockerChamber::_audioSource
+	IL_003b: stloc.3
+	IL_003c: ldc.i4.0
+	IL_003d: stloc.s V_4
+	IL_003f: ldloc.3
+	IL_0040: ldloc.s V_4
+	IL_0042: call System.Boolean UnityEngine.Object::op_Inequality(UnityEngine.Object,UnityEngine.Object)
+	IL_0047: ldc.i4.0
+	IL_0048: beq.s IL_0056
+	IL_004a: ldarg.0
+	IL_004b: ldfld UnityEngine.AudioSource MapGeneration.Distributors.LockerChamber::_audioSource
+	IL_0050: ldarg.1
+	IL_0051: call System.Void UnityEngine.AudioSource::PlayOneShot(UnityEngine.AudioClip)
+	IL_0056: ret
+	IL_0057: newobj System.Void System.NullReferenceException::.ctor()
+	IL_005c: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: MapGeneration.Distributors.LockerChamber
+	System.Boolean get_AnimatorSet()
+		System.Byte _animatorStatusCode = this._animatorStatusCode
+
+		if (_animatorStatusCode == constant4)
+		    UnityEngine.Animator _animator = this._animator
+		    ulong local4 = 0
+
+		    System.Boolean boolean = UnityEngine.Object.op_Equality(_animator, local4) //(Object x, Object y)
+		    System.Boolean local6 = boolean == False
+		    local6 += 1
+		    this._animatorStatusCode = local6
+		endif
+        
+		System.Boolean local7 = _animatorStatusCode == constant12
+		return local7
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfNonZeroOrNonNullAction at (0x1802DD5FA) is corrupt (ConstantDefinition: Don't know how to get IL to load a System.Byte) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: MapGeneration.Distributors.LockerChamber
+	System.Void .ctor()
+		System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch()
+
+		stopwatch..ctor()
+		this._stopwatch = stopwatch
+		System.Collections.Generic.HashSet`1<InventorySystem.Items.Pickups.ItemPickupBase> hashSet = new System.Collections.Generic.HashSet`1<InventorySystem.Items.Pickups.ItemPickupBase>()
+
+		hashSet..ctor()
+		this._content = hashSet
+		System.Collections.Generic.HashSet`1<InventorySystem.Items.Pickups.ItemPickupBase> hashSet2 = new System.Collections.Generic.HashSet`1<InventorySystem.Items.Pickups.ItemPickupBase>()
+
+		hashSet2..ctor()
+		this._toBeSpawned = hashSet2
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: newobj System.Void System.Diagnostics.Stopwatch::.ctor()
+	IL_0005: stloc.0
+	IL_0006: ldarg.0
+	IL_0007: ldloc.0
+	IL_0008: stfld System.Diagnostics.Stopwatch MapGeneration.Distributors.LockerChamber::_stopwatch
+	IL_000d: newobj System.Void System.Collections.Generic.HashSet`1::.ctor()
+	IL_0012: stloc.1
+	IL_0013: ldarg.0
+	IL_0014: ldloc.1
+	IL_0015: stfld System.Collections.Generic.HashSet`1<InventorySystem.Items.Pickups.ItemPickupBase> MapGeneration.Distributors.LockerChamber::_content
+	IL_001a: newobj System.Void System.Collections.Generic.HashSet`1::.ctor()
+	IL_001f: stloc.2
+	IL_0020: ldarg.0
+	IL_0021: ldloc.2
+	IL_0022: stfld System.Collections.Generic.HashSet`1<InventorySystem.Items.Pickups.ItemPickupBase> MapGeneration.Distributors.LockerChamber::_toBeSpawned
+	IL_0027: ldarg.0
+	IL_0028: call System.Void UnityEngine.MonoBehaviour::.ctor()
+	IL_002d: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: MapGeneration.Distributors.LockerChamber
+	static System.Void .cctor()
+
+		System.Int32 int32 = UnityEngine.Animator.StringToHash("isOpen") //(String name)
+		MapGeneration.Distributors.LockerChamber.DoorHash = int32
+
+		System.Int32 int322 = UnityEngine.Animator.StringToHash("accessDenied") //(String name)
+		MapGeneration.Distributors.LockerChamber.DeniedHash = int322
+
+		System.Int32 int323 = UnityEngine.Animator.StringToHash("accessGranted") //(String name)
+		MapGeneration.Distributors.LockerChamber.GrantedHash = int323
+		return
+
+
+Generated IL:
+	IL_0000: ldstr "isOpen"
+	IL_0005: call System.Int32 UnityEngine.Animator::StringToHash(System.String)
+	IL_000a: stsfld System.Int32 MapGeneration.Distributors.LockerChamber::DoorHash
+	IL_000f: ldstr "accessDenied"
+	IL_0014: call System.Int32 UnityEngine.Animator::StringToHash(System.String)
+	IL_0019: stsfld System.Int32 MapGeneration.Distributors.LockerChamber::DeniedHash
+	IL_001e: ldstr "accessGranted"
+	IL_0023: call System.Int32 UnityEngine.Animator::StringToHash(System.String)
+	IL_0028: stsfld System.Int32 MapGeneration.Distributors.LockerChamber::GrantedHash
+	IL_002d: ret
+	
+

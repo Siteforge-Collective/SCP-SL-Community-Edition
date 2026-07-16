@@ -1,0 +1,552 @@
+Type: FpcMouseLook
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.FirstPersonControl.FpcMouseLook
+	System.Single get_BiaxialSensitivity()
+		ReferenceHub _hub = this._hub
+		System.Single sensMultiplier = SensitivitySettings.SensMultiplier
+		InventorySystem.Inventory inventory = _hub.inventory
+
+		if (SensitivitySettings != 0)
+		endif
+        
+		return sensMultiplier
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld ReferenceHub PlayerRoles.FirstPersonControl.FpcMouseLook::_hub
+	IL_0006: stloc.0
+	IL_0007: ldsfld System.Single SensitivitySettings::SensMultiplier
+	IL_000c: stloc.1
+	IL_000d: ldloc.0
+	IL_000e: ldfld InventorySystem.Inventory ReferenceHub::inventory
+	IL_0013: stloc.2
+	IL_0014: ldtoken SensitivitySettings
+	IL_0019: ldc.i4.0
+	IL_001a: beq.s IL_001c
+	IL_001c: ldloc.1
+	IL_001d: ret
+	IL_001e: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0023: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.FirstPersonControl.FpcMouseLook
+	System.Void .ctor(ReferenceHub hub, PlayerRoles.FirstPersonControl.FirstPersonMovementModule fpmm)
+
+		base..ctor()
+		this._hub = hub
+		this._fpmm = fpmm
+
+		UnityEngine.Transform transform = hub.transform
+
+		UnityEngine.Vector3 eulerAngles = .eulerAngles
+
+		System.Single biaxialSensitivity = this.BiaxialSensitivity
+		ulong local9 = 0
+		this._curHorizontal = biaxialSensitivity
+		this._inputHorizontal = biaxialSensitivity
+
+		System.Single single = this.ClampHorizontal(local9) //(Single f)
+		this._curVertical = single
+		this._inputVertical = single
+
+		System.Boolean isLocalPlayer = hub.isLocalPlayer
+
+		if (isLocalPlayer != False)
+		    PlayerRoles.FirstPersonControl.FpcMouseLook._localInstance = this
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18037E712) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.FirstPersonControl.FpcMouseLook
+	static System.Boolean TryGetLocalMouseLook(PlayerRoles.FirstPersonControl.FpcMouseLook& ml)
+		PlayerRoles.FirstPersonControl.FpcMouseLook _localInstance = PlayerRoles.FirstPersonControl.FpcMouseLook._localInstance
+		ml. = _localInstance
+		return FpcMouseLook
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.RegToFieldAction at (0x18037E078) is corrupt (Instance or field is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.FirstPersonControl.FpcMouseLook
+	System.Single get_CurrentHorizontal()
+		System.Single _curHorizontal = this._curHorizontal
+		return _curHorizontal
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Single PlayerRoles.FirstPersonControl.FpcMouseLook::_curHorizontal
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.FirstPersonControl.FpcMouseLook
+	System.Void set_CurrentHorizontal(System.Single value)
+
+		System.Single biaxialSensitivity = this.BiaxialSensitivity
+		this._curHorizontal = biaxialSensitivity
+		this._inputHorizontal = biaxialSensitivity
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: callvirt System.Single PlayerRoles.FirstPersonControl.FpcMouseLook::get_BiaxialSensitivity()
+	IL_0006: stloc.0
+	IL_0007: ldarg.0
+	IL_0008: ldloc.0
+	IL_0009: stfld System.Single PlayerRoles.FirstPersonControl.FpcMouseLook::_curHorizontal
+	IL_000e: ldarg.0
+	IL_000f: ldloc.0
+	IL_0010: stfld System.Single PlayerRoles.FirstPersonControl.FpcMouseLook::_inputHorizontal
+	IL_0015: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.FirstPersonControl.FpcMouseLook
+	System.Single get_CurrentVertical()
+		System.Single _curVertical = this._curVertical
+		return _curVertical
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Single PlayerRoles.FirstPersonControl.FpcMouseLook::_curVertical
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.FirstPersonControl.FpcMouseLook
+	System.Void set_CurrentVertical(System.Single value)
+
+		System.Single single = this.ClampHorizontal(value) //(Single f)
+		this._curVertical = single
+		this._inputVertical = single
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: callvirt System.Single PlayerRoles.FirstPersonControl.FpcMouseLook::ClampHorizontal(System.Single)
+	IL_0007: stloc.0
+	IL_0008: ldarg.0
+	IL_0009: ldloc.0
+	IL_000a: stfld System.Single PlayerRoles.FirstPersonControl.FpcMouseLook::_curVertical
+	IL_000f: ldarg.0
+	IL_0010: ldloc.0
+	IL_0011: stfld System.Single PlayerRoles.FirstPersonControl.FpcMouseLook::_inputVertical
+	IL_0016: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.FirstPersonControl.FpcMouseLook
+	UnityEngine.Quaternion get_TargetHubRotation()
+
+		UnityEngine.Vector3 up = UnityEngine.Vector3.up
+		System.Single single = up.z
+
+		UnityEngine.Vector3 vector3 = UnityEngine.Vector3.op_Multiply()
+		System.Single single2 = vector3.z
+
+		UnityEngine.Quaternion quaternion = UnityEngine.Quaternion.Euler()
+		this. = constant20
+		return this
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18037E9C0) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.FirstPersonControl.FpcMouseLook
+	UnityEngine.Quaternion get_TargetCamRotation()
+
+		UnityEngine.Vector3 left = UnityEngine.Vector3.left
+		System.Single single = left.z
+
+		UnityEngine.Vector3 vector3 = UnityEngine.Vector3.op_Multiply()
+		System.Single single2 = vector3.z
+
+		UnityEngine.Quaternion quaternion = UnityEngine.Quaternion.Euler()
+		this. = constant20
+		return this
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18037E8E0) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.FirstPersonControl.FpcMouseLook
+	System.Void UpdateRotation()
+		ReferenceHub _hub = this._hub
+
+		System.Boolean isLocalPlayer = _hub.isLocalPlayer
+
+		if (isLocalPlayer == False)
+		    PlayerRoles.FirstPersonControl.FirstPersonMovementModule _fpmm = this._fpmm
+		    PlayerRoles.FirstPersonControl.FpcMotor Motor = _fpmm.<Motor>k__BackingField
+
+		    UnityEngine.Vector3 up = UnityEngine.Vector3.up
+
+		    UnityEngine.Vector3 vector3 = UnityEngine.Vector3.op_Multiply()
+
+		    UnityEngine.Quaternion quaternion = UnityEngine.Quaternion.Euler()
+
+		    UnityEngine.Quaternion worldRotation = RelativePositioning.WaypointBase.GetWorldRotation()
+
+		    System.Single biaxialSensitivity = this.BiaxialSensitivity
+		    System.Single _syncVertical = this._syncVertical
+		    this._curHorizontal = biaxialSensitivity
+		    this._inputHorizontal = biaxialSensitivity
+
+		    System.Single single = this.ClampHorizontal(_syncVertical) //(Single f)
+		    this._curVertical = single
+		    this._inputVertical = single
+		    ulong local24 = 0
+
+		    System.Single deltaTime = UnityEngine.Time.deltaTime
+		    System.Single local26 = deltaTime * 22
+		    ReferenceHub _hub2 = this._hub
+
+		    UnityEngine.Transform transform = _hub2.transform
+
+		    UnityEngine.Quaternion rotation = _hub2.rotation
+
+		    UnityEngine.Quaternion targetHubRotation = _hub2.TargetHubRotation
+		    ulong local34 = 0
+
+		    UnityEngine.Quaternion quaternion2 = UnityEngine.Quaternion.Lerp()
+		    ReferenceHub _hub3 = this._hub
+		    UnityEngine.Transform playerCameraReference = _hub3.PlayerCameraReference
+
+		    UnityEngine.Quaternion localRotation = .localRotation
+
+		    UnityEngine.Quaternion targetCamRotation = .TargetCamRotation
+
+		    UnityEngine.Quaternion quaternion3 = UnityEngine.Quaternion.Lerp()
+		else
+		    ulong local43 = 0
+
+		    System.Single axis = UnityEngine.Input.GetAxis("Mouse X") //(String axisName)
+
+		    System.Single axis2 = UnityEngine.Input.GetAxis("Mouse Y") //(String axisName)
+
+		    System.Single axisRaw = UnityEngine.Input.GetAxisRaw("Mouse Y") //(String axisName)
+		    axis = axisRaw
+
+		    System.Single axisRaw2 = UnityEngine.Input.GetAxisRaw("Mouse Y") //(String axisName)
+
+		    System.String string = this.ToString()
+
+		    System.Single single2 = this.ProcessVerticalInput(axis) //(Single f)
+		    axis = single2
+		    axis = axisRaw2
+
+		    System.Single single3 = this.ClampVertical(axis) //(Single f)
+		    ulong local53 = 0
+		    axisRaw2 = single3
+
+		    System.Boolean visible = UnityEngine.Cursor.visible
+
+		    if (visible == False)
+
+		        if (visible == False)
+                    goto INSN_18037E4E1
+                endif
+		    endif
+            
+
+		    INSN_18037E4E1:
+		    System.Single _inputVertical = this._inputVertical
+
+		    System.Single single4 = this.ClampHorizontal(_inputVertical) //(Single f)
+		    System.Single _inputHorizontal = this._inputHorizontal
+		    this._inputVertical = single4
+
+		    System.Single biaxialSensitivity2 = this.BiaxialSensitivity
+		    this._inputHorizontal = biaxialSensitivity2
+		    ulong local62 = 0
+
+		    System.Single deltaTime2 = UnityEngine.Time.deltaTime
+		    System.Single local64 = deltaTime2 * 10
+		    _inputHorizontal = local66
+		    deltaTime2 = local65
+
+		    System.Single single5 = UnityEngine.Mathf.LerpAngle(deltaTime2, _inputHorizontal, 1) //(Single a, Single b, Single t)
+		    _inputHorizontal = single5
+
+		    System.Single single6 = this.ClampHorizontal(_inputHorizontal) //(Single f)
+		    System.Single _inputHorizontal2 = this._inputHorizontal
+		    this._curVertical = single6
+		    System.Single _curHorizontal = this._curHorizontal
+
+		    System.Single single7 = UnityEngine.Mathf.LerpAngle(_curHorizontal, _inputHorizontal2, 1) //(Single a, Single b, Single t)
+		    _inputHorizontal2 = single7
+
+		    System.Single biaxialSensitivity3 = this.BiaxialSensitivity
+		    this._curHorizontal = biaxialSensitivity3
+
+		    UnityEngine.Quaternion targetHubRotation2 = this.TargetHubRotation
+
+		    UnityEngine.Quaternion targetCamRotation2 = this.TargetCamRotation
+		endif
+        
+		ReferenceHub _hub4 = this._hub
+		ulong local80 = 0
+
+		UnityEngine.Transform transform2 = _hub4.transform
+
+		transform2.rotation = local80
+		ReferenceHub _hub5 = this._hub
+		UnityEngine.Transform playerCameraReference2 = _hub5.PlayerCameraReference
+
+		playerCameraReference2.localRotation = local80
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18037E176) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.FirstPersonControl.FpcMouseLook
+	System.Void GetMouseInput(System.Single& hRot, System.Single& vRot)
+		ulong local3 = 0
+
+		System.Single axis = UnityEngine.Input.GetAxis("Mouse X") //(String axisName)
+		hRot.m_value = axis
+
+		System.Single axis2 = UnityEngine.Input.GetAxis("Mouse Y") //(String axisName)
+
+		System.Single axisRaw = UnityEngine.Input.GetAxisRaw("Mouse Y") //(String axisName)
+		hRot.m_value = axisRaw
+
+		System.Single axisRaw2 = UnityEngine.Input.GetAxisRaw("Mouse Y") //(String axisName)
+		vRot.m_value = axisRaw2
+
+		System.String string = this.ToString()
+
+		System.Single single = this.ProcessVerticalInput()
+		hRot.m_value = single
+
+		System.Single single2 = this.ClampVertical()
+		vRot.m_value = single2
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallVirtualMethodAction at (0x18037DDB4) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.FirstPersonControl.FpcMouseLook
+	System.Void ApplySyncValues(System.UInt16 horizontal, System.UInt16 vertical)
+
+		if (this._prevSyncH == horizontal)
+
+		    if (this._prevSyncV == vertical)
+		        PlayerRoles.FirstPersonControl.FirstPersonMovementModule _fpmm = this._fpmm
+		        PlayerRoles.FirstPersonControl.FpcMotor Motor = _fpmm.<Motor>k__BackingField
+		        Motor.<RotationDetected>k__BackingField = False
+		        return
+		    endif
+            
+		    this._prevSyncH = horizontal
+		    this._prevSyncV = vertical
+		    ulong local6 = 0
+		    System.Single local7 =  / 65535
+
+		    System.Single single = UnityEngine.Mathf.Lerp(local6, 360, local7) //(Single a, Single b, Single t)
+		    this._syncHorizontal = single
+		    System.Single local10 = local7 / 65535
+
+		    System.Single single2 = UnityEngine.Mathf.Lerp(-88, 88, local10) //(Single a, Single b, Single t)
+		    ReferenceHub _hub = this._hub
+		    this._syncVertical = single2
+
+		    System.Boolean isLocalPlayer = _hub.isLocalPlayer
+
+		    if (isLocalPlayer == False)
+                goto INSN_18037DC1F
+            endif
+
+		    System.Single biaxialSensitivity = this.BiaxialSensitivity
+		    System.Single _syncVertical = this._syncVertical
+		    this._curHorizontal = biaxialSensitivity
+		    this._inputHorizontal = biaxialSensitivity
+
+		    System.Single single3 = this.ClampHorizontal(_syncVertical) //(Single f)
+		    this._curVertical = single3
+		    this._inputVertical = single3
+
+		    INSN_18037DC1F:
+		    PlayerRoles.FirstPersonControl.FirstPersonMovementModule _fpmm2 = this._fpmm
+		    PlayerRoles.FirstPersonControl.FpcMotor Motor2 = _fpmm2.<Motor>k__BackingField
+		    Motor2.<RotationDetected>k__BackingField = True
+		    return
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Don't know how to write IL for Cpp2IL.Core.Analysis.Actions.x86.Important.DivideRegByGlobalAction. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.FirstPersonControl.FpcMouseLook
+	System.Void GetSyncValues(System.Byte waypointId, System.UInt16& syncH, System.UInt16& syncV)
+
+		UnityEngine.Vector3 up = UnityEngine.Vector3.up
+		System.Single single = up.z
+
+		UnityEngine.Vector3 vector3 = UnityEngine.Vector3.op_Multiply()
+		System.Single single2 = vector3.z
+
+		UnityEngine.Quaternion quaternion = UnityEngine.Quaternion.Euler()
+
+		UnityEngine.Quaternion relativeRotation = RelativePositioning.WaypointBase.GetRelativeRotation()
+
+		System.Single single3 = UnityEngine.Mathf.InverseLerp()
+		System.Single local21 = single3 * 65535
+
+		System.Int32 int32 = UnityEngine.Mathf.RoundToInt(local21) //(Single f)
+		syncH.m_value = int32
+		System.Single _curVertical = this._curVertical
+
+		System.Single single4 = UnityEngine.Mathf.InverseLerp(-88, 88, _curVertical) //(Single a, Single b, Single value)
+		System.Single local27 = single4 * 65535
+
+		System.Int32 int322 = UnityEngine.Mathf.RoundToInt(local27) //(Single f)
+		syncV.m_value = int322
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18037DE96) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.FirstPersonControl.FpcMouseLook
+	System.Single ClampHorizontal(System.Single f)
+		ulong local2 = 0
+
+		if (local2 > f)
+
+		    if (local2 <= f)
+		    endif
+            
+
+		    if (f > 360)
+
+		        if (f <= 360)
+		        endif
+                
+		        return f
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: ldloc.0
+	IL_0003: ldarg.1
+	IL_0004: ble.s IL_000a
+	IL_0006: ldloc.0
+	IL_0007: ldarg.1
+	IL_0008: bgt.s IL_0006
+	IL_000a: ldarg.1
+	IL_000b: ldc.r4 360
+	IL_0010: ble.s IL_001a
+	IL_0012: ldarg.1
+	IL_0013: ldc.r4 360
+	IL_0018: bgt.s IL_0012
+	IL_001a: ldarg.1
+	IL_001b: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.FirstPersonControl.FpcMouseLook
+	System.Single ClampVertical(System.Single f)
+
+		System.Single single = UnityEngine.Mathf.Clamp(f, -88, 88) //(Single value, Single min, Single max)
+		return single
+
+
+Generated IL:
+	IL_0000: ldarg.1
+	IL_0001: ldc.r4 -88
+	IL_0006: ldc.r4 88
+	IL_000b: call System.Single UnityEngine.Mathf::Clamp(System.Single,System.Single,System.Single)
+	IL_0010: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.FirstPersonControl.FpcMouseLook
+	System.Single ProcessVerticalInput(System.Single f)
+		return f
+
+
+Generated IL:
+	IL_0000: ldarg.1
+	IL_0001: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.FirstPersonControl.FpcMouseLook
+	System.Single ProcessHorizontalInput(System.Single f)
+		return f
+
+
+Generated IL:
+	IL_0000: ldarg.1
+	IL_0001: ret
+	
+

@@ -1,0 +1,223 @@
+Type: IntercomTextCommand
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.MutingAndIntercom.IntercomTextCommand
+	System.String get_Command()
+		System.String Command = this.<Command>k__BackingField
+		return Command
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String CommandSystem.Commands.RemoteAdmin.MutingAndIntercom.IntercomTextCommand::<Command>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.MutingAndIntercom.IntercomTextCommand
+	System.String[] get_Aliases()
+		System.String[] Aliases = this.<Aliases>k__BackingField
+		return Aliases
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String[] CommandSystem.Commands.RemoteAdmin.MutingAndIntercom.IntercomTextCommand::<Aliases>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.MutingAndIntercom.IntercomTextCommand
+	System.String get_Description()
+		System.String Description = this.<Description>k__BackingField
+		return Description
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String CommandSystem.Commands.RemoteAdmin.MutingAndIntercom.IntercomTextCommand::<Description>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.MutingAndIntercom.IntercomTextCommand
+	System.String[] get_Usage()
+		System.String[] Usage = this.<Usage>k__BackingField
+		return Usage
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String[] CommandSystem.Commands.RemoteAdmin.MutingAndIntercom.IntercomTextCommand::<Usage>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.MutingAndIntercom.IntercomTextCommand
+	System.Boolean Execute(System.ArraySegment`1<System.String> arguments, CommandSystem.ICommandSender sender, System.String& response)
+
+		System.Boolean boolean = Misc.CheckPermission(sender, 0x80000, response) //(ICommandSender sender, PlayerPermissions perm, String& response)
+
+		if (boolean != False)
+
+		    System.String string = System.String.Join()
+
+		    System.String string2 = string.Trim()
+
+		    System.Boolean isNullOrEmpty = System.String.IsNullOrEmpty(string2) //(String value)
+
+		    if (isNullOrEmpty != False)
+                goto INSN_18061C219
+            endif
+
+		    System.Boolean boolean2 = PlayerRoles.Voice.IntercomDisplay.TrySetDisplay(string) //(String str)
+
+		    if (boolean2 != False)
+		        ulong local15 = 0
+
+		        System.String string3 = System.String.Concat()
+		        ulong local17 = 0
+
+		        ServerLogs.AddLog(4, string3, 1, local17) //(Modules module, String msg, ServerLogType type, Boolean init)
+
+		        System.String string4 = System.String.Concat("Set intercom text to: ", string) //(String str0, String str1)
+		        response. = string4
+		    else
+		        response. = "Intercom text override failed. Display not found."
+		    endif
+            
+		    ulong local20 = 0
+		endif
+        
+		return local20
+
+		INSN_18061C219:
+		ulong local21 = 0
+
+		System.Boolean boolean3 = PlayerRoles.Voice.IntercomDisplay.TrySetDisplay(local21) //(String str)
+
+		if (boolean3 == False)
+            goto INSN_18061C2AF
+        endif
+
+		System.String string5 = System.String.Concat()
+		ulong local25 = 0
+		ulong local26 = 0
+
+		ServerLogs.AddLog(4, string5, 1, local26) //(Modules module, String msg, ServerLogType type, Boolean init)
+		response. = "Reset intercom text."
+
+		INSN_18061C2AF:
+		response. = "Intercom text reset failed. Display not found."
+		  = string5.
+
+		System.String string6 = CommandSystem.HelpProviderExtensions.DisplayCommandUsage(local25) //(IUsageProvider provider)
+		ulong local29 = 0
+
+		System.String string7 = System.String.Concat("To execute this command provide at least 1 argument!
+        Usage: ", string5, " ", string6) //(String str0, String str1, String str2, String str3)
+		response. = string7
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18061C114) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.MutingAndIntercom.IntercomTextCommand
+	System.Void .ctor()
+		this.<Command>k__BackingField = "intercomtext"
+		System.String[] local1 = new System.String[1]
+
+		if ("icomtxt" != 0)
+
+		    if (local1 == 0)
+                goto INSN_18061C46C
+            endif
+		endif
+        
+		local1[0] = "icomtxt"
+		this.<Aliases>k__BackingField = local1
+		this.<Description>k__BackingField = "Changes the intercom text."
+		System.String[] local2 = new System.String[1]
+
+		if ("text" == 0)
+            goto INSN_18061C42E
+        endif
+
+		if (local2 == 0)
+            goto INSN_18061C48C
+        endif
+
+		INSN_18061C42E:
+		local2[0] = "text"
+		this.<Usage>k__BackingField = local2
+
+		base..ctor()
+		return
+		throw new System.NullReferenceException()
+
+		INSN_18061C46C:
+
+		INSN_18061C48C:
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldstr "intercomtext"
+	IL_0006: stfld System.String CommandSystem.Commands.RemoteAdmin.MutingAndIntercom.IntercomTextCommand::<Command>k__BackingField
+	IL_000b: ldc.i4.1
+	IL_000c: newarr System.String
+	IL_0011: stloc.0
+	IL_0012: ldstr "icomtxt"
+	IL_0017: ldc.i4.0
+	IL_0018: beq.s IL_001e
+	IL_001a: ldloc.0
+	IL_001b: ldc.i4.0
+	IL_001c: beq.s IL_0000
+	IL_001e: ldloc.0
+	IL_001f: ldc.i4.0
+	IL_0020: ldstr "icomtxt"
+	IL_0025: stelem.any System.String
+	IL_002a: ldarg.0
+	IL_002b: ldloc.0
+	IL_002c: stfld System.String[] CommandSystem.Commands.RemoteAdmin.MutingAndIntercom.IntercomTextCommand::<Aliases>k__BackingField
+	IL_0031: ldarg.0
+	IL_0032: ldstr "Changes the intercom text."
+	IL_0037: stfld System.String CommandSystem.Commands.RemoteAdmin.MutingAndIntercom.IntercomTextCommand::<Description>k__BackingField
+	IL_003c: ldc.i4.1
+	IL_003d: newarr System.String
+	IL_0042: stloc.1
+	IL_0043: ldstr "text"
+	IL_0048: ldc.i4.0
+	IL_0049: beq.s IL_004f
+	IL_004b: ldloc.1
+	IL_004c: ldc.i4.0
+	IL_004d: beq.s IL_0000
+	IL_004f: ldloc.1
+	IL_0050: ldc.i4.0
+	IL_0051: ldstr "text"
+	IL_0056: stelem.any System.String
+	IL_005b: ldarg.0
+	IL_005c: ldloc.1
+	IL_005d: stfld System.String[] CommandSystem.Commands.RemoteAdmin.MutingAndIntercom.IntercomTextCommand::<Usage>k__BackingField
+	IL_0062: ldarg.0
+	IL_0063: call System.Void System.Object::.ctor()
+	IL_0068: ret
+	IL_0069: newobj System.Void System.NullReferenceException::.ctor()
+	IL_006e: throw
+	
+

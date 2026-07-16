@@ -1,0 +1,4224 @@
+Type: YamlConfig
+
+
+	Generated Pseudocode:
+
+	Declaring Type: YamlConfig
+	System.String[] get_RawData()
+
+		if (this._virtual != False)
+		    System.String[] _rawDataUnfiltered = this._rawDataUnfiltered
+		    return _rawDataUnfiltered
+		endif
+        
+		System.String[] _rawData = this._rawData
+		return _rawData
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Boolean YamlConfig::_virtual
+	IL_0006: ldc.i4.0
+	IL_0007: beq.s IL_0010
+	IL_0009: ldarg.0
+	IL_000a: ldfld System.String[] YamlConfig::_rawDataUnfiltered
+	IL_000f: ret
+	IL_0010: ldarg.0
+	IL_0011: ldfld System.String[] YamlConfig::_rawData
+	IL_0016: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: YamlConfig
+	System.Void set_RawData(System.String[] value)
+
+		if (this._virtual == False)
+		    this._rawData = value
+		endif
+        
+		this._rawDataUnfiltered = value
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Boolean YamlConfig::_virtual
+	IL_0006: ldc.i4.0
+	IL_0007: bne.un.s IL_0010
+	IL_0009: ldarg.0
+	IL_000a: ldarg.1
+	IL_000b: stfld System.String[] YamlConfig::_rawData
+	IL_0010: ldarg.0
+	IL_0011: ldarg.1
+	IL_0012: stfld System.String[] YamlConfig::_rawDataUnfiltered
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: YamlConfig
+	System.Boolean get_IsVirtual()
+		System.Boolean _virtual = this._virtual
+		return _virtual
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Boolean YamlConfig::_virtual
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: YamlConfig
+	System.Void set_IsVirtual(System.Boolean value)
+
+		if (value != False)
+
+		    if (this._virtual == False)
+		        this._virtual = True
+		    endif
+            
+		    return
+
+
+Generated IL:
+	IL_0000: ldarg.1
+	IL_0001: ldc.i4.0
+	IL_0002: beq.s IL_0014
+	IL_0004: ldarg.0
+	IL_0005: ldfld System.Boolean YamlConfig::_virtual
+	IL_000a: ldc.i4.0
+	IL_000b: bne.un.s IL_0014
+	IL_000d: ldarg.0
+	IL_000e: ldc.i4.1
+	IL_000f: stfld System.Boolean YamlConfig::_virtual
+	IL_0014: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: YamlConfig
+	System.Void .ctor()
+
+		base..ctor()
+		ulong local2 = 0
+		System.String[] local3 = new System.String[local2]
+
+		if (this._virtual != False)
+		endif
+        
+		this._rawData = local3
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void Utils.ConfigHandler.ConfigRegister::.ctor()
+	IL_0006: ldc.i4.0
+	IL_0007: newarr System.String
+	IL_000c: stloc.0
+	IL_000d: ldarg.0
+	IL_000e: ldfld System.Boolean YamlConfig::_virtual
+	IL_0013: ldc.i4.0
+	IL_0014: beq.s IL_0016
+	IL_0016: ldarg.0
+	IL_0017: ldloc.0
+	IL_0018: stfld System.String[] YamlConfig::_rawData
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: YamlConfig
+	System.Void .ctor(System.String path)
+
+		base..ctor()
+		this.Path = path
+
+		this.LoadConfigFile(path) //(String path)
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void Utils.ConfigHandler.ConfigRegister::.ctor()
+	IL_0006: ldarg.0
+	IL_0007: ldarg.1
+	IL_0008: stfld System.String YamlConfig::Path
+	IL_000d: ldarg.0
+	IL_000e: ldarg.1
+	IL_000f: call System.Void YamlConfig::LoadConfigFile(System.String)
+	IL_0014: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: YamlConfig
+	System.Void UpdateConfigValue(Utils.ConfigHandler.ConfigEntry configEntry)
+		ulong local2 = 0
+
+		if (configEntry != 0)
+		    //UNKNOWN CLASS OFFSET READ HERE
+		    //UNKNOWN CLASS OFFSET READ HERE
+
+		    if ( == ConfigEntry`1)
+		          = configEntry.
+
+		        System.Boolean bool = this.GetBool()
+		        configEntry. = bool
+		    endif
+            
+		    //UNKNOWN CLASS OFFSET READ HERE
+
+		    if ( != ConfigEntry`1)
+                goto INSN_181BC30D6
+            endif
+		    System.String Key = configEntry.<Key>k__BackingField
+		      = configEntry.
+
+		    System.String rawString = this.GetRawString(Key) //(String key)
+
+		    System.String string = rawString.ToLower()
+
+		    [instruction error - managed method being called is null]
+
+		    if (string != 0)
+                goto INSN_181BC30CE
+            endif
+		    ulong local12 = 0
+
+		    System.Globalization.CultureInfo invariantCulture = System.Globalization.CultureInfo.InvariantCulture
+
+		    System.Boolean boolean = System.Byte.TryParse()
+
+		    if (boolean != False)
+                goto INSN_181BC30CA
+            endif
+
+		    System.String string2 = System.String.Concat(Key, " has an invalid value, ", string, " is not a valid byte!") //(String str0, String str1, String str2, String str3)
+		    System.Int32 7 = 7
+
+		    ServerConsole.AddLog(string2, 7) //(String q, ConsoleColor color)
+
+		    this.CommentInvalid(Key, "BYTE") //(String key, String type)
+		    configEntry. = 
+
+		    INSN_181BC30CA:
+
+		    INSN_181BC30CE:
+		    configEntry. = 
+
+		    INSN_181BC30D6:
+		      = Key.
+
+		    if ( != ConfigEntry`1)
+                goto INSN_181BC31FF
+            endif
+		    System.String Key2 = configEntry.<Key>k__BackingField
+		      = configEntry.
+
+		    System.String rawString2 = this.GetRawString(Key2) //(String key)
+
+		    [instruction error - managed method being called is null]
+
+		    if (rawString2 != 0)
+                goto INSN_181BC31F6
+            endif
+
+		    System.Boolean boolean2 = System.Char.TryParse()
+
+		    if (boolean2 != False)
+                goto INSN_181BC31F2
+            endif
+
+		    System.String string3 = System.String.Concat(Key2, " has an invalid value, ", rawString2, " is not a valid char!") //(String str0, String str1, String str2, String str3)
+		    System.Int32 7 = 7
+
+		    ServerConsole.AddLog(string3, 7) //(String q, ConsoleColor color)
+
+		    this.CommentInvalid(Key2, "CHAR") //(String key, String type)
+		    configEntry. = 
+
+		    INSN_181BC31F2:
+
+		    INSN_181BC31F6:
+		    configEntry. = 
+
+		    INSN_181BC31FF:
+		      = Key2.
+
+		    if ( != ConfigEntry`1)
+                goto INSN_181BC3399
+            endif
+		    System.String Key3 = configEntry.<Key>k__BackingField
+		      = configEntry.
+
+		    System.String rawString3 = this.GetRawString(Key3) //(String key)
+
+		    System.String string4 = rawString3.ToLower()
+		    ulong local33 = 0
+
+		    [instruction error - managed method being called is null]
+
+		    if (string4 != 0)
+                goto INSN_181BC3390
+            endif
+		    ulong local34 = 0
+
+		    System.String string5 = string4.Replace({'44' (constant value of type System.Char)}, local33) //(Char oldChar, Char newChar)
+		    ulong local36 = 0
+
+		    System.Globalization.CultureInfo invariantCulture2 = System.Globalization.CultureInfo.InvariantCulture
+
+		    System.Boolean boolean3 = System.Decimal.TryParse(string5, 511, invariantCulture2, local34) //(String s, NumberStyles style, IFormatProvider provider, Decimal& result)
+
+		    if (boolean3 != False)
+                goto INSN_181BC338C
+            endif
+
+		    System.String string6 = System.String.Concat(Key3, " has invalid value, ", string4, " is not a valid decimal!") //(String str0, String str1, String str2, String str3)
+		    System.Int32 7 = 7
+
+		    ServerConsole.AddLog(string6, 7) //(String q, ConsoleColor color)
+
+		    this.CommentInvalid(Key3, "DECIMAL") //(String key, String type)
+		    configEntry. = 
+
+		    INSN_181BC338C:
+
+		    INSN_181BC3390:
+		    configEntry. = 
+
+		    INSN_181BC3399:
+		      = Key3.
+
+		    if ( != ConfigEntry`1)
+                goto INSN_181BC352E
+            endif
+		    System.String Key4 = configEntry.<Key>k__BackingField
+
+		    System.String rawString4 = this.GetRawString(Key4) //(String key)
+
+		    System.String string7 = rawString4.ToLower()
+		    ulong local48 = 0
+
+		    [instruction error - managed method being called is null]
+
+		    if (string7 != 0)
+                goto INSN_181BC3524
+            endif
+		    ulong local49 = 0
+
+		    System.String string8 = string7.Replace({'44' (constant value of type System.Char)}, local48) //(Char oldChar, Char newChar)
+		    ulong local51 = 0
+
+		    System.Globalization.CultureInfo invariantCulture3 = System.Globalization.CultureInfo.InvariantCulture
+
+		    System.Boolean boolean4 = System.Double.TryParse(string8, 511, invariantCulture3, local49) //(String s, NumberStyles style, IFormatProvider provider, Double& result)
+
+		    if (boolean4 != False)
+                goto INSN_181BC351F
+            endif
+
+		    System.String string9 = System.String.Concat(Key4, " has invalid value, ", string7, " is not a valid double!") //(String str0, String str1, String str2, String str3)
+		    System.Int32 7 = 7
+
+		    ServerConsole.AddLog(string9, 7) //(String q, ConsoleColor color)
+
+		    this.CommentInvalid(Key4, "DOUBLE") //(String key, String type)
+
+		    INSN_181BC351F:
+
+		    INSN_181BC3524:
+
+		    INSN_181BC352E:
+		      = Key4.
+
+		    if ( != ConfigEntry`1)
+                goto INSN_181BC36A2
+            endif
+		    System.String Key5 = configEntry.<Key>k__BackingField
+		      = configEntry.
+
+		    System.String rawString5 = this.GetRawString(Key5) //(String key)
+
+		    System.String string10 = rawString5.ToLower()
+		    ulong local63 = 0
+
+		    [instruction error - managed method being called is null]
+
+		    if (string10 != 0)
+                goto INSN_181BC3698
+            endif
+		    ulong local64 = 0
+
+		    System.String string11 = string10.Replace({'44' (constant value of type System.Char)}, local63) //(Char oldChar, Char newChar)
+		    ulong local66 = 0
+
+		    System.Globalization.CultureInfo invariantCulture4 = System.Globalization.CultureInfo.InvariantCulture
+
+		    System.Boolean boolean5 = System.Single.TryParse(string11, 511, invariantCulture4, local64) //(String s, NumberStyles style, IFormatProvider provider, Single& result)
+
+		    if (boolean5 != False)
+                goto INSN_181BC3693
+            endif
+
+		    System.String string12 = System.String.Concat(Key5, " has invalid value, ", string10, " is not a valid float!") //(String str0, String str1, String str2, String str3)
+		    System.Int32 7 = 7
+
+		    ServerConsole.AddLog(string12, 7) //(String q, ConsoleColor color)
+
+		    this.CommentInvalid(Key5, "FLOAT") //(String key, String type)
+		    configEntry. = 
+
+		    INSN_181BC3693:
+
+		    INSN_181BC3698:
+		    configEntry. = 
+
+		    INSN_181BC36A2:
+		      = Key5.
+
+		    if ( != ConfigEntry`1)
+                goto INSN_181BC37E3
+            endif
+		    System.String Key6 = configEntry.<Key>k__BackingField
+		      = configEntry.
+
+		    System.String rawString6 = this.GetRawString(Key6) //(String key)
+
+		    System.String string13 = rawString6.ToLower()
+
+		    [instruction error - managed method being called is null]
+
+		    if (string13 != 0)
+                goto INSN_181BC3D3F
+            endif
+		    ulong local78 = 0
+
+		    System.Globalization.CultureInfo invariantCulture5 = System.Globalization.CultureInfo.InvariantCulture
+
+		    System.Boolean boolean6 = System.Int32.TryParse()
+
+		    if (boolean6 != False)
+                goto INSN_181BC3D3C
+            endif
+
+		    System.String string14 = System.String.Concat(Key6, " has an invalid value, ", string13, " is not a valid integer!") //(String str0, String str1, String str2, String str3)
+		    System.Int32 7 = 7
+
+		    ServerConsole.AddLog(string14, 7) //(String q, ConsoleColor color)
+
+		    this.CommentInvalid(Key6, "INT") //(String key, String type)
+		    configEntry. = string12
+
+		    INSN_181BC37E3:
+		      = Key6.
+
+		    if ( != ConfigEntry`1)
+                goto INSN_181BC3926
+            endif
+		    System.String Key7 = configEntry.<Key>k__BackingField
+		      = configEntry.
+
+		    System.String rawString7 = this.GetRawString(Key7) //(String key)
+
+		    System.String string15 = rawString7.ToLower()
+
+		    [instruction error - managed method being called is null]
+
+		    if (string15 != 0)
+                goto INSN_181BC3E8A
+            endif
+		    ulong local90 = 0
+
+		    System.Globalization.CultureInfo invariantCulture6 = System.Globalization.CultureInfo.InvariantCulture
+
+		    System.Boolean boolean7 = System.Int64.TryParse()
+
+		    if (boolean7 != False)
+                goto INSN_181BC3E86
+            endif
+
+		    System.String string16 = System.String.Concat(Key7, " has an invalid value, ", string15, " is not a valid long!") //(String str0, String str1, String str2, String str3)
+		    System.Int32 7 = 7
+
+		    ServerConsole.AddLog(string16, 7) //(String q, ConsoleColor color)
+
+		    this.CommentInvalid(Key7, "LONG") //(String key, String type)
+		    configEntry. = string12
+
+		    INSN_181BC3926:
+		      = Key7.
+
+		    if ( != ConfigEntry`1)
+                goto INSN_181BC3A70
+            endif
+		    System.String Key8 = configEntry.<Key>k__BackingField
+		      = configEntry.
+
+		    System.String rawString8 = this.GetRawString(Key8) //(String key)
+
+		    System.String string17 = rawString8.ToLower()
+
+		    [instruction error - managed method being called is null]
+
+		    if (string17 != 0)
+                goto INSN_181BC3A68
+            endif
+		    ulong local102 = 0
+
+		    System.Globalization.CultureInfo invariantCulture7 = System.Globalization.CultureInfo.InvariantCulture
+
+		    System.Boolean boolean8 = System.SByte.TryParse()
+
+		    if (boolean8 != False)
+                goto INSN_181BC3A64
+            endif
+
+		    System.String string18 = System.String.Concat(Key8, " has an invalid value, ", string17, " is not a valid signed byte!") //(String str0, String str1, String str2, String str3)
+		    System.Int32 7 = 7
+
+		    ServerConsole.AddLog(string18, 7) //(String q, ConsoleColor color)
+
+		    this.CommentInvalid(Key8, "SBYTE") //(String key, String type)
+		    configEntry. = string12
+
+		    INSN_181BC3A64:
+
+		    INSN_181BC3A68:
+		    configEntry. = string12
+
+		    INSN_181BC3A70:
+		      = Key8.
+
+		    if ( != ConfigEntry`1)
+                goto INSN_181BC3BB4
+            endif
+		    System.String Key9 = configEntry.<Key>k__BackingField
+		      = configEntry.
+
+		    System.String rawString9 = this.GetRawString(Key9) //(String key)
+
+		    System.String string19 = rawString9.ToLower()
+
+		    [instruction error - managed method being called is null]
+
+		    if (string19 != 0)
+                goto INSN_181BC3FD7
+            endif
+		    ulong local114 = 0
+
+		    System.Globalization.CultureInfo invariantCulture8 = System.Globalization.CultureInfo.InvariantCulture
+
+		    System.Boolean boolean9 = System.Int16.TryParse()
+
+		    if (boolean9 != False)
+                goto INSN_181BC3FD3
+            endif
+
+		    System.String string20 = System.String.Concat(Key9, " has an invalid value, ", string19, " is not a valid short!") //(String str0, String str1, String str2, String str3)
+		    System.Int32 7 = 7
+
+		    ServerConsole.AddLog(string20, 7) //(String q, ConsoleColor color)
+
+		    this.CommentInvalid(Key9, "SHORT") //(String key, String type)
+		    configEntry. = string12
+
+		    INSN_181BC3BB4:
+		      = Key9.
+
+		    if ( != ConfigEntry`1)
+                goto INSN_181BC3BFF
+            endif
+		      = configEntry.
+		    System.String Key10 = configEntry.<Key>k__BackingField
+
+		    System.String string21 = this.GetString(Key10, "SHORT") //(String key, String def)
+		    this. = string21
+
+		    INSN_181BC3BFF:
+		      = string21.
+
+		    if ( != ConfigEntry`1)
+                goto INSN_181BC3D47
+            endif
+		    System.String Key11 = configEntry.<Key>k__BackingField
+		      = configEntry.
+
+		    System.String rawString10 = this.GetRawString(Key11) //(String key)
+
+		    System.String string22 = rawString10.ToLower()
+
+		    [instruction error - managed method being called is null]
+
+		    if (string22 != 0)
+                goto INSN_181BC3D3F
+            endif
+		    ulong local129 = 0
+
+		    System.Globalization.CultureInfo invariantCulture9 = System.Globalization.CultureInfo.InvariantCulture
+
+		    System.Boolean boolean10 = System.UInt32.TryParse()
+
+		    if (boolean10 != False)
+                goto INSN_181BC3D3C
+            endif
+
+		    System.String string23 = System.String.Concat(Key11, " has an invalid value, ", string22, " is not a valid unsigned integer!") //(String str0, String str1, String str2, String str3)
+		    System.Int32 7 = 7
+
+		    ServerConsole.AddLog(string23, 7) //(String q, ConsoleColor color)
+
+		    this.CommentInvalid(Key11, "UINT") //(String key, String type)
+		    configEntry. = string12
+
+		    INSN_181BC3D3C:
+
+		    INSN_181BC3D3F:
+		    configEntry. = string12
+
+		    INSN_181BC3D47:
+		      = Key11.
+
+		    if ( != ConfigEntry`1)
+                goto INSN_181BC3E93
+            endif
+		    System.String Key12 = configEntry.<Key>k__BackingField
+		      = configEntry.
+
+		    System.String rawString11 = this.GetRawString(Key12) //(String key)
+
+		    System.String string24 = rawString11.ToLower()
+
+		    [instruction error - managed method being called is null]
+
+		    if (string24 != 0)
+                goto INSN_181BC3E8A
+            endif
+		    ulong local141 = 0
+
+		    System.Globalization.CultureInfo invariantCulture10 = System.Globalization.CultureInfo.InvariantCulture
+
+		    System.Boolean boolean11 = System.UInt64.TryParse()
+
+		    if (boolean11 != False)
+                goto INSN_181BC3E86
+            endif
+
+		    System.String string25 = System.String.Concat(Key12, " has an invalid value, ", string24, " is not a valid unsigned long!") //(String str0, String str1, String str2, String str3)
+		    System.Int32 7 = 7
+
+		    ServerConsole.AddLog(string25, 7) //(String q, ConsoleColor color)
+
+		    this.CommentInvalid(Key12, "ULONG") //(String key, String type)
+		    configEntry. = string12
+
+		    INSN_181BC3E86:
+
+		    INSN_181BC3E8A:
+		    configEntry. = string12
+
+		    INSN_181BC3E93:
+		      = Key12.
+
+		    if ( != ConfigEntry`1)
+                goto INSN_181BC3FE0
+            endif
+		    System.String Key13 = configEntry.<Key>k__BackingField
+		      = configEntry.
+
+		    System.String rawString12 = this.GetRawString(Key13) //(String key)
+
+		    System.String string26 = rawString12.ToLower()
+
+		    [instruction error - managed method being called is null]
+
+		    if (string26 != 0)
+                goto INSN_181BC3FD7
+            endif
+		    ulong local153 = 0
+
+		    System.Globalization.CultureInfo invariantCulture11 = System.Globalization.CultureInfo.InvariantCulture
+
+		    System.Boolean boolean12 = System.UInt16.TryParse()
+
+		    if (boolean12 != False)
+                goto INSN_181BC3FD3
+            endif
+
+		    System.String string27 = System.String.Concat(Key13, " has an invalid value, ", string26, " is not a valid unsigned short!") //(String str0, String str1, String str2, String str3)
+		    System.Int32 7 = 7
+
+		    ServerConsole.AddLog(string27, 7) //(String q, ConsoleColor color)
+
+		    this.CommentInvalid(Key13, "USHORT") //(String key, String type)
+		    configEntry. = string12
+
+		    INSN_181BC3FD3:
+
+		    INSN_181BC3FD7:
+		    configEntry. = string12
+
+		    INSN_181BC3FE0:
+		      = Key13.
+
+		    if ( != ConfigEntry`1)
+                goto INSN_181BC40ED
+            endif
+		    System.String Key14 = configEntry.<Key>k__BackingField
+		    System.Collections.Generic.List`1<System.String> dataBuffer = YamlConfig.DataBuffer
+
+		    this.GetStringCollection(Key14, dataBuffer) //(String key, ICollection`1 collection)
+		    System.Collections.Generic.List`1<System.String> dataBuffer2 = YamlConfig.DataBuffer
+		    System.Func`2<System.String,System.Boolean> func = new System.Func`2<System.String,System.Boolean>()
+		    ulong local164 = 0
+
+		    func..ctor(local164, {'Parse' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		    System.Collections.Generic.IEnumerable`1<System.String> iEnumerable = System.Linq.Enumerable.Select<System.String, System.Boolean>(dataBuffer2, func) //(IEnumerable`1 source, Func`2 selector)
+
+		    System.Collections.Generic.List`1<System.Boolean> list = System.Linq.Enumerable.ToList<System.Boolean>(iEnumerable) //(IEnumerable`1 source)
+		    configEntry. = list
+		      = configEntry.
+
+		    INSN_181BC40ED:
+		      = list.
+
+		    if ( != ConfigEntry`1)
+                goto INSN_181BC41FA
+            endif
+		    System.String Key15 = configEntry.<Key>k__BackingField
+		    System.Collections.Generic.List`1<System.String> dataBuffer3 = YamlConfig.DataBuffer
+
+		    this.GetStringCollection(Key15, dataBuffer3) //(String key, ICollection`1 collection)
+		    System.Collections.Generic.List`1<System.String> dataBuffer4 = YamlConfig.DataBuffer
+		    System.Func`2<System.String,System.Byte> func2 = new System.Func`2<System.String,System.Byte>()
+		    ulong local172 = 0
+
+		    func2..ctor(local172, {'Parse' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		    System.Collections.Generic.IEnumerable`1<System.String> iEnumerable2 = System.Linq.Enumerable.Select<System.String, System.Byte>(dataBuffer4, func2) //(IEnumerable`1 source, Func`2 selector)
+
+		    System.Collections.Generic.List`1<System.Byte> list2 = System.Linq.Enumerable.ToList<System.Byte>(iEnumerable2) //(IEnumerable`1 source)
+		    configEntry. = list2
+		      = configEntry.
+
+		    INSN_181BC41FA:
+		      = list2.
+
+		    if ( != ConfigEntry`1)
+                goto INSN_181BC4307
+            endif
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.UnknownClassOffsetReadAction at (0x181BC2F41) is corrupt (Unknown class offset read) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: YamlConfig
+	static System.String[] Filter(System.Collections.Generic.IEnumerable`1<System.String> lines)
+		System.Func`2<System.String,System.Boolean> <>9__17_0 = YamlConfig/<>c.<>9__17_0
+
+		if (<>9__17_0 == 0)
+		    YamlConfig/<>c <>c = YamlConfig/<>c.<>9
+		    System.Func`2<System.String,System.Boolean> func = new System.Func`2<System.String,System.Boolean>()
+
+		    func..ctor(<>c, {'<Filter>b__17_0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		     += 8
+		    YamlConfig/<>c.<>9 = func
+		endif
+        
+
+		System.Collections.Generic.IEnumerable`1<System.String> iEnumerable = System.Linq.Enumerable.Where<System.String>(lines, <>9__17_0) //(IEnumerable`1 source, Func`2 predicate)
+
+		System.String[] stringArray = System.Linq.Enumerable.ToArray<System.String>(iEnumerable) //(IEnumerable`1 source)
+		return stringArray
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x181BBE7F2) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: YamlConfig
+	System.Void LoadConfigFile(System.String path)
+
+		[instruction error - managed method being called is null]
+
+		if ( == 0)
+		    this.Path = path
+
+		    YamlConfig.RemoveInvalid(path) //(String path)
+		    System.String path = this.Path
+
+		    System.Boolean boolean = path.EndsWith("config_gameplay.txt") //(String value)
+
+		    if (boolean == False)
+                goto INSN_181BC19B6
+            endif
+
+		    if (this._afteradding != False)
+                goto INSN_181BC19B6
+            endif
+
+		    System.Boolean boolean2 = FileManager.FileExists("ConfigTemplates/config_gameplay.template.txt") //(String path)
+
+		    if (boolean2 == False)
+                goto INSN_181BC19B6
+            endif
+
+		    YamlConfig.AddMissingTemplateKeys()
+
+		    System.String[] stringArray = FileManager.ReadAllLines(path) //(String path)
+		    this._rawDataUnfiltered = stringArray
+		    System.Func`2<System.String,System.Boolean> <>9__17_0 = YamlConfig/<>c.<>9__17_0
+
+		    if (<>9__17_0 == 0)
+		        YamlConfig/<>c <>c = YamlConfig/<>c.<>9
+		        System.Func`2<System.String,System.Boolean> func = new System.Func`2<System.String,System.Boolean>()
+
+		        func..ctor(<>c, {'<Filter>b__17_0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		         += 8
+		        YamlConfig/<>c.<>9 = func
+		    endif
+            
+
+		    System.Collections.Generic.IEnumerable`1<System.String> iEnumerable = System.Linq.Enumerable.Where<System.String>()
+
+		    System.String[] stringArray2 = System.Linq.Enumerable.ToArray<System.String>(iEnumerable) //(IEnumerable`1 source)
+
+		    if (this._virtual != False)
+                goto INSN_181BC1989
+            endif
+
+		    INSN_181BC1989:
+		    this._rawData = stringArray2
+
+		    base.UpdateRegisteredConfigValues()
+		endif
+        
+		return
+
+		INSN_181BC19B6:
+		System.String path2 = this.Path
+
+		System.Boolean boolean3 = path2.EndsWith("config_remoteadmin.txt") //(String value)
+
+		if (boolean3 != False)
+
+		    if (this._afteradding == False)
+
+		        YamlConfig.AddMissingRoleVars()
+
+		        YamlConfig.AddMissingPerms()
+		        throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181BC16F0) is corrupt (Don't know what method is being called) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: YamlConfig
+	static System.Void RemoveDeprecated(System.String path)
+
+		System.Collections.Generic.List`1<System.String> list = FileManager.ReadAllLinesList(path) //(String path)
+		System.Int32 _size = list._size
+		ulong local4 = 0
+		System.String[] _deprecatedconfigs = YamlConfig._deprecatedconfigs
+
+		if (local4 < _deprecatedconfigs.Length)
+		    System.String[] _deprecatedconfigs2 = YamlConfig._deprecatedconfigs
+		    System.String string = _deprecatedconfigs2[local4]
+
+		    System.String string2 = System.String.Concat(string, ":") //(String str0, String str1)
+
+		    System.Boolean boolean = .StartsWith(string2) //(String value)
+
+		    if (boolean != False)
+
+		        if (_size != 0)
+		            System.Int32 local12 = _size - 1
+
+		            System.Boolean boolean2 = System.String.op_Inequality()
+
+		            if (boolean2 == False)
+                        goto INSN_181BC2079
+                    endif
+		        endif
+                
+
+		        list.Insert(_size, "#REMOVED FROM GAME - REDUNDANT") //(Int32 index, T item)
+		    endif
+            
+		    local4 += 1
+		endwhile
+        
+		goto INSN_181BC1F90
+        
+		ulong local16 = 0
+
+		FileManager.WriteToFile(list, path, local16) //(IEnumerable`1 data, String path, Boolean removeempty)
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181BC202C) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: YamlConfig
+	static System.Void AddMissingPerms(System.String path, System.Boolean& _afteradding)
+		YamlConfig/<>c__DisplayClass20_0 enumeratorInstance = new YamlConfig/<>c__DisplayClass20_0()
+
+		enumeratorInstance..ctor()
+
+		System.Collections.Generic.List`1<System.String> stringList = YamlConfig.GetStringList("Permissions", path) //(String key, String path)
+
+		System.String[] stringArray = stringList.ToArray()
+		enumeratorInstance.perms = stringArray
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'PlayerPermissions' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+
+		System.String[] names = System.Enum.GetNames(typeFromHandle) //(Type enumType)
+		System.String[] perms = enumeratorInstance.perms
+		System.Int32 length = names.Length
+
+		if (perms.Length != length)
+		    System.Func`2<System.String,<>f__AnonymousType1`2<System.String,System.Boolean>> func = new System.Func`2<System.String,<>f__AnonymousType1`2<System.String,System.Boolean>>()
+
+		    func..ctor(enumeratorInstance, {'<AddMissingPerms>b__0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		    System.Collections.Generic.IEnumerable`1<System.String> iEnumerable = System.Linq.Enumerable.Select<System.String, <>f__AnonymousType1`2<System.String,System.Boolean>>(names, func) //(IEnumerable`1 source, Func`2 selector)
+		    System.Func`2<<>f__AnonymousType1`2<System.String,System.Boolean>,System.Boolean> <>9__20_1 = YamlConfig/<>c.<>9__20_1
+
+		    if (<>9__20_1 == 0)
+		        YamlConfig/<>c <>c = YamlConfig/<>c.<>9
+		        System.Func`2<<>f__AnonymousType1`2<System.String,System.Boolean>,System.Boolean> func2 = new System.Func`2<<>f__AnonymousType1`2<System.String,System.Boolean>,System.Boolean>()
+
+		        func2..ctor(<>c, {'<AddMissingPerms>b__20_1' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		         += 16
+		        YamlConfig/<>c.<>9 = func2
+		    endif
+            
+
+		    System.Collections.Generic.IEnumerable`1<<>f__AnonymousType1`2<System.String,System.Boolean>> iEnumerable2 = System.Linq.Enumerable.Where<<>f__AnonymousType1`2<System.String,System.Boolean>>(iEnumerable, <>9__20_1) //(IEnumerable`1 source, Func`2 predicate)
+		    System.Func`2<<>f__AnonymousType1`2<System.String,System.Boolean>,System.String> <>9__20_2 = YamlConfig/<>c.<>9__20_2
+
+		    if (<>9__20_2 != 0)
+                goto INSN_181BBD69D
+            endif
+		    YamlConfig/<>c <>c2 = YamlConfig/<>c.<>9
+		    System.Func`2<<>f__AnonymousType1`2<System.String,System.Boolean>,System.String> func3 = new System.Func`2<<>f__AnonymousType1`2<System.String,System.Boolean>,System.String>()
+
+		    func3..ctor(<>c2, {'<AddMissingPerms>b__20_2' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		     += 24
+		    YamlConfig/<>c.<>9 = func3
+
+		    INSN_181BBD69D:
+
+		    System.Collections.Generic.IEnumerable`1<<>f__AnonymousType1`2<System.String,System.Boolean>> iEnumerable3 = System.Linq.Enumerable.Select<<>f__AnonymousType1`2<System.String,System.Boolean>, System.String>(iEnumerable2, func3) //(IEnumerable`1 source, Func`2 selector)
+
+		    System.Collections.Generic.List`1<System.String> list = System.Linq.Enumerable.ToList<System.String>(iEnumerable3) //(IEnumerable`1 source)
+
+		    System.Collections.Generic.List`1<System.String> list2 = FileManager.ReadAllLinesList(path) //(String path)
+		    ulong local26 = 0
+		    System.Int32 32 = 32
+		    System.Int32 _size = list2._size
+
+		    if (local26 >= _size)
+                goto INSN_181BBD74C
+            endif
+		    ulong local28 = 0
+
+		    System.ThrowHelper.ThrowArgumentOutOfRangeException()
+		    T[] _items = list2._items
+		     local31 = _items[]
+
+		    [instruction error - managed method being called is null]
+
+		    if (_items == 0)
+                goto INSN_181BBD742
+            endif
+		    System.Int32 1 = 1
+
+		    list2.InsertRange(1, list) //(Int32 index, IEnumerable`1 collection)
+
+		    INSN_181BBD742:
+		    local26 += 1
+		     += 8
+
+		    INSN_181BBD74C:
+		    ulong local33 = 0
+
+		    FileManager.WriteToFile(list2, path, local33) //(IEnumerable`1 data, String path, Boolean removeempty)
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL Generation Skipped due to invalid local _items of type T[]
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: YamlConfig
+	static System.Void AddMissingRoleVars(System.String path)
+		YamlConfig/<>c__DisplayClass21_0 enumeratorInstance = new YamlConfig/<>c__DisplayClass21_0()
+
+		enumeratorInstance..ctor()
+
+		System.String string = TimeBehaviour.FormatTime("yyyy/MM/dd HH:mm:ss") //(String format)
+
+		System.Collections.Generic.List`1<System.String> stringList = YamlConfig.GetStringList("Roles", path) //(String key, String path)
+		NorthwoodLib.Pools.ListPool`1<T> shared = NorthwoodLib.Pools.ListPool`1.Shared
+
+		System.Collections.Generic.List`1<T> list = shared.Rent()
+
+		System.String string2 = FileManager.ReadAllText(path) //(String path)
+		enumeratorInstance.config = string2
+
+		System.Collections.Generic.List`1/Enumerator<T> enumerator = .GetEnumerator()
+
+		if (enumerator != 0)
+		    YamlConfig/<>c__DisplayClass21_1 enumeratorInstance2 = new YamlConfig/<>c__DisplayClass21_1()
+
+		    enumeratorInstance2..ctor()
+		    enumeratorInstance2.CS$<>8__locals1 = enumeratorInstance
+		    enumeratorInstance2.role = enumeratorInstance
+		    System.String[] _rolevars = YamlConfig._rolevars
+		    System.Func`2<System.String,System.Boolean> func = new System.Func`2<System.String,System.Boolean>()
+
+		    func..ctor(enumeratorInstance2, {'<AddMissingRoleVars>b__0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		    System.Collections.Generic.IEnumerable`1<System.String> iEnumerable = System.Linq.Enumerable.Where<System.String>(_rolevars, func) //(IEnumerable`1 source, Func`2 predicate)
+		    System.Func`2<System.String,System.String> func2 = new System.Func`2<System.String,System.String>()
+
+		    func2..ctor(enumeratorInstance2, {'<AddMissingRoleVars>b__1' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		    System.Collections.Generic.IEnumerable`1<System.String> iEnumerable2 = System.Linq.Enumerable.Select<System.String, System.String>(iEnumerable, func2) //(IEnumerable`1 source, Func`2 selector)
+
+		    list.AddRange(iEnumerable2) //(IEnumerable`1 collection)
+		endif
+        
+
+		[instruction error - managed method being called is null]
+
+		[instruction error - managed method being called is null]
+
+		if (constant30 != 0)
+            goto INSN_181BBDB28
+        endif
+
+		if ( <= 0)
+            goto INSN_181BBDAB9
+        endif
+
+		YamlConfig.Write()
+
+		INSN_181BBDAB9:
+		NorthwoodLib.Pools.ListPool`1<T> shared2 = NorthwoodLib.Pools.ListPool`1.Shared
+
+		shared2.Return(list) //(List`1 list)
+		return
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+
+		INSN_181BBDB28:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181BBD8F1) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: YamlConfig
+	static System.Void AddMissingTemplateKeys(System.String templatepath, System.String path, System.Boolean& _afteradding)
+
+		System.String string = TimeBehaviour.FormatTime("yyyy/MM/dd HH:mm:ss") //(String format)
+
+		System.String string2 = FileManager.ReadAllText(path) //(String path)
+
+		System.String[] stringArray = FileManager.ReadAllLines(templatepath) //(String path)
+		NorthwoodLib.Pools.ListPool`1<T> shared = NorthwoodLib.Pools.ListPool`1.Shared
+
+		System.Collections.Generic.List`1<T> list = shared.Rent()
+		NorthwoodLib.Pools.ListPool`1<T> shared2 = NorthwoodLib.Pools.ListPool`1.Shared
+
+		System.Collections.Generic.List`1<T> list2 = shared2.Rent()
+		NorthwoodLib.Pools.ListPool`1<T> shared3 = NorthwoodLib.Pools.ListPool`1.Shared
+
+		System.Collections.Generic.List`1<T> list3 = shared3.Rent()
+		ulong local17 = 0
+		ulong local18 = 0
+		System.Int32 length = stringArray.Length
+
+		if (local18 < length)
+		    System.String string3 = stringArray[local17]
+
+		    System.Boolean boolean = string3.StartsWith("#") //(String value)
+
+		    if (boolean == False)
+		        System.String string4 = stringArray[local17]
+
+		        System.Boolean boolean2 = string4.StartsWith(" -") //(String value)
+
+		        if (boolean2 == False)
+		            System.String string5 = stringArray[local17]
+
+		            System.Boolean boolean3 = string5.Contains(":") //(String value)
+
+		            if (boolean3 != False)
+		                System.Int32 length2 = stringArray.Length
+		                System.Int32 1 = 1
+
+		                if (1 < length2)
+		                    System.Int32 1 = 1
+		                    System.String string6 = stringArray[]
+
+		                    System.Boolean boolean4 = string6.StartsWith(" -") //(String value)
+
+		                    if (boolean4 != False)
+                                goto INSN_181BBDDAD
+                            endif
+		                endif
+                        
+		                System.String string7 = stringArray[local17]
+
+		                System.Boolean boolean5 = string7.EndsWith("[]") //(String value)
+
+		                if (boolean5 == False)
+                            goto INSN_181BBDDCD
+                        endif
+
+		                INSN_181BBDDAD:
+		                System.String string8 = stringArray[local17]
+		            else
+		                System.String string9 = stringArray[local17]
+
+		                System.Boolean boolean6 = string9.StartsWith("#") //(String value)
+
+		                if (boolean6 != False)
+                            goto INSN_181BBDEA6
+                        endif
+		                System.String string10 = stringArray[local17]
+
+		                System.Boolean boolean7 = string10.Contains(":") //(String value)
+
+		                if (boolean7 == False)
+                            goto INSN_181BBDEA6
+                        endif
+		                System.String string11 = stringArray[local17]
+
+		                System.Boolean boolean8 = string11.StartsWith(" -") //(String value)
+
+		                if (boolean8 != False)
+                            goto INSN_181BBDEA6
+                        endif
+		                System.String string12 = stringArray[local17]
+
+		                System.Int32 int32 = string12.IndexOf({'58' (constant value of type System.Char)}) //(Char value)
+		                System.Int32 local49 = int32 + 1
+		                ulong local51 = 0
+
+		                System.String string13 = string12.Substring(local51, local49) //(Int32 startIndex, Int32 length)
+		            endif
+                    
+
+		            list2.Add()
+
+		            INSN_181BBDEA6:
+		            local17 += 1
+		        endif
+                
+
+		        System.Collections.Generic.List`1/Enumerator<T> enumerator = length.GetEnumerator()
+
+		        if (enumerator == 0)
+                    goto INSN_181BBDF52
+                endif
+
+		        System.Boolean boolean9 = path.Contains(local17) //(String value)
+
+		        if (boolean9 != False)
+                    goto INSN_181BBDEF0
+                endif
+
+		        System.String string14 = System.String.Concat(local17, " default") //(String str0, String str1)
+
+		        list3.Add()
+
+		        INSN_181BBDF52:
+		        ulong local58 = 0
+
+		        list3.Dispose()
+
+		        list3.Dispose()
+
+		        if (list3 != 0)
+                    goto INSN_181BBE4B0
+                endif
+
+		        if (local58 == -1)
+                    goto INSN_181BBDFCA
+                endif
+
+		        if (constant75 != 339)
+                    goto INSN_181BBDFCA
+                endif
+
+		        INSN_181BBDFCA:
+		        NorthwoodLib.Pools.ListPool`1<T> shared4 = NorthwoodLib.Pools.ListPool`1.Shared
+
+		        shared4.Return(list2) //(List`1 list)
+
+		        System.String[] stringArray2 = System.Linq.Enumerable.ToArray<System.String>(list3) //(IEnumerable`1 source)
+
+		        if (stringArray2.Length == 0)
+                    goto INSN_181BBE0B5
+                endif
+		        ulong local61 = 0
+
+		        System.String string15 = System.String.Join("
+                ", stringArray2) //(String separator, String[] value)
+
+		        YamlConfig.Write(string15, stringArray2, local61) //(String text, String path, String& time)
+
+		        INSN_181BBE0B5:
+		        NorthwoodLib.Pools.ListPool`1<T> shared5 = NorthwoodLib.Pools.ListPool`1.Shared
+
+		        shared5.Return(list3) //(List`1 list)
+
+		        System.Collections.Generic.List`1/Enumerator<T> enumerator2 = shared5.GetEnumerator()
+
+		        if (enumerator2 == 0)
+                    goto INSN_181BBE355
+                endif
+
+		        System.Boolean boolean10 = string15.Contains()
+
+		        if (boolean10 != False)
+                    goto INSN_181BBE120
+                endif
+		        ulong local68 = 0
+		        System.Collections.Generic.List`1<System.String> list4 = new System.Collections.Generic.List`1<System.String>()
+
+		        list4..ctor()
+
+		        list4.Add("#LIST") //(T item)
+
+		        list4.Add()
+		        ulong local70 = 0
+
+		        while (local70 < stringArray.Length)
+		            System.String string16 = stringArray[local70]
+
+		            System.Boolean boolean11 = string16.StartsWith()
+
+		            if (boolean11 != False)
+
+		                System.Boolean boolean12 = string16.EndsWith("[]") //(String value)
+
+		                if (boolean12 != False)
+
+		                    list4.Clear()
+		                    System.String[] local76 = new System.String[2]
+
+		                    if ("#LIST - [] equals to empty" != 0)
+
+		                        if ("#LIST - [] equals to empty" == 0)
+                                    goto INSN_181BBE4C7
+                                endif
+		                    endif
+                            
+		                    local76[0] = "#LIST - [] equals to empty"
+
+		                    if ("#LIST - [] equals to empty" == 0)
+                                goto INSN_181BBE4E5
+                            endif
+		                    local76[1] = string16
+
+		                    list4.AddRange(local76) //(IEnumerable`1 collection)
+
+		                    YamlConfig.Write()
+		                endif
+                        
+
+		                System.Boolean boolean13 = string16.StartsWith()
+
+		                if (boolean13 != False)
+                            goto INSN_181BBE34B
+                        endif
+
+		                if (local68 == 0)
+                            goto INSN_181BBE34E
+                        endif
+
+		                System.Boolean boolean14 = string16.StartsWith(" - ") //(String value)
+
+		                if (boolean14 != False)
+                            goto INSN_181BBE332
+                        endif
+
+		                System.Boolean boolean15 = string16.StartsWith("#") //(String value)
+
+		                if (boolean15 != False)
+                            goto INSN_181BBE34E
+                        endif
+
+		                INSN_181BBE332:
+
+		                list4.Add(string16) //(T item)
+		                local70 += 1
+		            endwhile
+                    
+		            goto INSN_181BBE2B4
+                    
+
+		            INSN_181BBE34E:
+		            local70 += 1
+
+		            INSN_181BBE355:
+		            local70. = 629
+
+		            list4.Dispose()
+
+		            list4.Dispose()
+
+		            if (list4 != 0)
+                        goto INSN_181BBE518
+                    endif
+		            NorthwoodLib.Pools.ListPool`1<T> shared6 = NorthwoodLib.Pools.ListPool`1.Shared
+
+		            shared6.Return()
+		            return
+		            throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ArrayElementReadToRegAction at (0x181BBDD61) is corrupt (Array, offset, or destination is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: YamlConfig
+	static System.Void Write(System.Collections.Generic.IEnumerable`1<System.String> text, System.String path, System.String& time)
+
+		System.String[] stringArray = System.Linq.Enumerable.ToArray<System.String>(text) //(IEnumerable`1 source)
+
+		if (stringArray.Length != 0)
+
+		    System.String string = System.String.Join("
+            ", stringArray) //(String separator, String[] value)
+
+		    YamlConfig.Write(string, path, time) //(String text, String path, String& time)
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call TSource[] System.Linq.Enumerable::ToArray<System.String>(System.Collections.Generic.IEnumerable`1)
+	IL_0006: stloc.0
+	IL_0007: ldloc.0
+	IL_0008: call System.Int32 System.Array::get_Length()
+	IL_000d: ldc.i4.0
+	IL_000e: beq.s IL_0022
+	IL_0010: ldstr "
+"
+	IL_0015: ldloc.0
+	IL_0016: call System.String System.String::Join(System.String,System.String[])
+	IL_001b: ldarg.1
+	IL_001c: ldarg.2
+	IL_001d: call System.Void YamlConfig::Write(System.String,System.String,System.String&)
+	IL_0022: ret
+	IL_0023: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0028: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: YamlConfig
+	static System.Void Write(System.String text, System.String path, System.String& time)
+		ulong local3 = 0
+
+		System.IO.StreamWriter streamWriter = System.IO.File.AppendText(path) //(String path)
+		System.Int32 6 = 6
+		System.String[] local6 = new System.String[0]
+
+		if ("
+        
+        #ADDED BY CONFIG VALIDATOR - " != 0)
+
+		    if ("
+            
+            #ADDED BY CONFIG VALIDATOR - " == 0)
+                goto INSN_181BC5342
+            endif
+		endif
+        
+		local6[0] = "
+        
+        #ADDED BY CONFIG VALIDATOR - "
+
+		if (constant17 == 0)
+            goto INSN_181BC5192
+        endif
+
+		if ("
+        
+        #ADDED BY CONFIG VALIDATOR - " == 0)
+            goto INSN_181BC5361
+        endif
+
+		INSN_181BC5192:
+		local6[1] = constant17
+
+		if (" Game version: " == 0)
+            goto INSN_181BC51D6
+        endif
+
+		if (" Game version: " == 0)
+            goto INSN_181BC537F
+        endif
+
+		INSN_181BC51D6:
+		local6[2] = " Game version: "
+		System.String versionString = GameCore.Version.VersionString
+
+		if (versionString == 0)
+            goto INSN_181BC523F
+        endif
+
+		if (constant36 == 0)
+            goto INSN_181BC539D
+        endif
+
+		INSN_181BC523F:
+		local6[3] = versionString
+
+		if ("
+        " == 0)
+            goto INSN_181BC5283
+        endif
+
+		if ("
+        " == 0)
+            goto INSN_181BC53BB
+        endif
+
+		INSN_181BC5283:
+		local6[4] = "
+        "
+
+		if (text == 0)
+            goto INSN_181BC52B9
+        endif
+
+		if ("
+        " == 0)
+            goto INSN_181BC53D9
+        endif
+
+		INSN_181BC52B9:
+		local6[5] = text
+
+		System.String string = System.String.Concat(local6) //(String[] values)
+
+		streamWriter.Write(string) //(Char[] buffer, Int32 index, Int32 count)
+
+		if (streamWriter == 0)
+            goto INSN_181BC5324
+        endif
+
+		INSN_181BC5324:
+
+		if (local3 != 0)
+            goto INSN_181BC5402
+        endif
+		return
+
+		INSN_181BC5342:
+		throw new System.IndexOutOfRangeException()
+
+		INSN_181BC5361:
+		throw new System.IndexOutOfRangeException()
+
+		INSN_181BC537F:
+		throw new System.IndexOutOfRangeException()
+
+		INSN_181BC539D:
+		throw new System.IndexOutOfRangeException()
+
+		INSN_181BC53BB:
+		throw new System.IndexOutOfRangeException()
+
+		INSN_181BC53D9:
+		throw new System.IndexOutOfRangeException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+
+		INSN_181BC5402:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfZeroOrNullAction at (0x181BC5178) is corrupt (ConstantDefinition: Don't know how to get IL to load a Cpp2IL.Core.Analysis.Il2CppClassIdentifier) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: YamlConfig
+	static System.Void RemoveInvalid(System.String path)
+
+		System.String[] stringArray = FileManager.ReadAllLines(path) //(String path)
+		ulong local3 = 0
+		ulong local4 = 0
+		System.Int32 length = stringArray.Length
+
+		if (local3 < length)
+		    System.String string = stringArray[local3]
+
+		    System.Boolean boolean = string.StartsWith("#") //(String value)
+
+		    if (boolean == False)
+		        System.String string2 = stringArray[local3]
+
+		        System.Boolean boolean2 = string2.StartsWith(" -") //(String value)
+
+		        if (boolean2 == False)
+		            System.String string3 = stringArray[local3]
+
+		            System.Boolean boolean3 = string3.Contains(":") //(String value)
+
+		            if (boolean3 == False)
+		                System.String string4 = stringArray[local3]
+
+		                System.String string5 = string4.Replace(" ", "") //(String oldValue, String newValue)
+
+		                [instruction error - managed method being called is null]
+
+		                if (string5 == 0)
+		                    System.String string6 = stringArray[local3]
+
+		                    System.String string7 = System.String.Concat("#INVALID - ", string6) //(String str0, String str1)
+
+		                    if (string7 != 0)
+
+		                        if (string7 == 0)
+                                    goto INSN_181BC22D9
+                                endif
+		                    endif
+                            
+		                    throw new System.IndexOutOfRangeException()
+		                endif
+                        
+		                local3 += 1
+		            endif
+                    
+
+		            if (local4 == 0)
+                        goto INSN_181BC22BA
+                    endif
+		            ulong local24 = 0
+
+		            FileManager.WriteToFile(stringArray, path, local24) //(IEnumerable`1 data, String path, Boolean removeempty)
+
+		            INSN_181BC22BA:
+		            return
+		            throw new System.NullReferenceException()
+
+		            INSN_181BC22D9:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181BC222A) is corrupt (Don't know what method is being called) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: YamlConfig
+	System.Void CommentInvalid(System.String key, System.String type)
+
+		if (this._virtual == False)
+		    System.String[] _rawDataUnfiltered = this._rawDataUnfiltered
+		    ulong local4 = 0
+
+		    while (local4 < _rawDataUnfiltered.Length)
+		        System.String string = _rawDataUnfiltered[local4]
+
+		        System.String string2 = System.String.Concat(key, ": ") //(String str0, String str1)
+		        System.Int32 4 = 4
+
+		        System.Boolean boolean = string.StartsWith(string2, 4) //(String value, StringComparison comparisonType)
+
+		        if (boolean != False)
+		            System.String[] _rawDataUnfiltered2 = this._rawDataUnfiltered
+		            System.String string3 = _rawDataUnfiltered2[local4]
+
+		            System.String string4 = System.String.Concat("#INVALID ", type, " - ", string3) //(String str0, String str1, String str2, String str3)
+
+		            if (string4 != 0)
+
+		                if (string4 == 0)
+                            goto INSN_181BBE6F6
+                        endif
+		            endif
+                    
+		            throw new System.IndexOutOfRangeException()
+		        endif
+                
+		        System.String[] _rawDataUnfiltered3 = this._rawDataUnfiltered
+		        local4 += 1
+		    endwhile
+            
+		    System.String[] _rawDataUnfiltered4 = this._rawDataUnfiltered
+		    System.String path = this.Path
+		    ulong local18 = 0
+
+		    FileManager.WriteToFile(_rawDataUnfiltered4, path, local18) //(IEnumerable`1 data, String path, Boolean removeempty)
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+		INSN_181BBE6F6:
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Boolean YamlConfig::_virtual
+	IL_0006: ldc.i4.0
+	IL_0007: bne.un IL_0099
+	IL_000c: ldarg.0
+	IL_000d: ldfld System.String[] YamlConfig::_rawDataUnfiltered
+	IL_0012: stloc.0
+	IL_0013: ldc.i4.0
+	IL_0014: stloc.1
+	IL_0015: ldloc.1
+	IL_0016: ldloc.0
+	IL_0017: call System.Int32 System.Array::get_Length()
+	IL_001c: bge.s IL_007b
+	IL_001e: ldloc.0
+	IL_001f: ldloc.1
+	IL_0020: ldelem.any System.String
+	IL_0025: stloc.2
+	IL_0026: ldarg.1
+	IL_0027: ldstr ": "
+	IL_002c: call System.String System.String::Concat(System.String,System.String)
+	IL_0031: stloc.3
+	IL_0032: ldloc.2
+	IL_0033: ldloc.3
+	IL_0034: ldc.i4.4
+	IL_0035: call System.Boolean System.String::StartsWith(System.String,System.StringComparison)
+	IL_003a: ldc.i4.0
+	IL_003b: beq.s IL_006f
+	IL_003d: ldarg.0
+	IL_003e: ldfld System.String[] YamlConfig::_rawDataUnfiltered
+	IL_0043: ldloc.1
+	IL_0044: ldelem.any System.String
+	IL_0049: stloc.s V_4
+	IL_004b: ldstr "#INVALID "
+	IL_0050: ldarg.2
+	IL_0051: ldstr " - "
+	IL_0056: ldloc.s V_4
+	IL_0058: call System.String System.String::Concat(System.String,System.String,System.String,System.String)
+	IL_005d: stloc.s V_5
+	IL_005f: ldloc.s V_5
+	IL_0061: ldc.i4.0
+	IL_0062: beq.s IL_0069
+	IL_0064: ldloc.s V_5
+	IL_0066: ldc.i4.0
+	IL_0067: beq.s IL_0000
+	IL_0069: newobj System.Void System.IndexOutOfRangeException::.ctor()
+	IL_006e: throw
+	IL_006f: ldarg.0
+	IL_0070: ldfld System.String[] YamlConfig::_rawDataUnfiltered
+	IL_0075: stloc.s V_6
+	IL_0077: ldloc.1
+	IL_0078: ldc.i4.1
+	IL_0079: add
+	IL_007a: stloc.1
+	IL_007b: ldarg.0
+	IL_007c: ldfld System.String[] YamlConfig::_rawDataUnfiltered
+	IL_0081: stloc.s V_7
+	IL_0083: ldarg.0
+	IL_0084: ldfld System.String YamlConfig::Path
+	IL_0089: stloc.s V_8
+	IL_008b: ldc.i4.0
+	IL_008c: stloc.s V_9
+	IL_008e: ldloc.s V_7
+	IL_0090: ldloc.s V_8
+	IL_0092: ldloc.s V_9
+	IL_0094: call System.Void FileManager::WriteToFile(System.Collections.Generic.IEnumerable`1,System.String,System.Boolean)
+	IL_0099: ret
+	IL_009a: newobj System.Void System.NullReferenceException::.ctor()
+	IL_009f: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: YamlConfig
+	System.Boolean Reload()
+
+		if (this._virtual == False)
+		    System.String path = this.Path
+
+		    System.Boolean isNullOrEmpty = System.String.IsNullOrEmpty(path) //(String value)
+
+		    if (isNullOrEmpty == False)
+		        System.String path2 = this.Path
+
+		        this.LoadConfigFile(path2) //(String path)
+		        return True
+		    endif
+            
+		    ulong local6 = 0
+		    return local6
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x181BC1EEC) is corrupt (Return value has a type of System.Int32, expecting an object of type System.Boolean) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: YamlConfig
+	System.Boolean TryGetString(System.String key, System.String& value)
+
+		if (this._virtual != False)
+		else
+		    System.String[] _rawData = this._rawData
+		endif
+        
+		ulong local5 = 0
+		System.Int32 length = _rawData.Length
+
+		if (local5 >= length)
+            goto INSN_181BC2EBB
+        endif
+		System.String string = _rawData[local5]
+
+		System.String string2 = System.String.Concat(key, ": ") //(String str0, String str1)
+
+		System.Boolean boolean = string.StartsWith(string2) //(String value)
+
+		if (boolean != False)
+            goto INSN_181BC2E7A
+        endif
+		local5 += 1
+
+		INSN_181BC2E7A:
+		System.Int32 m_stringLength = key.m_stringLength
+		m_stringLength += 2
+
+		System.String string3 = string.Substring(m_stringLength) //(Int32 startIndex)
+		value. = string3
+		System.Int64 local15 = 1
+		return local15
+
+		INSN_181BC2EBB:
+		value. = "default"
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.RegToFieldAction at (0x181BC2E93) is corrupt (Instance or field is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: YamlConfig
+	System.String GetRawString(System.String key)
+		ulong local2 = 0
+
+		if (this._virtual != local2)
+		else
+		    System.String[] _rawData = this._rawData
+		endif
+        
+		System.Int32 length = _rawData.Length
+
+		if (local2 >= length)
+            goto INSN_181BBFD3C
+        endif
+		System.String string = _rawData[local2]
+
+		System.String string2 = System.String.Concat(key, ": ") //(String str0, String str1)
+
+		System.Boolean boolean = string.StartsWith(string2) //(String value)
+
+		if (boolean != False)
+            goto INSN_181BBFCFA
+        endif
+		local2 += 1
+
+		INSN_181BBFCFA:
+		System.Int32 m_stringLength = key.m_stringLength
+		m_stringLength += 2
+
+		System.String string3 = string.Substring(m_stringLength) //(Int32 startIndex)
+		return string3
+
+		INSN_181BBFD3C:
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: ldarg.0
+	IL_0003: ldfld System.Boolean YamlConfig::_virtual
+	IL_0008: ldloc.0
+	IL_0009: beq.s IL_000b
+	IL_000b: ldarg.0
+	IL_000c: ldfld System.String[] YamlConfig::_rawData
+	IL_0011: stloc.1
+	IL_0012: ldloc.1
+	IL_0013: call System.Int32 System.Array::get_Length()
+	IL_0018: stloc.2
+	IL_0019: ldloc.0
+	IL_001a: ldloc.2
+	IL_001b: bge.s IL_0058
+	IL_001d: ldloc.1
+	IL_001e: ldloc.0
+	IL_001f: ldelem.any System.String
+	IL_0024: stloc.3
+	IL_0025: ldarg.1
+	IL_0026: ldstr ": "
+	IL_002b: call System.String System.String::Concat(System.String,System.String)
+	IL_0030: stloc.s V_4
+	IL_0032: ldloc.3
+	IL_0033: ldloc.s V_4
+	IL_0035: call System.Boolean System.String::StartsWith(System.String)
+	IL_003a: ldc.i4.0
+	IL_003b: bne.un.s IL_0041
+	IL_003d: ldloc.0
+	IL_003e: ldc.i4.1
+	IL_003f: add
+	IL_0040: stloc.0
+	IL_0041: ldarg.1
+	IL_0042: ldfld System.Int32 System.String::m_stringLength
+	IL_0047: stloc.s V_5
+	IL_0049: ldloc.s V_5
+	IL_004b: ldc.i4.2
+	IL_004c: add
+	IL_004d: stloc.s V_5
+	IL_004f: ldloc.3
+	IL_0050: ldloc.s V_5
+	IL_0052: call System.String System.String::Substring(System.Int32)
+	IL_0057: ret
+	IL_0058: newobj System.Void System.NullReferenceException::.ctor()
+	IL_005d: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: YamlConfig
+	System.Void SetString(System.String key, System.String value)
+
+		if (this._virtual == False)
+		    System.String path = this.Path
+
+		    [instruction error - managed method being called is null]
+
+		    if ( == 0)
+		        System.String path2 = this.Path
+
+		        this.LoadConfigFile(path2) //(String path)
+		    endif
+            
+		    System.String[] _rawDataUnfiltered = this._rawDataUnfiltered
+		    ulong local8 = 0
+
+		    while (local8 < _rawDataUnfiltered.Length)
+		        System.String string = _rawDataUnfiltered[local8]
+
+		        System.String string2 = System.String.Concat(key, ": ") //(String str0, String str1)
+
+		        System.Boolean boolean = string.StartsWith(string2) //(String value)
+		        System.String[] _rawDataUnfiltered2 = this._rawDataUnfiltered
+
+		        if (boolean == False)
+		            local8 += 1
+		        endwhile
+                
+		        goto INSN_181BC2BA0
+                
+
+		        if (value == 0)
+                    goto INSN_181BC2BF3
+                endif
+
+		        System.String string3 = System.String.Concat(key, ": ", value) //(String str0, String str1, String str2)
+
+		        if (string3 == 0)
+                    goto INSN_181BC2B8D
+                endif
+
+		        if (string3 == 0)
+                    goto INSN_181BC2D18
+                endif
+
+		        INSN_181BC2B8D:
+		        throw new System.IndexOutOfRangeException()
+		        System.Int64 local18 = 1
+
+		        INSN_181BC2BA0:
+
+		        while (this._virtual == False)
+
+		            if (local18 == 0)
+                        goto INSN_181BC2C57
+                    endif
+
+		            if (local18 != 0)
+
+		                if (local18 == 1)
+
+		                    if (local8 != 0)
+		                        System.String path3 = this.Path
+
+		                        INSN_181BC2BF3:
+
+		                        System.Collections.Generic.List`1<System.String> list = System.Linq.Enumerable.ToList<System.String>(path3) //(IEnumerable`1 source)
+
+		                        list.RemoveAt()
+		                    endwhile
+                            
+		                    goto INSN_181BC2CF6
+                            
+
+		                    INSN_181BC2C57:
+		                    System.String[] _rawDataUnfiltered3 = this._rawDataUnfiltered
+
+		                    System.Collections.Generic.List`1<System.String> list2 = System.Linq.Enumerable.ToList<System.String>(_rawDataUnfiltered3) //(IEnumerable`1 source)
+		                    System.Int32 _size = list2._size
+
+		                    System.String string4 = System.String.Concat(key, ": ", value) //(String str0, String str1, String str2)
+
+		                    list2.Insert(_size, string4) //(Int32 index, T item)
+		                    System.String path4 = this.Path
+		                    ulong local31 = 0
+
+		                    FileManager.WriteToFile(list2, path4, local31) //(IEnumerable`1 data, String path, Boolean removeempty)
+		                endif
+                        
+
+		                if (this._virtual != False)
+                            goto INSN_181BC2CF6
+                        endif
+		                System.String path5 = this.Path
+
+		                [instruction error - managed method being called is null]
+
+		                if (local17 != 0)
+                            goto INSN_181BC2CF6
+                        endif
+		                System.String path6 = this.Path
+
+		                this.LoadConfigFile(path6) //(String path)
+
+		                INSN_181BC2CF6:
+		                return
+		                throw new System.NullReferenceException()
+
+		                INSN_181BC2D18:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181BC2AA6) is corrupt (Don't know what method is being called) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: YamlConfig
+	static System.Collections.Generic.List`1<System.String> GetStringList(System.String key, System.String path)
+		ulong local2 = 0
+		System.Collections.Generic.List`1<System.String> list = new System.Collections.Generic.List`1<System.String>()
+
+		list..ctor()
+
+		System.String[] stringArray = FileManager.ReadAllLines(path) //(String path)
+		ulong local6 = 0
+		System.Int32 length = stringArray.Length
+
+		if (local6 < length)
+		    System.String string = stringArray[local6]
+
+		    System.Boolean boolean = string.StartsWith(key) //(String value)
+
+		    if (boolean != False)
+
+		        System.Boolean boolean2 = string.EndsWith("[]") //(String value)
+
+		        if (boolean2 != False)
+                    goto INSN_181BC0D90
+                endif
+		    endif
+            
+
+		    System.String string2 = System.String.Concat(key, ":") //(String str0, String str1)
+
+		    System.Boolean boolean3 = string.StartsWith(string2) //(String value)
+
+		    if (boolean3 != False)
+                goto INSN_181BC0DDA
+            endif
+
+		    if (local2 == 0)
+                goto INSN_181BC0E2A
+            endif
+
+		    System.Boolean boolean4 = string.StartsWith(" - ") //(String value)
+
+		    if (boolean4 != False)
+                goto INSN_181BC0DAC
+            endif
+
+		    System.Boolean boolean5 = string.StartsWith("#") //(String value)
+
+		    if (boolean5 != False)
+                goto INSN_181BC0E2A
+            endif
+		endif
+        
+		return list
+
+		INSN_181BC0DAC:
+
+		System.String string3 = length.Substring(3) //(Int32 startIndex)
+
+		list.Add(string3) //(T item)
+		local6 += 1
+
+		INSN_181BC0DDA:
+		local6 += 1
+
+		System.String string4 = .Substring(local6) //(Int32 startIndex)
+
+		System.Boolean boolean6 = string4.Contains("[") //(String value)
+
+		if (boolean6 == False)
+            goto INSN_181BC0E27
+        endif
+
+		System.Boolean boolean7 = string4.Contains("]") //(String value)
+
+		if (boolean7 != False)
+            goto INSN_181BC0E33
+        endif
+
+		INSN_181BC0E27:
+
+		INSN_181BC0E2A:
+		local6 += 1
+
+		INSN_181BC0E33:
+
+		System.String[] stringArray2 = YamlConfig.ParseCommaSeparatedString(string4) //(String data)
+
+		System.Collections.Generic.List`1<System.String> list2 = System.Linq.Enumerable.ToList<System.String>(stringArray2) //(IEnumerable`1 source)
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181BC0DB1) is corrupt (Mismatched instance parameter. Expecting an instance of System.String, actually {'length' (type System.Int32)}) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: YamlConfig
+	System.Void SetStringListItem(System.String key, System.String value, System.String newValue)
+
+		if (this._virtual == False)
+		    System.String path = this.Path
+
+		    [instruction error - managed method being called is null]
+
+		    if ( == 0)
+		        System.String path2 = this.Path
+
+		        this.LoadConfigFile(path2) //(String path)
+		    endif
+            
+		    System.String[] _rawDataUnfiltered = this._rawDataUnfiltered
+		    ulong local9 = 0
+		    ulong local10 = 0
+
+		    while (local9 < _rawDataUnfiltered.Length)
+		        System.String string = _rawDataUnfiltered[local9]
+
+		        System.String string2 = System.String.Concat()
+
+		        System.Boolean boolean = string.StartsWith(string2) //(String value)
+
+		        if (boolean == False)
+
+		            if (local10 != 0)
+
+		                if (value != 0)
+
+		                    System.String string3 = System.String.Concat(" - ", value) //(String str0, String str1)
+
+		                    [instruction error - managed method being called is null]
+
+		                    if (string3 != 0)
+                                goto INSN_181BC291E
+                            endif
+		                endif
+                        
+
+		                System.Boolean boolean2 = string.StartsWith(" - ") //(String value)
+
+		                if (boolean2 != False)
+                            goto INSN_181BC2905
+                        endif
+
+		                System.Boolean boolean3 = string.StartsWith("#") //(String value)
+
+		                if (boolean3 != False)
+                            goto INSN_181BC2905
+                        endif
+
+		                if (value == 0)
+                            goto INSN_181BC28BD
+                        endif
+		                System.String[] _rawDataUnfiltered2 = this._rawDataUnfiltered
+
+		                System.Collections.Generic.List`1<System.String> list = System.Linq.Enumerable.ToList<System.String>(_rawDataUnfiltered2) //(IEnumerable`1 source)
+
+		                System.String string4 = System.String.Concat(" - ", newValue) //(String str0, String str1)
+
+		                list.Insert(local9, string4) //(Int32 index, T item)
+
+		                INSN_181BC28BD:
+
+		                while (this._virtual == False)
+
+		                    if (2 != 1)
+                                goto INSN_181BC29AC
+                            endif
+		                else
+		                endif
+                        
+		                System.String[] _rawDataUnfiltered3 = this._rawDataUnfiltered
+		                local9 += 1
+		            endwhile
+                    
+		            goto INSN_181BC28BD
+                    
+		            System.String[] _rawDataUnfiltered4 = this._rawDataUnfiltered
+
+		            if (newValue != 0)
+
+		                System.String string5 = System.String.Concat(" - ", newValue) //(String str0, String str1)
+
+		                if (string5 != 0)
+
+		                    if (string5 == 0)
+                                goto INSN_181BC2A31
+                            endif
+		                endif
+                        
+		                throw new System.IndexOutOfRangeException()
+		            endwhile
+                    
+		            goto INSN_181BC2A0E
+                    
+
+		            System.Collections.Generic.List`1<System.String> list2 = System.Linq.Enumerable.ToList<System.String>(_rawDataUnfiltered4) //(IEnumerable`1 source)
+
+		            list2.RemoveAt(local9) //(Int32 index)
+
+		            INSN_181BC29AC:
+
+		            if (1 != 2)
+                        goto INSN_181BC29EA
+                    endif
+
+		            if (list2 == 0)
+                        goto INSN_181BC29EA
+                    endif
+		            System.String path3 = this.Path
+		        endif
+                
+		        ulong local37 = 0
+
+		        FileManager.WriteToFile(list2, path3, local37) //(IEnumerable`1 data, String path, Boolean removeempty)
+
+		        INSN_181BC29EA:
+
+		        if (this._virtual != False)
+                    goto INSN_181BC2A0E
+                endif
+		        System.String path4 = this.Path
+
+		        System.Boolean isNullOrEmpty = System.String.IsNullOrEmpty(path4) //(String value)
+
+		        if (isNullOrEmpty != False)
+                    goto INSN_181BC2A0E
+                endif
+		        System.String path5 = this.Path
+
+		        this.LoadConfigFile(path5) //(String path)
+
+		        INSN_181BC2A0E:
+		        return
+		        throw new System.NullReferenceException()
+
+		        INSN_181BC2A31:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181BC276C) is corrupt (Don't know what method is being called) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: YamlConfig
+	System.Collections.Generic.IEnumerable`1<System.String> StringListToText(System.String key, System.Collections.Generic.List`1<System.String> list)
+		YamlConfig/<StringListToText>d__33 enumeratorInstance = new YamlConfig/<StringListToText>d__33()
+
+		enumeratorInstance..ctor()
+		ulong local5 = 0
+		enumeratorInstance.<>1__state = 4294967294
+
+		System.Int32 currentManagedThreadId = System.Environment.CurrentManagedThreadId
+		enumeratorInstance.<>3__key = key
+		enumeratorInstance.<>l__initialThreadId = currentManagedThreadId
+		enumeratorInstance.<>3__list = list
+		return enumeratorInstance
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AllocateInstanceAction at (0x181BC2D77) is corrupt (Could not resolve a constructor with 0 parameters.) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: YamlConfig
+	System.Collections.Generic.Dictionary`2<System.String,System.String> GetStringDictionary(System.String key)
+		System.Collections.Generic.List`1<System.String> dataBuffer = YamlConfig.DataBuffer
+
+		this.GetStringCollection(key, dataBuffer) //(String key, ICollection`1 collection)
+		System.Collections.Generic.Dictionary`2<System.String,System.String> dictionary = new System.Collections.Generic.Dictionary`2<System.String,System.String>()
+
+		dictionary..ctor()
+		System.Collections.Generic.List`1<System.String> dataBuffer2 = YamlConfig.DataBuffer
+
+		System.Collections.Generic.List`1/Enumerator<T> enumerator = .GetEnumerator()
+
+		if (enumerator != 0)
+
+		    System.Boolean boolean = .Contains(": ") //(String value)
+
+		    if (boolean != False)
+		        System.Int32 4 = 4
+
+		        System.Int32 int32 = .IndexOf(": ", 4) //(String value, StringComparison comparisonType)
+		        ulong local12 = 0
+
+		        System.String string = .Substring(local12, int32) //(Int32 startIndex, Int32 length)
+		        throw new System.NullReferenceException()
+
+		        if (local14 != 0)
+		            System.String[] local15 = new System.String[5]
+
+		            if ("Ignoring duplicated subkey " != 0)
+
+		                if ("Ignoring duplicated subkey " == 0)
+                            goto INSN_181BC0A77
+                        endif
+		            endif
+                    
+		            local15[0] = "Ignoring duplicated subkey "
+
+		            if (string == 0)
+                        goto INSN_181BC074B
+                    endif
+
+		            if ("Ignoring duplicated subkey " == 0)
+                        goto INSN_181BC0A96
+                    endif
+
+		            INSN_181BC074B:
+		            local15[1] = string
+
+		            if (" in dictionary " == 0)
+                        goto INSN_181BC078F
+                    endif
+
+		            if (" in dictionary " == 0)
+                        goto INSN_181BC0AB4
+                    endif
+
+		            INSN_181BC078F:
+		            local15[2] = " in dictionary "
+
+		            if (key == 0)
+                        goto INSN_181BC07C5
+                    endif
+
+		            if (" in dictionary " == 0)
+                        goto INSN_181BC0AD2
+                    endif
+
+		            INSN_181BC07C5:
+		            local15[3] = key
+
+		            if (" in the config file." == 0)
+                        goto INSN_181BC0809
+                    endif
+
+		            if (" in the config file." == 0)
+                        goto INSN_181BC0AF0
+                    endif
+
+		            INSN_181BC0809:
+		            local15[4] = " in the config file."
+
+		            System.String string2 = System.String.Concat(local15) //(String[] values)
+		            System.Int32 14 = 14
+
+		            ServerConsole.AddLog(string2, 14) //(String q, ConsoleColor color)
+		        endif
+                
+
+		        System.String string3 = dictionary.Substring()
+		        throw new System.NullReferenceException()
+		    endif
+            
+		    System.String[] local22 = new System.String[5]
+
+		    if ("Invalid entry "" == 0)
+                goto INSN_181BC08D1
+            endif
+
+		    if ("Invalid entry "" == 0)
+                goto INSN_181BC0B18
+            endif
+
+		    INSN_181BC08D1:
+		    local22[0] = "Invalid entry ""
+
+		    if ("Invalid entry "" == 0)
+                goto INSN_181BC0B36
+            endif
+		    local22[1] = 
+
+		    if ("" in dictionary " == 0)
+                goto INSN_181BC0946
+            endif
+
+		    if ("" in dictionary " == 0)
+                goto INSN_181BC0B54
+            endif
+
+		    INSN_181BC0946:
+		    local22[2] = "" in dictionary "
+
+		    if (key == 0)
+                goto INSN_181BC097C
+            endif
+
+		    if ("" in dictionary " == 0)
+                goto INSN_181BC0B72
+            endif
+
+		    INSN_181BC097C:
+		    local22[3] = key
+
+		    if (" in the config file - missing ": "." == 0)
+                goto INSN_181BC09C0
+            endif
+
+		    if (" in the config file - missing ": "." == 0)
+                goto INSN_181BC0B90
+            endif
+
+		    INSN_181BC09C0:
+		    local22[4] = " in the config file - missing ": "."
+
+		    System.String string4 = System.String.Concat(local22) //(String[] values)
+		    System.Int32 12 = 12
+
+		    ServerConsole.AddLog(string4, 12) //(String q, ConsoleColor color)
+		endif
+        
+
+		[instruction error - managed method being called is null]
+
+		[instruction error - managed method being called is null]
+
+		if (constant17 != 0)
+            goto INSN_181BC0BB9
+        endif
+		return dictionary
+		throw new System.NullReferenceException()
+
+		INSN_181BC0A77:
+		throw new System.IndexOutOfRangeException()
+
+		INSN_181BC0A96:
+		throw new System.IndexOutOfRangeException()
+
+		INSN_181BC0AB4:
+		throw new System.IndexOutOfRangeException()
+
+		INSN_181BC0AD2:
+		throw new System.IndexOutOfRangeException()
+
+		INSN_181BC0AF0:
+		throw new System.IndexOutOfRangeException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+
+		INSN_181BC0B18:
+		throw new System.IndexOutOfRangeException()
+
+		INSN_181BC0B36:
+		throw new System.IndexOutOfRangeException()
+
+		INSN_181BC0B54:
+		throw new System.IndexOutOfRangeException()
+
+		INSN_181BC0B72:
+		throw new System.IndexOutOfRangeException()
+
+		INSN_181BC0B90:
+		throw new System.IndexOutOfRangeException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+
+		INSN_181BC0BB9:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181BC061A) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: YamlConfig
+	System.Void SetStringDictionaryItem(System.String key, System.String subkey, System.String value)
+
+		if (this._virtual == False)
+		    System.String path = this.Path
+
+		    [instruction error - managed method being called is null]
+
+		    if ( == 0)
+		        System.String path2 = this.Path
+
+		        this.LoadConfigFile(path2) //(String path)
+		    endif
+            
+		    System.String[] _rawDataUnfiltered = this._rawDataUnfiltered
+		    ulong local9 = 0
+		    ulong local10 = 0
+		    ulong local11 = 0
+		    ulong local12 = 0
+		    ulong local13 = 0
+
+		    while (local13 < _rawDataUnfiltered.Length)
+		        System.String string = _rawDataUnfiltered[local12]
+
+		        System.String string2 = System.String.Concat()
+
+		        System.Boolean boolean = string.StartsWith(string2) //(String value)
+
+		        if (boolean == False)
+
+		            if (local9 != 0)
+
+		                System.String string3 = System.String.Concat()
+
+		                System.Boolean boolean2 = string.StartsWith(string3) //(String value)
+
+		                if (boolean2 != False)
+                            goto INSN_181BC2508
+                        endif
+
+		                System.Boolean boolean3 = string.StartsWith(" - ") //(String value)
+
+		                if (boolean3 == False)
+
+		                    System.Boolean boolean4 = string.StartsWith("#") //(String value)
+
+		                    if (boolean4 == False)
+
+		                        if (value != 0)
+		                            System.String[] _rawDataUnfiltered2 = this._rawDataUnfiltered
+
+		                            System.Collections.Generic.List`1<System.String> list = System.Linq.Enumerable.ToList<System.String>(_rawDataUnfiltered2) //(IEnumerable`1 source)
+
+		                            System.String string4 = System.String.Concat()
+		                            local13 = local12
+
+		                            list.Insert(local12, string4) //(Int32 index, T item)
+		                        else
+		                        endif
+                                
+		                        System.String[] _rawDataUnfiltered3 = this._rawDataUnfiltered
+		                        local12 += 1
+		                        local13 = local12
+		                    endwhile
+                            
+		                    goto INSN_181BC2574
+                            
+		                    System.String[] _rawDataUnfiltered4 = this._rawDataUnfiltered
+
+		                    if (value == 0)
+                                goto INSN_181BC25CF
+                            endif
+
+		                    System.String string5 = System.String.Concat()
+
+		                    if (string5 != 0)
+
+		                        if (string5 == 0)
+                                    goto INSN_181BC26FA
+                                endif
+		                    endif
+                            
+		                    throw new System.IndexOutOfRangeException()
+		                endif
+                        
+		            endif
+                    
+
+		            if (this._virtual != False)
+                        goto INSN_181BC26DF
+                    endif
+
+		            if (local10 == 0)
+                        goto INSN_181BC2633
+                    endif
+
+		            if (local10 == 0)
+                        goto INSN_181BC2605
+                    endif
+
+		            if (local10 != 1)
+                        goto INSN_181BC26BB
+                    endif
+
+		            if (local11 == 0)
+                        goto INSN_181BC26BB
+                    endif
+
+		            INSN_181BC25CF:
+
+		            System.Collections.Generic.List`1<System.String> list2 = System.Linq.Enumerable.ToList<System.String>(string) //(IEnumerable`1 source)
+
+		            list2.RemoveAt()
+
+		            INSN_181BC2605:
+
+		            INSN_181BC2633:
+		            System.String[] _rawDataUnfiltered5 = this._rawDataUnfiltered
+
+		            System.Collections.Generic.List`1<System.String> list3 = System.Linq.Enumerable.ToList<System.String>(_rawDataUnfiltered5) //(IEnumerable`1 source)
+		            System.Int32 _size = list3._size
+
+		            System.String string6 = System.String.Concat()
+
+		            list3.Insert(_size, string6) //(Int32 index, T item)
+		            System.String path3 = this.Path
+		            ulong local49 = 0
+
+		            FileManager.WriteToFile(list3, path3, local49) //(IEnumerable`1 data, String path, Boolean removeempty)
+
+		            INSN_181BC26BB:
+
+		            if (this._virtual != False)
+                        goto INSN_181BC26DF
+                    endif
+		            System.String path4 = this.Path
+
+		            System.Boolean isNullOrEmpty = System.String.IsNullOrEmpty(path4) //(String value)
+
+		            if (isNullOrEmpty != False)
+                        goto INSN_181BC26DF
+                    endif
+		            System.String path5 = this.Path
+
+		            this.LoadConfigFile(path5) //(String path)
+
+		            INSN_181BC26DF:
+		            return
+		            throw new System.NullReferenceException()
+
+		            INSN_181BC26FA:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181BC2386) is corrupt (Don't know what method is being called) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: YamlConfig
+	static System.String[] ParseCommaSeparatedString(System.String data)
+
+		System.String string = data.Trim()
+		System.Int32 4 = 4
+
+		System.Boolean boolean = string.StartsWith("[", 4) //(String value, StringComparison comparisonType)
+
+		if (boolean != False)
+		    System.Int32 4 = 4
+
+		    System.Boolean boolean2 = string.EndsWith("]", 4) //(String value, StringComparison comparisonType)
+
+		    if (boolean2 != False)
+		        System.Int32 m_stringLength = string.m_stringLength
+		        m_stringLength += 18446744073709551614
+		        System.Int32 1 = 1
+
+		        System.String string2 = string.Substring(1, m_stringLength) //(Int32 startIndex, Int32 length)
+
+		        System.String string3 = string2.Replace(", ", ",") //(String oldValue, String newValue)
+		        System.Int64 local12 = 1
+		        System.Char[] local13 = new System.Char[1]
+		        System.Int64 local14 = 44
+		        local13[0] = local14
+
+		        System.String[] stringArray = string3.Split(local13) //(Char[] separator)
+		        return stringArray
+		    endif
+            
+		    ulong local17 = 0
+		    return local17
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x181BC1E97) is corrupt (Return value has a type of System.Int32, expecting an object of type System.String[]) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: YamlConfig
+	System.Collections.Generic.IEnumerable`1<System.String> GetKeys()
+
+		if (this._virtual != False)
+		else
+		    System.String[] _rawData = this._rawData
+		endif
+        
+		System.Func`2<System.String,System.Boolean> <>9__37_0 = YamlConfig/<>c.<>9__37_0
+
+		if (<>9__37_0 != 0)
+            goto INSN_181BBF91E
+        endif
+		YamlConfig/<>c <>c = YamlConfig/<>c.<>9
+		System.Func`2<System.String,System.Boolean> func = new System.Func`2<System.String,System.Boolean>()
+
+		func..ctor(<>c, {'<GetKeys>b__37_0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		 += 32
+		YamlConfig/<>c.<>9 = func
+
+		INSN_181BBF91E:
+
+		System.Collections.Generic.IEnumerable`1<System.String> iEnumerable = System.Linq.Enumerable.Where<System.String>(_rawData, func) //(IEnumerable`1 source, Func`2 predicate)
+		System.Func`2<System.String,System.String> <>9__37_1 = YamlConfig/<>c.<>9__37_1
+
+		if (<>9__37_1 != 0)
+            goto INSN_181BBF9DA
+        endif
+		YamlConfig/<>c <>c2 = YamlConfig/<>c.<>9
+		System.Func`2<System.String,System.String> func2 = new System.Func`2<System.String,System.String>()
+
+		func2..ctor(<>c2, {'<GetKeys>b__37_1' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		 += 40
+		YamlConfig/<>c.<>9 = func2
+
+		INSN_181BBF9DA:
+
+		System.Collections.Generic.IEnumerable`1<System.String> iEnumerable2 = System.Linq.Enumerable.Select<System.String, System.String>(iEnumerable, func2) //(IEnumerable`1 source, Func`2 selector)
+		return iEnumerable2
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x181BBF912) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: YamlConfig
+	System.Boolean IsList(System.String key)
+		ulong local2 = 0
+
+		if (this._virtual != local2)
+		else
+		    System.String[] _rawData = this._rawData
+		endif
+        
+		ulong local5 = 0
+		System.Int32 length = _rawData.Length
+
+		if (local5 >= length)
+            goto INSN_181BC1671
+        endif
+		System.String string = _rawData[local5]
+
+		System.String string2 = System.String.Concat(key, ":") //(String str0, String str1)
+
+		System.Boolean boolean = string.StartsWith(string2) //(String value)
+
+		if (boolean != False)
+            goto INSN_181BC168E
+        endif
+
+		if (local2 == 0)
+            goto INSN_181BC1691
+        endif
+
+		System.Boolean boolean2 = string.StartsWith(" - ") //(String value)
+
+		if (boolean2 != False)
+            goto INSN_181BC169A
+        endif
+
+		System.Boolean boolean3 = string.StartsWith("#") //(String value)
+
+		if (boolean3 != False)
+            goto INSN_181BC1691
+        endif
+
+		INSN_181BC1671:
+		ulong local16 = 0
+		return local16
+
+		INSN_181BC168E:
+
+		INSN_181BC1691:
+		 += 1
+
+		INSN_181BC169A:
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x181BC168D) is corrupt (Return value has a type of System.Int32, expecting an object of type System.Boolean) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: YamlConfig
+	System.Void Merge(YamlConfig& toMerge)
+		ulong local2 = 0
+		System.Int32 -1 = 4294967295
+
+		System.Collections.Generic.IEnumerable`1<System.String> keys = this.GetKeys()
+
+		System.String[] stringArray = System.Linq.Enumerable.ToArray<System.String>(keys) //(IEnumerable`1 source)
+
+		if (this._virtual == local2)
+		    this._virtual = True
+		endif
+        
+
+		System.Collections.Generic.IEnumerable`1<System.String> keys2 = .GetKeys()
+
+		if (keys2 == 0)
+            goto INSN_181BC1D0E
+        endif
+		ulong local10 = 0
+
+		System.Boolean boolean = CollectionExtensions.Contains<System.String>()
+
+		if (boolean != False)
+            goto INSN_181BC1B30
+        endif
+
+		System.Boolean isList = .IsList()
+
+		if (isList == False)
+            goto INSN_181BC1CE0
+        endif
+
+		System.Collections.Generic.List`1<System.String> stringList = .GetStringList()
+
+		System.Collections.Generic.IEnumerable`1<System.String> iEnumerable = .StringListToText()
+
+		if (iEnumerable != 0)
+
+		    if (this._virtual != False)
+		    else
+		        System.String[] _rawData = this._rawData
+		    endif
+            
+
+		    System.Collections.Generic.IEnumerable`1<System.String> iEnumerable2 = System.Linq.Enumerable.Append<System.String>()
+		endwhile
+        
+		goto INSN_181BC1D56
+        
+		 += 1
+		_rawData. = 141
+
+		if (iEnumerable == 0)
+            goto INSN_181BC1CAF
+        endif
+
+		INSN_181BC1CAF:
+
+		if (local2 != 0)
+            goto INSN_181BC1D5C
+        endif
+
+		if (-1 == 0xFFFFFFFFFFFFFFFF)
+            goto INSN_181BC1CE0
+        endif
+
+		if (constant37 != 141)
+            goto INSN_181BC1CE0
+        endif
+
+		INSN_181BC1CE0:
+
+		System.String rawString = .GetRawString()
+
+		this.SetString()
+
+		INSN_181BC1D0E:
+		iEnumerable. = 161
+
+		if (keys2 == 0)
+            goto INSN_181BC1D3A
+        endif
+
+		INSN_181BC1D3A:
+
+		if (local2 != 0)
+            goto INSN_181BC1D80
+        endif
+		return
+
+		INSN_181BC1D56:
+		throw new System.NullReferenceException()
+
+		INSN_181BC1D5C:
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+
+		INSN_181BC1D80:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181BC1B06) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: YamlConfig
+	System.Boolean GetBool(System.String key, System.Boolean def)
+
+		System.String rawString = this.GetRawString(key) //(String key)
+
+		System.String string = rawString.ToLower()
+
+		[instruction error - managed method being called is null]
+
+		if (string == 0)
+
+		    System.Boolean boolean = System.Boolean.TryParse()
+
+		    if (boolean != False)
+                goto INSN_181BBEA42
+            endif
+
+		    System.String string2 = System.String.Concat(key, " has invalid value, ", string, " is not a valid bool!") //(String str0, String str1, String str2, String str3)
+		    System.Int32 7 = 7
+
+		    ServerConsole.AddLog(string2, 7) //(String q, ConsoleColor color)
+
+		    this.CommentInvalid(key, "BOOL") //(String key, String type)
+		endif
+        
+		return def
+
+		INSN_181BBEA42:
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181BBE97F) is corrupt (Don't know what method is being called) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: YamlConfig
+	System.Byte GetByte(System.String key, System.Byte def)
+
+		System.String rawString = this.GetRawString(key) //(String key)
+
+		System.String string = rawString.ToLower()
+
+		[instruction error - managed method being called is null]
+
+		if (string == 0)
+		    ulong local9 = 0
+
+		    System.Globalization.CultureInfo invariantCulture = System.Globalization.CultureInfo.InvariantCulture
+
+		    System.Boolean boolean = System.Byte.TryParse()
+
+		    if (boolean != False)
+                goto INSN_181BBEC77
+            endif
+
+		    System.String string2 = System.String.Concat(key, " has an invalid value, ", string, " is not a valid byte!") //(String str0, String str1, String str2, String str3)
+		    System.Int32 7 = 7
+
+		    ServerConsole.AddLog(string2, 7) //(String q, ConsoleColor color)
+
+		    this.CommentInvalid(key, "BYTE") //(String key, String type)
+		endif
+        
+		return def
+
+		INSN_181BBEC77:
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181BBEB9F) is corrupt (Don't know what method is being called) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: YamlConfig
+	System.SByte GetSByte(System.String key, System.SByte def)
+
+		System.String rawString = this.GetRawString(key) //(String key)
+
+		System.String string = rawString.ToLower()
+
+		[instruction error - managed method being called is null]
+
+		if (string == 0)
+		    ulong local9 = 0
+
+		    System.Globalization.CultureInfo invariantCulture = System.Globalization.CultureInfo.InvariantCulture
+
+		    System.Boolean boolean = System.SByte.TryParse()
+
+		    if (boolean != False)
+                goto INSN_181BBFFA7
+            endif
+
+		    System.String string2 = System.String.Concat(key, " has an invalid value, ", string, " is not a valid signed byte!") //(String str0, String str1, String str2, String str3)
+		    System.Int32 7 = 7
+
+		    ServerConsole.AddLog(string2, 7) //(String q, ConsoleColor color)
+
+		    this.CommentInvalid(key, "SBYTE") //(String key, String type)
+		endif
+        
+		return def
+
+		INSN_181BBFFA7:
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181BBFECF) is corrupt (Don't know what method is being called) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: YamlConfig
+	System.Char GetChar(System.String key, System.Char def)
+		ulong local3 = 0
+
+		System.String rawString = this.GetRawString(key) //(String key)
+
+		[instruction error - managed method being called is null]
+
+		if (rawString == 0)
+
+		    System.Boolean boolean = System.Char.TryParse(rawString, local3) //(String s, Char& result)
+
+		    if (boolean != False)
+                goto INSN_181BBEE86
+            endif
+
+		    System.String string = System.String.Concat(key, " has an invalid value, ", rawString, " is not a valid char!") //(String str0, String str1, String str2, String str3)
+		    System.Int32 7 = 7
+
+		    ServerConsole.AddLog(string, 7) //(String q, ConsoleColor color)
+
+		    this.CommentInvalid(key, "CHAR") //(String key, String type)
+		endif
+        
+		return def
+
+		INSN_181BBEE86:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181BBEDCE) is corrupt (Don't know what method is being called) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: YamlConfig
+	System.Decimal GetDecimal(System.String key, System.Decimal def)
+		ulong local3 = 0
+
+		System.String rawString = key.GetRawString()
+
+		System.String string = rawString.ToLower()
+		ulong local8 = 0
+
+		[instruction error - managed method being called is null]
+
+		if (string == 0)
+
+		    System.String string2 = string.Replace({'44' (constant value of type System.Char)}, local8) //(Char oldChar, Char newChar)
+		    ulong local11 = 0
+
+		    System.Globalization.CultureInfo invariantCulture = System.Globalization.CultureInfo.InvariantCulture
+
+		    System.Boolean boolean = System.Decimal.TryParse(string2, 511, invariantCulture, local3) //(String s, NumberStyles style, IFormatProvider provider, Decimal& result)
+
+		    if (boolean != False)
+                goto INSN_181BBF113
+            endif
+
+		    System.String string3 = System.String.Concat()
+		    System.Int32 7 = 7
+
+		    ServerConsole.AddLog(string3, 7) //(String q, ConsoleColor color)
+
+		    key.CommentInvalid()
+		endif
+        
+		this. = constant33
+		return this
+
+		INSN_181BBF113:
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181BBEFBA) is corrupt (Mismatched instance parameter. Expecting an instance of YamlConfig, actually {'key' (function parameter, type System.String)}) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: YamlConfig
+	System.Double GetDouble(System.String key, System.Double def)
+
+		System.String rawString = this.GetRawString(key) //(String key)
+
+		System.String string = rawString.ToLower()
+		ulong local8 = 0
+
+		[instruction error - managed method being called is null]
+
+		if (string == 0)
+
+		    System.String string2 = string.Replace({'44' (constant value of type System.Char)}, local8) //(Char oldChar, Char newChar)
+		    ulong local11 = 0
+
+		    System.Globalization.CultureInfo invariantCulture = System.Globalization.CultureInfo.InvariantCulture
+
+		    System.Boolean boolean = System.Double.TryParse()
+
+		    if (boolean != False)
+                goto INSN_181BBF393
+            endif
+
+		    System.String string3 = System.String.Concat(key, " has invalid value, ", string, " is not a valid double!") //(String str0, String str1, String str2, String str3)
+		    System.Int32 7 = 7
+
+		    ServerConsole.AddLog(string3, 7) //(String q, ConsoleColor color)
+
+		    this.CommentInvalid(key, "DOUBLE") //(String key, String type)
+		endif
+        
+		return def
+
+		INSN_181BBF393:
+		return def
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181BBF26F) is corrupt (Don't know what method is being called) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: YamlConfig
+	System.Single GetFloat(System.String key, System.Single def)
+		ulong local3 = 0
+
+		System.String rawString = this.GetRawString(key) //(String key)
+
+		System.String string = rawString.ToLower()
+		ulong local8 = 0
+
+		[instruction error - managed method being called is null]
+
+		if (string == 0)
+
+		    System.String string2 = string.Replace({'44' (constant value of type System.Char)}, local8) //(Char oldChar, Char newChar)
+		    ulong local11 = 0
+
+		    System.Globalization.CultureInfo invariantCulture = System.Globalization.CultureInfo.InvariantCulture
+
+		    System.Boolean boolean = System.Single.TryParse(string2, 511, invariantCulture, local3) //(String s, NumberStyles style, IFormatProvider provider, Single& result)
+
+		    if (boolean != False)
+                goto INSN_181BBF5FF
+            endif
+
+		    System.String string3 = System.String.Concat(key, " has invalid value, ", string, " is not a valid float!") //(String str0, String str1, String str2, String str3)
+		    System.Int32 7 = 7
+
+		    ServerConsole.AddLog(string3, 7) //(String q, ConsoleColor color)
+
+		    this.CommentInvalid(key, "FLOAT") //(String key, String type)
+		endif
+        
+		return def
+
+		INSN_181BBF5FF:
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181BBF502) is corrupt (Don't know what method is being called) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: YamlConfig
+	System.Int32 GetInt(System.String key, System.Int32 def)
+
+		System.String rawString = this.GetRawString(key) //(String key)
+
+		System.String string = rawString.ToLower()
+
+		[instruction error - managed method being called is null]
+
+		if (string == 0)
+		    ulong local9 = 0
+
+		    System.Globalization.CultureInfo invariantCulture = System.Globalization.CultureInfo.InvariantCulture
+
+		    System.Boolean boolean = System.Int32.TryParse()
+
+		    if (boolean != False)
+                goto INSN_181BBF833
+            endif
+
+		    System.String string2 = System.String.Concat(key, " has an invalid value, ", string, " is not a valid integer!") //(String str0, String str1, String str2, String str3)
+		    System.Int32 7 = 7
+
+		    ServerConsole.AddLog(string2, 7) //(String q, ConsoleColor color)
+
+		    this.CommentInvalid(key, "INT") //(String key, String type)
+		endif
+        
+		return def
+
+		INSN_181BBF833:
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181BBF761) is corrupt (Don't know what method is being called) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: YamlConfig
+	System.UInt32 GetUInt(System.String key, System.UInt32 def)
+
+		System.String rawString = this.GetRawString(key) //(String key)
+
+		System.String string = rawString.ToLower()
+
+		[instruction error - managed method being called is null]
+
+		if (string == 0)
+		    ulong local9 = 0
+
+		    System.Globalization.CultureInfo invariantCulture = System.Globalization.CultureInfo.InvariantCulture
+
+		    System.Boolean boolean = System.UInt32.TryParse()
+
+		    if (boolean != False)
+                goto INSN_181BC1123
+            endif
+
+		    System.String string2 = System.String.Concat(key, " has an invalid value, ", string, " is not a valid unsigned integer!") //(String str0, String str1, String str2, String str3)
+		    System.Int32 7 = 7
+
+		    ServerConsole.AddLog(string2, 7) //(String q, ConsoleColor color)
+
+		    this.CommentInvalid(key, "UINT") //(String key, String type)
+		endif
+        
+		return def
+
+		INSN_181BC1123:
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181BC1051) is corrupt (Don't know what method is being called) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: YamlConfig
+	System.Int64 GetLong(System.String key, System.Int64 def)
+
+		System.String rawString = this.GetRawString(key) //(String key)
+
+		System.String string = rawString.ToLower()
+
+		[instruction error - managed method being called is null]
+
+		if (string == 0)
+		    ulong local9 = 0
+
+		    System.Globalization.CultureInfo invariantCulture = System.Globalization.CultureInfo.InvariantCulture
+
+		    System.Boolean boolean = System.Int64.TryParse()
+
+		    if (boolean != False)
+                goto INSN_181BBFC25
+            endif
+
+		    System.String string2 = System.String.Concat(key, " has an invalid value, ", string, " is not a valid long!") //(String str0, String str1, String str2, String str3)
+		    System.Int32 7 = 7
+
+		    ServerConsole.AddLog(string2, 7) //(String q, ConsoleColor color)
+
+		    this.CommentInvalid(key, "LONG") //(String key, String type)
+		endif
+        
+		return def
+
+		INSN_181BBFC25:
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181BBFB52) is corrupt (Don't know what method is being called) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: YamlConfig
+	System.UInt64 GetULong(System.String key, System.UInt64 def)
+
+		System.String rawString = this.GetRawString(key) //(String key)
+
+		System.String string = rawString.ToLower()
+
+		[instruction error - managed method being called is null]
+
+		if (string == 0)
+		    ulong local9 = 0
+
+		    System.Globalization.CultureInfo invariantCulture = System.Globalization.CultureInfo.InvariantCulture
+
+		    System.Boolean boolean = System.UInt64.TryParse(string, 511, invariantCulture, local4) //(String s, NumberStyles style, IFormatProvider provider, UInt64& result)
+
+		    if (boolean != False)
+                goto INSN_181BC1355
+            endif
+
+		    System.String string2 = System.String.Concat(key, " has an invalid value, ", string, " is not a valid unsigned long!") //(String str0, String str1, String str2, String str3)
+		    System.Int32 7 = 7
+
+		    ServerConsole.AddLog(string2, 7) //(String q, ConsoleColor color)
+
+		    this.CommentInvalid(key, "ULONG") //(String key, String type)
+		endif
+        
+		return def
+
+		INSN_181BC1355:
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181BC1282) is corrupt (Don't know what method is being called) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: YamlConfig
+	System.Int16 GetShort(System.String key, System.Int16 def)
+		ulong local3 = 0
+
+		System.String rawString = this.GetRawString(key) //(String key)
+
+		System.String string = rawString.ToLower()
+
+		[instruction error - managed method being called is null]
+
+		if (string == 0)
+		    ulong local9 = 0
+
+		    System.Globalization.CultureInfo invariantCulture = System.Globalization.CultureInfo.InvariantCulture
+
+		    System.Boolean boolean = System.Int16.TryParse(string, 511, invariantCulture, local3) //(String s, NumberStyles style, IFormatProvider provider, Int16& result)
+
+		    if (boolean != False)
+                goto INSN_181BC01DA
+            endif
+
+		    System.String string2 = System.String.Concat(key, " has an invalid value, ", string, " is not a valid short!") //(String str0, String str1, String str2, String str3)
+		    System.Int32 7 = 7
+
+		    ServerConsole.AddLog(string2, 7) //(String q, ConsoleColor color)
+
+		    this.CommentInvalid(key, "SHORT") //(String key, String type)
+		endif
+        
+		return def
+
+		INSN_181BC01DA:
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181BC0111) is corrupt (Don't know what method is being called) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: YamlConfig
+	System.UInt16 GetUShort(System.String key, System.UInt16 def)
+		ulong local3 = 0
+
+		System.String rawString = this.GetRawString(key) //(String key)
+
+		System.String string = rawString.ToLower()
+
+		[instruction error - managed method being called is null]
+
+		if (string == 0)
+		    ulong local9 = 0
+
+		    System.Globalization.CultureInfo invariantCulture = System.Globalization.CultureInfo.InvariantCulture
+
+		    System.Boolean boolean = System.UInt16.TryParse(string, 511, invariantCulture, local3) //(String s, NumberStyles style, IFormatProvider provider, UInt16& result)
+
+		    if (boolean != False)
+                goto INSN_181BC158A
+            endif
+
+		    System.String string2 = System.String.Concat(key, " has an invalid value, ", string, " is not a valid unsigned short!") //(String str0, String str1, String str2, String str3)
+		    System.Int32 7 = 7
+
+		    ServerConsole.AddLog(string2, 7) //(String q, ConsoleColor color)
+
+		    this.CommentInvalid(key, "USHORT") //(String key, String type)
+		endif
+        
+		return def
+
+		INSN_181BC158A:
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181BC14C1) is corrupt (Don't know what method is being called) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: YamlConfig
+	System.String GetString(System.String key, System.String def)
+
+		System.String rawString = this.GetRawString(key) //(String key)
+
+		[instruction error - managed method being called is null]
+		return def
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181BC0EE1) is corrupt (Don't know what method is being called) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: YamlConfig
+	System.Collections.Generic.List`1<System.Boolean> GetBoolList(System.String key)
+		System.Collections.Generic.List`1<System.String> dataBuffer = YamlConfig.DataBuffer
+
+		this.GetStringCollection(key, dataBuffer) //(String key, ICollection`1 collection)
+		System.Collections.Generic.List`1<System.String> dataBuffer2 = YamlConfig.DataBuffer
+		System.Func`2<System.String,System.Boolean> func = new System.Func`2<System.String,System.Boolean>()
+		ulong local6 = 0
+
+		func..ctor(local6, {'Parse' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		System.Collections.Generic.IEnumerable`1<System.String> iEnumerable = System.Linq.Enumerable.Select<System.String, System.Boolean>(dataBuffer2, func) //(IEnumerable`1 source, Func`2 selector)
+
+		System.Collections.Generic.List`1<System.Boolean> list = System.Linq.Enumerable.ToList<System.Boolean>(iEnumerable) //(IEnumerable`1 source)
+		return list
+
+
+Generated IL:
+	IL_0000: ldsfld System.Collections.Generic.List`1<System.String> YamlConfig::DataBuffer
+	IL_0005: stloc.0
+	IL_0006: ldarg.0
+	IL_0007: ldarg.1
+	IL_0008: ldloc.0
+	IL_0009: call System.Void YamlConfig::GetStringCollection(System.String,System.Collections.Generic.ICollection`1)
+	IL_000e: ldsfld System.Collections.Generic.List`1<System.String> YamlConfig::DataBuffer
+	IL_0013: stloc.1
+	IL_0014: ldloc.3
+	IL_0015: ldftn System.Boolean System.Boolean::Parse(System.String)
+	IL_001b: newobj System.Void System.Func`2::.ctor(System.Object,System.IntPtr)
+	IL_0020: stloc.2
+	IL_0021: ldc.i4.0
+	IL_0022: stloc.3
+	IL_0023: ldloc.1
+	IL_0024: ldloc.2
+	IL_0025: call System.Collections.Generic.IEnumerable`1 System.Linq.Enumerable::Select<System.String,System.Boolean>(System.Collections.Generic.IEnumerable`1,System.Func`2)
+	IL_002a: call System.Collections.Generic.List`1 System.Linq.Enumerable::ToList<System.Boolean>(System.Collections.Generic.IEnumerable`1)
+	IL_002f: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: YamlConfig
+	System.Collections.Generic.List`1<System.Byte> GetByteList(System.String key)
+		System.Collections.Generic.List`1<System.String> dataBuffer = YamlConfig.DataBuffer
+
+		this.GetStringCollection(key, dataBuffer) //(String key, ICollection`1 collection)
+		System.Collections.Generic.List`1<System.String> dataBuffer2 = YamlConfig.DataBuffer
+		System.Func`2<System.String,System.Byte> func = new System.Func`2<System.String,System.Byte>()
+		ulong local6 = 0
+
+		func..ctor(local6, {'Parse' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		System.Collections.Generic.IEnumerable`1<System.String> iEnumerable = System.Linq.Enumerable.Select<System.String, System.Byte>(dataBuffer2, func) //(IEnumerable`1 source, Func`2 selector)
+
+		System.Collections.Generic.List`1<System.Byte> list = System.Linq.Enumerable.ToList<System.Byte>(iEnumerable) //(IEnumerable`1 source)
+		return list
+
+
+Generated IL:
+	IL_0000: ldsfld System.Collections.Generic.List`1<System.String> YamlConfig::DataBuffer
+	IL_0005: stloc.0
+	IL_0006: ldarg.0
+	IL_0007: ldarg.1
+	IL_0008: ldloc.0
+	IL_0009: call System.Void YamlConfig::GetStringCollection(System.String,System.Collections.Generic.ICollection`1)
+	IL_000e: ldsfld System.Collections.Generic.List`1<System.String> YamlConfig::DataBuffer
+	IL_0013: stloc.1
+	IL_0014: ldloc.3
+	IL_0015: ldftn System.Byte System.Byte::Parse(System.String)
+	IL_001b: newobj System.Void System.Func`2::.ctor(System.Object,System.IntPtr)
+	IL_0020: stloc.2
+	IL_0021: ldc.i4.0
+	IL_0022: stloc.3
+	IL_0023: ldloc.1
+	IL_0024: ldloc.2
+	IL_0025: call System.Collections.Generic.IEnumerable`1 System.Linq.Enumerable::Select<System.String,System.Byte>(System.Collections.Generic.IEnumerable`1,System.Func`2)
+	IL_002a: call System.Collections.Generic.List`1 System.Linq.Enumerable::ToList<System.Byte>(System.Collections.Generic.IEnumerable`1)
+	IL_002f: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: YamlConfig
+	System.Collections.Generic.List`1<System.SByte> GetSByteList(System.String key)
+		System.Collections.Generic.List`1<System.String> dataBuffer = YamlConfig.DataBuffer
+
+		this.GetStringCollection(key, dataBuffer) //(String key, ICollection`1 collection)
+		System.Collections.Generic.List`1<System.String> dataBuffer2 = YamlConfig.DataBuffer
+		System.Func`2<System.String,System.SByte> func = new System.Func`2<System.String,System.SByte>()
+		ulong local6 = 0
+
+		func..ctor(local6, {'Parse' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		System.Collections.Generic.IEnumerable`1<System.String> iEnumerable = System.Linq.Enumerable.Select<System.String, System.SByte>(dataBuffer2, func) //(IEnumerable`1 source, Func`2 selector)
+
+		System.Collections.Generic.List`1<System.SByte> list = System.Linq.Enumerable.ToList<System.SByte>(iEnumerable) //(IEnumerable`1 source)
+		return list
+
+
+Generated IL:
+	IL_0000: ldsfld System.Collections.Generic.List`1<System.String> YamlConfig::DataBuffer
+	IL_0005: stloc.0
+	IL_0006: ldarg.0
+	IL_0007: ldarg.1
+	IL_0008: ldloc.0
+	IL_0009: call System.Void YamlConfig::GetStringCollection(System.String,System.Collections.Generic.ICollection`1)
+	IL_000e: ldsfld System.Collections.Generic.List`1<System.String> YamlConfig::DataBuffer
+	IL_0013: stloc.1
+	IL_0014: ldloc.3
+	IL_0015: ldftn System.SByte System.SByte::Parse(System.String)
+	IL_001b: newobj System.Void System.Func`2::.ctor(System.Object,System.IntPtr)
+	IL_0020: stloc.2
+	IL_0021: ldc.i4.0
+	IL_0022: stloc.3
+	IL_0023: ldloc.1
+	IL_0024: ldloc.2
+	IL_0025: call System.Collections.Generic.IEnumerable`1 System.Linq.Enumerable::Select<System.String,System.SByte>(System.Collections.Generic.IEnumerable`1,System.Func`2)
+	IL_002a: call System.Collections.Generic.List`1 System.Linq.Enumerable::ToList<System.SByte>(System.Collections.Generic.IEnumerable`1)
+	IL_002f: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: YamlConfig
+	System.Collections.Generic.List`1<System.Char> GetCharList(System.String key)
+		System.Collections.Generic.List`1<System.String> dataBuffer = YamlConfig.DataBuffer
+
+		this.GetStringCollection(key, dataBuffer) //(String key, ICollection`1 collection)
+		System.Collections.Generic.List`1<System.String> dataBuffer2 = YamlConfig.DataBuffer
+		System.Func`2<System.String,System.Char> func = new System.Func`2<System.String,System.Char>()
+		ulong local6 = 0
+
+		func..ctor(local6, {'Parse' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		System.Collections.Generic.IEnumerable`1<System.String> iEnumerable = System.Linq.Enumerable.Select<System.String, System.Char>(dataBuffer2, func) //(IEnumerable`1 source, Func`2 selector)
+
+		System.Collections.Generic.List`1<System.Char> list = System.Linq.Enumerable.ToList<System.Char>(iEnumerable) //(IEnumerable`1 source)
+		return list
+
+
+Generated IL:
+	IL_0000: ldsfld System.Collections.Generic.List`1<System.String> YamlConfig::DataBuffer
+	IL_0005: stloc.0
+	IL_0006: ldarg.0
+	IL_0007: ldarg.1
+	IL_0008: ldloc.0
+	IL_0009: call System.Void YamlConfig::GetStringCollection(System.String,System.Collections.Generic.ICollection`1)
+	IL_000e: ldsfld System.Collections.Generic.List`1<System.String> YamlConfig::DataBuffer
+	IL_0013: stloc.1
+	IL_0014: ldloc.3
+	IL_0015: ldftn System.Char System.Char::Parse(System.String)
+	IL_001b: newobj System.Void System.Func`2::.ctor(System.Object,System.IntPtr)
+	IL_0020: stloc.2
+	IL_0021: ldc.i4.0
+	IL_0022: stloc.3
+	IL_0023: ldloc.1
+	IL_0024: ldloc.2
+	IL_0025: call System.Collections.Generic.IEnumerable`1 System.Linq.Enumerable::Select<System.String,System.Char>(System.Collections.Generic.IEnumerable`1,System.Func`2)
+	IL_002a: call System.Collections.Generic.List`1 System.Linq.Enumerable::ToList<System.Char>(System.Collections.Generic.IEnumerable`1)
+	IL_002f: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: YamlConfig
+	System.Collections.Generic.List`1<System.Decimal> GetDecimalList(System.String key)
+		System.Collections.Generic.List`1<System.String> dataBuffer = YamlConfig.DataBuffer
+
+		this.GetStringCollection(key, dataBuffer) //(String key, ICollection`1 collection)
+		System.Collections.Generic.List`1<System.String> dataBuffer2 = YamlConfig.DataBuffer
+		System.Func`2<System.String,System.Decimal> func = new System.Func`2<System.String,System.Decimal>()
+		ulong local6 = 0
+
+		func..ctor(local6, {'Parse' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		System.Collections.Generic.IEnumerable`1<System.String> iEnumerable = System.Linq.Enumerable.Select<System.String, System.Decimal>(dataBuffer2, func) //(IEnumerable`1 source, Func`2 selector)
+
+		System.Collections.Generic.List`1<System.Decimal> list = System.Linq.Enumerable.ToList<System.Decimal>(iEnumerable) //(IEnumerable`1 source)
+		return list
+
+
+Generated IL:
+	IL_0000: ldsfld System.Collections.Generic.List`1<System.String> YamlConfig::DataBuffer
+	IL_0005: stloc.0
+	IL_0006: ldarg.0
+	IL_0007: ldarg.1
+	IL_0008: ldloc.0
+	IL_0009: call System.Void YamlConfig::GetStringCollection(System.String,System.Collections.Generic.ICollection`1)
+	IL_000e: ldsfld System.Collections.Generic.List`1<System.String> YamlConfig::DataBuffer
+	IL_0013: stloc.1
+	IL_0014: ldloc.3
+	IL_0015: ldftn System.Decimal System.Decimal::Parse(System.String)
+	IL_001b: newobj System.Void System.Func`2::.ctor(System.Object,System.IntPtr)
+	IL_0020: stloc.2
+	IL_0021: ldc.i4.0
+	IL_0022: stloc.3
+	IL_0023: ldloc.1
+	IL_0024: ldloc.2
+	IL_0025: call System.Collections.Generic.IEnumerable`1 System.Linq.Enumerable::Select<System.String,System.Decimal>(System.Collections.Generic.IEnumerable`1,System.Func`2)
+	IL_002a: call System.Collections.Generic.List`1 System.Linq.Enumerable::ToList<System.Decimal>(System.Collections.Generic.IEnumerable`1)
+	IL_002f: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: YamlConfig
+	System.Collections.Generic.List`1<System.Double> GetDoubleList(System.String key)
+		System.Collections.Generic.List`1<System.String> dataBuffer = YamlConfig.DataBuffer
+
+		this.GetStringCollection(key, dataBuffer) //(String key, ICollection`1 collection)
+		System.Collections.Generic.List`1<System.String> dataBuffer2 = YamlConfig.DataBuffer
+		System.Func`2<System.String,System.Double> func = new System.Func`2<System.String,System.Double>()
+		ulong local6 = 0
+
+		func..ctor(local6, {'Parse' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		System.Collections.Generic.IEnumerable`1<System.String> iEnumerable = System.Linq.Enumerable.Select<System.String, System.Double>(dataBuffer2, func) //(IEnumerable`1 source, Func`2 selector)
+
+		System.Collections.Generic.List`1<System.Double> list = System.Linq.Enumerable.ToList<System.Double>(iEnumerable) //(IEnumerable`1 source)
+		return list
+
+
+Generated IL:
+	IL_0000: ldsfld System.Collections.Generic.List`1<System.String> YamlConfig::DataBuffer
+	IL_0005: stloc.0
+	IL_0006: ldarg.0
+	IL_0007: ldarg.1
+	IL_0008: ldloc.0
+	IL_0009: call System.Void YamlConfig::GetStringCollection(System.String,System.Collections.Generic.ICollection`1)
+	IL_000e: ldsfld System.Collections.Generic.List`1<System.String> YamlConfig::DataBuffer
+	IL_0013: stloc.1
+	IL_0014: ldloc.3
+	IL_0015: ldftn System.Double System.Double::Parse(System.String)
+	IL_001b: newobj System.Void System.Func`2::.ctor(System.Object,System.IntPtr)
+	IL_0020: stloc.2
+	IL_0021: ldc.i4.0
+	IL_0022: stloc.3
+	IL_0023: ldloc.1
+	IL_0024: ldloc.2
+	IL_0025: call System.Collections.Generic.IEnumerable`1 System.Linq.Enumerable::Select<System.String,System.Double>(System.Collections.Generic.IEnumerable`1,System.Func`2)
+	IL_002a: call System.Collections.Generic.List`1 System.Linq.Enumerable::ToList<System.Double>(System.Collections.Generic.IEnumerable`1)
+	IL_002f: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: YamlConfig
+	System.Collections.Generic.List`1<System.Single> GetFloatList(System.String key)
+		System.Collections.Generic.List`1<System.String> dataBuffer = YamlConfig.DataBuffer
+
+		this.GetStringCollection(key, dataBuffer) //(String key, ICollection`1 collection)
+		System.Collections.Generic.List`1<System.String> dataBuffer2 = YamlConfig.DataBuffer
+		System.Func`2<System.String,System.Single> func = new System.Func`2<System.String,System.Single>()
+		ulong local6 = 0
+
+		func..ctor(local6, {'Parse' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		System.Collections.Generic.IEnumerable`1<System.String> iEnumerable = System.Linq.Enumerable.Select<System.String, System.Single>(dataBuffer2, func) //(IEnumerable`1 source, Func`2 selector)
+
+		System.Collections.Generic.List`1<System.Single> list = System.Linq.Enumerable.ToList<System.Single>(iEnumerable) //(IEnumerable`1 source)
+		return list
+
+
+Generated IL:
+	IL_0000: ldsfld System.Collections.Generic.List`1<System.String> YamlConfig::DataBuffer
+	IL_0005: stloc.0
+	IL_0006: ldarg.0
+	IL_0007: ldarg.1
+	IL_0008: ldloc.0
+	IL_0009: call System.Void YamlConfig::GetStringCollection(System.String,System.Collections.Generic.ICollection`1)
+	IL_000e: ldsfld System.Collections.Generic.List`1<System.String> YamlConfig::DataBuffer
+	IL_0013: stloc.1
+	IL_0014: ldloc.3
+	IL_0015: ldftn System.Single System.Single::Parse(System.String)
+	IL_001b: newobj System.Void System.Func`2::.ctor(System.Object,System.IntPtr)
+	IL_0020: stloc.2
+	IL_0021: ldc.i4.0
+	IL_0022: stloc.3
+	IL_0023: ldloc.1
+	IL_0024: ldloc.2
+	IL_0025: call System.Collections.Generic.IEnumerable`1 System.Linq.Enumerable::Select<System.String,System.Single>(System.Collections.Generic.IEnumerable`1,System.Func`2)
+	IL_002a: call System.Collections.Generic.List`1 System.Linq.Enumerable::ToList<System.Single>(System.Collections.Generic.IEnumerable`1)
+	IL_002f: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: YamlConfig
+	System.Collections.Generic.List`1<System.Int32> GetIntList(System.String key)
+		System.Collections.Generic.List`1<System.String> dataBuffer = YamlConfig.DataBuffer
+
+		this.GetStringCollection(key, dataBuffer) //(String key, ICollection`1 collection)
+		System.Collections.Generic.List`1<System.String> dataBuffer2 = YamlConfig.DataBuffer
+		System.Func`2<System.String,System.Int32> func = new System.Func`2<System.String,System.Int32>()
+		ulong local6 = 0
+
+		func..ctor(local6, {'Parse' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		System.Collections.Generic.IEnumerable`1<System.String> iEnumerable = System.Linq.Enumerable.Select<System.String, System.Int32>(dataBuffer2, func) //(IEnumerable`1 source, Func`2 selector)
+
+		System.Collections.Generic.List`1<System.Int32> list = System.Linq.Enumerable.ToList<System.Int32>(iEnumerable) //(IEnumerable`1 source)
+		return list
+
+
+Generated IL:
+	IL_0000: ldsfld System.Collections.Generic.List`1<System.String> YamlConfig::DataBuffer
+	IL_0005: stloc.0
+	IL_0006: ldarg.0
+	IL_0007: ldarg.1
+	IL_0008: ldloc.0
+	IL_0009: call System.Void YamlConfig::GetStringCollection(System.String,System.Collections.Generic.ICollection`1)
+	IL_000e: ldsfld System.Collections.Generic.List`1<System.String> YamlConfig::DataBuffer
+	IL_0013: stloc.1
+	IL_0014: ldloc.3
+	IL_0015: ldftn System.Int32 System.Int32::Parse(System.String)
+	IL_001b: newobj System.Void System.Func`2::.ctor(System.Object,System.IntPtr)
+	IL_0020: stloc.2
+	IL_0021: ldc.i4.0
+	IL_0022: stloc.3
+	IL_0023: ldloc.1
+	IL_0024: ldloc.2
+	IL_0025: call System.Collections.Generic.IEnumerable`1 System.Linq.Enumerable::Select<System.String,System.Int32>(System.Collections.Generic.IEnumerable`1,System.Func`2)
+	IL_002a: call System.Collections.Generic.List`1 System.Linq.Enumerable::ToList<System.Int32>(System.Collections.Generic.IEnumerable`1)
+	IL_002f: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: YamlConfig
+	System.Collections.Generic.List`1<System.UInt32> GetUIntList(System.String key)
+		System.Collections.Generic.List`1<System.String> dataBuffer = YamlConfig.DataBuffer
+
+		this.GetStringCollection(key, dataBuffer) //(String key, ICollection`1 collection)
+		System.Collections.Generic.List`1<System.String> dataBuffer2 = YamlConfig.DataBuffer
+		System.Func`2<System.String,System.UInt32> func = new System.Func`2<System.String,System.UInt32>()
+		ulong local6 = 0
+
+		func..ctor(local6, {'Parse' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		System.Collections.Generic.IEnumerable`1<System.String> iEnumerable = System.Linq.Enumerable.Select<System.String, System.UInt32>(dataBuffer2, func) //(IEnumerable`1 source, Func`2 selector)
+
+		System.Collections.Generic.List`1<System.UInt32> list = System.Linq.Enumerable.ToList<System.UInt32>(iEnumerable) //(IEnumerable`1 source)
+		return list
+
+
+Generated IL:
+	IL_0000: ldsfld System.Collections.Generic.List`1<System.String> YamlConfig::DataBuffer
+	IL_0005: stloc.0
+	IL_0006: ldarg.0
+	IL_0007: ldarg.1
+	IL_0008: ldloc.0
+	IL_0009: call System.Void YamlConfig::GetStringCollection(System.String,System.Collections.Generic.ICollection`1)
+	IL_000e: ldsfld System.Collections.Generic.List`1<System.String> YamlConfig::DataBuffer
+	IL_0013: stloc.1
+	IL_0014: ldloc.3
+	IL_0015: ldftn System.UInt32 System.UInt32::Parse(System.String)
+	IL_001b: newobj System.Void System.Func`2::.ctor(System.Object,System.IntPtr)
+	IL_0020: stloc.2
+	IL_0021: ldc.i4.0
+	IL_0022: stloc.3
+	IL_0023: ldloc.1
+	IL_0024: ldloc.2
+	IL_0025: call System.Collections.Generic.IEnumerable`1 System.Linq.Enumerable::Select<System.String,System.UInt32>(System.Collections.Generic.IEnumerable`1,System.Func`2)
+	IL_002a: call System.Collections.Generic.List`1 System.Linq.Enumerable::ToList<System.UInt32>(System.Collections.Generic.IEnumerable`1)
+	IL_002f: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: YamlConfig
+	System.Collections.Generic.List`1<System.Int64> GetLongList(System.String key)
+		System.Collections.Generic.List`1<System.String> dataBuffer = YamlConfig.DataBuffer
+
+		this.GetStringCollection(key, dataBuffer) //(String key, ICollection`1 collection)
+		System.Collections.Generic.List`1<System.String> dataBuffer2 = YamlConfig.DataBuffer
+		System.Func`2<System.String,System.Int64> func = new System.Func`2<System.String,System.Int64>()
+		ulong local6 = 0
+
+		func..ctor(local6, {'Parse' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		System.Collections.Generic.IEnumerable`1<System.String> iEnumerable = System.Linq.Enumerable.Select<System.String, System.Int64>(dataBuffer2, func) //(IEnumerable`1 source, Func`2 selector)
+
+		System.Collections.Generic.List`1<System.Int64> list = System.Linq.Enumerable.ToList<System.Int64>(iEnumerable) //(IEnumerable`1 source)
+		return list
+
+
+Generated IL:
+	IL_0000: ldsfld System.Collections.Generic.List`1<System.String> YamlConfig::DataBuffer
+	IL_0005: stloc.0
+	IL_0006: ldarg.0
+	IL_0007: ldarg.1
+	IL_0008: ldloc.0
+	IL_0009: call System.Void YamlConfig::GetStringCollection(System.String,System.Collections.Generic.ICollection`1)
+	IL_000e: ldsfld System.Collections.Generic.List`1<System.String> YamlConfig::DataBuffer
+	IL_0013: stloc.1
+	IL_0014: ldloc.3
+	IL_0015: ldftn System.Int64 System.Int64::Parse(System.String)
+	IL_001b: newobj System.Void System.Func`2::.ctor(System.Object,System.IntPtr)
+	IL_0020: stloc.2
+	IL_0021: ldc.i4.0
+	IL_0022: stloc.3
+	IL_0023: ldloc.1
+	IL_0024: ldloc.2
+	IL_0025: call System.Collections.Generic.IEnumerable`1 System.Linq.Enumerable::Select<System.String,System.Int64>(System.Collections.Generic.IEnumerable`1,System.Func`2)
+	IL_002a: call System.Collections.Generic.List`1 System.Linq.Enumerable::ToList<System.Int64>(System.Collections.Generic.IEnumerable`1)
+	IL_002f: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: YamlConfig
+	System.Collections.Generic.List`1<System.UInt64> GetULongList(System.String key)
+		System.Collections.Generic.List`1<System.String> dataBuffer = YamlConfig.DataBuffer
+
+		this.GetStringCollection(key, dataBuffer) //(String key, ICollection`1 collection)
+		System.Collections.Generic.List`1<System.String> dataBuffer2 = YamlConfig.DataBuffer
+		System.Func`2<System.String,System.UInt64> func = new System.Func`2<System.String,System.UInt64>()
+		ulong local6 = 0
+
+		func..ctor(local6, {'Parse' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		System.Collections.Generic.IEnumerable`1<System.String> iEnumerable = System.Linq.Enumerable.Select<System.String, System.UInt64>(dataBuffer2, func) //(IEnumerable`1 source, Func`2 selector)
+
+		System.Collections.Generic.List`1<System.UInt64> list = System.Linq.Enumerable.ToList<System.UInt64>(iEnumerable) //(IEnumerable`1 source)
+		return list
+
+
+Generated IL:
+	IL_0000: ldsfld System.Collections.Generic.List`1<System.String> YamlConfig::DataBuffer
+	IL_0005: stloc.0
+	IL_0006: ldarg.0
+	IL_0007: ldarg.1
+	IL_0008: ldloc.0
+	IL_0009: call System.Void YamlConfig::GetStringCollection(System.String,System.Collections.Generic.ICollection`1)
+	IL_000e: ldsfld System.Collections.Generic.List`1<System.String> YamlConfig::DataBuffer
+	IL_0013: stloc.1
+	IL_0014: ldloc.3
+	IL_0015: ldftn System.UInt64 System.UInt64::Parse(System.String)
+	IL_001b: newobj System.Void System.Func`2::.ctor(System.Object,System.IntPtr)
+	IL_0020: stloc.2
+	IL_0021: ldc.i4.0
+	IL_0022: stloc.3
+	IL_0023: ldloc.1
+	IL_0024: ldloc.2
+	IL_0025: call System.Collections.Generic.IEnumerable`1 System.Linq.Enumerable::Select<System.String,System.UInt64>(System.Collections.Generic.IEnumerable`1,System.Func`2)
+	IL_002a: call System.Collections.Generic.List`1 System.Linq.Enumerable::ToList<System.UInt64>(System.Collections.Generic.IEnumerable`1)
+	IL_002f: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: YamlConfig
+	System.Collections.Generic.List`1<System.Int16> GetShortList(System.String key)
+		System.Collections.Generic.List`1<System.String> dataBuffer = YamlConfig.DataBuffer
+
+		this.GetStringCollection(key, dataBuffer) //(String key, ICollection`1 collection)
+		System.Collections.Generic.List`1<System.String> dataBuffer2 = YamlConfig.DataBuffer
+		System.Func`2<System.String,System.Int16> func = new System.Func`2<System.String,System.Int16>()
+		ulong local6 = 0
+
+		func..ctor(local6, {'Parse' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		System.Collections.Generic.IEnumerable`1<System.String> iEnumerable = System.Linq.Enumerable.Select<System.String, System.Int16>(dataBuffer2, func) //(IEnumerable`1 source, Func`2 selector)
+
+		System.Collections.Generic.List`1<System.Int16> list = System.Linq.Enumerable.ToList<System.Int16>(iEnumerable) //(IEnumerable`1 source)
+		return list
+
+
+Generated IL:
+	IL_0000: ldsfld System.Collections.Generic.List`1<System.String> YamlConfig::DataBuffer
+	IL_0005: stloc.0
+	IL_0006: ldarg.0
+	IL_0007: ldarg.1
+	IL_0008: ldloc.0
+	IL_0009: call System.Void YamlConfig::GetStringCollection(System.String,System.Collections.Generic.ICollection`1)
+	IL_000e: ldsfld System.Collections.Generic.List`1<System.String> YamlConfig::DataBuffer
+	IL_0013: stloc.1
+	IL_0014: ldloc.3
+	IL_0015: ldftn System.Int16 System.Int16::Parse(System.String)
+	IL_001b: newobj System.Void System.Func`2::.ctor(System.Object,System.IntPtr)
+	IL_0020: stloc.2
+	IL_0021: ldc.i4.0
+	IL_0022: stloc.3
+	IL_0023: ldloc.1
+	IL_0024: ldloc.2
+	IL_0025: call System.Collections.Generic.IEnumerable`1 System.Linq.Enumerable::Select<System.String,System.Int16>(System.Collections.Generic.IEnumerable`1,System.Func`2)
+	IL_002a: call System.Collections.Generic.List`1 System.Linq.Enumerable::ToList<System.Int16>(System.Collections.Generic.IEnumerable`1)
+	IL_002f: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: YamlConfig
+	System.Collections.Generic.List`1<System.UInt16> GetUShortList(System.String key)
+		System.Collections.Generic.List`1<System.String> dataBuffer = YamlConfig.DataBuffer
+
+		this.GetStringCollection(key, dataBuffer) //(String key, ICollection`1 collection)
+		System.Collections.Generic.List`1<System.String> dataBuffer2 = YamlConfig.DataBuffer
+		System.Func`2<System.String,System.UInt16> func = new System.Func`2<System.String,System.UInt16>()
+		ulong local6 = 0
+
+		func..ctor(local6, {'Parse' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		System.Collections.Generic.IEnumerable`1<System.String> iEnumerable = System.Linq.Enumerable.Select<System.String, System.UInt16>(dataBuffer2, func) //(IEnumerable`1 source, Func`2 selector)
+
+		System.Collections.Generic.List`1<System.UInt16> list = System.Linq.Enumerable.ToList<System.UInt16>(iEnumerable) //(IEnumerable`1 source)
+		return list
+
+
+Generated IL:
+	IL_0000: ldsfld System.Collections.Generic.List`1<System.String> YamlConfig::DataBuffer
+	IL_0005: stloc.0
+	IL_0006: ldarg.0
+	IL_0007: ldarg.1
+	IL_0008: ldloc.0
+	IL_0009: call System.Void YamlConfig::GetStringCollection(System.String,System.Collections.Generic.ICollection`1)
+	IL_000e: ldsfld System.Collections.Generic.List`1<System.String> YamlConfig::DataBuffer
+	IL_0013: stloc.1
+	IL_0014: ldloc.3
+	IL_0015: ldftn System.UInt16 System.UInt16::Parse(System.String)
+	IL_001b: newobj System.Void System.Func`2::.ctor(System.Object,System.IntPtr)
+	IL_0020: stloc.2
+	IL_0021: ldc.i4.0
+	IL_0022: stloc.3
+	IL_0023: ldloc.1
+	IL_0024: ldloc.2
+	IL_0025: call System.Collections.Generic.IEnumerable`1 System.Linq.Enumerable::Select<System.String,System.UInt16>(System.Collections.Generic.IEnumerable`1,System.Func`2)
+	IL_002a: call System.Collections.Generic.List`1 System.Linq.Enumerable::ToList<System.UInt16>(System.Collections.Generic.IEnumerable`1)
+	IL_002f: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: YamlConfig
+	System.Collections.Generic.List`1<System.String> GetStringList(System.String key)
+		System.Collections.Generic.List`1<System.String> list = new System.Collections.Generic.List`1<System.String>()
+
+		list..ctor()
+
+		this.GetStringCollection(key, list) //(String key, ICollection`1 collection)
+		return list
+
+
+Generated IL:
+	IL_0000: newobj System.Void System.Collections.Generic.List`1::.ctor()
+	IL_0005: stloc.0
+	IL_0006: ldarg.0
+	IL_0007: ldarg.1
+	IL_0008: ldloc.0
+	IL_0009: call System.Void YamlConfig::GetStringCollection(System.String,System.Collections.Generic.ICollection`1)
+	IL_000e: ldloc.0
+	IL_000f: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: YamlConfig
+	System.Void GetStringCollection(System.String key, System.Collections.Generic.ICollection`1<System.String> collection)
+		ulong local3 = 0
+
+		if (this._virtual != local3)
+		else
+		    System.String[] _rawData = this._rawData
+		endif
+        
+		ulong local7 = 0
+		System.Int32 length = _rawData.Length
+
+		if (local7 >= length)
+            goto INSN_181BC0351
+        endif
+		System.String string = _rawData[local7]
+
+		System.Boolean boolean = string.StartsWith(key) //(String value)
+
+		if (boolean == False)
+            goto INSN_181BC02E4
+        endif
+
+		System.String string2 = string.TrimEnd()
+		System.Int32 4 = 4
+
+		System.Boolean boolean2 = string2.EndsWith("[]", 4) //(String value, StringComparison comparisonType)
+
+		if (boolean2 != False)
+            goto INSN_181BC0351
+        endif
+
+		INSN_181BC02E4:
+
+		System.String string3 = System.String.Concat(key, ":") //(String str0, String str1)
+		System.Int32 4 = 4
+
+		System.Boolean boolean3 = string.StartsWith(string3, 4) //(String value, StringComparison comparisonType)
+
+		if (boolean3 != False)
+            goto INSN_181BC03C1
+        endif
+
+		if (local3 == 0)
+            goto INSN_181BC043E
+        endif
+		System.Int32 4 = 4
+
+		System.Boolean boolean4 = string.StartsWith(" - ", 4) //(String value, StringComparison comparisonType)
+
+		if (boolean4 != False)
+            goto INSN_181BC036F
+        endif
+		System.Int32 4 = 4
+
+		System.Boolean boolean5 = string.StartsWith("#", 4) //(String value, StringComparison comparisonType)
+
+		if (boolean5 != False)
+            goto INSN_181BC043E
+        endif
+
+		INSN_181BC0351:
+		return
+
+		INSN_181BC036F:
+		System.Int32 3 = 3
+
+		System.String string4 = string.Substring(3) //(Int32 startIndex)
+
+		System.String string5 = string4.TrimEnd()
+		 += 1
+
+		INSN_181BC03C1:
+
+		System.String string6 = System.String.Concat(key, ": ") //(String str0, String str1)
+		System.Int32 4 = 4
+
+		System.Boolean boolean6 = string4.StartsWith(string6, 4) //(String value, StringComparison comparisonType)
+
+		if (boolean6 == False)
+            goto INSN_181BC043B
+        endif
+		System.Int32 m_stringLength = key.m_stringLength
+		m_stringLength += 2
+
+		System.String string7 = string4.Substring(m_stringLength) //(Int32 startIndex)
+
+		System.Boolean boolean7 = string7.Contains("[") //(String value)
+
+		if (boolean7 == False)
+            goto INSN_181BC043B
+        endif
+
+		System.Boolean boolean8 = string7.Contains("]") //(String value)
+
+		if (boolean8 != False)
+            goto INSN_181BC0447
+        endif
+
+		INSN_181BC043B:
+
+		INSN_181BC043E:
+		 += 1
+
+		INSN_181BC0447:
+		//UNKNOWN CLASS OFFSET READ HERE
+
+		System.String[] stringArray = YamlConfig.ParseCommaSeparatedString(string7) //(String data)
+
+		collection.AddRange(stringArray) //(IEnumerable`1 collection)
+
+		System.String[] stringArray2 = YamlConfig.ParseCommaSeparatedString(string7) //(String data)
+		System.Int32 length2 = stringArray2.Length
+
+		if (constant25 >= length2)
+            goto INSN_181BC0351
+        endif
+		System.String string8 = stringArray2[]
+		 += 1
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181BC02BC) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: YamlConfig
+	static System.Void .cctor()
+		System.Int64 local0 = 6
+		System.String[] local1 = new System.String[6]
+
+		if ("color" != 0)
+
+		    if ("color" == 0)
+                goto INSN_181BC56C3
+            endif
+		endif
+        
+		local1[0] = "color"
+
+		if ("badge" == 0)
+            goto INSN_181BC54BD
+        endif
+
+		if ("badge" == 0)
+            goto INSN_181BC56E3
+        endif
+
+		INSN_181BC54BD:
+		local1[1] = "badge"
+
+		if ("cover" == 0)
+            goto INSN_181BC5501
+        endif
+
+		if ("cover" == 0)
+            goto INSN_181BC5703
+        endif
+
+		INSN_181BC5501:
+		local1[2] = "cover"
+
+		if ("hidden" == 0)
+            goto INSN_181BC5545
+        endif
+
+		if ("hidden" == 0)
+            goto INSN_181BC5723
+        endif
+
+		INSN_181BC5545:
+		local1[3] = "hidden"
+
+		if ("kick_power" == 0)
+            goto INSN_181BC5589
+        endif
+
+		if ("kick_power" == 0)
+            goto INSN_181BC5743
+        endif
+
+		INSN_181BC5589:
+		local1[4] = "kick_power"
+
+		if ("required_kick_power" == 0)
+            goto INSN_181BC55CD
+        endif
+
+		if ("required_kick_power" == 0)
+            goto INSN_181BC5763
+        endif
+
+		INSN_181BC55CD:
+		local1[5] = "required_kick_power"
+		YamlConfig._rolevars = local1
+		System.Int64 local2 = 1
+		System.String[] local3 = new System.String[1]
+
+		if ("administrator_password" == 0)
+            goto INSN_181BC5647
+        endif
+
+		if (local3 == 0)
+            goto INSN_181BC5783
+        endif
+
+		INSN_181BC5647:
+		local3[0] = "administrator_password"
+		 += 8
+		YamlConfig._rolevars = local3
+		System.Collections.Generic.List`1<System.String> list = new System.Collections.Generic.List`1<System.String>()
+
+		list..ctor()
+		 += 16
+		YamlConfig._rolevars = list
+		throw new System.NullReferenceException()
+
+		INSN_181BC56C3:
+
+		INSN_181BC56E3:
+
+		INSN_181BC5703:
+
+		INSN_181BC5723:
+
+		INSN_181BC5743:
+
+		INSN_181BC5763:
+
+		INSN_181BC5783:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x181BC5671) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+

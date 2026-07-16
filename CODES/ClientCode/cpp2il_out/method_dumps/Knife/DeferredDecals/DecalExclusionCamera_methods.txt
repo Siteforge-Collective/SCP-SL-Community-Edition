@@ -1,0 +1,327 @@
+Type: DecalExclusionCamera
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Knife.DeferredDecals.DecalExclusionCamera
+	System.Void .ctor(UnityEngine.Camera camera)
+
+		base..ctor()
+		UnityEngine.Material exclusionDepthMaterial = Knife.DeferredDecals.DecalExclusionCamera.ExclusionDepthMaterial
+		ulong local5 = 0
+
+		System.Boolean boolean = UnityEngine.Object.op_Equality(exclusionDepthMaterial, local5) //(Object x, Object y)
+
+		if (boolean != False)
+
+		    UnityEngine.Shader shader = UnityEngine.Resources.Load<UnityEngine.Shader>("Knife/Deferred Decals/DepthToTarget") //(String path)
+		     += 16
+		    Knife.DeferredDecals.DecalExclusionCamera.ExclusionMaskID = shader
+		    UnityEngine.Shader exclusionDepthShader = Knife.DeferredDecals.DecalExclusionCamera.ExclusionDepthShader
+		    UnityEngine.Material material = new UnityEngine.Material()
+
+		    material..ctor(exclusionDepthShader) //(Shader shader)
+		     += 8
+		    Knife.DeferredDecals.DecalExclusionCamera.ExclusionMaskID = material
+		endif
+        
+
+		System.Int32 pixelWidth = camera.pixelWidth
+
+		System.Int32 pixelHeight = camera.pixelHeight
+		UnityEngine.RenderTexture renderTexture = new UnityEngine.RenderTexture()
+
+		renderTexture..ctor()
+		this._exclusionRenderTexture = renderTexture
+		UnityEngine.RenderTexture _exclusionRenderTexture = this._exclusionRenderTexture
+		ulong local22 = 0
+
+		_exclusionRenderTexture.filterMode = local22
+		UnityEngine.RenderTexture _exclusionRenderTexture2 = this._exclusionRenderTexture
+
+		System.Boolean boolean2 = _exclusionRenderTexture2.Create()
+		UnityEngine.RenderTexture _exclusionRenderTexture3 = this._exclusionRenderTexture
+
+		System.String name = camera.name
+
+		System.String string = System.String.Concat("Exclusion Mask for camera ", name) //(String str0, String str1)
+
+		_exclusionRenderTexture3.name = string
+		this._camera = camera
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x180527DCB) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Knife.DeferredDecals.DecalExclusionCamera
+	System.Void UpdateExclusionCamera()
+		UnityEngine.Camera _camera = this._camera
+
+		UnityEngine.CameraType cameraType = _camera.cameraType
+
+		if (cameraType == 2)
+
+		    Knife.DeferredDecals.DeferredDecalsSystem deferredDecalsSystem = UnityEngine.Object.FindObjectOfType<Knife.DeferredDecals.DeferredDecalsSystem>()
+		else
+		    Knife.DeferredDecals.DeferredDecalsSystem Singleton = Knife.DeferredDecals.DeferredDecalsSystem.<Singleton>k__BackingField
+		endif
+        
+		ulong local7 = 0
+
+		System.Boolean boolean = UnityEngine.Object.op_Equality(Singleton, local7) //(Object x, Object y)
+
+		if (boolean != False)
+            goto INSN_180527BF9
+        endif
+
+		if (Singleton.UseExclusionMask == boolean)
+            goto INSN_180527BF9
+        endif
+		UnityEngine.Camera _exclusionCamera = this._exclusionCamera
+		ulong local11 = 0
+
+		System.Boolean boolean2 = UnityEngine.Object.op_Equality(_exclusionCamera, local11) //(Object x, Object y)
+
+		if (boolean2 == False)
+            goto INSN_180527AC8
+        endif
+		System.Type[] local13 = new System.Type[1]
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'Camera' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+
+		if (typeFromHandle == 0)
+            goto INSN_18052783C
+        endif
+
+		if (typeFromHandle == 0)
+            goto INSN_180527C19
+        endif
+
+		INSN_18052783C:
+		local13[0] = typeFromHandle
+		UnityEngine.GameObject gameObject = new UnityEngine.GameObject()
+
+		gameObject..ctor("Decal Exclusion Camera", local13) //(String name, Type[] components)
+
+		UnityEngine.Camera component = gameObject.GetComponent<UnityEngine.Camera>()
+		this._exclusionCamera = component
+		UnityEngine.Camera _exclusionCamera2 = this._exclusionCamera
+		UnityEngine.RenderTexture _exclusionRenderTexture = this._exclusionRenderTexture
+
+		_exclusionCamera2.targetTexture = _exclusionRenderTexture
+		UnityEngine.Camera _exclusionCamera3 = this._exclusionCamera
+		ulong local24 = 0
+
+		_exclusionCamera3.enabled = local24
+		UnityEngine.Camera _exclusionCamera4 = this._exclusionCamera
+		System.Int32 61 = 61
+
+		_exclusionCamera4.hideFlags = 61
+		UnityEngine.Camera _exclusionCamera5 = this._exclusionCamera
+		System.Int32 1 = 1
+
+		_exclusionCamera5.renderingPath = 1
+		UnityEngine.Camera _exclusionCamera6 = this._exclusionCamera
+		ulong local31 = 0
+
+		_exclusionCamera6.allowHDR = local31
+		UnityEngine.Camera _exclusionCamera7 = this._exclusionCamera
+		ulong local34 = 0
+
+		_exclusionCamera7.allowMSAA = local34
+		UnityEngine.Camera _exclusionCamera8 = this._exclusionCamera
+		System.Int32 2 = 2
+
+		_exclusionCamera8.clearFlags = 2
+		UnityEngine.Camera _exclusionCamera9 = this._exclusionCamera
+
+		[instruction error - managed method being called is null]
+
+		_exclusionCamera9.set_backgroundColor()
+		UnityEngine.Camera _exclusionCamera10 = this._exclusionCamera
+		UnityEngine.Shader exclusionDepthShader = Knife.DeferredDecals.DecalExclusionCamera.ExclusionDepthShader
+
+		_exclusionCamera10.SetReplacementShader(exclusionDepthShader, "RenderType") //(Shader shader, String replacementTag)
+		UnityEngine.Camera _exclusionCamera11 = this._exclusionCamera
+
+		UnityEngine.Transform transform = _exclusionCamera11.transform
+		UnityEngine.Camera _camera2 = this._camera
+
+		UnityEngine.Transform transform2 = _camera2.transform
+
+		transform.parentInternal = transform2
+
+		UnityEngine.Vector3 zero = UnityEngine.Vector3.zero
+		System.Single single = zero.z
+
+		transform.set_localPosition()
+
+		UnityEngine.Quaternion identity = UnityEngine.Quaternion.identity
+
+		transform.set_localRotation()
+		UnityEngine.Camera _exclusionCamera12 = this._exclusionCamera
+		System.Int32 20 = 20
+		UnityEngine.Rendering.CommandBuffer exclusionRenderBuffer = Knife.DeferredDecals.DecalExclusionCamera.ExclusionRenderBuffer
+
+		_exclusionCamera12.AddCommandBuffer(20, exclusionRenderBuffer) //(CameraEvent evt, CommandBuffer buffer)
+
+		INSN_180527AC8:
+		UnityEngine.LayerMask exclusionMask = Singleton.ExclusionMask
+		UnityEngine.Camera _exclusionCamera13 = this._exclusionCamera
+
+		[instruction error - managed method being called is null]
+
+		_exclusionCamera13.set_cullingMask()
+		UnityEngine.Camera _camera3 = this._camera
+		UnityEngine.Camera _exclusionCamera14 = this._exclusionCamera
+
+		System.Single depth = _camera3.depth
+
+		_exclusionCamera14.depth = depth
+		UnityEngine.Camera _camera4 = this._camera
+		UnityEngine.Camera _exclusionCamera15 = this._exclusionCamera
+
+		System.Single fieldOfView = _camera4.fieldOfView
+		depth = fieldOfView
+
+		_exclusionCamera15.fieldOfView = depth
+		UnityEngine.Camera _camera5 = this._camera
+		UnityEngine.Camera _exclusionCamera16 = this._exclusionCamera
+
+		System.Single nearClipPlane = _camera5.nearClipPlane
+		depth = nearClipPlane
+
+		_exclusionCamera16.nearClipPlane = depth
+		UnityEngine.Camera _camera6 = this._camera
+		UnityEngine.Camera _exclusionCamera17 = this._exclusionCamera
+
+		System.Single farClipPlane = _camera6.farClipPlane
+		depth = farClipPlane
+
+		_exclusionCamera17.farClipPlane = depth
+		UnityEngine.Camera _exclusionCamera18 = this._exclusionCamera
+
+		_exclusionCamera18.Render()
+		UnityEngine.RenderTexture _exclusionRenderTexture2 = this._exclusionRenderTexture
+		System.Int32 exclusionMaskID = Knife.DeferredDecals.DecalExclusionCamera.ExclusionMaskID
+
+		UnityEngine.Shader.SetGlobalTextureImpl(exclusionMaskID, _exclusionRenderTexture2) //(Int32 name, Texture value)
+
+		INSN_180527BF9:
+		return
+		throw new System.NullReferenceException()
+
+		INSN_180527C19:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180527956) is corrupt (Don't know what method is being called) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Knife.DeferredDecals.DecalExclusionCamera
+	System.Void DestroyCamera()
+		UnityEngine.RenderTexture _exclusionRenderTexture = this._exclusionRenderTexture
+		ulong local3 = 0
+
+		System.Boolean boolean = UnityEngine.Object.op_Inequality(_exclusionRenderTexture, local3) //(Object x, Object y)
+
+		if (boolean != False)
+		    UnityEngine.RenderTexture _exclusionRenderTexture2 = this._exclusionRenderTexture
+
+		    _exclusionRenderTexture2.Release()
+		endif
+        
+		UnityEngine.Camera _exclusionCamera = this._exclusionCamera
+		ulong local9 = 0
+
+		System.Boolean boolean2 = UnityEngine.Object.op_Inequality(_exclusionCamera, local9) //(Object x, Object y)
+
+		if (boolean2 == False)
+            goto INSN_180527642
+        endif
+		UnityEngine.Camera _exclusionCamera2 = this._exclusionCamera
+
+		UnityEngine.CameraType cameraType = _exclusionCamera2.cameraType
+
+		if (cameraType != 2)
+            goto INSN_180527642
+        endif
+		UnityEngine.Camera _exclusionCamera3 = this._exclusionCamera
+
+		UnityEngine.GameObject gameObject = _exclusionCamera3.gameObject
+
+		UnityEngine.Object.Destroy(gameObject) //(Object obj)
+
+		INSN_180527642:
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld UnityEngine.RenderTexture Knife.DeferredDecals.DecalExclusionCamera::_exclusionRenderTexture
+	IL_0006: stloc.0
+	IL_0007: ldc.i4.0
+	IL_0008: stloc.1
+	IL_0009: ldloc.0
+	IL_000a: ldloc.1
+	IL_000b: call System.Boolean UnityEngine.Object::op_Inequality(UnityEngine.Object,UnityEngine.Object)
+	IL_0010: ldc.i4.0
+	IL_0011: beq.s IL_001e
+	IL_0013: ldarg.0
+	IL_0014: ldfld UnityEngine.RenderTexture Knife.DeferredDecals.DecalExclusionCamera::_exclusionRenderTexture
+	IL_0019: call System.Void UnityEngine.RenderTexture::Release()
+	IL_001e: ldarg.0
+	IL_001f: ldfld UnityEngine.Camera Knife.DeferredDecals.DecalExclusionCamera::_exclusionCamera
+	IL_0024: stloc.2
+	IL_0025: ldc.i4.0
+	IL_0026: stloc.3
+	IL_0027: ldloc.2
+	IL_0028: ldloc.3
+	IL_0029: call System.Boolean UnityEngine.Object::op_Inequality(UnityEngine.Object,UnityEngine.Object)
+	IL_002e: ldc.i4.0
+	IL_002f: beq.s IL_004f
+	IL_0031: ldarg.0
+	IL_0032: ldfld UnityEngine.Camera Knife.DeferredDecals.DecalExclusionCamera::_exclusionCamera
+	IL_0037: call UnityEngine.CameraType UnityEngine.Camera::get_cameraType()
+	IL_003c: ldc.i4.2
+	IL_003d: bne.un.s IL_004f
+	IL_003f: ldarg.0
+	IL_0040: ldfld UnityEngine.Camera Knife.DeferredDecals.DecalExclusionCamera::_exclusionCamera
+	IL_0045: call UnityEngine.GameObject UnityEngine.Component::get_gameObject()
+	IL_004a: call System.Void UnityEngine.Object::Destroy(UnityEngine.Object)
+	IL_004f: ret
+	IL_0050: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0055: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Knife.DeferredDecals.DecalExclusionCamera
+	static System.Void .cctor()
+
+		System.Int32 int32 = UnityEngine.Shader.PropertyToID("_ExclusionMask") //(String name)
+		Knife.DeferredDecals.DecalExclusionCamera.ExclusionMaskID = int32
+		UnityEngine.Rendering.CommandBuffer commandBuffer = new UnityEngine.Rendering.CommandBuffer()
+
+		commandBuffer..ctor()
+
+		commandBuffer.name = "[Decal Master] Exclusion Render Buffer"
+		 += 24
+		Knife.DeferredDecals.DecalExclusionCamera.ExclusionMaskID = commandBuffer
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x180527CC0) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+

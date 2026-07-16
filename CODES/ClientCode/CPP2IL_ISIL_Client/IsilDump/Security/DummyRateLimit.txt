@@ -1,0 +1,39 @@
+Type: Security.DummyRateLimit
+
+Method: System.Void .ctor()
+
+Disassembly:
+	push rbx
+	sub rsp,20h
+	xor edx,edx
+	mov rbx,rcx
+	call 00000001802D5040h
+	xor eax,eax
+	lea rcx,[rbx+20h]
+	xor edx,edx
+	mov [rbx+10h],eax
+	mov [rbx+18h],eax
+	mov [rcx],rax
+	add rsp,20h
+	pop rbx
+	jmp near ptr 0000000180293EF0h
+
+ISIL:
+	001 ShiftStack -8
+	002 Move stack:0x0, rbx
+	003 ShiftStack -32
+	004 Move rdx, 0
+	005 Move rbx, rcx
+	006 Call 0x1802D5040, rcx, rdx, r8, r9, stack:0x0
+	007 Move rax, 0
+	008 LoadAddress rcx, [rbx+32]
+	009 Move rdx, 0
+	010 Move [rbx+16], rax
+	011 Move [rbx+24], rax
+	012 Move [rcx], rax
+	013 ShiftStack 32
+	014 Move rbx, stack:0x0
+	015 ShiftStack 8
+	016 Call 0x180293EF0, rcx, rdx, r8, r9
+	017 Return 
+

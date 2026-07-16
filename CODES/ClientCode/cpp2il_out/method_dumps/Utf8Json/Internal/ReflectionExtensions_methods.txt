@@ -1,0 +1,199 @@
+Type: ReflectionExtensions
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Utf8Json.Internal.ReflectionExtensions
+	static System.Boolean IsNullable(System.Reflection.TypeInfo type)
+
+		System.Boolean isSzArray = type.IsSzArray
+
+		if (isSzArray == False)
+		    return isSzArray
+		endif
+        
+
+		System.Type[] genericTypeArguments = type.GenericTypeArguments
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'Nullable`1' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+
+		System.Boolean boolean = genericTypeArguments.Equals(typeFromHandle) //(Object obj)
+		return boolean
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: callvirt System.Boolean System.Type::get_IsSzArray()
+	IL_0006: stloc.0
+	IL_0007: ldloc.0
+	IL_0008: ldc.i4.0
+	IL_0009: bne.un.s IL_000d
+	IL_000b: ldloc.0
+	IL_000c: ret
+	IL_000d: ldarg.0
+	IL_000e: callvirt System.Type[] System.Type::get_GenericTypeArguments()
+	IL_0013: stloc.1
+	IL_0014: ldtoken System.Nullable`1
+	IL_0019: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+	IL_001e: stloc.2
+	IL_001f: ldloc.1
+	IL_0020: ldloc.2
+	IL_0021: call System.Boolean System.Object::Equals(System.Object)
+	IL_0026: ret
+	IL_0027: newobj System.Void System.NullReferenceException::.ctor()
+	IL_002c: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Utf8Json.Internal.ReflectionExtensions
+	static System.Boolean IsPublic(System.Reflection.TypeInfo type)
+
+		System.Boolean isPublic = type.IsPublic
+		return isPublic
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Boolean System.Type::get_IsPublic()
+	IL_0006: ret
+	IL_0007: newobj System.Void System.NullReferenceException::.ctor()
+	IL_000c: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Utf8Json.Internal.ReflectionExtensions
+	static System.Boolean IsAnonymous(System.Reflection.TypeInfo type)
+
+		System.Runtime.CompilerServices.CompilerGeneratedAttribute customAttribute = System.Reflection.CustomAttributeExtensions.GetCustomAttribute<System.Runtime.CompilerServices.CompilerGeneratedAttribute>(type) //(MemberInfo element)
+
+		if (customAttribute != 0)
+
+		    System.Reflection.MemberTypes memberType = type.MemberType
+
+		    System.Boolean boolean = memberType.Contains("AnonymousType") //(String value)
+
+		    if (boolean != False)
+
+		        System.Reflection.MemberTypes memberType2 = type.MemberType
+
+		        System.Boolean boolean2 = memberType2.StartsWith("<>") //(String value)
+
+		        if (boolean2 == False)
+
+		            System.Reflection.MemberTypes memberType3 = type.MemberType
+
+		            System.Boolean boolean3 = memberType3.StartsWith("VB$") //(String value)
+
+		            if (boolean3 == False)
+                        goto INSN_180A08155
+                    endif
+		        endif
+                
+
+		        System.Reflection.TypeAttributes attributes = type.Attributes
+		        return True
+		    endif
+            
+		    ulong local13 = 0
+		    return local13
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180A080DE) is corrupt (Mismatched instance parameter. Expecting an instance of System.String, actually {'memberType' (type System.Reflection.MemberTypes)}) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Utf8Json.Internal.ReflectionExtensions
+	static System.Collections.Generic.IEnumerable`1<System.Reflection.PropertyInfo> GetAllProperties(System.Type type)
+		System.Collections.Generic.HashSet`1<System.String> hashSet = new System.Collections.Generic.HashSet`1<System.String>()
+
+		hashSet..ctor()
+
+		System.Collections.Generic.IEnumerable`1<System.Reflection.PropertyInfo> allPropertiesCore = Utf8Json.Internal.ReflectionExtensions.GetAllPropertiesCore(type, hashSet) //(Type type, HashSet`1 nameCheck)
+		return allPropertiesCore
+
+
+Generated IL:
+	IL_0000: newobj System.Void System.Collections.Generic.HashSet`1::.ctor()
+	IL_0005: stloc.0
+	IL_0006: ldarg.0
+	IL_0007: ldloc.0
+	IL_0008: call System.Collections.Generic.IEnumerable`1 Utf8Json.Internal.ReflectionExtensions::GetAllPropertiesCore(System.Type,System.Collections.Generic.HashSet`1)
+	IL_000d: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Utf8Json.Internal.ReflectionExtensions
+	static System.Collections.Generic.IEnumerable`1<System.Reflection.PropertyInfo> GetAllPropertiesCore(System.Type type, System.Collections.Generic.HashSet`1<System.String> nameCheck)
+		Utf8Json.Internal.ReflectionExtensions/<GetAllPropertiesCore>d__4 enumeratorInstance = new Utf8Json.Internal.ReflectionExtensions/<GetAllPropertiesCore>d__4()
+
+		enumeratorInstance..ctor()
+		ulong local4 = 0
+		enumeratorInstance.<>1__state = 4294967294
+
+		System.Int32 currentManagedThreadId = System.Environment.CurrentManagedThreadId
+		enumeratorInstance.<>3__type = type
+		enumeratorInstance.<>l__initialThreadId = currentManagedThreadId
+		enumeratorInstance.<>3__nameCheck = nameCheck
+		return enumeratorInstance
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AllocateInstanceAction at (0x180A07FB7) is corrupt (Could not resolve a constructor with 0 parameters.) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Utf8Json.Internal.ReflectionExtensions
+	static System.Collections.Generic.IEnumerable`1<System.Reflection.FieldInfo> GetAllFields(System.Type type)
+		System.Collections.Generic.HashSet`1<System.String> hashSet = new System.Collections.Generic.HashSet`1<System.String>()
+
+		hashSet..ctor()
+
+		System.Collections.Generic.IEnumerable`1<System.Reflection.FieldInfo> allFieldsCore = Utf8Json.Internal.ReflectionExtensions.GetAllFieldsCore(type, hashSet) //(Type type, HashSet`1 nameCheck)
+		return allFieldsCore
+
+
+Generated IL:
+	IL_0000: newobj System.Void System.Collections.Generic.HashSet`1::.ctor()
+	IL_0005: stloc.0
+	IL_0006: ldarg.0
+	IL_0007: ldloc.0
+	IL_0008: call System.Collections.Generic.IEnumerable`1 Utf8Json.Internal.ReflectionExtensions::GetAllFieldsCore(System.Type,System.Collections.Generic.HashSet`1)
+	IL_000d: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Utf8Json.Internal.ReflectionExtensions
+	static System.Collections.Generic.IEnumerable`1<System.Reflection.FieldInfo> GetAllFieldsCore(System.Type type, System.Collections.Generic.HashSet`1<System.String> nameCheck)
+		Utf8Json.Internal.ReflectionExtensions/<GetAllFieldsCore>d__6 enumeratorInstance = new Utf8Json.Internal.ReflectionExtensions/<GetAllFieldsCore>d__6()
+
+		enumeratorInstance..ctor()
+		ulong local4 = 0
+		enumeratorInstance.<>1__state = 4294967294
+
+		System.Int32 currentManagedThreadId = System.Environment.CurrentManagedThreadId
+		enumeratorInstance.<>3__type = type
+		enumeratorInstance.<>l__initialThreadId = currentManagedThreadId
+		enumeratorInstance.<>3__nameCheck = nameCheck
+		return enumeratorInstance
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AllocateInstanceAction at (0x180A07EC7) is corrupt (Could not resolve a constructor with 0 parameters.) and cannot be created as IL. Aborting here.
+
+

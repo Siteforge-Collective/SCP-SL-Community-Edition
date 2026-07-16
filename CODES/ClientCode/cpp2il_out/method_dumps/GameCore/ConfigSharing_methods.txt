@@ -1,0 +1,290 @@
+Type: ConfigSharing
+
+
+	Generated Pseudocode:
+
+	Declaring Type: GameCore.ConfigSharing
+	static System.Void .cctor()
+		System.Int64 local0 = 7
+		System.String[] local1 = new System.String[7]
+		GameCore.ConfigSharing.Shares = local1
+		System.Int64 local2 = 7
+		System.String[] local3 = new System.String[7]
+		 += 8
+		GameCore.ConfigSharing.Shares = local3
+		ulong local4 = 0
+
+		GameCore.ConfigSharing.Reload()
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x181B1E12B) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: GameCore.ConfigSharing
+	static System.Void Reload()
+		System.String[] shares = GameCore.ConfigSharing.Shares
+		YamlConfig sharingConfig = GameCore.ConfigFile.SharingConfig
+
+		System.String string = sharingConfig.GetString("bans", "") //(String key, String def)
+
+		if (string != 0)
+
+		    if (string == 0)
+                goto INSN_181B1DF49
+            endif
+		endif
+        
+		shares[0] = string
+		System.String[] shares2 = GameCore.ConfigSharing.Shares
+		YamlConfig sharingConfig2 = GameCore.ConfigFile.SharingConfig
+
+		System.String string2 = sharingConfig2.GetString("mutes", "") //(String key, String def)
+
+		if (string2 == 0)
+            goto INSN_181B1D826
+        endif
+
+		if (string2 == 0)
+            goto INSN_181B1DF69
+        endif
+
+		INSN_181B1D826:
+		shares2[1] = string2
+		System.String[] shares3 = GameCore.ConfigSharing.Shares
+		YamlConfig sharingConfig3 = GameCore.ConfigFile.SharingConfig
+
+		System.String string3 = sharingConfig3.GetString("whitelist", "") //(String key, String def)
+
+		if (string3 == 0)
+            goto INSN_181B1D8AA
+        endif
+
+		if (string3 == 0)
+            goto INSN_181B1DF89
+        endif
+
+		INSN_181B1D8AA:
+		shares3[2] = string3
+		System.String[] shares4 = GameCore.ConfigSharing.Shares
+		YamlConfig sharingConfig4 = GameCore.ConfigFile.SharingConfig
+
+		System.String string4 = sharingConfig4.GetString("reserved_slots", "") //(String key, String def)
+
+		if (string4 == 0)
+            goto INSN_181B1D92E
+        endif
+
+		if (string4 == 0)
+            goto INSN_181B1DFA9
+        endif
+
+		INSN_181B1D92E:
+		shares4[3] = string4
+		System.String[] shares5 = GameCore.ConfigSharing.Shares
+		YamlConfig sharingConfig5 = GameCore.ConfigFile.SharingConfig
+
+		System.String string5 = sharingConfig5.GetString("groups", "") //(String key, String def)
+
+		if (string5 == 0)
+            goto INSN_181B1D9B2
+        endif
+
+		if (string5 == 0)
+            goto INSN_181B1DFC9
+        endif
+
+		INSN_181B1D9B2:
+		shares5[4] = string5
+		System.String[] shares6 = GameCore.ConfigSharing.Shares
+		YamlConfig sharingConfig6 = GameCore.ConfigFile.SharingConfig
+
+		System.String string6 = sharingConfig6.GetString("groups_members", "") //(String key, String def)
+
+		if (string6 == 0)
+            goto INSN_181B1DA36
+        endif
+
+		if (string6 == 0)
+            goto INSN_181B1DFE9
+        endif
+
+		INSN_181B1DA36:
+		shares6[5] = string6
+		System.String[] shares7 = GameCore.ConfigSharing.Shares
+		YamlConfig sharingConfig7 = GameCore.ConfigFile.SharingConfig
+
+		System.String string7 = sharingConfig7.GetString("gameplay_database", "") //(String key, String def)
+
+		if (string7 == 0)
+            goto INSN_181B1DABA
+        endif
+
+		if (string7 == 0)
+            goto INSN_181B1E009
+        endif
+
+		INSN_181B1DABA:
+		shares7[6] = string7
+		ulong local28 = 0
+		System.String[] shares8 = GameCore.ConfigSharing.Shares
+
+		if (local28 >= shares8.Length)
+            goto INSN_181B1DEFA
+        endif
+		System.String[] shares9 = GameCore.ConfigSharing.Shares
+		System.String string8 = shares9[local28]
+
+		System.Boolean boolean = System.String.Equals(string8, "disable") //(String a, String b)
+
+		if (boolean != False)
+            goto INSN_181B1DE55
+        endif
+		System.String[] shares10 = GameCore.ConfigSharing.Shares
+		System.String[] paths = GameCore.ConfigSharing.Paths
+		System.String string9 = shares10[local28]
+
+		System.String appFolder = FileManager.GetAppFolder(True, True, string9) //(Boolean addSeparator, Boolean serverConfig, String centralConfig)
+
+		if (appFolder == 0)
+            goto INSN_181B1DC1D
+        endif
+
+		if (appFolder == 0)
+            goto INSN_181B1E029
+        endif
+
+		INSN_181B1DC1D:
+		throw new System.IndexOutOfRangeException()
+		System.String[] shares11 = GameCore.ConfigSharing.Shares
+		System.String string10 = shares11[local28]
+
+		System.String appFolder2 = FileManager.GetAppFolder(True, True, string10) //(Boolean addSeparator, Boolean serverConfig, String centralConfig)
+
+		System.Boolean boolean2 = System.IO.Directory.Exists(appFolder2) //(String path)
+
+		if (boolean2 != False)
+            goto INSN_181B1DC7C
+        endif
+
+		System.IO.DirectoryInfo directoryInfo = System.IO.Directory.CreateDirectory(appFolder2) //(String path)
+
+		INSN_181B1DC7C:
+		System.Int32 -4 = 4294967292
+
+		if (-4 > 1)
+            goto INSN_181B1DEF2
+        endif
+
+		if (local28 != 4)
+            goto INSN_181B1DD6F
+        endif
+		System.String[] paths2 = GameCore.ConfigSharing.Paths
+		System.String string11 = paths2[local28]
+
+		System.String string12 = System.String.Concat(string11, "shared_groups.txt") //(String str0, String str1)
+
+		System.Boolean boolean3 = System.IO.File.Exists(string12) //(String path)
+
+		if (boolean3 != False)
+            goto INSN_181B1DEF2
+        endif
+		System.String[] paths3 = GameCore.ConfigSharing.Paths
+		System.String string13 = paths3[local28]
+
+		System.String string14 = System.String.Concat(string13, "shared_groups.txt") //(String str0, String str1)
+
+		System.IO.File.Copy("ConfigTemplates/shared_groups.template.txt", string14) //(String sourceFileName, String destFileName)
+		local28 += 1
+
+		INSN_181B1DD6F:
+
+		if (local28 != 5)
+            goto INSN_181B1DEF2
+        endif
+		System.String[] paths4 = GameCore.ConfigSharing.Paths
+		System.String local61 = paths4[5]
+
+		System.String string15 = System.String.Concat(local61, "shared_groups_members.txt") //(String str0, String str1)
+
+		System.Boolean boolean4 = System.IO.File.Exists(string15) //(String path)
+
+		if (boolean4 != False)
+            goto INSN_181B1DEF2
+        endif
+		System.String[] paths5 = GameCore.ConfigSharing.Paths
+		System.String local67 = paths5[5]
+
+		System.String string16 = System.String.Concat(local67, "shared_groups_members.txt") //(String str0, String str1)
+
+		System.IO.File.Copy("ConfigTemplates/shared_groups_members.template.txt", string16) //(String sourceFileName, String destFileName)
+		local28 += 1
+
+		INSN_181B1DE55:
+
+		if ( == 2)
+            goto INSN_181B1DE75
+        endif
+
+		if ( != local28)
+            goto INSN_181B1DE75
+        endif
+
+		INSN_181B1DE75:
+		System.String[] paths6 = GameCore.ConfigSharing.Paths
+		System.Int32 -4 = 4294967292
+
+		if (-4 <= 1)
+            goto INSN_181B1DEBF
+        endif
+
+		System.String appFolder3 = FileManager.GetAppFolder(True, True, "") //(Boolean addSeparator, Boolean serverConfig, String centralConfig)
+
+		INSN_181B1DEBF:
+
+		if (local28 == 0)
+            goto INSN_181B1DEE4
+        endif
+
+		if (appFolder3 == 0)
+            goto INSN_181B1E099
+        endif
+
+		INSN_181B1DEE4:
+		throw new System.IndexOutOfRangeException()
+
+		INSN_181B1DEF2:
+		local28 += 1
+
+		INSN_181B1DEFA:
+		System.Int32 7 = 7
+
+		ServerConsole.AddLog("Config sharing loaded.", 7) //(String q, ConsoleColor color)
+		return
+		throw new System.NullReferenceException()
+
+		INSN_181B1DF49:
+
+		INSN_181B1DF69:
+
+		INSN_181B1DF89:
+
+		INSN_181B1DFA9:
+
+		INSN_181B1DFC9:
+
+		INSN_181B1DFE9:
+
+		INSN_181B1E009:
+
+		INSN_181B1E029:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfZeroOrNullAction at (0x181B1DE5C) is corrupt (One of the arguments is null) and cannot be created as IL. Aborting here.
+
+

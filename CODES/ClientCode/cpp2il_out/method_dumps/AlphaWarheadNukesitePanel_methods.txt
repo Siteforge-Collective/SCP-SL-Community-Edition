@@ -1,0 +1,363 @@
+Type: AlphaWarheadNukesitePanel
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AlphaWarheadNukesitePanel
+	System.Void Awake()
+		AlphaWarheadOutsitePanel.nukeside = this
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: stsfld AlphaWarheadNukesitePanel AlphaWarheadOutsitePanel::nukeside
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AlphaWarheadNukesitePanel
+	System.Void FixedUpdate()
+
+		this.UpdateLeverStatus()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void AlphaWarheadNukesitePanel::UpdateLeverStatus()
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AlphaWarheadNukesitePanel
+	System.Boolean AllowChangeLevelState()
+		System.Single _leverStatus = this._leverStatus
+		return True
+		System.Single _leverStatus2 = this._leverStatus
+		return True
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Single AlphaWarheadNukesitePanel::_leverStatus
+	IL_0006: stloc.0
+	IL_0007: ldc.i4.1
+	IL_0008: ret
+	IL_0009: ldarg.0
+	IL_000a: ldfld System.Single AlphaWarheadNukesitePanel::_leverStatus
+	IL_000f: stloc.1
+	IL_0010: ldc.i4.1
+	IL_0011: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AlphaWarheadNukesitePanel
+	System.Boolean get_OutsideDoorOpen()
+		System.Boolean _doorFound = this._doorFound
+
+		if (_doorFound == False)
+		    System.Collections.Generic.Dictionary`2<System.String,Interactables.Interobjects.DoorUtils.DoorNametagExtension> namedDoors = Interactables.Interobjects.DoorUtils.DoorNametagExtension.NamedDoors
+
+		    System.Boolean boolean = namedDoors.TryGetValue()
+		    this._doorFound = boolean
+
+		    if (boolean == False)
+		        return boolean
+		    endif
+            
+		    Interactables.Interobjects.DoorUtils.DoorNametagExtension _outsideDoor = this._outsideDoor
+		    Interactables.Interobjects.DoorUtils.DoorVariant targetDoor = _outsideDoor.TargetDoor
+		    System.Boolean targetState = targetDoor.TargetState
+		    return targetState
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18059A88B) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AlphaWarheadNukesitePanel
+	System.Void UpdateLeverStatus()
+		AlphaWarheadController singleton = AlphaWarheadController.Singleton
+		ulong local3 = 0
+		ulong local4 = 0
+
+		System.Boolean boolean = UnityEngine.Object.op_Equality(singleton, local4) //(Object x, Object y)
+
+		if (boolean == False)
+		    ulong local6 = 0
+		    UnityEngine.Material led_detonationinprogress = this.led_detonationinprogress
+		    System.Int32 _emissionColor = AlphaWarheadNukesitePanel._emissionColor
+		    AlphaWarheadController singleton2 = AlphaWarheadController.Singleton
+
+		    if (singleton2 == 0)
+
+		        UnityEngine.Color black = UnityEngine.Color.black
+		    else
+		    endif
+            
+
+		    led_detonationinprogress.SetColor(_emissionColor, local3) //(Int32 nameID, Color value)
+		    UnityEngine.Material led_outsidedoor = this.led_outsidedoor
+		    System.Int32 _emissionColor2 = AlphaWarheadNukesitePanel._emissionColor
+		    System.Boolean _doorFound = this._doorFound
+
+		    if (_doorFound != False)
+                goto INSN_18059A321
+            endif
+		    System.Collections.Generic.Dictionary`2<System.String,Interactables.Interobjects.DoorUtils.DoorNametagExtension> namedDoors = Interactables.Interobjects.DoorUtils.DoorNametagExtension.NamedDoors
+
+		    System.Boolean boolean2 = namedDoors.TryGetValue()
+		    this._doorFound = boolean2
+
+		    if (boolean2 == False)
+                goto INSN_18059A34A
+            endif
+
+		    INSN_18059A321:
+		    Interactables.Interobjects.DoorUtils.DoorNametagExtension _outsideDoor = this._outsideDoor
+		    Interactables.Interobjects.DoorUtils.DoorVariant targetDoor = _outsideDoor.TargetDoor
+
+		    if (targetDoor.TargetState == local6)
+                goto INSN_18059A34A
+            endif
+
+		    INSN_18059A34A:
+
+		    UnityEngine.Color black2 = UnityEngine.Color.black
+
+		    led_outsidedoor.SetColor()
+		    UnityEngine.Material led_blastdoors = this.led_blastdoors
+		    System.Int32 _emissionColor3 = AlphaWarheadNukesitePanel._emissionColor
+		    BlastDoor blastDoor = this.blastDoor
+
+		    if (blastDoor.isClosed == local6)
+                goto INSN_18059A3C5
+            endif
+
+		    INSN_18059A3C5:
+
+		    UnityEngine.Color black3 = UnityEngine.Color.black
+
+		    led_blastdoors.SetColor()
+		    UnityEngine.Material led_cancel = this.led_cancel
+		    System.Int32 _emissionColor4 = AlphaWarheadNukesitePanel._emissionColor
+		    ulong local32 = 0
+
+		    System.Single timeUntilDetonation = AlphaWarheadController.TimeUntilDetonation
+
+		    if (timeUntilDetonation <= 10)
+                goto INSN_18059A4F4
+            endif
+		    AlphaWarheadController singleton3 = AlphaWarheadController.Singleton
+
+		    if (singleton3 == 0)
+                goto INSN_18059A4F4
+            endif
+
+		    UnityEngine.Color red = UnityEngine.Color.red
+
+		    INSN_18059A4F4:
+
+		    UnityEngine.Color black4 = UnityEngine.Color.black
+
+		    led_cancel.SetColor()
+		    System.Single _leverStatus = this._leverStatus
+
+		    if (this.enabled == local6)
+                goto INSN_18059A53C
+            endif
+
+		    INSN_18059A53C:
+		    this._leverStatus = _leverStatus
+
+		    System.Single single = UnityEngine.Mathf.Clamp01(_leverStatus) //(Single value)
+		    this._leverStatus = single
+		    UnityEngine.Material[] onOffMaterial = this.onOffMaterial
+		    UnityEngine.Material material = onOffMaterial[local6]
+		    System.Int32 _emissionColor5 = AlphaWarheadNukesitePanel._emissionColor
+		    single = local45
+
+		    System.Int32 int32 = UnityEngine.Mathf.RoundToInt(single) //(Single f)
+
+		    if (local6 != int32)
+                goto INSN_18059A64F
+            endif
+
+		    INSN_18059A64F:
+
+		    UnityEngine.Color black5 = UnityEngine.Color.black
+
+		    material.SetColor()
+		    local6 += 1
+		    UnityEngine.Transform lever = this.lever
+		    System.Single _leverStatus2 = this._leverStatus
+
+		    System.Single single2 = UnityEngine.Mathf.Lerp(10, -170, _leverStatus2) //(Single a, Single b, Single t)
+
+		    UnityEngine.Quaternion quaternion = UnityEngine.Quaternion.Euler()
+
+		    lever.set_localRotation()
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18059A312) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AlphaWarheadNukesitePanel
+	System.Void .ctor()
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void Mirror.NetworkBehaviour::.ctor()
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AlphaWarheadNukesitePanel
+	static System.Void .cctor()
+
+		System.Int32 int32 = UnityEngine.Shader.PropertyToID("_EmissionColor") //(String name)
+		AlphaWarheadNukesitePanel._emissionColor = int32
+		return
+
+
+Generated IL:
+	IL_0000: ldstr "_EmissionColor"
+	IL_0005: call System.Int32 UnityEngine.Shader::PropertyToID(System.String)
+	IL_000a: stsfld System.Int32 AlphaWarheadNukesitePanel::_emissionColor
+	IL_000f: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AlphaWarheadNukesitePanel
+	System.Void MirrorProcessed()
+
+
+Generated IL:
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AlphaWarheadNukesitePanel
+	System.Boolean get_Networkenabled()
+		System.Boolean enabled = this.enabled
+		return enabled
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Boolean AlphaWarheadNukesitePanel::enabled
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AlphaWarheadNukesitePanel
+	System.Void set_Networkenabled(System.Boolean value)
+
+		System.Boolean boolean = base.SyncVarEqual<System.Boolean>()
+
+		if (boolean == False)
+		    throw new System.NullReferenceException()
+		endif
+        
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18059A915) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AlphaWarheadNukesitePanel
+	System.Boolean SerializeSyncVars(Mirror.NetworkWriter writer, System.Boolean forceAll)
+
+		System.Boolean boolean = base.SerializeSyncVars(writer, forceAll) //(NetworkWriter writer, Boolean initialState)
+
+		if (forceAll == False)
+		    System.UInt64 syncVarDirtyBits = this.<syncVarDirtyBits>k__BackingField
+
+		    Mirror.NetworkWriterExtensions.WriteUInt64(writer, syncVarDirtyBits) //(NetworkWriter writer, UInt64 value)
+
+		    if ( != 1)
+		        System.Boolean enabled = this.enabled
+
+		        Mirror.NetworkWriterExtensions.WriteByte(writer, enabled) //(NetworkWriter writer, Byte value)
+		    endif
+            
+		else
+		    System.Boolean enabled2 = this.enabled
+
+		    Mirror.NetworkWriterExtensions.WriteByte(writer, enabled2) //(NetworkWriter writer, Byte value)
+		endif
+        
+		return True
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfZeroOrNullAction at (0x18059A037) is corrupt (One of the arguments is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AlphaWarheadNukesitePanel
+	System.Void DeserializeSyncVars(Mirror.NetworkReader reader, System.Boolean initialState)
+
+		this.MirrorProcessed()
+
+		if (initialState == False)
+
+		    System.UInt64 uInt64 = Mirror.NetworkReaderExtensions.ReadUInt64(reader) //(NetworkReader reader)
+
+		    if (uInt64 == 1)
+                goto INSN_180599F82
+            endif
+		endif
+        
+
+		System.Boolean boolean = Mirror.NetworkReaderExtensions.ReadBoolean(reader) //(NetworkReader reader)
+
+		System.Boolean boolean2 = base.SyncVarEqual<System.Boolean>()
+
+		if (boolean2 != False)
+            goto INSN_180599F82
+        endif
+		throw new System.NullReferenceException()
+
+		INSN_180599F82:
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180599F55) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+

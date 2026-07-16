@@ -1,0 +1,68 @@
+Type: Subtitles.SubtitleCategory+Message
+
+Method: System.Void .ctor(System.String text, System.Single duration)
+
+Disassembly:
+	mov [rsp+8],rbx
+	push rdi
+	sub rsp,30h
+	mov rbx,rdx
+	movaps [rsp+20h],xmm6
+	xor edx,edx
+	movaps xmm6,xmm2
+	mov rdi,rcx
+	call 00000001802D5040h
+	lea rcx,[rdi+10h]
+	mov rdx,rbx
+	mov [rcx],rbx
+	call 0000000180293EF0h
+	mov rbx,[rsp+40h]
+	movss dword ptr [rdi+18h],xmm6
+	movaps xmm6,[rsp+20h]
+	add rsp,30h
+	pop rdi
+	ret
+
+ISIL:
+	001 Move stack:0x8, rbx
+	002 ShiftStack -8
+	003 Move stack:0x0, rdi
+	004 ShiftStack -48
+	005 Move rbx, rdx
+	006 Move stack:0x20, xmm6
+	007 Move rdx, 0
+	008 Move xmm6, xmm2
+	009 Move rdi, rcx
+	010 Call 0x1802D5040, rcx, rdx, r8, r9, stack:0x0
+	011 LoadAddress rcx, [rdi+16]
+	012 Move rdx, rbx
+	013 Move [rcx], rbx
+	014 Call 0x180293EF0, rcx, rdx, r8, r9
+	015 Move rbx, stack:0x40
+	016 Move [rdi+24], xmm6
+	017 Move xmm6, stack:0x20
+	018 ShiftStack 48
+	019 Move rdi, stack:0x0
+	020 ShiftStack 8
+	021 Return 
+
+Method: System.String get_Text()
+
+Disassembly:
+	mov rax,[rcx+10h]
+	ret
+
+ISIL:
+	001 Move rax, [rcx+16]
+	002 Return rax
+
+Method: System.Single get_Duration()
+
+Disassembly:
+	movss xmm0,dword ptr [rcx+18h]
+	ret
+
+ISIL:
+	001 Move xmm0, [rcx+24]
+	002 Return xmm0
+

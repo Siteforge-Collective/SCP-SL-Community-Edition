@@ -1,0 +1,529 @@
+Type: RAConfigCommand
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.RAConfigCommand
+	System.String get_Command()
+		System.String Command = this.<Command>k__BackingField
+		return Command
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String CommandSystem.Commands.RemoteAdmin.RAConfigCommand::<Command>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.RAConfigCommand
+	System.String[] get_Aliases()
+		System.String[] Aliases = this.<Aliases>k__BackingField
+		return Aliases
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String[] CommandSystem.Commands.RemoteAdmin.RAConfigCommand::<Aliases>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.RAConfigCommand
+	System.String get_Description()
+		System.String Description = this.<Description>k__BackingField
+		return Description
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String CommandSystem.Commands.RemoteAdmin.RAConfigCommand::<Description>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.RAConfigCommand
+	System.String[] get_Usage()
+		System.String[] Usage = this.<Usage>k__BackingField
+		return Usage
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String[] CommandSystem.Commands.RemoteAdmin.RAConfigCommand::<Usage>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.RAConfigCommand
+	System.Boolean Execute(System.ArraySegment`1<System.String> arguments, CommandSystem.ICommandSender sender, System.String& response)
+		ulong local4 = 0
+		System.Int64 local6 = 0x40000
+
+		System.Boolean boolean = Misc.CheckPermission()
+
+		if (boolean != False)
+
+		    if ( < 2)
+		        response. = "To execute this command provide at least 2 arguments!"
+		    else
+		        System.Int32 1 = 1
+
+		        System.String string = Utils.RAUtils.FormatArguments()
+
+		        System.String string2 = string.Trim()
+		        System.Int64 local12 = 6
+		        System.String[] local13 = new System.String[6]
+
+		        if (local13 != 0)
+
+		            if (local13 == 0)
+                        goto INSN_18062328B
+                    endif
+		        endif
+                
+		        local13[0] = local13
+
+		        if (" changed server configuration: " == 0)
+                    goto INSN_1806226CF
+                endif
+
+		        if (" changed server configuration: " == 0)
+                    goto INSN_1806232AB
+                endif
+
+		        INSN_1806226CF:
+		        local13[1] = " changed server configuration: "
+		        System.String string3 = local13[]
+
+		        if (string3 == 0)
+                    goto INSN_18062272E
+                endif
+
+		        if (" changed server configuration: " == 0)
+                    goto INSN_1806232DB
+                endif
+
+		        INSN_18062272E:
+		        local13[2] = string3
+
+		        if (": " == 0)
+                    goto INSN_180622772
+                endif
+
+		        if (": " == 0)
+                    goto INSN_1806232FB
+                endif
+
+		        INSN_180622772:
+		        local13[3] = ": "
+
+		        if (string2 == 0)
+                    goto INSN_1806227A8
+                endif
+
+		        if (": " == 0)
+                    goto INSN_18062331B
+                endif
+
+		        INSN_1806227A8:
+		        local13[4] = string2
+
+		        if ("." == 0)
+                    goto INSN_1806227EC
+                endif
+
+		        if ("." == 0)
+                    goto INSN_18062333B
+                endif
+
+		        INSN_1806227EC:
+		        local13[5] = "."
+
+		        System.String string4 = System.String.Concat(local13) //(String[] values)
+		        System.Int64 local20 = 4
+
+		        ServerLogs.AddLog()
+
+		        System.String string5 = local20.ToUpper()
+
+		        System.Boolean boolean2 = System.String.Equals(string5, "FRIENDLY_FIRE") //(String a, String b)
+
+		        if (boolean2 == False)
+                    goto INSN_180622AF0
+                endif
+
+		        System.Boolean boolean3 = System.Boolean.TryParse()
+
+		        if (boolean3 != False)
+                    goto INSN_180622A2C
+                endif
+		        System.Int32 5 = 5
+
+		        System.Boolean boolean4 = string2.Equals("toggle", 5) //(String value, StringComparison comparisonType)
+
+		        if (boolean4 != False)
+                    goto INSN_18062295A
+                endif
+
+		        System.String string6 = System.String.Concat(string2, " has invalid value, ", string2, " is not a valid bool!") //(String str0, String str1, String str2, String str3)
+		        response. = string6
+		    endif
+            
+		endif
+        
+		ulong local30 = 0
+		return local30
+
+		INSN_18062295A:
+		System.Boolean local31 = "{il2cpp field on {'constant90' (constant value of type Cpp2IL.Core.Analysis.ResultModels.StaticFieldsPtr)}, offset 0x5A}" == local4
+		ServerConsole.FriendlyFire = local31
+		System.Boolean friendlyFire = ServerConsole.FriendlyFire
+
+		System.String string7 = System.String.Format("Done! Config [{0}] has been set to [{1}]!", local6, local33) //(String format, Object arg0, Object arg1)
+		response. = string7
+		ulong local36 = 0
+
+		ServerConfigSynchronizer.RefreshAllConfigs()
+
+		INSN_180622A2C:
+		ServerConsole.FriendlyFire = 
+
+		System.String string8 = System.String.Format()
+		response. = string8
+		ulong local40 = 0
+
+		ServerConfigSynchronizer.RefreshAllConfigs()
+
+		INSN_180622AF0:
+		ulong local42 = 0
+
+		System.Boolean boolean5 = System.String.Equals(local40, "PLAYER_LIST_TITLE") //(String a, String b)
+
+		if (boolean5 == False)
+            goto INSN_180622E3D
+        endif
+
+		if ( != 0)
+            goto INSN_180622B20
+        endif
+		System.String empty = System.String.Empty
+
+		INSN_180622B20:
+		Utils.ConfigHandler.ConfigEntry`1<System.String> title = PlayerList.Title
+		title. = empty
+		PlayerList singleton = PlayerList.singleton
+
+		singleton.RefreshTitle()
+		System.Int64 local48 = 5
+		System.String[] local49 = new System.String[5]
+
+		if ("Done! Config [" == 0)
+            goto INSN_180622BFC
+        endif
+
+		if ("Done! Config [" == 0)
+            goto INSN_1806233A7
+        endif
+
+		INSN_180622BFC:
+		local49[0] = "Done! Config ["
+
+		if ( == 0)
+            goto INSN_180622C5A
+        endif
+
+		if ("Done! Config [" == 0)
+            goto INSN_1806233D7
+        endif
+
+		INSN_180622C5A:
+		local49[1] = 
+
+		if ("] has been set to [" == 0)
+            goto INSN_180622C9E
+        endif
+
+		if ("] has been set to [" == 0)
+            goto INSN_1806233F7
+        endif
+
+		INSN_180622C9E:
+		local49[2] = "] has been set to ["
+		ServerConfigSynchronizer singleton2 = ServerConfigSynchronizer.Singleton
+		System.String serverName = singleton2.ServerName
+
+		if (serverName == 0)
+            goto INSN_180622D13
+        endif
+
+		if (constant165 == 0)
+            goto INSN_180623417
+        endif
+
+		INSN_180622D13:
+		local49[3] = serverName
+
+		if ("]!" == 0)
+            goto INSN_180622D57
+        endif
+
+		if ("]!" == 0)
+            goto INSN_180623437
+        endif
+
+		INSN_180622D57:
+		local49[4] = "]!"
+
+		System.String string9 = System.String.Concat(local49) //(String[] values)
+		response. = string9
+		ulong local54 = 0
+
+		ServerConfigSynchronizer.RefreshAllConfigs()
+		System.Int64 local55 = 1
+
+		if (local42 == 0)
+            goto INSN_18062345D
+        endif
+		//UNKNOWN CLASS OFFSET READ HERE
+		//UNKNOWN CLASS OFFSET READ HERE
+
+		if ( == CommandInputException)
+            goto INSN_180622DFB
+        endif
+		//UNKNOWN CLASS OFFSET READ HERE
+
+		if ( != InvalidOperationException)
+            goto INSN_18062345D
+        endif
+
+		INSN_180622DFB:
+
+		System.Int32 int32 = local42.CompareTo()
+		ulong local57 = 0
+
+		System.String string10 = System.String.Concat()
+
+		INSN_180622E3D:
+
+		[instruction error - managed method being called is null]
+
+		if (string10 == 0)
+            goto INSN_180622F4B
+        endif
+
+		System.Boolean boolean6 = System.Boolean.TryParse()
+
+		if (boolean6 != False)
+            goto INSN_180622EB0
+        endif
+
+		INSN_180622EB0:
+		PocketDimensionTeleport.RefreshExit = PocketDimensionTeleport
+		System.String string11 = local49[]
+
+		System.String string12 = System.String.Format()
+		response. = string12
+		ulong local65 = 0
+
+		ServerConfigSynchronizer.RefreshAllConfigs()
+
+		INSN_180622F4B:
+
+		System.Boolean boolean7 = System.String.Equals(serverName, "SPAWN_PROTECT_ENABLED") //(String a, String b)
+
+		if (boolean7 == False)
+            goto INSN_1806230F2
+        endif
+
+		System.Boolean boolean8 = System.Boolean.TryParse()
+
+		if (boolean8 != False)
+            goto INSN_180623054
+        endif
+		System.Int32 5 = 5
+
+		System.Boolean boolean9 = string11.Equals("toggle", 5) //(String value, StringComparison comparisonType)
+
+		if (boolean9 != False)
+            goto INSN_180622FE5
+        endif
+
+		INSN_180622FE5:
+		System.Boolean local73 = "{il2cpp field on {'constant222' (constant value of type Cpp2IL.Core.Analysis.ResultModels.StaticFieldsPtr)}, offset 0x0}" == local57
+		CustomPlayerEffects.SpawnProtected.IsProtectionEnabled = local73
+		System.Boolean isProtectionEnabled = CustomPlayerEffects.SpawnProtected.IsProtectionEnabled
+
+		INSN_180623054:
+		CustomPlayerEffects.SpawnProtected.IsProtectionEnabled = string11
+
+		System.String string13 = System.String.Format()
+		response. = string13
+
+		INSN_1806230F2:
+
+		System.Boolean boolean10 = System.String.Equals(serverName, "SPAWN_PROTECT_TIME") //(String a, String b)
+
+		if (boolean10 == False)
+            goto INSN_18062324D
+        endif
+		ulong local80 = 0
+
+		System.Globalization.CultureInfo invariantCulture = System.Globalization.CultureInfo.InvariantCulture
+
+		System.Boolean boolean11 = System.Int32.TryParse()
+
+		if (boolean11 != False)
+            goto INSN_180623182
+        endif
+
+		INSN_180623182:
+		CustomPlayerEffects.SpawnProtected.SpawnDuration = constant245
+
+		System.String string14 = System.String.Format("Done! Config [{0}] has been set to [{1}]!", string11, local84) //(String format, Object arg0, Object arg1)
+		response. = string14
+		ulong local87 = 0
+
+		ServerConfigSynchronizer.RefreshAllConfigs()
+		System.Int64 local88 = 1
+
+		INSN_18062324D:
+
+		System.String string15 = System.String.Concat("Invalid config ", string14) //(String str0, String str1)
+		throw new System.NullReferenceException()
+
+		INSN_18062328B:
+
+		INSN_1806232AB:
+
+		INSN_1806232DB:
+
+		INSN_1806232FB:
+
+		INSN_18062331B:
+
+		INSN_18062333B:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1806225BB) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (3)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.RAConfigCommand
+	System.Void .ctor()
+		this.<Command>k__BackingField = "setconfig"
+		System.String[] local1 = new System.String[1]
+
+		if ("sc" != 0)
+
+		    if (local1 == 0)
+                goto INSN_18062369C
+            endif
+		endif
+        
+		local1[0] = "sc"
+		this.<Aliases>k__BackingField = local1
+		this.<Description>k__BackingField = "Sets the server configuration."
+		System.String[] local2 = new System.String[2]
+
+		if ("Option" == 0)
+            goto INSN_180623616
+        endif
+
+		if ("Option" == 0)
+            goto INSN_1806236BC
+        endif
+
+		INSN_180623616:
+		local2[0] = "Option"
+
+		if ("Value" == 0)
+            goto INSN_18062365A
+        endif
+
+		if ("Value" == 0)
+            goto INSN_1806236DC
+        endif
+
+		INSN_18062365A:
+		local2[1] = "Value"
+		this.<Usage>k__BackingField = local2
+
+		base..ctor()
+		return
+		throw new System.NullReferenceException()
+
+		INSN_18062369C:
+
+		INSN_1806236BC:
+
+		INSN_1806236DC:
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldstr "setconfig"
+	IL_0006: stfld System.String CommandSystem.Commands.RemoteAdmin.RAConfigCommand::<Command>k__BackingField
+	IL_000b: ldc.i4.1
+	IL_000c: newarr System.String
+	IL_0011: stloc.0
+	IL_0012: ldstr "sc"
+	IL_0017: ldc.i4.0
+	IL_0018: beq.s IL_001e
+	IL_001a: ldloc.0
+	IL_001b: ldc.i4.0
+	IL_001c: beq.s IL_0000
+	IL_001e: ldloc.0
+	IL_001f: ldc.i4.0
+	IL_0020: ldstr "sc"
+	IL_0025: stelem.any System.String
+	IL_002a: ldarg.0
+	IL_002b: ldloc.0
+	IL_002c: stfld System.String[] CommandSystem.Commands.RemoteAdmin.RAConfigCommand::<Aliases>k__BackingField
+	IL_0031: ldarg.0
+	IL_0032: ldstr "Sets the server configuration."
+	IL_0037: stfld System.String CommandSystem.Commands.RemoteAdmin.RAConfigCommand::<Description>k__BackingField
+	IL_003c: ldc.i4.2
+	IL_003d: newarr System.String
+	IL_0042: stloc.1
+	IL_0043: ldstr "Option"
+	IL_0048: ldc.i4.0
+	IL_0049: beq.s IL_0053
+	IL_004b: ldstr "Option"
+	IL_0050: ldc.i4.0
+	IL_0051: beq.s IL_0000
+	IL_0053: ldloc.1
+	IL_0054: ldc.i4.0
+	IL_0055: ldstr "Option"
+	IL_005a: stelem.any System.String
+	IL_005f: ldstr "Value"
+	IL_0064: ldc.i4.0
+	IL_0065: beq.s IL_006f
+	IL_0067: ldstr "Value"
+	IL_006c: ldc.i4.0
+	IL_006d: beq.s IL_0000
+	IL_006f: ldloc.1
+	IL_0070: ldc.i4.1
+	IL_0071: ldstr "Value"
+	IL_0076: stelem.any System.String
+	IL_007b: ldarg.0
+	IL_007c: ldloc.1
+	IL_007d: stfld System.String[] CommandSystem.Commands.RemoteAdmin.RAConfigCommand::<Usage>k__BackingField
+	IL_0082: ldarg.0
+	IL_0083: call System.Void System.Object::.ctor()
+	IL_0088: ret
+	IL_0089: newobj System.Void System.NullReferenceException::.ctor()
+	IL_008e: throw
+	
+

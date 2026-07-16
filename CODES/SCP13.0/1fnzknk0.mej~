@@ -1,0 +1,147 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
+using Footprinting;
+using Mirror;
+using PlayerRoles;
+using PlayerStatsSystem;
+using UnityEngine;
+
+public class BreakableWindow : NetworkBehaviour, IDestructible
+{
+    public struct BreakableWindowStatus : IEquatable<BreakableWindowStatus>
+    {
+        public Vector3 position;
+
+        public Quaternion rotation;
+
+        public bool broken;
+
+        public bool IsEqual(BreakableWindowStatus stat)
+        {
+            if (position == stat.position && rotation == stat.rotation)
+            {
+                return broken == stat.broken;
+            }
+            return false;
+        }
+
+        public bool Equals(BreakableWindowStatus other)
+        {
+            if (position == other.position && rotation == other.rotation)
+            {
+                return broken == other.broken;
+            }
+            return false;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is BreakableWindowStatus other)
+            {
+                return Equals(other);
+            }
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return (((position.GetHashCode() * 397) ^ rotation.GetHashCode()) * 397) ^ broken.GetHashCode();
+        }
+
+        public static bool operator ==(BreakableWindowStatus left, BreakableWindowStatus right)
+        {
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(BreakableWindowStatus left, BreakableWindowStatus right)
+        {
+            return !left.Equals(right);
+        }
+    }
+
+    public GameObject template;
+
+	public Transform parent;
+
+	public Vector3 size;
+
+	[SerializeField]
+	private bool _preventScpDamage;
+
+	public Footprint LastAttacker;
+
+	private BreakableWindowStatus prevStatus;
+
+	[SyncVar]
+	public BreakableWindowStatus syncStatus;
+
+	public float health;
+
+	public bool isBroken;
+
+	private List<MeshRenderer> meshRenderers;
+
+	private Transform _transform;
+
+	public uint NetworkId => 0u;
+
+	public Vector3 CenterOfMass => default(Vector3);
+
+	public BreakableWindowStatus NetworksyncStatus
+	{
+		get
+		{
+			return default(BreakableWindowStatus);
+		}
+		[param: In]
+		set
+		{
+		}
+	}
+
+	[ServerCallback]
+	private void UpdateStatus(BreakableWindowStatus s)
+	{
+	}
+
+	[ServerCallback]
+	private void ServerDamageWindow(float damage)
+	{
+	}
+
+	private void Awake()
+	{
+	}
+
+	private void EnableColliders()
+	{
+	}
+
+	private void Update()
+	{
+	}
+
+	private void LateUpdate()
+	{
+	}
+
+	[IteratorStateMachine(typeof(_003CBreakWindow_003Ed__22))]
+	private IEnumerator BreakWindow()
+	{
+		return null;
+	}
+
+	private bool CheckDamagePerms(RoleTypeId roleType)
+	{
+		return false;
+	}
+
+	public bool Damage(float damage, DamageHandlerBase handler, Vector3 pos)
+	{
+		return false;
+	}
+}

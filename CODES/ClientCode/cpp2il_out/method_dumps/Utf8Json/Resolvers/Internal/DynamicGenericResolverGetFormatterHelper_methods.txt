@@ -1,0 +1,616 @@
+Type: DynamicGenericResolverGetFormatterHelper
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Utf8Json.Resolvers.Internal.DynamicGenericResolverGetFormatterHelper
+	static System.Object GetFormatter(System.Type t)
+		ulong local1 = 0
+
+		System.Reflection.TypeInfo typeInfo = System.Reflection.IntrospectionExtensions.GetTypeInfo(t) //(Type type)
+
+		System.Boolean isArray = t.IsArray
+
+		if (isArray == False)
+
+		    System.Boolean isSzArray = typeInfo.IsSzArray
+
+		    if (isSzArray == False)
+
+		        System.Type typeFromHandle = System.Type.GetTypeFromHandle({'IEnumerable' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+
+		        System.Boolean boolean = t.Equals(typeFromHandle) //(Object obj)
+
+		        if (boolean == False)
+
+		            System.Type typeFromHandle2 = System.Type.GetTypeFromHandle({'ICollection' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+
+		            System.Boolean boolean2 = t.Equals(typeFromHandle2) //(Object obj)
+
+		            if (boolean2 == False)
+
+		                System.Type typeFromHandle3 = System.Type.GetTypeFromHandle({'IList' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+
+		                System.Boolean boolean3 = t.Equals(typeFromHandle3) //(Object obj)
+
+		                if (boolean3 == False)
+
+		                    System.Type typeFromHandle4 = System.Type.GetTypeFromHandle({'IDictionary' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+
+		                    System.Boolean boolean4 = t.Equals(typeFromHandle4) //(Object obj)
+
+		                    if (boolean4 == False)
+
+		                        System.Type typeFromHandle5 = System.Type.GetTypeFromHandle({'IList' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+
+		                        System.Reflection.TypeInfo typeInfo2 = System.Reflection.IntrospectionExtensions.GetTypeInfo(typeFromHandle5) //(Type type)
+
+		                        System.Type type = typeInfo2.AsType()
+
+		                        if (type != 0)
+
+		                            System.Collections.Generic.IEnumerable`1<System.Reflection.MethodInfo> declaredMethods = typeInfo.GetDeclaredMethods()
+		                            System.Func`2<System.Reflection.ConstructorInfo,System.Boolean> <>9__1_0 = Utf8Json.Resolvers.Internal.DynamicGenericResolverGetFormatterHelper/<>c.<>9__1_0
+
+		                            if (<>9__1_0 == 0)
+		                                Utf8Json.Resolvers.Internal.DynamicGenericResolverGetFormatterHelper/<>c <>c = Utf8Json.Resolvers.Internal.DynamicGenericResolverGetFormatterHelper/<>c.<>9
+		                                System.Func`2<System.Reflection.ConstructorInfo,System.Boolean> func = new System.Func`2<System.Reflection.ConstructorInfo,System.Boolean>()
+
+		                                func..ctor(<>c, {'<GetFormatter>b__1_0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		                                 += 40
+		                                Utf8Json.Resolvers.Internal.DynamicGenericResolverGetFormatterHelper/<>c.<>9 = func
+		                            endif
+                                    
+
+		                            System.Boolean boolean5 = System.Linq.Enumerable.Any<System.Reflection.ConstructorInfo>(declaredMethods, <>9__1_0) //(IEnumerable`1 source, Func`2 predicate)
+
+		                            if (boolean5 == False)
+                                        goto INSN_180A4AEBA
+                                    endif
+
+		                            System.Type typeFromHandle6 = System.Type.GetTypeFromHandle({'NonGenericListFormatter`1' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		                            System.Int64 local35 = 1
+		                            System.Type[] local36 = new System.Type[1]
+
+		                            if (local36 == 0)
+                                        goto INSN_180A4C0A5
+                                    endif
+		                            local36[0] = t
+		                        endif
+                                
+
+		                        System.Type typeFromHandle7 = System.Type.GetTypeFromHandle({'IDictionary' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+
+		                        System.Reflection.TypeInfo typeInfo3 = System.Reflection.IntrospectionExtensions.GetTypeInfo(typeFromHandle7) //(Type type)
+
+		                        System.Type type2 = typeInfo3.AsType()
+
+		                        if (type2 == 0)
+                                    goto INSN_180A4BD8C
+                                endif
+
+		                        System.Collections.Generic.IEnumerable`1<System.Reflection.MethodInfo> declaredMethods2 = typeInfo.GetDeclaredMethods()
+		                        System.Func`2<System.Reflection.ConstructorInfo,System.Boolean> <>9__1_1 = Utf8Json.Resolvers.Internal.DynamicGenericResolverGetFormatterHelper/<>c.<>9__1_1
+
+		                        if (<>9__1_1 != 0)
+                                    goto INSN_180A4AFD8
+                                endif
+		                        Utf8Json.Resolvers.Internal.DynamicGenericResolverGetFormatterHelper/<>c <>c2 = Utf8Json.Resolvers.Internal.DynamicGenericResolverGetFormatterHelper/<>c.<>9
+		                        System.Func`2<System.Reflection.ConstructorInfo,System.Boolean> func2 = new System.Func`2<System.Reflection.ConstructorInfo,System.Boolean>()
+
+		                        func2..ctor(<>c2, {'<GetFormatter>b__1_1' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		                         += 48
+		                        Utf8Json.Resolvers.Internal.DynamicGenericResolverGetFormatterHelper/<>c.<>9 = func2
+
+		                        INSN_180A4AFD8:
+
+		                        System.Boolean boolean6 = System.Linq.Enumerable.Any<System.Reflection.ConstructorInfo>(declaredMethods2, func2) //(IEnumerable`1 source, Func`2 predicate)
+
+		                        if (boolean6 == False)
+                                    goto INSN_180A4BD8C
+                                endif
+
+		                        System.Type typeFromHandle8 = System.Type.GetTypeFromHandle({'NonGenericDictionaryFormatter`1' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		                        System.Int64 local49 = 1
+		                        System.Type[] local50 = new System.Type[1]
+
+		                        if (local50 == 0)
+                                    goto INSN_180A4C0C5
+                                endif
+		                    endif
+                            
+		                      = .
+		                    return constant127
+		                endif
+                        
+		            endif
+                    
+		        endif
+                
+		    endif
+            
+
+		    System.Type[] genericTypeArguments = typeInfo.GenericTypeArguments
+
+		    System.Reflection.TypeInfo typeInfo4 = System.Reflection.IntrospectionExtensions.GetTypeInfo(genericTypeArguments) //(Type type)
+
+		    System.Boolean isNullable = Utf8Json.Internal.ReflectionExtensions.IsNullable(typeInfo4) //(TypeInfo type)
+
+		    if (isNullable == False)
+                goto INSN_180A4B197
+            endif
+
+		    System.Type[] genericArguments = typeInfo.GetGenericArguments()
+		    System.Type local57 = genericArguments[0]
+
+		    INSN_180A4B197:
+
+		    System.Type typeFromHandle9 = System.Type.GetTypeFromHandle({'KeyValuePair`2' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+
+		    System.Boolean boolean7 = genericTypeArguments.Equals(typeFromHandle9) //(Object obj)
+
+		    if (boolean7 != False)
+                goto INSN_180A4BCB1
+            endif
+
+		    if (isNullable == False)
+                goto INSN_180A4B34E
+            endif
+
+		    System.Reflection.TypeInfo typeInfo5 = System.Reflection.IntrospectionExtensions.GetTypeInfo(local57) //(Type type)
+
+		    System.Boolean isConstructedGenericType = System.Reflection.ReflectionExtensions.IsConstructedGenericType(typeInfo5) //(TypeInfo type)
+
+		    if (isConstructedGenericType == False)
+                goto INSN_180A4B34E
+            endif
+
+		    System.Type[] genericTypeArguments2 = local57.GenericTypeArguments
+
+		    System.Type typeFromHandle10 = System.Type.GetTypeFromHandle({'KeyValuePair`2' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+
+		    System.Boolean boolean8 = genericTypeArguments2.Equals(typeFromHandle10) //(Object obj)
+
+		    if (boolean8 == False)
+                goto INSN_180A4B34E
+            endif
+
+		    System.Type typeFromHandle11 = System.Type.GetTypeFromHandle({'NullableFormatter`1' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		    System.Int64 local73 = 1
+		    System.Type[] local74 = new System.Type[1]
+
+		    if (local74 == 0)
+                goto INSN_180A4C0F5
+            endif
+		    local74[0] = local57
+
+		    System.Object[] objectArray = System.Array.Empty<System.Object>()
+
+		    System.Boolean isCOMObjectImpl = typeFromHandle11.IsCOMObjectImpl()
+
+		    System.Object object = System.Activator.CreateInstance()
+
+		    INSN_180A4B34E:
+
+		    System.Type typeFromHandle12 = System.Type.GetTypeFromHandle({'ArraySegment`1' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+
+		    System.Boolean boolean9 = genericTypeArguments.Equals(typeFromHandle12) //(Object obj)
+
+		    if (boolean9 != False)
+                goto INSN_180A4BC08
+            endif
+
+		    if (isNullable == False)
+                goto INSN_180A4B580
+            endif
+
+		    System.Reflection.TypeInfo typeInfo6 = System.Reflection.IntrospectionExtensions.GetTypeInfo(local57) //(Type type)
+
+		    System.Boolean isConstructedGenericType2 = System.Reflection.ReflectionExtensions.IsConstructedGenericType(typeInfo6) //(TypeInfo type)
+
+		    if (isConstructedGenericType2 == False)
+                goto INSN_180A4B580
+            endif
+
+		    System.Type[] genericTypeArguments3 = local57.GenericTypeArguments
+
+		    System.Type typeFromHandle13 = System.Type.GetTypeFromHandle({'ArraySegment`1' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+
+		    System.Boolean boolean10 = genericTypeArguments3.Equals(typeFromHandle13) //(Object obj)
+
+		    if (boolean10 == False)
+                goto INSN_180A4B580
+            endif
+
+		    System.Type typeFromHandle14 = System.Type.GetTypeFromHandle({'ArraySegment`1' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+
+		    System.Boolean boolean11 = local57.Equals(typeFromHandle14) //(Object obj)
+
+		    if (boolean11 != False)
+                goto INSN_180A4B525
+            endif
+
+		    System.Type typeFromHandle15 = System.Type.GetTypeFromHandle({'NullableFormatter`1' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		    System.Int64 local98 = 1
+		    System.Type[] local99 = new System.Type[1]
+
+		    if (local99 == 0)
+                goto INSN_180A4C115
+            endif
+		    local99[0] = local57
+
+		    System.Object[] objectArray2 = System.Array.Empty<System.Object>()
+
+		    INSN_180A4B525:
+		      = .
+		    Utf8Json.Formatters.StaticNullableFormatter`1<System.ArraySegment`1<System.Byte>> staticNullableFormatter = new Utf8Json.Formatters.StaticNullableFormatter`1<System.ArraySegment`1<System.Byte>>()
+
+		    staticNullableFormatter..ctor()
+
+		    INSN_180A4B580:
+		      = .
+
+		    System.Boolean boolean12 = .TryGetValue(genericTypeArguments, local1) //(TKey key, TValue& value)
+
+		    if (boolean12 != False)
+                goto INSN_180A4BBF8
+            endif
+
+		    [instruction error - managed method being called is null]
+
+		    [instruction error - managed method being called is null]
+		    System.Func`2<System.Type,System.Boolean> <>9__1_2 = Utf8Json.Resolvers.Internal.DynamicGenericResolverGetFormatterHelper/<>c.<>9__1_2
+
+		    if (<>9__1_2 != 0)
+                goto INSN_180A4B6BA
+            endif
+		    Utf8Json.Resolvers.Internal.DynamicGenericResolverGetFormatterHelper/<>c <>c3 = Utf8Json.Resolvers.Internal.DynamicGenericResolverGetFormatterHelper/<>c.<>9
+		    System.Func`2<System.Type,System.Boolean> func3 = new System.Func`2<System.Type,System.Boolean>()
+
+		    func3..ctor(<>c3, {'<GetFormatter>b__1_2' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		     += 8
+		    Utf8Json.Resolvers.Internal.DynamicGenericResolverGetFormatterHelper/<>c.<>9 = func3
+
+		    INSN_180A4B6BA:
+
+		    System.Boolean boolean13 = System.Linq.Enumerable.Any<System.Type>()
+
+		    if (boolean13 == False)
+                goto INSN_180A4B8EA
+            endif
+
+		    [instruction error - managed method being called is null]
+		    System.Func`2<System.Reflection.ConstructorInfo,System.Boolean> <>9__1_3 = Utf8Json.Resolvers.Internal.DynamicGenericResolverGetFormatterHelper/<>c.<>9__1_3
+
+		    if (<>9__1_3 != 0)
+                goto INSN_180A4B791
+            endif
+		    Utf8Json.Resolvers.Internal.DynamicGenericResolverGetFormatterHelper/<>c <>c4 = Utf8Json.Resolvers.Internal.DynamicGenericResolverGetFormatterHelper/<>c.<>9
+		    System.Func`2<System.Reflection.ConstructorInfo,System.Boolean> func4 = new System.Func`2<System.Reflection.ConstructorInfo,System.Boolean>()
+
+		    func4..ctor(<>c4, {'<GetFormatter>b__1_3' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		     += 16
+		    Utf8Json.Resolvers.Internal.DynamicGenericResolverGetFormatterHelper/<>c.<>9 = func4
+
+		    INSN_180A4B791:
+
+		    System.Boolean boolean14 = System.Linq.Enumerable.Any<System.Reflection.ConstructorInfo>()
+
+		    if (boolean14 == False)
+                goto INSN_180A4B8EA
+            endif
+
+		    [instruction error - managed method being called is null]
+		    //UNKNOWN CLASS OFFSET READ HERE
+
+		    System.Type typeFromHandle16 = System.Type.GetTypeFromHandle({'GenericCollectionFormatter`2' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		    System.Int64 local113 = 2
+		    System.Type[] local114 = new System.Type[2]
+
+		    if (staticNullableFormatter == 0)
+                goto INSN_180A4B841
+            endif
+
+		    if (local114 == 0)
+                goto INSN_180A4C145
+            endif
+
+		    INSN_180A4B841:
+		    local114[0] = staticNullableFormatter
+
+		    if (local114 == 0)
+                goto INSN_180A4C165
+            endif
+		    local114[1] = objectArray2
+
+		    System.Object[] objectArray3 = System.Array.Empty<System.Object>()
+
+		    System.Boolean isCOMObjectImpl2 = typeFromHandle16.IsCOMObjectImpl()
+
+		    System.Object object2 = System.Activator.CreateInstance()
+
+		    INSN_180A4B8EA:
+
+		    [instruction error - managed method being called is null]
+
+		    [instruction error - managed method being called is null]
+		    System.Func`2<System.Type,System.Boolean> <>9__1_4 = Utf8Json.Resolvers.Internal.DynamicGenericResolverGetFormatterHelper/<>c.<>9__1_4
+
+		    if (<>9__1_4 != 0)
+                goto INSN_180A4B9CD
+            endif
+		    Utf8Json.Resolvers.Internal.DynamicGenericResolverGetFormatterHelper/<>c <>c5 = Utf8Json.Resolvers.Internal.DynamicGenericResolverGetFormatterHelper/<>c.<>9
+		    System.Func`2<System.Type,System.Boolean> func5 = new System.Func`2<System.Type,System.Boolean>()
+
+		    func5..ctor(<>c5, {'<GetFormatter>b__1_4' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		     += 24
+		    Utf8Json.Resolvers.Internal.DynamicGenericResolverGetFormatterHelper/<>c.<>9 = func5
+
+		    INSN_180A4B9CD:
+
+		    System.Boolean boolean15 = System.Linq.Enumerable.Any<System.Type>()
+
+		    if (boolean15 == False)
+                goto INSN_180A4BD8C
+            endif
+
+		    [instruction error - managed method being called is null]
+		    System.Func`2<System.Reflection.ConstructorInfo,System.Boolean> <>9__1_5 = Utf8Json.Resolvers.Internal.DynamicGenericResolverGetFormatterHelper/<>c.<>9__1_5
+
+		    if (<>9__1_5 != 0)
+                goto INSN_180A4BAA4
+            endif
+		    Utf8Json.Resolvers.Internal.DynamicGenericResolverGetFormatterHelper/<>c <>c6 = Utf8Json.Resolvers.Internal.DynamicGenericResolverGetFormatterHelper/<>c.<>9
+		    System.Func`2<System.Reflection.ConstructorInfo,System.Boolean> func6 = new System.Func`2<System.Reflection.ConstructorInfo,System.Boolean>()
+
+		    func6..ctor(<>c6, {'<GetFormatter>b__1_5' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		     += 32
+		    Utf8Json.Resolvers.Internal.DynamicGenericResolverGetFormatterHelper/<>c.<>9 = func6
+
+		    INSN_180A4BAA4:
+
+		    System.Boolean boolean16 = System.Linq.Enumerable.Any<System.Reflection.ConstructorInfo>()
+
+		    if (boolean16 == False)
+                goto INSN_180A4BD8C
+            endif
+
+		    [instruction error - managed method being called is null]
+		    //UNKNOWN CLASS OFFSET READ HERE
+
+		    [instruction error - managed method being called is null]
+		    //UNKNOWN CLASS OFFSET READ HERE
+
+		    System.Type typeFromHandle17 = System.Type.GetTypeFromHandle({'GenericDictionaryFormatter`3' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		    System.Int64 local129 = 3
+		    System.Type[] local130 = new System.Type[3]
+
+		    if (func6 == 0)
+                goto INSN_180A4BB7E
+            endif
+
+		    if (local130 == 0)
+                goto INSN_180A4C1A5
+            endif
+
+		    INSN_180A4BB7E:
+		    local130[0] = func6
+
+		    if (objectArray3 == 0)
+                goto INSN_180A4BBB4
+            endif
+
+		    if (local130 == 0)
+                goto INSN_180A4C1C5
+            endif
+
+		    INSN_180A4BBB4:
+		    local130[1] = objectArray3
+
+		    if (local130 == 0)
+                goto INSN_180A4C1E5
+            endif
+
+		    INSN_180A4BBF8:
+
+		    INSN_180A4BC08:
+
+		    [instruction error - managed method being called is null]
+		    //UNKNOWN CLASS OFFSET READ HERE
+
+		    System.Type typeFromHandle18 = System.Type.GetTypeFromHandle({'Byte' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+
+		    System.Boolean boolean17 = objectArray2.Equals(typeFromHandle18) //(Object obj)
+
+		    if (boolean17 != False)
+                goto INSN_180A4BC7C
+            endif
+
+		    INSN_180A4BC7C:
+
+		    INSN_180A4BCB1:
+
+		    System.Type typeFromHandle19 = System.Type.GetTypeFromHandle({'KeyValuePairFormatter`2' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+
+		    [instruction error - managed method being called is null]
+
+		    System.Object[] objectArray4 = System.Array.Empty<System.Object>()
+
+		    System.Boolean isCOMObjectImpl3 = typeFromHandle19.IsCOMObjectImpl()
+
+		    System.Object object3 = System.Activator.CreateInstance()
+		endif
+        
+
+		System.String assemblyQualifiedName = t.AssemblyQualifiedName
+
+		if (assemblyQualifiedName == 1)
+            goto INSN_180A4BF49
+        endif
+
+		if (assemblyQualifiedName == 2)
+            goto INSN_180A4BEB7
+        endif
+
+		if (assemblyQualifiedName == 3)
+            goto INSN_180A4BE25
+        endif
+
+		if (assemblyQualifiedName == 4)
+            goto INSN_180A4BD93
+        endif
+
+		INSN_180A4BD8C:
+
+		INSN_180A4BD93:
+
+		System.Type typeFromHandle20 = System.Type.GetTypeFromHandle({'FourDimentionalArrayFormatter`1' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		System.Int64 local145 = 1
+		System.Type[] local146 = new System.Type[1]
+
+		System.Boolean isMarshalByRefImpl = t.IsMarshalByRefImpl()
+
+		if (isMarshalByRefImpl == False)
+            goto INSN_180A4BE16
+        endif
+
+		if (isMarshalByRefImpl == False)
+            goto INSN_180A4C215
+        endif
+
+		INSN_180A4BE16:
+
+		INSN_180A4BE25:
+
+		System.Type typeFromHandle21 = System.Type.GetTypeFromHandle({'ThreeDimentionalArrayFormatter`1' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		System.Int64 local150 = 1
+		System.Type[] local151 = new System.Type[1]
+
+		System.Boolean isMarshalByRefImpl2 = t.IsMarshalByRefImpl()
+		isMarshalByRefImpl = isMarshalByRefImpl2
+
+		if (isMarshalByRefImpl2 == False)
+            goto INSN_180A4BEA8
+        endif
+
+		if (isMarshalByRefImpl2 == False)
+            goto INSN_180A4C235
+        endif
+
+		INSN_180A4BEA8:
+
+		INSN_180A4BEB7:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallVirtualMethodAction at (0x180A4AD5C) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Utf8Json.Resolvers.Internal.DynamicGenericResolverGetFormatterHelper
+	static System.Object CreateInstance(System.Type genericType, System.Type[] genericTypeArguments, System.Object[] arguments)
+
+		System.Boolean isCOMObjectImpl = genericType.IsCOMObjectImpl()
+
+		System.Object object = System.Activator.CreateInstance()
+		return object
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180A4AB3C) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Utf8Json.Resolvers.Internal.DynamicGenericResolverGetFormatterHelper
+	static System.Void .cctor()
+		System.Collections.Generic.Dictionary`2<System.Type,System.Type> dictionary = new System.Collections.Generic.Dictionary`2<System.Type,System.Type>()
+
+		dictionary..ctor()
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'List`1' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+
+		System.Type typeFromHandle2 = System.Type.GetTypeFromHandle({'ListFormatter`1' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		throw new System.NullReferenceException()
+
+		System.Type typeFromHandle3 = System.Type.GetTypeFromHandle({'LinkedList`1' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+
+		System.Type typeFromHandle4 = System.Type.GetTypeFromHandle({'LinkedListFormatter`1' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		throw new System.NullReferenceException()
+
+		System.Type typeFromHandle5 = System.Type.GetTypeFromHandle({'Queue`1' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+
+		System.Type typeFromHandle6 = System.Type.GetTypeFromHandle({'QeueueFormatter`1' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		throw new System.NullReferenceException()
+
+		System.Type typeFromHandle7 = System.Type.GetTypeFromHandle({'Stack`1' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+
+		System.Type typeFromHandle8 = System.Type.GetTypeFromHandle({'StackFormatter`1' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		throw new System.NullReferenceException()
+
+		System.Type typeFromHandle9 = System.Type.GetTypeFromHandle({'HashSet`1' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+
+		System.Type typeFromHandle10 = System.Type.GetTypeFromHandle({'HashSetFormatter`1' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		throw new System.NullReferenceException()
+
+		System.Type typeFromHandle11 = System.Type.GetTypeFromHandle({'ReadOnlyCollection`1' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+
+		System.Type typeFromHandle12 = System.Type.GetTypeFromHandle({'ReadOnlyCollectionFormatter`1' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		throw new System.NullReferenceException()
+
+		System.Type typeFromHandle13 = System.Type.GetTypeFromHandle({'IList`1' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+
+		System.Type typeFromHandle14 = System.Type.GetTypeFromHandle({'InterfaceListFormatter`1' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		throw new System.NullReferenceException()
+
+		System.Type typeFromHandle15 = System.Type.GetTypeFromHandle({'ICollection`1' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+
+		System.Type typeFromHandle16 = System.Type.GetTypeFromHandle({'InterfaceCollectionFormatter`1' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		throw new System.NullReferenceException()
+
+		System.Type typeFromHandle17 = System.Type.GetTypeFromHandle({'IEnumerable`1' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+
+		System.Type typeFromHandle18 = System.Type.GetTypeFromHandle({'InterfaceEnumerableFormatter`1' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		throw new System.NullReferenceException()
+
+		System.Type typeFromHandle19 = System.Type.GetTypeFromHandle({'Dictionary`2' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+
+		System.Type typeFromHandle20 = System.Type.GetTypeFromHandle({'DictionaryFormatter`2' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		throw new System.NullReferenceException()
+
+		System.Type typeFromHandle21 = System.Type.GetTypeFromHandle({'IDictionary`2' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+
+		System.Type typeFromHandle22 = System.Type.GetTypeFromHandle({'InterfaceDictionaryFormatter`2' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		throw new System.NullReferenceException()
+
+		System.Type typeFromHandle23 = System.Type.GetTypeFromHandle({'SortedDictionary`2' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+
+		System.Type typeFromHandle24 = System.Type.GetTypeFromHandle({'SortedDictionaryFormatter`2' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		throw new System.NullReferenceException()
+
+		System.Type typeFromHandle25 = System.Type.GetTypeFromHandle({'SortedList`2' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+
+		System.Type typeFromHandle26 = System.Type.GetTypeFromHandle({'SortedListFormatter`2' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		throw new System.NullReferenceException()
+
+		System.Type typeFromHandle27 = System.Type.GetTypeFromHandle({'ILookup`2' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+
+		System.Type typeFromHandle28 = System.Type.GetTypeFromHandle({'InterfaceLookupFormatter`2' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		throw new System.NullReferenceException()
+
+		System.Type typeFromHandle29 = System.Type.GetTypeFromHandle({'IGrouping`2' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+
+		System.Type typeFromHandle30 = System.Type.GetTypeFromHandle({'InterfaceGroupingFormatter`2' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		throw new System.NullReferenceException()
+		. = dictionary
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.RegToStaticFieldAction at (0x180A4C62A) is corrupt (No further info) and cannot be created as IL. Aborting here.
+
+

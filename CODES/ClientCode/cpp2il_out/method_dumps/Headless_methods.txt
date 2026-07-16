@@ -1,0 +1,460 @@
+Type: Headless
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Headless
+	static System.String GetProfileName()
+		ulong local0 = 0
+
+		System.Boolean isHeadless = Headless.IsHeadless()
+
+		if (isHeadless != False)
+		    ulong local2 = 0
+
+		    Headless.InitializeHeadless()
+		    System.String currentProfile = Headless.currentProfile
+		    return currentProfile
+		endif
+        
+		ulong local4 = 0
+		return local4
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x181B29E6A) is corrupt (Return value has a type of System.Int32, expecting an object of type System.String) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Headless
+	static System.Boolean IsHeadless()
+		ulong local0 = 0
+
+		System.String dataPath = UnityEngine.Application.dataPath
+
+		System.String string = System.String.Concat(dataPath, "/~HeadlessDebug.txt") //(String str0, String str1)
+
+		System.Boolean boolean = System.IO.File.Exists(string) //(String path)
+
+		if (boolean == False)
+		    ulong local6 = 0
+
+		    System.String[] commandLineArgs = System.Environment.GetCommandLineArgs()
+
+		    System.Int32 int32 = System.Array.IndexOf<System.String>()
+		    ulong local9 = 0
+
+		    [instruction error - managed method being called is null]
+
+		    if (int32 != 4)
+                goto INSN_181B2A493
+            endif
+		    . = 1
+		else
+		    . = 1
+		    . = 1
+		endif
+        
+		. = 1
+		System.Boolean isHeadless = Headless.isHeadless
+		return isHeadless
+		System.Boolean isHeadless2 = Headless.isHeadless
+		return isHeadless2
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181B2A404) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Headless
+	static System.Void OnBeforeSceneLoadRuntimeMethod()
+		ulong local0 = 0
+
+		System.Boolean isHeadless = Headless.IsHeadless()
+
+		if (isHeadless != False)
+		    ulong local2 = 0
+
+		    Headless.InitializeHeadless()
+
+		    HeadlessCallbacks.InvokeCallbacks("HeadlessBeforeSceneLoad") //(String callbackName)
+		    return
+		endif
+        
+		return
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: call System.Boolean Headless::IsHeadless()
+	IL_0007: ldc.i4.0
+	IL_0008: beq.s IL_001c
+	IL_000a: ldc.i4.0
+	IL_000b: stloc.1
+	IL_000c: call System.Void Headless::InitializeHeadless()
+	IL_0011: ldstr "HeadlessBeforeSceneLoad"
+	IL_0016: call System.Void HeadlessCallbacks::InvokeCallbacks(System.String)
+	IL_001b: ret
+	IL_001c: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Headless
+	static System.Void OnAfterSceneLoadRuntimeMethod()
+		ulong local0 = 0
+
+		System.Boolean isHeadless = Headless.IsHeadless()
+
+		if (isHeadless != False)
+		    HeadlessRuntime headlessRuntime = Headless.headlessRuntime
+
+		    if (headlessRuntime.valueCamera != False)
+
+		        UnityEngine.GameObject gameObject = UnityEngine.GameObject.Find("HeadlessBehaviour") //(String name)
+		        ulong local6 = 0
+
+		        System.Boolean boolean = UnityEngine.Object.op_Equality(gameObject, local6) //(Object x, Object y)
+		        ulong local8 = 0
+
+		        if (boolean != False)
+
+		            UnityEngine.Object object = UnityEngine.Resources.Load("HeadlessBehaviour") //(String path)
+
+		            UnityEngine.Object object2 = UnityEngine.Object.Instantiate(object) //(Object original)
+
+		            if (object2 == 0)
+                        goto INSN_181B2A78A
+                    endif
+		        else
+		        endif
+                
+
+		        HeadlessBehaviour component = gameObject.GetComponent<HeadlessBehaviour>()
+		        ulong local15 = 0
+
+		        System.Boolean boolean2 = UnityEngine.Object.op_Equality(component, local15) //(Object x, Object y)
+
+		        if (boolean2 == False)
+                    goto INSN_181B2A6B0
+                endif
+
+		        HeadlessBehaviour headlessBehaviour = gameObject.AddComponent<HeadlessBehaviour>()
+
+		        INSN_181B2A6B0:
+		        UnityEngine.Camera/CameraCallback onPreCull = UnityEngine.Camera.onPreCull
+
+		        HeadlessBehaviour component2 = headlessBehaviour.GetComponent<HeadlessBehaviour>()
+		        UnityEngine.Camera/CameraCallback cameraCallback = new UnityEngine.Camera/CameraCallback()
+
+		        cameraCallback..ctor(component2, {'NullifyCamera' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		        System.Delegate delegate = System.Delegate.Combine(onPreCull, cameraCallback) //(Delegate a, Delegate b)
+
+		        if (delegate == 0)
+                    goto INSN_181B2A726
+                endif
+
+		        if (delegate == 0)
+                    goto INSN_181B2A793
+                endif
+
+		        INSN_181B2A726:
+		        UnityEngine.Camera.onPreCull = delegate
+		    endif
+            
+
+		    HeadlessCallbacks.InvokeCallbacks("HeadlessAfterSceneLoad") //(String callbackName)
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+		INSN_181B2A78A:
+		throw new System.InvalidCastException()
+
+		INSN_181B2A793:
+		throw new System.InvalidCastException()
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: call System.Boolean Headless::IsHeadless()
+	IL_0007: ldc.i4.0
+	IL_0008: beq IL_00ab
+	IL_000d: ldsfld HeadlessRuntime Headless::headlessRuntime
+	IL_0012: ldfld System.Boolean HeadlessRuntime::valueCamera
+	IL_0017: ldc.i4.0
+	IL_0018: beq IL_00a1
+	IL_001d: ldstr "HeadlessBehaviour"
+	IL_0022: call UnityEngine.GameObject UnityEngine.GameObject::Find(System.String)
+	IL_0027: stloc.1
+	IL_0028: ldc.i4.0
+	IL_0029: stloc.2
+	IL_002a: ldloc.1
+	IL_002b: ldloc.2
+	IL_002c: call System.Boolean UnityEngine.Object::op_Equality(UnityEngine.Object,UnityEngine.Object)
+	IL_0031: stloc.3
+	IL_0032: ldc.i4.0
+	IL_0033: stloc.s V_4
+	IL_0035: ldloc.3
+	IL_0036: ldc.i4.0
+	IL_0037: beq.s IL_004b
+	IL_0039: ldstr "HeadlessBehaviour"
+	IL_003e: call UnityEngine.Object UnityEngine.Resources::Load(System.String)
+	IL_0043: call UnityEngine.Object UnityEngine.Object::Instantiate(UnityEngine.Object)
+	IL_0048: ldc.i4.0
+	IL_0049: beq.s IL_00b2
+	IL_004b: ldloc.1
+	IL_004c: call T UnityEngine.GameObject::GetComponent<HeadlessBehaviour>()
+	IL_0051: stloc.s V_5
+	IL_0053: ldc.i4.0
+	IL_0054: stloc.s V_6
+	IL_0056: ldloc.s V_5
+	IL_0058: ldloc.s V_6
+	IL_005a: call System.Boolean UnityEngine.Object::op_Equality(UnityEngine.Object,UnityEngine.Object)
+	IL_005f: ldc.i4.0
+	IL_0060: beq.s IL_006a
+	IL_0062: ldloc.1
+	IL_0063: call T UnityEngine.GameObject::AddComponent<HeadlessBehaviour>()
+	IL_0068: stloc.s V_7
+	IL_006a: ldsfld UnityEngine.Camera/CameraCallback UnityEngine.Camera::onPreCull
+	IL_006f: stloc.s V_8
+	IL_0071: ldloc.s V_7
+	IL_0073: call T UnityEngine.Component::GetComponent<HeadlessBehaviour>()
+	IL_0078: ldftn System.Void HeadlessBehaviour::NullifyCamera(UnityEngine.Camera)
+	IL_007e: newobj System.Void UnityEngine.Camera/CameraCallback::.ctor(System.Object,System.IntPtr)
+	IL_0083: stloc.s V_9
+	IL_0085: ldloc.s V_8
+	IL_0087: ldloc.s V_9
+	IL_0089: call System.Delegate System.Delegate::Combine(System.Delegate,System.Delegate)
+	IL_008e: stloc.s V_10
+	IL_0090: ldloc.s V_10
+	IL_0092: ldc.i4.0
+	IL_0093: beq.s IL_009a
+	IL_0095: ldloc.s V_10
+	IL_0097: ldc.i4.0
+	IL_0098: beq.s IL_00b8
+	IL_009a: ldloc.s V_10
+	IL_009c: stsfld UnityEngine.Camera/CameraCallback UnityEngine.Camera::onPreCull
+	IL_00a1: ldstr "HeadlessAfterSceneLoad"
+	IL_00a6: call System.Void HeadlessCallbacks::InvokeCallbacks(System.String)
+	IL_00ab: ret
+	IL_00ac: newobj System.Void System.NullReferenceException::.ctor()
+	IL_00b1: throw
+	IL_00b2: newobj System.Void System.InvalidCastException::.ctor()
+	IL_00b7: throw
+	IL_00b8: newobj System.Void System.InvalidCastException::.ctor()
+	IL_00bd: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Headless
+	static System.Void InitializeHeadless()
+
+		UnityEngine.Object object = UnityEngine.Resources.Load("HeadlessRuntime") //(String path)
+
+		if (object == 0)
+		else
+		    //UNKNOWN CLASS OFFSET READ HERE
+		    ulong local4 = 0
+		endif
+        
+		 += 16
+		Headless.version = object
+		HeadlessRuntime headlessRuntime = Headless.headlessRuntime
+		ulong local8 = 0
+
+		System.Boolean boolean = UnityEngine.Object.op_Inequality(headlessRuntime, local8) //(Object x, Object y)
+
+		if (boolean == False)
+            goto INSN_181B2A230
+        endif
+		HeadlessRuntime headlessRuntime2 = Headless.headlessRuntime
+		System.String profileName = headlessRuntime2.profileName
+		 += 24
+		Headless.version = profileName
+		HeadlessRuntime headlessRuntime3 = Headless.headlessRuntime
+
+		if (headlessRuntime3.valueConsole == False)
+            goto INSN_181B2A13F
+        endif
+		ulong local13 = 0
+
+		[instruction error - managed method being called is null]
+
+		if (constant44 != 0)
+            goto INSN_181B2A138
+        endif
+		Windows.HeadlessConsole headlessConsole = new Windows.HeadlessConsole()
+
+		headlessConsole..ctor()
+
+		headlessConsole.Initialize()
+		ulong local17 = 0
+
+		System.String productName = UnityEngine.Application.productName
+
+		headlessConsole.SetTitle(productName) //(String strName)
+		UnityEngine.Application/LogCallback logCallback = new UnityEngine.Application/LogCallback()
+		ulong local22 = 0
+
+		logCallback..ctor(local22, {'HandleLog' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		UnityEngine.Application.add_logMessageReceived(logCallback) //(LogCallback value)
+
+		INSN_181B2A138:
+
+		INSN_181B2A13F:
+		HeadlessRuntime headlessRuntime4 = Headless.headlessRuntime
+
+		if (headlessRuntime4.valueLimitFramerate == False)
+            goto INSN_181B2A237
+        endif
+		HeadlessRuntime headlessRuntime5 = Headless.headlessRuntime
+		System.Int32 valueFramerate = headlessRuntime5.valueFramerate
+
+		UnityEngine.Application.targetFrameRate = valueFramerate
+		ulong local29 = 0
+
+		UnityEngine.QualitySettings.vSyncCount = local29
+		HeadlessRuntime headlessRuntime6 = Headless.headlessRuntime
+		System.Int32 valueFramerate2 = headlessRuntime6.valueFramerate
+
+		System.String string = System.String.Concat("Application target framerate set to ", valueFramerate2) //(Object arg0, Object arg1)
+
+		UnityEngine.Debug.Log(string) //(Object message)
+
+		INSN_181B2A230:
+
+		INSN_181B2A237:
+		. = 1
+
+		HeadlessCallbacks.InvokeCallbacks("HeadlessBeforeFirstSceneLoad") //(String callbackName)
+		return
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.UnknownClassOffsetReadAction at (0x181B29FDA) is corrupt (Unknown class offset read) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Headless
+	static System.Void HandleLog(System.String logString, System.String stackTrace, UnityEngine.LogType type)
+
+		System.Console.WriteLine(logString) //(String value)
+
+		if (stackTrace.m_stringLength > 1)
+
+		    System.String string = System.String.Concat("in: ", stackTrace) //(String str0, String str1)
+
+		    System.Console.WriteLine(string) //(String value)
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void System.Console::WriteLine(System.String)
+	IL_0006: ldarg.1
+	IL_0007: ldfld System.Int32 System.String::m_stringLength
+	IL_000c: ldc.i4.1
+	IL_000d: ble.s IL_001f
+	IL_000f: ldstr "in: "
+	IL_0014: ldarg.1
+	IL_0015: call System.String System.String::Concat(System.String,System.String)
+	IL_001a: call System.Void System.Console::WriteLine(System.String)
+	IL_001f: ret
+	IL_0020: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0025: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Headless
+	static System.Boolean IsBuildingHeadless()
+		System.Boolean local0 = "{il2cpp field on {'constant10' (constant value of type Cpp2IL.Core.Analysis.ResultModels.StaticFieldsPtr)}, offset 0xB}" != 0
+		return local0
+
+
+Generated IL:
+	IL_0000: ldstr "{il2cpp field on {'constant10' (constant value of type Cpp2IL.Core.Analysis.ResultModels.StaticFieldsPtr)}, offset 0xB}"
+	IL_0005: ldc.i4.0
+	IL_0006: conv.i8
+	IL_0007: conv.u8
+	IL_0008: ceq
+	IL_000a: ldc.i4.0
+	IL_000b: ceq
+	IL_000d: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Headless
+	static System.Boolean IsDebuggingHeadless()
+		System.Boolean local0 = "{il2cpp field on {'constant10' (constant value of type Cpp2IL.Core.Analysis.ResultModels.StaticFieldsPtr)}, offset 0xC}" != 0
+		return local0
+
+
+Generated IL:
+	IL_0000: ldstr "{il2cpp field on {'constant10' (constant value of type Cpp2IL.Core.Analysis.ResultModels.StaticFieldsPtr)}, offset 0xC}"
+	IL_0005: ldc.i4.0
+	IL_0006: conv.i8
+	IL_0007: conv.u8
+	IL_0008: ceq
+	IL_000a: ldc.i4.0
+	IL_000b: ceq
+	IL_000d: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Headless
+	static System.Void SetBuildingHeadless(System.Boolean value, System.String profileName)
+		Headless.buildingHeadless = value
+		 += 24
+		Headless.version = profileName
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x181B2A8BF) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Headless
+	static System.Void .cctor()
+		Headless.version = "1.6.4"
+		. = 0
+		. = 0
+		. = 0
+		. = 0
+		. = 0
+		 += 24
+		Headless.version = ""
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ImmediateToFieldAction at (0x181B2A92A) is corrupt (Instance or field is null) and cannot be created as IL. Aborting here.
+
+

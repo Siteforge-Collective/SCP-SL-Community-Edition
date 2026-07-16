@@ -1,0 +1,687 @@
+Type: Pool
+
+
+	Generated Pseudocode:
+
+	Declaring Type: GameObjectPools.Pool
+	GameObjectPools.Pool/OverflowModes get_OverflowMode()
+		GameObjectPools.PoolObject prefab = this.Prefab
+		GameObjectPools.Pool/OverflowModes overflowMode = prefab.OverflowMode
+		return overflowMode
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld GameObjectPools.PoolObject GameObjectPools.Pool::Prefab
+	IL_0006: ldfld GameObjectPools.Pool/OverflowModes GameObjectPools.PoolObject::OverflowMode
+	IL_000b: ret
+	IL_000c: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0011: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: GameObjectPools.Pool
+	System.Void set_CurrentCount(System.Int32 value)
+		this._currentCount = value
+
+		if (value > this._currentMax)
+		    this._currentMax = value
+		endif
+        
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: stfld System.Int32 GameObjectPools.Pool::_currentCount
+	IL_0007: ldarg.1
+	IL_0008: ldarg.0
+	IL_0009: ldfld System.Int32 GameObjectPools.Pool::_currentMax
+	IL_000e: ble.s IL_0017
+	IL_0010: ldarg.0
+	IL_0011: ldarg.1
+	IL_0012: stfld System.Int32 GameObjectPools.Pool::_currentMax
+	IL_0017: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: GameObjectPools.Pool
+	System.Int32 get_CurrentCount()
+		System.Int32 _currentCount = this._currentCount
+		return _currentCount
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Int32 GameObjectPools.Pool::_currentCount
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: GameObjectPools.Pool
+	System.Void AddNewPrefabToPool()
+		System.Collections.Generic.Stack`1<GameObjectPools.PoolObject> _pool = this._pool
+
+		GameObjectPools.PoolObject poolObject = this.SpawnObject()
+
+		_pool.Push(poolObject) //(T item)
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Collections.Generic.Stack`1<GameObjectPools.PoolObject> GameObjectPools.Pool::_pool
+	IL_0006: stloc.0
+	IL_0007: ldarg.0
+	IL_0008: call GameObjectPools.PoolObject GameObjectPools.Pool::SpawnObject()
+	IL_000d: stloc.1
+	IL_000e: ldloc.0
+	IL_000f: ldloc.1
+	IL_0010: call System.Void System.Collections.Generic.Stack`1::Push(T)
+	IL_0015: ret
+	IL_0016: newobj System.Void System.NullReferenceException::.ctor()
+	IL_001b: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: GameObjectPools.Pool
+	System.Void Initialize()
+		GameObjectPools.PoolObject prefab = this.Prefab
+
+		System.String name = prefab.name
+		UnityEngine.GameObject gameObject = new UnityEngine.GameObject()
+
+		gameObject..ctor(name) //(String name)
+
+		UnityEngine.Transform transform = gameObject.transform
+		this.parentTransform = transform
+		UnityEngine.Transform parentTransform = this.parentTransform
+		GameObjectPools.PoolManager singleton = GameObjectPools.PoolManager.Singleton
+
+		UnityEngine.Transform transform2 = singleton.transform
+		ulong local13 = 0
+
+		parentTransform.SetParent(transform2, local13) //(Transform parent, Boolean worldPositionStays)
+		GameObjectPools.PoolObject prefab2 = this.Prefab
+		ulong local15 = 0
+
+		while (local15 < prefab2.InitialPoolSize)
+		    System.Collections.Generic.Stack`1<GameObjectPools.PoolObject> _pool = this._pool
+
+		    GameObjectPools.PoolObject poolObject = this.SpawnObject()
+
+		    _pool.Push(poolObject) //(T item)
+		    GameObjectPools.PoolObject prefab3 = this.Prefab
+		    local15 += 1
+		endwhile
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld GameObjectPools.PoolObject GameObjectPools.Pool::Prefab
+	IL_0006: call System.String UnityEngine.Object::get_name()
+	IL_000b: newobj System.Void UnityEngine.GameObject::.ctor(System.String)
+	IL_0010: call UnityEngine.Transform UnityEngine.GameObject::get_transform()
+	IL_0015: stloc.0
+	IL_0016: ldarg.0
+	IL_0017: ldloc.0
+	IL_0018: stfld UnityEngine.Transform GameObjectPools.Pool::parentTransform
+	IL_001d: ldarg.0
+	IL_001e: ldfld UnityEngine.Transform GameObjectPools.Pool::parentTransform
+	IL_0023: stloc.1
+	IL_0024: ldsfld GameObjectPools.PoolManager GameObjectPools.PoolManager::Singleton
+	IL_0029: call UnityEngine.Transform UnityEngine.Component::get_transform()
+	IL_002e: stloc.2
+	IL_002f: ldc.i4.0
+	IL_0030: stloc.3
+	IL_0031: ldloc.1
+	IL_0032: ldloc.2
+	IL_0033: ldloc.3
+	IL_0034: call System.Void UnityEngine.Transform::SetParent(UnityEngine.Transform,System.Boolean)
+	IL_0039: ldarg.0
+	IL_003a: ldfld GameObjectPools.PoolObject GameObjectPools.Pool::Prefab
+	IL_003f: stloc.s V_4
+	IL_0041: ldc.i4.0
+	IL_0042: stloc.s V_5
+	IL_0044: ldloc.s V_5
+	IL_0046: ldloc.s V_4
+	IL_0048: ldfld System.Int32 GameObjectPools.PoolObject::InitialPoolSize
+	IL_004d: bge.s IL_0076
+	IL_004f: ldarg.0
+	IL_0050: ldfld System.Collections.Generic.Stack`1<GameObjectPools.PoolObject> GameObjectPools.Pool::_pool
+	IL_0055: stloc.s V_6
+	IL_0057: ldarg.0
+	IL_0058: call GameObjectPools.PoolObject GameObjectPools.Pool::SpawnObject()
+	IL_005d: stloc.s V_7
+	IL_005f: ldloc.s V_6
+	IL_0061: ldloc.s V_7
+	IL_0063: call System.Void System.Collections.Generic.Stack`1::Push(T)
+	IL_0068: ldarg.0
+	IL_0069: ldfld GameObjectPools.PoolObject GameObjectPools.Pool::Prefab
+	IL_006e: stloc.s V_8
+	IL_0070: ldloc.s V_5
+	IL_0072: ldc.i4.1
+	IL_0073: add
+	IL_0074: stloc.s V_5
+	IL_0076: ret
+	IL_0077: newobj System.Void System.NullReferenceException::.ctor()
+	IL_007c: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: GameObjectPools.Pool
+	System.Boolean TryGetPoolableObject(GameObjectPools.PoolObject& poolableObject)
+		System.Collections.Generic.Stack`1<GameObjectPools.PoolObject> _pool = this._pool
+
+		while ( > 0)
+
+		    GameObjectPools.PoolObject poolObject = _pool.Pop()
+		    poolableObject. = poolObject
+
+		    System.Boolean boolean = UnityEngine.Object.op_Equality()
+
+		    if (boolean != False)
+		        UnityEngine.Transform parentTransform = this.parentTransform
+
+		        UnityEngine.GameObject gameObject = parentTransform.gameObject
+
+		        System.String name = gameObject.name
+
+		        System.String string = System.String.Concat("Object Pooling: Found null object in ", name, " pool.") //(String str0, String str1, String str2)
+
+		        UnityEngine.Debug.LogError(string) //(Object message)
+
+		        this.AddNewPrefabToPool()
+		        System.Collections.Generic.Stack`1<GameObjectPools.PoolObject> _pool2 = this._pool
+		    endwhile
+            
+		    goto INSN_181B30CC0
+            
+		    GameObjectPools.PoolObject prefab = this.Prefab
+
+		    if (prefab.OverflowMode == 0)
+                goto INSN_181B30C92
+            endif
+		    System.Int32 _currentCount = this._currentCount
+		    _currentCount += 1
+		    this._currentCount = _currentCount
+
+		    if (_currentCount <= this._currentMax)
+                goto INSN_181B30C80
+            endif
+		    this._currentMax = _currentCount
+
+		    INSN_181B30C80:
+		    System.Int64 local19 = 1
+		    return local19
+
+		    INSN_181B30C92:
+
+		    _pool2.Enqueue()
+		    System.Int64 local20 = 1
+		    return local20
+
+		    INSN_181B30CC0:
+		    System.Int32 _version = _pool2._version
+
+		    if (_version == 0)
+                goto INSN_181B30D20
+            endif
+
+		    if (_version == 0)
+                goto INSN_181B30E52
+            endif
+
+		    if (_version != 1)
+                goto INSN_181B30E52
+            endif
+		    local20 += 1
+
+		    GameObjectPools.PoolObject poolObject2 = .SpawnObject()
+		    poolableObject. = poolObject2
+		    System.Int64 local24 = 1
+		    return local24
+
+		    INSN_181B30D20:
+
+		    while ( > 0)
+
+		        GameObjectPools.PoolObject poolObject3 = local24.Dequeue()
+		        poolableObject. = poolObject3
+
+		        System.Boolean boolean2 = UnityEngine.Object.op_Equality()
+
+		        if (boolean2 == False)
+                    goto INSN_181B30E1A
+                endif
+
+		        UnityEngine.GameObject gameObject2 = .gameObject
+
+		        System.String name2 = gameObject2.name
+
+		        System.String string2 = System.String.Concat("Object Pooling: Found null object in ", name2, " pool.") //(String str0, String str1, String str2)
+
+		        UnityEngine.Debug.LogError(string2) //(Object message)
+
+		        .AddNewPrefabToPool()
+
+		        if (string2 == 0)
+		        endwhile
+                
+		        goto INSN_181B30E52
+                
+
+		        INSN_181B30E1A:
+
+		        string2.Enqueue()
+
+		        .ResetObject()
+		        System.Int64 local38 = 1
+		        return local38
+
+		        INSN_181B30E52:
+		        ulong local40 = 0
+		        return local40
+		        throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfLessThanOrEqualToAction at (0x181B30B74) is corrupt (One of the arguments is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: GameObjectPools.Pool
+	System.Void ReturnObject(GameObjectPools.PoolObject poolableObject)
+		ulong local3 = 0
+
+		System.Boolean boolean = UnityEngine.Object.op_Equality(poolableObject, local3) //(Object x, Object y)
+
+		if (boolean == False)
+
+		    this.ResetObject(poolableObject) //(PoolObject poolableObject)
+		    System.Collections.Generic.Stack`1<GameObjectPools.PoolObject> _pool = this._pool
+
+		    _pool.Push(poolableObject) //(T item)
+		    System.Int32 _currentCount = this._currentCount
+		    this._currentCount = _currentCount
+
+		    if (_currentCount > this._currentMax)
+		        this._currentMax = _currentCount
+		    endif
+            
+		    return
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: ldarg.1
+	IL_0003: ldloc.0
+	IL_0004: call System.Boolean UnityEngine.Object::op_Equality(UnityEngine.Object,UnityEngine.Object)
+	IL_0009: ldc.i4.0
+	IL_000a: bne.un.s IL_003d
+	IL_000c: ldarg.0
+	IL_000d: ldarg.1
+	IL_000e: call System.Void GameObjectPools.Pool::ResetObject(GameObjectPools.PoolObject)
+	IL_0013: ldarg.0
+	IL_0014: ldfld System.Collections.Generic.Stack`1<GameObjectPools.PoolObject> GameObjectPools.Pool::_pool
+	IL_0019: ldarg.1
+	IL_001a: call System.Void System.Collections.Generic.Stack`1::Push(T)
+	IL_001f: ldarg.0
+	IL_0020: ldfld System.Int32 GameObjectPools.Pool::_currentCount
+	IL_0025: stloc.1
+	IL_0026: ldarg.0
+	IL_0027: ldloc.1
+	IL_0028: stfld System.Int32 GameObjectPools.Pool::_currentCount
+	IL_002d: ldloc.1
+	IL_002e: ldarg.0
+	IL_002f: ldfld System.Int32 GameObjectPools.Pool::_currentMax
+	IL_0034: ble.s IL_003d
+	IL_0036: ldarg.0
+	IL_0037: ldloc.1
+	IL_0038: stfld System.Int32 GameObjectPools.Pool::_currentMax
+	IL_003d: ret
+	IL_003e: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0043: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: GameObjectPools.Pool
+	System.Void ResetObject(GameObjectPools.PoolObject poolableObject)
+
+		UnityEngine.GameObject gameObject = poolableObject.gameObject
+		ulong local5 = 0
+
+		gameObject.SetActive(local5) //(Boolean value)
+
+		UnityEngine.Transform transform = gameObject.transform
+		UnityEngine.Transform parentTransform = this.parentTransform
+		ulong local10 = 0
+
+		transform.SetParent(parentTransform, local10) //(Transform parent, Boolean worldPositionStays)
+		GameObjectPools.IPoolResettable[] _poolResetables = poolableObject._poolResetables
+		ulong local12 = 0
+		System.Int32 length = _poolResetables.Length
+
+		if (local12 < length)
+		    GameObjectPools.IPoolResettable iPoolResettable = _poolResetables[local12]
+		    //UNKNOWN CLASS OFFSET READ HERE
+
+		    if (local12 < local10)
+		        local12 += local12
+		        local12 += 1
+		    endif
+            
+		      = local12.
+		    local12 += 1
+		     += IPoolResettable
+		    local12 += 19
+		    local12 += constant9
+		      = local12.
+		    local12 += 1
+		endif
+        
+		return
+		throw new System.IndexOutOfRangeException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.UnknownClassOffsetReadAction at (0x181B307E1) is corrupt (Unknown class offset read) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: GameObjectPools.Pool
+	System.Void RestartRound()
+		System.Int32 _currentMax = this._currentMax
+
+		if (_currentMax != 0)
+		    System.Collections.Generic.List`1<System.Int32> _maxEachRound = this._maxEachRound
+
+		    _maxEachRound.Add(_currentMax) //(T item)
+		endif
+        
+		ulong local3 = 0
+		this._currentMax = local3
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Int32 GameObjectPools.Pool::_currentMax
+	IL_0006: stloc.0
+	IL_0007: ldloc.0
+	IL_0008: ldc.i4.0
+	IL_0009: beq.s IL_0017
+	IL_000b: ldarg.0
+	IL_000c: ldfld System.Collections.Generic.List`1<System.Int32> GameObjectPools.Pool::_maxEachRound
+	IL_0011: ldloc.0
+	IL_0012: call System.Void System.Collections.Generic.List`1::Add(T)
+	IL_0017: ldc.i4.0
+	IL_0018: stloc.1
+	IL_0019: ldarg.0
+	IL_001a: ldloc.1
+	IL_001b: stfld System.Int32 GameObjectPools.Pool::_currentMax
+	IL_0020: ret
+	IL_0021: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0026: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: GameObjectPools.Pool
+	System.Void PrintDebug()
+		GameObjectPools.PoolObject prefab = this.Prefab
+
+		if (prefab.OverflowMode != 2)
+		    System.Collections.Generic.List`1<System.Int32> _maxEachRound = this._maxEachRound
+
+		    if ( != 0)
+		        ulong local3 = 0
+		        ulong local4 = 0
+
+		        System.Collections.Generic.List`1/Enumerator<T> enumerator = .GetEnumerator()
+
+		        if (enumerator != 0)
+
+		            if ( > local3)
+		            endif
+                    
+
+		            [instruction error - managed method being called is null]
+
+		            [instruction error - managed method being called is null]
+
+		            if (True != 0)
+                        goto INSN_181B3067B
+                    endif
+		            System.Collections.Generic.List`1<System.Int32> _maxEachRound2 = this._maxEachRound
+		            System.Single local7 = local4 * 100
+		            System.Single local8 = local7 * 0,01
+		            System.Object[] local9 = new System.Object[4]
+		            UnityEngine.Transform parentTransform = this.parentTransform
+
+		            UnityEngine.GameObject gameObject = parentTransform.gameObject
+
+		            System.String name = gameObject.name
+
+		            if (name == 0)
+                        goto INSN_181B304FE
+                    endif
+
+		            if (name == 0)
+                        goto INSN_181B30683
+                    endif
+
+		            INSN_181B304FE:
+		            local9[0] = name
+		            GameObjectPools.PoolObject prefab2 = this.Prefab
+		            System.Int32 initialPoolSize = prefab2.InitialPoolSize
+
+		            if (initialPoolSize == 0)
+                        goto INSN_181B30560
+                    endif
+
+		            if (initialPoolSize == 0)
+                        goto INSN_181B306A3
+                    endif
+
+		            INSN_181B30560:
+		            local9[1] = initialPoolSize
+
+		            if (initialPoolSize == 0)
+                        goto INSN_181B305B4
+                    endif
+
+		            if (initialPoolSize == 0)
+                        goto INSN_181B306C3
+                    endif
+
+		            INSN_181B305B4:
+		            local9[2] = initialPoolSize
+
+		            if (initialPoolSize == 0)
+                        goto INSN_181B30608
+                    endif
+
+		            if (initialPoolSize == 0)
+                        goto INSN_181B306E3
+                    endif
+
+		            INSN_181B30608:
+		            local9[3] = initialPoolSize
+
+		            System.String string = System.String.Format("{0}: Initial Size: {1} | Average Used: {2} | Max Used: {3}", local9) //(String format, Object[] args)
+
+		            UnityEngine.Debug.LogWarning(string) //(Object message)
+		        endif
+                
+		        return
+		        throw new System.NullReferenceException()
+
+		        INSN_181B3067B:
+
+		        INSN_181B30683:
+
+		        INSN_181B306A3:
+
+		        INSN_181B306C3:
+
+		        INSN_181B306E3:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfZeroOrNullAction at (0x181B30397) is corrupt (One of the arguments is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: GameObjectPools.Pool
+	GameObjectPools.PoolObject SpawnObject()
+		GameObjectPools.PoolObject prefab = this.Prefab
+
+		UnityEngine.GameObject gameObject = prefab.gameObject
+		UnityEngine.Transform parentTransform = this.parentTransform
+
+		UnityEngine.GameObject gameObject2 = UnityEngine.Object.Instantiate<UnityEngine.GameObject>(gameObject, parentTransform) //(T original, Transform parent)
+
+		GameObjectPools.PoolObject component = gameObject2.GetComponent<GameObjectPools.PoolObject>()
+		GameObjectPools.PoolManager singleton = GameObjectPools.PoolManager.Singleton
+		System.Collections.Generic.Dictionary`2<UnityEngine.GameObject,GameObjectPools.PoolObject> poolObjectLookup = singleton.PoolObjectLookup
+
+		UnityEngine.GameObject gameObject3 = component.gameObject
+		throw new System.NullReferenceException()
+
+		UnityEngine.GameObject gameObject4 = component.gameObject
+		ulong local15 = 0
+
+		gameObject4.SetActive(local15) //(Boolean value)
+		component.<_myPool>k__BackingField = this
+
+		GameObjectPools.IPoolResettable[] componentsInChildren = component.GetComponentsInChildren<GameObjectPools.IPoolResettable>()
+		component._poolResetables = componentsInChildren
+
+		GameObjectPools.IPoolSpawnable[] componentsInChildren2 = component.GetComponentsInChildren<GameObjectPools.IPoolSpawnable>()
+		component._poolSpawnables = componentsInChildren2
+		return component
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld GameObjectPools.PoolObject GameObjectPools.Pool::Prefab
+	IL_0006: call UnityEngine.GameObject UnityEngine.Component::get_gameObject()
+	IL_000b: stloc.0
+	IL_000c: ldarg.0
+	IL_000d: ldfld UnityEngine.Transform GameObjectPools.Pool::parentTransform
+	IL_0012: stloc.1
+	IL_0013: ldloc.0
+	IL_0014: ldloc.1
+	IL_0015: call T UnityEngine.Object::Instantiate<UnityEngine.GameObject>(T,UnityEngine.Transform)
+	IL_001a: call T UnityEngine.GameObject::GetComponent<GameObjectPools.PoolObject>()
+	IL_001f: stloc.2
+	IL_0020: ldsfld GameObjectPools.PoolManager GameObjectPools.PoolManager::Singleton
+	IL_0025: ldfld System.Collections.Generic.Dictionary`2<UnityEngine.GameObject,GameObjectPools.PoolObject> GameObjectPools.PoolManager::PoolObjectLookup
+	IL_002a: stloc.3
+	IL_002b: ldloc.2
+	IL_002c: call UnityEngine.GameObject UnityEngine.Component::get_gameObject()
+	IL_0031: stloc.s V_4
+	IL_0033: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0038: throw
+	IL_0039: ldloc.2
+	IL_003a: call UnityEngine.GameObject UnityEngine.Component::get_gameObject()
+	IL_003f: stloc.s V_5
+	IL_0041: ldc.i4.0
+	IL_0042: stloc.s V_6
+	IL_0044: ldloc.s V_5
+	IL_0046: ldloc.s V_6
+	IL_0048: call System.Void UnityEngine.GameObject::SetActive(System.Boolean)
+	IL_004d: ldloc.2
+	IL_004e: ldarg.0
+	IL_004f: stfld GameObjectPools.Pool GameObjectPools.PoolObject::<_myPool>k__BackingField
+	IL_0054: ldloc.2
+	IL_0055: call T[] UnityEngine.Component::GetComponentsInChildren<GameObjectPools.IPoolResettable>()
+	IL_005a: stloc.s V_7
+	IL_005c: ldloc.2
+	IL_005d: ldloc.s V_7
+	IL_005f: stfld GameObjectPools.IPoolResettable[] GameObjectPools.PoolObject::_poolResetables
+	IL_0064: ldloc.2
+	IL_0065: call T[] UnityEngine.Component::GetComponentsInChildren<GameObjectPools.IPoolSpawnable>()
+	IL_006a: stloc.s V_8
+	IL_006c: ldloc.2
+	IL_006d: ldloc.s V_8
+	IL_006f: stfld GameObjectPools.IPoolSpawnable[] GameObjectPools.PoolObject::_poolSpawnables
+	IL_0074: ldloc.2
+	IL_0075: ret
+	IL_0076: newobj System.Void System.NullReferenceException::.ctor()
+	IL_007b: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: GameObjectPools.Pool
+	System.Void .ctor()
+		System.Collections.Generic.Stack`1<GameObjectPools.PoolObject> stack = new System.Collections.Generic.Stack`1<GameObjectPools.PoolObject>()
+
+		stack..ctor()
+		this._pool = stack
+		System.Collections.Generic.Queue`1<GameObjectPools.PoolObject> queue = new System.Collections.Generic.Queue`1<GameObjectPools.PoolObject>()
+
+		queue..ctor()
+		this._spawnQueue = queue
+		System.Collections.Generic.List`1<System.Int32> list = new System.Collections.Generic.List`1<System.Int32>()
+
+		list..ctor()
+		this._maxEachRound = list
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: newobj System.Void System.Collections.Generic.Stack`1::.ctor()
+	IL_0005: stloc.0
+	IL_0006: ldarg.0
+	IL_0007: ldloc.0
+	IL_0008: stfld System.Collections.Generic.Stack`1<GameObjectPools.PoolObject> GameObjectPools.Pool::_pool
+	IL_000d: newobj System.Void System.Collections.Generic.Queue`1::.ctor()
+	IL_0012: stloc.1
+	IL_0013: ldarg.0
+	IL_0014: ldloc.1
+	IL_0015: stfld System.Collections.Generic.Queue`1<GameObjectPools.PoolObject> GameObjectPools.Pool::_spawnQueue
+	IL_001a: newobj System.Void System.Collections.Generic.List`1::.ctor()
+	IL_001f: stloc.2
+	IL_0020: ldarg.0
+	IL_0021: ldloc.2
+	IL_0022: stfld System.Collections.Generic.List`1<System.Int32> GameObjectPools.Pool::_maxEachRound
+	IL_0027: ldarg.0
+	IL_0028: call System.Void System.Object::.ctor()
+	IL_002d: ret
+	
+

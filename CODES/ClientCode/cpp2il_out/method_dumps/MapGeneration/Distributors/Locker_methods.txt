@@ -1,0 +1,789 @@
+Type: Locker
+
+
+	Generated Pseudocode:
+
+	Declaring Type: MapGeneration.Distributors.Locker
+	Interactables.Verification.IVerificationRule get_VerificationRule()
+		Interactables.Verification.StandardDistanceVerification default = Interactables.Verification.StandardDistanceVerification.Default
+		return default
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x1802DEA85) is corrupt (Return value has a type of Interactables.Verification.StandardDistanceVerification, expecting an object of type Interactables.Verification.IVerificationRule) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: MapGeneration.Distributors.Locker
+	System.Void ServerInteract(ReferenceHub ply, System.Byte colliderId)
+		MapGeneration.Distributors.LockerChamber[] chambers = this.Chambers
+		System.Int32 length = chambers.Length
+
+		if (colliderId < length)
+		    MapGeneration.Distributors.LockerChamber lockerChamber = chambers[colliderId]
+
+		    System.Boolean animatorSet = lockerChamber.AnimatorSet
+
+		    if (animatorSet != False)
+		        System.Diagnostics.Stopwatch _stopwatch = lockerChamber._stopwatch
+
+		        if (_stopwatch.is_running != False)
+
+		            System.TimeSpan elapsed = _stopwatch.Elapsed
+		            System.Diagnostics.Stopwatch _stopwatch2 = lockerChamber._stopwatch
+
+		            _stopwatch2.Stop()
+		        endif
+                
+		        MapGeneration.Distributors.LockerChamber[] chambers2 = this.Chambers
+		        MapGeneration.Distributors.LockerChamber lockerChamber2 = chambers2[colliderId]
+		        Interactables.Interobjects.DoorUtils.KeycardPermissions requiredPermissions = lockerChamber2.RequiredPermissions
+
+		        if (requiredPermissions == constant13)
+                    goto INSN_1802DE3C0
+                endif
+		        InventorySystem.Inventory inventory = ply.inventory
+		        InventorySystem.Items.ItemBase _curInstance = inventory._curInstance
+		        ulong local21 = 0
+
+		        System.Boolean boolean = UnityEngine.Object.op_Equality(_curInstance, local21) //(Object x, Object y)
+
+		        if (boolean != False)
+                    goto INSN_1802DE2BF
+                endif
+		        InventorySystem.Inventory inventory2 = ply.inventory
+		        InventorySystem.Items.ItemBase _curInstance2 = inventory2._curInstance
+
+		        if (_curInstance2 == 0)
+                    goto INSN_1802DE2BF
+                endif
+		        //UNKNOWN CLASS OFFSET READ HERE
+		          = _curInstance2.
+
+		        [instruction error - managed method being called is null]
+
+		        if (constant25 != 0)
+                    goto INSN_1802DE3C0
+                endif
+
+		        INSN_1802DE2BF:
+		        ServerRoles serverRoles = ply.serverRoles
+
+		        if (serverRoles.BypassMode != False)
+                    goto INSN_1802DE3C0
+                endif
+		        ulong local27 = 0
+
+		        Mirror.PooledNetworkWriter writer = Mirror.NetworkWriterPool.GetWriter()
+
+		        [instruction error - managed method being called is null]
+
+		        System.Type typeFromHandle = System.Type.GetTypeFromHandle({'Locker' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		        ulong local32 = 0
+
+		        base.SendRPCInternal(typeFromHandle, "RpcPlayDenied", writer, local32, local33) //(Type invokeClass, String rpcName, NetworkWriter writer, Int32 channelId, Boolean includeOwner)
+
+		        Mirror.NetworkWriterPool.Recycle(writer) //(PooledNetworkWriter writer)
+		    endif
+            
+		    return
+
+		    INSN_1802DE3C0:
+		    System.Boolean local35 =  == 0
+
+		    length.SetDoor()
+		    ulong local37 = 0
+		    System.Int32 1 = 1
+
+		    while (local37 < colliderId)
+		        System.Int32 0 = 0
+		        local37 += 1
+		         += 1
+		    endwhile
+            
+
+		    if (local37 != null)
+
+		        System.Boolean boolean2 = .SyncVarEqual<System.UInt16>()
+
+		        if (boolean2 == False)
+		            throw new System.NullReferenceException()
+		            throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfZeroOrNullAction at (0x1802DE1F9) is corrupt (ConstantDefinition: Don't know how to get IL to load a System.UInt16) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: MapGeneration.Distributors.Locker
+	System.Void Start()
+		MapGeneration.Distributors.LockerChamber[] chambers = this.Chambers
+		System.Collections.Generic.List`1<MapGeneration.Distributors.LockerChamber> list = new System.Collections.Generic.List`1<MapGeneration.Distributors.LockerChamber>()
+
+		list..ctor(chambers) //(IEnumerable`1 collection)
+		System.Int32 _minChambersToFill = this._minChambersToFill
+
+		if (_minChambersToFill != 0)
+		    System.Int32 _maxChambersToFill = this._maxChambersToFill
+		    MapGeneration.Distributors.LockerChamber[] chambers2 = this.Chambers
+		    _maxChambersToFill += 1
+
+		    System.Int32 int32 = UnityEngine.Random.Range(_minChambersToFill, _maxChambersToFill) //(Int32 min, Int32 max)
+		    System.Int32 length = chambers2.Length
+		    length -= int32
+		    ulong local11 = 0
+
+		    if (length > 0)
+		        System.Int32 _size = list._size
+		        ulong local14 = 0
+
+		        System.Int32 int322 = UnityEngine.Random.Range(local14, _size) //(Int32 min, Int32 max)
+		        _size = int322
+
+		        list.RemoveAt(_size) //(Int32 index)
+		        local11 += 1
+		    endwhile
+            
+		    goto INSN_1802DE715
+            
+		else
+		endif
+        
+
+		System.Collections.Generic.List`1/Enumerator<T> enumerator = _minChambersToFill.GetEnumerator()
+
+		if (enumerator == 0)
+            goto INSN_1802DE6C5
+        endif
+
+		this.FillChamber()
+
+		INSN_1802DE6C5:
+
+		this.Dispose()
+
+		this.Dispose()
+
+		if (this != 0)
+            goto INSN_1802DE70D
+        endif
+		return
+
+		INSN_1802DE70D:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1802DE687) is corrupt (Mismatched instance parameter. Expecting an instance of System.Collections.Generic.List`1, actually {'_minChambersToFill' (type System.Int32)}) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: MapGeneration.Distributors.Locker
+	System.Void Update()
+		System.UInt16 openedChambers = this.OpenedChambers
+
+		if (this._prevOpened != openedChambers)
+		    MapGeneration.Distributors.LockerChamber[] chambers = this.Chambers
+		    ulong local3 = 0
+		    ulong local4 = 0
+		    System.Int64 local5 = 1
+		    System.Int32 length = chambers.Length
+
+		    if (local4 < length)
+		        MapGeneration.Distributors.LockerChamber lockerChamber = chambers[local3]
+		        System.UInt16 openedChambers2 = this.OpenedChambers
+
+		        if (openedChambers2 == local5)
+		        else
+
+		            System.Boolean animatorSet = lockerChamber.AnimatorSet
+		            System.Boolean local12 = animatorSet == False
+		        endif
+                
+		        UnityEngine.AudioClip _grantedBeep = this._grantedBeep
+
+		        lockerChamber.SetDoor(local12, _grantedBeep) //(Boolean doorStatus, AudioClip beepClip)
+		        local5 += local5
+		        local3 += 1
+		    endif
+            
+		    System.UInt16 openedChambers3 = this.OpenedChambers
+		    this._prevOpened = openedChambers3
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.UInt16 MapGeneration.Distributors.Locker::OpenedChambers
+	IL_0006: stloc.0
+	IL_0007: ldarg.0
+	IL_0008: ldfld System.UInt16 MapGeneration.Distributors.Locker::_prevOpened
+	IL_000d: ldloc.0
+	IL_000e: beq.s IL_0075
+	IL_0010: ldarg.0
+	IL_0011: ldfld MapGeneration.Distributors.LockerChamber[] MapGeneration.Distributors.Locker::Chambers
+	IL_0016: stloc.1
+	IL_0017: ldc.i4.0
+	IL_0018: stloc.2
+	IL_0019: ldc.i4.0
+	IL_001a: stloc.3
+	IL_001b: ldloc.1
+	IL_001c: call System.Int32 System.Array::get_Length()
+	IL_0021: stloc.s V_5
+	IL_0023: ldloc.3
+	IL_0024: ldloc.s V_5
+	IL_0026: bge.s IL_0065
+	IL_0028: ldloc.1
+	IL_0029: ldloc.2
+	IL_002a: ldelem.any MapGeneration.Distributors.LockerChamber
+	IL_002f: stloc.s V_6
+	IL_0031: ldarg.0
+	IL_0032: ldfld System.UInt16 MapGeneration.Distributors.Locker::OpenedChambers
+	IL_0037: ldloc.s V_4
+	IL_0039: bne.un.s IL_003b
+	IL_003b: ldloc.s V_6
+	IL_003d: call System.Boolean MapGeneration.Distributors.LockerChamber::get_AnimatorSet()
+	IL_0042: ldc.i4.0
+	IL_0043: ceq
+	IL_0045: stloc.s V_7
+	IL_0047: ldarg.0
+	IL_0048: ldfld UnityEngine.AudioClip MapGeneration.Distributors.Locker::_grantedBeep
+	IL_004d: stloc.s V_8
+	IL_004f: ldloc.s V_6
+	IL_0051: ldloc.s V_7
+	IL_0053: ldloc.s V_8
+	IL_0055: call System.Void MapGeneration.Distributors.LockerChamber::SetDoor(System.Boolean,UnityEngine.AudioClip)
+	IL_005a: ldloc.s V_4
+	IL_005c: ldloc.s V_4
+	IL_005e: add
+	IL_005f: stloc.s V_4
+	IL_0061: ldloc.2
+	IL_0062: ldc.i4.1
+	IL_0063: add
+	IL_0064: stloc.2
+	IL_0065: ldarg.0
+	IL_0066: ldfld System.UInt16 MapGeneration.Distributors.Locker::OpenedChambers
+	IL_006b: stloc.s V_9
+	IL_006d: ldarg.0
+	IL_006e: ldloc.s V_9
+	IL_0070: stfld System.UInt16 MapGeneration.Distributors.Locker::_prevOpened
+	IL_0075: ret
+	IL_0076: newobj System.Void System.NullReferenceException::.ctor()
+	IL_007b: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: MapGeneration.Distributors.Locker
+	System.Void RefreshOpenedSyncvar()
+		MapGeneration.Distributors.LockerChamber[] chambers = this.Chambers
+		ulong local2 = 0
+		System.Int32 1 = 1
+		System.Int32 length = chambers.Length
+
+		while (local2 < length)
+		    MapGeneration.Distributors.LockerChamber lockerChamber = chambers[local2]
+		    System.Int32 0 = 0
+		    local2 += 1
+		     += 1
+		endwhile
+        
+		System.UInt16 openedChambers = this.OpenedChambers
+
+		if (local2 == openedChambers)
+            goto INSN_1802DDEC9
+        endif
+
+		System.Boolean boolean = base.SyncVarEqual<System.UInt16>()
+
+		if (boolean != False)
+            goto INSN_1802DDEC9
+        endif
+		throw new System.NullReferenceException()
+
+		INSN_1802DDEC9:
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddRegToRegAction at (0x1802DDE55) is corrupt (Missing an argument) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: MapGeneration.Distributors.Locker
+	System.Boolean CheckPerms(Interactables.Interobjects.DoorUtils.KeycardPermissions perms, ReferenceHub ply)
+
+		if (perms != constant4)
+		    InventorySystem.Inventory inventory = ply.inventory
+		    InventorySystem.Items.ItemBase _curInstance = inventory._curInstance
+		    ulong local6 = 0
+
+		    System.Boolean boolean = UnityEngine.Object.op_Equality(_curInstance, local6) //(Object x, Object y)
+
+		    if (boolean == False)
+		        InventorySystem.Inventory inventory2 = ply.inventory
+		        InventorySystem.Items.ItemBase _curInstance2 = inventory2._curInstance
+
+		        if (_curInstance2 != 0)
+		            //UNKNOWN CLASS OFFSET READ HERE
+		              = _curInstance2.
+
+		            [instruction error - managed method being called is null]
+
+		            if (constant17 != 0)
+                        goto INSN_1802DD7C2
+                    endif
+		        endif
+                
+		        ulong local11 = 0
+		        return local11
+		    endif
+            
+		    return True
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfZeroOrNullAction at (0x1802DD6EE) is corrupt (ConstantDefinition: Don't know how to get IL to load a System.UInt16) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: MapGeneration.Distributors.Locker
+	System.Void RpcPlayDenied(System.Byte chamberId)
+		ulong local2 = 0
+
+		Mirror.PooledNetworkWriter writer = Mirror.NetworkWriterPool.GetWriter()
+
+		Mirror.NetworkWriterExtensions.WriteByte(writer, chamberId) //(NetworkWriter writer, Byte value)
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'Locker' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		ulong local7 = 0
+
+		base.SendRPCInternal(typeFromHandle, "RpcPlayDenied", writer, local7, local8) //(Type invokeClass, String rpcName, NetworkWriter writer, Int32 channelId, Boolean includeOwner)
+
+		Mirror.NetworkWriterPool.Recycle(writer) //(PooledNetworkWriter writer)
+		return
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: call Mirror.PooledNetworkWriter Mirror.NetworkWriterPool::GetWriter()
+	IL_0007: stloc.1
+	IL_0008: ldloc.1
+	IL_0009: ldarg.1
+	IL_000a: call System.Void Mirror.NetworkWriterExtensions::WriteByte(Mirror.NetworkWriter,System.Byte)
+	IL_000f: ldtoken MapGeneration.Distributors.Locker
+	IL_0014: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+	IL_0019: stloc.2
+	IL_001a: ldc.i4.0
+	IL_001b: stloc.3
+	IL_001c: ldarg.0
+	IL_001d: ldloc.2
+	IL_001e: ldstr "RpcPlayDenied"
+	IL_0023: ldloc.1
+	IL_0024: ldloc.3
+	IL_0025: ldloc.s V_4
+	IL_0027: call System.Void Mirror.NetworkBehaviour::SendRPCInternal(System.Type,System.String,Mirror.NetworkWriter,System.Int32,System.Boolean)
+	IL_002c: ldloc.1
+	IL_002d: call System.Void Mirror.NetworkWriterPool::Recycle(Mirror.PooledNetworkWriter)
+	IL_0032: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: MapGeneration.Distributors.Locker
+	System.Void FillChamber(MapGeneration.Distributors.LockerChamber ch)
+		NorthwoodLib.Pools.ListPool`1<T> shared = NorthwoodLib.Pools.ListPool`1.Shared
+
+		System.Collections.Generic.List`1<T> list = shared.Rent()
+		ulong local4 = 0
+		MapGeneration.Distributors.LockerLoot[] loot = this.Loot
+		ulong local6 = 0
+
+		while (local6 < loot.Length)
+		    MapGeneration.Distributors.LockerLoot local7 = loot[]
+
+		    if (local7.RemainingUses > 0)
+		        ItemType[] acceptableItems = ch.AcceptableItems
+
+		        if (acceptableItems.Length != 0)
+
+		            System.Boolean boolean = CollectionExtensions.Contains<ItemType>()
+
+		            if (boolean == False)
+                        goto INSN_1802DDA46
+                    endif
+		        endif
+                
+		        ulong local11 = 0
+		        MapGeneration.Distributors.LockerLoot[] loot2 = this.Loot
+		        MapGeneration.Distributors.LockerLoot local13 = loot2[]
+		        local6 = local4
+
+		        list.Add(local4) //(T item)
+		        local11 += 1
+		    endif
+            
+		    MapGeneration.Distributors.LockerLoot[] loot3 = this.Loot
+		    local4 += 1
+		    local6 = local4
+		endwhile
+        
+		System.Int32 _size = list._size
+
+		if (_size <= 0)
+            goto INSN_1802DDB10
+        endif
+		ulong local17 = 0
+
+		System.Int32 int32 = UnityEngine.Random.Range(local17, _size) //(Int32 min, Int32 max)
+		ulong local19 = 0
+
+		System.ThrowHelper.ThrowArgumentOutOfRangeException()
+		T[] _items = list._items
+		T t = _items[int32]
+		MapGeneration.Distributors.LockerLoot[] loot4 = this.Loot
+		MapGeneration.Distributors.LockerLoot lockerLoot = loot4[t]
+		System.Int32 maxPerChamber = lockerLoot.MaxPerChamber
+		ItemType targetItem = lockerLoot.TargetItem
+		maxPerChamber += 1
+		System.Int32 1 = 1
+
+		System.Int32 int322 = UnityEngine.Random.Range(1, maxPerChamber) //(Int32 min, Int32 max)
+		System.Int32 local28 = targetItem.value__
+
+		System.String string = ch.ToString()
+		MapGeneration.Distributors.LockerLoot[] loot5 = this.Loot
+		MapGeneration.Distributors.LockerLoot lockerLoot2 = loot5[t]
+
+		INSN_1802DDB10:
+		NorthwoodLib.Pools.ListPool`1<T> shared2 = NorthwoodLib.Pools.ListPool`1.Shared
+
+		shared2.Return(list) //(List`1 list)
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL Generation Skipped due to invalid local _items of type T[]
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: MapGeneration.Distributors.Locker
+	System.Void .ctor()
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void Mirror.NetworkBehaviour::.ctor()
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: MapGeneration.Distributors.Locker
+	System.Void MirrorProcessed()
+
+
+Generated IL:
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: MapGeneration.Distributors.Locker
+	System.UInt16 get_NetworkOpenedChambers()
+		System.UInt16 openedChambers = this.OpenedChambers
+		return openedChambers
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.UInt16 MapGeneration.Distributors.Locker::OpenedChambers
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: MapGeneration.Distributors.Locker
+	System.Void set_NetworkOpenedChambers(System.UInt16 value)
+
+		System.Boolean boolean = base.SyncVarEqual<System.UInt16>()
+
+		if (boolean == False)
+		    throw new System.NullReferenceException()
+		endif
+        
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1802DEAD1) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: MapGeneration.Distributors.Locker
+	System.Void UserCode_RpcPlayDenied(System.Byte chamberId)
+		MapGeneration.Distributors.LockerChamber[] chambers = this.Chambers
+		System.Int32 length = chambers.Length
+		MapGeneration.Distributors.LockerChamber lockerChamber = chambers[chamberId]
+		UnityEngine.AudioClip _deniedBeep = this._deniedBeep
+		System.Diagnostics.Stopwatch _stopwatch = lockerChamber._stopwatch
+		lockerChamber._targetCooldown = 0,4
+
+		_stopwatch.Restart()
+
+		System.Boolean animatorSet = lockerChamber.AnimatorSet
+
+		if (animatorSet != False)
+		    UnityEngine.Animator _animator = lockerChamber._animator
+		    System.Int32 deniedHash = MapGeneration.Distributors.LockerChamber.DeniedHash
+
+		    _animator.SetTrigger(deniedHash) //(Int32 id)
+		    UnityEngine.AudioSource _audioSource = lockerChamber._audioSource
+		    ulong local15 = 0
+
+		    System.Boolean boolean = UnityEngine.Object.op_Inequality(_audioSource, local15) //(Object x, Object y)
+
+		    if (boolean != False)
+		        UnityEngine.AudioSource _audioSource2 = lockerChamber._audioSource
+
+		        _audioSource2.PlayOneShot(_deniedBeep) //(AudioClip clip)
+		    endif
+            
+		    return
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld MapGeneration.Distributors.LockerChamber[] MapGeneration.Distributors.Locker::Chambers
+	IL_0006: stloc.0
+	IL_0007: ldloc.0
+	IL_0008: call System.Int32 System.Array::get_Length()
+	IL_000d: stloc.1
+	IL_000e: ldloc.0
+	IL_000f: ldarg.1
+	IL_0010: ldelem.any MapGeneration.Distributors.LockerChamber
+	IL_0015: stloc.2
+	IL_0016: ldarg.0
+	IL_0017: ldfld UnityEngine.AudioClip MapGeneration.Distributors.Locker::_deniedBeep
+	IL_001c: stloc.3
+	IL_001d: ldloc.2
+	IL_001e: ldfld System.Diagnostics.Stopwatch MapGeneration.Distributors.LockerChamber::_stopwatch
+	IL_0023: stloc.s V_4
+	IL_0025: ldloc.2
+	IL_0026: ldc.r4 0,4
+	IL_002b: stfld System.Single MapGeneration.Distributors.LockerChamber::_targetCooldown
+	IL_0030: ldloc.s V_4
+	IL_0032: call System.Void System.Diagnostics.Stopwatch::Restart()
+	IL_0037: ldloc.2
+	IL_0038: call System.Boolean MapGeneration.Distributors.LockerChamber::get_AnimatorSet()
+	IL_003d: ldc.i4.0
+	IL_003e: beq.s IL_007b
+	IL_0040: ldloc.2
+	IL_0041: ldfld UnityEngine.Animator MapGeneration.Distributors.LockerChamber::_animator
+	IL_0046: stloc.s V_5
+	IL_0048: ldsfld System.Int32 MapGeneration.Distributors.LockerChamber::DeniedHash
+	IL_004d: stloc.s V_6
+	IL_004f: ldloc.s V_5
+	IL_0051: ldloc.s V_6
+	IL_0053: call System.Void UnityEngine.Animator::SetTrigger(System.Int32)
+	IL_0058: ldloc.2
+	IL_0059: ldfld UnityEngine.AudioSource MapGeneration.Distributors.LockerChamber::_audioSource
+	IL_005e: stloc.s V_7
+	IL_0060: ldc.i4.0
+	IL_0061: stloc.s V_8
+	IL_0063: ldloc.s V_7
+	IL_0065: ldloc.s V_8
+	IL_0067: call System.Boolean UnityEngine.Object::op_Inequality(UnityEngine.Object,UnityEngine.Object)
+	IL_006c: ldc.i4.0
+	IL_006d: beq.s IL_007b
+	IL_006f: ldloc.2
+	IL_0070: ldfld UnityEngine.AudioSource MapGeneration.Distributors.LockerChamber::_audioSource
+	IL_0075: ldloc.3
+	IL_0076: call System.Void UnityEngine.AudioSource::PlayOneShot(UnityEngine.AudioClip)
+	IL_007b: ret
+	IL_007c: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0081: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: MapGeneration.Distributors.Locker
+	static System.Void InvokeUserCode_RpcPlayDenied(Mirror.NetworkBehaviour obj, Mirror.NetworkReader reader, Mirror.NetworkConnectionToClient senderConnection)
+		ulong local3 = 0
+
+		System.Boolean active = Mirror.NetworkClient.active
+
+		if (active != False)
+		    ulong local5 = 0
+
+		    [instruction error - managed method being called is null]
+		    //UNKNOWN CLASS OFFSET READ HERE
+		      = obj.
+		    System.Int32 _offset = reader.buffer._offset
+		      = obj.
+		      = reader.
+		    reader. = 1053609165
+
+		    .Restart()
+
+		    System.Boolean animatorSet = reader.AnimatorSet
+
+		    if (animatorSet != False)
+		          = reader.
+		        System.Int32 deniedHash = MapGeneration.Distributors.LockerChamber.DeniedHash
+
+		        [instruction error - managed method being called is null]
+		          = reader.
+		        ulong local13 = 0
+
+		        System.Boolean boolean = UnityEngine.Object.op_Inequality(obj, local13) //(Object x, Object y)
+
+		        if (boolean != False)
+		              = reader.
+
+		            obj.PlayOneShot(local13) //(AudioClip clip)
+		        endif
+                
+		        return
+		    endif
+            
+
+		    UnityEngine.Debug.LogError("RPC RpcPlayDenied called on server.") //(Object message)
+		    return
+		    throw new System.IndexOutOfRangeException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1802DDC40) is corrupt (Don't know what method is being called) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: MapGeneration.Distributors.Locker
+	static System.Void .cctor()
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'Locker' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		Mirror.RemoteCalls.CmdDelegate cmdDelegate = new Mirror.RemoteCalls.CmdDelegate()
+		ulong local4 = 0
+
+		cmdDelegate..ctor(local4, {'InvokeUserCode_RpcPlayDenied' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		Mirror.RemoteCalls.RemoteCallHelper.RegisterRpcDelegate(typeFromHandle, "RpcPlayDenied", cmdDelegate) //(Type invokeClass, String rpcName, CmdDelegate func)
+		return
+
+
+Generated IL:
+	IL_0000: ldtoken MapGeneration.Distributors.Locker
+	IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+	IL_000a: stloc.0
+	IL_000b: ldloc.2
+	IL_000c: ldftn System.Void MapGeneration.Distributors.Locker::InvokeUserCode_RpcPlayDenied(Mirror.NetworkBehaviour,Mirror.NetworkReader,Mirror.NetworkConnectionToClient)
+	IL_0012: newobj System.Void Mirror.RemoteCalls.CmdDelegate::.ctor(System.Object,System.IntPtr)
+	IL_0017: stloc.1
+	IL_0018: ldc.i4.0
+	IL_0019: stloc.2
+	IL_001a: ldloc.0
+	IL_001b: ldstr "RpcPlayDenied"
+	IL_0020: ldloc.1
+	IL_0021: call System.Void Mirror.RemoteCalls.RemoteCallHelper::RegisterRpcDelegate(System.Type,System.String,Mirror.RemoteCalls.CmdDelegate)
+	IL_0026: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: MapGeneration.Distributors.Locker
+	System.Boolean SerializeSyncVars(Mirror.NetworkWriter writer, System.Boolean forceAll)
+
+		System.Boolean boolean = base.SerializeSyncVars(writer, forceAll) //(NetworkWriter writer, Boolean initialState)
+
+		if (forceAll == False)
+		    System.UInt64 syncVarDirtyBits = this.<syncVarDirtyBits>k__BackingField
+
+		    Mirror.NetworkWriterExtensions.WriteUInt64(writer, syncVarDirtyBits) //(NetworkWriter writer, UInt64 value)
+
+		    if ( != 1)
+		        System.UInt16 openedChambers = this.OpenedChambers
+
+		        Mirror.NetworkWriterExtensions.WriteUInt16(writer, openedChambers) //(NetworkWriter writer, UInt16 value)
+		    endif
+            
+		else
+		    System.UInt16 openedChambers2 = this.OpenedChambers
+
+		    Mirror.NetworkWriterExtensions.WriteUInt16(writer, openedChambers2) //(NetworkWriter writer, UInt16 value)
+		endif
+        
+		return True
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfZeroOrNullAction at (0x1802DE077) is corrupt (One of the arguments is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: MapGeneration.Distributors.Locker
+	System.Void DeserializeSyncVars(Mirror.NetworkReader reader, System.Boolean initialState)
+
+		this.MirrorProcessed()
+
+		if (initialState == False)
+
+		    System.UInt64 uInt64 = Mirror.NetworkReaderExtensions.ReadUInt64(reader) //(NetworkReader reader)
+
+		    if (uInt64 == 1)
+                goto INSN_1802DD8DC
+            endif
+		endif
+        
+
+		System.UInt16 uInt16 = Mirror.NetworkReaderExtensions.ReadUInt16(reader) //(NetworkReader reader)
+
+		System.Boolean boolean = base.SyncVarEqual<System.UInt16>()
+
+		if (boolean != False)
+            goto INSN_1802DD8DC
+        endif
+		throw new System.NullReferenceException()
+
+		INSN_1802DD8DC:
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1802DD8B2) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+

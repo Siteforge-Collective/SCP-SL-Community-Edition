@@ -1,0 +1,232 @@
+Type: BanCommand
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.Console.BanCommand
+	System.String get_Command()
+		System.String Command = this.<Command>k__BackingField
+		return Command
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String CommandSystem.Commands.Console.BanCommand::<Command>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.Console.BanCommand
+	System.String[] get_Aliases()
+		System.String[] Aliases = this.<Aliases>k__BackingField
+		return Aliases
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String[] CommandSystem.Commands.Console.BanCommand::<Aliases>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.Console.BanCommand
+	System.String get_Description()
+		System.String Description = this.<Description>k__BackingField
+		return Description
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String CommandSystem.Commands.Console.BanCommand::<Description>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.Console.BanCommand
+	System.Boolean Execute(System.ArraySegment`1<System.String> arguments, CommandSystem.ICommandSender sender, System.String& response)
+		ulong local4 = 0
+
+		System.Boolean boolean = ReferenceHub.TryGetHostHub()
+
+		if (boolean != False)
+
+		    System.Boolean isLocalPlayer = .isLocalPlayer
+
+		    if (isLocalPlayer != False)
+		        ulong local9 = 0
+		        isLocalPlayer += 1
+		        System.Int32 60 = 60
+
+		        System.Int64 int64 = Misc.RelativeTimeToSeconds()
+		        System.Collections.Generic.Dictionary`2<System.Int32,Mirror.NetworkConnectionToClient> connections = Mirror.NetworkServer.connections
+
+		        System.Collections.Generic.Dictionary`2/ValueCollection<System.Int32,Mirror.NetworkConnectionToClient> values = connections.Values
+
+		        System.Collections.Generic.Dictionary`2/ValueCollection/Enumerator<System.Int32,Mirror.NetworkConnectionToClient> enumerator = connections.GetEnumerator()
+
+		        if (enumerator != 0)
+
+		            UnityEngine.GameObject gameObject = GameCore.Console.FindConnectedRoot()
+		              = gameObject.
+		            System.Int32 5 = 5
+
+		            System.Boolean boolean2 = NorthwoodLib.StringUtils.Contains()
+
+		            if (boolean2 == False)
+		                ulong local20 = 0
+
+		                System.Boolean boolean3 = UnityEngine.Object.op_Equality(gameObject, local20) //(Object x, Object y)
+
+		                if (boolean3 == False)
+
+		                    NicknameSync component = gameObject.GetComponent<NicknameSync>()
+
+		                    System.String myNick = component.MyNick
+		                    System.Int32 5 = 5
+
+		                    System.Boolean boolean4 = NorthwoodLib.StringUtils.Contains()
+
+		                    if (boolean4 != False)
+		                    endif
+                            
+
+		                    ReferenceHub hub = ReferenceHub.GetHub(gameObject) //(GameObject player)
+		                    System.String empty = System.String.Empty
+
+		                    System.Boolean boolean5 = BanPlayer.BanUser(hub, sender, empty, int64) //(ReferenceHub target, ICommandSender issuer, String reason, Int64 duration)
+		                endif
+                        
+
+		                connections.Dispose()
+
+		                connections.Dispose()
+
+		                if (connections != 0)
+                            goto INSN_18045D261
+                        endif
+		                string local32 = local9 != 0 ? "Player banned." : "Player not found."
+		                response. = local32
+		                local9 += 1
+
+		                System.String string = System.String.Concat("Invalid time: ", local32) //(String str0, String str1)
+		                System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder()
+
+		                stringBuilder..ctor()
+
+		                System.Text.StringBuilder stringBuilder2 = stringBuilder.AppendLine("Syntax: BAN [player name / ip] [minutes or time]") //(String value)
+		                System.Collections.Generic.Dictionary`2<System.Int32,Mirror.NetworkConnectionToClient> connections2 = Mirror.NetworkServer.connections
+
+		                System.Collections.Generic.Dictionary`2/ValueCollection<System.Int32,Mirror.NetworkConnectionToClient> values2 = connections2.Values
+
+		                System.Collections.Generic.Dictionary`2/ValueCollection/Enumerator<System.Int32,Mirror.NetworkConnectionToClient> enumerator2 = connections2.GetEnumerator()
+
+		                if (enumerator2 == 0)
+                            goto INSN_18045D173
+                        endif
+		                System.String empty2 = System.String.Empty
+
+		                UnityEngine.GameObject gameObject2 = GameCore.Console.FindConnectedRoot()
+		                ulong local46 = 0
+
+		                System.Boolean boolean6 = UnityEngine.Object.op_Inequality(gameObject2, local46) //(Object x, Object y)
+
+		                if (boolean6 == False)
+                            goto INSN_18045D0C5
+                        endif
+
+		                NicknameSync component2 = gameObject2.GetComponent<NicknameSync>()
+
+		                System.String myNick2 = component2.MyNick
+
+		                INSN_18045D0C5:
+		                System.String empty3 = System.String.Empty
+
+		                [instruction error - managed method being called is null]
+
+		                if (String != 0)
+                            goto INSN_18045D132
+                        endif
+
+		                System.String string2 = System.String.Concat()
+
+		                System.Text.StringBuilder stringBuilder3 = stringBuilder.AppendLine(string2) //(String value)
+
+		                INSN_18045D132:
+		                  = stringBuilder3.
+
+		                System.String string3 = System.String.Concat()
+
+		                System.Text.StringBuilder stringBuilder4 = stringBuilder.AppendLine(string3) //(String value)
+
+		                INSN_18045D173:
+
+		                stringBuilder.Dispose()
+
+		                stringBuilder.Dispose()
+
+		                if (stringBuilder != 0)
+                            goto INSN_18045D294
+                        endif
+
+		                System.Int32 hashCode = stringBuilder.GetHashCode()
+		                gameObject2. = hashCode
+		            else
+		                response. = "You are not connected to a local server."
+		                ulong local61 = 0
+		            endif
+                    
+		            return local61
+		            throw new System.IndexOutOfRangeException()
+		            throw new System.IndexOutOfRangeException()
+		            throw new System.IndexOutOfRangeException()
+		            throw new System.NullReferenceException()
+		            throw new System.NullReferenceException()
+		            throw new System.NullReferenceException()
+		            throw new System.NullReferenceException()
+		            throw new System.NullReferenceException()
+
+		            INSN_18045D261:
+		            throw new System.NullReferenceException()
+		            throw new System.IndexOutOfRangeException()
+		            throw new System.NullReferenceException()
+		            throw new System.NullReferenceException()
+		            throw new System.NullReferenceException()
+		            throw new System.NullReferenceException()
+
+		            INSN_18045D294:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18045CB9D) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.Console.BanCommand
+	System.Void .ctor()
+		this.<Command>k__BackingField = "ban"
+		this.<Description>k__BackingField = "Ban specified player from server."
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldstr "ban"
+	IL_0006: stfld System.String CommandSystem.Commands.Console.BanCommand::<Command>k__BackingField
+	IL_000b: ldarg.0
+	IL_000c: ldstr "Ban specified player from server."
+	IL_0011: stfld System.String CommandSystem.Commands.Console.BanCommand::<Description>k__BackingField
+	IL_0016: ldarg.0
+	IL_0017: call System.Void System.Object::.ctor()
+	IL_001c: ret
+	
+

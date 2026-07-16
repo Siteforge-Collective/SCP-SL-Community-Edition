@@ -1,0 +1,83 @@
+Type: AspectScaler
+
+Method: System.Void Update()
+
+Disassembly:
+	push rbx
+	sub rsp,30h
+	mov rbx,rcx
+	movaps [rsp+20h],xmm6
+	xor ecx,ecx
+	call 0000000180FD39A0h
+	xor ecx,ecx
+	movd xmm6,eax
+	cvtdq2ps xmm6,xmm6
+	call 0000000180FD3940h
+	movd xmm0,eax
+	cvtdq2ps xmm0,xmm0
+	divss xmm6,xmm0
+	comiss xmm6,dword ptr [182187480h]
+	jbe short 00000001804E01E7h
+	mov rax,[rbx+18h]
+	test rax,rax
+	je short 00000001804E020Fh
+	mov dword ptr [rax+30h],3F800000h
+	movss xmm0,dword ptr [182188BD8h]
+	comiss xmm0,xmm6
+	jbe short 00000001804E0204h
+	mov rax,[rbx+18h]
+	test rax,rax
+	je short 00000001804E020Fh
+	mov dword ptr [rax+30h],0
+	movaps xmm6,[rsp+20h]
+	add rsp,30h
+	pop rbx
+	ret
+	call 0000000180294310h
+
+ISIL:
+	001 ShiftStack -8
+	002 Move stack:0x0, rbx
+	003 ShiftStack -48
+	004 Move rbx, rcx
+	005 Move stack:0x20, xmm6
+	006 Move rcx, 0
+	007 Call Screen.get_width, rcx
+	008 Move rcx, 0
+	009 Move xmm6, rax
+	010 Move xmm6, xmm6
+	011 Call Screen.get_height, rcx
+	012 Move xmm0, rax
+	013 Move xmm0, xmm0
+	014 Divide xmm6, xmm6, xmm0
+	015 Compare xmm6, [0x182187480]
+	016 JumpIfLessOrEqual {21}
+	017 Move rax, [rbx+24]
+	018 Compare rax, 0
+	019 JumpIfEqual {33}
+	020 Move [rax+48], 0x3F800000
+	021 Move xmm0, [0x182188BD8]
+	022 Compare xmm0, xmm6
+	023 JumpIfLessOrEqual {28}
+	024 Move rax, [rbx+24]
+	025 Compare rax, 0
+	026 JumpIfEqual {33}
+	027 Move [rax+48], 0
+	028 Move xmm6, stack:0x20
+	029 ShiftStack 48
+	030 Move rbx, stack:0x0
+	031 ShiftStack 8
+	032 Return 
+	033 Call 0x180294310, rcx, rdx, r8, r9
+
+Method: System.Void .ctor()
+
+Disassembly:
+	xor edx,edx
+	jmp near ptr 0000000180FD1850h
+
+ISIL:
+	001 Move rdx, 0
+	002 Call 0x180FD1850, rcx, rdx
+	003 Return 
+

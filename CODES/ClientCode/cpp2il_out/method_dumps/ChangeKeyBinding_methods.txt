@@ -1,0 +1,492 @@
+Type: ChangeKeyBinding
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ChangeKeyBinding
+	System.Void Start()
+		ActionCategory[] categorySortingOrder = ChangeKeyBinding.CategorySortingOrder
+		System.Int32 length = categorySortingOrder.Length
+		UnityEngine.GameObject[] local3 = new UnityEngine.GameObject[length]
+		this._categoryButtons = local3
+		ulong local4 = 0
+
+		if (length > 0)
+		    ChangeKeyBinding/<>c__DisplayClass0_0 enumeratorInstance = new ChangeKeyBinding/<>c__DisplayClass0_0()
+
+		    enumeratorInstance..ctor()
+		    enumeratorInstance.<>4__this = this
+		    ActionCategory[] categorySortingOrder2 = ChangeKeyBinding.CategorySortingOrder
+		    ActionCategory actionCategory = categorySortingOrder2[local4]
+		    enumeratorInstance.cat = actionCategory
+		    UnityEngine.GameObject _categoryTemplate = this._categoryTemplate
+
+		    UnityEngine.Transform transform = _categoryTemplate.transform
+
+		    UnityEngine.Transform parent = transform.parent
+
+		    UnityEngine.GameObject gameObject = UnityEngine.Object.Instantiate<UnityEngine.GameObject>(_categoryTemplate, parent) //(T original, Transform parent)
+		    enumeratorInstance.go = gameObject
+
+		    .SetActive(True) //(Boolean value)
+
+		    UnityEngine.UI.Text component = .GetComponent<UnityEngine.UI.Text>()
+		    ActionCategory actionCategory2 = enumeratorInstance.cat
+		    System.Int32 local18 = actionCategory2.value__
+
+		    System.String string = Translations.Get<ActionCategory>()
+
+		    System.String text = component.text
+
+		    UnityEngine.UI.Button component2 = component.GetComponent<UnityEngine.UI.Button>()
+		    UnityEngine.UI.Button/ButtonClickedEvent m_OnClick = component2.m_OnClick
+		    UnityEngine.Events.UnityAction unityAction = new UnityEngine.Events.UnityAction()
+
+		    unityAction..ctor(enumeratorInstance, {'<Start>b__0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		    m_OnClick.AddListener(unityAction) //(UnityAction call)
+
+		    UnityEngine.Transform transform2 = m_OnClick.transform
+
+		    UnityEngine.Vector3 one = UnityEngine.Vector3.one
+		    System.Single single = one.z
+
+		    transform2.set_localScale()
+		    UnityEngine.GameObject[] _categoryButtons = this._categoryButtons
+
+		    if (transform2 != 0)
+
+		        if (single == 0)
+                    goto INSN_180460262
+                endif
+		    endif
+            
+		    throw new System.IndexOutOfRangeException()
+		    local4 += 1
+		endif
+        
+		UnityEngine.UI.HorizontalLayoutGroup _categoryParent = this._categoryParent
+
+		System.Int32 layoutPriority = _categoryParent.layoutPriority
+		  = layoutPriority.
+		ActionCategory[] categorySortingOrder3 = ChangeKeyBinding.CategorySortingOrder
+		ActionCategory local37 = categorySortingOrder3[0]
+
+		this.SelectCategory()
+		return
+		throw new System.NullReferenceException()
+
+		INSN_180460262:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180460011) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ChangeKeyBinding
+	System.Void SelectCategory(UnityEngine.GameObject button, ActionCategory cat)
+		System.Int32 local3 = cat.value__
+		UnityEngine.GameObject[] _categoryButtons = this._categoryButtons
+		this._selectedCategory = local3
+		ulong local5 = 0
+		System.Int32 length = _categoryButtons.Length
+
+		if (local5 < length)
+		    UnityEngine.GameObject gameObject = _categoryButtons[local5]
+
+		    UnityEngine.UI.Image componentInChildren = gameObject.GetComponentInChildren<UnityEngine.UI.Image>()
+
+		    System.Boolean boolean = UnityEngine.Object.op_Equality(button, gameObject) //(Object x, Object y)
+
+		    componentInChildren.enabled = boolean
+		    local5 += 1
+		endif
+        
+
+		this.RefreshList()
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.2
+	IL_0001: stloc.0
+	IL_0002: ldarg.0
+	IL_0003: ldfld UnityEngine.GameObject[] ChangeKeyBinding::_categoryButtons
+	IL_0008: stloc.1
+	IL_0009: ldarg.0
+	IL_000a: ldloc.0
+	IL_000b: stfld ActionCategory ChangeKeyBinding::_selectedCategory
+	IL_0010: ldc.i4.0
+	IL_0011: stloc.2
+	IL_0012: ldloc.1
+	IL_0013: call System.Int32 System.Array::get_Length()
+	IL_0018: stloc.3
+	IL_0019: ldloc.2
+	IL_001a: ldloc.3
+	IL_001b: bge.s IL_0046
+	IL_001d: ldloc.1
+	IL_001e: ldloc.2
+	IL_001f: ldelem.any UnityEngine.GameObject
+	IL_0024: stloc.s V_4
+	IL_0026: ldloc.s V_4
+	IL_0028: call T UnityEngine.GameObject::GetComponentInChildren<UnityEngine.UI.Image>()
+	IL_002d: stloc.s V_5
+	IL_002f: ldarg.1
+	IL_0030: ldloc.s V_4
+	IL_0032: call System.Boolean UnityEngine.Object::op_Equality(UnityEngine.Object,UnityEngine.Object)
+	IL_0037: stloc.s V_6
+	IL_0039: ldloc.s V_5
+	IL_003b: ldloc.s V_6
+	IL_003d: call System.Void UnityEngine.Behaviour::set_enabled(System.Boolean)
+	IL_0042: ldloc.2
+	IL_0043: ldc.i4.1
+	IL_0044: add
+	IL_0045: stloc.2
+	IL_0046: ldarg.0
+	IL_0047: call System.Void ChangeKeyBinding::RefreshList()
+	IL_004c: ret
+	IL_004d: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0052: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ChangeKeyBinding
+	System.Void RefreshList()
+		ulong local2 = 0
+		this._working = local2
+		System.Collections.Generic.List`1<UnityEngine.GameObject> _instances = this._instances
+
+		System.Collections.Generic.List`1/Enumerator<T> enumerator = .GetEnumerator()
+
+		if (enumerator != 0)
+
+		    UnityEngine.Object.Destroy()
+		endif
+        
+
+		[instruction error - managed method being called is null]
+
+		[instruction error - managed method being called is null]
+
+		if (True != 0)
+            goto INSN_18045F8A8
+        endif
+
+		if (local2 == -1)
+            goto INSN_18045F724
+        endif
+
+		INSN_18045F724:
+		System.Collections.Generic.List`1<UnityEngine.GameObject> _instances2 = this._instances
+
+		_instances2.Clear()
+		ulong local7 = 0
+
+		NewInput.Load()
+		System.Collections.Generic.Dictionary`2<UnityEngine.KeyCode,System.Collections.Generic.KeyValuePair`2<ActionName,UnityEngine.UI.Text>> alreadyUsedKeycodes = ChangeKeyBinding.AlreadyUsedKeycodes
+
+		alreadyUsedKeycodes.Clear()
+		System.Collections.Generic.Dictionary`2<ActionName,UnityEngine.KeyCode> userKeybinds = NewInput.UserKeybinds
+
+		System.Collections.Generic.Dictionary`2/Enumerator<TKey,TValue> enumerator2 = .GetEnumerator()
+
+		if (enumerator2 == 0)
+            goto INSN_18045F863
+        endif
+
+		System.Boolean boolean = NewInput.TryGetCategory()
+
+		if (boolean == False)
+            goto INSN_18045F7F0
+        endif
+		ActionCategory _selectedCategory = this._selectedCategory
+
+		this.SetupBinding()
+
+		INSN_18045F863:
+		. = 175
+
+		base.Dispose()
+
+		base.Dispose()
+
+		if (this != 0)
+            goto INSN_18045F8B0
+        endif
+		return
+
+		INSN_18045F8A8:
+
+		INSN_18045F8B0:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18045F661) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ChangeKeyBinding
+	System.Void SetupBinding(ActionName action, UnityEngine.KeyCode curKey)
+		System.Int32 local3 = curKey.value__
+		UnityEngine.GameObject list_element = this.list_element
+		UnityEngine.Transform list_parent = this.list_parent
+
+		UnityEngine.GameObject gameObject = UnityEngine.Object.Instantiate<UnityEngine.GameObject>(list_element, list_parent) //(T original, Transform parent)
+
+		UnityEngine.Transform transform = gameObject.transform
+		ulong local10 = 0
+
+		UnityEngine.Vector3 one = UnityEngine.Vector3.one
+
+		transform.localScale = local10
+
+		gameObject.SetActive(True) //(Boolean value)
+		System.Collections.Generic.List`1<UnityEngine.GameObject> _instances = this._instances
+
+		_instances.Add(gameObject) //(T item)
+
+		UnityEngine.UI.Text componentInChildren = gameObject.GetComponentInChildren<UnityEngine.UI.Text>()
+
+		System.Int32 hashCode = componentInChildren.GetHashCode()
+		local18 = componentInChildren
+
+		System.String string = TranslationReader.Get()
+
+		System.String text = componentInChildren.text
+
+		UnityEngine.UI.Button componentInChildren2 = gameObject.GetComponentInChildren<UnityEngine.UI.Button>()
+
+		UnityEngine.UI.Text componentInChildren3 = componentInChildren2.GetComponentInChildren<UnityEngine.UI.Text>()
+		System.Int32 10 = 10
+
+		System.String text2 = componentInChildren3.text
+
+		KeyBindElement component = componentInChildren2.GetComponent<KeyBindElement>()
+		component.Action = componentInChildren2
+		System.Collections.Generic.Dictionary`2<UnityEngine.KeyCode,System.Collections.Generic.KeyValuePair`2<ActionName,UnityEngine.UI.Text>> alreadyUsedKeycodes = ChangeKeyBinding.AlreadyUsedKeycodes
+
+		System.Boolean boolean = alreadyUsedKeycodes.TryGetValue()
+
+		if (boolean != False)
+
+		    System.Boolean isCompatible = NewInput.IsCompatible()
+
+		    if (isCompatible == False)
+
+		        [instruction error - managed method being called is null]
+
+		        System.String string2 = System.String.Concat()
+
+		        [instruction error - managed method being called is null]
+
+		        [instruction error - managed method being called is null]
+
+		        System.String text3 = componentInChildren3.text
+		        return
+		    endif
+            
+		    System.Collections.Generic.Dictionary`2<UnityEngine.KeyCode,System.Collections.Generic.KeyValuePair`2<ActionName,UnityEngine.UI.Text>> alreadyUsedKeycodes2 = ChangeKeyBinding.AlreadyUsedKeycodes
+
+		    alreadyUsedKeycodes2.set_Item()
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.Implicit4ByteFieldReadAction at (0x18045FA3B) is corrupt (Local local3 has been stripped out for being unused, so doesn't have a variable.) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ChangeKeyBinding
+	System.Collections.Generic.IEnumerator`1<System.Single> _AwaitPress(ActionName action)
+		System.Int32 local2 = action.value__
+		ChangeKeyBinding/<_AwaitPress>d__15 enumeratorInstance = new ChangeKeyBinding/<_AwaitPress>d__15()
+
+		enumeratorInstance.System.IDisposable.Dispose()
+		enumeratorInstance.<>4__this = this
+		enumeratorInstance.<>1__state = 0
+		enumeratorInstance.action = local2
+		return enumeratorInstance
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AllocateInstanceAction at (0x1804602D6) is corrupt (Managed method being called is System.IDisposable.Dispose, not a ctor.) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ChangeKeyBinding
+	System.Void ChangeKey(ActionName action)
+		System.Int32 local2 = action.value__
+		ChangeKeyBinding/<_AwaitPress>d__15 enumeratorInstance = new ChangeKeyBinding/<_AwaitPress>d__15()
+
+		enumeratorInstance.System.IDisposable.Dispose()
+		enumeratorInstance.<>4__this = this
+		enumeratorInstance.<>1__state = 0
+		enumeratorInstance.action = local2
+		System.Int32 1 = 1
+
+		MEC.CoroutineHandle coroutineHandle = MEC.Timing.RunCoroutine(enumeratorInstance, 1) //(IEnumerator`1 coroutine, Segment segment)
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AllocateInstanceAction at (0x18045F351) is corrupt (Managed method being called is System.IDisposable.Dispose, not a ctor.) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ChangeKeyBinding
+	System.Void Revent()
+		ulong local1 = 0
+
+		NewInput.ResetToDefault()
+
+		this.RefreshList()
+		return
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: call System.Void NewInput::ResetToDefault()
+	IL_0007: ldarg.0
+	IL_0008: call System.Void ChangeKeyBinding::RefreshList()
+	IL_000d: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ChangeKeyBinding
+	UnityEngine.KeyCode GetCurrentKey()
+		ulong local1 = 0
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'KeyCode' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+
+		System.Array values = System.Enum.GetValues(typeFromHandle) //(Type enumType)
+
+		System.Collections.IEnumerator enumerator = values.GetEnumerator()
+
+		if (enumerator == 0)
+            goto INSN_18045F528
+        endif
+		local10 = enumerator
+
+		[instruction error - managed method being called is null]
+
+		if (constant26 != 0)
+		endwhile
+        
+		goto INSN_18045F5C2
+        
+		local11 = enumerator
+
+		INSN_18045F528:
+
+		if (constant31 == 0)
+            goto INSN_18045F56E
+        endif
+
+		INSN_18045F56E:
+
+		if (local1 != 0)
+            goto INSN_18045F5C8
+        endif
+
+		if (local1 == -1)
+            goto INSN_18045F595
+        endif
+		return local11
+
+		INSN_18045F595:
+		ulong local13 = 0
+		return local13
+		throw new System.NullReferenceException()
+		throw new System.InvalidCastException()
+		throw new System.InvalidCastException()
+		throw new System.NullReferenceException()
+
+		INSN_18045F5C2:
+		throw new System.NullReferenceException()
+
+		INSN_18045F5C8:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18045F4EA) is corrupt (Don't know what method is being called) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ChangeKeyBinding
+	System.Void .ctor()
+		System.Collections.Generic.List`1<UnityEngine.GameObject> list = new System.Collections.Generic.List`1<UnityEngine.GameObject>()
+
+		list..ctor()
+		this._instances = list
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: newobj System.Void System.Collections.Generic.List`1::.ctor()
+	IL_0005: stloc.0
+	IL_0006: ldarg.0
+	IL_0007: ldloc.0
+	IL_0008: stfld System.Collections.Generic.List`1<UnityEngine.GameObject> ChangeKeyBinding::_instances
+	IL_000d: ldarg.0
+	IL_000e: call System.Void UnityEngine.MonoBehaviour::.ctor()
+	IL_0013: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ChangeKeyBinding
+	static System.Void .cctor()
+		System.Collections.Generic.HashSet`1<ActionName> hashSet = new System.Collections.Generic.HashSet`1<ActionName>()
+
+		hashSet..ctor()
+
+		System.Boolean boolean = hashSet.Add()
+
+		System.Boolean boolean2 = hashSet.Add()
+
+		System.Boolean boolean3 = hashSet.Add()
+
+		System.Boolean boolean4 = hashSet.Add()
+
+		System.Boolean boolean5 = hashSet.Add()
+		ChangeKeyBinding.BlacklistedLMBs = hashSet
+		System.Int64 local11 = 7
+		ActionCategory[] local12 = new ActionCategory[7]
+
+		local12 = new ActionCategory[] {2, 0, 1, 3, 4, 7, 5}
+		 += 8
+		ChangeKeyBinding.BlacklistedLMBs = local12
+		System.Collections.Generic.Dictionary`2<UnityEngine.KeyCode,System.Collections.Generic.KeyValuePair`2<ActionName,UnityEngine.UI.Text>> dictionary = new System.Collections.Generic.Dictionary`2<UnityEngine.KeyCode,System.Collections.Generic.KeyValuePair`2<ActionName,UnityEngine.UI.Text>>()
+
+		dictionary..ctor()
+		 += 16
+		ChangeKeyBinding.BlacklistedLMBs = dictionary
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180460377) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+

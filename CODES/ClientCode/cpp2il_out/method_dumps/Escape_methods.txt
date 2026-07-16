@@ -1,0 +1,331 @@
+Type: Escape
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Escape
+	static System.Void add_OnServerPlayerEscape(System.Action`1<ReferenceHub> value)
+		System.Action`1<ReferenceHub> onServerPlayerEscape = Escape.OnServerPlayerEscape
+
+		System.Delegate delegate = System.Delegate.Combine(onServerPlayerEscape, value) //(Delegate a, Delegate b)
+
+		if (delegate != 0)
+
+		    if (delegate == 0)
+                goto INSN_181B0C2B6
+            endif
+		endif
+        
+
+		if (Escape == onServerPlayerEscape)
+		    return
+
+		    INSN_181B0C2B6:
+		    throw new System.InvalidCastException()
+
+
+Generated IL:
+	IL_0000: ldsfld System.Action`1<ReferenceHub> Escape::OnServerPlayerEscape
+	IL_0005: stloc.0
+	IL_0006: ldloc.0
+	IL_0007: ldarg.0
+	IL_0008: call System.Delegate System.Delegate::Combine(System.Delegate,System.Delegate)
+	IL_000d: stloc.1
+	IL_000e: ldloc.1
+	IL_000f: ldc.i4.0
+	IL_0010: beq.s IL_0016
+	IL_0012: ldloc.1
+	IL_0013: ldc.i4.0
+	IL_0014: beq.s IL_001f
+	IL_0016: ldtoken Escape
+	IL_001b: ldloc.0
+	IL_001c: bne.un.s IL_0016
+	IL_001e: ret
+	IL_001f: newobj System.Void System.InvalidCastException::.ctor()
+	IL_0024: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Escape
+	static System.Void remove_OnServerPlayerEscape(System.Action`1<ReferenceHub> value)
+		System.Action`1<ReferenceHub> onServerPlayerEscape = Escape.OnServerPlayerEscape
+
+		System.Delegate delegate = System.Delegate.Remove(onServerPlayerEscape, value) //(Delegate source, Delegate value)
+
+		if (delegate != 0)
+
+		    if (delegate == 0)
+                goto INSN_181B0C3A6
+            endif
+		endif
+        
+
+		if (Escape == onServerPlayerEscape)
+		    return
+
+		    INSN_181B0C3A6:
+		    throw new System.InvalidCastException()
+
+
+Generated IL:
+	IL_0000: ldsfld System.Action`1<ReferenceHub> Escape::OnServerPlayerEscape
+	IL_0005: stloc.0
+	IL_0006: ldloc.0
+	IL_0007: ldarg.0
+	IL_0008: call System.Delegate System.Delegate::Remove(System.Delegate,System.Delegate)
+	IL_000d: stloc.1
+	IL_000e: ldloc.1
+	IL_000f: ldc.i4.0
+	IL_0010: beq.s IL_0016
+	IL_0012: ldloc.1
+	IL_0013: ldc.i4.0
+	IL_0014: beq.s IL_001f
+	IL_0016: ldtoken Escape
+	IL_001b: ldloc.0
+	IL_001c: bne.un.s IL_0016
+	IL_001e: ret
+	IL_001f: newobj System.Void System.InvalidCastException::.ctor()
+	IL_0024: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Escape
+	static System.Void Init()
+		System.Action <>9__10_0 = Escape/<>c.<>9__10_0
+
+		if (<>9__10_0 == 0)
+		    Escape/<>c <>c = Escape/<>c.<>9
+		    System.Action action = new System.Action()
+
+		    action..ctor(<>c, {'<Init>b__10_0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		     += 8
+		    Escape/<>c.<>9 = action
+		endif
+        
+
+		CustomNetworkManager.add_OnClientReady(<>9__10_0) //(Action value)
+		System.Action <>9__10_1 = Escape/<>c.<>9__10_1
+
+		if (<>9__10_1 != 0)
+            goto INSN_181B0BAB8
+        endif
+		Escape/<>c <>c2 = Escape/<>c.<>9
+		System.Action action2 = new System.Action()
+
+		action2..ctor(<>c2, {'<Init>b__10_1' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		 += 24
+		Escape/<>c.<>9 = action2
+
+		INSN_181B0BAB8:
+
+		StaticUnityMethods.add_OnUpdate(action2) //(Action value)
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x181B0B9E7) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Escape
+	static System.Void ServerHandlePlayer(ReferenceHub hub)
+
+		Escape/EscapeScenarioType escapeScenarioType = Escape.ServerGetScenario(hub) //(ReferenceHub hub)
+		System.Int32 local4 = escapeScenarioType.value__
+		System.Int32 local5 = escapeScenarioType.value__
+
+		if (escapeScenarioType != 0)
+
+		    if (escapeScenarioType != 0)
+
+		        if (escapeScenarioType == 0)
+                    goto INSN_181B0BFC2
+                endif
+
+		        if (escapeScenarioType == 0)
+                    goto INSN_181B0BF92
+                endif
+
+		        if (local5 != 1)
+                    goto INSN_181B0BE63
+                endif
+		    endif
+            
+		    System.Int64 local7 = 1
+
+		    Respawning.RespawnTokensManager.GrantTokens()
+
+		    INSN_181B0BE63:
+
+		    Mirror.NetworkConnection connectionToClient = hub.connectionToClient
+		    PlayerRoles.PlayerRoleManager roleManager = hub.roleManager
+
+		    PlayerRoles.PlayerRoleBase currentRole = roleManager.CurrentRole
+
+		    System.Single activeTime = currentRole.ActiveTime
+
+		    System.Int32 int32 = UnityEngine.Mathf.CeilToInt(activeTime) //(Single f)
+
+		    connectionToClient.Send<Escape/EscapeMessage>()
+		    System.Action`1<ReferenceHub> onServerPlayerEscape = Escape.OnServerPlayerEscape
+
+		    onServerPlayerEscape.Invoke(hub) //(T obj)
+		    PlayerRoles.PlayerRoleManager roleManager2 = hub.roleManager
+
+		    roleManager2.ServerSetRole()
+		endif
+        
+		return
+
+		INSN_181B0BF92:
+
+		INSN_181B0BFC2:
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181B0BE5E) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Escape
+	static Escape/EscapeScenarioType ServerGetScenario(ReferenceHub hub)
+		PlayerRoles.PlayerRoleManager roleManager = hub.roleManager
+		ulong local2 = 0
+
+		PlayerRoles.PlayerRoleBase currentRole = roleManager.CurrentRole
+
+		if (currentRole != 0)
+		    //UNKNOWN CLASS OFFSET READ HERE
+		    ulong local4 = 0
+		      = currentRole.
+		      = currentRole.
+		      = .
+
+		    UnityEngine.Vector3 vector3 = UnityEngine.Vector3.op_Subtraction()
+		    System.Single single = vector3.z
+
+		    System.Single activeTime = currentRole.ActiveTime
+		    InventorySystem.Inventory inventory = hub.inventory
+
+		    System.Boolean isDisarmed = InventorySystem.Disarming.DisarmedPlayers.IsDisarmed(inventory) //(Inventory inv)
+
+		    if (isDisarmed != False)
+		    endif
+            
+
+		    System.String string = currentRole.ToString()
+
+		    if (string != 1)
+                goto INSN_181B0BD95
+            endif
+		    System.Boolean local15 = isDisarmed != False
+		    System.Boolean local16 = local15 + 1
+		    return local16
+
+		    INSN_181B0BD95:
+
+		    if (local16 != True)
+                goto INSN_181B0BDA4
+            endif
+		    System.Boolean local17 = isDisarmed != False
+		endif
+        
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.UnknownClassOffsetReadAction at (0x181B0BBCB) is corrupt (Unknown class offset read) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Escape
+	static System.Void ClientReceiveMessage(Escape/EscapeMessage msg)
+		System.Byte local1 = msg.ScenarioId
+		ulong local2 = 0
+		System.Collections.Generic.Dictionary`2<Escape/EscapeScenarioType,Escape/EscapeScenarioText> scenarios = Escape.Scenarios
+
+		System.Boolean boolean = scenarios.TryGetValue()
+
+		if (boolean != False)
+
+		    System.String string = TranslationReader.Get()
+		    Escape/<PlayEscapeAnim>d__14 enumeratorInstance = new Escape/<PlayEscapeAnim>d__14()
+
+		    enumeratorInstance.System.IDisposable.Dispose()
+		    enumeratorInstance.txt = string
+		    enumeratorInstance.<>1__state = 0
+		    enumeratorInstance.seconds = local1
+		    System.Int32 1 = 1
+
+		    MEC.CoroutineHandle coroutineHandle = MEC.Timing.RunCoroutine(enumeratorInstance, 1) //(IEnumerator`1 coroutine, Segment segment)
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181B0B806) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Escape
+	static System.Collections.Generic.IEnumerator`1<System.Single> PlayEscapeAnim(System.String txt, System.Int32 seconds)
+		Escape/<PlayEscapeAnim>d__14 enumeratorInstance = new Escape/<PlayEscapeAnim>d__14()
+
+		enumeratorInstance.System.IDisposable.Dispose()
+		enumeratorInstance.txt = txt
+		enumeratorInstance.<>1__state = 0
+		enumeratorInstance.seconds = seconds
+		return enumeratorInstance
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AllocateInstanceAction at (0x181B0BB06) is corrupt (Managed method being called is System.IDisposable.Dispose, not a ctor.) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Escape
+	static System.Void .cctor()
+		System.Collections.Generic.Dictionary`2<Escape/EscapeScenarioType,Escape/EscapeScenarioText> dictionary = new System.Collections.Generic.Dictionary`2<Escape/EscapeScenarioType,Escape/EscapeScenarioText>()
+
+		dictionary..ctor()
+		ulong local1 = 0
+		System.Int32 1 = 1
+
+		dictionary.Item = 1
+		System.Int32 2 = 2
+
+		dictionary.Item = 2
+		System.Int32 3 = 3
+
+		dictionary.Item = 3
+		System.Int32 4 = 4
+
+		dictionary.Item = 4
+		 += 8
+		Escape.OnServerPlayerEscape = dictionary
+		. = Escape
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181B0C091) is corrupt (Found null operand in Arguments: [1, ]) and cannot be created as IL. Aborting here.
+
+

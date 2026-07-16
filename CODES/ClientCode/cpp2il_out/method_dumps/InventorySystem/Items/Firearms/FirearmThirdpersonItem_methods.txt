@@ -1,0 +1,984 @@
+Type: FirearmThirdpersonItem
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Firearms.FirearmThirdpersonItem
+	System.Single get_RotationOffset()
+		System.Single _rotOffset = this._rotOffset
+		return _rotOffset
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Single InventorySystem.Items.Firearms.FirearmThirdpersonItem::_rotOffset
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Firearms.FirearmThirdpersonItem
+	System.Single GetTransitionTime(InventorySystem.Items.ItemIdentifier iid)
+		ItemType local3 = iid.TypeId
+
+		System.Boolean boolean = InventorySystem.InventoryItemLoader.TryGetItem<InventorySystem.Items.Firearms.Firearm>()
+
+		if (boolean != False)
+
+		    [instruction error - managed method being called is null]
+		    //UNKNOWN CLASS OFFSET READ HERE
+
+		    System.Single single = UnityEngine.Mathf.Min()
+		    return single
+		endif
+        
+		return constant22
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18066FCF9) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Firearms.FirearmThirdpersonItem
+	System.Void ResetObject()
+
+		base.ResetObject()
+		System.Action`3<ReferenceHub,ItemType,InventorySystem.Items.Firearms.FirearmAudioClip> action = new System.Action`3<ReferenceHub,ItemType,InventorySystem.Items.Firearms.FirearmAudioClip>()
+
+		action..ctor(this, {'AudioReceived' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		System.Action`3<ReferenceHub,ItemType,InventorySystem.Items.Firearms.FirearmAudioClip> onAudioReceived = InventorySystem.Items.Firearms.FirearmAudioManager.OnAudioReceived
+
+		System.Delegate delegate = System.Delegate.Remove(onAudioReceived, action) //(Delegate source, Delegate value)
+
+		if (delegate != 0)
+
+		    if (delegate == 0)
+                goto INSN_180670AFE
+            endif
+		endif
+        
+
+		if (delegate == onAudioReceived)
+		    System.Action`1<InventorySystem.Items.Firearms.BasicMessages.RequestMessage> action2 = new System.Action`1<InventorySystem.Items.Firearms.BasicMessages.RequestMessage>()
+
+		    action2..ctor(this, {'ConfirmationReceived' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		    System.Action`1<InventorySystem.Items.Firearms.BasicMessages.RequestMessage> onClientConfirmationReceived = InventorySystem.Items.Firearms.BasicMessages.FirearmBasicMessagesHandler.OnClientConfirmationReceived
+
+		    System.Delegate delegate2 = System.Delegate.Remove(onClientConfirmationReceived, action2) //(Delegate source, Delegate value)
+
+		    if (delegate2 == 0)
+                goto INSN_180670A8B
+            endif
+
+		    if (delegate2 == 0)
+                goto INSN_180670B07
+            endif
+
+		    INSN_180670A8B:
+		     += 24
+
+		    if (delegate2 != onClientConfirmationReceived)
+                goto INSN_180670A60
+            endif
+		    this._prevBlend = 0
+		    this._isAdsing = False
+		    return
+
+		    INSN_180670AFE:
+		    throw new System.InvalidCastException()
+
+		    INSN_180670B07:
+		    throw new System.InvalidCastException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x180670ABA) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Firearms.FirearmThirdpersonItem
+	System.Void Initialize(PlayerRoles.FirstPersonControl.Thirdperson.HumanCharacterModel model, InventorySystem.Items.ItemIdentifier id)
+
+		base.Initialize(model, id) //(HumanCharacterModel model, ItemIdentifier id)
+		InventorySystem.Items.Firearms.FirearmWorldmodel _instance = this._instance
+
+		InventorySystem.Items.Firearms.FunctionalParts.FirearmFlashlight componentInChildren = _instance.GetComponentInChildren<InventorySystem.Items.Firearms.FunctionalParts.FirearmFlashlight>(True) //(Boolean includeInactive)
+		this._flashlight = componentInChildren
+		this._prevFlashlight = 4294967295
+		this._rotOffset = 0
+		ulong local6 = 0
+
+		System.Boolean active = Mirror.NetworkClient.active
+
+		if (active == False)
+		    ReferenceHub OwnerHub = model.<OwnerHub>k__BackingField
+		    ulong local10 = 0
+
+		    System.Boolean boolean = ReferenceHub.op_Equality(OwnerHub, local10) //(ReferenceHub left, ReferenceHub right)
+
+		    if (boolean != False)
+
+		        this.InitializeAnims()
+		        return
+		    endif
+            
+		    ReferenceHub OwnerHub2 = model.<OwnerHub>k__BackingField
+
+		    UnityEngine.Transform transform = OwnerHub2.transform
+		    this._hubTransform = transform
+		    ReferenceHub OwnerHub3 = model.<OwnerHub>k__BackingField
+		    PlayerRoles.PlayerRoleManager roleManager = OwnerHub3.roleManager
+
+		    PlayerRoles.PlayerRoleBase currentRole = roleManager.CurrentRole
+		    this._fpmm = currentRole
+		    System.Action`3<ReferenceHub,ItemType,InventorySystem.Items.Firearms.FirearmAudioClip> action = new System.Action`3<ReferenceHub,ItemType,InventorySystem.Items.Firearms.FirearmAudioClip>()
+
+		    action..ctor(this, {'AudioReceived' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		    System.Action`3<ReferenceHub,ItemType,InventorySystem.Items.Firearms.FirearmAudioClip> onAudioReceived = InventorySystem.Items.Firearms.FirearmAudioManager.OnAudioReceived
+
+		    System.Delegate delegate = System.Delegate.Combine(onAudioReceived, action) //(Delegate a, Delegate b)
+
+		    if (delegate == 0)
+                goto INSN_1806705FF
+            endif
+
+		    if (delegate == 0)
+                goto INSN_1806706B7
+            endif
+
+		    INSN_1806705FF:
+
+		    if (delegate != onAudioReceived)
+                goto INSN_1806705D0
+            endif
+		    System.Action`1<InventorySystem.Items.Firearms.BasicMessages.RequestMessage> action2 = new System.Action`1<InventorySystem.Items.Firearms.BasicMessages.RequestMessage>()
+
+		    action2..ctor(this, {'ConfirmationReceived' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		    InventorySystem.Items.Firearms.BasicMessages.FirearmBasicMessagesHandler.add_OnClientConfirmationReceived(action2) //(Action`1 value)
+
+		    this.InitializeAnims()
+		    return
+		    throw new System.NullReferenceException()
+
+		    INSN_1806706B7:
+		    throw new System.InvalidCastException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: ldarg.2
+	IL_0003: call System.Void InventorySystem.Items.Thirdperson.ThirdpersonItemBase::Initialize(PlayerRoles.FirstPersonControl.Thirdperson.HumanCharacterModel,InventorySystem.Items.ItemIdentifier)
+	IL_0008: ldarg.0
+	IL_0009: ldfld InventorySystem.Items.Firearms.FirearmWorldmodel InventorySystem.Items.Firearms.FirearmThirdpersonItem::_instance
+	IL_000e: ldc.i4.1
+	IL_000f: call T UnityEngine.Component::GetComponentInChildren<InventorySystem.Items.Firearms.FunctionalParts.FirearmFlashlight>(System.Boolean)
+	IL_0014: stloc.0
+	IL_0015: ldarg.0
+	IL_0016: ldloc.0
+	IL_0017: stfld InventorySystem.Items.Firearms.FunctionalParts.FirearmFlashlight InventorySystem.Items.Firearms.FirearmThirdpersonItem::_flashlight
+	IL_001c: ldarg.0
+	IL_001d: ldc.i8 4294967295
+	IL_0026: conv.u8
+	IL_0027: stfld System.Int32 InventorySystem.Items.Firearms.FirearmThirdpersonItem::_prevFlashlight
+	IL_002c: ldarg.0
+	IL_002d: ldc.r4 0
+	IL_0032: stfld System.Single InventorySystem.Items.Firearms.FirearmThirdpersonItem::_rotOffset
+	IL_0037: ldc.i4.0
+	IL_0038: stloc.1
+	IL_0039: call System.Boolean Mirror.NetworkClient::get_active()
+	IL_003e: ldc.i4.0
+	IL_003f: bne.un.s IL_005b
+	IL_0041: ldarg.1
+	IL_0042: ldfld ReferenceHub PlayerRoles.FirstPersonControl.Thirdperson.CharacterModel::<OwnerHub>k__BackingField
+	IL_0047: stloc.2
+	IL_0048: ldc.i4.0
+	IL_0049: stloc.3
+	IL_004a: ldloc.2
+	IL_004b: ldloc.3
+	IL_004c: call System.Boolean ReferenceHub::op_Equality(ReferenceHub,ReferenceHub)
+	IL_0051: ldc.i4.0
+	IL_0052: beq.s IL_005b
+	IL_0054: ldarg.0
+	IL_0055: call System.Void InventorySystem.Items.Firearms.FirearmThirdpersonItem::InitializeAnims()
+	IL_005a: ret
+	IL_005b: ldarg.1
+	IL_005c: ldfld ReferenceHub PlayerRoles.FirstPersonControl.Thirdperson.CharacterModel::<OwnerHub>k__BackingField
+	IL_0061: call UnityEngine.Transform UnityEngine.Component::get_transform()
+	IL_0066: stloc.s V_4
+	IL_0068: ldarg.0
+	IL_0069: ldloc.s V_4
+	IL_006b: stfld UnityEngine.Transform InventorySystem.Items.Firearms.FirearmThirdpersonItem::_hubTransform
+	IL_0070: ldarg.1
+	IL_0071: ldfld ReferenceHub PlayerRoles.FirstPersonControl.Thirdperson.CharacterModel::<OwnerHub>k__BackingField
+	IL_0076: ldfld PlayerRoles.PlayerRoleManager ReferenceHub::roleManager
+	IL_007b: call PlayerRoles.PlayerRoleBase PlayerRoles.PlayerRoleManager::get_CurrentRole()
+	IL_0080: stloc.s V_5
+	IL_0082: ldarg.0
+	IL_0083: ldloc.s V_5
+	IL_0085: stfld PlayerRoles.FirstPersonControl.FirstPersonMovementModule InventorySystem.Items.Firearms.FirearmThirdpersonItem::_fpmm
+	IL_008a: ldarg.0
+	IL_008b: ldftn System.Void InventorySystem.Items.Firearms.FirearmThirdpersonItem::AudioReceived(ReferenceHub,ItemType,InventorySystem.Items.Firearms.FirearmAudioClip)
+	IL_0091: newobj System.Void System.Action`3::.ctor(System.Object,System.IntPtr)
+	IL_0096: stloc.s V_6
+	IL_0098: ldsfld System.Action`3<ReferenceHub,ItemType,InventorySystem.Items.Firearms.FirearmAudioClip> InventorySystem.Items.Firearms.FirearmAudioManager::OnAudioReceived
+	IL_009d: stloc.s V_7
+	IL_009f: ldloc.s V_7
+	IL_00a1: ldloc.s V_6
+	IL_00a3: call System.Delegate System.Delegate::Combine(System.Delegate,System.Delegate)
+	IL_00a8: stloc.s V_8
+	IL_00aa: ldloc.s V_8
+	IL_00ac: ldc.i4.0
+	IL_00ad: beq.s IL_00b4
+	IL_00af: ldloc.s V_8
+	IL_00b1: ldc.i4.0
+	IL_00b2: beq.s IL_00d8
+	IL_00b4: ldloc.s V_8
+	IL_00b6: ldloc.s V_7
+	IL_00b8: bne.un.s IL_00b4
+	IL_00ba: ldarg.0
+	IL_00bb: ldftn System.Void InventorySystem.Items.Firearms.FirearmThirdpersonItem::ConfirmationReceived(InventorySystem.Items.Firearms.BasicMessages.RequestMessage)
+	IL_00c1: newobj System.Void System.Action`1::.ctor(System.Object,System.IntPtr)
+	IL_00c6: call System.Void InventorySystem.Items.Firearms.BasicMessages.FirearmBasicMessagesHandler::add_OnClientConfirmationReceived(System.Action`1)
+	IL_00cb: ldarg.0
+	IL_00cc: call System.Void InventorySystem.Items.Firearms.FirearmThirdpersonItem::InitializeAnims()
+	IL_00d1: ret
+	IL_00d2: newobj System.Void System.NullReferenceException::.ctor()
+	IL_00d7: throw
+	IL_00d8: newobj System.Void System.InvalidCastException::.ctor()
+	IL_00dd: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Firearms.FirearmThirdpersonItem
+	System.Void OnFadeChanged(System.Single newFade)
+
+		base.OnFadeChanged(newFade) //(Single newFade)
+		System.Collections.Generic.Dictionary`2<UnityEngine.Light,UnityEngine.Color> _defaultColors = this._defaultColors
+
+		System.Collections.Generic.Dictionary`2/Enumerator<TKey,TValue> enumerator = this.GetEnumerator()
+		ulong local5 = 0
+
+		if (enumerator != 0)
+		    ulong local6 = 0
+
+		    UnityEngine.Color black = UnityEngine.Color.black
+
+		    UnityEngine.Color color = UnityEngine.Color.Lerp()
+
+		    this.color = local6
+		endif
+        
+
+		base.Dispose()
+
+		base.Dispose()
+
+		if (this != 0)
+            goto INSN_18067085A
+        endif
+		return
+		throw new System.NullReferenceException()
+
+		INSN_18067085A:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180670742) is corrupt (Mismatched instance parameter. Expecting an instance of System.Collections.Generic.Dictionary`2, actually {'this' (function parameter, type InventorySystem.Items.Firearms.FirearmThirdpersonItem)}) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Firearms.FirearmThirdpersonItem
+	System.Void InitializeAnims()
+		PlayerRoles.FirstPersonControl.Thirdperson.HumanCharacterModel TargetModel = this.<TargetModel>k__BackingField
+		UnityEngine.Animator Animator = TargetModel.<Animator>k__BackingField
+		ulong local4 = 0
+		System.Int32 hashOverrideBlend = InventorySystem.Items.Thirdperson.ThirdpersonItemBase.HashOverrideBlend
+
+		Animator.SetFloat(hashOverrideBlend, local4) //(Int32 id, Single value)
+		UnityEngine.AnimationClip _shootAnim = this._shootAnim
+		PlayerRoles.FirstPersonControl.Thirdperson.HumanCharacterModel TargetModel2 = this.<TargetModel>k__BackingField
+		System.Int32 12 = 12
+
+		InventorySystem.Items.Thirdperson.ThirdpersonItemAnimationManager.SetAnimation(TargetModel2, 12, _shootAnim) //(AnimatedCharacterModel target, ThirdpersonItemAnimationName name, AnimationClip clip)
+		UnityEngine.AnimationClip _reloadAnim = this._reloadAnim
+		PlayerRoles.FirstPersonControl.Thirdperson.HumanCharacterModel TargetModel3 = this.<TargetModel>k__BackingField
+		ulong local12 = 0
+
+		InventorySystem.Items.Thirdperson.ThirdpersonItemAnimationManager.SetAnimation(TargetModel3, local12, _reloadAnim) //(AnimatedCharacterModel target, ThirdpersonItemAnimationName name, AnimationClip clip)
+		UnityEngine.AnimationClip _hipAnim = this._hipAnim
+		PlayerRoles.FirstPersonControl.Thirdperson.HumanCharacterModel TargetModel4 = this.<TargetModel>k__BackingField
+		System.Int32 1 = 1
+
+		InventorySystem.Items.Thirdperson.ThirdpersonItemAnimationManager.SetAnimation(TargetModel4, 1, _hipAnim) //(AnimatedCharacterModel target, ThirdpersonItemAnimationName name, AnimationClip clip)
+		UnityEngine.AnimationClip _adsAnim = this._adsAnim
+		PlayerRoles.FirstPersonControl.Thirdperson.HumanCharacterModel TargetModel5 = this.<TargetModel>k__BackingField
+		System.Int32 2 = 2
+
+		InventorySystem.Items.Thirdperson.ThirdpersonItemAnimationManager.SetAnimation(TargetModel5, 2, _adsAnim) //(AnimatedCharacterModel target, ThirdpersonItemAnimationName name, AnimationClip clip)
+		UnityEngine.AnimationClip _lookDown = this._lookDown
+		PlayerRoles.FirstPersonControl.Thirdperson.HumanCharacterModel TargetModel6 = this.<TargetModel>k__BackingField
+		System.Int32 13 = 13
+
+		InventorySystem.Items.Thirdperson.ThirdpersonItemAnimationManager.SetAnimation(TargetModel6, 13, _lookDown) //(AnimatedCharacterModel target, ThirdpersonItemAnimationName name, AnimationClip clip)
+		UnityEngine.AnimationClip _lookForward = this._lookForward
+		PlayerRoles.FirstPersonControl.Thirdperson.HumanCharacterModel TargetModel7 = this.<TargetModel>k__BackingField
+		System.Int32 14 = 14
+
+		InventorySystem.Items.Thirdperson.ThirdpersonItemAnimationManager.SetAnimation(TargetModel7, 14, _lookForward) //(AnimatedCharacterModel target, ThirdpersonItemAnimationName name, AnimationClip clip)
+		UnityEngine.AnimationClip _lookUp = this._lookUp
+		PlayerRoles.FirstPersonControl.Thirdperson.HumanCharacterModel TargetModel8 = this.<TargetModel>k__BackingField
+		System.Int32 15 = 15
+
+		InventorySystem.Items.Thirdperson.ThirdpersonItemAnimationManager.SetAnimation(TargetModel8, 15, _lookUp) //(AnimatedCharacterModel target, ThirdpersonItemAnimationName name, AnimationClip clip)
+		UnityEngine.AnimationClip _corrLeft = this._corrLeft
+		PlayerRoles.FirstPersonControl.Thirdperson.HumanCharacterModel TargetModel9 = this.<TargetModel>k__BackingField
+		System.Int32 4 = 4
+
+		InventorySystem.Items.Thirdperson.ThirdpersonItemAnimationManager.SetAnimation(TargetModel9, 4, _corrLeft) //(AnimatedCharacterModel target, ThirdpersonItemAnimationName name, AnimationClip clip)
+		UnityEngine.AnimationClip _corrLeft2 = this._corrLeft
+		PlayerRoles.FirstPersonControl.Thirdperson.HumanCharacterModel TargetModel10 = this.<TargetModel>k__BackingField
+		System.Int32 8 = 8
+
+		InventorySystem.Items.Thirdperson.ThirdpersonItemAnimationManager.SetAnimation(TargetModel10, 8, _corrLeft2) //(AnimatedCharacterModel target, ThirdpersonItemAnimationName name, AnimationClip clip)
+		UnityEngine.AnimationClip _corrRight = this._corrRight
+		PlayerRoles.FirstPersonControl.Thirdperson.HumanCharacterModel TargetModel11 = this.<TargetModel>k__BackingField
+		System.Int32 5 = 5
+
+		InventorySystem.Items.Thirdperson.ThirdpersonItemAnimationManager.SetAnimation(TargetModel11, 5, _corrRight) //(AnimatedCharacterModel target, ThirdpersonItemAnimationName name, AnimationClip clip)
+		UnityEngine.AnimationClip _corrRight2 = this._corrRight
+		PlayerRoles.FirstPersonControl.Thirdperson.HumanCharacterModel TargetModel12 = this.<TargetModel>k__BackingField
+		System.Int32 9 = 9
+
+		InventorySystem.Items.Thirdperson.ThirdpersonItemAnimationManager.SetAnimation(TargetModel12, 9, _corrRight2) //(AnimatedCharacterModel target, ThirdpersonItemAnimationName name, AnimationClip clip)
+		UnityEngine.AnimationClip _corrStraight = this._corrStraight
+		PlayerRoles.FirstPersonControl.Thirdperson.HumanCharacterModel TargetModel13 = this.<TargetModel>k__BackingField
+		System.Int32 6 = 6
+
+		InventorySystem.Items.Thirdperson.ThirdpersonItemAnimationManager.SetAnimation(TargetModel13, 6, _corrStraight) //(AnimatedCharacterModel target, ThirdpersonItemAnimationName name, AnimationClip clip)
+		UnityEngine.AnimationClip _corrBack = this._corrBack
+		PlayerRoles.FirstPersonControl.Thirdperson.HumanCharacterModel TargetModel14 = this.<TargetModel>k__BackingField
+		System.Int32 7 = 7
+
+		InventorySystem.Items.Thirdperson.ThirdpersonItemAnimationManager.SetAnimation(TargetModel14, 7, _corrBack) //(AnimatedCharacterModel target, ThirdpersonItemAnimationName name, AnimationClip clip)
+		UnityEngine.AnimationClip _corrCenter = this._corrCenter
+		PlayerRoles.FirstPersonControl.Thirdperson.HumanCharacterModel TargetModel15 = this.<TargetModel>k__BackingField
+		System.Int32 10 = 10
+
+		InventorySystem.Items.Thirdperson.ThirdpersonItemAnimationManager.SetAnimation(TargetModel15, 10, _corrCenter) //(AnimatedCharacterModel target, ThirdpersonItemAnimationName name, AnimationClip clip)
+		UnityEngine.AnimationClip _corrCenter2 = this._corrCenter
+		PlayerRoles.FirstPersonControl.Thirdperson.HumanCharacterModel TargetModel16 = this.<TargetModel>k__BackingField
+		System.Int32 11 = 11
+
+		InventorySystem.Items.Thirdperson.ThirdpersonItemAnimationManager.SetAnimation(TargetModel16, 11, _corrCenter2) //(AnimatedCharacterModel target, ThirdpersonItemAnimationName name, AnimationClip clip)
+		UnityEngine.AnimationClip _corrCenter3 = this._corrCenter
+		PlayerRoles.FirstPersonControl.Thirdperson.HumanCharacterModel TargetModel17 = this.<TargetModel>k__BackingField
+		System.Int32 3 = 3
+
+		InventorySystem.Items.Thirdperson.ThirdpersonItemAnimationManager.SetAnimation(TargetModel17, 3, _corrCenter3) //(AnimatedCharacterModel target, ThirdpersonItemAnimationName name, AnimationClip clip)
+
+		this.ApplyAttachmentOverrides()
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld PlayerRoles.FirstPersonControl.Thirdperson.HumanCharacterModel InventorySystem.Items.Thirdperson.ThirdpersonItemBase::<TargetModel>k__BackingField
+	IL_0006: ldfld UnityEngine.Animator PlayerRoles.FirstPersonControl.Thirdperson.AnimatedCharacterModel::<Animator>k__BackingField
+	IL_000b: stloc.0
+	IL_000c: ldc.i4.0
+	IL_000d: stloc.1
+	IL_000e: ldsfld System.Int32 InventorySystem.Items.Thirdperson.ThirdpersonItemBase::HashOverrideBlend
+	IL_0013: stloc.2
+	IL_0014: ldloc.0
+	IL_0015: ldloc.2
+	IL_0016: ldloc.1
+	IL_0017: call System.Void UnityEngine.Animator::SetFloat(System.Int32,System.Single)
+	IL_001c: ldarg.0
+	IL_001d: ldfld UnityEngine.AnimationClip InventorySystem.Items.Firearms.FirearmThirdpersonItem::_shootAnim
+	IL_0022: stloc.3
+	IL_0023: ldarg.0
+	IL_0024: ldfld PlayerRoles.FirstPersonControl.Thirdperson.HumanCharacterModel InventorySystem.Items.Thirdperson.ThirdpersonItemBase::<TargetModel>k__BackingField
+	IL_0029: ldc.i4.s 12
+	IL_002b: ldloc.3
+	IL_002c: call System.Void InventorySystem.Items.Thirdperson.ThirdpersonItemAnimationManager::SetAnimation(PlayerRoles.FirstPersonControl.Thirdperson.AnimatedCharacterModel,InventorySystem.Items.Thirdperson.ThirdpersonItemAnimationName,UnityEngine.AnimationClip)
+	IL_0031: ldarg.0
+	IL_0032: ldfld UnityEngine.AnimationClip InventorySystem.Items.Firearms.FirearmThirdpersonItem::_reloadAnim
+	IL_0037: stloc.s V_4
+	IL_0039: ldarg.0
+	IL_003a: ldfld PlayerRoles.FirstPersonControl.Thirdperson.HumanCharacterModel InventorySystem.Items.Thirdperson.ThirdpersonItemBase::<TargetModel>k__BackingField
+	IL_003f: stloc.s V_5
+	IL_0041: ldc.i4.0
+	IL_0042: stloc.s V_6
+	IL_0044: ldloc.s V_5
+	IL_0046: ldloc.s V_6
+	IL_0048: ldloc.s V_4
+	IL_004a: call System.Void InventorySystem.Items.Thirdperson.ThirdpersonItemAnimationManager::SetAnimation(PlayerRoles.FirstPersonControl.Thirdperson.AnimatedCharacterModel,InventorySystem.Items.Thirdperson.ThirdpersonItemAnimationName,UnityEngine.AnimationClip)
+	IL_004f: ldarg.0
+	IL_0050: ldfld UnityEngine.AnimationClip InventorySystem.Items.Firearms.FirearmThirdpersonItem::_hipAnim
+	IL_0055: stloc.s V_7
+	IL_0057: ldarg.0
+	IL_0058: ldfld PlayerRoles.FirstPersonControl.Thirdperson.HumanCharacterModel InventorySystem.Items.Thirdperson.ThirdpersonItemBase::<TargetModel>k__BackingField
+	IL_005d: ldc.i4.1
+	IL_005e: ldloc.s V_7
+	IL_0060: call System.Void InventorySystem.Items.Thirdperson.ThirdpersonItemAnimationManager::SetAnimation(PlayerRoles.FirstPersonControl.Thirdperson.AnimatedCharacterModel,InventorySystem.Items.Thirdperson.ThirdpersonItemAnimationName,UnityEngine.AnimationClip)
+	IL_0065: ldarg.0
+	IL_0066: ldfld UnityEngine.AnimationClip InventorySystem.Items.Firearms.FirearmThirdpersonItem::_adsAnim
+	IL_006b: stloc.s V_8
+	IL_006d: ldarg.0
+	IL_006e: ldfld PlayerRoles.FirstPersonControl.Thirdperson.HumanCharacterModel InventorySystem.Items.Thirdperson.ThirdpersonItemBase::<TargetModel>k__BackingField
+	IL_0073: ldc.i4.2
+	IL_0074: ldloc.s V_8
+	IL_0076: call System.Void InventorySystem.Items.Thirdperson.ThirdpersonItemAnimationManager::SetAnimation(PlayerRoles.FirstPersonControl.Thirdperson.AnimatedCharacterModel,InventorySystem.Items.Thirdperson.ThirdpersonItemAnimationName,UnityEngine.AnimationClip)
+	IL_007b: ldarg.0
+	IL_007c: ldfld UnityEngine.AnimationClip InventorySystem.Items.Firearms.FirearmThirdpersonItem::_lookDown
+	IL_0081: stloc.s V_9
+	IL_0083: ldarg.0
+	IL_0084: ldfld PlayerRoles.FirstPersonControl.Thirdperson.HumanCharacterModel InventorySystem.Items.Thirdperson.ThirdpersonItemBase::<TargetModel>k__BackingField
+	IL_0089: ldc.i4.s 13
+	IL_008b: ldloc.s V_9
+	IL_008d: call System.Void InventorySystem.Items.Thirdperson.ThirdpersonItemAnimationManager::SetAnimation(PlayerRoles.FirstPersonControl.Thirdperson.AnimatedCharacterModel,InventorySystem.Items.Thirdperson.ThirdpersonItemAnimationName,UnityEngine.AnimationClip)
+	IL_0092: ldarg.0
+	IL_0093: ldfld UnityEngine.AnimationClip InventorySystem.Items.Firearms.FirearmThirdpersonItem::_lookForward
+	IL_0098: stloc.s V_10
+	IL_009a: ldarg.0
+	IL_009b: ldfld PlayerRoles.FirstPersonControl.Thirdperson.HumanCharacterModel InventorySystem.Items.Thirdperson.ThirdpersonItemBase::<TargetModel>k__BackingField
+	IL_00a0: ldc.i4.s 14
+	IL_00a2: ldloc.s V_10
+	IL_00a4: call System.Void InventorySystem.Items.Thirdperson.ThirdpersonItemAnimationManager::SetAnimation(PlayerRoles.FirstPersonControl.Thirdperson.AnimatedCharacterModel,InventorySystem.Items.Thirdperson.ThirdpersonItemAnimationName,UnityEngine.AnimationClip)
+	IL_00a9: ldarg.0
+	IL_00aa: ldfld UnityEngine.AnimationClip InventorySystem.Items.Firearms.FirearmThirdpersonItem::_lookUp
+	IL_00af: stloc.s V_11
+	IL_00b1: ldarg.0
+	IL_00b2: ldfld PlayerRoles.FirstPersonControl.Thirdperson.HumanCharacterModel InventorySystem.Items.Thirdperson.ThirdpersonItemBase::<TargetModel>k__BackingField
+	IL_00b7: ldc.i4.s 15
+	IL_00b9: ldloc.s V_11
+	IL_00bb: call System.Void InventorySystem.Items.Thirdperson.ThirdpersonItemAnimationManager::SetAnimation(PlayerRoles.FirstPersonControl.Thirdperson.AnimatedCharacterModel,InventorySystem.Items.Thirdperson.ThirdpersonItemAnimationName,UnityEngine.AnimationClip)
+	IL_00c0: ldarg.0
+	IL_00c1: ldfld UnityEngine.AnimationClip InventorySystem.Items.Firearms.FirearmThirdpersonItem::_corrLeft
+	IL_00c6: stloc.s V_12
+	IL_00c8: ldarg.0
+	IL_00c9: ldfld PlayerRoles.FirstPersonControl.Thirdperson.HumanCharacterModel InventorySystem.Items.Thirdperson.ThirdpersonItemBase::<TargetModel>k__BackingField
+	IL_00ce: ldc.i4.4
+	IL_00cf: ldloc.s V_12
+	IL_00d1: call System.Void InventorySystem.Items.Thirdperson.ThirdpersonItemAnimationManager::SetAnimation(PlayerRoles.FirstPersonControl.Thirdperson.AnimatedCharacterModel,InventorySystem.Items.Thirdperson.ThirdpersonItemAnimationName,UnityEngine.AnimationClip)
+	IL_00d6: ldarg.0
+	IL_00d7: ldfld UnityEngine.AnimationClip InventorySystem.Items.Firearms.FirearmThirdpersonItem::_corrLeft
+	IL_00dc: stloc.s V_13
+	IL_00de: ldarg.0
+	IL_00df: ldfld PlayerRoles.FirstPersonControl.Thirdperson.HumanCharacterModel InventorySystem.Items.Thirdperson.ThirdpersonItemBase::<TargetModel>k__BackingField
+	IL_00e4: ldc.i4.8
+	IL_00e5: ldloc.s V_13
+	IL_00e7: call System.Void InventorySystem.Items.Thirdperson.ThirdpersonItemAnimationManager::SetAnimation(PlayerRoles.FirstPersonControl.Thirdperson.AnimatedCharacterModel,InventorySystem.Items.Thirdperson.ThirdpersonItemAnimationName,UnityEngine.AnimationClip)
+	IL_00ec: ldarg.0
+	IL_00ed: ldfld UnityEngine.AnimationClip InventorySystem.Items.Firearms.FirearmThirdpersonItem::_corrRight
+	IL_00f2: stloc.s V_14
+	IL_00f4: ldarg.0
+	IL_00f5: ldfld PlayerRoles.FirstPersonControl.Thirdperson.HumanCharacterModel InventorySystem.Items.Thirdperson.ThirdpersonItemBase::<TargetModel>k__BackingField
+	IL_00fa: ldc.i4.5
+	IL_00fb: ldloc.s V_14
+	IL_00fd: call System.Void InventorySystem.Items.Thirdperson.ThirdpersonItemAnimationManager::SetAnimation(PlayerRoles.FirstPersonControl.Thirdperson.AnimatedCharacterModel,InventorySystem.Items.Thirdperson.ThirdpersonItemAnimationName,UnityEngine.AnimationClip)
+	IL_0102: ldarg.0
+	IL_0103: ldfld UnityEngine.AnimationClip InventorySystem.Items.Firearms.FirearmThirdpersonItem::_corrRight
+	IL_0108: stloc.s V_15
+	IL_010a: ldarg.0
+	IL_010b: ldfld PlayerRoles.FirstPersonControl.Thirdperson.HumanCharacterModel InventorySystem.Items.Thirdperson.ThirdpersonItemBase::<TargetModel>k__BackingField
+	IL_0110: ldc.i4.s 9
+	IL_0112: ldloc.s V_15
+	IL_0114: call System.Void InventorySystem.Items.Thirdperson.ThirdpersonItemAnimationManager::SetAnimation(PlayerRoles.FirstPersonControl.Thirdperson.AnimatedCharacterModel,InventorySystem.Items.Thirdperson.ThirdpersonItemAnimationName,UnityEngine.AnimationClip)
+	IL_0119: ldarg.0
+	IL_011a: ldfld UnityEngine.AnimationClip InventorySystem.Items.Firearms.FirearmThirdpersonItem::_corrStraight
+	IL_011f: stloc.s V_16
+	IL_0121: ldarg.0
+	IL_0122: ldfld PlayerRoles.FirstPersonControl.Thirdperson.HumanCharacterModel InventorySystem.Items.Thirdperson.ThirdpersonItemBase::<TargetModel>k__BackingField
+	IL_0127: ldc.i4.6
+	IL_0128: ldloc.s V_16
+	IL_012a: call System.Void InventorySystem.Items.Thirdperson.ThirdpersonItemAnimationManager::SetAnimation(PlayerRoles.FirstPersonControl.Thirdperson.AnimatedCharacterModel,InventorySystem.Items.Thirdperson.ThirdpersonItemAnimationName,UnityEngine.AnimationClip)
+	IL_012f: ldarg.0
+	IL_0130: ldfld UnityEngine.AnimationClip InventorySystem.Items.Firearms.FirearmThirdpersonItem::_corrBack
+	IL_0135: stloc.s V_17
+	IL_0137: ldarg.0
+	IL_0138: ldfld PlayerRoles.FirstPersonControl.Thirdperson.HumanCharacterModel InventorySystem.Items.Thirdperson.ThirdpersonItemBase::<TargetModel>k__BackingField
+	IL_013d: ldc.i4.7
+	IL_013e: ldloc.s V_17
+	IL_0140: call System.Void InventorySystem.Items.Thirdperson.ThirdpersonItemAnimationManager::SetAnimation(PlayerRoles.FirstPersonControl.Thirdperson.AnimatedCharacterModel,InventorySystem.Items.Thirdperson.ThirdpersonItemAnimationName,UnityEngine.AnimationClip)
+	IL_0145: ldarg.0
+	IL_0146: ldfld UnityEngine.AnimationClip InventorySystem.Items.Firearms.FirearmThirdpersonItem::_corrCenter
+	IL_014b: stloc.s V_18
+	IL_014d: ldarg.0
+	IL_014e: ldfld PlayerRoles.FirstPersonControl.Thirdperson.HumanCharacterModel InventorySystem.Items.Thirdperson.ThirdpersonItemBase::<TargetModel>k__BackingField
+	IL_0153: ldc.i4.s 10
+	IL_0155: ldloc.s V_18
+	IL_0157: call System.Void InventorySystem.Items.Thirdperson.ThirdpersonItemAnimationManager::SetAnimation(PlayerRoles.FirstPersonControl.Thirdperson.AnimatedCharacterModel,InventorySystem.Items.Thirdperson.ThirdpersonItemAnimationName,UnityEngine.AnimationClip)
+	IL_015c: ldarg.0
+	IL_015d: ldfld UnityEngine.AnimationClip InventorySystem.Items.Firearms.FirearmThirdpersonItem::_corrCenter
+	IL_0162: stloc.s V_19
+	IL_0164: ldarg.0
+	IL_0165: ldfld PlayerRoles.FirstPersonControl.Thirdperson.HumanCharacterModel InventorySystem.Items.Thirdperson.ThirdpersonItemBase::<TargetModel>k__BackingField
+	IL_016a: ldc.i4.s 11
+	IL_016c: ldloc.s V_19
+	IL_016e: call System.Void InventorySystem.Items.Thirdperson.ThirdpersonItemAnimationManager::SetAnimation(PlayerRoles.FirstPersonControl.Thirdperson.AnimatedCharacterModel,InventorySystem.Items.Thirdperson.ThirdpersonItemAnimationName,UnityEngine.AnimationClip)
+	IL_0173: ldarg.0
+	IL_0174: ldfld UnityEngine.AnimationClip InventorySystem.Items.Firearms.FirearmThirdpersonItem::_corrCenter
+	IL_0179: stloc.s V_20
+	IL_017b: ldarg.0
+	IL_017c: ldfld PlayerRoles.FirstPersonControl.Thirdperson.HumanCharacterModel InventorySystem.Items.Thirdperson.ThirdpersonItemBase::<TargetModel>k__BackingField
+	IL_0181: ldc.i4.3
+	IL_0182: ldloc.s V_20
+	IL_0184: call System.Void InventorySystem.Items.Thirdperson.ThirdpersonItemAnimationManager::SetAnimation(PlayerRoles.FirstPersonControl.Thirdperson.AnimatedCharacterModel,InventorySystem.Items.Thirdperson.ThirdpersonItemAnimationName,UnityEngine.AnimationClip)
+	IL_0189: ldarg.0
+	IL_018a: call System.Void InventorySystem.Items.Firearms.FirearmThirdpersonItem::ApplyAttachmentOverrides()
+	IL_018f: ret
+	IL_0190: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0195: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Firearms.FirearmThirdpersonItem
+	System.Void SetAnim(InventorySystem.Items.Thirdperson.ThirdpersonItemAnimationName n, UnityEngine.AnimationClip clip)
+		System.Int32 local3 = n.value__
+		PlayerRoles.FirstPersonControl.Thirdperson.HumanCharacterModel TargetModel = this.<TargetModel>k__BackingField
+
+		InventorySystem.Items.Thirdperson.ThirdpersonItemAnimationManager.SetAnimation()
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.Implicit4ByteFieldReadAction at (0x180670B29) is corrupt (Local local3 has been stripped out for being unused, so doesn't have a variable.) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Firearms.FirearmThirdpersonItem
+	System.Void ApplyAttachmentOverrides()
+		InventorySystem.Items.Firearms.FirearmThirdpersonItem/AttachmentAnimOverride[] _attachmentOverrides = this._attachmentOverrides
+		ulong local2 = 0
+		System.Int32 length = _attachmentOverrides.Length
+
+		if (local2 < length)
+		    System.UInt32 attachments = this._lastStatus.Attachments
+		    System.Int64 local5 = 1
+		    local2 += 2
+		    local2 += local2
+
+		    if (attachments == local5)
+
+		        this.SetAnim()
+		    endif
+            
+		    local2 += 1
+		endif
+        
+		return
+		throw new System.IndexOutOfRangeException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18066F9DE) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Firearms.FirearmThirdpersonItem
+	System.Void AudioReceived(ReferenceHub hub, ItemType weapon, InventorySystem.Items.Firearms.FirearmAudioClip clip)
+		System.Int32 local4 = weapon.value__
+
+		System.Boolean isLocalPlayer = hub.isLocalPlayer
+
+		if (isLocalPlayer == False)
+		    PlayerRoles.FirstPersonControl.Thirdperson.HumanCharacterModel TargetModel = this.<TargetModel>k__BackingField
+		    ReferenceHub OwnerHub = TargetModel.<OwnerHub>k__BackingField
+
+		    System.Boolean boolean = ReferenceHub.op_Inequality(hub, OwnerHub) //(ReferenceHub left, ReferenceHub right)
+
+		    if (boolean == False)
+		        InventorySystem.Inventory inventory = hub.inventory
+
+		        if (inventory.CurItem == local4)
+
+		            if (clip._flags != constant15)
+		                PlayerRoles.FirstPersonControl.Thirdperson.HumanCharacterModel TargetModel2 = this.<TargetModel>k__BackingField
+
+		                TargetModel2.SpawnObject()
+		                ulong local13 = 0
+
+		                if (local13 > )
+		                    ulong local14 = 0
+
+		                    System.Single value = UnityEngine.Random.value
+		                    PlayerRoles.FirstPersonControl.Thirdperson.HumanCharacterModel TargetModel3 = this.<TargetModel>k__BackingField
+
+		                    TargetModel3.SpawnObject()
+
+		                    if (value > value)
+                                goto INSN_18066FB1A
+                            endif
+		                endif
+                        
+		                this._shotReceived = True
+		            endif
+                    
+		            return
+		            throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfZeroOrNullAction at (0x18066FAC8) is corrupt (ConstantDefinition: Don't know how to get IL to load a System.Byte) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Firearms.FirearmThirdpersonItem
+	System.Void ConfirmationReceived(InventorySystem.Items.Firearms.BasicMessages.RequestMessage msg)
+		InventorySystem.Items.ItemIdentifier Identifier = this.<Identifier>k__BackingField
+
+		if (msg == Identifier)
+
+		    if (msg <= 6)
+		        this += constant2
+		        this._isReloading = True
+		        return
+		        this._isAdsing = True
+		        return
+		        this._isAdsing = False
+		        return
+		        this._isReloading = False
+		    endif
+            
+		    return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddRegToRegAction at (0x18066FC59) is corrupt (AddR2R: First operand, {'this' (function parameter, type InventorySystem.Items.Firearms.FirearmThirdpersonItem)}, has been stripped or has no variable) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Firearms.FirearmThirdpersonItem
+	System.Void Awake()
+
+		UnityEngine.Light[] componentsInChildren = base.GetComponentsInChildren<UnityEngine.Light>(True) //(Boolean includeInactive)
+		ulong local2 = 0
+		System.Int32 length = componentsInChildren.Length
+
+		if (local2 < length)
+		    System.Collections.Generic.Dictionary`2<UnityEngine.Light,UnityEngine.Color> _defaultColors = this._defaultColors
+		    UnityEngine.Light light = componentsInChildren[local2]
+
+		    UnityEngine.Color color = .color
+
+		    _defaultColors.set_Item()
+		    local2 += 1
+		endif
+        
+		return
+		throw new System.IndexOutOfRangeException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18066FBCA) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Firearms.FirearmThirdpersonItem
+	System.Void Update()
+		System.Collections.Generic.Dictionary`2<System.UInt16,InventorySystem.Items.Firearms.FirearmStatus> receivedStatuses = InventorySystem.Items.Firearms.BasicMessages.FirearmBasicMessagesHandler.ReceivedStatuses
+
+		System.Boolean boolean = receivedStatuses.TryGetValue()
+
+		if (boolean != False)
+		    InventorySystem.Items.Firearms.FirearmWorldmodel _instance = this._instance
+
+		    System.Boolean boolean2 = _instance.ApplyStatus()
+
+		    if (boolean2 != False)
+
+		        this.ApplyAttachmentOverrides()
+		    endif
+            
+		    InventorySystem.Items.Firearms.FirearmStatusFlags flags = this._lastStatus.Flags
+		    System.Boolean local11 = "{il2cpp field InventorySystem.Items.Firearms.BasicMessages.FirearmBasicMessagesHandler->cctor_finished}" != 0
+
+		    if (this._prevFlashlight == local11)
+                goto INSN_180671461
+            endif
+		    InventorySystem.Items.Firearms.FunctionalParts.FirearmFlashlight _flashlight = this._flashlight
+		    this._prevFlashlight = local11
+		    ulong local14 = 0
+
+		    System.Boolean boolean3 = UnityEngine.Object.op_Equality(_flashlight, local14) //(Object x, Object y)
+
+		    if (boolean3 != False)
+                goto INSN_180671461
+            endif
+		    InventorySystem.Items.Firearms.FunctionalParts.FirearmFlashlight _flashlight2 = this._flashlight
+		    System.Boolean local17 = flags != constant31
+
+		    _flashlight2.SetStatus(local17) //(Boolean isEnabled)
+		endif
+        
+
+		this.UpdateAnims()
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18067138D) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Firearms.FirearmThirdpersonItem
+	System.Void UpdateStatus()
+		System.Collections.Generic.Dictionary`2<System.UInt16,InventorySystem.Items.Firearms.FirearmStatus> receivedStatuses = InventorySystem.Items.Firearms.BasicMessages.FirearmBasicMessagesHandler.ReceivedStatuses
+
+		System.Boolean boolean = receivedStatuses.TryGetValue()
+
+		if (boolean != False)
+		    InventorySystem.Items.Firearms.FirearmWorldmodel _instance = this._instance
+
+		    System.Boolean boolean2 = _instance.ApplyStatus()
+
+		    if (boolean2 != False)
+
+		        this.ApplyAttachmentOverrides()
+		    endif
+            
+		    InventorySystem.Items.Firearms.FirearmStatusFlags flags = this._lastStatus.Flags
+		    System.Boolean local11 = "{il2cpp field InventorySystem.Items.Firearms.BasicMessages.FirearmBasicMessagesHandler->cctor_finished}" != 0
+
+		    if (this._prevFlashlight == local11)
+                goto INSN_1806712F1
+            endif
+		    InventorySystem.Items.Firearms.FunctionalParts.FirearmFlashlight _flashlight = this._flashlight
+		    this._prevFlashlight = local11
+		    ulong local14 = 0
+
+		    System.Boolean boolean3 = UnityEngine.Object.op_Equality(_flashlight, local14) //(Object x, Object y)
+
+		    if (boolean3 != False)
+                goto INSN_1806712F1
+            endif
+		    InventorySystem.Items.Firearms.FunctionalParts.FirearmFlashlight _flashlight2 = this._flashlight
+		    System.Boolean local17 = flags != constant31
+
+		    _flashlight2.SetStatus(local17) //(Boolean isEnabled)
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18067121D) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Firearms.FirearmThirdpersonItem
+	System.Void UpdateAnims()
+		ulong local2 = 0
+		PlayerRoles.FirstPersonControl.Thirdperson.HumanCharacterModel TargetModel = this.<TargetModel>k__BackingField
+		UnityEngine.Animator Animator = TargetModel.<Animator>k__BackingField
+		PlayerRoles.FirstPersonControl.Thirdperson.HumanCharacterModel TargetModel2 = this.<TargetModel>k__BackingField
+		ReferenceHub OwnerHub = TargetModel2.<OwnerHub>k__BackingField
+		InventorySystem.Inventory inventory = OwnerHub.inventory
+		InventorySystem.Items.ItemBase _curInstance = inventory._curInstance
+
+		if (_curInstance != 0)
+		    //UNKNOWN CLASS OFFSET READ HERE
+		    ulong local10 = 0
+
+		    System.Boolean boolean = UnityEngine.Object.op_Inequality(_curInstance, local10) //(Object x, Object y)
+
+		    if (boolean != False)
+
+		        [instruction error - managed method being called is null]
+		        this._isAdsing = constant33
+		    endif
+            
+
+		    if (this._isReloading != local2)
+                goto INSN_180670D50
+            endif
+		    System.Boolean local13 = this._isAdsing != local2
+		    local13 += 1
+
+		    INSN_180670D50:
+		    System.Single _prevBlend = this._prevBlend
+		    ulong local15 = 0
+
+		    System.Single deltaTime = UnityEngine.Time.deltaTime
+		    System.Single local17 = deltaTime * 4
+		    deltaTime = _prevBlend
+
+		    System.Single single = UnityEngine.Mathf.MoveTowards()
+		    this._prevBlend = single
+		    System.Single _prevBlend2 = this._prevBlend
+		    System.Int32 hashOverrideBlend = InventorySystem.Items.Thirdperson.ThirdpersonItemBase.HashOverrideBlend
+
+		    Animator.SetFloat(hashOverrideBlend, _prevBlend2) //(Int32 id, Single value)
+		    System.Int32 hashSecondaryAdditiveBlend = InventorySystem.Items.Thirdperson.ThirdpersonItemBase.HashSecondaryAdditiveBlend
+		    System.Int32 hashHeadTilt = InventorySystem.Items.Firearms.FirearmThirdpersonItem.HashHeadTilt
+
+		    System.Single float = Animator.GetFloat(hashHeadTilt) //(Int32 id)
+		    hashHeadTilt = hashSecondaryAdditiveBlend
+		    _prevBlend2 = float
+
+		    Animator.SetFloat(hashHeadTilt, _prevBlend2) //(Int32 id, Single value)
+
+		    if (this._shotReceived == local2)
+                goto INSN_180670F07
+            endif
+		    System.Int32 hashShoot = InventorySystem.Items.Firearms.FirearmThirdpersonItem.HashShoot
+
+		    Animator.Play(hashShoot, 3, 0.10000000149011612) //(Int32 stateNameHash, Int32 layer, Single normalizedTime)
+		    InventorySystem.Items.Firearms.FirearmWorldmodel _instance = this._instance
+		    UnityEngine.ParticleSystem[] _shootingEffects = _instance._shootingEffects
+		    System.Int32 length = _shootingEffects.Length
+
+		    if (local2 >= length)
+                goto INSN_180670F00
+            endif
+		    UnityEngine.ParticleSystem particleSystem = _shootingEffects[local2]
+
+		    particleSystem.Play(True) //(Boolean withChildren)
+		    local2 += 1
+
+		    INSN_180670F00:
+		    this._shotReceived = False
+
+		    INSN_180670F07:
+
+		    System.Boolean boolean2 = ReferenceHub.TryGetLocalHub()
+
+		    if (boolean2 == False)
+                goto INSN_18067114A
+            endif
+		      = boolean2.
+
+		    PlayerRoles.PlayerRoleBase currentRole = .CurrentRole
+
+		    if (currentRole == 0)
+                goto INSN_18067114A
+            endif
+		      = currentRole.
+		    PlayerRoles.FirstPersonControl.FirstPersonMovementModule _fpmm = this._fpmm
+
+		    UnityEngine.Vector3 vector3 = UnityEngine.Vector3.op_Subtraction()
+		    local17 = float
+
+		    if (local17 > 1.401298464324817E-45)
+                goto INSN_180671027
+            endif
+		    ulong local45 = 0
+
+		    INSN_180671027:
+
+		    UnityEngine.Vector3 vector32 = UnityEngine.Vector3.op_Division()
+		    UnityEngine.Transform _hubTransform = this._hubTransform
+
+		    UnityEngine.Vector3 forward = .forward
+		    System.Single single2 = forward.z
+
+		    System.Single single3 = UnityEngine.Vector3.Dot()
+		    UnityEngine.AnimationCurve _rotatorDisCurve = this._rotatorDisCurve
+
+		    System.Single single4 = _rotatorDisCurve.Evaluate(local45) //(Single time)
+		    UnityEngine.AnimationCurve _rotatorDotCurve = this._rotatorDotCurve
+		    _prevBlend = single4
+
+		    System.Single single5 = _rotatorDotCurve.Evaluate(single3) //(Single time)
+		    ulong local62 = 0
+
+		    System.Single deltaTime2 = UnityEngine.Time.deltaTime
+		    _prevBlend = deltaTime2
+		    System.Single local64 = _prevBlend * 40
+		    single3 = single5
+		    deltaTime2 = local61
+
+		    System.Single single6 = UnityEngine.Mathf.MoveTowards(deltaTime2, single3, local64) //(Single current, Single target, Single maxDelta)
+		    this._rotOffset = single6
+
+		    INSN_18067114A:
+		    return
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.UnknownClassOffsetReadAction at (0x180670CCC) is corrupt (Unknown class offset read) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Firearms.FirearmThirdpersonItem
+	System.Void .ctor()
+		System.Collections.Generic.Dictionary`2<UnityEngine.Light,UnityEngine.Color> dictionary = new System.Collections.Generic.Dictionary`2<UnityEngine.Light,UnityEngine.Color>()
+
+		dictionary..ctor()
+		this._defaultColors = dictionary
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: newobj System.Void System.Collections.Generic.Dictionary`2::.ctor()
+	IL_0005: stloc.0
+	IL_0006: ldarg.0
+	IL_0007: ldloc.0
+	IL_0008: stfld System.Collections.Generic.Dictionary`2<UnityEngine.Light,UnityEngine.Color> InventorySystem.Items.Firearms.FirearmThirdpersonItem::_defaultColors
+	IL_000d: ldarg.0
+	IL_000e: call System.Void InventorySystem.Items.Thirdperson.ThirdpersonItemBase::.ctor()
+	IL_0013: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Firearms.FirearmThirdpersonItem
+	static System.Void .cctor()
+
+		System.Int32 int32 = UnityEngine.Animator.StringToHash("HeadTilt") //(String name)
+		InventorySystem.Items.Firearms.FirearmThirdpersonItem.HashHeadTilt = int32
+
+		System.Int32 int322 = UnityEngine.Animator.StringToHash("PrimaryAdditive") //(String name)
+		InventorySystem.Items.Firearms.FirearmThirdpersonItem.HashShoot = int322
+		return
+
+
+Generated IL:
+	IL_0000: ldstr "HeadTilt"
+	IL_0005: call System.Int32 UnityEngine.Animator::StringToHash(System.String)
+	IL_000a: stsfld System.Int32 InventorySystem.Items.Firearms.FirearmThirdpersonItem::HashHeadTilt
+	IL_000f: ldstr "PrimaryAdditive"
+	IL_0014: call System.Int32 UnityEngine.Animator::StringToHash(System.String)
+	IL_0019: stsfld System.Int32 InventorySystem.Items.Firearms.FirearmThirdpersonItem::HashShoot
+	IL_001e: ret
+	
+

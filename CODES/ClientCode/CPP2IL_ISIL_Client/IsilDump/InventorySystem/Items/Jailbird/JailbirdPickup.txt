@@ -1,0 +1,97 @@
+Type: InventorySystem.Items.Jailbird.JailbirdPickup
+
+Method: System.Single get_TotalMelee()
+
+Disassembly:
+	movss xmm0,dword ptr [rcx+100h]
+	ret
+
+ISIL:
+	001 Move xmm0, [rcx+256]
+	002 Return xmm0
+
+Method: System.Void set_TotalMelee(System.Single value)
+
+Disassembly:
+	movss dword ptr [rcx+100h],xmm1
+	ret
+
+ISIL:
+	001 Move [rcx+256], xmm1
+	002 Return 
+
+Method: System.Int32 get_TotalCharges()
+
+Disassembly:
+	mov eax,[rcx+104h]
+	ret
+
+ISIL:
+	001 Move rax, [rcx+260]
+	002 Return rax
+
+Method: System.Void set_TotalCharges(System.Int32 value)
+
+Disassembly:
+	mov [rcx+104h],edx
+	ret
+
+ISIL:
+	001 Move [rcx+260], rdx
+	002 Return 
+
+Method: System.Void Start()
+
+Disassembly:
+	push rbx
+	sub rsp,20h
+	xor edx,edx
+	mov rbx,rcx
+	call 00000001804C8560h
+	mov rcx,[rbx+108h]
+	test rcx,rcx
+	je short 00000001805649CAh
+	movzx eax,word ptr [rbx+4Ch]
+	mov [rcx+18h],ax
+	add rsp,20h
+	pop rbx
+	ret
+	call 0000000180294310h
+
+ISIL:
+	001 ShiftStack -8
+	002 Move stack:0x0, rbx
+	003 ShiftStack -32
+	004 Move rdx, 0
+	005 Move rbx, rcx
+	006 Call ItemPickupBase.Start, rcx, rdx
+	007 Move rcx, [rbx+264]
+	008 Compare rcx, 0
+	009 JumpIfEqual {16}
+	010 Move rax, [rbx+76]
+	011 Move [rcx+24], rax
+	012 ShiftStack 32
+	013 Move rbx, stack:0x0
+	014 ShiftStack 8
+	015 Return 
+	016 Call 0x180294310, rcx, rdx, r8, r9
+
+Method: System.Void .ctor()
+
+Disassembly:
+	xor edx,edx
+	jmp near ptr 00000001804C3830h
+
+ISIL:
+	001 Move rdx, 0
+	002 Call CollisionDetectionPickup..ctor, rcx, rdx
+	003 Return 
+
+Method: System.Void MirrorProcessed()
+
+Disassembly:
+	ret 0
+
+ISIL:
+	001 Return 
+

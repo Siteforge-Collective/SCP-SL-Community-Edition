@@ -1,0 +1,259 @@
+Type: ApplyPostProcessGraphicSettings
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PostProcessing.ApplyPostProcessGraphicSettings
+	System.Void Start()
+		ulong local1 = 0
+
+		UnityEngine.Rendering.PostProcessing.PostProcessVolume component = base.GetComponent<UnityEngine.Rendering.PostProcessing.PostProcessVolume>()
+
+		if (component != 0)
+
+		    UnityEngine.Rendering.PostProcessing.PostProcessProfile profile = component.profile
+		else
+		endif
+        
+		this.postProcessProfile = local1
+		UnityEngine.Rendering.PostProcessing.PostProcessProfile postProcessProfile = this.postProcessProfile
+		ulong local7 = 0
+
+		System.Boolean boolean = UnityEngine.Object.op_Inequality(postProcessProfile, local7) //(Object x, Object y)
+
+		if (boolean == False)
+            goto INSN_181B38B5D
+        endif
+
+		if (this.applyBrightness == local1)
+            goto INSN_181B38829
+        endif
+		System.Action`1<System.Single> action = new System.Action`1<System.Single>()
+
+		action..ctor(this, {'<Start>b__8_0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		GammaSlider.add_OnGammaChanged(action) //(Action`1 value)
+		System.Action`1<System.Single> action2 = new System.Action`1<System.Single>()
+
+		action2..ctor(this, {'<Start>b__8_1' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		ulong local12 = 0
+
+		CustomPlayerEffects.InsufficientLighting.add_OnLimitChanged(action2) //(Action`1 value)
+
+		INSN_181B38829:
+
+		if (this.applyMotionBlur == local1)
+            goto INSN_181B38923
+        endif
+		UnityEngine.Rendering.PostProcessing.PostProcessProfile postProcessProfile2 = this.postProcessProfile
+
+		System.Boolean boolean2 = postProcessProfile2.TryGetSettings<UnityEngine.Rendering.PostProcessing.MotionBlur>(local12) //(T& outSetting)
+
+		if (boolean2 == False)
+            goto INSN_181B38923
+        endif
+
+		System.Int32 hashCode = local15.GetHashCode()
+		local17 = local15
+
+		System.Int32 int32 = PlayerPrefsSl.Get()
+		  = hashCode.
+		System.Boolean local21 = int32 != 0
+
+		hashCode.Override(local21) //(T x)
+		  = hashCode.
+		hashCode. = 
+
+		INSN_181B38923:
+
+		if (this.applyBrightness == local1)
+            goto INSN_181B3896F
+        endif
+		ulong local23 = 0
+
+		System.Single single = PlayerPrefsSl.Get("UVBrightness2", local23) //(String key, Single defaultValue)
+		ulong local25 = 0
+		this._desiredBrightness = single
+		this._maxBrightness = 1
+
+		this.UpdateBrightness()
+
+		INSN_181B3896F:
+
+		if (this.applyBloom == local1)
+            goto INSN_181B38A46
+        endif
+		UnityEngine.Rendering.PostProcessing.PostProcessProfile postProcessProfile3 = this.postProcessProfile
+
+		System.Boolean boolean3 = postProcessProfile3.TryGetSettings<UnityEngine.Rendering.PostProcessing.Bloom>(local25) //(T& outSetting)
+
+		if (boolean3 == False)
+            goto INSN_181B38A46
+        endif
+		  = boolean3.
+
+		System.Int32 hashCode2 = local28.GetHashCode()
+		local30 = local28
+
+		System.Boolean boolean4 = PlayerPrefsSl.Get()
+		hashCode2 = hashCode
+
+		hashCode2.Override(boolean4) //(T x)
+
+		INSN_181B38A46:
+
+		if (this.applyAmbientOcclusion == local1)
+            goto INSN_181B38B5D
+        endif
+		UnityEngine.Rendering.PostProcessing.PostProcessProfile postProcessProfile4 = this.postProcessProfile
+
+		System.Boolean boolean5 = postProcessProfile4.TryGetSettings<UnityEngine.Rendering.PostProcessing.AmbientOcclusion>()
+
+		if (boolean5 == False)
+            goto INSN_181B38B5D
+        endif
+
+		System.Int32 hashCode3 = boolean5.GetHashCode()
+		local36 = boolean5
+		System.Int32 2 = 2
+
+		System.Int32 int322 = PlayerPrefsSl.Get()
+		  = hashCode3.
+		System.Boolean local39 = int322 != 0
+
+		hashCode3.Override(local39) //(T x)
+
+		if (int322 != 1)
+            goto INSN_181B38B3A
+        endif
+		  = int322.
+		hashCode3. = int322
+
+		INSN_181B38B3A:
+
+		if (int322 != 2)
+            goto INSN_181B38B5D
+        endif
+		  = int322.
+		hashCode3. = local1
+
+		INSN_181B38B5D:
+
+		UnityEngine.Rendering.PostProcessing.PostProcessLayer component2 = base.GetComponent<UnityEngine.Rendering.PostProcessing.PostProcessLayer>()
+		ulong local42 = 0
+
+		System.Boolean boolean6 = UnityEngine.Object.op_Inequality(component2, local42) //(Object x, Object y)
+
+		if (boolean6 == False)
+            goto INSN_181B38C1C
+        endif
+
+		if (this.applyAntialiasing == local1)
+            goto INSN_181B38C1C
+        endif
+
+		System.Int32 hashCode4 = local44.GetHashCode()
+		local46 = local44
+		System.Int32 1 = 1
+
+		System.Int32 int323 = PlayerPrefsSl.Get()
+		component2.antialiasingMode = int323
+
+		INSN_181B38C1C:
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.ReadLocalPointerToRegAction at (0x181B3889A) is corrupt (Local was stripped) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PostProcessing.ApplyPostProcessGraphicSettings
+	System.Void UpdateBrightness()
+		UnityEngine.Rendering.PostProcessing.PostProcessProfile postProcessProfile = this.postProcessProfile
+
+		System.Boolean boolean = postProcessProfile.TryGetSettings<UnityEngine.Rendering.PostProcessing.ColorGrading>()
+
+		if (boolean != False)
+		      = local2.
+		    System.Single _desiredBrightness = this._desiredBrightness
+		    System.Single _maxBrightness = this._maxBrightness
+
+		    System.Single single = UnityEngine.Mathf.Min(_desiredBrightness, _maxBrightness) //(Single a, Single b)
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181B38CAB) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PostProcessing.ApplyPostProcessGraphicSettings
+	System.Void .ctor()
+		this.applyMotionBlur = True
+		this.applyAntialiasing = True
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldc.i4.1
+	IL_0002: stfld System.Boolean PostProcessing.ApplyPostProcessGraphicSettings::applyMotionBlur
+	IL_0007: ldarg.0
+	IL_0008: ldc.i4.1
+	IL_0009: stfld System.Boolean PostProcessing.ApplyPostProcessGraphicSettings::applyAntialiasing
+	IL_000e: ldarg.0
+	IL_000f: call System.Void UnityEngine.MonoBehaviour::.ctor()
+	IL_0014: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PostProcessing.ApplyPostProcessGraphicSettings
+	System.Void <Start>b__8_0(System.Single x)
+		this._desiredBrightness = x
+
+		this.UpdateBrightness()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: stfld System.Single PostProcessing.ApplyPostProcessGraphicSettings::_desiredBrightness
+	IL_0007: ldarg.0
+	IL_0008: call System.Void PostProcessing.ApplyPostProcessGraphicSettings::UpdateBrightness()
+	IL_000d: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PostProcessing.ApplyPostProcessGraphicSettings
+	System.Void <Start>b__8_1(System.Single x)
+		this._maxBrightness = x
+
+		this.UpdateBrightness()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: stfld System.Single PostProcessing.ApplyPostProcessGraphicSettings::_maxBrightness
+	IL_0007: ldarg.0
+	IL_0008: call System.Void PostProcessing.ApplyPostProcessGraphicSettings::UpdateBrightness()
+	IL_000d: ret
+	
+

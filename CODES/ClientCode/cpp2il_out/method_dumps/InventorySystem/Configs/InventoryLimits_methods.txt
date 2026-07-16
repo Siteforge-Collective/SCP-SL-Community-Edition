@@ -1,0 +1,309 @@
+Type: InventoryLimits
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Configs.InventoryLimits
+	static ServerConfigSynchronizer get_Config()
+		ServerConfigSynchronizer singleton = ServerConfigSynchronizer.Singleton
+		return singleton
+
+
+Generated IL:
+	IL_0000: ldsfld ServerConfigSynchronizer ServerConfigSynchronizer::Singleton
+	IL_0005: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Configs.InventoryLimits
+	static System.UInt16 GetAmmoLimit(ItemType ammoType, ReferenceHub player)
+		System.Int32 local2 = ammoType.value__
+		ulong local3 = 0
+		ulong local5 = 0
+
+		System.Boolean boolean = ReferenceHub.op_Inequality(player, local5) //(ReferenceHub left, ReferenceHub right)
+
+		if (boolean != False)
+		    InventorySystem.Inventory inventory = player.inventory
+
+		    System.Boolean boolean2 = InventorySystem.Items.Armor.BodyArmorUtils.TryGetBodyArmor(inventory, local3) //(Inventory inv, BodyArmor& bodyArmor)
+
+		    if (boolean2 != False)
+		    endif
+            
+
+		    System.UInt16 ammoLimit = InventorySystem.Configs.InventoryLimits.GetAmmoLimit()
+		    return ammoLimit
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.Implicit4ByteFieldReadAction at (0x1803EF739) is corrupt (Local local2 has been stripped out for being unused, so doesn't have a variable.) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Configs.InventoryLimits
+	static System.SByte GetCategoryLimit(ItemCategory category, ReferenceHub player)
+		ulong local2 = 0
+		ulong local4 = 0
+
+		System.Boolean boolean = ReferenceHub.op_Inequality(player, local4) //(ReferenceHub left, ReferenceHub right)
+
+		if (boolean != False)
+		    InventorySystem.Inventory inventory = player.inventory
+
+		    System.Boolean boolean2 = InventorySystem.Items.Armor.BodyArmorUtils.TryGetBodyArmor(inventory, local2) //(Inventory inv, BodyArmor& bodyArmor)
+
+		    if (boolean2 != False)
+		    endif
+            
+
+		    System.SByte categoryLimit = InventorySystem.Configs.InventoryLimits.GetCategoryLimit(local2, category) //(BodyArmor armor, ItemCategory category)
+		    return categoryLimit
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: ldc.i4.0
+	IL_0003: stloc.1
+	IL_0004: ldarg.1
+	IL_0005: ldloc.1
+	IL_0006: call System.Boolean ReferenceHub::op_Inequality(ReferenceHub,ReferenceHub)
+	IL_000b: ldc.i4.0
+	IL_000c: beq.s IL_001d
+	IL_000e: ldarg.1
+	IL_000f: ldfld InventorySystem.Inventory ReferenceHub::inventory
+	IL_0014: ldloc.0
+	IL_0015: call System.Boolean InventorySystem.Items.Armor.BodyArmorUtils::TryGetBodyArmor(InventorySystem.Inventory,InventorySystem.Items.Armor.BodyArmor&)
+	IL_001a: ldc.i4.0
+	IL_001b: beq.s IL_001d
+	IL_001d: ldloc.0
+	IL_001e: ldarg.0
+	IL_001f: call System.SByte InventorySystem.Configs.InventoryLimits::GetCategoryLimit(InventorySystem.Items.Armor.BodyArmor,ItemCategory)
+	IL_0024: ret
+	IL_0025: newobj System.Void System.NullReferenceException::.ctor()
+	IL_002a: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Configs.InventoryLimits
+	static System.UInt16 GetAmmoLimit(InventorySystem.Items.Armor.BodyArmor armor, ItemType ammoType)
+		System.Int32 local2 = ammoType.value__
+		System.Int32 local3 = ammoType.value__
+		ulong local4 = 0
+		System.Int64 local5 = 0xFFFFFFFF
+		ServerConfigSynchronizer singleton = ServerConfigSynchronizer.Singleton
+		Mirror.SyncList`1<ServerConfigSynchronizer/AmmoLimit> ammoLimitsSync = singleton.AmmoLimitsSync
+
+		Mirror.SyncList`1/Enumerator<T> enumerator = singleton.GetEnumerator()
+
+		if (enumerator != 0)
+
+		    if (enumerator != 0)
+
+		        singleton.Dispose()
+		    else
+
+		        singleton.Dispose()
+		    else
+
+		        singleton.Dispose()
+
+		        singleton.Dispose()
+
+		        if (singleton != 0)
+                    goto INSN_1803EFB55
+                endif
+		        ulong local12 = 0
+		        System.Int64 local13 = 0xFFFF
+
+		        if (local4 == -1)
+                    goto INSN_1803EFA4C
+                endif
+		    endif
+            
+
+		    if (constant32 != 200)
+                goto INSN_1803EFA4C
+            endif
+		    return Dispose
+
+		    INSN_1803EFA4C:
+
+		    if (local5 != 0xFFFFFFFF)
+                goto INSN_1803EFAA8
+            endif
+		    System.Collections.Generic.Dictionary`2<ItemType,System.UInt16> standardAmmoLimits = InventorySystem.Configs.InventoryLimits.StandardAmmoLimits
+
+		    System.Boolean boolean = standardAmmoLimits.TryGetValue()
+
+		    if (boolean == False)
+                goto INSN_1803EFB0B
+            endif
+
+		    INSN_1803EFAA8:
+		    ulong local17 = 0
+
+		    System.Boolean boolean2 = UnityEngine.Object.op_Inequality(armor, local17) //(Object x, Object y)
+
+		    if (boolean2 == False)
+                goto INSN_1803EFB1E
+            endif
+		    InventorySystem.Items.Armor.BodyArmor/ArmorAmmoLimit[] ammoLimits = armor.AmmoLimits
+		    System.Int32 length = ammoLimits.Length
+
+		    while (local12 < length)
+		        InventorySystem.Items.Armor.BodyArmor/ArmorAmmoLimit armorAmmoLimit = ammoLimits[local12]
+
+		        if (armorAmmoLimit == local3)
+                    goto INSN_1803EFB14
+                endif
+		        local12 += 1
+		    endwhile
+            
+		    goto INSN_1803EFB1E
+            
+
+		    INSN_1803EFB14:
+		    local5 += armorAmmoLimit
+
+		    INSN_1803EFB1E:
+
+		    System.Int32 int32 = UnityEngine.Mathf.Min(local13, local5) //(Int32 a, Int32 b)
+		    throw new System.NullReferenceException()
+
+		    INSN_1803EFB55:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1803EF8FE) is corrupt (Mismatched instance parameter. Expecting an instance of Mirror.SyncList`1, actually {'singleton' (type ServerConfigSynchronizer)}) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Configs.InventoryLimits
+	static System.SByte GetCategoryLimit(InventorySystem.Items.Armor.BodyArmor armor, ItemCategory category)
+		ServerConfigSynchronizer singleton = ServerConfigSynchronizer.Singleton
+		Mirror.SyncList`1<System.SByte> categoryLimits = singleton.CategoryLimits
+
+		System.Int32 count = categoryLimits.Count
+		ulong local7 = 0
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'ItemCategory' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+
+		System.Boolean isDefined = System.Enum.IsDefined(typeFromHandle, local10) //(Type enumType, Object value)
+
+		if (isDefined != False)
+
+		    if (local7 != category)
+		        System.Collections.Generic.Dictionary`2<ItemCategory,System.SByte> standardCategoryLimits = InventorySystem.Configs.InventoryLimits.StandardCategoryLimits
+
+		        System.Boolean boolean = standardCategoryLimits.TryGetValue()
+
+		        if (boolean != False)
+		            local7 += 1
+		        endif
+                
+		        local7 += 1
+		    endif
+            
+		endif
+        
+		ServerConfigSynchronizer singleton2 = ServerConfigSynchronizer.Singleton
+		Mirror.SyncList`1<System.SByte> categoryLimits2 = singleton2.CategoryLimits
+
+		System.Int32 count2 = categoryLimits2.Count
+		System.Collections.Generic.Dictionary`2<ItemCategory,System.SByte> standardCategoryLimits2 = InventorySystem.Configs.InventoryLimits.StandardCategoryLimits
+
+		System.Boolean boolean2 = standardCategoryLimits2.TryGetValue()
+
+		if (boolean2 == False)
+            goto INSN_1803EFF04
+        endif
+
+		INSN_1803EFF04:
+		System.Int64 local20 = 8
+		return local20
+		ulong local21 = 0
+		  = local20.
+
+		System.SByte item = local21.Item
+		ulong local24 = 0
+
+		System.Boolean boolean3 = UnityEngine.Object.op_Inequality(armor, local24) //(Object x, Object y)
+
+		if (boolean3 == False)
+            goto INSN_1803EFFE3
+        endif
+		InventorySystem.Items.Armor.BodyArmor/ArmorCategoryLimitModifier[] categoryLimits3 = armor.CategoryLimits
+		System.Int32 length = categoryLimits3.Length
+
+		while (constant71 < length)
+		    InventorySystem.Items.Armor.BodyArmor/ArmorCategoryLimitModifier armorCategoryLimitModifier = categoryLimits3[]
+
+		    if (armorCategoryLimitModifier != category)
+		         += 1
+		    endwhile
+            
+		    goto INSN_1803EFFE3
+            
+		    ItemCategory local29 = armorCategoryLimitModifier.Category
+		     += local29
+
+		    INSN_1803EFFE3:
+		    System.Int32 -8 = 4294967288
+		    System.Int32 8 = 8
+
+		    System.Int32 int32 = UnityEngine.Mathf.Clamp()
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1803EFDF9) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Configs.InventoryLimits
+	static System.Void .cctor()
+		System.Collections.Generic.Dictionary`2<ItemType,System.UInt16> dictionary = new System.Collections.Generic.Dictionary`2<ItemType,System.UInt16>()
+
+		dictionary..ctor()
+		System.Int64 local1 = 30
+		System.UInt32 local2 = local1 - 1
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		InventorySystem.Configs.InventoryLimits.StandardAmmoLimits = dictionary
+		System.Collections.Generic.Dictionary`2<ItemCategory,System.SByte> dictionary2 = new System.Collections.Generic.Dictionary`2<ItemCategory,System.SByte>()
+
+		dictionary2..ctor()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		 += 8
+		InventorySystem.Configs.InventoryLimits.StandardAmmoLimits = dictionary2
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.PlusOneOrMinusOneAction at (0x1803F0088) is corrupt (Local made was stripped) and cannot be created as IL. Aborting here.
+
+

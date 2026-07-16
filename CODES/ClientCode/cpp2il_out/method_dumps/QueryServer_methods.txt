@@ -1,0 +1,424 @@
+Type: QueryServer
+
+
+	Generated Pseudocode:
+
+	Declaring Type: QueryServer
+	System.Void .ctor(System.Int32 p, System.Boolean v6)
+		this.TimeoutThreshold = 10
+
+		base..ctor()
+		this._port = p
+		this._useV6 = v6
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldc.i4.s 10
+	IL_0003: conv.i8
+	IL_0004: conv.u8
+	IL_0005: stfld System.Int32 QueryServer::TimeoutThreshold
+	IL_000a: ldarg.0
+	IL_000b: call System.Void System.Object::.ctor()
+	IL_0010: ldarg.0
+	IL_0011: ldarg.1
+	IL_0012: stfld System.Int32 QueryServer::_port
+	IL_0017: ldarg.0
+	IL_0018: ldarg.2
+	IL_0019: stfld System.Boolean QueryServer::_useV6
+	IL_001e: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: QueryServer
+	System.Void StartServer()
+		this._serverStop = False
+		System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch()
+
+		stopwatch..ctor()
+		this.Stopwatch = stopwatch
+		System.Threading.ThreadStart threadStart = new System.Threading.ThreadStart()
+
+		threadStart..ctor(this, {'StartUp' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		System.Threading.Thread thread = new System.Threading.Thread()
+
+		thread..ctor(threadStart) //(ThreadStart start)
+
+		thread.IsBackground = True
+		this._thr = thread
+		System.Threading.Thread _thr = this._thr
+
+		_thr.Start()
+		System.Threading.ThreadStart threadStart2 = new System.Threading.ThreadStart()
+
+		threadStart2..ctor(this, {'CheckClients' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		System.Threading.Thread thread2 = new System.Threading.Thread()
+
+		thread2..ctor(threadStart2) //(ThreadStart start)
+
+		thread2.IsBackground = True
+		System.Int32 1 = 1
+
+		thread2.Priority = 1
+		this._checkThr = thread2
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldc.i4.0
+	IL_0002: stfld System.Boolean QueryServer::_serverStop
+	IL_0007: newobj System.Void System.Diagnostics.Stopwatch::.ctor()
+	IL_000c: stloc.0
+	IL_000d: ldarg.0
+	IL_000e: ldloc.0
+	IL_000f: stfld System.Diagnostics.Stopwatch QueryServer::Stopwatch
+	IL_0014: ldarg.0
+	IL_0015: ldftn System.Void QueryServer::StartUp()
+	IL_001b: newobj System.Void System.Threading.ThreadStart::.ctor(System.Object,System.IntPtr)
+	IL_0020: newobj System.Void System.Threading.Thread::.ctor(System.Threading.ThreadStart)
+	IL_0025: stloc.1
+	IL_0026: ldloc.1
+	IL_0027: ldc.i4.1
+	IL_0028: call System.Void System.Threading.Thread::set_IsBackground(System.Boolean)
+	IL_002d: ldarg.0
+	IL_002e: ldloc.1
+	IL_002f: stfld System.Threading.Thread QueryServer::_thr
+	IL_0034: ldarg.0
+	IL_0035: ldfld System.Threading.Thread QueryServer::_thr
+	IL_003a: call System.Void System.Threading.Thread::Start()
+	IL_003f: ldarg.0
+	IL_0040: ldftn System.Void QueryServer::CheckClients()
+	IL_0046: newobj System.Void System.Threading.ThreadStart::.ctor(System.Object,System.IntPtr)
+	IL_004b: newobj System.Void System.Threading.Thread::.ctor(System.Threading.ThreadStart)
+	IL_0050: stloc.2
+	IL_0051: ldloc.2
+	IL_0052: ldc.i4.1
+	IL_0053: call System.Void System.Threading.Thread::set_IsBackground(System.Boolean)
+	IL_0058: ldloc.2
+	IL_0059: ldc.i4.1
+	IL_005a: call System.Void System.Threading.Thread::set_Priority(System.Threading.ThreadPriority)
+	IL_005f: ldarg.0
+	IL_0060: ldloc.2
+	IL_0061: stfld System.Threading.Thread QueryServer::_checkThr
+	IL_0066: newobj System.Void System.NullReferenceException::.ctor()
+	IL_006b: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: QueryServer
+	System.Void CheckClients()
+
+		while (this._serverStop == False)
+		    System.Collections.Generic.List`1<QueryUser> users = this.Users
+		    System.Int32 _size = users._size
+		    System.Collections.Generic.List`1<QueryUser> users2 = this.Users
+
+		    System.Boolean isConnected = users.IsConnected()
+
+		    if (isConnected == False)
+		        System.Collections.Generic.List`1<QueryUser> users3 = this.Users
+		          = isConnected.
+
+		        System.String string = System.String.Concat()
+		        System.Int32 7 = 7
+
+		        ServerConsole.AddLog(string, 7) //(String q, ConsoleColor color)
+		        System.Collections.Generic.List`1<QueryUser> users4 = this.Users
+		        ulong local12 = 0
+
+		        string.CloseConn(local12) //(Boolean shuttingdown)
+		        System.Collections.Generic.List`1<QueryUser> users5 = this.Users
+
+		        users5.RemoveAt(_size) //(Int32 index)
+		    endif
+            
+
+		    System.Threading.Thread.Sleep(0x2710) //(Int32 millisecondsTimeout)
+		endwhile
+        
+		return
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181B43021) is corrupt (Mismatched instance parameter. Expecting an instance of QueryUser, actually {'users' (type System.Collections.Generic.List`1<QueryUser>)}) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: QueryServer
+	System.Void StopServer()
+		System.Int32 7 = 7
+
+		ServerConsole.AddLog("Stopping query server...", 7) //(String q, ConsoleColor color)
+		System.Threading.Thread _checkThr = this._checkThr
+
+		_checkThr.Abort()
+		this._serverStop = True
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldstr "Stopping query server..."
+	IL_0005: ldc.i4.7
+	IL_0006: call System.Void ServerConsole::AddLog(System.String,System.ConsoleColor)
+	IL_000b: ldarg.0
+	IL_000c: ldfld System.Threading.Thread QueryServer::_checkThr
+	IL_0011: call System.Void System.Threading.Thread::Abort()
+	IL_0016: ldarg.0
+	IL_0017: ldc.i4.1
+	IL_0018: stfld System.Boolean QueryServer::_serverStop
+	IL_001d: ret
+	IL_001e: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0023: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: QueryServer
+	System.Void StartUp()
+		ulong local3 = 0
+		System.Int32 _port = this._port
+
+		System.String string = System.String.Concat("Starting query server on port ", _port, " TCP...") //(Object arg0, Object arg1, Object arg2)
+		System.Int32 7 = 7
+
+		ServerConsole.AddLog(string, 7) //(String q, ConsoleColor color)
+		System.Collections.Generic.List`1<QueryUser> list = new System.Collections.Generic.List`1<QueryUser>()
+
+		list..ctor()
+		this.Users = list
+		System.Diagnostics.Stopwatch stopwatch = this.Stopwatch
+
+		stopwatch.Start()
+		System.Threading.Thread _checkThr = this._checkThr
+
+		_checkThr.Start()
+		System.Net.IPAddress iPAddress = System.Net.IPAddress.Any
+		System.Int32 _port2 = this._port
+		System.Net.Sockets.TcpListener tcpListener = new System.Net.Sockets.TcpListener()
+
+		tcpListener..ctor(iPAddress, _port2) //(IPAddress localaddr, Int32 port)
+		this._listner = tcpListener
+		System.Net.Sockets.TcpListener _listner = this._listner
+
+		_listner.Start()
+
+		if (this._useV6 != False)
+		    System.Net.IPAddress iPv6Any = System.Net.IPAddress.IPv6Any
+		    System.Net.Sockets.TcpListener tcpListener2 = new System.Net.Sockets.TcpListener()
+		    _port2 = local20
+
+		    tcpListener2..ctor(iPv6Any, _port2) //(IPAddress localaddr, Int32 port)
+		    this._listnerv6 = tcpListener2
+		    System.Net.Sockets.TcpListener _listnerv6 = this._listnerv6
+		    ulong local24 = 0
+
+		    _listnerv6.Start()
+
+		    this.AcceptSocket(local24) //(TcpListener lst)
+		endif
+        
+		System.Net.Sockets.TcpListener _listner2 = this._listner
+
+		if (this._serverStop != False)
+            goto INSN_181B4350D
+        endif
+
+		System.Boolean boolean = _listner2.Pending()
+
+		if (boolean != False)
+            goto INSN_181B43504
+        endif
+
+		if (this._useV6 == boolean)
+            goto INSN_181B434F6
+        endif
+		System.Net.Sockets.TcpListener _listnerv62 = this._listnerv6
+
+		System.Boolean boolean2 = _listnerv62.Pending()
+
+		if (boolean2 == False)
+            goto INSN_181B434F6
+        endif
+
+		INSN_181B434F6:
+
+		System.Threading.Thread.Sleep(500) //(Int32 millisecondsTimeout)
+
+		INSN_181B43504:
+
+		INSN_181B4350D:
+
+		.Stop()
+
+		if (this._useV6 == False)
+            goto INSN_181B43537
+        endif
+		System.Net.Sockets.TcpListener _listnerv63 = this._listnerv6
+
+		_listnerv63.Stop()
+
+		INSN_181B43537:
+		System.Collections.Generic.List`1<QueryUser> users = this.Users
+
+		System.Collections.Generic.List`1/Enumerator<T> enumerator = _listnerv63.GetEnumerator()
+
+		if (enumerator == 0)
+            goto INSN_181B4359D
+        endif
+
+		_listnerv63.CloseConn(True) //(Boolean shuttingdown)
+
+		INSN_181B4359D:
+
+		_listnerv63.Dispose()
+
+		if (local3 != 0)
+            goto INSN_181B436B6
+        endif
+		System.Collections.Generic.List`1<QueryUser> users2 = this.Users
+
+		users2.Clear()
+		System.Int32 7 = 7
+
+		ServerConsole.AddLog("Query server stopped.", 7) //(String q, ConsoleColor color)
+		  = enumerator.
+
+		System.String string2 = System.String.Concat()
+		System.Int32 7 = 7
+
+		ServerConsole.AddLog(string2, 7) //(String q, ConsoleColor color)
+		return
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+
+		INSN_181B436B6:
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.RegToRegMoveAction at (0x181B43476) is corrupt (Local local20 is a variable but it has been stripped out. Are you missing a call to RegisterUsedLocal?) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: QueryServer
+	System.Void AcceptSocket(System.Net.Sockets.TcpListener lst)
+
+		System.Net.Sockets.TcpClient tcpClient = lst.AcceptTcpClient()
+		System.Net.Sockets.Socket m_ClientSocket = tcpClient.m_ClientSocket
+
+		System.Net.EndPoint remoteEndPoint = m_ClientSocket.RemoteEndPoint
+
+		System.Int32 hashCode = remoteEndPoint.GetHashCode()
+		QueryUser queryUser = new QueryUser()
+
+		queryUser..ctor()
+		System.Collections.Generic.List`1<QueryUser> users = this.Users
+
+		users.Add(queryUser) //(T item)
+		System.Object[] local11 = new System.Object[5]
+
+		if ("New query connection from " != 0)
+
+		    if ("New query connection from " == 0)
+                goto INSN_181B42EE4
+            endif
+		endif
+        
+		local11[0] = "New query connection from "
+		System.Net.Sockets.Socket m_ClientSocket2 = tcpClient.m_ClientSocket
+
+		System.Net.EndPoint remoteEndPoint2 = m_ClientSocket2.RemoteEndPoint
+
+		if (remoteEndPoint2 == 0)
+            goto INSN_181B42DA2
+        endif
+
+		if (remoteEndPoint2 == 0)
+            goto INSN_181B42F04
+        endif
+
+		INSN_181B42DA2:
+		local11[1] = remoteEndPoint2
+
+		if (" on " == 0)
+            goto INSN_181B42DE6
+        endif
+
+		if (" on " == 0)
+            goto INSN_181B42F24
+        endif
+
+		INSN_181B42DE6:
+		local11[2] = " on "
+		System.Net.Sockets.Socket m_ClientSocket3 = tcpClient.m_ClientSocket
+
+		System.Net.EndPoint localEndPoint = m_ClientSocket3.LocalEndPoint
+
+		if (localEndPoint == 0)
+            goto INSN_181B42E33
+        endif
+
+		if (localEndPoint == 0)
+            goto INSN_181B42F44
+        endif
+
+		INSN_181B42E33:
+		local11[3] = localEndPoint
+
+		if ("." == 0)
+            goto INSN_181B42E77
+        endif
+
+		if ("." == 0)
+            goto INSN_181B42F64
+        endif
+
+		INSN_181B42E77:
+		local11[4] = "."
+
+		System.String string = System.String.Concat(local11) //(Object[] args)
+		System.Int32 7 = 7
+
+		ServerConsole.AddLog(string, 7) //(String q, ConsoleColor color)
+		return
+		throw new System.NullReferenceException()
+
+		INSN_181B42EE4:
+
+		INSN_181B42F04:
+
+		INSN_181B42F24:
+
+		INSN_181B42F44:
+
+		INSN_181B42F64:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AllocateInstanceAction at (0x181B42CCF) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (3)) and cannot be created as IL. Aborting here.
+
+

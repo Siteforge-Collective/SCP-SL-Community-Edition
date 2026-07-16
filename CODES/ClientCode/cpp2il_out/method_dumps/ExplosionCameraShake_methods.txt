@@ -1,0 +1,110 @@
+Type: ExplosionCameraShake
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ExplosionCameraShake
+	System.Void Update()
+		System.Single force = this.force
+		ulong local2 = 0
+
+		System.Single deltaTime = UnityEngine.Time.deltaTime
+		this.force = force
+		deltaTime = force
+
+		System.Single single = UnityEngine.Mathf.Clamp01(deltaTime) //(Single value)
+		PostProcessing.CameraShake _cameraShake = this._cameraShake
+		this.force = single
+		UnityEngine.Rendering.PostProcessing.FloatParameter scanLineJitter = _cameraShake.scanLineJitter
+		scanLineJitter. = single
+		PostProcessing.CameraShake _cameraShake2 = this._cameraShake
+		UnityEngine.Rendering.PostProcessing.FloatParameter horizontalShake = _cameraShake2.horizontalShake
+		System.Single force2 = this.force
+		horizontalShake. = force2
+		PostProcessing.CameraShake _cameraShake3 = this._cameraShake
+		UnityEngine.Rendering.PostProcessing.FloatParameter colorDrift = _cameraShake3.colorDrift
+		System.Single force3 = this.force
+		colorDrift. = force3
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.RegToFieldAction at (0x181B0C4D2) is corrupt (Instance or field is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ExplosionCameraShake
+	System.Void Awake()
+		ExplosionCameraShake.singleton = this
+
+		UnityEngine.Rendering.PostProcessing.PostProcessVolume component = base.GetComponent<UnityEngine.Rendering.PostProcessing.PostProcessVolume>()
+
+		UnityEngine.Rendering.PostProcessing.PostProcessProfile profile = component.profile
+
+		PostProcessing.CameraShake setting = profile.GetSetting<PostProcessing.CameraShake>()
+		this._cameraShake = setting
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: stsfld ExplosionCameraShake ExplosionCameraShake::singleton
+	IL_0006: ldarg.0
+	IL_0007: call T UnityEngine.Component::GetComponent<UnityEngine.Rendering.PostProcessing.PostProcessVolume>()
+	IL_000c: call UnityEngine.Rendering.PostProcessing.PostProcessProfile UnityEngine.Rendering.PostProcessing.PostProcessVolume::get_profile()
+	IL_0011: call T UnityEngine.Rendering.PostProcessing.PostProcessProfile::GetSetting<PostProcessing.CameraShake>()
+	IL_0016: stloc.0
+	IL_0017: ldarg.0
+	IL_0018: ldloc.0
+	IL_0019: stfld PostProcessing.CameraShake ExplosionCameraShake::_cameraShake
+	IL_001e: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0023: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ExplosionCameraShake
+	System.Void Shake(System.Single explosionForce)
+
+		if (explosionForce > this.force)
+		    this.force = explosionForce
+		endif
+        
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.1
+	IL_0001: ldarg.0
+	IL_0002: ldfld System.Single ExplosionCameraShake::force
+	IL_0007: ble.s IL_0010
+	IL_0009: ldarg.0
+	IL_000a: ldarg.1
+	IL_000b: stfld System.Single ExplosionCameraShake::force
+	IL_0010: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ExplosionCameraShake
+	System.Void .ctor()
+		this.deductSpeed = 2
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldc.r4 2
+	IL_0006: stfld System.Single ExplosionCameraShake::deductSpeed
+	IL_000b: ldarg.0
+	IL_000c: call System.Void UnityEngine.MonoBehaviour::.ctor()
+	IL_0011: ret
+	
+

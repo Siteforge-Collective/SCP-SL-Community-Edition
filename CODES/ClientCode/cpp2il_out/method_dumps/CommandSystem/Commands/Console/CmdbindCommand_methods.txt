@@ -1,0 +1,170 @@
+Type: CmdbindCommand
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.Console.CmdbindCommand
+	System.String get_Command()
+		System.String Command = this.<Command>k__BackingField
+		return Command
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String CommandSystem.Commands.Console.CmdbindCommand::<Command>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.Console.CmdbindCommand
+	System.String[] get_Aliases()
+		System.String[] Aliases = this.<Aliases>k__BackingField
+		return Aliases
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String[] CommandSystem.Commands.Console.CmdbindCommand::<Aliases>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.Console.CmdbindCommand
+	System.String get_Description()
+		System.String Description = this.<Description>k__BackingField
+		return Description
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String CommandSystem.Commands.Console.CmdbindCommand::<Description>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.Console.CmdbindCommand
+	System.Boolean Execute(System.ArraySegment`1<System.String> arguments, CommandSystem.ICommandSender sender, System.String& response)
+		ulong local4 = 0
+		System.Int32 _count = arguments._count
+
+		if (_count != 0)
+		    ulong local6 = 0
+
+		    System.String string = .ToUpperInvariant()
+
+		    System.Boolean boolean = System.Enum.TryParse<UnityEngine.KeyCode>(string, local6) //(String value, TEnum& result)
+
+		    if (boolean == False)
+
+		        System.Boolean boolean2 = NewInput.TryParseKeycode(string, local6) //(String s, KeyCode& keyCode)
+
+		        if (boolean2 != False)
+		        else
+
+		            System.String string2 = System.String.Concat("Invalid key code: ", local6) //(String str0, String str1)
+		            response. = string2
+		            ulong local13 = 0
+		            return local13
+		        endif
+                
+		    endif
+            
+		    boolean += 1
+		    System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder()
+
+		    stringBuilder..ctor(string) //(String value)
+
+		    if (_count <= 2)
+                goto INSN_18046F44E
+            endif
+
+		    System.String string3 = System.String.Concat(" ", string) //(String str0, String str1)
+
+		    System.Text.StringBuilder stringBuilder2 = stringBuilder.Append(string3) //(String value)
+		     += 1
+		endwhile
+        
+		goto INSN_18046F665
+        
+
+		INSN_18046F44E:
+
+		System.Int32 hashCode = stringBuilder.GetHashCode()
+
+		CmdBinding.KeyBind()
+		ulong local22 = 0
+
+		CmdBinding.Save()
+
+		System.String string4 = System.String.Format("Command [{0}] has been bound to [{1}]!", stringBuilder, hashCode) //(String format, Object arg0, Object arg1)
+		response. = "SYNTAX: "cmdbind <key/keycode> <command>""
+		endif
+    
+		System.Text.StringBuilder stringBuilder3 = new System.Text.StringBuilder()
+
+		stringBuilder3..ctor()
+
+		System.Text.StringBuilder stringBuilder4 = stringBuilder3.AppendLine("<size=25>Command Binding List:</size>") //(String value)
+		  = .
+
+		System.Collections.Generic.List`1/Enumerator<T> enumerator = .GetEnumerator()
+
+		if (enumerator == 0)
+        goto INSN_18046F5FB
+    endif
+
+		System.String string5 = System.String.Format("{0} ({1}) : {2}", enumerator, enumerator, response) //(String format, Object arg0, Object arg1, Object arg2)
+
+		System.Text.StringBuilder stringBuilder5 = stringBuilder3.AppendLine(string5) //(String value)
+
+		INSN_18046F5FB:
+
+		stringBuilder3.Dispose()
+
+		stringBuilder3.Dispose()
+
+		if (stringBuilder3 != 0)
+        goto INSN_18046F6C7
+    endif
+
+		System.Int32 hashCode2 = stringBuilder3.GetHashCode()
+		response. = hashCode2
+
+		INSN_18046F665:
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18046F29B) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.Console.CmdbindCommand
+	System.Void .ctor()
+		this.<Command>k__BackingField = "cmdbind"
+		this.<Description>k__BackingField = "Bind a key to a specific command."
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldstr "cmdbind"
+	IL_0006: stfld System.String CommandSystem.Commands.Console.CmdbindCommand::<Command>k__BackingField
+	IL_000b: ldarg.0
+	IL_000c: ldstr "Bind a key to a specific command."
+	IL_0011: stfld System.String CommandSystem.Commands.Console.CmdbindCommand::<Description>k__BackingField
+	IL_0016: ldarg.0
+	IL_0017: call System.Void System.Object::.ctor()
+	IL_001c: ret
+	
+

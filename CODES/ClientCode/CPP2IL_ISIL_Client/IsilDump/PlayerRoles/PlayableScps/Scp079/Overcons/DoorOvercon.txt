@@ -1,0 +1,460 @@
+Type: PlayerRoles.PlayableScps.Scp079.Overcons.DoorOvercon
+
+Method: Interactables.Interobjects.DoorUtils.DoorVariant get_Target()
+
+Disassembly:
+	mov rax,[rcx+30h]
+	ret
+
+ISIL:
+	001 Move rax, [rcx+48]
+	002 Return rax
+
+Method: System.Void set_Target(Interactables.Interobjects.DoorUtils.DoorVariant value)
+
+Disassembly:
+	add rcx,30h
+	mov [rcx],rdx
+	jmp near ptr 0000000180293EF0h
+
+ISIL:
+	001 Add rcx, rcx, 48
+	002 Move [rcx], rdx
+	003 Call 0x180293EF0, rcx, rdx, r8, r9
+	004 Return 
+
+Method: System.Boolean get_IsInvisible()
+
+Disassembly:
+	push rbx
+	sub rsp,20h
+	cmp byte ptr [1826EB154h],0
+	mov rbx,rcx
+	jne short 000000018050ACB4h
+	mov ecx,[1822ECBB4h]
+	call 0000000180294190h
+	mov byte ptr [1826EB154h],1
+	mov rdx,[182741058h]
+	mov rcx,[rbx+30h]
+	call 0000000180293F00h
+	test rax,rax
+	je short 000000018050ACDEh
+	mov rdx,[182741058h]
+	mov r8,rax
+	xor ecx,ecx
+	call 00000001800C7A30h
+	test al,al
+	jne short 000000018050AD15h
+	mov r8,[rbx+30h]
+	test r8,r8
+	je short 000000018050AD3Fh
+	mov rdx,[182740F10h]
+	mov rax,[r8]
+	movzx ecx,byte ptr [rdx+128h]
+	cmp [rax+128h],cl
+	jb short 000000018050AD3Fh
+	mov rax,[rax+0C8h]
+	cmp [rax+rcx*8-8],rdx
+	jne short 000000018050AD3Fh
+	cmp byte ptr [r8+48h],0
+	je short 000000018050AD1Dh
+	mov al,1
+	add rsp,20h
+	pop rbx
+	ret
+	mov rax,[r8]
+	mov rcx,r8
+	mov rdx,[rax+288h]
+	call qword ptr [rax+280h]
+	xorps xmm1,xmm1
+	comiss xmm0,xmm1
+	seta al
+	add rsp,20h
+	pop rbx
+	ret
+	xor al,al
+	add rsp,20h
+	pop rbx
+	ret
+
+ISIL:
+	001 ShiftStack -8
+	002 Move stack:0x0, rbx
+	003 ShiftStack -32
+	004 Compare [0x1826EB154], 0
+	005 Move rbx, rcx
+	006 JumpIfNotEqual {10}
+	007 Move rcx, [0x1822ECBB4]
+	008 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	009 Move [0x1826EB154], 1
+	010 Move rdx, typeof(Interactables.Interobjects.DoorUtils.IDamageableDoor)
+	011 Move rcx, [rbx+48]
+	012 Call 0x180293F00, rcx, rdx, r8, r9
+	013 Compare rax, 0
+	014 JumpIfEqual {21}
+	015 Move rdx, typeof(Interactables.Interobjects.DoorUtils.IDamageableDoor)
+	016 Move r8, rax
+	017 Move rcx, 0
+	018 Call 0x1800C7A30, rcx, rdx, r8, r9
+	019 Compare rax, 0
+	020 JumpIfNotEqual {34}
+	021 Move r8, [rbx+48]
+	022 Compare r8, 0
+	023 JumpIfEqual {50}
+	024 Move rdx, typeof(Interactables.Interobjects.CheckpointDoor)
+	025 Move rax, [r8]
+	026 Move rcx, [rdx+296]
+	027 Compare [rax+296], rcx
+	028 JumpIfLess {50}
+	029 Move rax, [rax+200]
+	030 Compare [rax+0xFFFFFFF8+rcx*8], rdx
+	031 JumpIfNotEqual {50}
+	032 Compare [r8+72], 0
+	033 JumpIfEqual {39}
+	034 Move rax, 1
+	035 ShiftStack 32
+	036 Move rbx, stack:0x0
+	037 ShiftStack 8
+	038 Return rax
+	039 Move rax, [r8]
+	040 Move rcx, r8
+	041 Move rdx, [rax+648]
+	042 Call 0, rcx, rdx, r8, r9, stack:0x0, stack:0x8, stack:0x10, stack:0x18, stack:0x20, stack:0x28, stack:0x30, stack:0x38, stack:0x40
+	043 Move xmm1, 0
+	044 Compare xmm0, xmm1
+	045 NotImplemented "seta al"
+	046 ShiftStack 32
+	047 Move rbx, stack:0x0
+	048 ShiftStack 8
+	049 Return rax
+	050 Move rax, 0
+	051 ShiftStack 32
+	052 Move rbx, stack:0x0
+	053 ShiftStack 8
+	054 Return rax
+
+Method: System.Void LateUpdate()
+
+Disassembly:
+	mov [rsp+8],rbx
+	push rdi
+	sub rsp,20h
+	mov rdi,rcx
+	mov rcx,[rcx+28h]
+	mov rax,[rdi+30h]
+	test rax,rax
+	je near ptr 000000018050ABF8h
+	cmp byte ptr [rax+48h],0
+	je short 000000018050AB0Ah
+	mov rdx,[rdi+38h]
+	jmp short 000000018050AB0Eh
+	mov rdx,[rdi+40h]
+	test rcx,rcx
+	je near ptr 000000018050ABF8h
+	xor r8d,r8d
+	call 0000000180FD4780h
+	cmp byte ptr [1826EB154h],0
+	jne short 000000018050AB3Ah
+	mov ecx,[1822ECBB4h]
+	call 0000000180294190h
+	mov byte ptr [1826EB154h],1
+	mov rdx,[182741058h]
+	mov rcx,[rdi+30h]
+	call 0000000180293F00h
+	test rax,rax
+	je short 000000018050AB68h
+	mov rdx,[182741058h]
+	mov r8,rax
+	xor ecx,ecx
+	call 00000001800C7A30h
+	test al,al
+	je short 000000018050AB68h
+	mov bl,1
+	jmp short 000000018050ABC3h
+	mov r8,[rdi+30h]
+	test r8,r8
+	je short 000000018050ABC1h
+	mov rdx,[182740F10h]
+	mov rax,[r8]
+	movzx ecx,byte ptr [rdx+128h]
+	cmp [rax+128h],cl
+	jb short 000000018050ABC1h
+	mov rax,[rax+0C8h]
+	cmp [rax+rcx*8-8],rdx
+	jne short 000000018050ABC1h
+	cmp byte ptr [r8+48h],0
+	je short 000000018050ABA3h
+	mov bl,1
+	jmp short 000000018050ABC3h
+	mov rax,[r8]
+	mov rcx,r8
+	mov rdx,[rax+288h]
+	call qword ptr [rax+280h]
+	xorps xmm1,xmm1
+	comiss xmm0,xmm1
+	seta bl
+	jmp short 000000018050ABC3h
+	xor bl,bl
+	mov rcx,[rdi+28h]
+	xor bl,1
+	test rcx,rcx
+	je short 000000018050ABF8h
+	xor r8d,r8d
+	movzx edx,bl
+	call 0000000180FD1A10h
+	mov rcx,[rdi+48h]
+	test rcx,rcx
+	je short 000000018050ABF8h
+	xor r8d,r8d
+	movzx edx,bl
+	mov rbx,[rsp+30h]
+	add rsp,20h
+	pop rdi
+	jmp near ptr 0000000181A73790h
+	call 0000000180294310h
+
+ISIL:
+	001 Move stack:0x8, rbx
+	002 ShiftStack -8
+	003 Move stack:0x0, rdi
+	004 ShiftStack -32
+	005 Move rdi, rcx
+	006 Move rcx, [rcx+40]
+	007 Move rax, [rdi+48]
+	008 Compare rax, 0
+	009 JumpIfEqual {79}
+	010 Compare [rax+72], 0
+	011 JumpIfEqual {14}
+	012 Move rdx, [rdi+56]
+	013 Goto {15}
+	014 Move rdx, [rdi+64]
+	015 Compare rcx, 0
+	016 JumpIfEqual {79}
+	017 Move r8, 0
+	018 Call SpriteRenderer.set_sprite, rcx, rdx
+	019 Compare [0x1826EB154], 0
+	020 JumpIfNotEqual {24}
+	021 Move rcx, [0x1822ECBB4]
+	022 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	023 Move [0x1826EB154], 1
+	024 Move rdx, typeof(Interactables.Interobjects.DoorUtils.IDamageableDoor)
+	025 Move rcx, [rdi+48]
+	026 Call 0x180293F00, rcx, rdx, r8, r9
+	027 Compare rax, 0
+	028 JumpIfEqual {37}
+	029 Move rdx, typeof(Interactables.Interobjects.DoorUtils.IDamageableDoor)
+	030 Move r8, rax
+	031 Move rcx, 0
+	032 Call 0x1800C7A30, rcx, rdx, r8, r9
+	033 Compare rax, 0
+	034 JumpIfEqual {37}
+	035 Move rbx, 1
+	036 Goto {61}
+	037 Move r8, [rdi+48]
+	038 Compare r8, 0
+	039 JumpIfEqual {60}
+	040 Move rdx, typeof(Interactables.Interobjects.CheckpointDoor)
+	041 Move rax, [r8]
+	042 Move rcx, [rdx+296]
+	043 Compare [rax+296], rcx
+	044 JumpIfLess {60}
+	045 Move rax, [rax+200]
+	046 Compare [rax+0xFFFFFFF8+rcx*8], rdx
+	047 JumpIfNotEqual {60}
+	048 Compare [r8+72], 0
+	049 JumpIfEqual {52}
+	050 Move rbx, 1
+	051 Goto {61}
+	052 Move rax, [r8]
+	053 Move rcx, r8
+	054 Move rdx, [rax+648]
+	055 Call 0, rcx, rdx, r8, r9, stack:0x0, stack:0x8, stack:0x10, stack:0x18, stack:0x20, stack:0x28, stack:0x30, stack:0x38, stack:0x40
+	056 Move xmm1, 0
+	057 Compare xmm0, xmm1
+	058 NotImplemented "seta bl"
+	059 Goto {61}
+	060 Move rbx, 0
+	061 Move rcx, [rdi+40]
+	062 Xor rbx, rbx, 1
+	063 Compare rcx, 0
+	064 JumpIfEqual {79}
+	065 Move r8, 0
+	066 Move rdx, rbx
+	067 Call Renderer.set_enabled, rcx, rdx
+	068 Move rcx, [rdi+72]
+	069 Compare rcx, 0
+	070 JumpIfEqual {79}
+	071 Move r8, 0
+	072 Move rdx, rbx
+	073 Move rbx, stack:0x30
+	074 ShiftStack 32
+	075 Move rdi, stack:0x0
+	076 ShiftStack 8
+	077 Call Collider.set_enabled, rcx, rdx
+	078 Return 
+	079 Call 0x180294310, rcx, rdx, r8, r9
+
+Method: System.Void Awake()
+
+Disassembly:
+	mov [rsp+8],rbx
+	push rdi
+	sub rsp,30h
+	cmp byte ptr [1826EB155h],0
+	mov rbx,rcx
+	jne short 000000018050AA38h
+	mov ecx,[1822ECB7Ch]
+	call 0000000180294190h
+	mov byte ptr [1826EB155h],1
+	cmp byte ptr [1826EB169h],0
+	jne short 000000018050AA53h
+	mov ecx,[1822D4098h]
+	call 0000000180294190h
+	mov byte ptr [1826EB169h],1
+	mov rax,[182726380h]
+	mov rdi,[rbx+28h]
+	test byte ptr [rax+12Fh],2
+	je short 000000018050AA7Fh
+	cmp dword ptr [rax+0E0h],0
+	jne short 000000018050AA7Fh
+	mov rcx,rax
+	call 000000018021A070h
+	mov rax,[182726380h]
+	mov rcx,[rax+0B8h]
+	test rdi,rdi
+	je short 000000018050AACBh
+	movups xmm0,[rcx]
+	xor r8d,r8d
+	lea rdx,[rsp+20h]
+	mov rcx,rdi
+	movaps [rsp+20h],xmm0
+	call 0000000180FD4730h
+	mov rdx,[18270DCC8h]
+	mov rcx,rbx
+	call 00000001804BCD50h
+	lea rcx,[rbx+48h]
+	mov rdx,rax
+	mov [rcx],rax
+	mov rbx,[rsp+40h]
+	add rsp,30h
+	pop rdi
+	jmp near ptr 0000000180293EF0h
+	call 0000000180294310h
+
+ISIL:
+	001 Move stack:0x8, rbx
+	002 ShiftStack -8
+	003 Move stack:0x0, rdi
+	004 ShiftStack -48
+	005 Compare [0x1826EB155], 0
+	006 Move rbx, rcx
+	007 JumpIfNotEqual {11}
+	008 Move rcx, [0x1822ECB7C]
+	009 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	010 Move [0x1826EB155], 1
+	011 Compare [0x1826EB169], 0
+	012 JumpIfNotEqual {16}
+	013 Move rcx, [0x1822D4098]
+	014 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	015 Move [0x1826EB169], 1
+	016 Move rax, typeof(PlayerRoles.PlayableScps.Scp079.Overcons.StandardOvercon)
+	017 Move rdi, [rbx+40]
+	018 Compare [rax+303], 2
+	019 JumpIfEqual {25}
+	020 Compare [rax+224], 0
+	021 JumpIfNotEqual {25}
+	022 Move rcx, rax
+	023 Call "il2cpp_runtime_class_init_export", rcx, rdx, r8, r9
+	024 Move rax, typeof(PlayerRoles.PlayableScps.Scp079.Overcons.StandardOvercon)
+	025 Move rcx, [rax+184]
+	026 Compare rdi, 0
+	027 JumpIfEqual {46}
+	028 Move xmm0, [rcx]
+	029 Move r8, 0
+	030 LoadAddress rdx, stack:0x20
+	031 Move rcx, rdi
+	032 Move stack:0x20, xmm0
+	033 Call SpriteRenderer.set_color, rcx, rdx
+	034 Move rdx, [0x18270DCC8]
+	035 Move rcx, rbx
+	036 Call 0x1804BCD50, rcx, rdx
+	037 LoadAddress rcx, [rbx+72]
+	038 Move rdx, rax
+	039 Move [rcx], rax
+	040 Move rbx, stack:0x40
+	041 ShiftStack 48
+	042 Move rdi, stack:0x0
+	043 ShiftStack 8
+	044 Call 0x180293EF0, rcx, rdx, r8, r9
+	045 Return 
+	046 Call 0x180294310, rcx, rdx, r8, r9
+
+Method: System.Void .ctor()
+
+Disassembly:
+	push rbx
+	sub rsp,20h
+	cmp byte ptr [1826EB156h],0
+	mov rbx,rcx
+	jne short 000000018050AC24h
+	mov ecx,[1822ECB8Ch]
+	call 0000000180294190h
+	mov byte ptr [1826EB156h],1
+	mov rcx,[182726380h]
+	test byte ptr [rcx+12Fh],2
+	je short 000000018050AC42h
+	cmp dword ptr [rcx+0E0h],0
+	jne short 000000018050AC42h
+	call 000000018021A070h
+	cmp byte ptr [1826EB16Ch],0
+	jne short 000000018050AC5Dh
+	mov ecx,[1822D410Ch]
+	call 0000000180294190h
+	mov byte ptr [1826EB16Ch],1
+	mov rcx,[1827262E0h]
+	test byte ptr [rcx+12Fh],2
+	je short 000000018050AC7Bh
+	cmp dword ptr [rcx+0E0h],0
+	jne short 000000018050AC7Bh
+	call 000000018021A070h
+	xor edx,edx
+	mov rcx,rbx
+	add rsp,20h
+	pop rbx
+	jmp near ptr 0000000180FD1850h
+
+ISIL:
+	001 ShiftStack -8
+	002 Move stack:0x0, rbx
+	003 ShiftStack -32
+	004 Compare [0x1826EB156], 0
+	005 Move rbx, rcx
+	006 JumpIfNotEqual {10}
+	007 Move rcx, [0x1822ECB8C]
+	008 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	009 Move [0x1826EB156], 1
+	010 Move rcx, typeof(PlayerRoles.PlayableScps.Scp079.Overcons.StandardOvercon)
+	011 Compare [rcx+303], 2
+	012 JumpIfEqual {16}
+	013 Compare [rcx+224], 0
+	014 JumpIfNotEqual {16}
+	015 Call "il2cpp_runtime_class_init_export", rcx, rdx, r8, r9
+	016 Compare [0x1826EB16C], 0
+	017 JumpIfNotEqual {21}
+	018 Move rcx, [0x1822D410C]
+	019 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	020 Move [0x1826EB16C], 1
+	021 Move rcx, typeof(PlayerRoles.PlayableScps.Scp079.Overcons.OverconBase)
+	022 Compare [rcx+303], 2
+	023 JumpIfEqual {27}
+	024 Compare [rcx+224], 0
+	025 JumpIfNotEqual {27}
+	026 Call "il2cpp_runtime_class_init_export", rcx, rdx, r8, r9
+	027 Move rdx, 0
+	028 Move rcx, rbx
+	029 ShiftStack 32
+	030 Move rbx, stack:0x0
+	031 ShiftStack 8
+	032 Call 0x180FD1850, rcx, rdx
+	033 Return 
+

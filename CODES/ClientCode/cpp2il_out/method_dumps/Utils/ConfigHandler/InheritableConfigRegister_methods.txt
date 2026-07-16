@@ -1,0 +1,145 @@
+Type: InheritableConfigRegister
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Utils.ConfigHandler.InheritableConfigRegister
+	System.Void .ctor(Utils.ConfigHandler.ConfigRegister parentConfigRegister)
+		System.Collections.Generic.List`1<Utils.ConfigHandler.ConfigEntry> list = new System.Collections.Generic.List`1<Utils.ConfigHandler.ConfigEntry>()
+
+		list..ctor()
+		this.registeredConfigs = list
+
+		base..ctor()
+		this.<ParentConfigRegister>k__BackingField = parentConfigRegister
+
+
+Generated IL:
+	IL_0000: newobj System.Void System.Collections.Generic.List`1::.ctor()
+	IL_0005: stloc.0
+	IL_0006: ldarg.0
+	IL_0007: ldloc.0
+	IL_0008: stfld System.Collections.Generic.List`1<Utils.ConfigHandler.ConfigEntry> Utils.ConfigHandler.ConfigRegister::registeredConfigs
+	IL_000d: ldarg.0
+	IL_000e: call System.Void System.Object::.ctor()
+	IL_0013: ldarg.0
+	IL_0014: ldarg.1
+	IL_0015: stfld Utils.ConfigHandler.ConfigRegister Utils.ConfigHandler.InheritableConfigRegister::<ParentConfigRegister>k__BackingField
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Utils.ConfigHandler.InheritableConfigRegister
+	Utils.ConfigHandler.ConfigRegister get_ParentConfigRegister()
+		Utils.ConfigHandler.ConfigRegister ParentConfigRegister = this.<ParentConfigRegister>k__BackingField
+		return ParentConfigRegister
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld Utils.ConfigHandler.ConfigRegister Utils.ConfigHandler.InheritableConfigRegister::<ParentConfigRegister>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Utils.ConfigHandler.InheritableConfigRegister
+	System.Void set_ParentConfigRegister(Utils.ConfigHandler.ConfigRegister value)
+		this.<ParentConfigRegister>k__BackingField = value
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: stfld Utils.ConfigHandler.ConfigRegister Utils.ConfigHandler.InheritableConfigRegister::<ParentConfigRegister>k__BackingField
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Utils.ConfigHandler.InheritableConfigRegister
+	System.Void UpdateConfigValue(Utils.ConfigHandler.ConfigEntry configEntry)
+
+		if (configEntry != 0)
+
+		    if (configEntry.<Inherit>k__BackingField != False)
+
+		        if (this.<ParentConfigRegister>k__BackingField != 0)
+
+		            this.UpdateConfigValue(configEntry) //(ConfigEntry configEntry)
+
+		            if (constant4 != 0)
+		                Utils.ConfigHandler.ConfigRegister ParentConfigRegister = this.<ParentConfigRegister>k__BackingField
+
+		                ParentConfigRegister.UpdateConfigValue(configEntry) //(ConfigEntry configEntry)
+		                return
+		            endif
+                    
+
+		            System.Boolean boolean = this.ShouldInheritConfigEntry(configEntry) //(ConfigEntry configEntry)
+		            return
+		            throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfZeroOrNullAction at (0x180A566F4) is corrupt (ConstantDefinition: Don't know how to get IL to load a Cpp2IL.Core.Analysis.Il2CppClassIdentifier) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Utils.ConfigHandler.InheritableConfigRegister
+	Utils.ConfigHandler.ConfigRegister[] GetConfigRegisterHierarchy(System.Boolean highestToLowest)
+		NorthwoodLib.Pools.ListPool`1<T> shared = NorthwoodLib.Pools.ListPool`1.Shared
+
+		System.Collections.Generic.List`1<T> list = shared.Rent()
+
+		if (this != 0)
+
+		    System.Boolean boolean = list.Contains()
+
+		    if (boolean != False)
+                goto INSN_180A5663D
+            endif
+
+		    list.Add()
+		    //UNKNOWN CLASS OFFSET READ HERE
+
+		    if (this == 0)
+                goto INSN_180A5663D
+            endif
+		    Utils.ConfigHandler.ConfigRegister ParentConfigRegister = this.<ParentConfigRegister>k__BackingField
+
+		    if (ParentConfigRegister == 0)
+		    endwhile
+            
+		    goto INSN_180A566B9
+            
+		else
+		endif
+        
+
+		if (highestToLowest == False)
+            goto INSN_180A56651
+        endif
+
+		list.Reverse()
+
+		INSN_180A56651:
+
+		Utils.ConfigHandler.ConfigRegister[] configRegisterArray = list.ToArray()
+		NorthwoodLib.Pools.ListPool`1<T> shared2 = NorthwoodLib.Pools.ListPool`1.Shared
+
+		shared2.Return(list) //(List`1 list)
+		return configRegisterArray
+
+		INSN_180A566B9:
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180A565E6) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+

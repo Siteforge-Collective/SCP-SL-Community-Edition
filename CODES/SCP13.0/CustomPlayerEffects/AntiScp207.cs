@@ -1,0 +1,234 @@
+using System;
+using System.Collections.Generic;
+using Mirror;
+using PlayerRoles.FirstPersonControl;
+using PlayerStatsSystem;
+using RemoteAdmin.Interfaces;
+using UnityEngine;
+
+namespace CustomPlayerEffects
+{
+	public class AntiScp207 : CokeBase<AntiScp207Stack>, ISpectatorDataPlayerEffect, ICustomRADisplay, IDamageModifierEffect
+	{
+		private struct BreakMessage : NetworkMessage
+		{
+			public Vector3 SoundPos;
+		}
+
+		private const float AhpDecayValue = 1f;
+
+		public static readonly float DeathSaveHealth = 1f;
+
+		public static readonly float VitalitySpeedMultipler = 1f;
+
+		public static readonly float HumanAHPEfficacy = 1f;
+
+		public static readonly float TeslaImmunityTime = 2f;
+
+		public static readonly float BreakSoundDistance = 25f;
+
+		public static readonly float BreakVolumeModifier = 0.45f;
+
+		public static readonly float DamageImmunityTime = 1.5f;
+
+		[SerializeField]
+		private AudioClip[] _ambienceSounds;
+
+		[SerializeField]
+		private AudioSource _ambienceSource;
+
+		[SerializeField]
+		private AudioClip _effectBreakSound;
+
+		private float _lastSaveTime;
+
+		private bool _isDamageModifierEnabled;
+
+		private HealthStat _healthStat;
+
+		private AhpStat _ahpStat;
+
+		private int _ahpKillCode;
+
+		public override EffectClassification Classification => EffectClassification.Mixed;
+
+		public override Dictionary<PlayerMovementState, float> StateMultipliers { get; } = new Dictionary<PlayerMovementState, float>
+		{
+			[PlayerMovementState.Crouching] = 1f,
+			[PlayerMovementState.Sneaking] = 0.7f,
+			[PlayerMovementState.Walking] = 0.6f,
+			[PlayerMovementState.Sprinting] = 0.1f
+		};
+
+		public string DisplayName => "SCP-207?";
+
+		public bool CanBeDisplayed => false;
+
+		public override float MovementSpeedMultiplier
+		{
+			get
+			{
+				if (!Vitality.CheckPlayer(base.Hub))
+				{
+					return base.CurrentStack.SpeedMultiplier;
+				}
+				return VitalitySpeedMultipler;
+			}
+		}
+
+		public bool DamageModifierActive
+		{
+			get
+			{
+				if (_isDamageModifierEnabled)
+				{
+					if (!base.IsEnabled)
+					{
+						return IsTeslaImmunityActive;
+					}
+					return true;
+				}
+				return false;
+			}
+		}
+
+		private bool IsTeslaImmunityActive => _lastSaveTime + TeslaImmunityTime >= Time.timeSinceLevelLoad;
+
+		private bool IsImmunityActive => _lastSaveTime + DamageImmunityTime >= Time.timeSinceLevelLoad;
+
+		private float CurrentHealing => base.CurrentStack.HealAmount * GetMovementStateMultiplier();
+
+		public override bool CheckConflicts(StatusEffectBase other)
+		{
+			return _isDamageModifierEnabled = !base.CheckConflicts(other);
+		}
+
+		public bool GetSpectatorText(out string s)
+		{
+			s = ((base.Intensity > 1) ? $"SCP-207? (x{base.Intensity})" : "SCP-207?");
+			return true;
+		}
+
+		public float GetDamageModifier(float baseDamage, DamageHandlerBase handler, HitboxType hitboxType)
+		{
+			UniversalDamageHandler universalDamageHandler = handler as UniversalDamageHandler;
+			if (IsImmunityActive)
+			{
+				return 0f;
+			}
+			if (IsTeslaImmunityActive && universalDamageHandler != null && universalDamageHandler.TranslationId == DeathTranslations.Tesla.Id)
+			{
+				return 0f;
+			}
+			if (!base.IsEnabled)
+			{
+				return 1f;
+			}
+			if (universalDamageHandler != null && (universalDamageHandler.TranslationId == DeathTranslations.Scp207.Id || universalDamageHandler.TranslationId == DeathTranslations.PocketDecay.Id))
+			{
+				return 1f;
+			}
+			float curValue = base.Hub.playerStats.GetModule<HealthStat>().CurValue;
+			float curValue2 = base.Hub.playerStats.GetModule<AhpStat>().CurValue;
+			float num = curValue + curValue2;
+			if (curValue > baseDamage || num > baseDamage)
+			{
+				return 1f;
+			}
+			DisableEffect();
+			NetworkServer.SendToReady(new BreakMessage
+			{
+				SoundPos = base.Hub.transform.position
+			});
+			_lastSaveTime = Time.timeSinceLevelLoad;
+			return (num - DeathSaveHealth) / baseDamage;
+		}
+
+		protected override void IntensityChanged(byte prevState, byte newState)
+		{
+			base.IntensityChanged(prevState, newState);
+			if (base.IsLocalPlayer)
+			{
+				_ambienceSource.Stop();
+				if (newState > 0)
+				{
+					_ambienceSource.clip = _ambienceSounds[Mathf.Min(newState, _ambienceSounds.Length) - 1];
+					_ambienceSource.Play();
+				}
+			}
+		}
+
+		protected override void OnTick()
+		{
+			if (!NetworkServer.active)
+			{
+				return;
+			}
+			float currentHealing = CurrentHealing;
+			AhpStat.AhpProcess process;
+			bool flag = _ahpStat.ServerTryGetProcess(_ahpKillCode, out process);
+			if (!_healthStat.FullyHealed)
+			{
+				if (flag)
+				{
+					process.DecayRate = 0f;
+				}
+				_healthStat.ServerHeal(currentHealing);
+				return;
+			}
+			if (!flag)
+			{
+				process = _ahpStat.ServerAddProcess(currentHealing, 75f, 0f - currentHealing, 0.7f, 0f, persistant: false);
+				_ahpKillCode = process.KillCode;
+			}
+			process.DecayRate = 0f - currentHealing;
+		}
+
+		protected override void Enabled()
+		{
+			base.Enabled();
+			_isDamageModifierEnabled = true;
+			if (!base.Hub.playerStats.TryGetModule<HealthStat>(out _healthStat))
+			{
+				throw new NullReferenceException();
+			}
+			if (!base.Hub.playerStats.TryGetModule<AhpStat>(out _ahpStat))
+			{
+				throw new NullReferenceException();
+			}
+		}
+
+		protected override void Disabled()
+		{
+			base.Disabled();
+			if (_ahpStat != null && _ahpStat.ServerTryGetProcess(_ahpKillCode, out var process))
+			{
+				process.DecayRate = 1.2f;
+			}
+		}
+
+        private static void OnBreak(BreakMessage msg)
+        {
+            if (!StaticUnityMethods.IsPlaying) return;
+
+            ReferenceHub localHub = ReferenceHub.LocalHub;
+            if (localHub == null) return;
+
+            PlayerEffectsController controller = localHub.playerEffectsController;
+            AntiScp207 effect = controller.GetEffect<AntiScp207>();
+            if (effect == null || effect._effectBreakSound == null) return;
+
+            AudioPooling.AudioSourcePoolManager.PlaySound(effect._effectBreakSound, msg.SoundPos, BreakSoundDistance, BreakVolumeModifier);
+        }
+
+
+        [RuntimeInitializeOnLoadMethod]
+		private static void Init()
+		{
+			CustomNetworkManager.OnClientReady += delegate
+			{
+				NetworkClient.ReplaceHandler<BreakMessage>(OnBreak);
+			};
+		}
+	}
+}

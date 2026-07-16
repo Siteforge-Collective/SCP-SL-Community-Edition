@@ -1,0 +1,154 @@
+Type: MainThreadDispatcher
+
+
+	Generated Pseudocode:
+
+	Declaring Type: MainThreadDispatcher
+	static System.Void Dispatch(System.Action action, MainThreadDispatcher/DispatchTime dispatchTime)
+		System.Int32 local2 = dispatchTime.value__
+
+		if (local2 != 0)
+
+		    if (local2 != 0)
+
+		        if (local2 == 1)
+		            NorthwoodLib.ActionDispatcher fixedUpdateDispatcher = MainThreadDispatcher.FixedUpdateDispatcher
+
+		            fixedUpdateDispatcher.Dispatch(action) //(Action action)
+		        endif
+                
+		        return
+		    endif
+            
+		    NorthwoodLib.ActionDispatcher lateUpdateDispatcher = MainThreadDispatcher.LateUpdateDispatcher
+		endwhile
+        
+		goto INSN_1802E229A
+        
+		NorthwoodLib.ActionDispatcher updateDispatcher = MainThreadDispatcher.UpdateDispatcher
+
+		INSN_1802E229A:
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.1
+	IL_0001: stloc.0
+	IL_0002: ldloc.0
+	IL_0003: ldc.i4.0
+	IL_0004: beq.s IL_001a
+	IL_0006: ldloc.0
+	IL_0007: ldc.i4.0
+	IL_0008: beq.s IL_001a
+	IL_000a: ldloc.0
+	IL_000b: ldc.i4.1
+	IL_000c: bne.un.s IL_0019
+	IL_000e: ldsfld NorthwoodLib.ActionDispatcher MainThreadDispatcher::FixedUpdateDispatcher
+	IL_0013: ldarg.0
+	IL_0014: call System.Void NorthwoodLib.ActionDispatcher::Dispatch(System.Action)
+	IL_0019: ret
+	IL_001a: newobj System.Void System.NullReferenceException::.ctor()
+	IL_001f: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: MainThreadDispatcher
+	System.Void Update()
+		NorthwoodLib.ActionDispatcher updateDispatcher = MainThreadDispatcher.UpdateDispatcher
+
+		updateDispatcher.Invoke()
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldsfld NorthwoodLib.ActionDispatcher MainThreadDispatcher::UpdateDispatcher
+	IL_0005: call System.Void NorthwoodLib.ActionDispatcher::Invoke()
+	IL_000a: ret
+	IL_000b: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0010: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: MainThreadDispatcher
+	System.Void LateUpdate()
+		NorthwoodLib.ActionDispatcher lateUpdateDispatcher = MainThreadDispatcher.LateUpdateDispatcher
+
+		lateUpdateDispatcher.Invoke()
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldsfld NorthwoodLib.ActionDispatcher MainThreadDispatcher::LateUpdateDispatcher
+	IL_0005: call System.Void NorthwoodLib.ActionDispatcher::Invoke()
+	IL_000a: ret
+	IL_000b: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0010: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: MainThreadDispatcher
+	System.Void FixedUpdate()
+		NorthwoodLib.ActionDispatcher lateUpdateDispatcher = MainThreadDispatcher.LateUpdateDispatcher
+
+		lateUpdateDispatcher.Invoke()
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldsfld NorthwoodLib.ActionDispatcher MainThreadDispatcher::LateUpdateDispatcher
+	IL_0005: call System.Void NorthwoodLib.ActionDispatcher::Invoke()
+	IL_000a: ret
+	IL_000b: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0010: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: MainThreadDispatcher
+	System.Void .ctor()
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void UnityEngine.MonoBehaviour::.ctor()
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: MainThreadDispatcher
+	static System.Void .cctor()
+		NorthwoodLib.ActionDispatcher actionDispatcher = new NorthwoodLib.ActionDispatcher()
+
+		actionDispatcher..ctor()
+		MainThreadDispatcher.UpdateDispatcher = actionDispatcher
+		NorthwoodLib.ActionDispatcher actionDispatcher2 = new NorthwoodLib.ActionDispatcher()
+
+		actionDispatcher2..ctor()
+		 += 8
+		MainThreadDispatcher.UpdateDispatcher = actionDispatcher2
+		NorthwoodLib.ActionDispatcher actionDispatcher3 = new NorthwoodLib.ActionDispatcher()
+
+		actionDispatcher3..ctor()
+		 += 16
+		MainThreadDispatcher.UpdateDispatcher = actionDispatcher3
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x1802E246D) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+

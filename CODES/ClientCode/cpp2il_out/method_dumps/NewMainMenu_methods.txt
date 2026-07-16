@@ -1,0 +1,815 @@
+Type: NewMainMenu
+
+
+	Generated Pseudocode:
+
+	Declaring Type: NewMainMenu
+	System.Void Update()
+		UnityEngine.UI.Text rejoinText = this.RejoinText
+		ulong local3 = 0
+
+		System.Boolean boolean = UnityEngine.Object.op_Equality(rejoinText, local3) //(Object x, Object y)
+
+		if (boolean == False)
+		    ButtonAudio rejoinButtonAudio = this.RejoinButtonAudio
+		    ulong local7 = 0
+
+		    System.Boolean boolean2 = UnityEngine.Object.op_Equality(rejoinButtonAudio, local7) //(Object x, Object y)
+
+		    if (boolean2 == False)
+		        System.Collections.Generic.List`1<System.String> iPHistory = FavoriteAndHistory.IPHistory
+
+		        System.String string = System.Linq.Enumerable.LastOrDefault<System.String>(iPHistory) //(IEnumerable`1 source)
+
+		        System.Boolean isNullOrEmpty = System.String.IsNullOrEmpty(string) //(String value)
+		        UnityEngine.UI.Text rejoinText2 = this.RejoinText
+
+		        if (isNullOrEmpty != False)
+
+		            [instruction error - managed method being called is null]
+		        else
+
+		            UnityEngine.Color white = UnityEngine.Color.white
+		        endif
+                
+
+		        UnityEngine.Color color = rejoinText2.color
+		        UnityEngine.UI.RawImage rejoinIcon = this.RejoinIcon
+		        ulong local20 = 0
+
+		        System.Boolean boolean3 = UnityEngine.Object.op_Inequality(rejoinIcon, local20) //(Object x, Object y)
+
+		        if (boolean3 == False)
+                    goto INSN_181B60D57
+                endif
+		        UnityEngine.UI.Text rejoinText3 = this.RejoinText
+		        UnityEngine.UI.RawImage rejoinIcon2 = this.RejoinIcon
+
+		        System.Boolean isDestroyed = .IsDestroyed()
+
+		        UnityEngine.Color color2 = rejoinIcon2.color
+
+		        INSN_181B60D57:
+		        ButtonAudio rejoinButtonAudio2 = this.RejoinButtonAudio
+		        System.Boolean local28 = isNullOrEmpty == False
+
+		        rejoinButtonAudio2.enabled = local28
+		    endif
+            
+		    return
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181B60CA6) is corrupt (Don't know what method is being called) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: NewMainMenu
+	System.Boolean SetIPOrHost(System.String ip, System.Boolean skipValidation)
+		ulong local3 = 0
+		 += 80
+		CustomNetworkManager.OnClientReady = ip
+		ulong local5 = 0
+		System.Int32 2 = 2
+
+		FavoriteAndHistory.Modify(2, ip, local5) //(StorageLocation location, String id, Boolean delete)
+
+		System.Boolean isNullOrEmpty = System.String.IsNullOrEmpty(ip) //(String value)
+
+		if (isNullOrEmpty != False)
+		    CustomNetworkManager _mng = this._mng
+		    System.String networkAddress = _mng.networkAddress
+
+		    System.Boolean isNullOrEmpty2 = System.String.IsNullOrEmpty(networkAddress) //(String value)
+
+		    if (isNullOrEmpty2 != False)
+		        CustomNetworkManager _mng2 = this._mng
+		        _mng2.networkAddress = "localhost"
+		        Mirror.LiteNetLib4Mirror.LiteNetLib4MirrorTransport singleton = Mirror.LiteNetLib4Mirror.LiteNetLib4MirrorTransport.Singleton
+		        System.Int64 local14 = 0x1E61
+		        singleton.port = local14
+		    else
+
+		        System.Boolean isNullOrEmpty3 = System.String.IsNullOrEmpty(ip) //(String value)
+
+		        if (isNullOrEmpty3 == False)
+
+		            System.Boolean boolean = ip.Contains(":") //(String value)
+
+		            if (boolean != False)
+		                System.Func`2<System.Char,System.Boolean> <>9__11_0 = NewMainMenu/<>c.<>9__11_0
+
+		                if (<>9__11_0 == 0)
+		                    NewMainMenu/<>c <>c = NewMainMenu/<>c.<>9
+		                    System.Func`2<System.Char,System.Boolean> func = new System.Func`2<System.Char,System.Boolean>()
+
+		                    func..ctor(<>c, {'<SetIPOrHost>b__11_0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		                     += 8
+		                    NewMainMenu/<>c.<>9 = func
+		                endif
+                        
+
+		                System.Int32 int32 = System.Linq.Enumerable.Count<System.Char>(ip, <>9__11_0) //(IEnumerable`1 source, Func`2 predicate)
+
+		                if (int32 == 1)
+                            goto INSN_181B60159
+                        endif
+
+		                System.Boolean boolean2 = ip.StartsWith("[") //(String value)
+
+		                if (boolean2 == False)
+                            goto INSN_181B600B8
+                        endif
+
+		                System.Boolean boolean3 = ip.Contains("]:") //(String value)
+
+		                if (boolean3 == False)
+                            goto INSN_181B602E3
+                        endif
+		                System.Int32 1 = 1
+
+		                System.String string = ip.Substring(1) //(Int32 startIndex)
+		                System.Int32 4 = 4
+
+		                System.Int32 int322 = string.IndexOf("]:", 4) //(String value, StringComparison comparisonType)
+		                ulong local33 = 0
+
+		                System.String string2 = string.Substring(local33, int322) //(Int32 startIndex, Int32 length)
+		                System.Int64 local35 = 1
+
+		                System.Boolean boolean4 = Misc.ValidateIpOrHostname(string2, local33, local35, local35) //(String ipOrHost, IPAddressType& type, Boolean allowHostname, Boolean allowLocalhost)
+
+		                if (boolean4 == False)
+                            goto INSN_181B602CF
+                        endif
+		                CustomNetworkManager _mng3 = this._mng
+		                _mng3.networkAddress = string2
+
+		                System.String string3 = string.Substring()
+
+		                System.Boolean boolean5 = System.UInt16.TryParse()
+
+		                if (boolean5 == False)
+                            goto INSN_181B60208
+                        endif
+		                Mirror.LiteNetLib4Mirror.LiteNetLib4MirrorTransport singleton2 = Mirror.LiteNetLib4Mirror.LiteNetLib4MirrorTransport.Singleton
+		            else
+
+		                System.Boolean boolean6 = Misc.ValidateIpOrHostname()
+
+		                if (boolean6 == False)
+                            goto INSN_181B602CF
+                        endif
+		                CustomNetworkManager _mng4 = this._mng
+		                _mng4.networkAddress = ip
+		                Mirror.LiteNetLib4Mirror.LiteNetLib4MirrorTransport singleton3 = Mirror.LiteNetLib4Mirror.LiteNetLib4MirrorTransport.Singleton
+		                System.Int64 local47 = 0x1E61
+		                singleton3.port = local47
+
+		                INSN_181B60159:
+		                System.Int32 4 = 4
+
+		                System.Int32 int323 = singleton3.IndexOf(":", 4) //(String value, StringComparison comparisonType)
+		                ulong local51 = 0
+
+		                System.String string4 = ip.Substring(local51, int323) //(Int32 startIndex, Int32 length)
+		                System.Int64 local53 = 1
+
+		                System.Boolean boolean7 = Misc.ValidateIpOrHostname(string4, local51, local53, local53) //(String ipOrHost, IPAddressType& type, Boolean allowHostname, Boolean allowLocalhost)
+
+		                if (boolean7 == False)
+                            goto INSN_181B602CF
+                        endif
+		                CustomNetworkManager _mng5 = this._mng
+		                _mng5.networkAddress = string4
+		                System.Int32 local56 = int323 + 1
+
+		                System.String string5 = ip.Substring(local56) //(Int32 startIndex)
+
+		                System.Boolean boolean8 = System.UInt16.TryParse()
+
+		                if (boolean8 == False)
+
+		                    INSN_181B60208:
+		                    Mirror.LiteNetLib4Mirror.LiteNetLib4MirrorTransport singleton4 = Mirror.LiteNetLib4Mirror.LiteNetLib4MirrorTransport.Singleton
+		                    System.Int64 local62 = 0x1E61
+		                    singleton4.port = local62
+
+		                    UnityEngine.Color red = UnityEngine.Color.red
+
+		                    GameCore.Console.AddLog()
+		                else
+		                    Mirror.LiteNetLib4Mirror.LiteNetLib4MirrorTransport singleton5 = Mirror.LiteNetLib4Mirror.LiteNetLib4MirrorTransport.Singleton
+		                endif
+                        
+		                singleton5.port = constant118
+
+		                INSN_181B602CF:
+		            endif
+                    
+
+		            if (local3 != 0)
+                        goto INSN_181B6042E
+                    endif
+		        else
+		            System.Int64 local69 = 0x1E61
+		        endif
+                
+		        CustomNetworkManager _mng6 = this._mng
+		        _mng6.networkAddress = ip
+		        Mirror.LiteNetLib4Mirror.LiteNetLib4MirrorTransport singleton6 = Mirror.LiteNetLib4Mirror.LiteNetLib4MirrorTransport.Singleton
+		        singleton6.port = local69
+
+		        if (skipValidation == False)
+                    goto INSN_181B603CB
+                endif
+
+		        INSN_181B603CB:
+
+		        System.String string6 = System.String.Concat("Possible invalid IP address detected, we ", "will", " validate the IP per your settings.") //(String str0, String str1, String str2)
+
+		        UnityEngine.Color cyan = UnityEngine.Color.cyan
+
+		        GameCore.Console.AddLog()
+		    endif
+            
+
+		    if (skipValidation != False)
+                goto INSN_181B6065E
+            endif
+		    CustomNetworkManager _mng7 = this._mng
+		    System.String networkAddress2 = _mng7.networkAddress
+
+		    System.Net.IPAddress iPAddress = Mirror.LiteNetLib4Mirror.LiteNetLib4MirrorUtils.Parse(networkAddress2) //(String address)
+
+		    if (iPAddress == 0)
+                goto INSN_181B604F4
+            endif
+
+		    INSN_181B604F4:
+
+		    if (local3 == 4)
+                goto INSN_181B6050F
+            endif
+
+		    INSN_181B6050F:
+
+		    System.String string7 = System.String.Concat("Invalid IP or Hostname.", "") //(String str0, String str1)
+
+		    UnityEngine.Color red2 = UnityEngine.Color.red
+
+		    GameCore.Console.AddLog()
+		    CustomNetworkManager _mng8 = this._mng
+		    System.Int64 local90 = 11
+
+		    _mng8.ShowLog(local90, "", "", local89, local3) //(Int32 id, String obj1, String obj2, String obj3, String textOverride)
+
+		    System.String string8 = System.String.Concat("Invalid IP or Hostname.", "") //(String str0, String str1)
+		    ulong local93 = 0
+
+		    UnityEngine.Color red3 = UnityEngine.Color.red
+		    ulong local95 = 0
+		    System.Int32 1 = 1
+		    ulong local96 = 0
+
+		    GameCore.Console.AddLog(string8, local93, local96, 1) //(String text, Color c, Boolean nospace, ConsoleLogType type)
+		      = red3.
+		    System.Int32 11 = 11
+
+		    string8.ShowLog(11, "", "", local97, local95) //(Int32 id, String obj1, String obj2, String obj3, String textOverride)
+		    ulong local98 = 0
+		    return local98
+
+		    INSN_181B6065E:
+		    CustomNetworkManager _mng9 = this._mng
+		    System.String networkAddress3 = _mng9.networkAddress
+
+		    System.Net.IPAddress iPAddress2 = Mirror.LiteNetLib4Mirror.LiteNetLib4MirrorUtils.Parse(networkAddress3) //(String address)
+
+		    System.String string9 = System.String.Format("Connecting to {0}!", iPAddress2) //(String format, Object arg0)
+
+		    UnityEngine.Debug.Log(string9) //(Object message)
+		    CustomNetworkManager _mng10 = this._mng
+		    System.String networkAddress4 = _mng10.networkAddress
+		     += 72
+		    CustomNetworkManager.OnClientReady = networkAddress4
+		    ulong local109 = 0
+
+		    System.Boolean boolean9 = PlayerPrefsSl.Get("HideIP", local109) //(String key, Boolean defaultValue)
+
+		    if (boolean9 == False)
+                goto INSN_181B60770
+            endif
+
+		    INSN_181B60770:
+		    Mirror.LiteNetLib4Mirror.LiteNetLib4MirrorTransport singleton7 = Mirror.LiteNetLib4Mirror.LiteNetLib4MirrorTransport.Singleton
+
+		    System.String string10 = System.String.Concat()
+
+		    UnityEngine.Color cyan2 = UnityEngine.Color.cyan
+
+		    GameCore.Console.AddLog()
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x181B5FDA7) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: NewMainMenu
+	System.Void DirectConnectClick()
+		UnityEngine.GameObject directConnectPopup = this.DirectConnectPopup
+
+		System.Boolean activeSelf = directConnectPopup.activeSelf
+		System.Boolean local4 = activeSelf == False
+
+		directConnectPopup.SetActive(local4) //(Boolean value)
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld UnityEngine.GameObject NewMainMenu::DirectConnectPopup
+	IL_0006: stloc.0
+	IL_0007: ldloc.0
+	IL_0008: call System.Boolean UnityEngine.GameObject::get_activeSelf()
+	IL_000d: ldc.i4.0
+	IL_000e: ceq
+	IL_0010: stloc.1
+	IL_0011: ldloc.0
+	IL_0012: ldloc.1
+	IL_0013: call System.Void UnityEngine.GameObject::SetActive(System.Boolean)
+	IL_0018: ret
+	IL_0019: newobj System.Void System.NullReferenceException::.ctor()
+	IL_001e: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: NewMainMenu
+	System.Void ChangeMenu(System.Int32 id)
+		UnityEngine.GameObject[] submenus = this.submenus
+		ulong local3 = 0
+
+		while (local3 < submenus.Length)
+		    UnityEngine.GameObject gameObject = submenus[local3]
+		    System.Boolean local5 = local3 == id
+
+		    gameObject.SetActive(local5) //(Boolean value)
+		    UnityEngine.GameObject[] submenus2 = this.submenus
+		    local3 += 1
+		endwhile
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld UnityEngine.GameObject[] NewMainMenu::submenus
+	IL_0006: stloc.0
+	IL_0007: ldc.i4.0
+	IL_0008: stloc.1
+	IL_0009: ldloc.1
+	IL_000a: ldloc.0
+	IL_000b: call System.Int32 System.Array::get_Length()
+	IL_0010: bge.s IL_0032
+	IL_0012: ldloc.0
+	IL_0013: ldloc.1
+	IL_0014: ldelem.any UnityEngine.GameObject
+	IL_0019: stloc.2
+	IL_001a: ldloc.1
+	IL_001b: ldarg.1
+	IL_001c: ceq
+	IL_001e: stloc.3
+	IL_001f: ldloc.2
+	IL_0020: ldloc.3
+	IL_0021: call System.Void UnityEngine.GameObject::SetActive(System.Boolean)
+	IL_0026: ldarg.0
+	IL_0027: ldfld UnityEngine.GameObject[] NewMainMenu::submenus
+	IL_002c: stloc.s V_4
+	IL_002e: ldloc.1
+	IL_002f: ldc.i4.1
+	IL_0030: add
+	IL_0031: stloc.1
+	IL_0032: ret
+	IL_0033: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0038: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: NewMainMenu
+	System.Void QuitGame()
+
+		Shutdown.Quit(True) //(Boolean quit)
+		return
+
+
+Generated IL:
+	IL_0000: ldc.i4.1
+	IL_0001: call System.Void Shutdown::Quit(System.Boolean)
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: NewMainMenu
+	System.Void Refresh()
+		ulong local1 = 0
+
+		SimpleMenu.LoadCorrectScene()
+		return
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: call System.Void SimpleMenu::LoadCorrectScene()
+	IL_0007: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: NewMainMenu
+	System.Void Start()
+		UnityEngine.Audio.AudioMixer mainMixer = this.mainMixer
+		ulong local3 = 0
+
+		System.Boolean boolean = UnityEngine.Object.op_Inequality(mainMixer, local3) //(Object x, Object y)
+
+		if (boolean != False)
+		    UnityEngine.Audio.AudioMixer mainMixer2 = this.mainMixer
+
+		    System.Boolean boolean2 = mainMixer2.SetFloat("MasterVolumeLowpassFreq", 22000) //(String name, Single value)
+		    UnityEngine.Audio.AudioMixer mainMixer3 = this.mainMixer
+
+		    System.Boolean boolean3 = mainMixer3.SetFloat("MasterVolumeHighpassWet", -80) //(String name, Single value)
+		endif
+        
+
+		CustomNetworkManager customNetworkManager = UnityEngine.Object.FindObjectOfType<CustomNetworkManager>()
+		this._mng = customNetworkManager
+		UnityEngine.GameObject[] submenus = this.submenus
+		ulong local13 = 0
+
+		while (local13 < submenus.Length)
+		    UnityEngine.GameObject gameObject = submenus[local13]
+		    System.Boolean local15 = local13 == 0
+
+		    gameObject.SetActive(local15) //(Boolean value)
+		    UnityEngine.GameObject[] submenus2 = this.submenus
+		    local13 += 1
+		endwhile
+        
+
+		this.SetAudioLevelsFromPrefs()
+		ulong local20 = 0
+
+		System.Boolean boolean4 = PlayerPrefsSl.Get("RawInput", local20) //(String key, Boolean defaultValue)
+		SensitivitySettings.RawInput = boolean4
+		ulong local23 = 0
+
+		System.Boolean boolean5 = PlayerPrefsSl.Get("SmoothInput", local23) //(String key, Boolean defaultValue)
+		SensitivitySettings.SmoothInput = boolean5
+
+		System.Single single = PlayerPrefsSl.Get("Sens", 1) //(String key, Single defaultValue)
+		SensitivitySettings.SensMultiplier = single
+		UnityEngine.UI.Text version = this.Version
+		System.String versionString = GameCore.Version.VersionString
+
+		System.String text = version.text
+		UnityEngine.GameObject tabs = this.Tabs
+		System.Int64 local32 = 1
+
+		tabs.SetActive(local32) //(Boolean value)
+		System.Action`4<Steamworks.Data.Lobby,System.UInt32,System.UInt16,Steamworks.SteamId> action = new System.Action`4<Steamworks.Data.Lobby,System.UInt32,System.UInt16,Steamworks.SteamId>()
+
+		action..ctor(this, {'OnLobbyGameCreated' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		Steamworks.SteamMatchmaking.add_OnLobbyGameCreated(action) //(Action`4 value)
+		System.Collections.Generic.List`1<System.String> iPHistory = FavoriteAndHistory.IPHistory
+
+		System.String string = System.Linq.Enumerable.LastOrDefault<System.String>(iPHistory) //(IEnumerable`1 source)
+		 += 80
+		CustomNetworkManager.OnClientReady = string
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x181B60B7D) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: NewMainMenu
+	System.Void SetAudioLevelsFromPrefs()
+		UnityEngine.Audio.AudioMixer mainMixer = this.mainMixer
+
+		UnityEngine.Audio.AudioMixerGroup[] audioMixerGroupArray = mainMixer.FindMatchingGroups("") //(String subPath)
+		ulong local4 = 0
+		System.Int32 length = audioMixerGroupArray.Length
+
+		if (local4 < length)
+		    UnityEngine.Audio.AudioMixerGroup audioMixerGroup = audioMixerGroupArray[local4]
+
+		    System.String name = audioMixerGroup.name
+
+		    System.String string = System.String.Concat(name, "Volume-new") //(String str0, String str1)
+
+		    System.Boolean boolean = PlayerPrefsSl.HasKey(string, 6) //(String key, DataType type)
+
+		    if (boolean != False)
+		        ulong local14 = 0
+
+		        System.Single single = PlayerPrefsSl.Get(string, local14) //(String key, Single defaultValue)
+
+		        System.Single single2 = UnityEngine.Mathf.Clamp(single, -80, 20) //(Single value, Single min, Single max)
+		        UnityEngine.Audio.AudioMixer mainMixer2 = this.mainMixer
+
+		        System.Boolean boolean2 = mainMixer2.SetFloat(string, single2) //(String name, Single value)
+		    endif
+            
+		    local4 += 1
+		endif
+        
+		return
+		throw new System.IndexOutOfRangeException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld UnityEngine.Audio.AudioMixer NewMainMenu::mainMixer
+	IL_0006: ldstr ""
+	IL_000b: call UnityEngine.Audio.AudioMixerGroup[] UnityEngine.Audio.AudioMixer::FindMatchingGroups(System.String)
+	IL_0010: stloc.0
+	IL_0011: ldc.i4.0
+	IL_0012: stloc.1
+	IL_0013: ldloc.0
+	IL_0014: call System.Int32 System.Array::get_Length()
+	IL_0019: stloc.2
+	IL_001a: ldloc.1
+	IL_001b: ldloc.2
+	IL_001c: bge.s IL_0071
+	IL_001e: ldloc.0
+	IL_001f: ldloc.1
+	IL_0020: ldelem.any UnityEngine.Audio.AudioMixerGroup
+	IL_0025: call System.String UnityEngine.Object::get_name()
+	IL_002a: ldstr "Volume-new"
+	IL_002f: call System.String System.String::Concat(System.String,System.String)
+	IL_0034: stloc.3
+	IL_0035: ldloc.3
+	IL_0036: ldc.i4.6
+	IL_0037: conv.i8
+	IL_0038: conv.u8
+	IL_0039: call System.Boolean PlayerPrefsSl::HasKey(System.String,PlayerPrefsSl/DataType)
+	IL_003e: ldc.i4.0
+	IL_003f: beq.s IL_006d
+	IL_0041: ldc.i4.0
+	IL_0042: stloc.s V_4
+	IL_0044: ldloc.3
+	IL_0045: ldloc.s V_4
+	IL_0047: call System.Single PlayerPrefsSl::Get(System.String,System.Single)
+	IL_004c: ldc.r4 -80
+	IL_0051: ldc.r4 20
+	IL_0056: call System.Single UnityEngine.Mathf::Clamp(System.Single,System.Single,System.Single)
+	IL_005b: stloc.s V_5
+	IL_005d: ldarg.0
+	IL_005e: ldfld UnityEngine.Audio.AudioMixer NewMainMenu::mainMixer
+	IL_0063: ldloc.3
+	IL_0064: ldloc.s V_5
+	IL_0066: call System.Boolean UnityEngine.Audio.AudioMixer::SetFloat(System.String,System.Single)
+	IL_006b: stloc.s V_6
+	IL_006d: ldloc.1
+	IL_006e: ldc.i4.1
+	IL_006f: add
+	IL_0070: stloc.1
+	IL_0071: ret
+	IL_0072: newobj System.Void System.IndexOutOfRangeException::.ctor()
+	IL_0077: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: NewMainMenu
+	System.Void StartServer()
+		ulong local2 = 0
+
+		CustomNetworkManager.StartNondedicated(local2) //(Boolean forceShow)
+		return
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: call System.Void CustomNetworkManager::StartNondedicated(System.Boolean)
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: NewMainMenu
+	System.Void ReJoin()
+		System.String lastIp = CustomNetworkManager.LastIp
+
+		System.Boolean isNullOrEmpty = System.String.IsNullOrEmpty(lastIp) //(String value)
+
+		if (isNullOrEmpty == False)
+		    ulong local5 = 0
+		    System.String lastIp2 = CustomNetworkManager.LastIp
+
+		    this.Connect(lastIp2, local5) //(String ip, Boolean skipValidation)
+		    ulong local7 = 0
+
+		    FavoriteAndHistory.ResetServerID()
+		    return
+		endif
+        
+		return
+
+
+Generated IL:
+	IL_0000: ldsfld System.String CustomNetworkManager::LastIp
+	IL_0005: call System.Boolean System.String::IsNullOrEmpty(System.String)
+	IL_000a: ldc.i4.0
+	IL_000b: bne.un.s IL_0025
+	IL_000d: ldc.i4.0
+	IL_000e: stloc.0
+	IL_000f: ldsfld System.String CustomNetworkManager::LastIp
+	IL_0014: stloc.1
+	IL_0015: ldarg.0
+	IL_0016: ldloc.1
+	IL_0017: ldloc.0
+	IL_0018: call System.Void NewMainMenu::Connect(System.String,System.Boolean)
+	IL_001d: ldc.i4.0
+	IL_001e: stloc.2
+	IL_001f: call System.Void FavoriteAndHistory::ResetServerID()
+	IL_0024: ret
+	IL_0025: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: NewMainMenu
+	System.Void Connect()
+		TMPro.TMP_InputField directConnectTextField = this.DirectConnectTextField
+		System.String m_Text = directConnectTextField.m_Text
+		ulong local4 = 0
+
+		this.Connect(m_Text, local4) //(String ip, Boolean skipValidation)
+		ulong local5 = 0
+
+		FavoriteAndHistory.ResetServerID()
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld TMPro.TMP_InputField NewMainMenu::DirectConnectTextField
+	IL_0006: ldfld System.String TMPro.TMP_InputField::m_Text
+	IL_000b: stloc.0
+	IL_000c: ldc.i4.0
+	IL_000d: stloc.1
+	IL_000e: ldarg.0
+	IL_000f: ldloc.0
+	IL_0010: ldloc.1
+	IL_0011: call System.Void NewMainMenu::Connect(System.String,System.Boolean)
+	IL_0016: ldc.i4.0
+	IL_0017: stloc.2
+	IL_0018: call System.Void FavoriteAndHistory::ResetServerID()
+	IL_001d: ret
+	IL_001e: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0023: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: NewMainMenu
+	System.Void Connect(System.String ip, System.Boolean skipValidation)
+		ulong local3 = 0
+		CrashDetector singleton = CrashDetector.singleton
+
+		System.Boolean boolean = singleton.Show()
+
+		if (boolean == False)
+
+		    System.Boolean boolean2 = this.SetIPOrHost(ip, skipValidation) //(String ip, Boolean skipValidation)
+
+		    if (boolean2 != False)
+
+		        if (boolean2 != False)
+		            SteamLobby singleton2 = SteamLobby.singleton
+		            Steamworks.Data.Lobby _lobby = singleton2._lobby
+
+		            if (_lobby != 0)
+		                throw new System.NullReferenceException()
+		            endif
+                    
+		            ulong local16 = 0
+
+		            CustomLiteNetLib4MirrorTransport.SetReconnectionParameters(local16) //(Boolean roundRestart)
+		            CustomNetworkManager _mng = this._mng
+
+		            _mng.LateUpdate()
+		        endif
+                
+		        return
+		        throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: ldsfld CrashDetector CrashDetector::singleton
+	IL_0007: call System.Boolean CrashDetector::Show()
+	IL_000c: ldc.i4.0
+	IL_000d: bne.un.s IL_0044
+	IL_000f: ldarg.0
+	IL_0010: ldarg.1
+	IL_0011: ldarg.2
+	IL_0012: call System.Boolean NewMainMenu::SetIPOrHost(System.String,System.Boolean)
+	IL_0017: stloc.1
+	IL_0018: ldloc.1
+	IL_0019: ldc.i4.0
+	IL_001a: beq.s IL_0044
+	IL_001c: ldloc.1
+	IL_001d: ldc.i4.0
+	IL_001e: beq.s IL_0033
+	IL_0020: ldsfld SteamLobby SteamLobby::singleton
+	IL_0025: ldfld Steamworks.Data.Lobby SteamLobby::_lobby
+	IL_002a: ldc.i4.0
+	IL_002b: beq.s IL_0033
+	IL_002d: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0032: throw
+	IL_0033: ldc.i4.0
+	IL_0034: call System.Void CustomLiteNetLib4MirrorTransport::SetReconnectionParameters(System.Boolean)
+	IL_0039: ldarg.0
+	IL_003a: ldfld CustomNetworkManager NewMainMenu::_mng
+	IL_003f: callvirt System.Void Mirror.NetworkManager::LateUpdate()
+	IL_0044: ret
+	IL_0045: newobj System.Void System.NullReferenceException::.ctor()
+	IL_004a: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: NewMainMenu
+	System.Void OnLobbyGameCreated(Steamworks.Data.Lobby lobby, System.UInt32 ip, System.UInt16 port, Steamworks.SteamId serverId)
+
+		System.String string = System.String.Concat(ip, ":", ip) //(Object arg0, Object arg1, Object arg2)
+		ulong local8 = 0
+
+		this.Connect(string, local8) //(String ip, Boolean skipValidation)
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.2
+	IL_0001: ldstr ":"
+	IL_0006: ldarg.2
+	IL_0007: call System.String System.String::Concat(System.Object,System.Object,System.Object)
+	IL_000c: stloc.0
+	IL_000d: ldc.i4.0
+	IL_000e: stloc.1
+	IL_000f: ldarg.0
+	IL_0010: ldloc.0
+	IL_0011: ldloc.1
+	IL_0012: call System.Void NewMainMenu::Connect(System.String,System.Boolean)
+	IL_0017: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: NewMainMenu
+	System.Void .ctor()
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void UnityEngine.MonoBehaviour::.ctor()
+	IL_0006: ret
+	
+

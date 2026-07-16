@@ -1,0 +1,699 @@
+Type: BasicDoor
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Interobjects.BasicDoor
+	System.Boolean AllowInteracting(ReferenceHub ply, System.Byte colliderId)
+		ulong local3 = 0
+		return 
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x181BA146D) is corrupt (Return value is missing) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Interobjects.BasicDoor
+	System.Single GetExactState()
+		UnityEngine.Transform _stateMoveable = this._stateMoveable
+
+		UnityEngine.Vector3 position = .position
+		UnityEngine.Transform _stateStator = this._stateStator
+		System.Single single = position.z
+
+		UnityEngine.Vector3 position2 = .position
+		System.Single single2 = position2.z
+
+		System.Single single3 = UnityEngine.Mathf.InverseLerp()
+
+		System.Single single4 = UnityEngine.Mathf.Clamp01(single3) //(Single value)
+		return single4
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181BA16AC) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Interobjects.BasicDoor
+	System.Boolean IsConsideredOpen()
+
+		System.Boolean boolean = this.AllowInteracting()
+		return boolean
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallVirtualMethodAction at (0x181BA1943) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Interobjects.BasicDoor
+	System.Boolean AnticheatPassageApproved()
+
+		System.Single exactState = this.GetExactState()
+
+		if (constant1 != 0)
+		    return True
+		endif
+        
+
+		if ( == 0)
+            goto INSN_181BA14A3
+        endif
+		ulong local2 = 0
+		return local2
+
+		INSN_181BA14A3:
+
+		System.Boolean boolean = this.AllowInteracting()
+		return boolean
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfZeroOrNullAction at (0x181BA148B) is corrupt (ConstantDefinition: Don't know how to get IL to load a Cpp2IL.Core.Analysis.Il2CppClassIdentifier) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Interobjects.BasicDoor
+	System.Void LockBypassDenied(ReferenceHub ply, System.Byte colliderId)
+		ulong local4 = 0
+
+		this.RpcPlayBeepSound(local4) //(Boolean denied)
+		return
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: ldarg.0
+	IL_0003: ldloc.0
+	IL_0004: call System.Void Interactables.Interobjects.BasicDoor::RpcPlayBeepSound(System.Boolean)
+	IL_0009: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Interobjects.BasicDoor
+	System.Void PermissionsDenied(ReferenceHub ply, System.Byte colliderId)
+
+		this.RpcPlayBeepSound(True) //(Boolean denied)
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldc.i4.1
+	IL_0002: call System.Void Interactables.Interobjects.BasicDoor::RpcPlayBeepSound(System.Boolean)
+	IL_0007: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Interobjects.BasicDoor
+	System.Void RpcPlayBeepSound(System.Boolean denied)
+		ulong local2 = 0
+
+		Mirror.PooledNetworkWriter writer = Mirror.NetworkWriterPool.GetWriter()
+
+		Mirror.NetworkWriterExtensions.WriteByte(writer, denied) //(NetworkWriter writer, Byte value)
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'BasicDoor' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		ulong local7 = 0
+
+		base.SendRPCInternal(typeFromHandle, "RpcPlayBeepSound", writer, local7, local8) //(Type invokeClass, String rpcName, NetworkWriter writer, Int32 channelId, Boolean includeOwner)
+
+		Mirror.NetworkWriterPool.Recycle(writer) //(PooledNetworkWriter writer)
+		return
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: call Mirror.PooledNetworkWriter Mirror.NetworkWriterPool::GetWriter()
+	IL_0007: stloc.1
+	IL_0008: ldloc.1
+	IL_0009: ldarg.1
+	IL_000a: call System.Void Mirror.NetworkWriterExtensions::WriteByte(Mirror.NetworkWriter,System.Byte)
+	IL_000f: ldtoken Interactables.Interobjects.BasicDoor
+	IL_0014: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+	IL_0019: stloc.2
+	IL_001a: ldc.i4.0
+	IL_001b: stloc.3
+	IL_001c: ldarg.0
+	IL_001d: ldloc.2
+	IL_001e: ldstr "RpcPlayBeepSound"
+	IL_0023: ldloc.1
+	IL_0024: ldloc.3
+	IL_0025: ldloc.s V_4
+	IL_0027: call System.Void Mirror.NetworkBehaviour::SendRPCInternal(System.Type,System.String,Mirror.NetworkWriter,System.Int32,System.Boolean)
+	IL_002c: ldloc.1
+	IL_002d: call System.Void Mirror.NetworkWriterPool::Recycle(Mirror.PooledNetworkWriter)
+	IL_0032: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Interobjects.BasicDoor
+	System.Void Update()
+
+		base.Update()
+		System.Single _remainingBeepCooldown = this._remainingBeepCooldown
+		ulong local3 = 0
+
+		if (_remainingBeepCooldown > local3)
+		    ulong local4 = 0
+
+		    System.Single deltaTime = UnityEngine.Time.deltaTime
+		    this._remainingBeepCooldown = _remainingBeepCooldown
+		endif
+        
+		System.Single _remainingAnimCooldown = this._remainingAnimCooldown
+
+		if (_remainingAnimCooldown <= local3)
+            goto INSN_181BA1ED3
+        endif
+		ulong local7 = 0
+
+		System.Single deltaTime2 = UnityEngine.Time.deltaTime
+		this._remainingAnimCooldown = _remainingAnimCooldown
+
+		INSN_181BA1ED3:
+
+		if (this.UpdateAnimations == False)
+            goto INSN_181BA1F5A
+        endif
+
+		if ( > 0)
+            goto INSN_181BA1FE9
+        endif
+
+		System.Boolean boolean = this.AllowInteracting()
+
+		if (deltaTime2 <= local3)
+            goto INSN_181BA1F05
+        endif
+
+		if ( == 0)
+            goto INSN_181BA1F18
+        endif
+
+		INSN_181BA1F05:
+
+		if ( == 0)
+            goto INSN_181BA1F6A
+        endif
+
+		INSN_181BA1F18:
+		Interactables.Interobjects.DoorUtils.PanelVisualSettings panelSettings = this.PanelSettings
+
+		System.String textMoving = panelSettings.TextMoving
+		Interactables.Interobjects.DoorUtils.PanelVisualSettings panelSettings2 = this.PanelSettings
+		UnityEngine.Material panelMovingMat = panelSettings2.PanelMovingMat
+		ulong local15 = 0
+
+		this.SetButtons(textMoving, panelMovingMat, local15) //(String text, Material mat, Boolean permanent)
+
+		INSN_181BA1F5A:
+		return
+
+		INSN_181BA1F6A:
+		Interactables.Interobjects.DoorUtils.PanelVisualSettings panelSettings3 = this.PanelSettings
+
+		if (constant32 != this._remainingBeepCooldown)
+            goto INSN_181BA1FA3
+        endif
+
+		System.String textClosed = panelSettings3.TextClosed
+		Interactables.Interobjects.DoorUtils.PanelVisualSettings panelSettings4 = this.PanelSettings
+
+		INSN_181BA1FA3:
+
+		System.String textOpen = panelSettings3.TextOpen
+		Interactables.Interobjects.DoorUtils.PanelVisualSettings panelSettings5 = this.PanelSettings
+		UnityEngine.Material panelOpenMat = panelSettings5.PanelOpenMat
+		ulong local26 = 0
+
+		this.SetButtons(textOpen, panelOpenMat, local26) //(String text, Material mat, Boolean permanent)
+		this.UpdateAnimations = False
+		return
+
+		INSN_181BA1FE9:
+		Interactables.Interobjects.DoorUtils.PanelVisualSettings panelSettings6 = this.PanelSettings
+
+		System.String textLockedDown = panelSettings6.TextLockedDown
+		Interactables.Interobjects.DoorUtils.PanelVisualSettings panelSettings7 = this.PanelSettings
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfGreaterThanAction at (0x181BA1EE1) is corrupt (One of the arguments is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Interobjects.BasicDoor
+	System.Void Awake()
+
+		UnityEngine.Collider[] componentsInChildren = base.GetComponentsInChildren<UnityEngine.Collider>()
+
+		System.Collections.Generic.List`1<UnityEngine.Collider> list = System.Linq.Enumerable.ToList<UnityEngine.Collider>(componentsInChildren) //(IEnumerable`1 source)
+		this.Scp106Colliders = list
+		System.Collections.Generic.List`1<UnityEngine.Collider> scp106Colliders = this.Scp106Colliders
+		System.Int32 _size = scp106Colliders._size
+		System.Collections.Generic.List`1<UnityEngine.Collider> scp106Colliders2 = this.Scp106Colliders
+		ulong local6 = 0
+
+		System.ThrowHelper.ThrowArgumentOutOfRangeException()
+		T[] _items = scp106Colliders2._items
+		 local8 = _items[]
+
+		if (local8 != 0)
+		    //UNKNOWN CLASS OFFSET READ HERE
+
+		    Interactables.Interobjects.DoorUtils.RegularDoorButton component = local8.GetComponent<Interactables.Interobjects.DoorUtils.RegularDoorButton>()
+		    ulong local11 = 0
+
+		    System.Boolean boolean = UnityEngine.Object.op_Inequality(component, local11) //(Object x, Object y)
+
+		    if (boolean != False)
+		        System.Collections.Generic.List`1<UnityEngine.Collider> scp106Colliders3 = this.Scp106Colliders
+
+		        scp106Colliders3.RemoveAt(_size) //(Int32 index)
+		    endif
+            
+		    Interactables.Interobjects.DoorUtils.PanelVisualSettings panelSettings = this.PanelSettings
+		    panelSettings._textOpenSet = False
+		    panelSettings._textErrorSet = False
+		    return
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL Generation Skipped due to invalid local _items of type T[]
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Interobjects.BasicDoor
+	System.Void Start()
+
+		base.Start()
+		UnityEngine.Animator mainAnimator = this.MainAnimator
+		System.Boolean targetState = this.TargetState
+		System.Int32 animHash = Interactables.Interobjects.BasicDoor.AnimHash
+
+		mainAnimator.SetBool(animHash, targetState) //(Int32 id, Boolean value)
+		Interactables.Interobjects.DoorUtils.PanelVisualSettings panelSettings = this.PanelSettings
+
+		if ( != 0)
+
+		    System.String textOpen = panelSettings.TextOpen
+		else
+
+		    System.String textClosed = panelSettings.TextClosed
+		endif
+        
+		Interactables.Interobjects.DoorUtils.PanelVisualSettings panelSettings2 = this.PanelSettings
+
+		if ( == 0)
+            goto INSN_181BA1C45
+        endif
+
+		INSN_181BA1C45:
+		UnityEngine.Material panelClosedMat = panelSettings2.PanelClosedMat
+		ulong local14 = 0
+
+		this.SetButtons(textClosed, panelClosedMat, local14) //(String text, Material mat, Boolean permanent)
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfZeroOrNullAction at (0x181BA1C0E) is corrupt (One of the arguments is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Interobjects.BasicDoor
+	System.Void SetButtons(System.String text, UnityEngine.Material mat, System.Boolean permanent)
+
+		if (this._permanentPanels == False)
+		    Interactables.Interobjects.DoorUtils.RegularDoorButton[] _buttons = this._buttons
+		    ulong local5 = 0
+		    System.Int32 length = _buttons.Length
+
+		    if (local5 < length)
+		        Interactables.Interobjects.DoorUtils.RegularDoorButton regularDoorButton = _buttons[local5]
+
+		        if (regularDoorButton._useText != False)
+		            TMPro.TextMeshProUGUI _mainText = regularDoorButton._mainText
+
+		            System.String text = _mainText.text
+		        endif
+                
+		        UnityEngine.MeshRenderer _mainRenderer = regularDoorButton._mainRenderer
+
+		        _mainRenderer.SetMaterial(mat) //(Material m)
+		        local5 += 1
+		    endif
+            
+		    System.Boolean local12 = _mainRenderer != 0
+		    this._permanentPanels = local12
+		    return
+		    throw new System.IndexOutOfRangeException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Boolean Interactables.Interobjects.BasicDoor::_permanentPanels
+	IL_0006: ldc.i4.0
+	IL_0007: bne.un.s IL_004f
+	IL_0009: ldarg.0
+	IL_000a: ldfld Interactables.Interobjects.DoorUtils.RegularDoorButton[] Interactables.Interobjects.BasicDoor::_buttons
+	IL_000f: stloc.0
+	IL_0010: ldc.i4.0
+	IL_0011: stloc.1
+	IL_0012: ldloc.0
+	IL_0013: call System.Int32 System.Array::get_Length()
+	IL_0018: stloc.2
+	IL_0019: ldloc.1
+	IL_001a: ldloc.2
+	IL_001b: bge.s IL_004f
+	IL_001d: ldloc.0
+	IL_001e: ldloc.1
+	IL_001f: ldelem.any Interactables.Interobjects.DoorUtils.RegularDoorButton
+	IL_0024: stloc.3
+	IL_0025: ldloc.3
+	IL_0026: ldfld System.Boolean Interactables.Interobjects.DoorUtils.RegularDoorButton::_useText
+	IL_002b: ldc.i4.0
+	IL_002c: beq.s IL_003b
+	IL_002e: ldloc.3
+	IL_002f: ldfld TMPro.TextMeshProUGUI Interactables.Interobjects.DoorUtils.RegularDoorButton::_mainText
+	IL_0034: callvirt System.String TMPro.TMP_Text::get_text()
+	IL_0039: stloc.s V_4
+	IL_003b: ldloc.3
+	IL_003c: ldfld UnityEngine.MeshRenderer Interactables.Interobjects.DoorUtils.RegularDoorButton::_mainRenderer
+	IL_0041: stloc.s V_5
+	IL_0043: ldloc.s V_5
+	IL_0045: ldarg.2
+	IL_0046: call System.Void UnityEngine.Renderer::SetMaterial(UnityEngine.Material)
+	IL_004b: ldloc.1
+	IL_004c: ldc.i4.1
+	IL_004d: add
+	IL_004e: stloc.1
+	IL_004f: ldloc.s V_5
+	IL_0051: ldc.i4.0
+	IL_0052: ceq
+	IL_0054: ldc.i4.0
+	IL_0055: ceq
+	IL_0057: stloc.s V_6
+	IL_0059: ldarg.0
+	IL_005a: ldloc.s V_6
+	IL_005c: stfld System.Boolean Interactables.Interobjects.BasicDoor::_permanentPanels
+	IL_0061: ret
+	IL_0062: newobj System.Void System.IndexOutOfRangeException::.ctor()
+	IL_0067: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Interobjects.BasicDoor
+	System.Void TargetStateChanged()
+		UnityEngine.Animator mainAnimator = this.MainAnimator
+		System.Boolean targetState = this.TargetState
+		System.Int32 animHash = Interactables.Interobjects.BasicDoor.AnimHash
+
+		mainAnimator.SetBool(animHash, targetState) //(Int32 id, Boolean value)
+		System.Single _cooldownDuration = this._cooldownDuration
+		this._remainingAnimCooldown = _cooldownDuration
+		UnityEngine.AudioSource mainSource = this.MainSource
+		DoorAudioSettings audioSettings = this.AudioSettings
+
+		if ( != 0)
+
+		    UnityEngine.AudioClip randomOpeningSound = audioSettings.RandomOpeningSound
+		else
+
+		    UnityEngine.AudioClip randomClosingSound = audioSettings.RandomClosingSound
+		endif
+        
+
+		mainSource.PlayOneShot(randomClosingSound) //(AudioClip clip)
+		this.UpdateAnimations = True
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfZeroOrNullAction at (0x181BA1D8F) is corrupt (One of the arguments is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Interobjects.BasicDoor
+	System.Void LockChanged(System.UInt16 prevValue)
+		this.UpdateAnimations = True
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldc.i4.1
+	IL_0002: stfld System.Boolean Interactables.Interobjects.BasicDoor::UpdateAnimations
+	IL_0007: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Interobjects.BasicDoor
+	System.Void .ctor()
+		this._consideredOpenThreshold = 0,7
+		this._anticheatPassableThreshold = 0,2
+		this._existenceCooldown = 255
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldc.r4 0,7
+	IL_0006: stfld System.Single Interactables.Interobjects.BasicDoor::_consideredOpenThreshold
+	IL_000b: ldarg.0
+	IL_000c: ldc.r4 0,2
+	IL_0011: stfld System.Single Interactables.Interobjects.BasicDoor::_anticheatPassableThreshold
+	IL_0016: ldarg.0
+	IL_0017: ldc.i4 255
+	IL_001c: conv.i8
+	IL_001d: conv.u8
+	IL_001e: stfld System.Byte Interactables.Interobjects.DoorUtils.DoorVariant::_existenceCooldown
+	IL_0023: ldarg.0
+	IL_0024: call System.Void Mirror.NetworkBehaviour::.ctor()
+	IL_0029: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Interobjects.BasicDoor
+	static System.Void .cctor()
+
+		System.Int32 int32 = UnityEngine.Animator.StringToHash("isOpen") //(String name)
+		Interactables.Interobjects.BasicDoor.AnimHash = int32
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'BasicDoor' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		Mirror.RemoteCalls.CmdDelegate cmdDelegate = new Mirror.RemoteCalls.CmdDelegate()
+		ulong local6 = 0
+
+		cmdDelegate..ctor(local6, {'InvokeUserCode_RpcPlayBeepSound' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		Mirror.RemoteCalls.RemoteCallHelper.RegisterRpcDelegate(typeFromHandle, "RpcPlayBeepSound", cmdDelegate) //(Type invokeClass, String rpcName, CmdDelegate func)
+		return
+
+
+Generated IL:
+	IL_0000: ldstr "isOpen"
+	IL_0005: call System.Int32 UnityEngine.Animator::StringToHash(System.String)
+	IL_000a: stsfld System.Int32 Interactables.Interobjects.BasicDoor::AnimHash
+	IL_000f: ldtoken Interactables.Interobjects.BasicDoor
+	IL_0014: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+	IL_0019: stloc.0
+	IL_001a: ldloc.2
+	IL_001b: ldftn System.Void Interactables.Interobjects.BasicDoor::InvokeUserCode_RpcPlayBeepSound(Mirror.NetworkBehaviour,Mirror.NetworkReader,Mirror.NetworkConnectionToClient)
+	IL_0021: newobj System.Void Mirror.RemoteCalls.CmdDelegate::.ctor(System.Object,System.IntPtr)
+	IL_0026: stloc.1
+	IL_0027: ldc.i4.0
+	IL_0028: stloc.2
+	IL_0029: ldloc.0
+	IL_002a: ldstr "RpcPlayBeepSound"
+	IL_002f: ldloc.1
+	IL_0030: call System.Void Mirror.RemoteCalls.RemoteCallHelper::RegisterRpcDelegate(System.Type,System.String,Mirror.RemoteCalls.CmdDelegate)
+	IL_0035: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Interobjects.BasicDoor
+	System.Void MirrorProcessed()
+
+
+Generated IL:
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Interobjects.BasicDoor
+	System.Void UserCode_RpcPlayBeepSound(System.Boolean denied)
+		System.Single _remainingBeepCooldown = this._remainingBeepCooldown
+		ulong local3 = 0
+
+		if (_remainingBeepCooldown <= local3)
+		    DoorAudioSettings audioSettings = this.AudioSettings
+		    this._remainingBeepCooldown = 1
+		    UnityEngine.AudioSource mainSource = this.MainSource
+		    UnityEngine.AudioClip beepSound = audioSettings.BeepSound
+
+		    mainSource.PlayOneShot(beepSound) //(AudioClip clip)
+
+		    if (denied != False)
+		        Interactables.Interobjects.DoorUtils.PanelVisualSettings panelSettings = this.PanelSettings
+
+		        System.String textDenied = panelSettings.TextDenied
+		        Interactables.Interobjects.DoorUtils.PanelVisualSettings panelSettings2 = this.PanelSettings
+		        UnityEngine.Material panelDeniedMat = panelSettings2.PanelDeniedMat
+		        ulong local13 = 0
+
+		        this.SetButtons(textDenied, panelDeniedMat, local13) //(String text, Material mat, Boolean permanent)
+		        this.UpdateAnimations = True
+		    endif
+            
+		    return
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Single Interactables.Interobjects.BasicDoor::_remainingBeepCooldown
+	IL_0006: stloc.0
+	IL_0007: ldc.i4.0
+	IL_0008: stloc.1
+	IL_0009: ldloc.0
+	IL_000a: ldloc.1
+	IL_000b: bgt.s IL_006a
+	IL_000d: ldarg.0
+	IL_000e: ldfld DoorAudioSettings Interactables.Interobjects.BasicDoor::AudioSettings
+	IL_0013: stloc.2
+	IL_0014: ldarg.0
+	IL_0015: ldc.r4 1
+	IL_001a: stfld System.Single Interactables.Interobjects.BasicDoor::_remainingBeepCooldown
+	IL_001f: ldarg.0
+	IL_0020: ldfld UnityEngine.AudioSource Interactables.Interobjects.BasicDoor::MainSource
+	IL_0025: stloc.3
+	IL_0026: ldloc.2
+	IL_0027: ldfld UnityEngine.AudioClip DoorAudioSettings::BeepSound
+	IL_002c: stloc.s V_4
+	IL_002e: ldloc.3
+	IL_002f: ldloc.s V_4
+	IL_0031: call System.Void UnityEngine.AudioSource::PlayOneShot(UnityEngine.AudioClip)
+	IL_0036: ldarg.1
+	IL_0037: ldc.i4.0
+	IL_0038: beq.s IL_006a
+	IL_003a: ldarg.0
+	IL_003b: ldfld Interactables.Interobjects.DoorUtils.PanelVisualSettings Interactables.Interobjects.BasicDoor::PanelSettings
+	IL_0040: call System.String Interactables.Interobjects.DoorUtils.PanelVisualSettings::get_TextDenied()
+	IL_0045: stloc.s V_5
+	IL_0047: ldarg.0
+	IL_0048: ldfld Interactables.Interobjects.DoorUtils.PanelVisualSettings Interactables.Interobjects.BasicDoor::PanelSettings
+	IL_004d: ldfld UnityEngine.Material Interactables.Interobjects.DoorUtils.PanelVisualSettings::PanelDeniedMat
+	IL_0052: stloc.s V_6
+	IL_0054: ldc.i4.0
+	IL_0055: stloc.s V_7
+	IL_0057: ldarg.0
+	IL_0058: ldloc.s V_5
+	IL_005a: ldloc.s V_6
+	IL_005c: ldloc.s V_7
+	IL_005e: call System.Void Interactables.Interobjects.BasicDoor::SetButtons(System.String,UnityEngine.Material,System.Boolean)
+	IL_0063: ldarg.0
+	IL_0064: ldc.i4.1
+	IL_0065: stfld System.Boolean Interactables.Interobjects.BasicDoor::UpdateAnimations
+	IL_006a: ret
+	IL_006b: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0070: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Interobjects.BasicDoor
+	static System.Void InvokeUserCode_RpcPlayBeepSound(Mirror.NetworkBehaviour obj, Mirror.NetworkReader reader, Mirror.NetworkConnectionToClient senderConnection)
+		ulong local3 = 0
+
+		System.Boolean active = Mirror.NetworkClient.active
+
+		if (active != False)
+		    ulong local5 = 0
+
+		    System.Boolean boolean = Mirror.NetworkReaderExtensions.ReadBoolean(reader) //(NetworkReader reader)
+		    //UNKNOWN CLASS OFFSET READ HERE
+		      = obj.
+		    ulong local7 = 0
+
+		    if ( > local7)
+                goto INSN_181BA1907
+            endif
+		      = obj.
+		    obj. = 1065353216
+		      = obj.
+		      = local5.
+		    ulong local8 = 0
+
+		    .PlayOneShot(local5) //(AudioClip clip)
+
+		    if (boolean == False)
+                goto INSN_181BA1907
+            endif
+		      = obj.
+
+		    System.String textDenied = .TextDenied
+		      = obj.
+		      = local8.
+		    ulong local11 = 0
+
+		    obj.SetButtons(textDenied, local8, local11) //(String text, Material mat, Boolean permanent)
+		    obj. = 1
+		    return
+		endif
+        
+
+		UnityEngine.Debug.LogError("RPC RpcPlayBeepSound called on server.") //(Object message)
+
+		INSN_181BA1907:
+		return
+		throw new System.InvalidCastException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.UnknownClassOffsetReadAction at (0x181BA182A) is corrupt (Unknown class offset read) and cannot be created as IL. Aborting here.
+
+

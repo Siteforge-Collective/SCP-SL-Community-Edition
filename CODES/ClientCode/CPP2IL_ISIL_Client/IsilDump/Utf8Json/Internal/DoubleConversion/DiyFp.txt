@@ -1,0 +1,444 @@
+Type: Utf8Json.Internal.DoubleConversion.DiyFp
+
+Method: System.Void .ctor(System.UInt64 significand, System.Int32 exponent)
+
+Disassembly:
+	mov [rcx+10h],rdx
+	mov [rcx+18h],r8d
+	ret
+
+ISIL:
+	001 Move [rcx+16], rdx
+	002 Move [rcx+24], r8
+	003 Return 
+
+Method: System.Void Subtract(ref Utf8Json.Internal.DoubleConversion.DiyFp other)
+
+Disassembly:
+	mov rax,[rdx]
+	sub [rcx+10h],rax
+	ret
+
+ISIL:
+	001 Move rax, [rdx]
+	002 Subtract [rcx+16], [rcx+16], rax
+	003 Return 
+
+Method: Utf8Json.Internal.DoubleConversion.DiyFp Minus(ref Utf8Json.Internal.DoubleConversion.DiyFp a, ref Utf8Json.Internal.DoubleConversion.DiyFp b)
+
+Disassembly:
+	mov rax,[r8]
+	movups xmm0,[rdx]
+	movups [rcx],xmm0
+	sub [rcx],rax
+	mov rax,rcx
+	ret
+
+ISIL:
+	001 Move rax, [r8]
+	002 Move xmm0, [rdx]
+	003 Move [rcx], xmm0
+	004 Subtract [rcx], [rcx], rax
+	005 Move rax, rcx
+	006 Return rax
+
+Method: Utf8Json.Internal.DoubleConversion.DiyFp op_Subtraction(Utf8Json.Internal.DoubleConversion.DiyFp lhs, Utf8Json.Internal.DoubleConversion.DiyFp rhs)
+
+Disassembly:
+	sub rsp,18h
+	movups xmm0,[rdx]
+	movq rax,xmm0
+	sub rax,[r8]
+	movups [rsp],xmm0
+	mov [rsp],rax
+	mov rax,rcx
+	movups xmm0,[rsp]
+	movups [rcx],xmm0
+	add rsp,18h
+	ret
+
+ISIL:
+	001 ShiftStack -24
+	002 Move xmm0, [rdx]
+	003 Move rax, xmm0
+	004 Subtract rax, rax, [r8]
+	005 Move stack:0x0, xmm0
+	006 Move stack:0x0, rax
+	007 Move rax, rcx
+	008 Move xmm0, stack:0x0
+	009 Move [rcx], xmm0
+	010 ShiftStack 24
+	011 Return rax
+
+Method: System.Void Multiply(ref Utf8Json.Internal.DoubleConversion.DiyFp other)
+
+Disassembly:
+	mov [rsp+8],rbx
+	mov [rsp+10h],rsi
+	mov [rsp+18h],rdi
+	mov rax,[rdx]
+	mov rsi,rcx
+	mov rdi,[rcx+10h]
+	mov r11,rax
+	mov r8d,edi
+	mov r9d,eax
+	mov eax,[rdx+8]
+	mov edx,80000000h
+	shr rdi,20h
+	add eax,40h
+	add [rcx+18h],eax
+	mov r10,rdi
+	imul r10,r9
+	imul r9,r8
+	shr r11,20h
+	imul rdi,r11
+	mov eax,r10d
+	mov rbx,r11
+	imul rbx,r8
+	shr r9,20h
+	mov ecx,ebx
+	add r9,rax
+	add rdx,r9
+	shr rbx,20h
+	add rdx,rcx
+	shr r10,20h
+	shr rdx,20h
+	add rdx,rdi
+	mov rdi,[rsp+18h]
+	add rdx,r10
+	add rdx,rbx
+	mov rbx,[rsp+8]
+	mov [rsi+10h],rdx
+	mov rsi,[rsp+10h]
+	ret
+
+ISIL:
+	001 Move stack:0x8, rbx
+	002 Move stack:0x10, rsi
+	003 Move stack:0x18, rdi
+	004 Move rax, [rdx]
+	005 Move rsi, rcx
+	006 Move rdi, [rcx+16]
+	007 Move r11, rax
+	008 Move r8, rdi
+	009 Move r9, rax
+	010 Move rax, [rdx+8]
+	011 Move rdx, 0x80000000
+	012 ShiftRight rdi, 32
+	013 Add rax, rax, 64
+	014 Add [rcx+24], [rcx+24], rax
+	015 Move r10, rdi
+	016 Multiply r10, r10, r9
+	017 Multiply r9, r9, r8
+	018 ShiftRight r11, 32
+	019 Multiply rdi, rdi, r11
+	020 Move rax, r10
+	021 Move rbx, r11
+	022 Multiply rbx, rbx, r8
+	023 ShiftRight r9, 32
+	024 Move rcx, rbx
+	025 Add r9, r9, rax
+	026 Add rdx, rdx, r9
+	027 ShiftRight rbx, 32
+	028 Add rdx, rdx, rcx
+	029 ShiftRight r10, 32
+	030 ShiftRight rdx, 32
+	031 Add rdx, rdx, rdi
+	032 Move rdi, stack:0x18
+	033 Add rdx, rdx, r10
+	034 Add rdx, rdx, rbx
+	035 Move rbx, stack:0x8
+	036 Move [rsi+16], rdx
+	037 Move rsi, stack:0x10
+	038 Return 
+
+Method: Utf8Json.Internal.DoubleConversion.DiyFp Times(ref Utf8Json.Internal.DoubleConversion.DiyFp a, ref Utf8Json.Internal.DoubleConversion.DiyFp b)
+
+Disassembly:
+	mov [rsp+8],rbx
+	mov [rsp+10h],rsi
+	mov [rsp+18h],rdi
+	mov r10,r8
+	mov rsi,rcx
+	xorps xmm0,xmm0
+	movups [rcx],xmm0
+	movups xmm1,[rdx]
+	movups [rcx],xmm1
+	mov rax,[r8]
+	mov rdi,[rcx]
+	mov r11,rax
+	mov edx,edi
+	mov r8d,eax
+	mov eax,[r10+8]
+	shr rdi,20h
+	add eax,40h
+	add [rcx+8],eax
+	mov r9,rdi
+	imul r9,r8
+	imul r8,rdx
+	mov eax,r9d
+	shr r11,20h
+	imul rdi,r11
+	mov rbx,r11
+	shr r9,20h
+	imul rbx,rdx
+	shr r8,20h
+	mov edx,80000000h
+	mov ecx,ebx
+	add r8,rax
+	add rdx,r8
+	shr rbx,20h
+	add rdx,rcx
+	mov rax,rsi
+	shr rdx,20h
+	add rdx,rdi
+	mov rdi,[rsp+18h]
+	add rdx,r9
+	add rdx,rbx
+	mov rbx,[rsp+8]
+	mov [rsi],rdx
+	mov rsi,[rsp+10h]
+	ret
+
+ISIL:
+	001 Move stack:0x8, rbx
+	002 Move stack:0x10, rsi
+	003 Move stack:0x18, rdi
+	004 Move r10, r8
+	005 Move rsi, rcx
+	006 Move xmm0, 0
+	007 Move [rcx], xmm0
+	008 Move xmm1, [rdx]
+	009 Move [rcx], xmm1
+	010 Move rax, [r8]
+	011 Move rdi, [rcx]
+	012 Move r11, rax
+	013 Move rdx, rdi
+	014 Move r8, rax
+	015 Move rax, [r10+8]
+	016 ShiftRight rdi, 32
+	017 Add rax, rax, 64
+	018 Add [rcx+8], [rcx+8], rax
+	019 Move r9, rdi
+	020 Multiply r9, r9, r8
+	021 Multiply r8, r8, rdx
+	022 Move rax, r9
+	023 ShiftRight r11, 32
+	024 Multiply rdi, rdi, r11
+	025 Move rbx, r11
+	026 ShiftRight r9, 32
+	027 Multiply rbx, rbx, rdx
+	028 ShiftRight r8, 32
+	029 Move rdx, 0x80000000
+	030 Move rcx, rbx
+	031 Add r8, r8, rax
+	032 Add rdx, rdx, r8
+	033 ShiftRight rbx, 32
+	034 Add rdx, rdx, rcx
+	035 Move rax, rsi
+	036 ShiftRight rdx, 32
+	037 Add rdx, rdx, rdi
+	038 Move rdi, stack:0x18
+	039 Add rdx, rdx, r9
+	040 Add rdx, rdx, rbx
+	041 Move rbx, stack:0x8
+	042 Move [rsi], rdx
+	043 Move rsi, stack:0x10
+	044 Return rax
+
+Method: Utf8Json.Internal.DoubleConversion.DiyFp op_Multiply(Utf8Json.Internal.DoubleConversion.DiyFp lhs, Utf8Json.Internal.DoubleConversion.DiyFp rhs)
+
+Disassembly:
+	mov [rsp+8],rbx
+	mov [rsp+10h],rsi
+	push rdi
+	sub rsp,10h
+	movups xmm0,[rdx]
+	mov rax,[r8]
+	mov rsi,rcx
+	mov ecx,[r8+8]
+	mov r11,rax
+	mov r9d,eax
+	movq rdi,xmm0
+	mov edx,edi
+	add ecx,40h
+	movups [rsp],xmm0
+	shr rdi,20h
+	shr r11,20h
+	mov r10,rdi
+	imul r10,r9
+	imul r9,rdx
+	psrldq xmm0,8
+	movd eax,xmm0
+	imul rdi,r11
+	add ecx,eax
+	shr r9,20h
+	mov eax,r10d
+	mov rbx,r11
+	imul rbx,rdx
+	add r9,rax
+	mov [rsp+8],ecx
+	mov ecx,ebx
+	mov edx,80000000h
+	add rdx,r9
+	shr r10,20h
+	add rdx,rcx
+	shr rbx,20h
+	shr rdx,20h
+	mov rax,rsi
+	add rdx,rdi
+	add rdx,r10
+	add rdx,rbx
+	mov rbx,[rsp+20h]
+	mov [rsp],rdx
+	movups xmm0,[rsp]
+	movups [rsi],xmm0
+	mov rsi,[rsp+28h]
+	add rsp,10h
+	pop rdi
+	ret
+
+ISIL:
+	001 Move stack:0x8, rbx
+	002 Move stack:0x10, rsi
+	003 ShiftStack -8
+	004 Move stack:0x0, rdi
+	005 ShiftStack -16
+	006 Move xmm0, [rdx]
+	007 Move rax, [r8]
+	008 Move rsi, rcx
+	009 Move rcx, [r8+8]
+	010 Move r11, rax
+	011 Move r9, rax
+	012 Move rdi, xmm0
+	013 Move rdx, rdi
+	014 Add rcx, rcx, 64
+	015 Move stack:0x0, xmm0
+	016 ShiftRight rdi, 32
+	017 ShiftRight r11, 32
+	018 Move r10, rdi
+	019 Multiply r10, r10, r9
+	020 Multiply r9, r9, rdx
+	021 NotImplemented "psrldq xmm0,8"
+	022 Move rax, xmm0
+	023 Multiply rdi, rdi, r11
+	024 Add rcx, rcx, rax
+	025 ShiftRight r9, 32
+	026 Move rax, r10
+	027 Move rbx, r11
+	028 Multiply rbx, rbx, rdx
+	029 Add r9, r9, rax
+	030 Move stack:0x8, rcx
+	031 Move rcx, rbx
+	032 Move rdx, 0x80000000
+	033 Add rdx, rdx, r9
+	034 ShiftRight r10, 32
+	035 Add rdx, rdx, rcx
+	036 ShiftRight rbx, 32
+	037 ShiftRight rdx, 32
+	038 Move rax, rsi
+	039 Add rdx, rdx, rdi
+	040 Add rdx, rdx, r10
+	041 Add rdx, rdx, rbx
+	042 Move rbx, stack:0x20
+	043 Move stack:0x0, rdx
+	044 Move xmm0, stack:0x0
+	045 Move [rsi], xmm0
+	046 Move rsi, stack:0x28
+	047 ShiftStack 16
+	048 Move rdi, stack:0x0
+	049 ShiftStack 8
+	050 Return rax
+
+Method: System.Void Normalize()
+
+Disassembly:
+	mov rax,[rcx+10h]
+	mov r8,0FFC0000000000000h
+	mov edx,[rcx+18h]
+	test r8,rax
+	jne short 00000001801BACECh
+	nop word ptr [rax+rax]
+	shl rax,0Ah
+	sub edx,0Ah
+	test r8,rax
+	je short 00000001801BACE0h
+	test rax,rax
+	js short 00000001801BACF8h
+	dec edx
+	add rax,rax
+	jns short 00000001801BACF1h
+	mov [rcx+18h],edx
+	mov [rcx+10h],rax
+	ret
+
+ISIL:
+	001 Move rax, [rcx+16]
+	002 Move r8, 18428729675200069632
+	003 Move rdx, [rcx+24]
+	004 Compare r8, rax
+	005 JumpIfNotEqual {11}
+	006 Nop 
+	007 ShiftLeft rax, 10
+	008 Subtract rdx, rdx, 10
+	009 Compare r8, rax
+	010 JumpIfEqual {7}
+	011 Compare rax, 0
+	012 JumpIfSign {16}
+	013 Subtract rdx, rdx, 1
+	014 Add rax, rax, rax
+	015 JumpIfNotSign {13}
+	016 Move [rcx+24], rdx
+	017 Move [rcx+16], rax
+	018 Return 
+
+Method: Utf8Json.Internal.DoubleConversion.DiyFp Normalize(ref Utf8Json.Internal.DoubleConversion.DiyFp a)
+
+Disassembly:
+	xorps xmm0,xmm0
+	mov r8,0FFC0000000000000h
+	movups [rcx],xmm0
+	movups xmm1,[rdx]
+	movups [rcx],xmm1
+	mov rax,[rcx]
+	mov edx,[rcx+8]
+	test r8,rax
+	jne short 0000000180D0026Dh
+	shl rax,0Ah
+	sub edx,0Ah
+	test r8,rax
+	je short 0000000180D00261h
+	test rax,rax
+	js short 0000000180D00279h
+	dec edx
+	add rax,rax
+	jns short 0000000180D00272h
+	mov [rcx],rax
+	mov rax,rcx
+	mov [rcx+8],edx
+	ret
+
+ISIL:
+	001 Move xmm0, 0
+	002 Move r8, 18428729675200069632
+	003 Move [rcx], xmm0
+	004 Move xmm1, [rdx]
+	005 Move [rcx], xmm1
+	006 Move rax, [rcx]
+	007 Move rdx, [rcx+8]
+	008 Compare r8, rax
+	009 JumpIfNotEqual {14}
+	010 ShiftLeft rax, 10
+	011 Subtract rdx, rdx, 10
+	012 Compare r8, rax
+	013 JumpIfEqual {10}
+	014 Compare rax, 0
+	015 JumpIfSign {19}
+	016 Subtract rdx, rdx, 1
+	017 Add rax, rax, rax
+	018 JumpIfNotSign {16}
+	019 Move [rcx], rax
+	020 Move rax, rcx
+	021 Move [rcx+8], rdx
+	022 Return rax
+

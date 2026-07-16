@@ -1,0 +1,373 @@
+Type: DynamicHumeShieldController
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.HumeShield.DynamicHumeShieldController
+	System.Boolean get_IsBlocked()
+		System.Int32 _blockersCount = this._blockersCount
+		System.Collections.Generic.HashSet`1<PlayerRoles.PlayableScps.HumeShield.IHumeShieldBlocker> _blockers = this._blockers
+		System.Predicate`1<PlayerRoles.PlayableScps.HumeShield.IHumeShieldBlocker> <>9__7_0 = PlayerRoles.PlayableScps.HumeShield.DynamicHumeShieldController/<>c.<>9__7_0
+
+		if (<>9__7_0 == 0)
+		    PlayerRoles.PlayableScps.HumeShield.DynamicHumeShieldController/<>c <>c = PlayerRoles.PlayableScps.HumeShield.DynamicHumeShieldController/<>c.<>9
+		    System.Predicate`1<PlayerRoles.PlayableScps.HumeShield.IHumeShieldBlocker> predicate = new System.Predicate`1<PlayerRoles.PlayableScps.HumeShield.IHumeShieldBlocker>()
+
+		    predicate..ctor(<>c, {'<get_IsBlocked>b__7_0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		     += 8
+		    PlayerRoles.PlayableScps.HumeShield.DynamicHumeShieldController/<>c.<>9 = predicate
+		endif
+        
+
+		System.Int32 int32 = _blockers.RemoveWhere(<>9__7_0) //(Predicate`1 match)
+		_blockersCount -= int32
+		this._blockersCount = _blockersCount
+		System.Boolean local7 = _blockersCount > 0
+		return local7
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x1804953D4) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.HumeShield.DynamicHumeShieldController
+	System.Single get_HsMax()
+		UnityEngine.AnimationCurve shieldOverHealth = this.ShieldOverHealth
+		PlayerStatsSystem.HealthStat healthStat = this._hp
+
+		System.Single normalizedValue = healthStat.NormalizedValue
+
+		System.Single single = shieldOverHealth.Evaluate(normalizedValue) //(Single time)
+		return single
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld UnityEngine.AnimationCurve PlayerRoles.PlayableScps.HumeShield.DynamicHumeShieldController::ShieldOverHealth
+	IL_0006: stloc.0
+	IL_0007: ldarg.0
+	IL_0008: ldfld PlayerStatsSystem.HealthStat PlayerRoles.PlayableScps.HumeShield.DynamicHumeShieldController::_hp
+	IL_000d: call System.Single PlayerStatsSystem.StatBase::get_NormalizedValue()
+	IL_0012: stloc.1
+	IL_0013: ldloc.0
+	IL_0014: ldloc.1
+	IL_0015: call System.Single UnityEngine.AnimationCurve::Evaluate(System.Single)
+	IL_001a: ret
+	IL_001b: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0020: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.HumeShield.DynamicHumeShieldController
+	System.Single get_HsRegeneration()
+		ulong local1 = 0
+
+		System.Double time = Mirror.NetworkTime.time
+
+		System.Boolean isBlocked = this.IsBlocked
+
+		if (isBlocked == False)
+		    System.Single regenerationRate = this.RegenerationRate
+		    return regenerationRate
+		endif
+        
+		ulong local6 = 0
+		return local6
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x180495224) is corrupt (Return value has a type of System.Int32, expecting an object of type System.Single) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.HumeShield.DynamicHumeShieldController
+	System.Nullable`1<UnityEngine.Color> get_HsWarningColor()
+
+		System.Boolean isBlocked = il2cppMethodInfo.IsBlocked
+		ulong local3 = 0
+
+		if (isBlocked != False)
+		    ulong local8 = 0
+		    ulong local9 = 0
+		else
+		    ulong local10 = 0
+		endif
+        
+		this. = local3
+		this.m_CachedPtr = local10
+		return this
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180495260) is corrupt (Mismatched instance parameter. Expecting an instance of PlayerRoles.PlayableScps.HumeShield.DynamicHumeShieldController, actually {'il2cppMethodInfo' (type )}) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.HumeShield.DynamicHumeShieldController
+	System.Void AddBlocker(PlayerRoles.PlayableScps.HumeShield.IHumeShieldBlocker blocker)
+		System.Collections.Generic.HashSet`1<PlayerRoles.PlayableScps.HumeShield.IHumeShieldBlocker> _blockers = this._blockers
+
+		System.Boolean boolean = _blockers.Add(blocker) //(T item)
+
+		if (boolean != False)
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Collections.Generic.HashSet`1<PlayerRoles.PlayableScps.HumeShield.IHumeShieldBlocker> PlayerRoles.PlayableScps.HumeShield.DynamicHumeShieldController::_blockers
+	IL_0006: ldarg.1
+	IL_0007: call System.Boolean System.Collections.Generic.HashSet`1::Add(T)
+	IL_000c: ldc.i4.0
+	IL_000d: beq.s IL_000f
+	IL_000f: ret
+	IL_0010: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0015: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.HumeShield.DynamicHumeShieldController
+	System.Void ResumeRegen()
+		this._nextRegenTime = 0
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldc.r8 0
+	IL_000a: stfld System.Double PlayerRoles.PlayableScps.HumeShield.DynamicHumeShieldController::_nextRegenTime
+	IL_000f: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.HumeShield.DynamicHumeShieldController
+	System.Void OnHsValueChanged(System.Single prevValue, System.Single newValue)
+		ulong local3 = 0
+
+		if (newValue <= local3)
+
+		    if (local3 < prevValue)
+		        UnityEngine.AudioClip _shieldBreakSound = this._shieldBreakSound
+		        ulong local6 = 0
+
+		        System.Boolean boolean = UnityEngine.Object.op_Equality(_shieldBreakSound, local6) //(Object x, Object y)
+
+		        if (boolean == False)
+		            ReferenceHub Owner = this.<Owner>k__BackingField
+
+		            Mirror.NetworkServer.SendToReady<PlayerRoles.PlayableScps.HumeShield.DynamicHumeShieldController/ShieldBreakMessage>()
+		        endif
+                
+		    endif
+            
+		    return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180494D9F) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.HumeShield.DynamicHumeShieldController
+	System.Void SpawnObject()
+		PlayerRoles.PlayerRoleBase _role = this._role
+
+		System.Boolean boolean = _role.TryGetOwner()
+
+		if (boolean != False)
+		    this.<Owner>k__BackingField = local2
+		      = local2.
+
+		    PlayerStatsSystem.HumeShieldStat module = .GetModule<PlayerStatsSystem.HumeShieldStat>()
+		    this.<HsStat>k__BackingField = module
+		    ReferenceHub Owner = this.<Owner>k__BackingField
+		    PlayerStatsSystem.PlayerStats playerStats = Owner.playerStats
+
+		    PlayerStatsSystem.HealthStat module2 = playerStats.GetModule<PlayerStatsSystem.HealthStat>()
+		    this._hp = module2
+		    System.Action`1<PlayerStatsSystem.DamageHandlerBase> action = new System.Action`1<PlayerStatsSystem.DamageHandlerBase>()
+
+		    action..ctor(this, {'OnDamaged' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		    playerStats.add_OnThisPlayerDamaged(action) //(Action`1 value)
+		    UnityEngine.AnimationCurve shieldOverHealth = this.ShieldOverHealth
+
+		    System.Single single = shieldOverHealth.Evaluate(1) //(Single time)
+
+		    base.HsCurrent = single
+		    return
+		    throw new System.NullReferenceException()
+		endif
+        
+
+		System.String name = base.name
+
+		System.String string = System.String.Concat("'", name, "' Hume Shield Controller spawned without a role!") //(String str0, String str1, String str2)
+		System.InvalidOperationException invalidOperationException = new System.InvalidOperationException()
+
+		invalidOperationException..ctor(string) //(String message)
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180494F12) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.HumeShield.DynamicHumeShieldController
+	System.Void ResetObject()
+		ReferenceHub Owner = this.<Owner>k__BackingField
+		ulong local3 = 0
+
+		System.Boolean boolean = ReferenceHub.op_Inequality(Owner, local3) //(ReferenceHub left, ReferenceHub right)
+
+		if (boolean != False)
+		    ReferenceHub Owner2 = this.<Owner>k__BackingField
+		    PlayerStatsSystem.PlayerStats playerStats = Owner2.playerStats
+		    System.Action`1<PlayerStatsSystem.DamageHandlerBase> action = new System.Action`1<PlayerStatsSystem.DamageHandlerBase>()
+
+		    action..ctor(this, {'OnDamaged' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		    playerStats.remove_OnThisPlayerDamaged(action) //(Action`1 value)
+		endif
+        
+		System.Collections.Generic.HashSet`1<PlayerRoles.PlayableScps.HumeShield.IHumeShieldBlocker> _blockers = this._blockers
+		ulong local10 = 0
+		this._nextRegenTime = local10
+		this._blockersCount = local10
+
+		_blockers.Clear()
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld ReferenceHub PlayerRoles.PlayableScps.HumeShield.HumeShieldModuleBase::<Owner>k__BackingField
+	IL_0006: stloc.0
+	IL_0007: ldc.i4.0
+	IL_0008: stloc.1
+	IL_0009: ldloc.0
+	IL_000a: ldloc.1
+	IL_000b: call System.Boolean ReferenceHub::op_Inequality(ReferenceHub,ReferenceHub)
+	IL_0010: ldc.i4.0
+	IL_0011: beq.s IL_0033
+	IL_0013: ldarg.0
+	IL_0014: ldfld ReferenceHub PlayerRoles.PlayableScps.HumeShield.HumeShieldModuleBase::<Owner>k__BackingField
+	IL_0019: ldfld PlayerStatsSystem.PlayerStats ReferenceHub::playerStats
+	IL_001e: stloc.2
+	IL_001f: ldarg.0
+	IL_0020: ldftn System.Void PlayerRoles.PlayableScps.HumeShield.DynamicHumeShieldController::OnDamaged(PlayerStatsSystem.DamageHandlerBase)
+	IL_0026: newobj System.Void System.Action`1::.ctor(System.Object,System.IntPtr)
+	IL_002b: stloc.3
+	IL_002c: ldloc.2
+	IL_002d: ldloc.3
+	IL_002e: call System.Void PlayerStatsSystem.PlayerStats::remove_OnThisPlayerDamaged(System.Action`1)
+	IL_0033: ldarg.0
+	IL_0034: ldfld System.Collections.Generic.HashSet`1<PlayerRoles.PlayableScps.HumeShield.IHumeShieldBlocker> PlayerRoles.PlayableScps.HumeShield.DynamicHumeShieldController::_blockers
+	IL_0039: stloc.s V_4
+	IL_003b: ldc.i4.0
+	IL_003c: stloc.s V_5
+	IL_003e: ldarg.0
+	IL_003f: ldloc.s V_5
+	IL_0041: stfld System.Double PlayerRoles.PlayableScps.HumeShield.DynamicHumeShieldController::_nextRegenTime
+	IL_0046: ldarg.0
+	IL_0047: ldloc.s V_5
+	IL_0049: stfld System.Int32 PlayerRoles.PlayableScps.HumeShield.DynamicHumeShieldController::_blockersCount
+	IL_004e: ldloc.s V_4
+	IL_0050: call System.Void System.Collections.Generic.HashSet`1::Clear()
+	IL_0055: ret
+	IL_0056: newobj System.Void System.NullReferenceException::.ctor()
+	IL_005b: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.HumeShield.DynamicHumeShieldController
+	System.Void OnDamaged(PlayerStatsSystem.DamageHandlerBase dhb)
+		ulong local2 = 0
+
+		System.Double time = Mirror.NetworkTime.time
+		return
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: call System.Double Mirror.NetworkTime::get_time()
+	IL_0007: stloc.1
+	IL_0008: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.HumeShield.DynamicHumeShieldController
+	static System.Void Init()
+		System.Action <>9__24_0 = PlayerRoles.PlayableScps.HumeShield.DynamicHumeShieldController/<>c.<>9__24_0
+
+		if (<>9__24_0 == 0)
+		    PlayerRoles.PlayableScps.HumeShield.DynamicHumeShieldController/<>c <>c = PlayerRoles.PlayableScps.HumeShield.DynamicHumeShieldController/<>c.<>9
+		    System.Action action = new System.Action()
+
+		    action..ctor(<>c, {'<Init>b__24_0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		     += 24
+		    PlayerRoles.PlayableScps.HumeShield.DynamicHumeShieldController/<>c.<>9 = action
+		endif
+        
+
+		CustomNetworkManager.add_OnClientReady(<>9__24_0) //(Action value)
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x180494B37) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.HumeShield.DynamicHumeShieldController
+	System.Void .ctor()
+		System.Collections.Generic.HashSet`1<PlayerRoles.PlayableScps.HumeShield.IHumeShieldBlocker> hashSet = new System.Collections.Generic.HashSet`1<PlayerRoles.PlayableScps.HumeShield.IHumeShieldBlocker>()
+
+		hashSet..ctor()
+		this._blockers = hashSet
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: newobj System.Void System.Collections.Generic.HashSet`1::.ctor()
+	IL_0005: stloc.0
+	IL_0006: ldarg.0
+	IL_0007: ldloc.0
+	IL_0008: stfld System.Collections.Generic.HashSet`1<PlayerRoles.PlayableScps.HumeShield.IHumeShieldBlocker> PlayerRoles.PlayableScps.HumeShield.DynamicHumeShieldController::_blockers
+	IL_000d: ldarg.0
+	IL_000e: call System.Void UnityEngine.MonoBehaviour::.ctor()
+	IL_0013: ret
+	
+

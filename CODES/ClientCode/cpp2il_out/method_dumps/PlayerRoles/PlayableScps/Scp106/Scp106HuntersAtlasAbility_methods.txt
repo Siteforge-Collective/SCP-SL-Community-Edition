@@ -1,0 +1,959 @@
+Type: Scp106HuntersAtlasAbility
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp106.Scp106HuntersAtlasAbility
+	static System.Int32 get_DetectionMask()
+		System.String[] local0 = new System.String[2]
+
+		if ("Default" != 0)
+
+		    if ("Default" == 0)
+                goto INSN_180313C1B
+            endif
+		endif
+        
+		local0[0] = "Default"
+
+		if ("Locker" == 0)
+            goto INSN_180313B76
+        endif
+
+		if ("Locker" == 0)
+            goto INSN_180313C3B
+        endif
+
+		INSN_180313B76:
+		local0[1] = "Locker"
+
+		System.Int32 mask = UnityEngine.LayerMask.GetMask(local0) //(String[] layerNames)
+		PlayerRoles.PlayableScps.Scp106.Scp106HuntersAtlasAbility._mask = mask
+		. = 1
+		System.Int32 _mask = PlayerRoles.PlayableScps.Scp106.Scp106HuntersAtlasAbility._mask
+		return _mask
+		throw new System.NullReferenceException()
+
+		INSN_180313C1B:
+
+		INSN_180313C3B:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ImmediateToFieldAction at (0x180313BD8) is corrupt (Instance or field is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp106.Scp106HuntersAtlasAbility
+	ActionName get_TargetKey()
+		return 4
+
+
+Generated IL:
+	IL_0000: ldc.i4.4
+	IL_0001: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp106.Scp106HuntersAtlasAbility
+	System.Boolean get_IsSubmerged()
+		System.Boolean _submerged = this._submerged
+		return _submerged
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Boolean PlayerRoles.PlayableScps.Scp106.Scp106HuntersAtlasAbility::_submerged
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp106.Scp106HuntersAtlasAbility
+	System.Boolean get_KeyPressable()
+		  = this.
+
+		System.Boolean isLocalPlayer = .isLocalPlayer
+		return isLocalPlayer
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.FieldToLocalAction at (0x180313C94) is corrupt (No further info) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp106.Scp106HuntersAtlasAbility
+	System.Void SetSubmerged(System.Boolean val)
+
+		if (this._submerged != val)
+		    this._submerged = val
+
+		    if (val != False)
+		          = this.
+		        this._dissolveAnim = True
+
+		        PlayerRoles.PlayableScps.Scp106.Scp106SinkholeController sinkhole = .Sinkhole
+
+		        sinkhole.TargetDuration = 2.5
+		    endif
+            
+
+		    base.ServerSendRpc(True) //(Boolean toAll)
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.FieldToLocalAction at (0x18031296E) is corrupt (No further info) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp106.Scp106HuntersAtlasAbility
+	System.Void UpdateAny()
+		  = this.
+
+		PlayerRoles.PlayableScps.Scp106.Scp106SinkholeController sinkhole = .Sinkhole
+
+		System.Single normalizedState = sinkhole.NormalizedState
+
+		if (this._dissolveAnim != False)
+
+		    if (this._submerged == False)
+		        this._dissolveAnim = False
+		    endif
+            
+		      = this.
+
+		    System.Boolean isLocalPlayer = sinkhole.isLocalPlayer
+
+		    if (isLocalPlayer != False)
+                goto INSN_1803132A8
+            endif
+		      = this.
+
+		    System.Boolean isLocallySpectated = PlayerRoles.Spectating.SpectatorNetworking.IsLocallySpectated()
+
+		    if (isLocallySpectated == False)
+                goto INSN_1803132F3
+            endif
+
+		    INSN_1803132A8:
+
+		    if (this._dissolveAnim == False)
+                goto INSN_1803132E4
+            endif
+
+		    System.Single single = UnityEngine.Mathf.InverseLerp(0.5, 1, normalizedState) //(Single a, Single b, Single value)
+
+		    INSN_1803132E4:
+		    ulong local11 = 0
+		    this._lastDissolveAmount = local11
+
+		    PlayerRoles.PlayableScps.Scp106.Scp106Hud.SetDissolveAnimation(local11) //(Single amt)
+
+		    INSN_1803132F3:
+		    return
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.FieldToLocalAction at (0x180313234) is corrupt (No further info) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp106.Scp106HuntersAtlasAbility
+	System.Void UpdateClientside()
+		PlayerRoles.PlayableScps.Scp106.Scp106Minimap Singleton = PlayerRoles.PlayableScps.Scp106.Scp106Minimap.<Singleton>k__BackingField
+		ulong local3 = 0
+
+		System.Boolean boolean = UnityEngine.Object.op_Equality(Singleton, local3) //(Object x, Object y)
+
+		if (boolean == False)
+		      = this.
+
+		    PlayerRoles.PlayableScps.Scp106.Scp106SinkholeController sinkhole = Singleton.Sinkhole
+
+		    System.Single normalizedState = sinkhole.NormalizedState
+
+		    if (sinkhole != 0)
+                goto INSN_1803135BE
+            endif
+
+		    ActionName targetKey = this.TargetKey
+
+		    if (targetKey == 0)
+                goto INSN_1803135BE
+            endif
+		      = this.
+		      = targetKey.
+
+		    System.Boolean isGrounded = this.IsGrounded
+
+		    if (isGrounded == False)
+                goto INSN_1803135BE
+            endif
+		      = this.
+
+		    PlayerRoles.PlayableScps.Scp106.Scp106SinkholeController sinkhole2 = this.Sinkhole
+		    PlayerRoles.PlayableScps.Subroutines.AbilityCooldown cooldown = sinkhole2.Cooldown
+
+		    System.String string = cooldown.ToString()
+
+		    if (string == 0)
+                goto INSN_180313574
+            endif
+
+		    PlayerRoles.PlayableScps.Scp106.Scp106Vigor vigor = base.Vigor
+
+		    System.Single vigorAmount = vigor.VigorAmount
+		    Singleton.<IsVisible>k__BackingField = True
+
+		    if (vigor != 0)
+		        ulong local23 = 0
+		        ulong local24 = 0
+
+		        UnityEngine.KeyCode key = NewInput.GetKey(local24, local23) //(ActionName actionName, KeyCode fallbackKeycode)
+		        ulong local26 = 0
+		        System.Int32 local27 = key.value__
+
+		        [instruction error - managed method being called is null]
+
+		        if (key != 0)
+		            System.Single single = Singleton.<LastWorldPos>k__BackingField.z
+		            this._syncPos.z = single
+		              = single.
+		            this._syncRoom = local26
+
+		            base.ClientSendCmd()
+		        endif
+                
+		        return
+		        . = 0
+		        PlayerRoles.PlayableScps.Scp106.Scp106Hud _singleton = PlayerRoles.PlayableScps.Scp106.Scp106Hud._singleton
+		        System.Diagnostics.Stopwatch _vigorFlashSw = _singleton._vigorFlashSw
+
+		        _vigorFlashSw.Restart()
+		        return
+
+		        INSN_180313574:
+		        . = 0
+		        PlayerRoles.PlayableScps.Scp106.Scp106Hud _singleton2 = PlayerRoles.PlayableScps.Scp106.Scp106Hud._singleton
+		    endwhile
+            
+		    goto INSN_1803135D2
+            
+		    . = 0
+		    return
+
+		    INSN_1803135D2:
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.FieldToLocalAction at (0x180313398) is corrupt (No further info) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp106.Scp106HuntersAtlasAbility
+	System.Void UpdateServerside()
+
+		if (this._submerged != False)
+		      = this.
+
+		    PlayerRoles.PlayableScps.Scp106.Scp106SinkholeController sinkhole = .Sinkhole
+
+		    System.Single normalizedState = sinkhole.NormalizedState
+
+		    UnityEngine.Vector3 safePosition = .GetSafePosition()
+		    System.Single single = safePosition.z
+		      = this.
+		      = safePosition.
+		      = safePosition.
+
+		    UnityEngine.Vector3 vector3 = UnityEngine.Vector3.op_Subtraction()
+		    System.Single single2 = vector3.z
+
+		    System.Single single3 = Misc.MagnitudeIgnoreY()
+
+		    PlayerRoles.PlayableScps.Scp106.Scp106Vigor vigor = base.Vigor
+
+		    System.Single vigorAmount = vigor.VigorAmount
+		    System.Single local18 = single3 * 0,019
+		    vigorAmount = local17
+
+		    System.Single single4 = UnityEngine.Mathf.Min(vigorAmount, local18) //(Single a, Single b)
+		    vigor._vigor = vigorAmount
+		      = this.
+		      = vigor.
+
+		    UnityEngine.Vector3 zero = UnityEngine.Vector3.zero
+		    System.Single single5 = zero.z
+
+		    vigor.ServerOverridePosition()
+		    ulong local26 = 0
+
+		    this.SetSubmerged(local26) //(Boolean val)
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.FieldToLocalAction at (0x180313611) is corrupt (No further info) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp106.Scp106HuntersAtlasAbility
+	UnityEngine.Vector3 GetSafePosition()
+		ulong local1 = 0
+		this._held = local1
+		this. = local1
+		this. = 0
+		System.Collections.Generic.HashSet`1<Interactables.Interobjects.DoorUtils.DoorVariant> allDoors = Interactables.Interobjects.DoorUtils.DoorVariant.AllDoors
+
+		System.Collections.Generic.HashSet`1/Enumerator<T> enumerator = .GetEnumerator()
+		ulong local4 = 0
+
+		if (enumerator != 0)
+
+		    if (enumerator != 0)
+		        ulong local5 = 0
+
+		        if (enumerator != 0)
+
+		            System.Boolean boolean = CollectionExtensions.Contains<MapGeneration.RoomIdentifier>()
+
+		            if (boolean != False)
+
+		                UnityEngine.Transform transform = local5.transform
+
+		                UnityEngine.Vector3 position = local5.position
+
+		                UnityEngine.Vector3 vector3 = .ClosestDoorPosition()
+		                System.Single single = vector3.z
+
+		                UnityEngine.Vector3 vector32 = UnityEngine.Vector3.op_Subtraction()
+
+		                System.Single single2 = Misc.SqrMagnitudeIgnoreY()
+		                System.Single debugDuration = PlayerRoles.PlayableScps.Scp106.Scp106HuntersAtlasAbility.DebugDuration
+
+		                if (debugDuration <= local4)
+                            goto INSN_1803123C8
+                        endif
+
+		                System.String string = System.String.Format("Debug door, disSqr={0}", local21) //(String format, Object arg0)
+
+		                .name = string
+
+		                INSN_1803123C8:
+
+		                if (single2 <= 3.4028234663852886E+38)
+		                    this. = single
+		                endif
+                        
+
+		                [instruction error - managed method being called is null]
+
+		                [instruction error - managed method being called is null]
+
+		                if (DoorVariant != 0)
+                            goto INSN_180312486
+                        endif
+		                return this
+		                throw new System.NullReferenceException()
+		                throw new System.NullReferenceException()
+		                throw new System.NullReferenceException()
+
+		                INSN_180312486:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.RegToFieldAction at (0x18031210F) is corrupt (Instance or field is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp106.Scp106HuntersAtlasAbility
+	UnityEngine.Vector3 ClosestDoorPosition(UnityEngine.Vector3 doorPos)
+		ulong local2 = 0
+		  = doorPos.
+
+		UnityEngine.Vector3 vector3 = UnityEngine.Vector3.op_Subtraction()
+		ulong local5 = 0
+		ulong local7 = 0
+		System.Single single = vector3.z
+
+		if ( > local7)
+
+		    UnityEngine.Vector3 vector32 = UnityEngine.Vector3.op_Division()
+		endif
+        
+		  = doorPos.
+		  = vector3.
+		  = single.
+
+		System.Single radius = single.radius
+		  = doorPos.
+		  = vector3.
+		  = vector3.
+
+		System.Single height = single.height
+
+		UnityEngine.Vector3 up = UnityEngine.Vector3.up
+
+		UnityEngine.Vector3 vector33 = UnityEngine.Vector3.op_Multiply()
+
+		UnityEngine.Vector3 vector34 = UnityEngine.Vector3.op_Addition()
+		System.Single debugDuration = PlayerRoles.PlayableScps.Scp106.Scp106HuntersAtlasAbility.DebugDuration
+
+		if (debugDuration <= local7)
+            goto INSN_180311B5D
+        endif
+		ulong local27 = 0
+
+		UnityEngine.Color color = UnityEngine.Random.ColorHSV()
+
+		INSN_180311B5D:
+
+		[instruction error - managed method being called is null]
+
+		System.Boolean boolean = doorPos.TrySphereCast()
+
+		if (boolean != False)
+            goto INSN_180311CF4
+        endif
+
+		System.Single single2 = UnityEngine.Mathf.Min(15, local27) //(Single a, Single b)
+
+		if (radius <= single2)
+            goto INSN_180311B80
+        endif
+
+		UnityEngine.Vector3 up2 = UnityEngine.Vector3.up
+
+		UnityEngine.Vector3 vector35 = UnityEngine.Vector3.op_Multiply()
+
+		UnityEngine.Vector3 vector36 = UnityEngine.Vector3.op_Addition()
+		System.Single single3 = vector36.z
+		this. = single3
+		return this
+
+		INSN_180311CF4:
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.FieldToLocalAction at (0x1803118DA) is corrupt (No further info) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp106.Scp106HuntersAtlasAbility
+	System.Boolean TrySphereCast(UnityEngine.Color debugColor, UnityEngine.Vector3 origin, UnityEngine.Vector3 dir, System.Single radius, System.Single height, System.Single maxDis, UnityEngine.Vector3& pos)
+		ulong local9 = 0
+		ulong local10 = 0
+		System.Single debugDuration = PlayerRoles.PlayableScps.Scp106.Scp106HuntersAtlasAbility.DebugDuration
+		System.Single single = dir.z
+		System.Single single2 = origin.z
+
+		UnityEngine.Debug.DrawRay()
+		ulong local15 = 0
+
+		System.Int32 detectionMask = PlayerRoles.PlayableScps.Scp106.Scp106HuntersAtlasAbility.DetectionMask
+		System.Single single3 = dir.z
+		System.Single single4 = origin.z
+
+		System.Boolean boolean = UnityEngine.Physics.SphereCast()
+
+		if (boolean == False)
+		    System.Single single5 = dir.z
+
+		    UnityEngine.Vector3 vector3 = UnityEngine.Vector3.op_Multiply()
+		    System.Single single6 = vector3.z
+		    System.Single single7 = origin.z
+		else
+		      = boolean.
+		      = boolean.
+		    System.Single local27 = debugDuration * 1,1
+
+		    UnityEngine.Vector3 vector32 = UnityEngine.Vector3.op_Multiply(debugDuration, local9) //(Single d, Vector3 a)
+		    System.Single single8 = vector32.z
+		endif
+        
+
+		UnityEngine.Vector3 vector33 = UnityEngine.Vector3.op_Addition()
+		System.Single single9 = vector33.z
+		  = single9.
+		ulong local36 = 0
+		System.Single debugDuration2 = PlayerRoles.PlayableScps.Scp106.Scp106HuntersAtlasAbility.DebugDuration
+
+		if (debugDuration2 <= local36)
+            goto INSN_180312D94
+        endif
+		System.Single debugDuration3 = PlayerRoles.PlayableScps.Scp106.Scp106HuntersAtlasAbility.DebugDuration
+
+		this.DebugHitPoint()
+
+		INSN_180312D94:
+
+		UnityEngine.Vector3 up = UnityEngine.Vector3.up
+		System.Single single10 = up.z
+
+		UnityEngine.Vector3 vector34 = UnityEngine.Vector3.op_Multiply()
+		System.Single single11 = vector34.z
+
+		UnityEngine.Vector3 vector35 = UnityEngine.Vector3.op_Addition()
+		System.Single single12 = vector35.z
+
+		UnityEngine.Vector3 down = UnityEngine.Vector3.down
+		System.Single single13 = down.z
+		ulong local54 = 0
+
+		System.Int32 detectionMask2 = PlayerRoles.PlayableScps.Scp106.Scp106HuntersAtlasAbility.DetectionMask
+
+		System.Boolean boolean2 = UnityEngine.Physics.Raycast()
+
+		if (boolean2 == False)
+            goto INSN_1803131C7
+        endif
+		  = boolean2.
+		debugDuration2 = debugDuration
+		UnityEngine.Collider[] detectionsNonAlloc = PlayerRoles.PlayableScps.Scp106.Scp106HuntersAtlasAbility.DetectionsNonAlloc
+
+		System.Int32 int32 = UnityEngine.Physics.OverlapSphereNonAlloc()
+
+		if (int32 <= 0)
+            goto INSN_180312F93
+        endif
+		UnityEngine.Collider[] detectionsNonAlloc2 = PlayerRoles.PlayableScps.Scp106.Scp106HuntersAtlasAbility.DetectionsNonAlloc
+		UnityEngine.Collider collider = detectionsNonAlloc2[local10]
+
+		System.Boolean boolean3 = collider.TryGetComponent<TeslaGate>()
+
+		if (boolean3 != False)
+            goto INSN_1803131C7
+        endif
+		local10 += 1
+
+		INSN_180312F93:
+		  = boolean3.
+
+		UnityEngine.Vector3 up2 = UnityEngine.Vector3.up
+		System.Single single14 = up2.z
+
+		UnityEngine.Vector3 vector36 = UnityEngine.Vector3.op_Multiply()
+		System.Single single15 = vector36.z
+
+		UnityEngine.Vector3 vector37 = UnityEngine.Vector3.op_Addition()
+		System.Single single16 = vector37.z
+
+		UnityEngine.Vector3 up3 = UnityEngine.Vector3.up
+		System.Single single17 = up3.z
+
+		UnityEngine.Vector3 vector38 = UnityEngine.Vector3.op_Multiply()
+		System.Single single18 = vector38.z
+
+		UnityEngine.Vector3 vector39 = UnityEngine.Vector3.op_Addition()
+		System.Single single19 = vector39.z
+		ulong local83 = 0
+
+		System.Int32 detectionMask3 = PlayerRoles.PlayableScps.Scp106.Scp106HuntersAtlasAbility.DetectionMask
+
+		System.Boolean boolean4 = UnityEngine.Physics.CheckCapsule()
+
+		if (boolean4 != False)
+            goto INSN_1803131C7
+        endif
+		  = boolean4.
+
+		UnityEngine.Vector3 up4 = UnityEngine.Vector3.up
+		System.Single single20 = up4.z
+
+		UnityEngine.Vector3 vector310 = UnityEngine.Vector3.op_Multiply()
+		System.Single single21 = vector310.z
+
+		UnityEngine.Vector3 vector311 = UnityEngine.Vector3.op_Addition()
+
+		INSN_1803131C7:
+		ulong local96 = 0
+		return local96
+		throw new System.IndexOutOfRangeException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180312B51) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (4)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp106.Scp106HuntersAtlasAbility
+	System.Void DebugHitPoint(UnityEngine.Vector3 point, UnityEngine.Color debugColor)
+		UnityEngine.Vector3[] local3 = new UnityEngine.Vector3[6]
+
+		UnityEngine.Vector3 up = UnityEngine.Vector3.up
+		System.Single single = up.z
+		local3[1] = single
+
+		UnityEngine.Vector3 down = UnityEngine.Vector3.down
+		System.Single single2 = down.z
+		local3[2] = single2
+
+		UnityEngine.Vector3 left = UnityEngine.Vector3.left
+		System.Single single3 = left.z
+		local3[4] = single3
+
+		UnityEngine.Vector3 right = UnityEngine.Vector3.right
+		System.Single single4 = right.z
+		local3[5] = single4
+
+		UnityEngine.Vector3 forward = UnityEngine.Vector3.forward
+		System.Single single5 = forward.z
+		local3[7] = single5
+
+		UnityEngine.Vector3 back = UnityEngine.Vector3.back
+		ulong local21 = 0
+		System.Single single6 = back.z
+		local3[8] = single6
+		System.Int32 length = local3.Length
+
+		if (local21 < length)
+		    System.Int32 0 = 0
+
+		    UnityEngine.Vector3 vector3 = UnityEngine.Vector3.op_Multiply()
+
+		    UnityEngine.Vector3 vector32 = UnityEngine.Vector3.op_Addition()
+		    System.Single debugDuration = PlayerRoles.PlayableScps.Scp106.Scp106HuntersAtlasAbility.DebugDuration
+
+		    UnityEngine.Debug.DrawLine()
+		    local21 += 1
+		endif
+        
+		return
+		throw new System.IndexOutOfRangeException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180311EFB) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp106.Scp106HuntersAtlasAbility
+	System.Void Update()
+
+		base.Update()
+		  = this.
+
+		PlayerRoles.PlayableScps.Scp106.Scp106SinkholeController sinkhole = .Sinkhole
+
+		System.Single normalizedState = sinkhole.NormalizedState
+
+		if (this._dissolveAnim != False)
+
+		    if (this._submerged == False)
+		        this._dissolveAnim = False
+		    endif
+            
+		      = this.
+
+		    System.Boolean isLocalPlayer = sinkhole.isLocalPlayer
+
+		    if (isLocalPlayer != False)
+                goto INSN_180313916
+            endif
+		      = this.
+
+		    System.Boolean isLocallySpectated = PlayerRoles.Spectating.SpectatorNetworking.IsLocallySpectated()
+
+		    if (isLocallySpectated == False)
+                goto INSN_180313961
+            endif
+
+		    INSN_180313916:
+
+		    if (this._dissolveAnim == False)
+                goto INSN_180313952
+            endif
+
+		    System.Single single = UnityEngine.Mathf.InverseLerp(0.5, 1, normalizedState) //(Single a, Single b, Single value)
+
+		    INSN_180313952:
+		    ulong local11 = 0
+		    this._lastDissolveAmount = local11
+
+		    PlayerRoles.PlayableScps.Scp106.Scp106Hud.SetDissolveAnimation(local11) //(Single amt)
+
+		    INSN_180313961:
+		      = this.
+
+		    System.Boolean isLocalPlayer2 = .isLocalPlayer
+
+		    if (isLocalPlayer2 == False)
+                goto INSN_180313983
+            endif
+
+		    this.UpdateClientside()
+
+		    INSN_180313983:
+
+		    this.UpdateServerside()
+		    return
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.FieldToLocalAction at (0x18031389E) is corrupt (No further info) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp106.Scp106HuntersAtlasAbility
+	System.Void ClientWriteCmd(Mirror.NetworkWriter writer)
+
+		base.ClientWriteCmd(writer) //(NetworkWriter writer)
+		MapGeneration.RoomIdentifier _syncRoom = this._syncRoom
+
+		UnityEngine.Transform transform = _syncRoom.transform
+
+		UnityEngine.Vector3 position = _syncRoom.position
+
+		RelativePositioning.RelativePositionSerialization.WriteRelativePosition()
+
+		UnityEngine.Vector3 vector3 = UnityEngine.Vector3.op_Subtraction()
+
+		UnityEngine.Vector3 vector32 = UnityEngine.Vector3.op_Multiply()
+
+		UnityEngine.Vector3Int vector3Int = UnityEngine.Vector3Int.RoundToInt()
+		System.Int32 int32 = vector3Int.m_Z
+
+		Mirror.NetworkWriterExtensions.WriteInt16(writer, int32) //(NetworkWriter writer, Int16 value)
+
+		Mirror.NetworkWriterExtensions.WriteInt16(writer, int32) //(NetworkWriter writer, Int16 value)
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1803116FD) is corrupt (Mismatched instance parameter. Expecting an instance of UnityEngine.Transform, actually {'_syncRoom' (type MapGeneration.RoomIdentifier)}) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp106.Scp106HuntersAtlasAbility
+	System.Void ServerProcessCmd(Mirror.NetworkReader reader)
+
+		base.ServerProcessCmd(reader) //(NetworkReader reader)
+		  = this.
+
+		PlayerRoles.PlayableScps.Scp106.Scp106SinkholeController sinkhole = this.Sinkhole
+
+		System.Single normalizedState = sinkhole.NormalizedState
+		ulong local8 = 0
+
+		if (normalizedState <= local8)
+		      = this.
+
+		    PlayerRoles.PlayableScps.Scp106.Scp106SinkholeController sinkhole2 = sinkhole.Sinkhole
+		    PlayerRoles.PlayableScps.Subroutines.AbilityCooldown cooldown = sinkhole2.Cooldown
+
+		    System.String string = cooldown.ToString()
+
+		    if (string != 0)
+
+		        RelativePositioning.RelativePosition relativePosition = RelativePositioning.RelativePositionSerialization.ReadRelativePosition(reader) //(NetworkReader reader)
+		          = relativePosition.
+
+		        MapGeneration.RoomIdentifier roomIdentifier = MapGeneration.RoomIdUtils.RoomAtPosition()
+		        this._syncRoom = roomIdentifier
+
+		        System.Int16 int16 = Mirror.NetworkReaderExtensions.ReadInt16(reader) //(NetworkReader reader)
+
+		        System.Int16 int162 = Mirror.NetworkReaderExtensions.ReadInt16(reader) //(NetworkReader reader)
+
+		        UnityEngine.Vector3 vector3 = UnityEngine.Vector3.op_Division()
+
+		        UnityEngine.Vector3 vector32 = UnityEngine.Vector3.op_Addition()
+		        MapGeneration.RoomIdentifier _syncRoom = this._syncRoom
+		        System.Single single = vector32.z
+		        this._syncPos.z = single
+		        ulong local32 = 0
+
+		        System.Boolean boolean = UnityEngine.Object.op_Equality(_syncRoom, local32) //(Object x, Object y)
+
+		        if (boolean == False)
+		              = this.
+		              = boolean.
+		              = boolean.
+		            System.Single single2 = this._syncPos.y
+
+		            if (normalizedState <= 400)
+
+		                UnityEngine.Vector3 vector33 = UnityEngine.Vector3.op_Subtraction()
+
+		                System.Single single3 = Misc.MagnitudeIgnoreY()
+		                single2 = single3
+		                System.Single local42 = single2 * 0,019
+
+		                PlayerRoles.PlayableScps.Scp106.Scp106Vigor vigor = base.Vigor
+
+		                System.Single vigorAmount = vigor.VigorAmount
+
+		                if (local42 <= vigorAmount)
+		                    this._estimatedCost = local42
+
+		                    this.SetSubmerged(True) //(Boolean val)
+		                endif
+                        
+		                return
+		                throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.FieldToLocalAction at (0x18031254D) is corrupt (No further info) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp106.Scp106HuntersAtlasAbility
+	System.Void ServerWriteRpc(Mirror.NetworkWriter writer)
+
+		base.ClientWriteCmd(writer) //(NetworkWriter writer)
+
+		this.OnKeyUp()
+
+		[instruction error - managed method being called is null]
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180312921) is corrupt (Don't know what method is being called) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp106.Scp106HuntersAtlasAbility
+	System.Void ClientProcessRpc(Mirror.NetworkReader reader)
+
+		base.ServerProcessCmd(reader) //(NetworkReader reader)
+
+		System.Boolean boolean = Mirror.NetworkReaderExtensions.ReadBoolean(reader) //(NetworkReader reader)
+
+		this.SetSubmerged(boolean) //(Boolean val)
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: call System.Void PlayerRoles.PlayableScps.Subroutines.ScpSubroutineBase::ServerProcessCmd(Mirror.NetworkReader)
+	IL_0007: ldarg.1
+	IL_0008: call System.Boolean Mirror.NetworkReaderExtensions::ReadBoolean(Mirror.NetworkReader)
+	IL_000d: stloc.0
+	IL_000e: ldarg.0
+	IL_000f: ldloc.0
+	IL_0010: call System.Void PlayerRoles.PlayableScps.Scp106.Scp106HuntersAtlasAbility::SetSubmerged(System.Boolean)
+	IL_0015: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp106.Scp106HuntersAtlasAbility
+	System.Void ResetObject()
+
+		base.ResetObject()
+		System.Single _lastDissolveAmount = this._lastDissolveAmount
+		ulong local2 = 0
+		this._submerged = False
+
+		if (_lastDissolveAmount > local2)
+		    this._lastDissolveAmount = 0
+
+		    PlayerRoles.PlayableScps.Scp106.Scp106Hud.SetDissolveAnimation(local2) //(Single amt)
+		    return
+		endif
+        
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void PlayerRoles.PlayableScps.Subroutines.ScpKeySubroutine`1::ResetObject()
+	IL_0006: ldarg.0
+	IL_0007: ldfld System.Single PlayerRoles.PlayableScps.Scp106.Scp106HuntersAtlasAbility::_lastDissolveAmount
+	IL_000c: stloc.0
+	IL_000d: ldc.i4.0
+	IL_000e: stloc.1
+	IL_000f: ldarg.0
+	IL_0010: ldc.i4.0
+	IL_0011: stfld System.Boolean PlayerRoles.PlayableScps.Scp106.Scp106HuntersAtlasAbility::_submerged
+	IL_0016: ldloc.0
+	IL_0017: ldloc.1
+	IL_0018: ble.s IL_002c
+	IL_001a: ldarg.0
+	IL_001b: ldc.r4 0
+	IL_0020: stfld System.Single PlayerRoles.PlayableScps.Scp106.Scp106HuntersAtlasAbility::_lastDissolveAmount
+	IL_0025: ldloc.1
+	IL_0026: call System.Void PlayerRoles.PlayableScps.Scp106.Scp106Hud::SetDissolveAnimation(System.Single)
+	IL_002b: ret
+	IL_002c: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp106.Scp106HuntersAtlasAbility
+	System.Void .ctor()
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void PlayerRoles.PlayableScps.Scp106.Scp106VigorAbilityBase::.ctor()
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp106.Scp106HuntersAtlasAbility
+	static System.Void .cctor()
+		UnityEngine.Collider[] local0 = new UnityEngine.Collider[8]
+		PlayerRoles.PlayableScps.Scp106.Scp106HuntersAtlasAbility.DetectionsNonAlloc = local0
+		. = 0
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ImmediateToFieldAction at (0x180313A77) is corrupt (Instance or field is null) and cannot be created as IL. Aborting here.
+
+

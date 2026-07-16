@@ -1,0 +1,67 @@
+Type: CustomPlayerEffects.Invigorated
+
+Method: CustomPlayerEffects.StatusEffectBase+EffectClassification get_Classification()
+
+Disassembly:
+	mov eax,2
+	ret
+
+ISIL:
+	001 Move rax, 2
+	002 Return rax
+
+Method: System.Boolean get_StaminaModifierActive()
+
+Disassembly:
+	cmp byte ptr [rcx+28h],0
+	seta al
+	ret
+
+ISIL:
+	001 Compare [rcx+40], 0
+	002 NotImplemented "seta al"
+	003 Return rax
+
+Method: System.Single get_StaminaUsageMultiplier()
+
+Disassembly:
+	xorps xmm0,xmm0
+	ret
+
+ISIL:
+	001 Move xmm0, 0
+	002 Return xmm0
+
+Method: System.Single get_StaminaRegenMultiplier()
+
+Disassembly:
+	movss xmm0,dword ptr [181EA337Ch]
+	ret
+
+ISIL:
+	001 Move xmm0, [0x181EA337C]
+	002 Return xmm0
+
+Method: System.Boolean get_SprintingDisabled()
+
+Disassembly:
+	xor al,al
+	ret
+
+ISIL:
+	001 Move rax, 0
+	002 Return rax
+
+Method: System.Void .ctor()
+
+Disassembly:
+	xor edx,edx
+	mov byte ptr [rcx+18h],0FFh
+	jmp near ptr 0000000180FD1850h
+
+ISIL:
+	001 Move rdx, 0
+	002 Move [rcx+24], 255
+	003 Call 0x180FD1850, rcx, rdx
+	004 Return 
+

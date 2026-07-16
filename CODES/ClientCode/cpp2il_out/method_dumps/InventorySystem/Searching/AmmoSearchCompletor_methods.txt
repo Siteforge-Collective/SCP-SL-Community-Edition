@@ -1,0 +1,297 @@
+Type: AmmoSearchCompletor
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Searching.AmmoSearchCompletor
+	System.UInt16 get_CurrentAmmo()
+		ReferenceHub referenceHub = this.Hub
+		ItemType _ammoType = this._ammoType
+		InventorySystem.Inventory inventory = referenceHub.inventory
+
+		System.UInt16 curAmmo = InventorySystem.InventoryExtensions.GetCurAmmo(inventory, _ammoType) //(Inventory inv, ItemType ammoType)
+		return curAmmo
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld ReferenceHub InventorySystem.Searching.SearchCompletor::Hub
+	IL_0006: stloc.0
+	IL_0007: ldarg.0
+	IL_0008: ldfld ItemType InventorySystem.Searching.AmmoSearchCompletor::_ammoType
+	IL_000d: stloc.1
+	IL_000e: ldloc.0
+	IL_000f: ldfld InventorySystem.Inventory ReferenceHub::inventory
+	IL_0014: ldloc.1
+	IL_0015: call System.UInt16 InventorySystem.InventoryExtensions::GetCurAmmo(InventorySystem.Inventory,ItemType)
+	IL_001a: ret
+	IL_001b: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0020: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Searching.AmmoSearchCompletor
+	System.Void set_CurrentAmmo(System.UInt16 value)
+		ReferenceHub referenceHub = this.Hub
+		ItemType _ammoType = this._ammoType
+		InventorySystem.Inventory inventory = referenceHub.inventory
+
+		InventorySystem.InventoryExtensions.ServerSetAmmo(inventory, _ammoType, value) //(Inventory inv, ItemType ammoType, Int32 amount)
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld ReferenceHub InventorySystem.Searching.SearchCompletor::Hub
+	IL_0006: stloc.0
+	IL_0007: ldarg.0
+	IL_0008: ldfld ItemType InventorySystem.Searching.AmmoSearchCompletor::_ammoType
+	IL_000d: stloc.1
+	IL_000e: ldloc.0
+	IL_000f: ldfld InventorySystem.Inventory ReferenceHub::inventory
+	IL_0014: ldloc.1
+	IL_0015: ldarg.1
+	IL_0016: call System.Void InventorySystem.InventoryExtensions::ServerSetAmmo(InventorySystem.Inventory,ItemType,System.Int32)
+	IL_001b: ret
+	IL_001c: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0021: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Searching.AmmoSearchCompletor
+	System.UInt16 get_MaxAmmo()
+		ItemType _ammoType = this._ammoType
+		System.Int32 local4 = _ammoType.value__
+
+		System.UInt16 ammoLimit = InventorySystem.Configs.InventoryLimits.GetAmmoLimit()
+		return ammoLimit
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18042928F) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Searching.AmmoSearchCompletor
+	System.Void .ctor(ReferenceHub hub, InventorySystem.Items.Pickups.ItemPickupBase targetPickup, InventorySystem.Items.ItemBase targetItem, System.Double maxDistanceSquared)
+
+		base..ctor()
+		ItemType itemTypeId = targetItem.ItemTypeId
+		this._ammoType = itemTypeId
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1804291D5) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (4)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Searching.AmmoSearchCompletor
+	System.Boolean ValidateAny()
+
+		System.Boolean boolean = base.ValidateAny()
+
+		if (boolean != False)
+		    ItemType _ammoType = this._ammoType
+		    System.Int32 local6 = _ammoType.value__
+
+		    System.UInt16 ammoLimit = InventorySystem.Configs.InventoryLimits.GetAmmoLimit()
+		    ReferenceHub referenceHub = this.Hub
+		    ItemType _ammoType2 = this._ammoType
+		    InventorySystem.Inventory inventory = referenceHub.inventory
+
+		    System.UInt16 curAmmo = InventorySystem.InventoryExtensions.GetCurAmmo(inventory, _ammoType2) //(Inventory inv, ItemType ammoType)
+
+		    if (curAmmo < ammoLimit)
+		        return True
+		    endif
+            
+		    ReferenceHub referenceHub2 = this.Hub
+		    Hints.HintDisplay hints = referenceHub2.hints
+		    Hints.HintParameter[] local15 = new Hints.HintParameter[2]
+		    Hints.AmmoHintParameter ammoHintParameter = new Hints.AmmoHintParameter()
+
+		    ammoHintParameter..ctor()
+
+		    if (ammoHintParameter == 0)
+                goto INSN_180429001
+            endif
+
+		    if (ammoHintParameter == 0)
+                goto INSN_180429149
+            endif
+
+		    INSN_180429001:
+		    local15[0] = ammoHintParameter
+		    Hints.PackedULongHintParameter packedULongHintParameter = new Hints.PackedULongHintParameter()
+
+		    packedULongHintParameter..ctor(ammoLimit) //(UInt64 value)
+
+		    if (packedULongHintParameter == 0)
+                goto INSN_180429054
+            endif
+
+		    if (packedULongHintParameter == 0)
+                goto INSN_180429169
+            endif
+
+		    INSN_180429054:
+		    local15[1] = packedULongHintParameter
+		    Hints.HintEffect[] local21 = new Hints.HintEffect[1]
+		    ulong local22 = 0
+		    ulong local23 = 0
+
+		    Hints.AlphaCurveHintEffect alphaCurveHintEffect = Hints.HintEffectPresets.TrailingPulseAlpha(0.5, 1, 0.5, 2, local22, local24) //(Single floorValue, Single peakValue, Single startTrailScalar, Single iterationScalar, Single startScalar, Int32 count)
+
+		    if (alphaCurveHintEffect == 0)
+                goto INSN_1804290E5
+            endif
+
+		    if (alphaCurveHintEffect == 0)
+                goto INSN_180429189
+            endif
+
+		    INSN_1804290E5:
+		    local21[0] = alphaCurveHintEffect
+		    Hints.TranslationHint translationHint = new Hints.TranslationHint()
+
+		    translationHint..ctor(2, local15, local21, local27) //(HintTranslations translation, HintParameter[] parameters, HintEffect[] effects, Single durationScalar)
+
+		    hints.Show(translationHint) //(Hint hint)
+		endif
+        
+		ulong local30 = 0
+		return local30
+
+		INSN_180429149:
+
+		INSN_180429169:
+
+		INSN_180429189:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180428F47) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Searching.AmmoSearchCompletor
+	System.Void Complete()
+		InventorySystem.Items.Pickups.ItemPickupBase targetPickup = this.TargetPickup
+		ulong local2 = 0
+		ulong local3 = 0
+
+		if (targetPickup != 0)
+		    //UNKNOWN CLASS OFFSET READ HERE
+		    ReferenceHub referenceHub = this.Hub
+		    ItemType _ammoType = this._ammoType
+		    InventorySystem.Inventory inventory = referenceHub.inventory
+
+		    System.UInt16 curAmmo = InventorySystem.InventoryExtensions.GetCurAmmo(inventory, _ammoType) //(Inventory inv, ItemType ammoType)
+		      = targetPickup.
+		    ItemType _ammoType2 = this._ammoType
+		    System.Int32 local12 = _ammoType2.value__
+
+		    System.UInt16 ammoLimit = InventorySystem.Configs.InventoryLimits.GetAmmoLimit()
+
+		    System.UInt32 uInt32 = System.Math.Min()
+		      = targetPickup.
+		    uInt32 -= curAmmo
+
+		    if (uInt32 < uInt32)
+		        uInt32 -= uInt32
+
+		        targetPickup.NetworkSavedAmmo = uInt32
+		        InventorySystem.Items.Pickups.ItemPickupBase targetPickup2 = this.TargetPickup
+		        InventorySystem.Items.Pickups.PickupSyncInfo info = targetPickup2.Info
+		        System.Int16 positionZ = targetPickup2.Info.RelativePosition.PositionZ
+		        System.Single single = targetPickup2.Info._serverPosition.z
+		        InventorySystem.Items.Pickups.ItemPickupBase targetPickup3 = this.TargetPickup
+
+		        targetPickup3.NetworkInfo = info
+		        ReferenceHub referenceHub2 = this.Hub
+		        System.Int64 local26 = 2
+		        Hints.HintDisplay hints = referenceHub2.hints
+		        Hints.HintParameter[] local28 = new Hints.HintParameter[2]
+		        Hints.AmmoHintParameter ammoHintParameter = new Hints.AmmoHintParameter()
+
+		        ammoHintParameter..ctor()
+
+		        if (ammoHintParameter != 0)
+
+		            if (ammoHintParameter == 0)
+                        goto INSN_180428E60
+                    endif
+		        endif
+                
+		        local28[0] = ammoHintParameter
+
+		        System.UInt16 maxAmmo = this.MaxAmmo
+		        Hints.PackedULongHintParameter packedULongHintParameter = new Hints.PackedULongHintParameter()
+
+		        packedULongHintParameter..ctor(maxAmmo) //(UInt64 value)
+
+		        if (packedULongHintParameter == 0)
+                    goto INSN_180428D27
+                endif
+
+		        if (packedULongHintParameter == 0)
+                    goto INSN_180428E80
+                endif
+
+		        INSN_180428D27:
+		        local28[1] = packedULongHintParameter
+		        ulong local37 = 0
+
+		        Hints.HintEffect[] hintEffectArray = Hints.HintEffectPresets.FadeInAndOut(0.25, 1, local37) //(Single window, Single durationScalar, Single startScalar)
+		        Hints.TranslationHint translationHint = new Hints.TranslationHint()
+
+		        translationHint..ctor()
+
+		        hints.Show(translationHint) //(Hint hint)
+		    else
+		        InventorySystem.Items.Pickups.ItemPickupBase targetPickup4 = this.TargetPickup
+
+		        targetPickup4.DestroySelf()
+		    endif
+            
+		    ReferenceHub referenceHub3 = this.Hub
+		    ItemType _ammoType3 = this._ammoType
+		    InventorySystem.Inventory inventory2 = referenceHub3.inventory
+
+		    System.UInt16 curAmmo2 = InventorySystem.InventoryExtensions.GetCurAmmo(inventory2, _ammoType3) //(Inventory inv, ItemType ammoType)
+		    ReferenceHub referenceHub4 = this.Hub
+		    ItemType _ammoType4 = this._ammoType
+		    uInt32 += curAmmo2
+		    InventorySystem.Inventory inventory3 = referenceHub4.inventory
+
+		    InventorySystem.InventoryExtensions.ServerSetAmmo(inventory3, _ammoType4, uInt32) //(Inventory inv, ItemType ammoType, Int32 amount)
+		    return
+		endif
+        
+
+		UnityEngine.Debug.LogError("The pickup needs to derive from AmmoPickup") //(Object message)
+		return
+
+		INSN_180428E60:
+
+		INSN_180428E80:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.UnknownClassOffsetReadAction at (0x180428ACB) is corrupt (Unknown class offset read) and cannot be created as IL. Aborting here.
+
+

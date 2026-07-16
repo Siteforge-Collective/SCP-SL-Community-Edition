@@ -1,0 +1,722 @@
+Type: Scp330Viewmodel
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Usables.Scp330.Scp330Viewmodel
+	CursorManagement.CursorOverrideMode get_CursorOverride()
+		CursorManagement.CursorOverrideMode CursorOverride = this.<CursorOverride>k__BackingField
+		return CursorOverride
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld CursorManagement.CursorOverrideMode InventorySystem.Items.Usables.Scp330.Scp330Viewmodel::<CursorOverride>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Usables.Scp330.Scp330Viewmodel
+	System.Void set_CursorOverride(CursorManagement.CursorOverrideMode value)
+		this.<CursorOverride>k__BackingField = value
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: stfld CursorManagement.CursorOverrideMode InventorySystem.Items.Usables.Scp330.Scp330Viewmodel::<CursorOverride>k__BackingField
+	IL_0007: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Usables.Scp330.Scp330Viewmodel
+	System.Boolean get_LockMovement()
+		ulong local1 = 0
+		return local1
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x1802D39F2) is corrupt (Return value has a type of System.Int32, expecting an object of type System.Boolean) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Usables.Scp330.Scp330Viewmodel
+	System.Void InitLocal(InventorySystem.Items.ItemBase parent)
+
+		base.InitLocal(parent) //(ItemBase ib)
+
+		if (parent == 0)
+		else
+		    //UNKNOWN CLASS OFFSET READ HERE
+		    ulong local4 = 0
+		endif
+        
+		this._bag = parent
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.UnknownClassOffsetReadAction at (0x18043D70B) is corrupt (Unknown class offset read) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Usables.Scp330.Scp330Viewmodel
+	System.Void InitSpectator(ReferenceHub ply, InventorySystem.Items.ItemIdentifier id, System.Boolean wasEquipped)
+		System.Action`1<InventorySystem.Items.Usables.Scp330.SelectScp330Message> action = new System.Action`1<InventorySystem.Items.Usables.Scp330.SelectScp330Message>()
+
+		action..ctor(this, {'HandleSelectMessage' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		System.Action`1<InventorySystem.Items.Usables.Scp330.SelectScp330Message> onClientSelectMessageReceived = InventorySystem.Items.Usables.Scp330.Scp330NetworkHandler.OnClientSelectMessageReceived
+
+		System.Delegate delegate = System.Delegate.Combine(onClientSelectMessageReceived, action) //(Delegate a, Delegate b)
+
+		if (delegate != 0)
+
+		    if (delegate == 0)
+                goto INSN_18043D8DF
+            endif
+		endif
+        
+		 += 8
+
+		if (delegate == onClientSelectMessageReceived)
+
+		    base.InitSpectator(ply, id, wasEquipped) //(ReferenceHub ply, ItemIdentifier id, Boolean wasEquipped)
+
+		    System.Boolean lockMovement = base.LockMovement
+		    return
+
+		    INSN_18043D8DF:
+		    throw new System.InvalidCastException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x18043D880) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Usables.Scp330.Scp330Viewmodel
+	System.Void OnEquipped()
+		UnityEngine.CanvasGroup _descriptionGroup = this._descriptionGroup
+		this._openDelay = True
+		ulong local3 = 0
+
+		_descriptionGroup.alpha = local3
+		this._displayedCandy = 0
+
+		if ( == 0)
+		    UnityEngine.CanvasGroup _selectorGroup = this._selectorGroup
+
+		    UnityEngine.GameObject gameObject = _selectorGroup.gameObject
+		    ulong local8 = 0
+
+		    gameObject.SetActive(local8) //(Boolean value)
+		else
+
+		    System.Boolean boolean = CursorManagement.CursorManager.Register(this) //(ICursorOverride target)
+		    this.<CursorOverride>k__BackingField = 0
+		endif
+        
+
+		base.OnEquipped()
+
+		InventorySystem.Items.ItemIdentifier itemId = base.ItemId
+		ReferenceHub Hub = this.<Hub>k__BackingField
+		ItemType local16 = itemId.TypeId
+
+		System.Single speedMultiplier = CustomPlayerEffects.UsableItemModifierEffectExtensions.GetSpeedMultiplier(local16, Hub) //(ItemType type, ReferenceHub player)
+		System.Int32 speedModifierHash = InventorySystem.Items.Usables.UsableItemViewmodel.SpeedModifierHash
+
+		base.AnimatorSetFloat(speedModifierHash, speedMultiplier) //(Int32 hash, Single val)
+		UnityEngine.AudioSource _equipSoundSource = this._equipSoundSource
+		ulong local22 = 0
+
+		System.Boolean boolean2 = UnityEngine.Object.op_Inequality(_equipSoundSource, local22) //(Object x, Object y)
+
+		if (boolean2 == False)
+            goto INSN_18043E0F4
+        endif
+		UnityEngine.AudioSource _equipSoundSource2 = this._equipSoundSource
+		System.Single local25 = speedMultiplier * this._originalPitch
+
+		_equipSoundSource2.pitch = local25
+
+		INSN_18043E0F4:
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfNonZeroOrNonNullAction at (0x18043DFB8) is corrupt (One of the arguments is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Usables.Scp330.Scp330Viewmodel
+	System.Void LateUpdate()
+		ulong local1 = 0
+		ulong local2 = 0
+
+		base.LateUpdate()
+
+		if ( != local2)
+		    System.Int32 27 = 27
+
+		    System.Boolean keyDownInt = UnityEngine.Input.GetKeyDownInt(27) //(KeyCode key)
+
+		    if (keyDownInt != False)
+                goto INSN_18043DD8C
+            endif
+		    ulong local6 = 0
+		    System.Int32 4 = 4
+
+		    UnityEngine.KeyCode key = NewInput.GetKey(4, local6) //(ActionName actionName, KeyCode fallbackKeycode)
+		    System.Int32 local10 = key.value__
+
+		    [instruction error - managed method being called is null]
+
+		    if (key != 0)
+                goto INSN_18043DD8C
+            endif
+		    InventorySystem.Items.Usables.Scp330.Scp330Bag _bag = this._bag
+
+		    System.Boolean isCandySelected = _bag.IsCandySelected
+
+		    if (isCandySelected == False)
+                goto INSN_18043DA2C
+            endif
+		    InventorySystem.Items.Usables.Scp330.Scp330Bag _bag2 = this._bag
+		    System.Collections.Generic.List`1<InventorySystem.Items.Usables.Scp330.CandyKindID> candies = _bag2.Candies
+
+		    this.SetCandyModel()
+
+		    this.DisplaySelector()
+
+		    if (_bag2 == 0)
+                goto INSN_18043DA46
+            endif
+		endif
+        
+		return
+
+		INSN_18043DA2C:
+		ulong local20 = 0
+
+		this.SetCandyModel(local20) //(CandyKindID id)
+		ulong local22 = 0
+
+		this.DisplaySelector(local22) //(CandyKindID id)
+
+		INSN_18043DA46:
+		InventorySystem.GUI.RadialInventory _selector = this._selector
+		System.UInt16[] organizedContent = _selector.OrganizedContent
+
+		if (local2 >= organizedContent.Length)
+            goto INSN_18043DAF7
+        endif
+		InventorySystem.Items.Usables.Scp330.Scp330Bag _bag3 = this._bag
+		System.UInt16[] organizedContent2 = _selector.OrganizedContent
+		System.Collections.Generic.List`1<InventorySystem.Items.Usables.Scp330.CandyKindID> candies2 = _bag3.Candies
+		System.Int32 _size = candies2._size
+		System.Int32 1 = 1
+		local2 += 1
+		organizedContent2[0] = local2
+		InventorySystem.GUI.RadialInventory _selector2 = this._selector
+
+		INSN_18043DAF7:
+
+		if (this._openDelay != local2)
+            goto INSN_18043DD80
+        endif
+		ulong local31 = 0
+
+		InventorySystem.GUI.InventoryGuiAction inventoryGuiAction = _selector2.DisplayAndSelectItems(local31, local2) //(Inventory targetInventory, UInt16& itemSerial)
+
+		if (inventoryGuiAction != 1)
+            goto INSN_18043DB53
+        endif
+
+		if (local2 != 0)
+		    InventorySystem.Items.Usables.Scp330.Scp330Bag _bag4 = this._bag
+		    System.Int32 -1 = 4294967295
+
+		    INSN_18043DB53:
+
+		    if (local2 != 2)
+                goto INSN_18043DD16
+            endif
+		    ReferenceHub Hub = this.<Hub>k__BackingField
+		    PlayerEffectsController playerEffectsController = Hub.playerEffectsController
+
+		    System.Boolean boolean = playerEffectsController.TryGetEffect<CustomPlayerEffects.AmnesiaItems>(local2) //(T& playerEffect)
+
+		    if (boolean == False)
+                goto INSN_18043DBD7
+            endif
+
+		    [instruction error - managed method being called is null]
+
+		    if (boolean == False)
+                goto INSN_18043DBD7
+            endif
+
+		    local2.ExecutePulse()
+		    ulong local41 = 0
+
+		    this.CancelSelector(local41) //(Boolean bringBackInventory)
+
+		    INSN_18043DBD7:
+
+		    if (local2 != 0)
+                goto INSN_18043DBF9
+            endif
+		    ulong local43 = 0
+
+		    this.CancelSelector(local43) //(Boolean bringBackInventory)
+
+		    INSN_18043DBF9:
+		    InventorySystem.Items.Usables.Scp330.Scp330Bag _bag5 = this._bag
+		    System.Collections.Generic.List`1<InventorySystem.Items.Usables.Scp330.CandyKindID> candies3 = _bag5.Candies
+		    System.Int32 _size2 = candies3._size
+
+		    System.Int32 int32 = UnityEngine.Mathf.Clamp(local2, local2, _size2) //(Int32 value, Int32 min, Int32 max)
+		    ulong local48 = 0
+
+		    System.ThrowHelper.ThrowArgumentOutOfRangeException()
+		    T[] _items = candies3._items
+		    InventorySystem.Items.Usables.Scp330.Scp330Viewmodel/CandyObject[] _candies = this._candies
+		    T t = _items[int32]
+		    System.Int32 length = _candies.Length
+
+		    while (local2 < length)
+		        local2 += 1
+		        InventorySystem.Items.Usables.Scp330.Scp330Viewmodel/CandyObject local53 = _candies[local2]
+		        InventorySystem.Items.Usables.Scp330.Scp330Viewmodel/CandyObject local54 = _candies[local2]
+		        InventorySystem.Items.Usables.Scp330.Scp330Viewmodel/CandyObject local55 = _candies[local2]
+
+		        if (local55 != t)
+		            local2 += 1
+		        endwhile
+                
+		        goto INSN_18043DCEB
+                
+		        InventorySystem.Items.Usables.Scp330.Scp330Bag _bag6 = this._bag
+		        _bag6.UsingSfxClip = 0
+
+		        INSN_18043DCEB:
+		        InventorySystem.Items.Usables.Scp330.Scp330Bag _bag7 = this._bag
+		        _bag7.SelectedCandyId = local2
+		        ulong local59 = 0
+
+		        _bag7.SendClientMessage(local2, local59) //(Int32 candyIdex, Boolean drop)
+
+		        INSN_18043DD16:
+
+		        if (local2 == 0)
+                    goto INSN_18043DD6E
+                endif
+		        InventorySystem.Items.Usables.Scp330.Scp330Bag _bag8 = this._bag
+		        System.Collections.Generic.List`1<InventorySystem.Items.Usables.Scp330.CandyKindID> candies4 = _bag8.Candies
+		        System.Int32 _size3 = candies4._size
+
+		        if (_size3 == 0)
+                    goto INSN_18043DD6E
+                endif
+		        ulong local64 = 0
+
+		        System.ThrowHelper.ThrowArgumentOutOfRangeException()
+		        T[] _items2 = candies4._items
+
+		        this.DisplayDescriptions(local2) //(CandyKindID candy)
+
+		        INSN_18043DD6E:
+		        ulong local67 = 0
+
+		        this.DisplayDescriptions(local67) //(CandyKindID candy)
+
+		        INSN_18043DD80:
+		        this._openDelay = candies4
+
+		        INSN_18043DD8C:
+		        ulong local70 = 0
+
+		        this.CancelSelector(local70) //(Boolean bringBackInventory)
+		        return
+		        throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL Generation Skipped due to invalid local _items of type T[]
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Usables.Scp330.Scp330Viewmodel
+	System.Void HandleSelectMessage(InventorySystem.Items.Usables.Scp330.SelectScp330Message msg)
+
+		InventorySystem.Items.ItemIdentifier itemId = base.ItemId
+
+		if (constant1 == itemId)
+
+		    this.SetCandyModel()
+
+		    this.OnUsingCancelled()
+		endif
+        
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfNonZeroOrNonNullAction at (0x18043D66E) is corrupt (ConstantDefinition: Don't know how to get IL to load a Cpp2IL.Core.Analysis.Il2CppClassIdentifier) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Usables.Scp330.Scp330Viewmodel
+	System.Void OnDisable()
+
+		if ( != 0)
+
+		    System.Boolean boolean = CursorManagement.CursorManager.Unregister(this) //(ICursorOverride target)
+		    return
+		endif
+        
+		System.Action`1<InventorySystem.Items.Usables.Scp330.SelectScp330Message> action = new System.Action`1<InventorySystem.Items.Usables.Scp330.SelectScp330Message>()
+
+		action..ctor(this, {'HandleSelectMessage' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		System.Action`1<InventorySystem.Items.Usables.Scp330.SelectScp330Message> onClientSelectMessageReceived = InventorySystem.Items.Usables.Scp330.Scp330NetworkHandler.OnClientSelectMessageReceived
+
+		System.Delegate delegate = System.Delegate.Remove(onClientSelectMessageReceived, action) //(Delegate source, Delegate value)
+
+		if (delegate == 0)
+            goto INSN_18043DEFF
+        endif
+
+		if (delegate == 0)
+            goto INSN_18043DF57
+        endif
+
+		INSN_18043DEFF:
+		 += 8
+
+		if (delegate != onClientSelectMessageReceived)
+            goto INSN_18043DED4
+        endif
+		return
+
+		INSN_18043DF57:
+		throw new System.InvalidCastException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfZeroOrNullAction at (0x18043DDF8) is corrupt (One of the arguments is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Usables.Scp330.Scp330Viewmodel
+	System.Void SetCandyModel(InventorySystem.Items.Usables.Scp330.CandyKindID id)
+		InventorySystem.Items.Usables.Scp330.Scp330Viewmodel/CandyObject[] _candies = this._candies
+		ulong local3 = 0
+		System.Int32 length = _candies.Length
+
+		if (local3 < length)
+		    local3 += 1
+		    InventorySystem.Items.Usables.Scp330.Scp330Viewmodel/CandyObject local5 = _candies[local3]
+		    System.Boolean local6 =  == id
+
+		    local3.SetActive(local6) //(Boolean value)
+		    local3 += 1
+		endif
+        
+		return
+		throw new System.IndexOutOfRangeException()
+
+
+Generated IL:
+	Don't know how to write IL for Cpp2IL.Core.Analysis.Actions.x86.Important.RegOffsetArrayValueReadRegToRegAction. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Usables.Scp330.Scp330Viewmodel
+	System.Void DisplaySelector(InventorySystem.Items.Usables.Scp330.CandyKindID id)
+		ulong local2 = 0
+
+		if (id != constant4)
+		else
+		    ulong local4 = 0
+		    System.Boolean local5 = this._cancelled == local4
+		endif
+        
+		UnityEngine.CanvasGroup _selectorGroup = this._selectorGroup
+
+		System.Single alpha = _selectorGroup.alpha
+		ulong local9 = 0
+
+		System.Single deltaTime = UnityEngine.Time.deltaTime
+
+		System.Single single = UnityEngine.Mathf.Clamp01(deltaTime) //(Single value)
+
+		_selectorGroup.alpha = single
+		UnityEngine.CanvasGroup _selectorGroup2 = this._selectorGroup
+
+		UnityEngine.GameObject gameObject = _selectorGroup2.gameObject
+		UnityEngine.CanvasGroup _selectorGroup3 = this._selectorGroup
+		ulong local18 = 0
+
+		System.Single alpha2 = _selectorGroup3.alpha
+		ulong local20 = 0
+
+		gameObject.SetActive(local18) //(Boolean value)
+		this.<CursorOverride>k__BackingField = local5
+		UnityEngine.UI.RawImage[] _selectorSlots = this._selectorSlots
+
+		while (local4 < _selectorSlots.Length)
+		    InventorySystem.Items.Usables.Scp330.Scp330Bag _bag = this._bag
+		    System.Collections.Generic.List`1<InventorySystem.Items.Usables.Scp330.CandyKindID> candies = _bag.Candies
+
+		    if (local4 < )
+
+		        System.Boolean boolean = this.TryGetCandyObject()
+
+		        if (boolean != False)
+		            UnityEngine.UI.RawImage[] _selectorSlots2 = this._selectorSlots
+		            UnityEngine.UI.RawImage rawImage = _selectorSlots2[local4]
+
+		            rawImage.texture = local2
+		            UnityEngine.UI.RawImage[] _selectorSlots3 = this._selectorSlots
+		            UnityEngine.UI.RawImage rawImage2 = _selectorSlots3[local4]
+		        else
+		            UnityEngine.UI.RawImage[] _selectorSlots4 = this._selectorSlots
+		            UnityEngine.UI.RawImage rawImage3 = _selectorSlots4[local4]
+		            ulong local34 = 0
+		        endif
+                
+
+		        rawImage3.enabled = local34
+		        UnityEngine.UI.RawImage[] _selectorSlots5 = this._selectorSlots
+		        local4 += 1
+		    endwhile
+            
+		    return
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfZeroOrNullAction at (0x18043D2B4) is corrupt (ConstantDefinition: Don't know how to get IL to load a System.Byte) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Usables.Scp330.Scp330Viewmodel
+	System.Void DisplayDescriptions(InventorySystem.Items.Usables.Scp330.CandyKindID candy)
+		ulong local2 = 0
+
+		if (this._displayedCandy == candy)
+
+		    if (candy != constant4)
+		        UnityEngine.CanvasGroup _descriptionGroup = this._descriptionGroup
+
+		        System.Single alpha = _descriptionGroup.alpha
+		        ulong local6 = 0
+
+		        System.Single deltaTime = UnityEngine.Time.deltaTime
+		        System.Single local8 = deltaTime * 10
+		        deltaTime = local8
+
+		        System.Single single = UnityEngine.Mathf.Clamp01(deltaTime) //(Single value)
+
+		        _descriptionGroup.alpha = single
+		        return
+		    endif
+            
+		    UnityEngine.CanvasGroup _descriptionGroup2 = this._descriptionGroup
+
+		    System.Single alpha2 = _descriptionGroup2.alpha
+		    ulong local14 = 0
+		    System.Boolean local15 = candy == constant15
+
+		    if (candy != constant15)
+                goto INSN_18043D216
+            endif
+
+		    InventorySystem.Items.Usables.Scp330.Scp330Translations.GetCandyTranslation(candy, local2, local2, local2) //(CandyKindID candyKind, String& name, String& desc, String& fx)
+		    TMPro.TextMeshProUGUI _title = this._title
+
+		    System.String text = _title.text
+		    TMPro.TextMeshProUGUI _description = this._description
+
+		    System.String text2 = _description.text
+		    TMPro.TextMeshProUGUI _effects = this._effects
+
+		    System.String text3 = _effects.text
+		    this._displayedCandy = candy
+
+		    INSN_18043D216:
+		    UnityEngine.CanvasGroup _descriptionGroup3 = this._descriptionGroup
+
+		    System.Single alpha3 = _descriptionGroup3.alpha
+		    ulong local25 = 0
+
+		    System.Single deltaTime2 = UnityEngine.Time.deltaTime
+		    System.Single local27 = deltaTime2 * 10
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfZeroOrNullAction at (0x18043D0BE) is corrupt (ConstantDefinition: Don't know how to get IL to load a System.Byte) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Usables.Scp330.Scp330Viewmodel
+	System.Boolean TryGetCandyObject(InventorySystem.Items.Usables.Scp330.CandyKindID id, InventorySystem.Items.Usables.Scp330.Scp330Viewmodel/CandyObject& val)
+		InventorySystem.Items.Usables.Scp330.Scp330Viewmodel/CandyObject[] _candies = this._candies
+		ulong local4 = 0
+		System.Int32 length = _candies.Length
+
+		while (local4 < length)
+		    local4 += 1
+		    InventorySystem.Items.Usables.Scp330.Scp330Viewmodel/CandyObject local6 = _candies[local4]
+		    InventorySystem.Items.Usables.Scp330.Scp330Viewmodel/CandyObject local7 = _candies[local4]
+		    InventorySystem.Items.Usables.Scp330.Scp330Viewmodel/CandyObject local8 = _candies[local4]
+
+		    if (local8 != id)
+		        local4 += 1
+		    endwhile
+            
+		    goto INSN_18043E200
+            
+		    val.KindID = local6
+		    val.Icon = local7
+		    return True
+
+		    INSN_18043E200:
+		    ulong local10 = 0
+		    ulong local11 = 0
+		    val.KindID = local10
+		    val.Icon = local10
+		    return local11
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Don't know how to write IL for Cpp2IL.Core.Analysis.Actions.x86.Important.RegOffsetArrayValueReadRegToRegAction. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Usables.Scp330.Scp330Viewmodel
+	System.Void CancelSelector(System.Boolean bringBackInventory)
+		InventorySystem.Items.Usables.Scp330.Scp330Bag _bag = this._bag
+		this._cancelled = True
+
+		InventorySystem.Inventory ownerInventory = _bag.OwnerInventory
+		ulong local5 = 0
+
+		ownerInventory.CmdSelectItem(local5) //(UInt16 itemSerial)
+		ulong local7 = 0
+
+		System.Boolean inventoryVisible = InventorySystem.GUI.InventoryGuiController.InventoryVisible
+
+		InventorySystem.GUI.InventoryGuiController.InventoryVisible = inventoryVisible
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld InventorySystem.Items.Usables.Scp330.Scp330Bag InventorySystem.Items.Usables.Scp330.Scp330Viewmodel::_bag
+	IL_0006: stloc.0
+	IL_0007: ldarg.0
+	IL_0008: ldc.i4.1
+	IL_0009: stfld System.Boolean InventorySystem.Items.Usables.Scp330.Scp330Viewmodel::_cancelled
+	IL_000e: ldloc.0
+	IL_000f: call InventorySystem.Inventory InventorySystem.Items.ItemBase::get_OwnerInventory()
+	IL_0014: stloc.1
+	IL_0015: ldc.i4.0
+	IL_0016: stloc.2
+	IL_0017: ldloc.1
+	IL_0018: ldloc.2
+	IL_0019: call System.Void InventorySystem.Inventory::CmdSelectItem(System.UInt16)
+	IL_001e: ldc.i4.0
+	IL_001f: stloc.3
+	IL_0020: call System.Boolean InventorySystem.GUI.InventoryGuiController::get_InventoryVisible()
+	IL_0025: call System.Void InventorySystem.GUI.InventoryGuiController::set_InventoryVisible(System.Boolean)
+	IL_002a: ret
+	IL_002b: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0030: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Usables.Scp330.Scp330Viewmodel
+	static UnityEngine.AudioClip GetClipForCandy(InventorySystem.Items.Usables.Scp330.CandyKindID kind)
+		ulong local1 = 0
+
+		System.Boolean boolean = InventorySystem.InventoryItemLoader.TryGetItem<InventorySystem.Items.Usables.Scp330.Scp330Bag>(42, local1) //(ItemType , T& result)
+
+		if (boolean != False)
+		      = local1.
+		    System.Boolean local3 =  == Scp330Viewmodel
+
+		    while (local1 < constant9)
+		        local1 += 1
+
+		        if (local1 != kind)
+		            local1 += 1
+		        endwhile
+                
+		        goto INSN_18043D61E
+                
+		        return local1
+		    endif
+            
+		    ulong local4 = 0
+		    return local4
+		    throw new System.IndexOutOfRangeException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.FieldToLocalAction at (0x18043D588) is corrupt (No further info) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Usables.Scp330.Scp330Viewmodel
+	System.Void .ctor()
+		this._originalPitch = 1
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldc.r4 1
+	IL_0006: stfld System.Single InventorySystem.Items.Usables.UsableItemViewmodel::_originalPitch
+	IL_000b: ldarg.0
+	IL_000c: call System.Void InventorySystem.Items.StandardAnimatedViemodel::.ctor()
+	IL_0011: ret
+	
+

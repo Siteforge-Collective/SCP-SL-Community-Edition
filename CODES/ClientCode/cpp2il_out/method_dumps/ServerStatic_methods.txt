@@ -1,0 +1,484 @@
+Type: ServerStatic
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ServerStatic
+	static ServerStatic/NextRoundAction get_StopNextRound()
+		ServerStatic/NextRoundAction StopNextRound = ServerStatic.<StopNextRound>k__BackingField
+		return StopNextRound
+
+
+Generated IL:
+	IL_0000: ldsfld ServerStatic/NextRoundAction ServerStatic::<StopNextRound>k__BackingField
+	IL_0005: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ServerStatic
+	static System.Void set_StopNextRound(ServerStatic/NextRoundAction value)
+		ServerStatic.<StopNextRound>k__BackingField = value
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: stsfld ServerStatic/NextRoundAction ServerStatic::<StopNextRound>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ServerStatic
+	static System.Int16 get_ServerTickrate()
+		System.Int16 _serverTickrate = ServerStatic._serverTickrate
+		return _serverTickrate
+
+
+Generated IL:
+	IL_0000: ldsfld System.Int16 ServerStatic::_serverTickrate
+	IL_0005: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ServerStatic
+	static System.Void set_ServerTickrate(System.Int16 value)
+
+		if (value != constant5)
+		    ServerStatic._serverTickrate = value
+		else
+		    ServerStatic._serverTickrate = 60
+		endif
+        
+
+		UnityEngine.Application.set_targetFrameRate()
+		System.Int16 _serverTickrate = ServerStatic._serverTickrate
+
+		System.String string = System.String.Concat("Server tickrate set to: ", _serverTickrate) //(Object arg0, Object arg1)
+		System.Int32 7 = 7
+
+		ServerConsole.AddLog(string, 7) //(String q, ConsoleColor color)
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfZeroOrNullAction at (0x181B7FCDD) is corrupt (ConstantDefinition: Don't know how to get IL to load a System.Int16) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ServerStatic
+	static System.UInt16 get_ServerPort()
+		System.UInt16 ServerPort = ServerStatic.<ServerPort>k__BackingField
+		return ServerPort
+
+
+Generated IL:
+	IL_0000: ldsfld System.UInt16 ServerStatic::<ServerPort>k__BackingField
+	IL_0005: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ServerStatic
+	static System.Void set_ServerPort(System.UInt16 value)
+		ServerStatic.<ServerPort>k__BackingField = value
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: stsfld System.UInt16 ServerStatic::<ServerPort>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ServerStatic
+	System.Void Awake()
+		ulong local1 = 0
+		  = .
+
+		System.Boolean boolean = CollectionExtensions.Contains<System.String>()
+		ServerStatic.DisableConfigValidation = boolean
+
+		if (local1 < boolean)
+
+		    [instruction error - managed method being called is null]
+
+		    if (boolean != False)
+		        local1 += 1
+
+		        FileManager.SetAppFolder(local1) //(String path)
+		        local1 += 1
+		    endif
+            
+
+		    [instruction error - managed method being called is null]
+
+		    if (boolean == False)
+                goto INSN_181B7ED02
+            endif
+		    local1 += 1
+
+		    FileManager.SetConfigFolder(local1) //(String path)
+
+		    INSN_181B7ED02:
+		    local1 += 1
+		endif
+        
+
+		if (local1 >= boolean)
+            goto INSN_181B7F3C8
+        endif
+
+		System.Boolean boolean2 = System.String.Equals(local1, "-nographics") //(String a, String b)
+
+		if (boolean2 == False)
+            goto INSN_181B7ED4D
+        endif
+		local1 += 1
+		this.Simulate = True
+
+		INSN_181B7ED4D:
+
+		System.Boolean boolean3 = System.String.Equals(local1, "-keepsession") //(String a, String b)
+
+		if (boolean3 == False)
+            goto INSN_181B7ED9F
+        endif
+		local1 += 1
+		. = 1
+
+		INSN_181B7ED9F:
+
+		System.Boolean boolean4 = System.String.Equals(local1, "-heartbeat") //(String a, String b)
+
+		if (boolean4 == False)
+            goto INSN_181B7EDF1
+        endif
+		local1 += 1
+		. = 1
+
+		INSN_181B7EDF1:
+		System.Int32 4 = 4
+
+		System.Boolean boolean5 = local1.StartsWith("-key", 4) //(String value, StringComparison comparisonType)
+
+		if (boolean5 == False)
+            goto INSN_181B7EEFB
+        endif
+
+		if ( <= 4)
+            goto INSN_181B7EEFB
+        endif
+		ulong local16 = 0
+		System.Int32 4 = 4
+
+		System.String string = local1.Remove(local16, 4) //(Int32 startIndex, Int32 count)
+		ServerOutput.FileConsole fileConsole = new ServerOutput.FileConsole()
+
+		fileConsole..ctor(string) //(String session)
+		 += 64
+		ServerStatic.IsDedicated = fileConsole
+		local1 += 1
+
+		INSN_181B7EEFB:
+		System.Int32 4 = 4
+
+		System.Boolean boolean6 = string.StartsWith("-console", 4) //(String value, StringComparison comparisonType)
+
+		if (boolean6 == False)
+            goto INSN_181B7EFF2
+        endif
+		ulong local23 = 0
+		System.Int32 8 = 8
+
+		System.String string2 = string.Remove(local23, 8) //(Int32 startIndex, Int32 count)
+
+		System.Boolean boolean7 = System.UInt16.TryParse(string2, local1) //(String s, UInt16& result)
+
+		if (boolean7 == False)
+            goto INSN_181B7F36D
+        endif
+		ServerOutput.TcpConsole tcpConsole = new ServerOutput.TcpConsole()
+
+		tcpConsole..ctor(local1) //(UInt16 port)
+		 += 64
+		ServerStatic.IsDedicated = tcpConsole
+		local1 += 1
+
+		INSN_181B7EFF2:
+		System.Int32 4 = 4
+
+		System.Boolean boolean8 = local1.StartsWith("-id", 4) //(String value, StringComparison comparisonType)
+
+		if (boolean8 == False)
+            goto INSN_181B7F1D1
+        endif
+		ulong local32 = 0
+		System.Int32 3 = 3
+		. = 1
+
+		System.String string3 = local1.Remove(local32, 3) //(Int32 startIndex, Int32 count)
+
+		System.Boolean boolean9 = System.Int32.TryParse(string3, local1) //(String s, Int32& result)
+
+		if (boolean9 == False)
+            goto INSN_181B7F0DD
+        endif
+
+		System.Diagnostics.Process processById = System.Diagnostics.Process.GetProcessById(local1) //(Int32 processId)
+		 += 56
+		ServerConsole.singleton = processById
+
+		INSN_181B7F0DD:
+		ulong local39 = 0
+		ulong local40 = 0
+
+		ServerStatic.OnConsoleExited(local40, local39) //(Object sender, EventArgs e)
+		System.Diagnostics.Process consoleProcess = ServerConsole.ConsoleProcess
+		System.Int64 local43 = 1
+
+		consoleProcess.EnableRaisingEvents = local43
+		System.Diagnostics.Process consoleProcess2 = ServerConsole.ConsoleProcess
+		System.EventHandler eventHandler = new System.EventHandler()
+		ulong local47 = 0
+
+		eventHandler..ctor(local47, {'OnConsoleExited' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		consoleProcess2.add_Exited(eventHandler) //(EventHandler value)
+		local1 += 1
+
+		INSN_181B7F1D1:
+		System.Int32 4 = 4
+
+		System.Boolean boolean10 = consoleProcess2.StartsWith("-port", 4) //(String value, StringComparison comparisonType)
+
+		if (boolean10 == False)
+            goto INSN_181B7F29B
+        endif
+		ulong local52 = 0
+		System.Int32 5 = 5
+
+		System.String string4 = consoleProcess2.Remove(local52, 5) //(Int32 startIndex, Int32 count)
+
+		System.Boolean boolean11 = System.UInt16.TryParse(string4, local1) //(String s, UInt16& result)
+
+		if (boolean11 == False)
+            goto INSN_181B7F376
+        endif
+		local1 += 1
+		. = 1
+
+		INSN_181B7F29B:
+
+		System.Boolean boolean12 = System.String.Equals(local1, "-stdout") //(String a, String b)
+
+		if (boolean12 == False)
+            goto INSN_181B7F36D
+        endif
+		ServerOutput.StandardOutput standardOutput = new ServerOutput.StandardOutput()
+
+		standardOutput.Start()
+		 += 64
+		ServerStatic.IsDedicated = standardOutput
+
+		INSN_181B7F36D:
+		local1 += 1
+
+		INSN_181B7F376:
+		System.Int32 7 = 7
+
+		ServerConsole.AddLog(""-port" argument value is not a valid unsigned short integer (0 - 65535). Aborting startup.", 7) //(String q, ConsoleColor color)
+		System.Int64 local63 = 1
+
+		Shutdown.Quit(local63) //(Boolean quit)
+		return
+
+		INSN_181B7F3C8:
+		ServerOutput.NonDedicatedOutput nonDedicatedOutput = new ServerOutput.NonDedicatedOutput()
+
+		nonDedicatedOutput.Start()
+		 += 64
+		ServerStatic.IsDedicated = nonDedicatedOutput
+
+		[instruction error - managed method being called is null]
+
+		GameCore.Console.AddLog()
+		ServerOutput.IServerOutput serverOutput = ServerStatic.ServerOutput
+
+		if (this.Simulate != local1)
+            goto INSN_181B7F561
+        endif
+
+		INSN_181B7F561:
+		ulong local72 = 0
+
+		UnityEngine.AudioListener.volume = local72
+		System.Int64 local74 = 1
+
+		UnityEngine.AudioListener.pause = local74
+		ulong local76 = 0
+
+		UnityEngine.QualitySettings.pixelLightCount = local76
+		ulong local78 = 0
+
+		UnityEngine.GUI.enabled = local78
+		System.Int32 10 = 10
+
+		ServerConsole.AddLog("SCP Secret Laboratory process started. Creating match...", 10) //(String q, ConsoleColor color)
+		System.Int64 local80 = 60
+		ServerStatic._serverTickrate = local80
+
+		UnityEngine.Application.set_targetFrameRate()
+		System.Int16 _serverTickrate = ServerStatic._serverTickrate
+
+		System.String string5 = System.String.Concat("Server tickrate set to: ", _serverTickrate) //(Object arg0, Object arg1)
+		System.Int32 7 = 7
+
+		ServerConsole.AddLog(string5, 7) //(String q, ConsoleColor color)
+		System.Int32 4 = 4
+
+		ServerConsole.AddLog(""-port" argument is required for dedicated server. Aborting startup.", 4) //(String q, ConsoleColor color)
+		System.Int32 4 = 4
+		UnityEngine.Events.UnityAction`2<UnityEngine.SceneManagement.Scene,UnityEngine.SceneManagement.LoadSceneMode> unityAction = new UnityEngine.Events.UnityAction`2<UnityEngine.SceneManagement.Scene,UnityEngine.SceneManagement.LoadSceneMode>()
+
+		unityAction..ctor(this, {'OnSceneWasLoaded' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		UnityEngine.SceneManagement.SceneManager.add_sceneLoaded(unityAction) //(UnityAction`2 value)
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.StaticFieldToRegAction at (0x181B7EBE0) is corrupt (Couldn't identify the field being read (or its type).) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ServerStatic
+	static System.Void OnConsoleExited(System.Object sender, System.EventArgs e)
+		ulong local2 = 0
+
+		ServerConsole.DisposeStatic()
+
+		UnityEngine.Debug.Log("OnConsoleExited") //(Object message)
+		System.Diagnostics.Process consoleProcess = ServerConsole.ConsoleProcess
+
+		if (consoleProcess != 0)
+
+		    consoleProcess.Dispose()
+		endif
+        
+		 += 56
+		System.Int64 local8 = 1
+
+		Shutdown.Quit(local8) //(Boolean quit)
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x181B7F9B1) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ServerStatic
+	System.Void OnSceneWasLoaded(UnityEngine.SceneManagement.Scene scene, UnityEngine.SceneManagement.LoadSceneMode mode)
+		throw new System.MissingMethodException()
+
+		if (local4 != 3)
+		    throw new System.MissingMethodException()
+
+		    if (local6 != 4)
+                goto INSN_181B7FA6B
+            endif
+		endif
+        
+
+		CustomNetworkManager component = base.GetComponent<CustomNetworkManager>()
+
+		component.CreateMatch()
+
+		INSN_181B7FA6B:
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: newobj System.Void System.MissingMethodException::.ctor()
+	IL_0005: throw
+	IL_0006: ldloc.0
+	IL_0007: ldc.i4.3
+	IL_0008: conv.i8
+	IL_0009: conv.u8
+	IL_000a: beq.s IL_0018
+	IL_000c: newobj System.Void System.MissingMethodException::.ctor()
+	IL_0011: throw
+	IL_0012: ldloc.1
+	IL_0013: ldc.i4.4
+	IL_0014: conv.i8
+	IL_0015: conv.u8
+	IL_0016: bne.un.s IL_0023
+	IL_0018: ldarg.0
+	IL_0019: call T UnityEngine.Component::GetComponent<CustomNetworkManager>()
+	IL_001e: call System.Void CustomNetworkManager::CreateMatch()
+	IL_0023: ret
+	IL_0024: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0029: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ServerStatic
+	static PermissionsHandler GetPermissionsHandler()
+		PermissionsHandler permissionsHandler = ServerStatic.PermissionsHandler
+		return permissionsHandler
+
+
+Generated IL:
+	IL_0000: ldsfld PermissionsHandler ServerStatic::PermissionsHandler
+	IL_0005: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ServerStatic
+	System.Void .ctor()
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void UnityEngine.MonoBehaviour::.ctor()
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ServerStatic
+	static System.Void .cctor()
+		. = 0
+		ServerStatic._serverTickrate = 60
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ImmediateToFieldAction at (0x181B7FAAD) is corrupt (Instance or field is null) and cannot be created as IL. Aborting here.
+
+

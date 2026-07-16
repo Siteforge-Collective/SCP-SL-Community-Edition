@@ -1,0 +1,41 @@
+Type: Waits.ParticleSystemUntilWait
+
+Method: System.Boolean Predicate()
+
+Disassembly:
+	sub rsp,28h
+	mov rcx,[rcx+20h]
+	test rcx,rcx
+	je short 0000000181BB970Eh
+	xor edx,edx
+	call 0000000181A9A210h
+	test al,al
+	sete al
+	add rsp,28h
+	ret
+	call 0000000180294310h
+
+ISIL:
+	001 ShiftStack -40
+	002 Move rcx, [rcx+32]
+	003 Compare rcx, 0
+	004 JumpIfEqual {11}
+	005 Move rdx, 0
+	006 Call ParticleSystem.IsAlive, rcx, rdx
+	007 Compare rax, 0
+	008 NotImplemented "sete al"
+	009 ShiftStack 40
+	010 Return rax
+	011 Call 0x180294310, rcx, rdx, r8, r9
+
+Method: System.Void .ctor()
+
+Disassembly:
+	xor edx,edx
+	jmp near ptr 0000000180FD1850h
+
+ISIL:
+	001 Move rdx, 0
+	002 Call 0x180FD1850, rcx, rdx
+	003 Return 
+

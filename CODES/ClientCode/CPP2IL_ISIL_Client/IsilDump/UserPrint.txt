@@ -1,0 +1,280 @@
+Type: UserPrint
+
+Method: System.String get_SenderId()
+
+Disassembly:
+	sub rsp,28h
+	cmp byte ptr [1826ECBA1h],0
+	jne short 000000018075B56Fh
+	mov ecx,[1822CC1D8h]
+	call 0000000180294190h
+	mov byte ptr [1826ECBA1h],1
+	mov rax,[182701888h]
+	add rsp,28h
+	ret
+
+ISIL:
+	001 ShiftStack -40
+	002 Compare [0x1826ECBA1], 0
+	003 JumpIfNotEqual {7}
+	004 Move rcx, [0x1822CC1D8]
+	005 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	006 Move [0x1826ECBA1], 1
+	007 Move rax, "Query"
+	008 ShiftStack 40
+	009 Return rax
+
+Method: System.String get_Nickname()
+
+Disassembly:
+	sub rsp,28h
+	cmp byte ptr [1826ECBA2h],0
+	jne short 000000018075B51Fh
+	mov ecx,[1822CC1B4h]
+	call 0000000180294190h
+	mov byte ptr [1826ECBA2h],1
+	mov rax,[182701888h]
+	add rsp,28h
+	ret
+
+ISIL:
+	001 ShiftStack -40
+	002 Compare [0x1826ECBA2], 0
+	003 JumpIfNotEqual {7}
+	004 Move rcx, [0x1822CC1B4]
+	005 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	006 Move [0x1826ECBA2], 1
+	007 Move rax, "Query"
+	008 ShiftStack 40
+	009 Return rax
+
+Method: System.UInt64 get_Permissions()
+
+Disassembly:
+	sub rsp,28h
+	mov rax,[rcx+10h]
+	test rax,rax
+	je short 000000018075B546h
+	mov rax,[rax+68h]
+	add rsp,28h
+	ret
+	call 0000000180294310h
+
+ISIL:
+	001 ShiftStack -40
+	002 Move rax, [rcx+16]
+	003 Compare rax, 0
+	004 JumpIfEqual {8}
+	005 Move rax, [rax+104]
+	006 ShiftStack 40
+	007 Return rax
+	008 Call 0x180294310, rcx, rdx, r8, r9
+
+Method: System.Byte get_KickPower()
+
+Disassembly:
+	sub rsp,28h
+	mov rax,[rcx+10h]
+	test rax,rax
+	je short 000000018075B4F6h
+	movzx eax,byte ptr [rax+70h]
+	add rsp,28h
+	ret
+	call 0000000180294310h
+
+ISIL:
+	001 ShiftStack -40
+	002 Move rax, [rcx+16]
+	003 Compare rax, 0
+	004 JumpIfEqual {8}
+	005 Move rax, [rax+112]
+	006 ShiftStack 40
+	007 Return rax
+	008 Call 0x180294310, rcx, rdx, r8, r9
+
+Method: System.Boolean get_FullPermissions()
+
+Disassembly:
+	xor al,al
+	ret
+
+ISIL:
+	001 Move rax, 0
+	002 Return rax
+
+Method: System.Void .ctor(QueryUser usr)
+
+Disassembly:
+	mov [rsp+8],rbx
+	push rdi
+	sub rsp,20h
+	mov rdi,rdx
+	mov rbx,rcx
+	xor edx,edx
+	call 00000001802D67A0h
+	lea rcx,[rbx+10h]
+	mov rdx,rdi
+	mov [rcx],rdi
+	mov rbx,[rsp+30h]
+	add rsp,20h
+	pop rdi
+	jmp near ptr 0000000180293EF0h
+
+ISIL:
+	001 Move stack:0x8, rbx
+	002 ShiftStack -8
+	003 Move stack:0x0, rdi
+	004 ShiftStack -32
+	005 Move rdi, rdx
+	006 Move rbx, rcx
+	007 Move rdx, 0
+	008 Call 0x1802D67A0, rcx, rdx, r8
+	009 LoadAddress rcx, [rbx+16]
+	010 Move rdx, rdi
+	011 Move [rcx], rdi
+	012 Move rbx, stack:0x30
+	013 ShiftStack 32
+	014 Move rdi, stack:0x0
+	015 ShiftStack 8
+	016 Call 0x180293EF0, rcx, rdx, r8, r9
+	017 Return 
+
+Method: System.Void Print(System.String text)
+
+Disassembly:
+	sub rsp,28h
+	mov rcx,[rcx+10h]
+	test rcx,rcx
+	je short 000000018075B3E9h
+	xor r8d,r8d
+	add rsp,28h
+	jmp near ptr 0000000181B444D0h
+	call 0000000180294310h
+
+ISIL:
+	001 ShiftStack -40
+	002 Move rcx, [rcx+16]
+	003 Compare rcx, 0
+	004 JumpIfEqual {9}
+	005 Move r8, 0
+	006 ShiftStack 40
+	007 Call QueryUser.Send, rcx, rdx
+	008 Return 
+	009 Call 0x180294310, rcx, rdx, r8, r9
+
+Method: System.Void RaReply(System.String text, System.Boolean success, System.Boolean logToConsole, System.String overrideDisplay)
+
+Disassembly:
+	mov [rsp+8],rbx
+	mov [rsp+10h],rbp
+	mov [rsp+18h],rsi
+	push rdi
+	sub rsp,70h
+	cmp byte ptr [1826ECBA3h],0
+	movzx edi,r9b
+	movzx esi,r8b
+	mov rbp,rdx
+	mov rbx,rcx
+	jne short 000000018075B42Dh
+	mov ecx,[1822CC18Ch]
+	call 0000000180294190h
+	mov byte ptr [1826ECBA3h],1
+	mov rbx,[rbx+10h]
+	lea rcx,[rsp+30h]
+	xor eax,eax
+	xorps xmm0,xmm0
+	mov [rsp+28h],rax
+	movzx r9d,dil
+	mov [rsp+40h],rax
+	movzx r8d,sil
+	mov rax,[rsp+0A0h]
+	mov rdx,rbp
+	mov [rsp+20h],rax
+	movups [rsp+30h],xmm0
+	call 0000000181B42AB0h
+	mov rcx,[182743538h]
+	test byte ptr [rcx+12Fh],2
+	je short 000000018075B485h
+	cmp dword ptr [rcx+0E0h],0
+	jne short 000000018075B485h
+	call 000000018021A070h
+	movups xmm0,[rsp+30h]
+	lea rcx,[rsp+50h]
+	mov rdx,[18274D038h]
+	movsd xmm1,qword ptr [rsp+40h]
+	movaps [rsp+50h],xmm0
+	movsd qword ptr [rsp+60h],xmm1
+	call 0000000181972E80h
+	test rbx,rbx
+	je short 000000018075B4D5h
+	xor r8d,r8d
+	mov rdx,rax
+	mov rcx,rbx
+	call 0000000181B444D0h
+	lea r11,[rsp+70h]
+	mov rbx,[r11+10h]
+	mov rbp,[r11+18h]
+	mov rsi,[r11+20h]
+	mov rsp,r11
+	pop rdi
+	ret
+	call 0000000180294310h
+
+ISIL:
+	001 Move stack:0x8, rbx
+	002 Move stack:0x10, rbp
+	003 Move stack:0x18, rsi
+	004 ShiftStack -8
+	005 Move stack:0x0, rdi
+	006 ShiftStack -112
+	007 Compare [0x1826ECBA3], 0
+	008 Move rdi, r9
+	009 Move rsi, r8
+	010 Move rbp, rdx
+	011 Move rbx, rcx
+	012 JumpIfNotEqual {16}
+	013 Move rcx, [0x1822CC18C]
+	014 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	015 Move [0x1826ECBA3], 1
+	016 Move rbx, [rbx+16]
+	017 LoadAddress rcx, stack:0x30
+	018 Move rax, 0
+	019 Move xmm0, 0
+	020 Move stack:0x28, rax
+	021 Move r9, rdi
+	022 Move stack:0x40, rax
+	023 Move r8, rsi
+	024 Move rax, stack:0xA0
+	025 Move rdx, rbp
+	026 Move stack:0x20, rax
+	027 Move stack:0x30, xmm0
+	028 Call 0x181B42AB0, rcx, rdx, r8, r9
+	029 Move rcx, typeof(JsonSerialize)
+	030 Compare [rcx+303], 2
+	031 JumpIfEqual {35}
+	032 Compare [rcx+224], 0
+	033 JumpIfNotEqual {35}
+	034 Call "il2cpp_runtime_class_init_export", rcx, rdx, r8, r9
+	035 Move xmm0, stack:0x30
+	036 LoadAddress rcx, stack:0x50
+	037 Move rdx, [0x18274D038]
+	038 Move xmm1, stack:0x40
+	039 Move stack:0x50, xmm0
+	040 Move stack:0x60, xmm1
+	041 Call JsonSerialize.ToJson, rcx, rdx
+	042 Compare rbx, 0
+	043 JumpIfEqual {56}
+	044 Move r8, 0
+	045 Move rdx, rax
+	046 Move rcx, rbx
+	047 Call QueryUser.Send, rcx, rdx
+	048 LoadAddress r11, stack:0x70
+	049 Move rbx, [r11+16]
+	050 Move rbp, [r11+24]
+	051 Move rsi, [r11+32]
+	052 Move rsp, r11
+	053 Move rdi, stack:0x0
+	054 ShiftStack 8
+	055 Return 
+	056 Call 0x180294310, rcx, rdx, r8, r9
+

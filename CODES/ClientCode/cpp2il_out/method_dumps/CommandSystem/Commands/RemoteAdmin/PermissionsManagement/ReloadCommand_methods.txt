@@ -1,0 +1,174 @@
+Type: ReloadCommand
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.PermissionsManagement.ReloadCommand
+	System.String get_Command()
+		System.String Command = this.<Command>k__BackingField
+		return Command
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String CommandSystem.Commands.RemoteAdmin.PermissionsManagement.ReloadCommand::<Command>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.PermissionsManagement.ReloadCommand
+	System.String[] get_Aliases()
+		System.String[] Aliases = this.<Aliases>k__BackingField
+		return Aliases
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String[] CommandSystem.Commands.RemoteAdmin.PermissionsManagement.ReloadCommand::<Aliases>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.PermissionsManagement.ReloadCommand
+	System.String get_Description()
+		System.String Description = this.<Description>k__BackingField
+		return Description
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String CommandSystem.Commands.RemoteAdmin.PermissionsManagement.ReloadCommand::<Description>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.PermissionsManagement.ReloadCommand
+	System.Boolean Execute(System.ArraySegment`1<System.String> arguments, CommandSystem.ICommandSender sender, System.String& response)
+
+		System.Boolean boolean = Misc.CheckPermission()
+
+		if (boolean != False)
+
+		    System.String string = System.String.Concat()
+		    System.Int64 local13 = 4
+
+		    ServerLogs.AddLog()
+		    ulong local15 = 0
+
+		    GameCore.ConfigFile.ReloadGameConfigs(local15) //(Boolean firstTime)
+		    YamlConfig rolesConfig = ServerStatic.RolesConfig
+
+		    System.Boolean boolean2 = rolesConfig.Reload()
+		    System.String[] paths = GameCore.ConfigSharing.Paths
+
+		    if ("{il2cpp array field local19->}" == 0)
+		    else
+		        System.String[] paths2 = GameCore.ConfigSharing.Paths
+		        System.String local23 = paths2[4]
+
+		        System.String string2 = System.String.Concat(local23, "shared_groups.txt") //(String str0, String str1)
+		        YamlConfig yamlConfig = new YamlConfig()
+
+		        yamlConfig..ctor(string2) //(String path)
+		    endif
+            
+		     += 24
+		    ServerStatic.IsDedicated = yamlConfig
+		    System.String[] paths3 = GameCore.ConfigSharing.Paths
+
+		    if ("{il2cpp array field local27->}" != 0)
+                goto INSN_180624B35
+            endif
+
+		    INSN_180624B35:
+		    System.String[] paths4 = GameCore.ConfigSharing.Paths
+		    System.String local31 = paths4[5]
+
+		    System.String string3 = System.String.Concat(local31, "shared_groups_members.txt") //(String str0, String str1)
+		    YamlConfig yamlConfig2 = new YamlConfig()
+
+		    yamlConfig2..ctor(string3) //(String path)
+		     += 32
+		    ServerStatic.IsDedicated = yamlConfig2
+		    PermissionsHandler permissionsHandler = new PermissionsHandler()
+		     += 16
+
+		    permissionsHandler..ctor()
+		     += 48
+		    ServerStatic.IsDedicated = permissionsHandler
+		    response. = "Permissions file reloaded."
+		    System.Int64 local37 = 1
+		    return local37
+		endif
+        
+		ulong local38 = 0
+		return local38
+		throw new System.IndexOutOfRangeException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180624907) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (3)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.PermissionsManagement.ReloadCommand
+	System.Void .ctor()
+		this.<Command>k__BackingField = "reload"
+		System.String[] local1 = new System.String[1]
+
+		if ("rl" != 0)
+
+		    if (local1 == 0)
+                goto INSN_180624D8C
+            endif
+		endif
+        
+		local1[0] = "rl"
+		this.<Aliases>k__BackingField = local1
+		this.<Description>k__BackingField = "Reloads the permissions file."
+
+		base..ctor()
+		return
+		throw new System.NullReferenceException()
+
+		INSN_180624D8C:
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldstr "reload"
+	IL_0006: stfld System.String CommandSystem.Commands.RemoteAdmin.PermissionsManagement.ReloadCommand::<Command>k__BackingField
+	IL_000b: ldc.i4.1
+	IL_000c: newarr System.String
+	IL_0011: stloc.0
+	IL_0012: ldstr "rl"
+	IL_0017: ldc.i4.0
+	IL_0018: beq.s IL_001e
+	IL_001a: ldloc.0
+	IL_001b: ldc.i4.0
+	IL_001c: beq.s IL_0000
+	IL_001e: ldloc.0
+	IL_001f: ldc.i4.0
+	IL_0020: ldstr "rl"
+	IL_0025: stelem.any System.String
+	IL_002a: ldarg.0
+	IL_002b: ldloc.0
+	IL_002c: stfld System.String[] CommandSystem.Commands.RemoteAdmin.PermissionsManagement.ReloadCommand::<Aliases>k__BackingField
+	IL_0031: ldarg.0
+	IL_0032: ldstr "Reloads the permissions file."
+	IL_0037: stfld System.String CommandSystem.Commands.RemoteAdmin.PermissionsManagement.ReloadCommand::<Description>k__BackingField
+	IL_003c: ldarg.0
+	IL_003d: call System.Void System.Object::.ctor()
+	IL_0042: ret
+	IL_0043: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0048: throw
+	
+

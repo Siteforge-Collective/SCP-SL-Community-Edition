@@ -1,0 +1,166 @@
+Type: FirearmRecoilPattern
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Firearms.FirearmRecoilPattern
+	System.Single GetEstimatedState(System.Single timeBetweenShots)
+		System.Single _totalCutoff = this._totalCutoff
+		UnityEngine.AnimationCurve dropOverTime = this.DropOverTime
+
+		UnityEngine.Keyframe[] keys = dropOverTime.keys
+		UnityEngine.AnimationCurve dropOverTime2 = this.DropOverTime
+
+		UnityEngine.Keyframe[] keys2 = dropOverTime2.keys
+		System.Int32 length = keys2.Length
+		System.Int64 local12 = length * 28
+		local12 += 32
+		local12 += keys
+		this._totalCutoff = _totalCutoff
+		ulong local14 = 0
+
+		System.Single timeSinceLevelLoad = UnityEngine.Time.timeSinceLevelLoad
+		System.Single local16 = timeBetweenShots * this.SingleShotTolerance
+
+		if (timeSinceLevelLoad > local16)
+
+		    if (timeSinceLevelLoad <= this._totalCutoff)
+		        UnityEngine.AnimationCurve dropOverTime3 = this.DropOverTime
+		        timeBetweenShots = timeSinceLevelLoad
+
+		        System.Single single = dropOverTime3.Evaluate(timeBetweenShots) //(Single time)
+		    else
+		        ulong local20 = 0
+		    endif
+            
+
+		    System.Single single2 = UnityEngine.Mathf.Max(1, local20) //(Single a, Single b)
+		    return single2
+		    throw new System.IndexOutOfRangeException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x18066F24F) is corrupt (ConstantDefinition: Don't know how to get IL to load a System.Int64) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Firearms.FirearmRecoilPattern
+	System.Void ApplyShot(System.Single timeBetweenShots)
+		ulong local3 = 0
+
+		System.Single timeSinceLevelLoad = UnityEngine.Time.timeSinceLevelLoad
+
+		System.Single estimatedState = this.GetEstimatedState(timeBetweenShots) //(Single timeBetweenShots)
+		ulong local7 = 0
+		this._currentBulletsShot = estimatedState
+
+		System.Single timeSinceLevelLoad2 = UnityEngine.Time.timeSinceLevelLoad
+		this._lastReading = timeSinceLevelLoad2
+		return
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: call System.Single UnityEngine.Time::get_timeSinceLevelLoad()
+	IL_0007: stloc.1
+	IL_0008: ldarg.0
+	IL_0009: ldarg.1
+	IL_000a: call System.Single InventorySystem.Items.Firearms.FirearmRecoilPattern::GetEstimatedState(System.Single)
+	IL_000f: stloc.2
+	IL_0010: ldc.i4.0
+	IL_0011: stloc.3
+	IL_0012: ldarg.0
+	IL_0013: ldloc.2
+	IL_0014: stfld System.Single InventorySystem.Items.Firearms.FirearmRecoilPattern::_currentBulletsShot
+	IL_0019: call System.Single UnityEngine.Time::get_timeSinceLevelLoad()
+	IL_001e: stloc.s V_4
+	IL_0020: ldarg.0
+	IL_0021: ldloc.s V_4
+	IL_0023: stfld System.Single InventorySystem.Items.Firearms.FirearmRecoilPattern::_lastReading
+	IL_0028: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Firearms.FirearmRecoilPattern
+	CameraShaking.RecoilSettings GetRecoil(CameraShaking.RecoilSettings startRecoil)
+		  = startRecoil.
+		System.Single sideKick = startRecoil.SideKick
+
+		System.Single single = this.Evaluate(sideKick) //(Single time)
+		  = startRecoil.
+		System.Single sideKick2 = startRecoil.SideKick
+
+		System.Single single2 = this.Evaluate(sideKick2) //(Single time)
+		  = startRecoil.
+		System.Single sideKick3 = startRecoil.SideKick
+
+		System.Single single3 = this.Evaluate(sideKick3) //(Single time)
+		  = startRecoil.
+		System.Single sideKick4 = startRecoil.SideKick
+
+		System.Single single4 = this.Evaluate(sideKick4) //(Single time)
+		ulong local16 = 0
+		ulong local17 = 0
+		this. = local16
+		this._currentBulletsShot = local17
+		return this
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.FieldToLocalAction at (0x18066F35A) is corrupt (No further info) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Firearms.FirearmRecoilPattern
+	System.Single GetInaccuracy()
+		UnityEngine.AnimationCurve inaccuracyOverShots = this.InaccuracyOverShots
+		System.Single _currentBulletsShot = this._currentBulletsShot
+
+		System.Single single = inaccuracyOverShots.Evaluate(_currentBulletsShot) //(Single time)
+		return single
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld UnityEngine.AnimationCurve InventorySystem.Items.Firearms.FirearmRecoilPattern::InaccuracyOverShots
+	IL_0006: stloc.0
+	IL_0007: ldarg.0
+	IL_0008: ldfld System.Single InventorySystem.Items.Firearms.FirearmRecoilPattern::_currentBulletsShot
+	IL_000d: stloc.1
+	IL_000e: ldloc.0
+	IL_000f: ldloc.1
+	IL_0010: call System.Single UnityEngine.AnimationCurve::Evaluate(System.Single)
+	IL_0015: ret
+	IL_0016: newobj System.Void System.NullReferenceException::.ctor()
+	IL_001b: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Firearms.FirearmRecoilPattern
+	System.Void .ctor()
+		this.SingleShotTolerance = 1,1
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldc.r4 1,1
+	IL_0006: stfld System.Single InventorySystem.Items.Firearms.FirearmRecoilPattern::SingleShotTolerance
+	IL_000b: ldarg.0
+	IL_000c: call System.Void System.Object::.ctor()
+	IL_0011: ret
+	
+

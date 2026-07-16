@@ -1,0 +1,176 @@
+Type: FogSetting
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PostProcessing.FogSetting
+	System.Boolean get_IsEnabled()
+		System.Boolean _state = this._state
+		return _state
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Boolean PostProcessing.FogSetting::_state
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PostProcessing.FogSetting
+	System.Void set_IsEnabled(System.Boolean value)
+
+		if (this._state != value)
+		    this._state = value
+		    this._isDirty = True
+		endif
+        
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Boolean PostProcessing.FogSetting::_state
+	IL_0006: ldarg.1
+	IL_0007: beq.s IL_0017
+	IL_0009: ldarg.0
+	IL_000a: ldarg.1
+	IL_000b: stfld System.Boolean PostProcessing.FogSetting::_state
+	IL_0010: ldarg.0
+	IL_0011: ldc.i4.1
+	IL_0012: stfld System.Boolean PostProcessing.FogSetting::_isDirty
+	IL_0017: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PostProcessing.FogSetting
+	System.Single get_BlendTime()
+		System.Single BlendTime = this.<BlendTime>k__BackingField
+		return BlendTime
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Single PostProcessing.FogSetting::<BlendTime>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PostProcessing.FogSetting
+	System.Void set_BlendTime(System.Single value)
+		this.<BlendTime>k__BackingField = value
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: stfld System.Single PostProcessing.FogSetting::<BlendTime>k__BackingField
+	IL_0007: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PostProcessing.FogSetting
+	System.Single get_Weight()
+		System.Single Weight = this.<Weight>k__BackingField
+		return Weight
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Single PostProcessing.FogSetting::<Weight>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PostProcessing.FogSetting
+	System.Void set_Weight(System.Single value)
+		this.<Weight>k__BackingField = value
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: stfld System.Single PostProcessing.FogSetting::<Weight>k__BackingField
+	IL_0007: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PostProcessing.FogSetting
+	System.Void UpdateWeight()
+
+		if (this._isDirty != False)
+		    System.Single BlendTime = this.<BlendTime>k__BackingField
+		    ulong local2 = 0
+
+		    if (local2 >= BlendTime)
+                goto INSN_181B3DE0A
+            endif
+		    ulong local3 = 0
+
+		    System.Single deltaTime = UnityEngine.Time.deltaTime
+
+		    if (this._state == False)
+		    endif
+            
+		    this.<Weight>k__BackingField = deltaTime
+
+		    if (local2 > deltaTime)
+                goto INSN_181B3DDC8
+            endif
+
+		    if (deltaTime <= 1)
+                goto INSN_181B3DDF9
+            endif
+
+		    INSN_181B3DDC8:
+
+		    System.Single single = UnityEngine.Mathf.Clamp01(deltaTime) //(Single value)
+		    this.<Weight>k__BackingField = single
+		    this._isDirty = False
+
+		    INSN_181B3DDF9:
+		endif
+        
+		return
+
+		INSN_181B3DE0A:
+		ulong local8 = 0
+		System.Boolean local9 = this._state != local8
+		this.<Weight>k__BackingField = 
+		this._isDirty = False
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.RegToFieldAction at (0x181B3DE1F) is corrupt (Value read is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PostProcessing.FogSetting
+	System.Void .ctor()
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void UnityEngine.MonoBehaviour::.ctor()
+	IL_0006: ret
+	
+

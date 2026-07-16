@@ -1,0 +1,666 @@
+Type: GameConsoleTransmission
+
+
+	Generated Pseudocode:
+
+	Declaring Type: GameConsoleTransmission
+	System.Void Start()
+
+		UnityEngine.GameObject gameObject = base.gameObject
+
+		ReferenceHub hub = ReferenceHub.GetHub(gameObject) //(GameObject player)
+		Security.PlayerRateLimitHandler playerRateLimitHandler = hub.playerRateLimitHandler
+		Security.RateLimit[] rateLimits = playerRateLimitHandler.RateLimits
+		Security.RateLimit local7 = rateLimits[2]
+		this._cmdRateLimit = local7
+
+		RemoteAdmin.RemoteAdminCryptographicManager component = base.GetComponent<RemoteAdmin.RemoteAdminCryptographicManager>()
+		this.CryptoManager = component
+		RemoteAdmin.QueryProcessor queryProcessor = hub.queryProcessor
+		this.Processor = queryProcessor
+		Org.BouncyCastle.Security.SecureRandom secureRandom = new Org.BouncyCastle.Security.SecureRandom()
+
+		secureRandom..ctor()
+		GameConsoleTransmission._secureRandom = secureRandom
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call UnityEngine.GameObject UnityEngine.Component::get_gameObject()
+	IL_0006: call ReferenceHub ReferenceHub::GetHub(UnityEngine.GameObject)
+	IL_000b: stloc.0
+	IL_000c: ldloc.0
+	IL_000d: ldfld Security.PlayerRateLimitHandler ReferenceHub::playerRateLimitHandler
+	IL_0012: ldfld Security.RateLimit[] Security.PlayerRateLimitHandler::RateLimits
+	IL_0017: ldc.i4.2
+	IL_0018: ldelem.any Security.RateLimit
+	IL_001d: stloc.1
+	IL_001e: ldarg.0
+	IL_001f: ldloc.1
+	IL_0020: stfld Security.RateLimit GameConsoleTransmission::_cmdRateLimit
+	IL_0025: ldarg.0
+	IL_0026: call T UnityEngine.Component::GetComponent<RemoteAdmin.RemoteAdminCryptographicManager>()
+	IL_002b: stloc.2
+	IL_002c: ldarg.0
+	IL_002d: ldloc.2
+	IL_002e: stfld RemoteAdmin.RemoteAdminCryptographicManager GameConsoleTransmission::CryptoManager
+	IL_0033: ldloc.0
+	IL_0034: ldfld RemoteAdmin.QueryProcessor ReferenceHub::queryProcessor
+	IL_0039: stloc.3
+	IL_003a: ldarg.0
+	IL_003b: ldloc.3
+	IL_003c: stfld RemoteAdmin.QueryProcessor GameConsoleTransmission::Processor
+	IL_0041: newobj System.Void Org.BouncyCastle.Security.SecureRandom::.ctor()
+	IL_0046: stsfld Org.BouncyCastle.Security.SecureRandom GameConsoleTransmission::_secureRandom
+	IL_004b: ret
+	IL_004c: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0051: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: GameConsoleTransmission
+	System.Void SendToClient(System.String text, System.String color)
+
+		Mirror.NetworkConnection connectionToClient = base.connectionToClient
+
+		this.SendToClient(connectionToClient, text, color) //(NetworkConnection connection, String text, String color)
+		return
+
+		UnityEngine.Debug.LogWarning("[Server] function 'System.Void GameConsoleTransmission::SendToClient(System.String,System.String)' called when server was not active") //(Object message)
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call Mirror.NetworkConnection Mirror.NetworkBehaviour::get_connectionToClient()
+	IL_0006: stloc.0
+	IL_0007: ldarg.0
+	IL_0008: ldloc.0
+	IL_0009: ldarg.1
+	IL_000a: ldarg.2
+	IL_000b: call System.Void GameConsoleTransmission::SendToClient(Mirror.NetworkConnection,System.String,System.String)
+	IL_0010: ret
+	IL_0011: ldstr "[Server] function 'System.Void GameConsoleTransmission::SendToClient(System.String,System.String)' called when server was not active"
+	IL_0016: call System.Void UnityEngine.Debug::LogWarning(System.Object)
+	IL_001b: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: GameConsoleTransmission
+	System.Void SendToClient(Mirror.NetworkConnection connection, System.String text, System.String color)
+
+		System.String string = System.String.Concat(color, "#", text) //(String str0, String str1, String str2)
+
+		System.Byte[] bytes = Utf8.GetBytes(string) //(String data)
+		RemoteAdmin.RemoteAdminCryptographicManager cryptoManager = this.CryptoManager
+		System.Byte[] encryptionKey = cryptoManager.EncryptionKey
+
+		if (encryptionKey != 0)
+		    Org.BouncyCastle.Security.SecureRandom _secureRandom = GameConsoleTransmission._secureRandom
+
+		    System.Byte[] byteArray = Cryptography.AES.AesGcmEncrypt(bytes, encryptionKey, _secureRandom) //(Byte[] data, Byte[] secret, SecureRandom secureRandom)
+
+		    this.TargetPrintOnConsole(connection, byteArray, True) //(NetworkConnection connection, Byte[] data, Boolean encrypted)
+		else
+		    ulong local14 = 0
+
+		    this.TargetPrintOnConsole(connection, bytes, local14) //(NetworkConnection connection, Byte[] data, Boolean encrypted)
+
+		    UnityEngine.Debug.LogWarning("[Server] function 'System.Void GameConsoleTransmission::SendToClient(Mirror.NetworkConnection,System.String,System.String)' called when server was not active") //(Object message)
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.3
+	IL_0001: ldstr "#"
+	IL_0006: ldarg.2
+	IL_0007: call System.String System.String::Concat(System.String,System.String,System.String)
+	IL_000c: call System.Byte[] Utf8::GetBytes(System.String)
+	IL_0011: stloc.0
+	IL_0012: ldarg.0
+	IL_0013: ldfld RemoteAdmin.RemoteAdminCryptographicManager GameConsoleTransmission::CryptoManager
+	IL_0018: ldfld System.Byte[] RemoteAdmin.RemoteAdminCryptographicManager::EncryptionKey
+	IL_001d: stloc.1
+	IL_001e: ldloc.1
+	IL_001f: ldc.i4.0
+	IL_0020: beq.s IL_003a
+	IL_0022: ldsfld Org.BouncyCastle.Security.SecureRandom GameConsoleTransmission::_secureRandom
+	IL_0027: stloc.2
+	IL_0028: ldloc.0
+	IL_0029: ldloc.1
+	IL_002a: ldloc.2
+	IL_002b: call System.Byte[] Cryptography.AES::AesGcmEncrypt(System.Byte[],System.Byte[],Org.BouncyCastle.Security.SecureRandom)
+	IL_0030: stloc.3
+	IL_0031: ldarg.0
+	IL_0032: ldarg.1
+	IL_0033: ldloc.3
+	IL_0034: ldc.i4.1
+	IL_0035: call System.Void GameConsoleTransmission::TargetPrintOnConsole(Mirror.NetworkConnection,System.Byte[],System.Boolean)
+	IL_003a: ldc.i4.0
+	IL_003b: stloc.s V_5
+	IL_003d: ldarg.0
+	IL_003e: ldarg.1
+	IL_003f: ldloc.0
+	IL_0040: ldloc.s V_5
+	IL_0042: call System.Void GameConsoleTransmission::TargetPrintOnConsole(Mirror.NetworkConnection,System.Byte[],System.Boolean)
+	IL_0047: ldstr "[Server] function 'System.Void GameConsoleTransmission::SendToClient(Mirror.NetworkConnection,System.String,System.String)' called when server was not active"
+	IL_004c: call System.Void UnityEngine.Debug::LogWarning(System.Object)
+	IL_0051: ret
+	IL_0052: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0057: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: GameConsoleTransmission
+	System.Void TargetPrintOnConsole(Mirror.NetworkConnection connection, System.Byte[] data, System.Boolean encrypted)
+		ulong local4 = 0
+
+		Mirror.PooledNetworkWriter writer = Mirror.NetworkWriterPool.GetWriter()
+
+		Mirror.NetworkWriterExtensions.WriteBytesAndSize(writer, data) //(NetworkWriter writer, Byte[] buffer)
+
+		[instruction error - managed method being called is null]
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'GameConsoleTransmission' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		ulong local10 = 0
+
+		base.SendTargetRPCInternal(connection, typeFromHandle, "TargetPrintOnConsole", writer, local10) //(NetworkConnection conn, Type invokeClass, String rpcName, NetworkWriter writer, Int32 channelId)
+
+		Mirror.NetworkWriterPool.Recycle(writer) //(PooledNetworkWriter writer)
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181B16BEF) is corrupt (Don't know what method is being called) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: GameConsoleTransmission
+	System.Void SendToServer(System.String command)
+		ulong local2 = 0
+
+		System.Boolean active = Mirror.NetworkClient.active
+
+		if (active != False)
+
+		    System.Byte[] bytes = Utf8.GetBytes(command) //(String data)
+		    RemoteAdmin.RemoteAdminCryptographicManager cryptoManager = this.CryptoManager
+		    System.Byte[] encryptionKey = cryptoManager.EncryptionKey
+
+		    if (encryptionKey != 0)
+		        Org.BouncyCastle.Security.SecureRandom _secureRandom = GameConsoleTransmission._secureRandom
+
+		        System.Byte[] byteArray = Cryptography.AES.AesGcmEncrypt(bytes, encryptionKey, _secureRandom) //(Byte[] data, Byte[] secret, SecureRandom secureRandom)
+
+		        this.CmdCommandToServer(byteArray, True) //(Byte[] data, Boolean encrypted)
+		        return
+		    endif
+            
+		endif
+        
+
+		UnityEngine.Debug.LogWarning("[Client] function 'System.Void GameConsoleTransmission::SendToServer(System.String)' called when client was not active") //(Object message)
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: call System.Boolean Mirror.NetworkClient::get_active()
+	IL_0007: ldc.i4.0
+	IL_0008: beq.s IL_003b
+	IL_000a: ldarg.1
+	IL_000b: call System.Byte[] Utf8::GetBytes(System.String)
+	IL_0010: stloc.1
+	IL_0011: ldarg.0
+	IL_0012: ldfld RemoteAdmin.RemoteAdminCryptographicManager GameConsoleTransmission::CryptoManager
+	IL_0017: ldfld System.Byte[] RemoteAdmin.RemoteAdminCryptographicManager::EncryptionKey
+	IL_001c: stloc.2
+	IL_001d: ldloc.2
+	IL_001e: ldc.i4.0
+	IL_001f: beq.s IL_003b
+	IL_0021: ldsfld Org.BouncyCastle.Security.SecureRandom GameConsoleTransmission::_secureRandom
+	IL_0026: stloc.3
+	IL_0027: ldloc.1
+	IL_0028: ldloc.2
+	IL_0029: ldloc.3
+	IL_002a: call System.Byte[] Cryptography.AES::AesGcmEncrypt(System.Byte[],System.Byte[],Org.BouncyCastle.Security.SecureRandom)
+	IL_002f: stloc.s V_4
+	IL_0031: ldarg.0
+	IL_0032: ldloc.s V_4
+	IL_0034: ldc.i4.1
+	IL_0035: call System.Void GameConsoleTransmission::CmdCommandToServer(System.Byte[],System.Boolean)
+	IL_003a: ret
+	IL_003b: ldstr "[Client] function 'System.Void GameConsoleTransmission::SendToServer(System.String)' called when client was not active"
+	IL_0040: call System.Void UnityEngine.Debug::LogWarning(System.Object)
+	IL_0045: ret
+	IL_0046: newobj System.Void System.NullReferenceException::.ctor()
+	IL_004b: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: GameConsoleTransmission
+	System.Void CmdCommandToServer(System.Byte[] data, System.Boolean encrypted)
+		ulong local3 = 0
+
+		Mirror.PooledNetworkWriter writer = Mirror.NetworkWriterPool.GetWriter()
+
+		Mirror.NetworkWriterExtensions.WriteBytesAndSize(writer, data) //(NetworkWriter writer, Byte[] buffer)
+
+		[instruction error - managed method being called is null]
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'GameConsoleTransmission' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+
+		base.SendCommandInternal(typeFromHandle, "CmdCommandToServer", writer, local11, local10) //(Type invokeClass, String cmdName, NetworkWriter writer, Int32 channelId, Boolean requiresAuthority)
+
+		Mirror.NetworkWriterPool.Recycle(writer) //(PooledNetworkWriter writer)
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181B16016) is corrupt (Don't know what method is being called) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: GameConsoleTransmission
+	UnityEngine.Color ProcessColor(System.String name)
+
+		[instruction error - managed method being called is null]
+
+		if ( > 0x4961533A)
+
+		    if ( > 0x63E629E8)
+
+		        if ( == 0x82FBF5CD)
+
+		            [instruction error - managed method being called is null]
+
+		            if ( == 0)
+                        goto INSN_181B16561
+                    endif
+
+		            UnityEngine.Color blue = UnityEngine.Color.blue
+		        else
+
+		            if ( == 0xDE020766)
+
+		                [instruction error - managed method being called is null]
+
+		                if ( != 0)
+
+		                    UnityEngine.Color white = UnityEngine.Color.white
+		                else
+
+		                    if ( == 0x568F4BA4)
+
+		                        [instruction error - managed method being called is null]
+
+		                        if ( == 0)
+                                    goto INSN_181B16561
+                                endif
+
+		                        UnityEngine.Color black = UnityEngine.Color.black
+		                    else
+
+		                        if ( == 0x63E629E8)
+
+		                            [instruction error - managed method being called is null]
+
+		                            if ( != 0)
+
+		                                UnityEngine.Color magenta = UnityEngine.Color.magenta
+		                            else
+
+		                                if ( > 0x5BF6449)
+
+		                                    if ( == 0x40F480DC)
+
+		                                        [instruction error - managed method being called is null]
+
+		                                        if ( == 0)
+                                                    goto INSN_181B16561
+                                                endif
+
+		                                        UnityEngine.Color red = UnityEngine.Color.red
+		                                    else
+
+		                                        if ( == 0x4961533A)
+
+		                                            [instruction error - managed method being called is null]
+
+		                                            if ( != 0)
+
+		                                                UnityEngine.Color cyan = UnityEngine.Color.cyan
+		                                            else
+
+		                                                if ( == 0x11DECBC)
+
+		                                                    [instruction error - managed method being called is null]
+
+		                                                    if ( == 0)
+                                                                goto INSN_181B16561
+                                                            endif
+
+		                                                    UnityEngine.Color green = UnityEngine.Color.green
+		                                                else
+
+		                                                    if ( == 0x5BF6449)
+
+		                                                        [instruction error - managed method being called is null]
+
+		                                                        if ( != 0)
+
+		                                                            UnityEngine.Color yellow = UnityEngine.Color.yellow
+		                                                        else
+
+		                                                            [instruction error - managed method being called is null]
+		                                                        endif
+                                                                
+		                                                        this. = 
+		                                                        return this
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181B163C0) is corrupt (Don't know what method is being called) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: GameConsoleTransmission
+	System.Void .ctor()
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void Mirror.NetworkBehaviour::.ctor()
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: GameConsoleTransmission
+	System.Void MirrorProcessed()
+
+
+Generated IL:
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: GameConsoleTransmission
+	System.Void UserCode_TargetPrintOnConsole(Mirror.NetworkConnection connection, System.Byte[] data, System.Boolean encrypted)
+
+		if (data != 0)
+
+		    if (encrypted != False)
+		        RemoteAdmin.RemoteAdminCryptographicManager cryptoManager = this.CryptoManager
+
+		        if (cryptoManager.EncryptionKey != 0)
+		            RemoteAdmin.RemoteAdminCryptographicManager cryptoManager2 = this.CryptoManager
+		            System.Byte[] encryptionKey = cryptoManager2.EncryptionKey
+
+		            System.Byte[] byteArray = Cryptography.AES.AesGcmDecrypt(data, encryptionKey) //(Byte[] data, Byte[] secret)
+
+		            System.String string = Utf8.GetString(byteArray) //(Byte[] data)
+
+		            byteArray.SendToClient("Decryption or verification of encrypted message failed.", "magenta") //(String text, String color)
+		        endif
+                
+		        return
+		    endif
+            
+		    ulong local12 = 0
+
+		    UnityEngine.Color magenta = UnityEngine.Color.magenta
+		    ulong local15 = 0
+
+		    GameCore.Console.AddLog("Can't process encrypted message from server before completing ECDHE exchange.", local12, local15, 1) //(String text, Color c, Boolean nospace, ConsoleLogType type)
+		endif
+        
+
+		System.String string2 = Utf8.GetString(data) //(Byte[] data)
+		System.Int32 4 = 4
+
+		System.Int32 int32 = string2.IndexOf("#", 4) //(String value, StringComparison comparisonType)
+
+		System.String string3 = string2.Remove(int32) //(Int32 startIndex)
+		System.Int32 4 = 4
+
+		System.Int32 int322 = string2.IndexOf("#", 4) //(String value, StringComparison comparisonType)
+		System.Int32 local24 = int322 + 1
+		ulong local26 = 0
+
+		System.String string4 = string2.Remove(local26, local24) //(Int32 startIndex, Int32 count)
+		string string2 = encrypted != False ? "[FROM SERVER] " : "[UNENCRYPTED FROM SERVER] "
+
+		System.String string5 = System.String.Concat(string2, string4) //(String str0, String str1)
+
+		UnityEngine.Color color = string2.ProcessColor()
+
+		GameCore.Console.AddLog()
+
+		System.Boolean boolean = string4.Contains("[REPORTING]") //(String value)
+
+		if (boolean != False)
+		    PlayerList singleton = PlayerList.singleton
+		    ulong local38 = 0
+
+		    System.Boolean boolean2 = UnityEngine.Object.op_Inequality(singleton, local38) //(Object x, Object y)
+
+		    if (boolean2 != False)
+		        PlayerList singleton2 = PlayerList.singleton
+		        System.String empty = System.String.Empty
+
+		        System.String string6 = string4.Replace("[REPORTING]", empty) //(String oldValue, String newValue)
+
+		        singleton2.ShowReportResponse(string6) //(String response)
+		        throw new System.NullReferenceException()
+		        throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181B16F27) is corrupt (Mismatched instance parameter. Expecting an instance of GameConsoleTransmission, actually {'byteArray' (type System.Byte[])}) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: GameConsoleTransmission
+	static System.Void InvokeUserCode_TargetPrintOnConsole(Mirror.NetworkBehaviour obj, Mirror.NetworkReader reader, Mirror.NetworkConnectionToClient senderConnection)
+		ulong local3 = 0
+
+		System.Boolean active = Mirror.NetworkClient.active
+
+		if (active != False)
+		    ulong local5 = 0
+
+		    Mirror.NetworkConnection readyConnection = Mirror.NetworkClient.readyConnection
+
+		    System.Byte[] byteArray = Mirror.NetworkReaderExtensions.ReadBytesAndSize(reader) //(NetworkReader reader)
+		    ulong local9 = 0
+
+		    System.Boolean boolean = Mirror.NetworkReaderExtensions.ReadBoolean(reader) //(NetworkReader reader)
+		    //UNKNOWN CLASS OFFSET READ HERE
+
+		    obj.UserCode_TargetPrintOnConsole(readyConnection, byteArray, boolean) //(NetworkConnection connection, Byte[] data, Boolean encrypted)
+		    return
+		endif
+        
+
+		UnityEngine.Debug.LogError("TargetRPC TargetPrintOnConsole called on server.") //(Object message)
+		return
+		throw new System.InvalidCastException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.UnknownClassOffsetReadAction at (0x181B16302) is corrupt (Unknown class offset read) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: GameConsoleTransmission
+	System.Void UserCode_CmdCommandToServer(System.Byte[] data, System.Boolean encrypted)
+		Security.RateLimit _cmdRateLimit = this._cmdRateLimit
+
+		System.Boolean boolean = _cmdRateLimit.CanExecute(True) //(Boolean countUsage)
+
+		if (boolean != False)
+
+		    if (data != 0)
+		        RemoteAdmin.RemoteAdminCryptographicManager cryptoManager = this.CryptoManager
+
+		        if (encrypted == False)
+                    goto INSN_181B16DB2
+                endif
+
+		        if (cryptoManager.EncryptionKey != 0)
+		            RemoteAdmin.RemoteAdminCryptographicManager cryptoManager2 = this.CryptoManager
+		            System.Byte[] encryptionKey = cryptoManager2.EncryptionKey
+
+		            System.Byte[] byteArray = Cryptography.AES.AesGcmDecrypt(data, encryptionKey) //(Byte[] data, Byte[] secret)
+
+		            System.String string = Utf8.GetString(byteArray) //(Byte[] data)
+
+		            Mirror.NetworkConnection connectionToClient = byteArray.connectionToClient
+		        else
+
+		            Mirror.NetworkConnection connectionToClient2 = base.connectionToClient
+		        endif
+                
+
+		        this.SendToClient(connectionToClient2, "Can't process encrypted message from server before completing ECDHE exchange.", "magenta") //(NetworkConnection connection, String text, String color)
+		    endif
+            
+		    return
+
+		    INSN_181B16DB2:
+
+		    if ( != 0)
+                goto INSN_181B16E1B
+            endif
+
+		    if ( != 0)
+                goto INSN_181B16E1B
+            endif
+
+		    System.String string2 = Utf8.GetString(data) //(Byte[] data)
+		    RemoteAdmin.QueryProcessor processor = this.Processor
+
+		    processor.ProcessGameConsoleQuery(string2) //(String query)
+		    return
+
+		    INSN_181B16E1B:
+
+		    Mirror.NetworkConnection connectionToClient3 = base.connectionToClient
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181B16D52) is corrupt (Mismatched instance parameter. Expecting an instance of Mirror.NetworkBehaviour, actually {'byteArray' (type System.Byte[])}) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: GameConsoleTransmission
+	static System.Void InvokeUserCode_CmdCommandToServer(Mirror.NetworkBehaviour obj, Mirror.NetworkReader reader, Mirror.NetworkConnectionToClient senderConnection)
+
+		System.Byte[] byteArray = Mirror.NetworkReaderExtensions.ReadBytesAndSize(reader) //(NetworkReader reader)
+		ulong local5 = 0
+
+		System.Boolean boolean = Mirror.NetworkReaderExtensions.ReadBoolean(reader) //(NetworkReader reader)
+		//UNKNOWN CLASS OFFSET READ HERE
+
+		obj.UserCode_CmdCommandToServer(byteArray, boolean) //(Byte[] data, Boolean encrypted)
+		return
+
+		UnityEngine.Debug.LogError("Command CmdCommandToServer called on client.") //(Object message)
+		return
+		throw new System.InvalidCastException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.UnknownClassOffsetReadAction at (0x181B161A4) is corrupt (Unknown class offset read) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: GameConsoleTransmission
+	static System.Void .cctor()
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'GameConsoleTransmission' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		Mirror.RemoteCalls.CmdDelegate cmdDelegate = new Mirror.RemoteCalls.CmdDelegate()
+		ulong local4 = 0
+
+		cmdDelegate..ctor(local4, {'InvokeUserCode_CmdCommandToServer' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		Mirror.RemoteCalls.RemoteCallHelper.RegisterCommandDelegate(typeFromHandle, "CmdCommandToServer", cmdDelegate, True) //(Type invokeClass, String cmdName, CmdDelegate func, Boolean requiresAuthority)
+
+		System.Type typeFromHandle2 = System.Type.GetTypeFromHandle({'GameConsoleTransmission' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		Mirror.RemoteCalls.CmdDelegate cmdDelegate2 = new Mirror.RemoteCalls.CmdDelegate()
+		ulong local10 = 0
+
+		cmdDelegate2..ctor(local10, {'InvokeUserCode_TargetPrintOnConsole' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		Mirror.RemoteCalls.RemoteCallHelper.RegisterRpcDelegate(typeFromHandle2, "TargetPrintOnConsole", cmdDelegate2) //(Type invokeClass, String rpcName, CmdDelegate func)
+		return
+
+
+Generated IL:
+	IL_0000: ldtoken GameConsoleTransmission
+	IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+	IL_000a: stloc.0
+	IL_000b: ldloc.2
+	IL_000c: ldftn System.Void GameConsoleTransmission::InvokeUserCode_CmdCommandToServer(Mirror.NetworkBehaviour,Mirror.NetworkReader,Mirror.NetworkConnectionToClient)
+	IL_0012: newobj System.Void Mirror.RemoteCalls.CmdDelegate::.ctor(System.Object,System.IntPtr)
+	IL_0017: stloc.1
+	IL_0018: ldc.i4.0
+	IL_0019: stloc.2
+	IL_001a: ldloc.0
+	IL_001b: ldstr "CmdCommandToServer"
+	IL_0020: ldloc.1
+	IL_0021: ldc.i4.1
+	IL_0022: call System.Void Mirror.RemoteCalls.RemoteCallHelper::RegisterCommandDelegate(System.Type,System.String,Mirror.RemoteCalls.CmdDelegate,System.Boolean)
+	IL_0027: ldtoken GameConsoleTransmission
+	IL_002c: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+	IL_0031: stloc.s V_4
+	IL_0033: ldloc.s V_6
+	IL_0035: ldftn System.Void GameConsoleTransmission::InvokeUserCode_TargetPrintOnConsole(Mirror.NetworkBehaviour,Mirror.NetworkReader,Mirror.NetworkConnectionToClient)
+	IL_003b: newobj System.Void Mirror.RemoteCalls.CmdDelegate::.ctor(System.Object,System.IntPtr)
+	IL_0040: stloc.s V_5
+	IL_0042: ldc.i4.0
+	IL_0043: stloc.s V_6
+	IL_0045: ldloc.s V_4
+	IL_0047: ldstr "TargetPrintOnConsole"
+	IL_004c: ldloc.s V_5
+	IL_004e: call System.Void Mirror.RemoteCalls.RemoteCallHelper::RegisterRpcDelegate(System.Type,System.String,Mirror.RemoteCalls.CmdDelegate)
+	IL_0053: ret
+	
+

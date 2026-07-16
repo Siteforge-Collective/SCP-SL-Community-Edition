@@ -1,0 +1,132 @@
+Type: InventorySystem.Items.Usables.CurrentlyUsedItem
+
+Method: System.Void .ctor(InventorySystem.Items.Usables.UsableItem item, System.UInt16 serial, System.Single startTime)
+
+Disassembly:
+	mov [rsp+8],rbx
+	push rdi
+	sub rsp,30h
+	lea rbx,[rcx+10h]
+	movaps [rsp+20h],xmm6
+	mov rcx,rbx
+	mov [rbx],rdx
+	movaps xmm6,xmm3
+	movzx edi,r8w
+	call 0000000180293EF0h
+	movss dword ptr [rbx+0Ch],xmm6
+	movaps xmm6,[rsp+20h]
+	mov [rbx+8],di
+	mov rbx,[rsp+40h]
+	add rsp,30h
+	pop rdi
+	ret
+	int 3
+	int 3
+	sub rsp,28h
+	lea rcx,[182187F00h]
+	call 0000000180294130h
+	xor edx,edx
+	mov rcx,rax
+	call 00000001802942E0h
+
+ISIL:
+	001 Move stack:0x8, rbx
+	002 ShiftStack -8
+	003 Move stack:0x0, rdi
+	004 ShiftStack -48
+	005 LoadAddress rbx, [rcx+16]
+	006 Move stack:0x20, xmm6
+	007 Move rcx, rbx
+	008 Move [rbx], rdx
+	009 Move xmm6, xmm3
+	010 Move rdi, r8
+	011 Call 0x180293EF0, rcx, rdx, r8, r9
+	012 Move [rbx+12], xmm6
+	013 Move xmm6, stack:0x20
+	014 Move [rbx+8], rdi
+	015 Move rbx, stack:0x40
+	016 ShiftStack 48
+	017 Move rdi, stack:0x0
+	018 ShiftStack 8
+	019 Return 
+	020 Interrupt 
+	021 Interrupt 
+	022 ShiftStack -40
+	023 LoadAddress rcx, [0x182187F00]
+	024 Call 0x180294130, rcx, rdx, r8, r9
+	025 Move rdx, 0
+	026 Move rcx, rax
+	027 Call 0x1802942E0, rcx, rdx, r8, r9
+
+Method: System.Void .cctor()
+
+Disassembly:
+	push rbx
+	sub rsp,30h
+	cmp byte ptr [1826EA625h],0
+	jne short 000000018042B071h
+	mov ecx,[1822CCEE4h]
+	call 0000000180294190h
+	mov byte ptr [1826EA625h],1
+	xor ebx,ebx
+	lea rcx,[rsp+20h]
+	xor edx,edx
+	mov [rsp+28h],rbx
+	mov [rsp+20h],rbx
+	call 0000000180293EF0h
+	mov rax,[1827344C8h]
+	xorps xmm0,xmm0
+	mov [rsp+28h],bx
+	xor edx,edx
+	movaps xmm1,[rsp+20h]
+	shufps xmm1,xmm1,93h
+	movss xmm1,xmm0
+	shufps xmm1,xmm1,39h
+	movaps [rsp+20h],xmm1
+	mov rcx,[rax+0B8h]
+	movups [rcx],xmm1
+	call 0000000180293EF0h
+	add rsp,30h
+	pop rbx
+	ret
+
+ISIL:
+	001 ShiftStack -8
+	002 Move stack:0x0, rbx
+	003 ShiftStack -48
+	004 Compare [0x1826EA625], 0
+	005 JumpIfNotEqual {9}
+	006 Move rcx, [0x1822CCEE4]
+	007 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	008 Move [0x1826EA625], 1
+	009 Move rbx, 0
+	010 LoadAddress rcx, stack:0x20
+	011 Move rdx, 0
+	012 Move stack:0x28, rbx
+	013 Move stack:0x20, rbx
+	014 Call 0x180293EF0, rcx, rdx, r8, r9
+	015 Move rax, typeof(InventorySystem.Items.Usables.CurrentlyUsedItem)
+	016 Move xmm0, 0
+	017 Move stack:0x28, rbx
+	018 Move rdx, 0
+	019 Move xmm1, stack:0x20
+	020 Move XMM_TEMP.S[0], xmm1.S[3]
+	021 Move XMM_TEMP.S[1], xmm1.S[0]
+	022 Move XMM_TEMP.S[2], xmm1.S[1]
+	023 Move XMM_TEMP.S[3], xmm1.S[2]
+	024 Move xmm1, XMM_TEMP
+	025 Move xmm1, xmm0
+	026 Move XMM_TEMP.S[0], xmm1.S[1]
+	027 Move XMM_TEMP.S[1], xmm1.S[2]
+	028 Move XMM_TEMP.S[2], xmm1.S[3]
+	029 Move XMM_TEMP.S[3], xmm1.S[0]
+	030 Move xmm1, XMM_TEMP
+	031 Move stack:0x20, xmm1
+	032 Move rcx, [rax+184]
+	033 Move [rcx], xmm1
+	034 Call 0x180293EF0, rcx, rdx, r8, r9
+	035 ShiftStack 48
+	036 Move rbx, stack:0x0
+	037 ShiftStack 8
+	038 Return 
+

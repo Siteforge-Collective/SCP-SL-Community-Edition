@@ -1,0 +1,934 @@
+Type: PlayerInteract
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerInteract
+	System.Boolean get_CanInteract()
+		Security.RateLimit _playerInteractRateLimit = this._playerInteractRateLimit
+
+		System.Boolean boolean = _playerInteractRateLimit.CanExecute(True) //(Boolean countUsage)
+
+		if (boolean != False)
+		    ReferenceHub _hub = this._hub
+		    InventorySystem.Inventory inventory = _hub.inventory
+
+		    System.Boolean isDisarmed = InventorySystem.Disarming.DisarmedPlayers.IsDisarmed(inventory) //(Inventory inv)
+
+		    if (isDisarmed != False)
+		    endif
+            
+		    ReferenceHub _hub2 = this._hub
+		    Interactables.InteractionCoordinator interCoordinator = _hub2.interCoordinator
+
+		    System.Boolean boolean2 = interCoordinator.AnyBlocker(1) //(BlockedInteraction interactions)
+		    System.Boolean local12 = boolean2 == False
+		    return local12
+		endif
+        
+		ulong local13 = 0
+		return local13
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x1803887C6) is corrupt (Return value has a type of System.Int32, expecting an object of type System.Boolean) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerInteract
+	System.Void Start()
+
+		ReferenceHub component = base.GetComponent<ReferenceHub>()
+		this._hub = component
+		Security.PlayerRateLimitHandler playerRateLimitHandler = component.playerRateLimitHandler
+		Security.RateLimit[] rateLimits = playerRateLimitHandler.RateLimits
+		Security.RateLimit local4 = rateLimits[0]
+		this._playerInteractRateLimit = local4
+		  = local4.
+		this._sr = local4
+		  = local4.
+		this._inv = local4
+		PlayerEffectsController playerEffectsController = component.playerEffectsController
+
+		CustomPlayerEffects.Invisible effect = playerEffectsController.GetEffect<CustomPlayerEffects.Invisible>()
+		this._invisible = effect
+
+		System.Boolean isLocalPlayer = base.isLocalPlayer
+
+		if (isLocalPlayer != False)
+		    YamlConfig serverConfig = GameCore.ConfigFile.ServerConfig
+		    ulong local11 = 0
+
+		    System.Boolean bool = serverConfig.GetBool("enable_ui_toggle", local11) //(String key, Boolean def)
+		    this._enableUiToggle = bool
+		    YamlConfig serverConfig2 = GameCore.ConfigFile.ServerConfig
+
+		    System.String string = serverConfig2.GetString("ui_toggle_key", "numlock") //(String key, String def)
+		    this._uiToggleKey = string
+		    ulong local16 = 0
+		    System.Int32 3 = 3
+
+		    UnityEngine.KeyCode key = NewInput.GetKey(3, local16) //(ActionName actionName, KeyCode fallbackKeycode)
+		    this._interactKey = key
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.FieldToLocalAction at (0x1803874AB) is corrupt (No further info) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerInteract
+	System.Void Update()
+		ulong local3 = 0
+
+		System.Boolean isLocalPlayer = base.isLocalPlayer
+
+		if (isLocalPlayer != False)
+
+		    if (this._enableUiToggle != local3)
+		        System.String _uiToggleKey = this._uiToggleKey
+
+		        System.Boolean keyDownString = UnityEngine.Input.GetKeyDownString(_uiToggleKey) //(String name)
+
+		        if (keyDownString != False)
+		            System.String _uiToggleKey2 = this._uiToggleKey
+
+		            System.String string = System.String.Concat("UI toggled. Press ", _uiToggleKey2, " to toggle it.") //(String str0, String str1, String str2)
+		            ulong local12 = 0
+
+		            UnityEngine.Color yellow = UnityEngine.Color.yellow
+		            ulong local14 = 0
+
+		            GameCore.Console.AddLog(string, local12, local14, 1) //(String text, Color c, Boolean nospace, ConsoleLogType type)
+
+		            UnityEngine.GameObject gameObject = UnityEngine.GameObject.Find("Player Crosshair Canvas") //(String name)
+		            ulong local18 = 0
+
+		            System.Boolean boolean = UnityEngine.Object.op_Inequality(gameObject, local18) //(Object x, Object y)
+
+		            if (boolean != False)
+
+		                UnityEngine.Canvas component = gameObject.GetComponent<UnityEngine.Canvas>()
+
+		                UnityEngine.Canvas component2 = gameObject.GetComponent<UnityEngine.Canvas>()
+
+		                System.Boolean enabled = component2.enabled
+		                System.Boolean local24 = enabled == False
+
+		                component.enabled = local24
+		            endif
+                    
+
+		            UnityEngine.GameObject gameObject2 = UnityEngine.GameObject.Find("Player Canvas") //(String name)
+		            ulong local29 = 0
+
+		            System.Boolean boolean2 = UnityEngine.Object.op_Inequality(gameObject2, local29) //(Object x, Object y)
+
+		            if (boolean2 == False)
+                        goto INSN_18038783E
+                    endif
+
+		            UnityEngine.Canvas component3 = gameObject2.GetComponent<UnityEngine.Canvas>()
+
+		            UnityEngine.Canvas component4 = gameObject2.GetComponent<UnityEngine.Canvas>()
+
+		            System.Boolean enabled2 = component4.enabled
+		            System.Boolean local35 = enabled2 == False
+
+		            component3.enabled = local35
+		        endif
+                
+		        UnityEngine.KeyCode _interactKey = this._interactKey
+
+		        System.Boolean keyDownInt = UnityEngine.Input.GetKeyDownInt(_interactKey) //(KeyCode key)
+
+		        if (keyDownInt == False)
+                    goto INSN_180387A9A
+                endif
+
+		        System.Boolean boolean3 = ReferenceHub.TryGetLocalHub()
+
+		        if (boolean3 == False)
+                    goto INSN_180387A9A
+                endif
+
+		        System.Boolean isAlive = PlayerRoles.PlayerRolesUtils.IsAlive()
+
+		        if (isAlive == False)
+                    goto INSN_180387A9A
+                endif
+		        ReferenceHub _hub = this._hub
+		        UnityEngine.Transform playerCameraReference = _hub.PlayerCameraReference
+
+		        UnityEngine.Vector3 position = .position
+		        ReferenceHub _hub2 = this._hub
+		        UnityEngine.Transform playerCameraReference2 = _hub2.PlayerCameraReference
+
+		        UnityEngine.Vector3 forward = .forward
+		        UnityEngine.LayerMask mask = this.mask
+
+		        System.Int32 int32 = UnityEngine.LayerMask.op_Implicit(mask) //(LayerMask mask)
+
+		        System.Boolean boolean4 = UnityEngine.Physics.Raycast()
+
+		        if (boolean4 == False)
+                    goto INSN_180387A9A
+                endif
+
+		        System.Boolean boolean5 = boolean4.CompareTag("AW_Button") //(String tag)
+
+		        if (boolean5 != False)
+                    goto INSN_180387B49
+                endif
+		        boolean4 = boolean5
+
+		        System.Boolean boolean6 = boolean4.CompareTag("AW_Detonation") //(String tag)
+
+		        if (boolean6 != False)
+                    goto INSN_180387ACE
+                endif
+		        boolean4 = boolean6
+
+		        System.Boolean boolean7 = boolean4.CompareTag("AW_Panel") //(String tag)
+
+		        if (boolean7 == False)
+                    goto INSN_180387A9A
+                endif
+		        boolean4 = boolean7
+
+		        System.String name = boolean4.name
+		        System.Int32 4 = 4
+
+		        System.Boolean boolean8 = NorthwoodLib.StringUtils.Contains(name, "cancel", 4) //(String s, String value, StringComparison comparison)
+
+		        if (boolean8 != False)
+                    goto INSN_180387AC7
+                endif
+
+		        System.String name2 = boolean8.name
+		        System.Int32 4 = 4
+
+		        System.Boolean boolean9 = NorthwoodLib.StringUtils.Contains(name2, "lever", 4) //(String s, String value, StringComparison comparison)
+
+		        if (boolean9 == False)
+                    goto INSN_180387A9A
+                endif
+
+		        this.CmdUsePanel(1) //(AlphaPanelOperations n)
+
+		        INSN_180387A9A:
+		    endif
+            
+		    return
+
+		    INSN_180387AC7:
+
+		    INSN_180387ACE:
+		    ulong local81 = 0
+
+		    Mirror.PooledNetworkWriter writer = Mirror.NetworkWriterPool.GetWriter()
+
+		    System.Type typeFromHandle = System.Type.GetTypeFromHandle({'PlayerInteract' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+
+		    INSN_180387B49:
+		    ulong local85 = 0
+
+		    Mirror.PooledNetworkWriter writer2 = Mirror.NetworkWriterPool.GetWriter()
+
+		    System.Type typeFromHandle2 = System.Type.GetTypeFromHandle({'PlayerInteract' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+
+		    base.SendCommandInternal(typeFromHandle2, "CmdSwitchAWButton", writer2, local90, local89) //(Type invokeClass, String cmdName, NetworkWriter writer, Int32 channelId, Boolean requiresAuthority)
+
+		    Mirror.NetworkWriterPool.Recycle(writer2) //(PooledNetworkWriter writer)
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180387877) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerInteract
+	System.Void CmdUsePanel(PlayerInteract/AlphaPanelOperations n)
+		ulong local2 = 0
+
+		Mirror.PooledNetworkWriter writer = Mirror.NetworkWriterPool.GetWriter()
+
+		Mirror.GeneratedNetworkCode._Write_PlayerInteract/AlphaPanelOperations(writer, n) //(NetworkWriter writer, AlphaPanelOperations value)
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'PlayerInteract' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+
+		base.SendCommandInternal(typeFromHandle, "CmdUsePanel", writer, local9, local8) //(Type invokeClass, String cmdName, NetworkWriter writer, Int32 channelId, Boolean requiresAuthority)
+
+		Mirror.NetworkWriterPool.Recycle(writer) //(PooledNetworkWriter writer)
+		return
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: call Mirror.PooledNetworkWriter Mirror.NetworkWriterPool::GetWriter()
+	IL_0007: stloc.1
+	IL_0008: ldloc.1
+	IL_0009: ldarg.1
+	IL_000a: call System.Void Mirror.GeneratedNetworkCode::_Write_PlayerInteract/AlphaPanelOperations(Mirror.NetworkWriter,PlayerInteract/AlphaPanelOperations)
+	IL_000f: ldtoken PlayerInteract
+	IL_0014: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+	IL_0019: stloc.2
+	IL_001a: ldarg.0
+	IL_001b: ldloc.2
+	IL_001c: ldstr "CmdUsePanel"
+	IL_0021: ldloc.1
+	IL_0022: ldloc.s V_5
+	IL_0024: ldloc.s V_4
+	IL_0026: call System.Void Mirror.NetworkBehaviour::SendCommandInternal(System.Type,System.String,Mirror.NetworkWriter,System.Int32,System.Boolean)
+	IL_002b: ldloc.1
+	IL_002c: call System.Void Mirror.NetworkWriterPool::Recycle(Mirror.PooledNetworkWriter)
+	IL_0031: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerInteract
+	System.Void RpcLeverSound()
+		ulong local1 = 0
+
+		Mirror.PooledNetworkWriter writer = Mirror.NetworkWriterPool.GetWriter()
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'PlayerInteract' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		ulong local5 = 0
+
+		base.SendRPCInternal(typeFromHandle, "RpcLeverSound", writer, local5, local6) //(Type invokeClass, String rpcName, NetworkWriter writer, Int32 channelId, Boolean includeOwner)
+
+		Mirror.NetworkWriterPool.Recycle(writer) //(PooledNetworkWriter writer)
+		return
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: call Mirror.PooledNetworkWriter Mirror.NetworkWriterPool::GetWriter()
+	IL_0007: stloc.1
+	IL_0008: ldtoken PlayerInteract
+	IL_000d: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+	IL_0012: stloc.2
+	IL_0013: ldc.i4.0
+	IL_0014: stloc.3
+	IL_0015: ldarg.0
+	IL_0016: ldloc.2
+	IL_0017: ldstr "RpcLeverSound"
+	IL_001c: ldloc.1
+	IL_001d: ldloc.3
+	IL_001e: ldloc.s V_4
+	IL_0020: call System.Void Mirror.NetworkBehaviour::SendRPCInternal(System.Type,System.String,Mirror.NetworkWriter,System.Int32,System.Boolean)
+	IL_0025: ldloc.1
+	IL_0026: call System.Void Mirror.NetworkWriterPool::Recycle(Mirror.PooledNetworkWriter)
+	IL_002b: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerInteract
+	System.Void CmdSwitchAWButton()
+		ulong local1 = 0
+
+		Mirror.PooledNetworkWriter writer = Mirror.NetworkWriterPool.GetWriter()
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'PlayerInteract' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+
+		base.SendCommandInternal(typeFromHandle, "CmdSwitchAWButton", writer, local7, local6) //(Type invokeClass, String cmdName, NetworkWriter writer, Int32 channelId, Boolean requiresAuthority)
+
+		Mirror.NetworkWriterPool.Recycle(writer) //(PooledNetworkWriter writer)
+		return
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: call Mirror.PooledNetworkWriter Mirror.NetworkWriterPool::GetWriter()
+	IL_0007: stloc.1
+	IL_0008: ldtoken PlayerInteract
+	IL_000d: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+	IL_0012: stloc.2
+	IL_0013: ldarg.0
+	IL_0014: ldloc.2
+	IL_0015: ldstr "CmdSwitchAWButton"
+	IL_001a: ldloc.1
+	IL_001b: ldloc.s V_5
+	IL_001d: ldloc.s V_4
+	IL_001f: call System.Void Mirror.NetworkBehaviour::SendCommandInternal(System.Type,System.String,Mirror.NetworkWriter,System.Int32,System.Boolean)
+	IL_0024: ldloc.1
+	IL_0025: call System.Void Mirror.NetworkWriterPool::Recycle(Mirror.PooledNetworkWriter)
+	IL_002a: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerInteract
+	System.Void CmdDetonateWarhead()
+		ulong local1 = 0
+
+		Mirror.PooledNetworkWriter writer = Mirror.NetworkWriterPool.GetWriter()
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'PlayerInteract' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+
+		base.SendCommandInternal(typeFromHandle, "CmdDetonateWarhead", writer, local7, local6) //(Type invokeClass, String cmdName, NetworkWriter writer, Int32 channelId, Boolean requiresAuthority)
+
+		Mirror.NetworkWriterPool.Recycle(writer) //(PooledNetworkWriter writer)
+		return
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: call Mirror.PooledNetworkWriter Mirror.NetworkWriterPool::GetWriter()
+	IL_0007: stloc.1
+	IL_0008: ldtoken PlayerInteract
+	IL_000d: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+	IL_0012: stloc.2
+	IL_0013: ldarg.0
+	IL_0014: ldloc.2
+	IL_0015: ldstr "CmdDetonateWarhead"
+	IL_001a: ldloc.1
+	IL_001b: ldloc.s V_5
+	IL_001d: ldloc.s V_4
+	IL_001f: call System.Void Mirror.NetworkBehaviour::SendCommandInternal(System.Type,System.String,Mirror.NetworkWriter,System.Int32,System.Boolean)
+	IL_0024: ldloc.1
+	IL_0025: call System.Void Mirror.NetworkWriterPool::Recycle(Mirror.PooledNetworkWriter)
+	IL_002a: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerInteract
+	System.Boolean ChckDis(UnityEngine.Vector3 pos)
+
+		UnityEngine.Transform transform = base.transform
+
+		UnityEngine.Vector3 position = .position
+		System.Single single = position.z
+		System.Single single2 = pos.z
+
+		System.Single single3 = UnityEngine.Vector3.Distance()
+		System.Single raycastMaxDistance = this.raycastMaxDistance
+		System.Single local11 = raycastMaxDistance * 1,5
+		return single2
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180386B43) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerInteract
+	System.Void OnInteract()
+		CustomPlayerEffects.Invisible _invisible = this._invisible
+
+		_invisible.ServerDisable()
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld CustomPlayerEffects.Invisible PlayerInteract::_invisible
+	IL_0006: call System.Void CustomPlayerEffects.StatusEffectBase::ServerDisable()
+	IL_000b: ret
+	IL_000c: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0011: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerInteract
+	System.Void .ctor()
+		this._uiToggleKey = "numlock"
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldstr "numlock"
+	IL_0006: stfld System.String PlayerInteract::_uiToggleKey
+	IL_000b: ldarg.0
+	IL_000c: call System.Void Mirror.NetworkBehaviour::.ctor()
+	IL_0011: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerInteract
+	System.Void MirrorProcessed()
+
+
+Generated IL:
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerInteract
+	System.Void UserCode_CmdUsePanel(PlayerInteract/AlphaPanelOperations n)
+
+		System.Boolean canInteract = this.CanInteract
+
+		if (canInteract != False)
+
+		    ReferenceHub component = base.GetComponent<ReferenceHub>()
+		    AlphaWarheadNukesitePanel nukeside = AlphaWarheadOutsitePanel.nukeside
+
+		    UnityEngine.Transform transform = nukeside.transform
+
+		    UnityEngine.Vector3 position = .position
+		    System.Single single = position.z
+
+		    System.Boolean boolean = this.ChckDis()
+
+		    if (boolean != False)
+
+		        if (n == constant18)
+		            CustomPlayerEffects.Invisible _invisible = this._invisible
+
+		            _invisible.ServerDisable()
+		            AlphaWarheadController singleton = AlphaWarheadController.Singleton
+		            ReferenceHub _hub = this._hub
+
+		            singleton.CancelDetonation(_hub) //(ReferenceHub disabler)
+
+		            System.String string = Misc.LoggedNameFromRefHub(component) //(ReferenceHub me)
+
+		            System.String string2 = System.String.Concat(string, " cancelled the Alpha Warhead detonation.") //(String str0, String str1)
+		        else
+
+		            if (n == constant39)
+		                CustomPlayerEffects.Invisible _invisible2 = this._invisible
+
+		                _invisible2.ServerDisable()
+
+		                System.Boolean boolean2 = nukeside.AllowChangeLevelState()
+
+		                if (boolean2 != False)
+		                    System.Boolean local27 = "{il2cpp field on {'constant42' (constant value of type Cpp2IL.Core.Analysis.ResultModels.FieldPointer)}, offset 0x0}" == 0
+
+		                    nukeside.Networkenabled = local27
+		                    ulong local29 = 0
+
+		                    Mirror.PooledNetworkWriter writer = Mirror.NetworkWriterPool.GetWriter()
+
+		                    System.Type typeFromHandle = System.Type.GetTypeFromHandle({'PlayerInteract' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		                    ulong local33 = 0
+
+		                    base.SendRPCInternal(typeFromHandle, "RpcLeverSound", writer, local33, local34) //(Type invokeClass, String rpcName, NetworkWriter writer, Int32 channelId, Boolean includeOwner)
+
+		                    Mirror.NetworkWriterPool.Recycle(writer) //(PooledNetworkWriter writer)
+
+		                    System.String string3 = Misc.LoggedNameFromRefHub(component) //(ReferenceHub me)
+
+		                    System.String string4 = System.String.Concat(string3, " set the Alpha Warhead status to ", string3, ".") //(String str0, String str1, String str2, String str3)
+		                endif
+                        
+		                ulong local40 = 0
+		                ulong local41 = 0
+
+		                ServerLogs.AddLog(local41, string4, 4, local40) //(Modules module, String msg, ServerLogType type, Boolean init)
+		            endif
+                    
+		        endif
+                
+		        return
+		        throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18038818F) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerInteract
+	static System.Void InvokeUserCode_CmdUsePanel(Mirror.NetworkBehaviour obj, Mirror.NetworkReader reader, Mirror.NetworkConnectionToClient senderConnection)
+		ulong local3 = 0
+
+		PlayerInteract/AlphaPanelOperations alphaPanelOperations = Mirror.GeneratedNetworkCode._Read_PlayerInteract/AlphaPanelOperations(reader) //(NetworkReader reader)
+		//UNKNOWN CLASS OFFSET READ HERE
+
+		obj.UserCode_CmdUsePanel(alphaPanelOperations) //(AlphaPanelOperations n)
+		return
+
+		UnityEngine.Debug.LogError("Command CmdUsePanel called on client.") //(Object message)
+		return
+		throw new System.InvalidCastException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.UnknownClassOffsetReadAction at (0x18038715C) is corrupt (Unknown class offset read) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerInteract
+	System.Void UserCode_RpcLeverSound()
+		AlphaWarheadNukesitePanel nukeside = AlphaWarheadOutsitePanel.nukeside
+		UnityEngine.Transform lever = nukeside.lever
+
+		UnityEngine.AudioSource component = lever.GetComponent<UnityEngine.AudioSource>()
+
+		component.Play()
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldsfld AlphaWarheadNukesitePanel AlphaWarheadOutsitePanel::nukeside
+	IL_0005: ldfld UnityEngine.Transform AlphaWarheadNukesitePanel::lever
+	IL_000a: call T UnityEngine.Component::GetComponent<UnityEngine.AudioSource>()
+	IL_000f: call System.Void UnityEngine.AudioSource::Play()
+	IL_0014: ret
+	IL_0015: newobj System.Void System.NullReferenceException::.ctor()
+	IL_001a: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerInteract
+	static System.Void InvokeUserCode_RpcLeverSound(Mirror.NetworkBehaviour obj, Mirror.NetworkReader reader, Mirror.NetworkConnectionToClient senderConnection)
+		ulong local3 = 0
+
+		System.Boolean active = Mirror.NetworkClient.active
+
+		if (active != False)
+		    //UNKNOWN CLASS OFFSET READ HERE
+		    AlphaWarheadNukesitePanel nukeside = AlphaWarheadOutsitePanel.nukeside
+		    UnityEngine.Transform lever = nukeside.lever
+
+		    UnityEngine.AudioSource component = lever.GetComponent<UnityEngine.AudioSource>()
+
+		    component.Play()
+		    return
+		endif
+        
+
+		UnityEngine.Debug.LogError("RPC RpcLeverSound called on server.") //(Object message)
+		return
+		throw new System.InvalidCastException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.UnknownClassOffsetReadAction at (0x180387247) is corrupt (Unknown class offset read) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerInteract
+	System.Void UserCode_CmdSwitchAWButton()
+
+		System.Boolean canInteract = this.CanInteract
+
+		if (canInteract != False)
+
+		    UnityEngine.GameObject gameObject = UnityEngine.GameObject.Find("OutsitePanelScript") //(String name)
+
+		    UnityEngine.Transform transform = gameObject.transform
+
+		    UnityEngine.Vector3 position = .position
+		    System.Single single = position.z
+
+		    System.Boolean boolean = this.ChckDis()
+
+		    if (boolean != False)
+		        ServerRoles serverRoles = this._sr
+
+		        if (serverRoles.BypassMode == False)
+		            InventorySystem.Inventory _inv = this._inv
+		            InventorySystem.Items.ItemBase _curInstance = _inv._curInstance
+
+		            if (_curInstance == 0)
+                        goto INSN_1803880BA
+                    endif
+		            //UNKNOWN CLASS OFFSET READ HERE
+		              = _curInstance.
+
+		            System.Boolean boolean2 = .HasFlag(local18) //(Enum flag)
+
+		            if (boolean2 == False)
+                        goto INSN_1803880BA
+                    endif
+		        endif
+                
+
+		        AlphaWarheadOutsitePanel componentInParent = gameObject.GetComponentInParent<AlphaWarheadOutsitePanel>()
+		        ulong local23 = 0
+
+		        System.Boolean boolean3 = UnityEngine.Object.op_Equality(componentInParent, local23) //(Object x, Object y)
+
+		        if (boolean3 != False)
+                    goto INSN_1803880BA
+                endif
+
+		        if (componentInParent.keycardEntered != boolean3)
+                    goto INSN_1803880BA
+                endif
+		        CustomPlayerEffects.Invisible _invisible = this._invisible
+
+		        _invisible.ServerDisable()
+
+		        componentInParent.NetworkkeycardEntered = True
+		        ReferenceHub _hub = this._hub
+
+		        System.Boolean boolean4 = Respawning.RespawnTokensManager.TryGetAssignedSpawnableTeam()
+
+		        if (boolean4 == False)
+                    goto INSN_1803880BA
+                endif
+
+		        Respawning.RespawnTokensManager.GrantTokens()
+		    endif
+            
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180387EED) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerInteract
+	static System.Void InvokeUserCode_CmdSwitchAWButton(Mirror.NetworkBehaviour obj, Mirror.NetworkReader reader, Mirror.NetworkConnectionToClient senderConnection)
+		//UNKNOWN CLASS OFFSET READ HERE
+
+		obj.UserCode_CmdSwitchAWButton()
+		return
+
+		UnityEngine.Debug.LogError("Command CmdSwitchAWButton called on client.") //(Object message)
+		return
+		throw new System.InvalidCastException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.UnknownClassOffsetReadAction at (0x18038702A) is corrupt (Unknown class offset read) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerInteract
+	System.Void UserCode_CmdDetonateWarhead()
+
+		System.Boolean canInteract = this.CanInteract
+
+		if (canInteract != False)
+		    Security.RateLimit _playerInteractRateLimit = this._playerInteractRateLimit
+
+		    System.Boolean boolean = _playerInteractRateLimit.CanExecute(True) //(Boolean countUsage)
+
+		    if (boolean == False)
+		        AlphaWarheadController singleton = AlphaWarheadController.Singleton
+
+		        if (singleton.<IsLocked>k__BackingField != False)
+                    goto INSN_180387E52
+                endif
+		    endif
+            
+
+		    UnityEngine.GameObject gameObject = UnityEngine.GameObject.Find("OutsitePanelScript") //(String name)
+
+		    UnityEngine.Transform transform = gameObject.transform
+
+		    UnityEngine.Vector3 position = .position
+		    System.Single single = position.z
+
+		    System.Boolean boolean2 = this.ChckDis()
+
+		    if (boolean2 == False)
+                goto INSN_180387E52
+            endif
+		    AlphaWarheadNukesitePanel nukeside = AlphaWarheadOutsitePanel.nukeside
+
+		    if (nukeside.enabled == False)
+                goto INSN_180387E52
+            endif
+
+		    AlphaWarheadOutsitePanel component = gameObject.GetComponent<AlphaWarheadOutsitePanel>()
+
+		    if (component.keycardEntered == False)
+                goto INSN_180387E52
+            endif
+
+		    ReferenceHub component2 = base.GetComponent<ReferenceHub>()
+		    AlphaWarheadController singleton2 = AlphaWarheadController.Singleton
+		    ulong local21 = 0
+		    ulong local22 = 0
+
+		    singleton2.StartDetonation(local22, local21, component2) //(Boolean isAutomatic, Boolean suppressSubtitles, ReferenceHub trigger)
+
+		    System.String string = Misc.LoggedNameFromRefHub(component2) //(ReferenceHub me)
+
+		    System.String string2 = System.String.Concat(string, " started the Alpha Warhead detonation.") //(String str0, String str1)
+		    ulong local27 = 0
+		    ulong local29 = 0
+
+		    ServerLogs.AddLog(local29, string2, 4, local27) //(Modules module, String msg, ServerLogType type, Boolean init)
+		    CustomPlayerEffects.Invisible _invisible = this._invisible
+
+		    _invisible.ServerDisable()
+
+		    INSN_180387E52:
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180387CD6) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerInteract
+	static System.Void InvokeUserCode_CmdDetonateWarhead(Mirror.NetworkBehaviour obj, Mirror.NetworkReader reader, Mirror.NetworkConnectionToClient senderConnection)
+		//UNKNOWN CLASS OFFSET READ HERE
+
+		obj.UserCode_CmdDetonateWarhead()
+		return
+
+		UnityEngine.Debug.LogError("Command CmdDetonateWarhead called on client.") //(Object message)
+		return
+		throw new System.InvalidCastException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.UnknownClassOffsetReadAction at (0x180386F0A) is corrupt (Unknown class offset read) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerInteract
+	static System.Void .cctor()
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'PlayerInteract' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		Mirror.RemoteCalls.CmdDelegate cmdDelegate = new Mirror.RemoteCalls.CmdDelegate()
+		ulong local4 = 0
+
+		cmdDelegate..ctor(local4, {'InvokeUserCode_CmdUsePanel' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		Mirror.RemoteCalls.RemoteCallHelper.RegisterCommandDelegate(typeFromHandle, "CmdUsePanel", cmdDelegate, True) //(Type invokeClass, String cmdName, CmdDelegate func, Boolean requiresAuthority)
+
+		System.Type typeFromHandle2 = System.Type.GetTypeFromHandle({'PlayerInteract' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		Mirror.RemoteCalls.CmdDelegate cmdDelegate2 = new Mirror.RemoteCalls.CmdDelegate()
+		ulong local10 = 0
+
+		cmdDelegate2..ctor(local10, {'InvokeUserCode_CmdSwitchAWButton' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		Mirror.RemoteCalls.RemoteCallHelper.RegisterCommandDelegate(typeFromHandle2, "CmdSwitchAWButton", cmdDelegate2, True) //(Type invokeClass, String cmdName, CmdDelegate func, Boolean requiresAuthority)
+
+		System.Type typeFromHandle3 = System.Type.GetTypeFromHandle({'PlayerInteract' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		Mirror.RemoteCalls.CmdDelegate cmdDelegate3 = new Mirror.RemoteCalls.CmdDelegate()
+		ulong local16 = 0
+
+		cmdDelegate3..ctor(local16, {'InvokeUserCode_CmdDetonateWarhead' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		Mirror.RemoteCalls.RemoteCallHelper.RegisterCommandDelegate(typeFromHandle3, "CmdDetonateWarhead", cmdDelegate3, True) //(Type invokeClass, String cmdName, CmdDelegate func, Boolean requiresAuthority)
+
+		System.Type typeFromHandle4 = System.Type.GetTypeFromHandle({'PlayerInteract' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		Mirror.RemoteCalls.CmdDelegate cmdDelegate4 = new Mirror.RemoteCalls.CmdDelegate()
+		ulong local22 = 0
+
+		cmdDelegate4..ctor(local22, {'InvokeUserCode_RpcLeverSound' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		Mirror.RemoteCalls.RemoteCallHelper.RegisterRpcDelegate(typeFromHandle4, "RpcLeverSound", cmdDelegate4) //(Type invokeClass, String rpcName, CmdDelegate func)
+		return
+
+
+Generated IL:
+	IL_0000: ldtoken PlayerInteract
+	IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+	IL_000a: stloc.0
+	IL_000b: ldloc.2
+	IL_000c: ldftn System.Void PlayerInteract::InvokeUserCode_CmdUsePanel(Mirror.NetworkBehaviour,Mirror.NetworkReader,Mirror.NetworkConnectionToClient)
+	IL_0012: newobj System.Void Mirror.RemoteCalls.CmdDelegate::.ctor(System.Object,System.IntPtr)
+	IL_0017: stloc.1
+	IL_0018: ldc.i4.0
+	IL_0019: stloc.2
+	IL_001a: ldloc.0
+	IL_001b: ldstr "CmdUsePanel"
+	IL_0020: ldloc.1
+	IL_0021: ldc.i4.1
+	IL_0022: call System.Void Mirror.RemoteCalls.RemoteCallHelper::RegisterCommandDelegate(System.Type,System.String,Mirror.RemoteCalls.CmdDelegate,System.Boolean)
+	IL_0027: ldtoken PlayerInteract
+	IL_002c: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+	IL_0031: stloc.s V_4
+	IL_0033: ldloc.s V_6
+	IL_0035: ldftn System.Void PlayerInteract::InvokeUserCode_CmdSwitchAWButton(Mirror.NetworkBehaviour,Mirror.NetworkReader,Mirror.NetworkConnectionToClient)
+	IL_003b: newobj System.Void Mirror.RemoteCalls.CmdDelegate::.ctor(System.Object,System.IntPtr)
+	IL_0040: stloc.s V_5
+	IL_0042: ldc.i4.0
+	IL_0043: stloc.s V_6
+	IL_0045: ldloc.s V_4
+	IL_0047: ldstr "CmdSwitchAWButton"
+	IL_004c: ldloc.s V_5
+	IL_004e: ldc.i4.1
+	IL_004f: call System.Void Mirror.RemoteCalls.RemoteCallHelper::RegisterCommandDelegate(System.Type,System.String,Mirror.RemoteCalls.CmdDelegate,System.Boolean)
+	IL_0054: ldtoken PlayerInteract
+	IL_0059: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+	IL_005e: stloc.s V_8
+	IL_0060: ldloc.s V_10
+	IL_0062: ldftn System.Void PlayerInteract::InvokeUserCode_CmdDetonateWarhead(Mirror.NetworkBehaviour,Mirror.NetworkReader,Mirror.NetworkConnectionToClient)
+	IL_0068: newobj System.Void Mirror.RemoteCalls.CmdDelegate::.ctor(System.Object,System.IntPtr)
+	IL_006d: stloc.s V_9
+	IL_006f: ldc.i4.0
+	IL_0070: stloc.s V_10
+	IL_0072: ldloc.s V_8
+	IL_0074: ldstr "CmdDetonateWarhead"
+	IL_0079: ldloc.s V_9
+	IL_007b: ldc.i4.1
+	IL_007c: call System.Void Mirror.RemoteCalls.RemoteCallHelper::RegisterCommandDelegate(System.Type,System.String,Mirror.RemoteCalls.CmdDelegate,System.Boolean)
+	IL_0081: ldtoken PlayerInteract
+	IL_0086: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+	IL_008b: stloc.s V_12
+	IL_008d: ldloc.s V_14
+	IL_008f: ldftn System.Void PlayerInteract::InvokeUserCode_RpcLeverSound(Mirror.NetworkBehaviour,Mirror.NetworkReader,Mirror.NetworkConnectionToClient)
+	IL_0095: newobj System.Void Mirror.RemoteCalls.CmdDelegate::.ctor(System.Object,System.IntPtr)
+	IL_009a: stloc.s V_13
+	IL_009c: ldc.i4.0
+	IL_009d: stloc.s V_14
+	IL_009f: ldloc.s V_12
+	IL_00a1: ldstr "RpcLeverSound"
+	IL_00a6: ldloc.s V_13
+	IL_00a8: call System.Void Mirror.RemoteCalls.RemoteCallHelper::RegisterRpcDelegate(System.Type,System.String,Mirror.RemoteCalls.CmdDelegate)
+	IL_00ad: ret
+	
+

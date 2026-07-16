@@ -1,0 +1,347 @@
+Type: FlickerableLight
+
+
+	Generated Pseudocode:
+
+	Declaring Type: FlickerableLight
+	System.Void Awake()
+
+		UnityEngine.Light componentInChildren = base.GetComponentInChildren<UnityEngine.Light>()
+		this.lightSource = componentInChildren
+		UnityEngine.Light lightSource = this.lightSource
+		ulong local4 = 0
+
+		System.Boolean boolean = UnityEngine.Object.op_Inequality(lightSource, local4) //(Object x, Object y)
+		UnityEngine.Renderer[] _renderers = this._renderers
+		this.HasLight = boolean
+		System.Int32 length = _renderers.Length
+		this._rendererCount = length
+
+		if (length > 0)
+		    UnityEngine.Renderer local8 = _renderers[0]
+
+		    UnityEngine.Material[] sharedMaterialArray = local8.GetSharedMaterialArray()
+		    System.Int32 materialId = this.materialId
+		    UnityEngine.Material material = sharedMaterialArray[materialId]
+		    UnityEngine.Material material2 = new UnityEngine.Material()
+
+		    material2..ctor(material) //(Material source)
+		    this._copy = material2
+		    ulong local15 = 0
+
+		    if (this._rendererCount > local15)
+		        UnityEngine.Renderer[] _renderers2 = this._renderers
+		        UnityEngine.Renderer local17 = _renderers2[]
+
+		        UnityEngine.Material[] sharedMaterialArray2 = local17.GetSharedMaterialArray()
+		        System.Int32 materialId2 = this.materialId
+		        UnityEngine.Material _copy = this._copy
+
+		        if (_copy != 0)
+
+		            if (sharedMaterialArray2 == 0)
+                        goto INSN_181B139AF
+                    endif
+		        endif
+                
+		        local17. = _copy
+		        UnityEngine.Renderer[] _renderers3 = this._renderers
+		        UnityEngine.Renderer local23 = _renderers3[]
+
+		        local23.SetMaterialArray(sharedMaterialArray2) //(Material[] m)
+		        local15 += 1
+		    endif
+            
+		    UnityEngine.Material _copy2 = this._copy
+		    System.Int32 _emissionColor = FlickerableLight._emissionColor
+
+		    UnityEngine.Color color = .GetColor()
+		    this._initialMaterialColor = constant35
+		endif
+        
+
+		if (this.HasLight == False)
+            goto INSN_181B13967
+        endif
+		UnityEngine.Light lightSource2 = this.lightSource
+
+		UnityEngine.Color color2 = .color
+		this._initialLightColor = constant39
+
+		INSN_181B13967:
+		return
+		throw new System.NullReferenceException()
+
+		INSN_181B139AF:
+
+
+Generated IL:
+	Don't know how to write IL for Cpp2IL.Core.Analysis.Actions.x86.Important.RegOffsetArrayValueReadRegToRegAction. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: FlickerableLight
+	System.Void Update()
+
+		if (this.WarheadLightOverride == False)
+		endif
+        
+
+		if (this._flickering != False)
+            goto INSN_181B13FDE
+        endif
+
+		if (this._enabled != False)
+            goto INSN_181B13E26
+        endif
+		System.Boolean _previousWarheadState = this._previousWarheadState
+
+		if (this.WarheadLightOverride == False)
+            goto INSN_181B13CF8
+        endif
+
+		INSN_181B13CF8:
+		System.Boolean warheadEnabled = FlickerableLightController.WarheadEnabled
+
+		if (_previousWarheadState != warheadEnabled)
+            goto INSN_181B13D3E
+        endif
+
+		if (this._previousWarheadState == False)
+            goto INSN_181B13DF1
+        endif
+
+		if (this.isColorChanged == False)
+            goto INSN_181B13DF1
+        endif
+
+		INSN_181B13D3E:
+
+		if (this.HasLight == False)
+            goto INSN_181B13D66
+        endif
+		UnityEngine.Light lightSource = this.lightSource
+		ulong local7 = 0
+
+		lightSource.set_color()
+
+		INSN_181B13D66:
+
+		if (this._rendererCount == 0)
+            goto INSN_181B13DDA
+        endif
+		UnityEngine.Material _copy = this._copy
+		System.Int32 _emissionColor = FlickerableLight._emissionColor
+
+		_copy.SetColor(_emissionColor, local7) //(Int32 nameID, Color value)
+
+		INSN_181B13DDA:
+		this.isColorChanged = False
+		System.Boolean local11 = this._previousWarheadState == False
+		this._previousWarheadState = local11
+
+		INSN_181B13DF1:
+		return
+
+		INSN_181B13E26:
+		ulong local12 = 0
+
+		System.Single deltaTime = UnityEngine.Time.deltaTime
+
+		System.Single single = UnityEngine.Mathf.Clamp01(deltaTime) //(Single value)
+		ulong local16 = 0
+
+		System.Single single2 = .Evaluate(single) //(Single time)
+		deltaTime = single2
+
+		UnityEngine.Color black = UnityEngine.Color.black
+
+		UnityEngine.Color color = UnityEngine.Color.Lerp()
+		System.Int32 _emissionColor2 = FlickerableLight._emissionColor
+
+		.SetColor(_emissionColor2, local16) //(Int32 nameID, Color value)
+		ulong local24 = 0
+
+		UnityEngine.Color black2 = UnityEngine.Color.black
+
+		UnityEngine.Color color2 = UnityEngine.Color.Lerp()
+
+		.color = local24
+		. = 0
+
+		INSN_181B13FDE:
+		ulong local29 = 0
+		. = 1
+
+		System.Single deltaTime2 = UnityEngine.Time.deltaTime
+		deltaTime = deltaTime2
+		deltaTime2 = deltaTime
+
+		System.Single single3 = UnityEngine.Mathf.Clamp01(deltaTime2) //(Single value)
+		ulong local33 = 0
+
+		System.Single single4 = .Evaluate(single3) //(Single time)
+		deltaTime = single4
+
+		UnityEngine.Color black3 = UnityEngine.Color.black
+
+		UnityEngine.Color color3 = UnityEngine.Color.Lerp()
+		System.Int32 _emissionColor3 = FlickerableLight._emissionColor
+
+		.SetColor(_emissionColor3, local33) //(Int32 nameID, Color value)
+		ulong local41 = 0
+
+		UnityEngine.Color black4 = UnityEngine.Color.black
+
+		UnityEngine.Color color4 = UnityEngine.Color.Lerp()
+
+		.color = local41
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181B13D61) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: FlickerableLight
+	System.Void UpdateBaseLight(UnityEngine.Color targetLight, UnityEngine.Color targetMat)
+		System.Boolean _previousWarheadState = this._previousWarheadState
+
+		if (this.WarheadLightOverride != False)
+		else
+		    System.Boolean warheadEnabled = FlickerableLightController.WarheadEnabled
+		endif
+        
+
+		if (_previousWarheadState != warheadEnabled)
+            goto INSN_181B13B3C
+        endif
+
+		if (this._previousWarheadState == False)
+            goto INSN_181B13BF2
+        endif
+
+		if (this.isColorChanged == False)
+            goto INSN_181B13BF2
+        endif
+
+		INSN_181B13B3C:
+
+		if (this.HasLight == False)
+            goto INSN_181B13B67
+        endif
+		UnityEngine.Light lightSource = this.lightSource
+
+		lightSource.set_color()
+
+		INSN_181B13B67:
+
+		if (this._rendererCount == 0)
+            goto INSN_181B13BDB
+        endif
+		UnityEngine.Material _copy = this._copy
+		System.Int32 _emissionColor = FlickerableLight._emissionColor
+
+		_copy.SetColor()
+
+		INSN_181B13BDB:
+		this.isColorChanged = False
+		System.Boolean local12 = this._previousWarheadState == False
+		this._previousWarheadState = local12
+
+		INSN_181B13BF2:
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181B13B62) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: FlickerableLight
+	System.Void SetRendererColor(UnityEngine.Color color)
+
+		if (this._rendererCount != 0)
+		    UnityEngine.Material _copy = this._copy
+		    System.Int32 _emissionColor = FlickerableLight._emissionColor
+
+		    _copy.SetColor()
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181B13A7E) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: FlickerableLight
+	System.Void SetFlickering(System.Boolean state)
+		this._flickering = state
+		this._curAnimationProgress = 0
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: stfld System.Boolean FlickerableLight::_flickering
+	IL_0007: ldarg.0
+	IL_0008: ldc.r4 0
+	IL_000d: stfld System.Single FlickerableLight::_curAnimationProgress
+	IL_0012: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: FlickerableLight
+	System.Void .ctor()
+		UnityEngine.Color defaultWarheadColor = FlickerableLightController.DefaultWarheadColor
+		this.WarheadColor = defaultWarheadColor
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldsfld UnityEngine.Color FlickerableLightController::DefaultWarheadColor
+	IL_0005: stloc.0
+	IL_0006: ldarg.0
+	IL_0007: ldloc.0
+	IL_0008: stfld UnityEngine.Color FlickerableLight::WarheadColor
+	IL_000d: ldarg.0
+	IL_000e: call System.Void UnityEngine.MonoBehaviour::.ctor()
+	IL_0013: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: FlickerableLight
+	static System.Void .cctor()
+
+		System.Int32 int32 = UnityEngine.Shader.PropertyToID("_EmissionColor") //(String name)
+		FlickerableLight._emissionColor = int32
+		return
+
+
+Generated IL:
+	IL_0000: ldstr "_EmissionColor"
+	IL_0005: call System.Int32 UnityEngine.Shader::PropertyToID(System.String)
+	IL_000a: stsfld System.Int32 FlickerableLight::_emissionColor
+	IL_000f: ret
+	
+

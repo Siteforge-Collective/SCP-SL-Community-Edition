@@ -1,0 +1,359 @@
+Type: SetHealthCommand
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.SetHealthCommand
+	System.String get_Command()
+		System.String Command = this.<Command>k__BackingField
+		return Command
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String CommandSystem.Commands.RemoteAdmin.SetHealthCommand::<Command>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.SetHealthCommand
+	System.String[] get_Aliases()
+		System.String[] Aliases = this.<Aliases>k__BackingField
+		return Aliases
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String[] CommandSystem.Commands.RemoteAdmin.SetHealthCommand::<Aliases>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.SetHealthCommand
+	System.String get_Description()
+		System.String Description = this.<Description>k__BackingField
+		return Description
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String CommandSystem.Commands.RemoteAdmin.SetHealthCommand::<Description>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.SetHealthCommand
+	System.String[] get_Usage()
+		System.String[] Usage = this.<Usage>k__BackingField
+		return Usage
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String[] CommandSystem.Commands.RemoteAdmin.SetHealthCommand::<Usage>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.SetHealthCommand
+	System.Boolean Execute(System.ArraySegment`1<System.String> arguments, CommandSystem.ICommandSender sender, System.String& response)
+		ulong local4 = 0
+
+		System.Boolean boolean = Misc.CheckPermission(sender, 0x4000, response) //(ICommandSender sender, PlayerPermissions perm, String& response)
+
+		if (boolean != False)
+
+		    System.Collections.Generic.List`1<ReferenceHub> list = Utils.RAUtils.ProcessPlayerIdOrNamesList()
+
+		    System.Boolean boolean2 = System.Int32.TryParse()
+		    NorthwoodLib.Pools.StringBuilderPool shared = NorthwoodLib.Pools.StringBuilderPool.Shared
+
+		    System.Text.StringBuilder stringBuilder = shared.Rent()
+
+		    if (list != 0)
+
+		        System.Collections.Generic.List`1/Enumerator<T> enumerator = shared.GetEnumerator()
+
+		        if (enumerator != 0)
+
+		            System.Boolean boolean3 = ReferenceHub.op_Inequality()
+
+		            if (boolean3 != False)
+
+		                PlayerStatsSystem.HealthStat module = .GetModule<PlayerStatsSystem.HealthStat>()
+
+		                if (module <= 0)
+                            goto INSN_18062AA5C
+                        endif
+
+		                INSN_18062AA5C:
+
+		                System.Single minValue = module.MinValue
+
+		                System.Single curValue = module.CurValue
+
+		                if (local4 == 0)
+                            goto INSN_18062AAAD
+                        endif
+
+		                System.Text.StringBuilder stringBuilder2 = stringBuilder.Append(", ") //(String value)
+
+		                INSN_18062AAAD:
+
+		                System.String string = Misc.LoggedNameFromRefHub()
+
+		                System.Text.StringBuilder stringBuilder3 = stringBuilder.Append(string) //(String value)
+		                local4 += 1
+		            endif
+                    
+
+		            shared.Dispose()
+
+		            shared.Dispose()
+
+		            if (shared != 0)
+                        goto INSN_18062AE14
+                    endif
+		            ulong local30 = 0
+
+		            if (local4 <= 0)
+                        goto INSN_18062ACE1
+                    endif
+		            System.Object[] local31 = new System.Object[4]
+
+		            if (local31 == 0)
+                        goto INSN_18062ABA6
+                    endif
+
+		            if (local31 == 0)
+                        goto INSN_18062AE1C
+                    endif
+
+		            INSN_18062ABA6:
+		            local31[0] = local31
+
+		            if (local4 == 1)
+                        goto INSN_18062ABD9
+                    endif
+
+		            INSN_18062ABD9:
+
+		            if ("s " == 0)
+                        goto INSN_18062ABF6
+                    endif
+
+		            if (local31 == 0)
+                        goto INSN_18062AE3C
+                    endif
+
+		            INSN_18062ABF6:
+		            local31[1] = "s "
+
+		            if (stringBuilder == 0)
+                        goto INSN_18062AC2C
+                    endif
+
+		            if (local31 == 0)
+                        goto INSN_18062AE5C
+                    endif
+
+		            INSN_18062AC2C:
+		            local31[2] = stringBuilder
+
+		            if (local31 == 0)
+                        goto INSN_18062AC84
+                    endif
+
+		            if (local31 == 0)
+                        goto INSN_18062AE7C
+                    endif
+
+		            INSN_18062AC84:
+		            local31[3] = local31
+
+		            System.String string2 = System.String.Format("{0} set health of player{1}{2} to {3}.", local31) //(String format, Object[] args)
+		            ulong local34 = 0
+
+		            ServerLogs.AddLog(4, string2, 1, local34) //(Modules module, String msg, ServerLogType type, Boolean init)
+		        endif
+                
+		        NorthwoodLib.Pools.StringBuilderPool shared2 = NorthwoodLib.Pools.StringBuilderPool.Shared
+
+		        shared2.Return(stringBuilder) //(StringBuilder stringBuilder)
+
+		        if (local4 == 1)
+                    goto INSN_18062AD5A
+                endif
+
+		        INSN_18062AD5A:
+
+		        System.String string3 = System.String.Format()
+		        response. = string3
+		        //UNKNOWN CLASS OFFSET READ HERE
+
+		        System.String string4 = CommandSystem.HelpProviderExtensions.DisplayCommandUsage(local4) //(IUsageProvider provider)
+
+		        System.String string5 = System.String.Concat()
+		        response. = string5
+		    endif
+            
+		    ulong local42 = 0
+		    return local42
+		    throw new System.NullReferenceException()
+
+		    INSN_18062AE14:
+
+		    INSN_18062AE1C:
+
+		    INSN_18062AE3C:
+
+		    INSN_18062AE5C:
+
+		    INSN_18062AE7C:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18062A905) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (4)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.SetHealthCommand
+	System.Void .ctor()
+		this.<Command>k__BackingField = "hp"
+		System.String[] local1 = new System.String[2]
+
+		if ("sethealth" != 0)
+
+		    if ("sethealth" == 0)
+                goto INSN_18062B090
+            endif
+		endif
+        
+		local1[0] = "sethealth"
+
+		if ("sethp" == 0)
+            goto INSN_18062AF87
+        endif
+
+		if ("sethp" == 0)
+            goto INSN_18062B0B0
+        endif
+
+		INSN_18062AF87:
+		local1[1] = "sethp"
+		this.<Aliases>k__BackingField = local1
+		this.<Description>k__BackingField = "Sets the player(s) health to the specified amount."
+		System.String[] local2 = new System.String[2]
+
+		if ("%player%" == 0)
+            goto INSN_18062B00A
+        endif
+
+		if ("%player%" == 0)
+            goto INSN_18062B0D0
+        endif
+
+		INSN_18062B00A:
+		local2[0] = "%player%"
+
+		if ("Amount" == 0)
+            goto INSN_18062B04E
+        endif
+
+		if ("Amount" == 0)
+            goto INSN_18062B0F0
+        endif
+
+		INSN_18062B04E:
+		local2[1] = "Amount"
+		this.<Usage>k__BackingField = local2
+
+		base..ctor()
+		return
+		throw new System.NullReferenceException()
+
+		INSN_18062B090:
+
+		INSN_18062B0B0:
+
+		INSN_18062B0D0:
+
+		INSN_18062B0F0:
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldstr "hp"
+	IL_0006: stfld System.String CommandSystem.Commands.RemoteAdmin.SetHealthCommand::<Command>k__BackingField
+	IL_000b: ldc.i4.2
+	IL_000c: newarr System.String
+	IL_0011: stloc.0
+	IL_0012: ldstr "sethealth"
+	IL_0017: ldc.i4.0
+	IL_0018: beq.s IL_0022
+	IL_001a: ldstr "sethealth"
+	IL_001f: ldc.i4.0
+	IL_0020: beq.s IL_0000
+	IL_0022: ldloc.0
+	IL_0023: ldc.i4.0
+	IL_0024: ldstr "sethealth"
+	IL_0029: stelem.any System.String
+	IL_002e: ldstr "sethp"
+	IL_0033: ldc.i4.0
+	IL_0034: beq.s IL_003e
+	IL_0036: ldstr "sethp"
+	IL_003b: ldc.i4.0
+	IL_003c: beq.s IL_0000
+	IL_003e: ldloc.0
+	IL_003f: ldc.i4.1
+	IL_0040: ldstr "sethp"
+	IL_0045: stelem.any System.String
+	IL_004a: ldarg.0
+	IL_004b: ldloc.0
+	IL_004c: stfld System.String[] CommandSystem.Commands.RemoteAdmin.SetHealthCommand::<Aliases>k__BackingField
+	IL_0051: ldarg.0
+	IL_0052: ldstr "Sets the player(s) health to the specified amount."
+	IL_0057: stfld System.String CommandSystem.Commands.RemoteAdmin.SetHealthCommand::<Description>k__BackingField
+	IL_005c: ldc.i4.2
+	IL_005d: newarr System.String
+	IL_0062: stloc.1
+	IL_0063: ldstr "%player%"
+	IL_0068: ldc.i4.0
+	IL_0069: beq.s IL_0073
+	IL_006b: ldstr "%player%"
+	IL_0070: ldc.i4.0
+	IL_0071: beq.s IL_0000
+	IL_0073: ldloc.1
+	IL_0074: ldc.i4.0
+	IL_0075: ldstr "%player%"
+	IL_007a: stelem.any System.String
+	IL_007f: ldstr "Amount"
+	IL_0084: ldc.i4.0
+	IL_0085: beq.s IL_0092
+	IL_0087: ldstr "Amount"
+	IL_008c: ldc.i4.0
+	IL_008d: beq IL_0000
+	IL_0092: ldloc.1
+	IL_0093: ldc.i4.1
+	IL_0094: ldstr "Amount"
+	IL_0099: stelem.any System.String
+	IL_009e: ldarg.0
+	IL_009f: ldloc.1
+	IL_00a0: stfld System.String[] CommandSystem.Commands.RemoteAdmin.SetHealthCommand::<Usage>k__BackingField
+	IL_00a5: ldarg.0
+	IL_00a6: call System.Void System.Object::.ctor()
+	IL_00ab: ret
+	IL_00ac: newobj System.Void System.NullReferenceException::.ctor()
+	IL_00b1: throw
+	
+

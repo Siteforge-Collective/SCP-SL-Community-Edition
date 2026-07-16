@@ -1,0 +1,412 @@
+Type: CreditsData
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CreditsData
+	static System.Void .cctor()
+		ulong local1 = 0
+		System.Int64 local2 = 1
+
+		System.String appFolder = FileManager.GetAppFolder(local2, local1, "") //(Boolean addSeparator, Boolean serverConfig, String centralConfig)
+
+		System.String string = System.String.Concat(appFolder, "CreditsCache.json") //(String str0, String str1)
+		 += 8
+		CreditsData.RemoteLoaded = string
+		System.String cachePath = CreditsData.CachePath
+
+		System.Boolean boolean = System.IO.File.Exists(cachePath) //(String path)
+
+		if (boolean == False)
+		    System.String cachePath2 = CreditsData.CachePath
+
+		    System.IO.File.Copy("CreditsCache.json", cachePath2) //(String sourceFileName, String destFileName)
+		endif
+        
+		System.String cachePath3 = CreditsData.CachePath
+
+		System.String string2 = System.IO.File.ReadAllText(cachePath3) //(String path)
+
+		CreditsData.SetCredits(string2) //(String text)
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x181ACFD03) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CreditsData
+	static System.Void LoadData(System.String text)
+
+		CreditsData.SetCredits(text) //(String text)
+		System.String cachePath = CreditsData.CachePath
+
+		System.IO.File.WriteAllText(cachePath, text) //(String path, String contents)
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void CreditsData::SetCredits(System.String)
+	IL_0006: ldsfld System.String CreditsData::CachePath
+	IL_000b: ldarg.0
+	IL_000c: call System.Void System.IO.File::WriteAllText(System.String,System.String)
+	IL_0011: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CreditsData
+	static System.Void SetCredits(System.String text)
+
+		CreditsList creditsList = JsonSerialize.FromJson<CreditsList>(text) //(String value)
+		System.Collections.Generic.List`1<CreditsCategory> list = new System.Collections.Generic.List`1<CreditsCategory>()
+
+		list..ctor()
+		System.Int32 1 = 1
+
+		System.Collections.Generic.IEnumerable`1<System.String> iEnumerable = System.IO.Directory.EnumerateFiles("Translations/", "manifest.json", 1) //(String path, String searchPattern, SearchOption searchOption)
+		System.Func`2<System.String,TranslationManifest> <>9__7_0 = CreditsData/<>c.<>9__7_0
+
+		if (<>9__7_0 == 0)
+		    CreditsData/<>c <>c = CreditsData/<>c.<>9
+		    System.Func`2<System.String,TranslationManifest> func = new System.Func`2<System.String,TranslationManifest>()
+
+		    func..ctor(<>c, {'<SetCredits>b__7_0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		     += 8
+		    CreditsData/<>c.<>9 = func
+		endif
+        
+
+		System.Collections.Generic.IEnumerable`1<System.String> iEnumerable2 = System.Linq.Enumerable.Select<System.String, TranslationManifest>(iEnumerable, <>9__7_0) //(IEnumerable`1 source, Func`2 selector)
+		ulong local10 = 0
+
+		if (local10 >= )
+            goto INSN_181ACFBAA
+        endif
+		System.Int32 2 = 2
+		 += 2
+		System.Collections.Generic.List`1<CreditsEntry> list2 = new System.Collections.Generic.List`1<CreditsEntry>()
+
+		list2..ctor()
+		ulong local12 = 0
+
+		if (local12 < )
+		    System.Int32 0 = 0
+
+		    CreditsEntry creditsEntry = CreditsData.ProcessEntry()
+
+		    list2.Add(creditsEntry) //(T item)
+		    local12 += 1
+		endwhile
+        
+		goto INSN_181ACFC4B
+        
+		System.Int32 5 = 5
+
+		System.Boolean boolean = iEnumerable.Equals("SPECIAL THANKS", 5) //(String value, StringComparison comparisonType)
+
+		if (boolean != False)
+            goto INSN_181ACF7FA
+        endif
+		CreditsCategory creditsCategory = new CreditsCategory()
+		creditsCategory.DisplayTime = 2000
+
+		creditsCategory..ctor()
+		creditsCategory.Header = iEnumerable
+
+		CreditsEntry[] creditsEntryArray = list2.ToArray()
+		creditsCategory.Records = creditsEntryArray
+
+		INSN_181ACF7FA:
+		System.Int32 87 = 87
+
+		System.String string = TranslationReader.Get("NewMainMenu", 87, "For playing our game!") //(String keyName, Int32 index, String defaultValue)
+
+		UnityEngine.Color color = UnityEngine.Color32.op_Implicit()
+		CreditsEntry creditsEntry2 = new CreditsEntry()
+
+		creditsEntry2..ctor()
+		creditsEntry2.Multi = False
+		creditsEntry2.Title = string
+		creditsEntry2.Name = "<current nickname>"
+		creditsEntry2.Color = constant68
+
+		list2.Add(creditsEntry2) //(T item)
+		CreditsCategory creditsCategory2 = new CreditsCategory()
+		creditsCategory2.DisplayTime = 2000
+
+		creditsCategory2..ctor()
+		creditsCategory2.Header = iEnumerable
+
+		CreditsEntry[] creditsEntryArray2 = list2.ToArray()
+		creditsCategory2.Records = creditsEntryArray2
+
+		list.Add(creditsCategory2) //(T item)
+
+		list2.Clear()
+
+		if (creditsEntryArray2 == 0)
+            goto INSN_181ACFAB1
+        endif
+
+		[instruction error - managed method being called is null]
+
+		if (creditsEntryArray2 == 0)
+		endwhile
+        
+		goto INSN_181ACFC6B
+        
+		System.Int64 local38 = 45
+
+		System.Int32 int32 = creditsEntryArray2.IndexOf(local38) //(Char value)
+
+		if (int32 <= -1)
+            goto INSN_181ACFA13
+        endif
+
+		System.String string2 = creditsEntryArray2.Substring(local38) //(Int32 startIndex)
+
+		INSN_181ACFA13:
+		ulong local43 = 0
+
+		if (local43 < )
+		    CreditsEntry creditsEntry3 = new CreditsEntry()
+
+		    creditsEntry3..ctor()
+
+		    list2.Add(creditsEntry3) //(T item)
+		    local43 += 1
+		endwhile
+        
+		goto INSN_181ACFC61
+        
+		CreditsEntry creditsEntry4 = new CreditsEntry()
+
+		creditsEntry4..ctor("", "") //(String title, String name)
+
+		list2.Add(creditsEntry4) //(T item)
+
+		INSN_181ACFAB1:
+		string. = 454
+
+		if (creditsEntry4 == 0)
+            goto INSN_181ACFB0B
+        endif
+
+		INSN_181ACFB0B:
+
+		if (creditsEntry3 != 0)
+            goto INSN_181ACFC71
+        endif
+
+		if (creditsEntry2 == 0xFFFFFFFFFFFFFFFF)
+            goto INSN_181ACFB3A
+        endif
+
+		if (constant104 != 454)
+            goto INSN_181ACFB3A
+        endif
+
+		INSN_181ACFB3A:
+		CreditsCategory creditsCategory3 = new CreditsCategory()
+		creditsCategory3.DisplayTime = 2000
+
+		creditsCategory3..ctor()
+		creditsCategory3.Header = "COMMUNITY TRANSLATORS"
+
+		CreditsEntry[] creditsEntryArray3 = list2.ToArray()
+		creditsCategory3.Records = creditsEntryArray3
+
+		string2.Add(creditsCategory3) //(T item)
+		creditsCategory3 += 1
+
+		INSN_181ACFBAA:
+
+		CreditsCategory[] creditsCategoryArray = string2.ToArray()
+		 += 16
+		CreditsData.RemoteLoaded = creditsCategoryArray
+		return
+		throw new System.IndexOutOfRangeException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x181ACF647) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CreditsData
+	static CreditsEntry ProcessEntry(CreditsListMember member)
+
+		[instruction error - managed method being called is null]
+
+		if ( == 0)
+
+		    [instruction error - managed method being called is null]
+
+		    if ( != 0)
+		        CreditsEntry creditsEntry = new CreditsEntry()
+
+		        creditsEntry..ctor()
+		        return creditsEntry
+		    endif
+            
+
+		    UnityEngine.Color32 color32 = CreditsData.HexToColor()
+		    System.Int32 local11 = color32.rgba
+
+		    UnityEngine.Color color = UnityEngine.Color32.op_Implicit()
+		    CreditsEntry creditsEntry2 = new CreditsEntry()
+
+		    creditsEntry2..ctor()
+		    creditsEntry2.Title = 0
+		    creditsEntry2.Multi = False
+		    creditsEntry2.Name = local6
+		    creditsEntry2.Color = local13
+		    return creditsEntry2
+		endif
+        
+		CreditsEntry creditsEntry3 = new CreditsEntry()
+
+		creditsEntry3..ctor()
+		return creditsEntry3
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181ACF391) is corrupt (Don't know what method is being called) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CreditsData
+	static UnityEngine.Color32 HexToColor(CreditsListMember member)
+
+		[instruction error - managed method being called is null]
+
+		if ( == 0)
+
+		    System.Boolean boolean = Misc.TryParseColor()
+
+		    if (boolean == False)
+		        System.String[] local7 = new System.String[7]
+
+		        if ("Error during processing credits color (" != 0)
+
+		            if ("Error during processing credits color (" == 0)
+                        goto INSN_181ACF20A
+                    endif
+		        endif
+                
+		        local7[0] = "Error during processing credits color ("
+
+		        if (constant26 == 0)
+                    goto INSN_181ACEFF4
+                endif
+
+		        if ("Error during processing credits color (" == 0)
+                    goto INSN_181ACF22A
+                endif
+
+		        INSN_181ACEFF4:
+		        local7[1] = constant26
+
+		        if (" - " == 0)
+                    goto INSN_181ACF038
+                endif
+
+		        if (" - " == 0)
+                    goto INSN_181ACF24A
+                endif
+
+		        INSN_181ACF038:
+		        local7[2] = " - "
+
+		        if (constant26 == 0)
+                    goto INSN_181ACF086
+                endif
+
+		        if (" - " == 0)
+                    goto INSN_181ACF26A
+                endif
+
+		        INSN_181ACF086:
+		        local7[3] = constant26
+
+		        if (" - " == 0)
+                    goto INSN_181ACF0CA
+                endif
+
+		        if (" - " == 0)
+                    goto INSN_181ACF28A
+                endif
+
+		        INSN_181ACF0CA:
+		        local7[4] = " - "
+
+		        if (constant53 == 0)
+                    goto INSN_181ACF118
+                endif
+
+		        if (" - " == 0)
+                    goto INSN_181ACF2AA
+                endif
+
+		        INSN_181ACF118:
+		        local7[5] = constant53
+
+		        if (")." == 0)
+                    goto INSN_181ACF15C
+                endif
+
+		        if (")." == 0)
+                    goto INSN_181ACF2CA
+                endif
+
+		        INSN_181ACF15C:
+		        local7[6] = ")."
+
+		        System.String string = System.String.Concat(local7) //(String[] values)
+
+		        UnityEngine.Debug.LogError(string) //(Object message)
+
+		        UnityEngine.Color white = UnityEngine.Color.white
+
+		        UnityEngine.Color32 color32 = UnityEngine.Color32.op_Implicit()
+		        return color32
+		    endif
+            
+		    return local2
+		endif
+        
+
+		UnityEngine.Color white2 = UnityEngine.Color.white
+
+		UnityEngine.Color32 color322 = UnityEngine.Color32.op_Implicit()
+		return color322
+
+		INSN_181ACF20A:
+
+		INSN_181ACF22A:
+
+		INSN_181ACF24A:
+
+		INSN_181ACF26A:
+
+		INSN_181ACF28A:
+
+		INSN_181ACF2AA:
+
+		INSN_181ACF2CA:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181ACEF06) is corrupt (Don't know what method is being called) and cannot be created as IL. Aborting here.
+
+

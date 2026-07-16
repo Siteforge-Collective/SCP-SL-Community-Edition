@@ -1,0 +1,301 @@
+Type: PlatformInfo
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlatformInfo
+	System.Boolean get_IsHeadless()
+		System.Boolean IsHeadless = this.<IsHeadless>k__BackingField
+		return IsHeadless
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Boolean PlatformInfo::<IsHeadless>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlatformInfo
+	System.Boolean get_IsIl2Cpp()
+		System.Boolean IsIl2Cpp = this.<IsIl2Cpp>k__BackingField
+		return IsIl2Cpp
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Boolean PlatformInfo::<IsIl2Cpp>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlatformInfo
+	System.Boolean get_IsEditor()
+		System.Boolean IsEditor = this.<IsEditor>k__BackingField
+		return IsEditor
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Boolean PlatformInfo::<IsEditor>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlatformInfo
+	System.Boolean get_UsesCustomLauncher()
+		System.Boolean UsesCustomLauncher = this.<UsesCustomLauncher>k__BackingField
+		return UsesCustomLauncher
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Boolean PlatformInfo::<UsesCustomLauncher>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlatformInfo
+	System.String get_BuildGuid()
+		System.String BuildGuid = this.<BuildGuid>k__BackingField
+		return BuildGuid
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String PlatformInfo::<BuildGuid>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlatformInfo
+	System.Void set_BuildGuid(System.String value)
+		this.<BuildGuid>k__BackingField = value
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: stfld System.String PlatformInfo::<BuildGuid>k__BackingField
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlatformInfo
+	System.Boolean get_IsWindows()
+		System.Boolean IsWindows = this.<IsWindows>k__BackingField
+		return IsWindows
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Boolean PlatformInfo::<IsWindows>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlatformInfo
+	System.Boolean get_IsLinux()
+		System.Boolean IsLinux = this.<IsLinux>k__BackingField
+		return IsLinux
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Boolean PlatformInfo::<IsLinux>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlatformInfo
+	System.Int32 get_MainThreadId()
+		System.Int32 MainThreadId = this.<MainThreadId>k__BackingField
+		return MainThreadId
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Int32 PlatformInfo::<MainThreadId>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlatformInfo
+	System.Void set_MainThreadId(System.Int32 value)
+		this.<MainThreadId>k__BackingField = value
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: stfld System.Int32 PlatformInfo::<MainThreadId>k__BackingField
+	IL_0007: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlatformInfo
+	System.Boolean get_IsMainThread()
+		ulong local1 = 0
+
+		System.Threading.Thread currentThread = System.Threading.Thread.CurrentThread
+
+		System.Int32 managedThreadId = currentThread.ManagedThreadId
+		System.Boolean local5 = managedThreadId == this.<MainThreadId>k__BackingField
+		return local5
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: call System.Threading.Thread System.Threading.Thread::get_CurrentThread()
+	IL_0007: call System.Int32 System.Threading.Thread::get_ManagedThreadId()
+	IL_000c: ldarg.0
+	IL_000d: ldfld System.Int32 PlatformInfo::<MainThreadId>k__BackingField
+	IL_0012: ceq
+	IL_0014: ret
+	IL_0015: newobj System.Void System.NullReferenceException::.ctor()
+	IL_001a: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlatformInfo
+	System.Void Awake()
+		ulong local1 = 0
+
+		System.Threading.Thread currentThread = System.Threading.Thread.CurrentThread
+
+		System.Int32 managedThreadId = currentThread.ManagedThreadId
+		ulong local5 = 0
+		this.<MainThreadId>k__BackingField = managedThreadId
+
+		System.String buildGUID = UnityEngine.Application.buildGUID
+		this.<BuildGuid>k__BackingField = buildGUID
+		PlatformInfo.singleton = this
+		ulong local7 = 0
+
+		System.String version = NorthwoodLib.PlatformSettings.Version
+
+		System.String string = System.String.Concat("Loaded NorthwoodLib ", version) //(String str0, String str1)
+
+		UnityEngine.Color green = UnityEngine.Color.green
+
+		GameCore.Console.AddLog()
+		System.Action`2<System.String,NorthwoodLib.Logging.LogType> action = new System.Action`2<System.String,NorthwoodLib.Logging.LogType>()
+		ulong local17 = 0
+
+		action..ctor(local17, {'OnLogged' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		NorthwoodLib.PlatformSettings.add_Logged(action) //(Action`2 value)
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180384BBE) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (4)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlatformInfo
+	static System.Void OnLogged(System.String text, NorthwoodLib.Logging.LogType type)
+		System.Int32 local2 = type.value__
+
+		if (local2 != 0)
+
+		    if (local2 != 0)
+
+		        if (local2 != 0)
+
+		            if (local2 == 1)
+
+		                UnityEngine.Color red = UnityEngine.Color.red
+		            else
+
+		                UnityEngine.Color yellow = UnityEngine.Color.yellow
+		            else
+
+		                UnityEngine.Color blue = UnityEngine.Color.blue
+		            endif
+                    
+
+		            GameCore.Console.AddLog()
+		            return
+		        endif
+                
+
+		        UnityEngine.Debug.Log(text) //(Object message)
+		        return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180384CBF) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (4)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlatformInfo
+	System.Void .ctor()
+		this.<IsIl2Cpp>k__BackingField = True
+		this.<UsesCustomLauncher>k__BackingField = True
+		System.Runtime.InteropServices.OSPlatform Windows = System.Runtime.InteropServices.OSPlatform.<Windows>k__BackingField
+
+		System.Boolean isOSPlatform = System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(Windows) //(OSPlatform osPlatform)
+		this.<IsWindows>k__BackingField = isOSPlatform
+		System.Runtime.InteropServices.OSPlatform Linux = System.Runtime.InteropServices.OSPlatform.<Linux>k__BackingField
+
+		System.Boolean isOSPlatform2 = System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(Linux) //(OSPlatform osPlatform)
+		this.<IsLinux>k__BackingField = isOSPlatform2
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldc.i4.1
+	IL_0002: stfld System.Boolean PlatformInfo::<IsIl2Cpp>k__BackingField
+	IL_0007: ldarg.0
+	IL_0008: ldc.i4.1
+	IL_0009: stfld System.Boolean PlatformInfo::<UsesCustomLauncher>k__BackingField
+	IL_000e: ldsfld System.Runtime.InteropServices.OSPlatform System.Runtime.InteropServices.OSPlatform::<Windows>k__BackingField
+	IL_0013: call System.Boolean System.Runtime.InteropServices.RuntimeInformation::IsOSPlatform(System.Runtime.InteropServices.OSPlatform)
+	IL_0018: stloc.0
+	IL_0019: ldarg.0
+	IL_001a: ldloc.0
+	IL_001b: stfld System.Boolean PlatformInfo::<IsWindows>k__BackingField
+	IL_0020: ldsfld System.Runtime.InteropServices.OSPlatform System.Runtime.InteropServices.OSPlatform::<Linux>k__BackingField
+	IL_0025: call System.Boolean System.Runtime.InteropServices.RuntimeInformation::IsOSPlatform(System.Runtime.InteropServices.OSPlatform)
+	IL_002a: stloc.1
+	IL_002b: ldarg.0
+	IL_002c: ldloc.1
+	IL_002d: stfld System.Boolean PlatformInfo::<IsLinux>k__BackingField
+	IL_0032: ldarg.0
+	IL_0033: call System.Void UnityEngine.MonoBehaviour::.ctor()
+	IL_0038: ret
+	
+

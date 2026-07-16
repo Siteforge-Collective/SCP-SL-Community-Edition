@@ -1,0 +1,208 @@
+Type: Elevators.RigidBodyElevatorFollower
+
+Method: System.Void Awake()
+
+Disassembly:
+	mov [rsp+8],rbx
+	push rdi
+	sub rsp,30h
+	cmp byte ptr [1826FDD50h],0
+	mov rbx,rcx
+	jne short 0000000181B19F78h
+	mov ecx,[1822F2810h]
+	call 0000000180294190h
+	mov byte ptr [1826FDD50h],1
+	mov rcx,[182742B50h]
+	call 00000001802942D0h
+	mov rdi,rax
+	test rbx,rbx
+	je short 0000000181B19FFCh
+	mov r8,[rbx]
+	xor r9d,r9d
+	mov rdx,rbx
+	mov rcx,rax
+	mov r8,[r8+1A8h]
+	call 0000000180368A70h
+	mov rcx,[182742B40h]
+	test byte ptr [rcx+12Fh],2
+	je short 0000000181B19FC2h
+	cmp dword ptr [rcx+0E0h],0
+	jne short 0000000181B19FC2h
+	call 000000018021A070h
+	xor edx,edx
+	mov rcx,rdi
+	call 0000000181BA9920h
+	mov rdx,[rbx+38h]
+	test rdx,rdx
+	je short 0000000181B19FFCh
+	xor r8d,r8d
+	lea rcx,[rsp+20h]
+	call 0000000181A79280h
+	movsd xmm0,qword ptr [rax]
+	movsd qword ptr [rbx+18h],xmm0
+	mov eax,[rax+8]
+	mov [rbx+20h],eax
+	mov rbx,[rsp+40h]
+	add rsp,30h
+	pop rdi
+	ret
+	call 0000000180294310h
+
+ISIL:
+	001 Move stack:0x8, rbx
+	002 ShiftStack -8
+	003 Move stack:0x0, rdi
+	004 ShiftStack -48
+	005 Compare [0x1826FDD50], 0
+	006 Move rbx, rcx
+	007 JumpIfNotEqual {11}
+	008 Move rcx, [0x1822F2810]
+	009 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	010 Move [0x1826FDD50], 1
+	011 Move rcx, typeof(Interactables.Interobjects.ElevatorChamber+ElevatorMoved)
+	012 Call "il2cpp_codegen_object_new", rcx, rdx, r8, r9
+	013 Move rdi, rax
+	014 Compare rbx, 0
+	015 JumpIfEqual {46}
+	016 Move r8, [rbx]
+	017 Move r9, 0
+	018 Move rdx, rbx
+	019 Move rcx, rax
+	020 Move r8, [r8+424]
+	021 Call 0x180368A70, rcx, rdx, r8
+	022 Move rcx, typeof(Interactables.Interobjects.ElevatorChamber)
+	023 Compare [rcx+303], 2
+	024 JumpIfEqual {28}
+	025 Compare [rcx+224], 0
+	026 JumpIfNotEqual {28}
+	027 Call "il2cpp_runtime_class_init_export", rcx, rdx, r8, r9
+	028 Move rdx, 0
+	029 Move rcx, rdi
+	030 Call ElevatorChamber.add_OnElevatorMoved, rcx, rdx
+	031 Move rdx, [rbx+56]
+	032 Compare rdx, 0
+	033 JumpIfEqual {46}
+	034 Move r8, 0
+	035 LoadAddress rcx, stack:0x20
+	036 Call Rigidbody.get_position, rcx, rdx
+	037 Move xmm0, [rax]
+	038 Move [rbx+24], xmm0
+	039 Move rax, [rax+8]
+	040 Move [rbx+32], rax
+	041 Move rbx, stack:0x40
+	042 ShiftStack 48
+	043 Move rdi, stack:0x0
+	044 ShiftStack 8
+	045 Return 
+	046 Call 0x180294310, rcx, rdx, r8, r9
+
+Method: System.Void LateUpdate()
+
+Disassembly:
+	push rbx
+	sub rsp,30h
+	mov rbx,rcx
+	mov rcx,[rcx+38h]
+	test rcx,rcx
+	je short 0000000181B1A058h
+	xor edx,edx
+	call 0000000181A78EF0h
+	test al,al
+	jne short 0000000181B1A052h
+	mov rdx,[rbx+38h]
+	test rdx,rdx
+	je short 0000000181B1A058h
+	xor r8d,r8d
+	lea rcx,[rsp+20h]
+	call 0000000181A79280h
+	movsd xmm0,qword ptr [rax]
+	movsd qword ptr [rbx+18h],xmm0
+	mov eax,[rax+8]
+	mov [rbx+20h],eax
+	add rsp,30h
+	pop rbx
+	ret
+	call 0000000180294310h
+
+ISIL:
+	001 ShiftStack -8
+	002 Move stack:0x0, rbx
+	003 ShiftStack -48
+	004 Move rbx, rcx
+	005 Move rcx, [rcx+56]
+	006 Compare rcx, 0
+	007 JumpIfEqual {26}
+	008 Move rdx, 0
+	009 Call Rigidbody.IsSleeping, rcx, rdx
+	010 Compare rax, 0
+	011 JumpIfNotEqual {22}
+	012 Move rdx, [rbx+56]
+	013 Compare rdx, 0
+	014 JumpIfEqual {26}
+	015 Move r8, 0
+	016 LoadAddress rcx, stack:0x20
+	017 Call Rigidbody.get_position, rcx, rdx
+	018 Move xmm0, [rax]
+	019 Move [rbx+24], xmm0
+	020 Move rax, [rax+8]
+	021 Move [rbx+32], rax
+	022 ShiftStack 48
+	023 Move rbx, stack:0x0
+	024 ShiftStack 8
+	025 Return 
+	026 Call 0x180294310, rcx, rdx, r8, r9
+
+Method: System.Void Reset()
+
+Disassembly:
+	push rbx
+	sub rsp,20h
+	cmp byte ptr [1826FDD53h],0
+	mov rbx,rcx
+	jne short 0000000181B1A084h
+	mov ecx,[1822E8E54h]
+	call 0000000180294190h
+	mov byte ptr [1826FDD53h],1
+	mov rdx,[18270DD18h]
+	mov rcx,rbx
+	call 00000001804BCD50h
+	lea rcx,[rbx+38h]
+	mov rdx,rax
+	mov [rcx],rax
+	add rsp,20h
+	pop rbx
+	jmp near ptr 0000000180293EF0h
+
+ISIL:
+	001 ShiftStack -8
+	002 Move stack:0x0, rbx
+	003 ShiftStack -32
+	004 Compare [0x1826FDD53], 0
+	005 Move rbx, rcx
+	006 JumpIfNotEqual {10}
+	007 Move rcx, [0x1822E8E54]
+	008 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	009 Move [0x1826FDD53], 1
+	010 Move rdx, [0x18270DD18]
+	011 Move rcx, rbx
+	012 Call 0x1804BCD50, rcx, rdx
+	013 LoadAddress rcx, [rbx+56]
+	014 Move rdx, rax
+	015 Move [rcx], rax
+	016 ShiftStack 32
+	017 Move rbx, stack:0x0
+	018 ShiftStack 8
+	019 Call 0x180293EF0, rcx, rdx, r8, r9
+	020 Return 
+
+Method: System.Void .ctor()
+
+Disassembly:
+	xor edx,edx
+	jmp near ptr 0000000180FD1850h
+
+ISIL:
+	001 Move rdx, 0
+	002 Call 0x180FD1850, rcx, rdx
+	003 Return 
+

@@ -1,0 +1,495 @@
+Type: NewServerBrowser
+
+
+	Generated Pseudocode:
+
+	Declaring Type: NewServerBrowser
+	static System.Void set_LoadingErrorMessage(System.String value)
+		 += 8
+		NewServerBrowser._errorDirty = value
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x181B62408) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: NewServerBrowser
+	System.Void Start()
+
+		ServerFilter component = base.GetComponent<ServerFilter>()
+		this._serverFilter = component
+		UnityEngine.GameObject serverTabs = this.ServerTabs
+		ulong local4 = 0
+
+		serverTabs.SetActive(local4) //(Boolean value)
+		UnityEngine.GameObject serverTabs2 = this.ServerTabs
+
+		serverTabs2.SetActive(True) //(Boolean value)
+		System.Boolean _threadStarted = NewServerBrowser._threadStarted
+
+		if (_threadStarted == False)
+		    System.Threading.Thread _refreshThread = NewServerBrowser._refreshThread
+
+		    _refreshThread.Start()
+		    . = 1
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ImmediateToFieldAction at (0x181B6208E) is corrupt (Instance or field is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: NewServerBrowser
+	System.Void OnEnable()
+		ServerFilter _serverFilter = this._serverFilter
+		ulong local3 = 0
+
+		System.Boolean boolean = UnityEngine.Object.op_Equality(_serverFilter, local3) //(Object x, Object y)
+
+		if (boolean != False)
+
+		    ServerFilter component = base.GetComponent<ServerFilter>()
+		    this._serverFilter = component
+		endif
+        
+		ServerFilter _serverFilter2 = this._serverFilter
+
+		if (_serverFilter2.CurrentTab != constant16)
+            goto INSN_181B61E9E
+        endif
+		ulong local7 = 0
+
+		SteamLobby.RefreshFriendsServer()
+
+		INSN_181B61E9E:
+		. = 1
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfNonZeroOrNonNullAction at (0x181B61E77) is corrupt (ConstantDefinition: Don't know how to get IL to load a System.Byte) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: NewServerBrowser
+	System.Void OnDisable()
+		. = 0
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ImmediateToFieldAction at (0x181B61DC0) is corrupt (Instance or field is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: NewServerBrowser
+	System.Void OnDestroy()
+		. = 0
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ImmediateToFieldAction at (0x181B61D60) is corrupt (Instance or field is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: NewServerBrowser
+	System.Void Update()
+		System.Boolean _errorDirty = NewServerBrowser._errorDirty
+
+		if (_errorDirty != False)
+		    UnityEngine.UI.Text loadingText = this.LoadingText
+		    System.String _errorMessage = NewServerBrowser._errorMessage
+
+		    System.String text = loadingText.text
+		endif
+        
+		System.Boolean _refresh = NewServerBrowser._refresh
+
+		if (_refresh == False)
+            goto INSN_181B6229A
+        endif
+		. = 0
+		ServerFilter _serverFilter = this._serverFilter
+		ulong local8 = 0
+
+		_serverFilter.ReapplyFilters(local8) //(Boolean forceCleanup)
+
+		INSN_181B6229A:
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ImmediateToFieldAction at (0x181B62283) is corrupt (Instance or field is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: NewServerBrowser
+	System.Void Refresh()
+		ServerFilter _serverFilter = this._serverFilter
+
+		if (_serverFilter.CurrentTab == constant5)
+		    ulong local2 = 0
+
+		    SteamLobby.RefreshFriendsServer()
+		endif
+        
+		. = 1
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfNonZeroOrNonNullAction at (0x181B61F21) is corrupt (ConstantDefinition: Don't know how to get IL to load a System.Byte) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: NewServerBrowser
+	System.Void AuthCompleted()
+		System.String _errorMessage = NewServerBrowser._errorMessage
+		System.Int32 67 = 67
+
+		System.String string = TranslationReader.Get("NewMainMenu", 67, "AUTHENTICATING") //(String keyName, Int32 index, String defaultValue)
+
+		System.Boolean boolean = _errorMessage.Equals(string) //(String value)
+
+		if (boolean != False)
+		    System.Int32 53 = 53
+
+		    System.String string2 = TranslationReader.Get("MainMenu", 53, "DOWNLOADING DATA") //(String keyName, Int32 index, String defaultValue)
+
+		    NewServerBrowser.LoadingErrorMessage = string2
+		endif
+        
+		ulong local9 = 0
+
+		LauncherCommunicator.Heartbeat()
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldsfld System.String NewServerBrowser::_errorMessage
+	IL_0005: stloc.0
+	IL_0006: ldstr "NewMainMenu"
+	IL_000b: ldc.i4.s 67
+	IL_000d: ldstr "AUTHENTICATING"
+	IL_0012: call System.String TranslationReader::Get(System.String,System.Int32,System.String)
+	IL_0017: stloc.1
+	IL_0018: ldloc.0
+	IL_0019: ldloc.1
+	IL_001a: call System.Boolean System.String::Equals(System.String)
+	IL_001f: ldc.i4.0
+	IL_0020: beq.s IL_0038
+	IL_0022: ldstr "MainMenu"
+	IL_0027: ldc.i4.s 53
+	IL_0029: ldstr "DOWNLOADING DATA"
+	IL_002e: call System.String TranslationReader::Get(System.String,System.Int32,System.String)
+	IL_0033: call System.Void NewServerBrowser::set_LoadingErrorMessage(System.String)
+	IL_0038: ldc.i4.0
+	IL_0039: stloc.2
+	IL_003a: call System.Void LauncherCommunicator::Heartbeat()
+	IL_003f: ret
+	IL_0040: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0045: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: NewServerBrowser
+	static System.Void StopThread()
+		System.Boolean _threadStarted = NewServerBrowser._threadStarted
+
+		if (_threadStarted != False)
+		    . = 0
+		endif
+        
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ImmediateToFieldAction at (0x181B6212E) is corrupt (Instance or field is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: NewServerBrowser
+	static System.Void DownloadList()
+		ulong local0 = 0
+		System.Boolean _threadStarted = NewServerBrowser._threadStarted
+
+		if (_threadStarted != False)
+		    NewServerBrowser._redownload = NewServerBrowser
+		    System.Boolean _redownload = NewServerBrowser._redownload
+
+		    if (_redownload == False)
+		        System.Boolean _threadStarted2 = NewServerBrowser._threadStarted
+
+		        if (_threadStarted2 != False)
+		            System.Int64 local5 = 150
+
+		            System.Threading.Thread.Sleep(local5) //(Int32 millisecondsTimeout)
+		        endif
+                
+		        AuthStatusType authStatusType = CentralAuthManager.AuthStatusType
+
+		        if (authStatusType == constant45)
+                    goto INSN_181B61CF0
+                endif
+		        AuthStatusType authStatusType2 = CentralAuthManager.AuthStatusType
+
+		        if (authStatusType2 == constant53)
+                    goto INSN_181B614DD
+                endif
+		        System.Int32 67 = 67
+
+		        System.String string = TranslationReader.Get("NewMainMenu", 67, "AUTHENTICATING") //(String keyName, Int32 index, String defaultValue)
+
+		        NewServerBrowser.LoadingErrorMessage = string
+		        AuthStatusType authStatusType3 = CentralAuthManager.AuthStatusType
+
+		        if (authStatusType3 == constant74)
+                    goto INSN_181B614DD
+                endif
+		        System.Boolean _redownload2 = NewServerBrowser._redownload
+
+		        if (_redownload2 == False)
+                    goto INSN_181B614DD
+                endif
+		        System.Boolean _threadStarted3 = NewServerBrowser._threadStarted
+
+		        if (_threadStarted3 == False)
+                    goto INSN_181B614DD
+                endif
+		        System.Int64 local15 = 150
+
+		        System.Threading.Thread.Sleep(local15) //(Int32 millisecondsTimeout)
+
+		        INSN_181B614DD:
+		        System.Boolean _threadStarted4 = NewServerBrowser._threadStarted
+
+		        if (_threadStarted4 == False)
+                    goto INSN_181B61CF0
+                endif
+		        System.Boolean _redownload3 = NewServerBrowser._redownload
+
+		        if (_redownload3 != False)
+
+		            [instruction error - managed method being called is null]
+		            System.Boolean _errorDirty = NewServerBrowser._errorDirty
+
+		            GameCore.Console.AddLog()
+		            System.Int32 53 = 53
+
+		            System.String string2 = TranslationReader.Get("MainMenu", 53, "DOWNLOADING DATA") //(String keyName, Int32 index, String defaultValue)
+
+		            NewServerBrowser.LoadingErrorMessage = string2
+		             += 24
+		            NewServerBrowser._errorDirty = local0
+		            ulong local26 = 0
+
+		            if (local26 < 2)
+
+		                System.String string3 = System.String.Concat(local26, "lobbylist.php?format=json-signed-unix&version=2&minimal=1") //(String str0, String str1)
+		                System.String apiToken = CentralAuthManager.ApiToken
+		                System.String nonce = CentralAuthManager.Nonce
+
+		                System.String string4 = System.String.Concat("token=", apiToken, "&nonce=", nonce) //(String str0, String str1, String str2, String str3)
+
+		                System.String string5 = HttpQuery.Post(string3, string4) //(String url, String data)
+
+		                ServerListSigned serverListSigned = JsonSerialize.FromJson<ServerListSigned>()
+
+		                [instruction error - managed method being called is null]
+
+		                if (serverListSigned != 0)
+                            goto INSN_181B617A9
+                        endif
+		                 += 136
+		                CentralAuthManager.<Platform>k__BackingField = string5
+
+		                INSN_181B617A9:
+
+		                [instruction error - managed method being called is null]
+
+		                if (CentralAuthManager == 0)
+                            goto INSN_181B61A90
+                        endif
+
+		                System.String string6 = System.String.Concat(string3, "##", local38) //(Object arg0, Object arg1, Object arg2)
+		                Org.BouncyCastle.Crypto.AsymmetricKeyParameter publicKey = ServerConsole.PublicKey
+
+		                System.Boolean boolean = Cryptography.ECDSA.Verify(string6, "##", publicKey) //(String data, String signature, AsymmetricKeyParameter pubKey)
+
+		                if (boolean == False)
+                            goto INSN_181B61A0F
+                        endif
+		                ulong local44 = 0
+
+		                System.Int64 currentUnixTimestamp = TimeBehaviour.CurrentUnixTimestamp
+		                currentUnixTimestamp -= string5
+		                currentUnixTimestamp -= "##"
+
+		                System.String string7 = NorthwoodLib.StringUtils.Base64Decode(string3) //(String base64EncodedData)
+
+		                ServerList serverList = JsonSerialize.FromJson<ServerList>(string7) //(String cpp2il__autoParamName__idx_0)
+		                 += 24
+		                NewServerBrowser._errorDirty = serverList
+		                . = 1
+		                  = local49 * currentUnixTimestamp
+		                ServerListItem[] local50 = serverList.servers
+		                serverList += local50
+
+		                System.String string8 = System.String.Concat("Server list response has expired! Make sure that time and timezone set on your PC is correct. We recommend synchronizing the time. Offset: ", local50, " minutes.") //(Object arg0, Object arg1, Object arg2)
+		                System.Int32 7 = 7
+
+		                ServerConsole.AddLog(string8, 7) //(String q, ConsoleColor color)
+
+		                System.String string9 = System.String.Concat("Server list response has expired! Set correct time and timezone on your PC. Offset: ", string8, " minutes.") //(Object arg0, Object arg1, Object arg2)
+
+		                NewServerBrowser.LoadingErrorMessage = string9
+
+		                INSN_181B61A0F:
+
+		                UnityEngine.Color red = UnityEngine.Color.red
+
+		                GameCore.Console.AddLog()
+
+		                NewServerBrowser.LoadingErrorMessage = "Server list has an invalid signature!"
+
+		                INSN_181B61A90:
+
+		                System.String string10 = System.String.Concat("Server returned an error.
+                        ", string9) //(String str0, String str1)
+
+		                NewServerBrowser.LoadingErrorMessage = string10
+
+		                System.Int32 int32 = string10.CompareTo()
+
+		                System.String string11 = System.String.Concat()
+		                ulong local68 = 0
+
+		                UnityEngine.Color red2 = UnityEngine.Color.red
+		                ulong local70 = 0
+		                System.Int32 1 = 1
+		                ulong local71 = 0
+
+		                GameCore.Console.AddLog(string11, local68, local71, 1) //(String text, Color c, Boolean nospace, ConsoleLogType type)
+
+		                System.Boolean boolean2 = string10.System.IConvertible.ToBoolean()
+
+		                UnityEngine.Color red3 = UnityEngine.Color.red
+		                System.Int32 1 = 1
+
+		                GameCore.Console.AddLog()
+		                ulong local76 = 0
+
+		                NewServerBrowser.LoadingErrorMessage = "Server list deserialization error"
+
+		                System.String string12 = System.String.Concat("Downloaded lobbylist: ", local76) //(String str0, String str1)
+
+		                UnityEngine.Debug.LogError(string12) //(Object message)
+		                System.Int64 local81 = 1
+
+		                System.Boolean boolean3 = CentralServer.ChangeCentralServer(local81) //(Boolean remove)
+
+		                if (boolean3 != False)
+                            goto INSN_181B61C95
+                        endif
+
+		                System.Int32 int322 = local81.CompareTo()
+
+		                System.String string13 = System.String.Concat()
+
+		                NewServerBrowser.LoadingErrorMessage = string13
+
+		                INSN_181B61C95:
+
+		                System.String string14 = System.String.Concat("Failed to download servers list.
+                        ", string13, "
+                        Checking other servers...") //(String str0, String str1, String str2)
+
+		                NewServerBrowser.LoadingErrorMessage = string14
+		                string14 += 1
+		            endif
+                    
+		            return
+		            throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfZeroOrNullAction at (0x181B61357) is corrupt (ConstantDefinition: Don't know how to get IL to load a System.Byte) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: NewServerBrowser
+	System.Void .ctor()
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void UnityEngine.MonoBehaviour::.ctor()
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: NewServerBrowser
+	static System.Void .cctor()
+		System.String empty = System.String.Empty
+		 += 8
+		NewServerBrowser._errorDirty = empty
+		System.Threading.ThreadStart threadStart = new System.Threading.ThreadStart()
+		ulong local3 = 0
+
+		threadStart..ctor(local3, {'DownloadList' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		System.Threading.Thread thread = new System.Threading.Thread()
+
+		thread..ctor(threadStart) //(ThreadStart start)
+
+		thread.Name = "Server list download thread"
+		System.Int32 1 = 1
+
+		thread.Priority = 1
+		System.Int64 local9 = 1
+
+		thread.IsBackground = local9
+		 += 16
+		NewServerBrowser._errorDirty = thread
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x181B622FC) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+

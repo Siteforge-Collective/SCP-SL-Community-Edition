@@ -1,0 +1,216 @@
+Type: GammaSlider
+
+
+	Generated Pseudocode:
+
+	Declaring Type: GammaSlider
+	static System.Single SavedToGui(System.Single intensity)
+		System.Single local2 = intensity * 10
+		return local2
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldc.r4 10
+	IL_0006: mul
+	IL_0007: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: GammaSlider
+	static System.Single GuiToSaved(System.Single setting)
+		System.Single local1 = setting * 0,1
+		return local1
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldc.r4 0,1
+	IL_0006: mul
+	IL_0007: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: GammaSlider
+	static System.Void add_OnGammaChanged(System.Action`1<System.Single> value)
+		System.Action`1<System.Single> onGammaChanged = GammaSlider.OnGammaChanged
+
+		System.Delegate delegate = System.Delegate.Combine(onGammaChanged, value) //(Delegate a, Delegate b)
+
+		if (delegate != 0)
+
+		    if (delegate == 0)
+                goto INSN_181B28719
+            endif
+		endif
+        
+
+		if (GammaSlider == onGammaChanged)
+		    return
+
+		    INSN_181B28719:
+		    throw new System.InvalidCastException()
+
+
+Generated IL:
+	IL_0000: ldsfld System.Action`1<System.Single> GammaSlider::OnGammaChanged
+	IL_0005: stloc.0
+	IL_0006: ldloc.0
+	IL_0007: ldarg.0
+	IL_0008: call System.Delegate System.Delegate::Combine(System.Delegate,System.Delegate)
+	IL_000d: stloc.1
+	IL_000e: ldloc.1
+	IL_000f: ldc.i4.0
+	IL_0010: beq.s IL_0016
+	IL_0012: ldloc.1
+	IL_0013: ldc.i4.0
+	IL_0014: beq.s IL_001f
+	IL_0016: ldtoken GammaSlider
+	IL_001b: ldloc.0
+	IL_001c: bne.un.s IL_0016
+	IL_001e: ret
+	IL_001f: newobj System.Void System.InvalidCastException::.ctor()
+	IL_0024: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: GammaSlider
+	static System.Void remove_OnGammaChanged(System.Action`1<System.Single> value)
+		System.Action`1<System.Single> onGammaChanged = GammaSlider.OnGammaChanged
+
+		System.Delegate delegate = System.Delegate.Remove(onGammaChanged, value) //(Delegate source, Delegate value)
+
+		if (delegate != 0)
+
+		    if (delegate == 0)
+                goto INSN_181B287C9
+            endif
+		endif
+        
+
+		if (GammaSlider == onGammaChanged)
+		    return
+
+		    INSN_181B287C9:
+		    throw new System.InvalidCastException()
+
+
+Generated IL:
+	IL_0000: ldsfld System.Action`1<System.Single> GammaSlider::OnGammaChanged
+	IL_0005: stloc.0
+	IL_0006: ldloc.0
+	IL_0007: ldarg.0
+	IL_0008: call System.Delegate System.Delegate::Remove(System.Delegate,System.Delegate)
+	IL_000d: stloc.1
+	IL_000e: ldloc.1
+	IL_000f: ldc.i4.0
+	IL_0010: beq.s IL_0016
+	IL_0012: ldloc.1
+	IL_0013: ldc.i4.0
+	IL_0014: beq.s IL_001f
+	IL_0016: ldtoken GammaSlider
+	IL_001b: ldloc.0
+	IL_001c: bne.un.s IL_0016
+	IL_001e: ret
+	IL_001f: newobj System.Void System.InvalidCastException::.ctor()
+	IL_0024: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: GammaSlider
+	System.Void Start()
+		UnityEngine.UI.Slider slider = this.slider
+		ulong local3 = 0
+
+		System.Boolean boolean = UnityEngine.Object.op_Equality(slider, local3) //(Object x, Object y)
+
+		if (boolean == False)
+		    UnityEngine.UI.Slider slider2 = this.slider
+
+		    slider2.minValue = -20
+		    UnityEngine.UI.Slider slider3 = this.slider
+
+		    slider3.maxValue = 10
+		    UnityEngine.UI.Slider slider4 = this.slider
+		    ulong local11 = 0
+		    ulong local12 = 0
+
+		    System.Single single = PlayerPrefsSl.Get("UVBrightness2", local11) //(String key, Single defaultValue)
+		    System.Single local14 = single * 10
+
+		    System.Single value = slider4.value
+		    UnityEngine.UI.Slider slider5 = this.slider
+		    UnityEngine.UI.Text warningText = this.warningText
+
+		    System.Boolean isDestroyed = slider5.IsDestroyed()
+
+		    warningText.enabled = False
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.MultiplyRegByGlobalAction at (0x181B2860D) is corrupt (Operand we were multiplying by is null or local made was stripped) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: GammaSlider
+	System.Void SetValue(System.Single f)
+		UnityEngine.UI.Text indicatorText = this.indicatorText
+		ulong local3 = 0
+
+		System.Globalization.CultureInfo invariantCulture = System.Globalization.CultureInfo.InvariantCulture
+
+		System.String text = indicatorText.text
+		UnityEngine.UI.Text warningText = this.warningText
+		ulong local8 = 0
+
+		warningText.set_enabled()
+		System.Single local10 =  * 0,1
+		f = local10
+
+		PlayerPrefsSl.Set("UVBrightness2", f) //(String key, Single value)
+		System.Action`1<System.Single> onGammaChanged = GammaSlider.OnGammaChanged
+
+		if (onGammaChanged != 0)
+		    f = local10
+
+		    onGammaChanged.Invoke()
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181B28470) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: GammaSlider
+	System.Void .ctor()
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void UnityEngine.MonoBehaviour::.ctor()
+	IL_0006: ret
+	
+

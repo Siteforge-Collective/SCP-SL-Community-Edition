@@ -1,0 +1,167 @@
+Type: PreauthChallengeItem
+
+Method: System.Int64 get_Added()
+
+Disassembly:
+	mov rax,[rcx+10h]
+	ret
+
+ISIL:
+	001 Move rax, [rcx+16]
+	002 Return rax
+
+Method: System.Void set_Added(System.Int64 value)
+
+Disassembly:
+	mov [rcx+10h],rdx
+	ret
+
+ISIL:
+	001 Move [rcx+16], rdx
+	002 Return 
+
+Method: System.ArraySegment`1<System.Byte> get_ValidResponse()
+
+Disassembly:
+	movups xmm0,[rdx+18h]
+	mov rax,rcx
+	movups [rcx],xmm0
+	ret
+
+ISIL:
+	001 Move xmm0, [rdx+24]
+	002 Move rax, rcx
+	003 Move [rcx], xmm0
+	004 Return rax
+
+Method: System.Void set_ValidResponse(System.ArraySegment`1<System.Byte> value)
+
+Disassembly:
+	movups xmm0,[rdx]
+	add rcx,18h
+	xor edx,edx
+	movups [rcx],xmm0
+	jmp near ptr 0000000180293EF0h
+	int 3
+	int 3
+	int 3
+	int 3
+	int 3
+	int 3
+	int 3
+	int 3
+	int 3
+	int 3
+	int 3
+	int 3
+	int 3
+	int 3
+	int 3
+	sub rsp,28h
+	lea rcx,[182300480h]
+	call 0000000180294130h
+	xor edx,edx
+	mov rcx,rax
+	call 00000001802942E0h
+
+ISIL:
+	001 Move xmm0, [rdx]
+	002 Add rcx, rcx, 24
+	003 Move rdx, 0
+	004 Move [rcx], xmm0
+	005 Call 0x180293EF0, rcx, rdx, r8, r9
+	006 Return 
+	007 Interrupt 
+	008 Interrupt 
+	009 Interrupt 
+	010 Interrupt 
+	011 Interrupt 
+	012 Interrupt 
+	013 Interrupt 
+	014 Interrupt 
+	015 Interrupt 
+	016 Interrupt 
+	017 Interrupt 
+	018 Interrupt 
+	019 Interrupt 
+	020 Interrupt 
+	021 Interrupt 
+	022 ShiftStack -40
+	023 LoadAddress rcx, [0x182300480]
+	024 Call 0x180294130, rcx, rdx, r8, r9
+	025 Move rdx, 0
+	026 Move rcx, rax
+	027 Call 0x1802942E0, rcx, rdx, r8, r9
+
+Method: System.Void .ctor(System.ArraySegment`1<System.Byte> response)
+
+Disassembly:
+	mov [rsp+10h],rbx
+	push rdi
+	sub rsp,20h
+	cmp byte ptr [1826FE028h],0
+	mov rdi,rdx
+	mov rbx,rcx
+	jne short 0000000180297A5Bh
+	mov ecx,[1822D71DCh]
+	call 0000000180294190h
+	mov byte ptr [1826FE028h],1
+	movups xmm0,[rdi]
+	lea rcx,[rbx+18h]
+	xor edx,edx
+	movups [rcx],xmm0
+	call 0000000180293EF0h
+	mov rcx,[182721918h]
+	test byte ptr [rcx+12Fh],2
+	je short 0000000180297A8Ah
+	cmp dword ptr [rcx+0E0h],0
+	jne short 0000000180297A8Ah
+	call 000000018021A070h
+	xor ecx,ecx
+	call 0000000180C8DD60h
+	xor edx,edx
+	mov [rsp+30h],rax
+	lea rcx,[rsp+30h]
+	call 0000000180C8DF90h
+	mov [rbx+10h],rax
+	mov rbx,[rsp+38h]
+	add rsp,20h
+	pop rdi
+	ret
+
+ISIL:
+	001 Move stack:0x10, rbx
+	002 ShiftStack -8
+	003 Move stack:0x0, rdi
+	004 ShiftStack -32
+	005 Compare [0x1826FE028], 0
+	006 Move rdi, rdx
+	007 Move rbx, rcx
+	008 JumpIfNotEqual {12}
+	009 Move rcx, [0x1822D71DC]
+	010 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	011 Move [0x1826FE028], 1
+	012 Move xmm0, [rdi]
+	013 LoadAddress rcx, [rbx+24]
+	014 Move rdx, 0
+	015 Move [rcx], xmm0
+	016 Call 0x180293EF0, rcx, rdx, r8, r9
+	017 Move rcx, typeof(System.DateTime)
+	018 Compare [rcx+303], 2
+	019 JumpIfEqual {23}
+	020 Compare [rcx+224], 0
+	021 JumpIfNotEqual {23}
+	022 Call "il2cpp_runtime_class_init_export", rcx, rdx, r8, r9
+	023 Move rcx, 0
+	024 Call DateTime.get_Now, rcx
+	025 Move rdx, 0
+	026 Move stack:0x30, rax
+	027 LoadAddress rcx, stack:0x30
+	028 Call 0x180C8DF90, rcx, rdx, r8, r9
+	029 Move [rbx+16], rax
+	030 Move rbx, stack:0x38
+	031 ShiftStack 32
+	032 Move rdi, stack:0x0
+	033 ShiftStack 8
+	034 Return 
+

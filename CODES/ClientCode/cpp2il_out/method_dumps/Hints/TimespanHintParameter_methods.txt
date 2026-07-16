@@ -1,0 +1,300 @@
+Type: TimespanHintParameter
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Hints.TimespanHintParameter
+	static Hints.TimespanHintParameter FromNetwork(Mirror.NetworkReader reader)
+		Hints.TimespanHintParameter timespanHintParameter = new Hints.TimespanHintParameter()
+
+		timespanHintParameter..ctor()
+
+		timespanHintParameter.Dispose()
+		return timespanHintParameter
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: newobj System.Void Hints.TimespanHintParameter::.ctor()
+	IL_0005: stloc.0
+	IL_0006: ldloc.0
+	IL_0007: callvirt System.Void Hints.NetworkObject`1::Dispose()
+	IL_000c: ldloc.0
+	IL_000d: ret
+	IL_000e: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0013: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Hints.TimespanHintParameter
+	static Hints.TimespanHintParameter FromOffset(System.Double offset, System.String format, System.Boolean negate)
+		ulong local3 = 0
+
+		System.Double time = Mirror.NetworkTime.time
+		Hints.TimespanHintParameter timespanHintParameter = new Hints.TimespanHintParameter()
+
+		timespanHintParameter..ctor(time, format, negate) //(Double sourceTime, String format, Boolean negate)
+		return timespanHintParameter
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: call System.Double Mirror.NetworkTime::get_time()
+	IL_0007: ldarg.1
+	IL_0008: ldarg.2
+	IL_0009: newobj System.Void Hints.TimespanHintParameter::.ctor(System.Double,System.String,System.Boolean)
+	IL_000e: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Hints.TimespanHintParameter
+	static Hints.TimespanHintParameter FromOffset(System.TimeSpan offset, System.String format, System.Boolean negate)
+		ulong local4 = 0
+
+		System.Double time = Mirror.NetworkTime.time
+		Hints.TimespanHintParameter timespanHintParameter = new Hints.TimespanHintParameter()
+
+		timespanHintParameter..ctor(time, format, negate) //(Double sourceTime, String format, Boolean negate)
+		return timespanHintParameter
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: call System.Double Mirror.NetworkTime::get_time()
+	IL_0007: ldarg.1
+	IL_0008: ldarg.2
+	IL_0009: newobj System.Void Hints.TimespanHintParameter::.ctor(System.Double,System.String,System.Boolean)
+	IL_000e: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Hints.TimespanHintParameter
+	System.Boolean get_Negate()
+		System.Boolean Negate = this.<Negate>k__BackingField
+		return Negate
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Boolean Hints.TimespanHintParameter::<Negate>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Hints.TimespanHintParameter
+	System.Void set_Negate(System.Boolean value)
+		this.<Negate>k__BackingField = value
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: stfld System.Boolean Hints.TimespanHintParameter::<Negate>k__BackingField
+	IL_0007: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Hints.TimespanHintParameter
+	System.TimeSpan get_OffsetTime()
+		ulong local1 = 0
+
+		System.Double time = Mirror.NetworkTime.time
+
+		System.TimeSpan timeSpan = System.TimeSpan.FromSeconds(time) //(Double value)
+
+		if (this.<Negate>k__BackingField != False)
+		endif
+        
+		return timeSpan
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: call System.Double Mirror.NetworkTime::get_time()
+	IL_0007: call System.TimeSpan System.TimeSpan::FromSeconds(System.Double)
+	IL_000c: stloc.1
+	IL_000d: ldarg.0
+	IL_000e: ldfld System.Boolean Hints.TimespanHintParameter::<Negate>k__BackingField
+	IL_0013: ldc.i4.0
+	IL_0014: beq.s IL_0016
+	IL_0016: ldloc.1
+	IL_0017: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Hints.TimespanHintParameter
+	System.Void .ctor()
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void Hints.DoubleHintParameter::.ctor()
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Hints.TimespanHintParameter
+	System.Void .ctor(System.Double sourceTime, System.String format, System.Boolean negate)
+		System.Func`3<System.Double,System.String,System.String> func = new System.Func`3<System.Double,System.String,System.String>()
+		ulong local5 = 0
+
+		func..ctor(local5, {'FormatDouble' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		System.Func`2<Mirror.NetworkReader,System.Double> func2 = new System.Func`2<Mirror.NetworkReader,System.Double>()
+		ulong local7 = 0
+
+		func2..ctor(local7, {'ReadDouble' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		System.Action`2<Mirror.NetworkWriter,System.Double> action = new System.Action`2<Mirror.NetworkWriter,System.Double>()
+		ulong local9 = 0
+
+		action..ctor(local9, {'WriteDouble' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		base..ctor(local9, format, func, func2, action) //(TValue value, String format, Func`3 formatter, Func`2 deserializer, Action`2 serializer)
+		this.<Negate>k__BackingField = negate
+		return
+
+
+Generated IL:
+	IL_0000: ldloc.1
+	IL_0001: ldftn System.String Hints.DoubleHintParameter::FormatDouble(System.Double,System.String)
+	IL_0007: newobj System.Void System.Func`3::.ctor(System.Object,System.IntPtr)
+	IL_000c: stloc.0
+	IL_000d: ldc.i4.0
+	IL_000e: stloc.1
+	IL_000f: ldloc.3
+	IL_0010: ldftn System.Double Mirror.NetworkReaderExtensions::ReadDouble(Mirror.NetworkReader)
+	IL_0016: newobj System.Void System.Func`2::.ctor(System.Object,System.IntPtr)
+	IL_001b: stloc.2
+	IL_001c: ldc.i4.0
+	IL_001d: stloc.3
+	IL_001e: ldloc.s V_5
+	IL_0020: ldftn System.Void Mirror.NetworkWriterExtensions::WriteDouble(Mirror.NetworkWriter,System.Double)
+	IL_0026: newobj System.Void System.Action`2::.ctor(System.Object,System.IntPtr)
+	IL_002b: stloc.s V_4
+	IL_002d: ldc.i4.0
+	IL_002e: stloc.s V_5
+	IL_0030: ldarg.0
+	IL_0031: ldloc.s V_5
+	IL_0033: ldarg.2
+	IL_0034: ldloc.0
+	IL_0035: ldloc.2
+	IL_0036: ldloc.s V_4
+	IL_0038: call System.Void Hints.FormattablePrimitiveHintParameter`1::.ctor(TValue,System.String,System.Func`3,System.Func`2,System.Action`2)
+	IL_003d: ldarg.0
+	IL_003e: ldarg.3
+	IL_003f: stfld System.Boolean Hints.TimespanHintParameter::<Negate>k__BackingField
+	IL_0044: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Hints.TimespanHintParameter
+	System.Void .ctor(System.DateTimeOffset sourceTime, System.String format, System.Boolean negate)
+
+		System.DateTimeOffset utcNow = System.DateTimeOffset.UtcNow
+
+		System.TimeSpan timeSpan = System.DateTimeOffset.op_Subtraction()
+
+		this..ctor()
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181B34EF3) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Hints.TimespanHintParameter
+	System.Void Deserialize(Mirror.NetworkReader reader)
+
+		base.Deserialize(reader) //(NetworkReader reader)
+
+		System.Boolean boolean = Mirror.NetworkReaderExtensions.ReadBoolean(reader) //(NetworkReader reader)
+		this.<Negate>k__BackingField = boolean
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: call System.Void Hints.FormattablePrimitiveHintParameter`1::Deserialize(Mirror.NetworkReader)
+	IL_0007: ldarg.1
+	IL_0008: call System.Boolean Mirror.NetworkReaderExtensions::ReadBoolean(Mirror.NetworkReader)
+	IL_000d: stloc.0
+	IL_000e: ldarg.0
+	IL_000f: ldloc.0
+	IL_0010: stfld System.Boolean Hints.TimespanHintParameter::<Negate>k__BackingField
+	IL_0015: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Hints.TimespanHintParameter
+	System.Void Serialize(Mirror.NetworkWriter writer)
+
+		base.Serialize(writer) //(NetworkWriter writer)
+		System.Boolean Negate = this.<Negate>k__BackingField
+
+		Mirror.NetworkWriterExtensions.WriteByte(writer, Negate) //(NetworkWriter writer, Byte value)
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: call System.Void Hints.FormattablePrimitiveHintParameter`1::Serialize(Mirror.NetworkWriter)
+	IL_0007: ldarg.0
+	IL_0008: ldfld System.Boolean Hints.TimespanHintParameter::<Negate>k__BackingField
+	IL_000d: stloc.0
+	IL_000e: ldarg.1
+	IL_000f: ldloc.0
+	IL_0010: call System.Void Mirror.NetworkWriterExtensions::WriteByte(Mirror.NetworkWriter,System.Byte)
+	IL_0015: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Hints.TimespanHintParameter
+	System.String UpdateState(System.Single progress)
+		ulong local2 = 0
+
+		System.Double time = Mirror.NetworkTime.time
+
+		System.TimeSpan timeSpan = System.TimeSpan.FromSeconds(time) //(Double value)
+
+		if (this.<Negate>k__BackingField != False)
+		endif
+        
+		  = this.
+		return timeSpan
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.FieldToLocalAction at (0x181B34D29) is corrupt (No further info) and cannot be created as IL. Aborting here.
+
+

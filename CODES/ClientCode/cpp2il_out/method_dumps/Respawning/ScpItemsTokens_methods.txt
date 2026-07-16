@@ -1,0 +1,160 @@
+Type: ScpItemsTokens
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Respawning.ScpItemsTokens
+	static System.Void Init()
+		System.Collections.Generic.HashSet`1<System.UInt16> alreadyUsedItems = Respawning.ScpItemsTokens.AlreadyUsedItems
+		System.Action action = new System.Action()
+
+		action..ctor(alreadyUsedItems, System.Collections.Generic.HashSet`1.Clear) //(Object object, IntPtr method)
+
+		CustomNetworkManager.add_OnClientReady(action) //(Action value)
+		System.Action`2<ReferenceHub,InventorySystem.Items.Usables.UsableItem> action2 = new System.Action`2<ReferenceHub,InventorySystem.Items.Usables.UsableItem>()
+		ulong local5 = 0
+
+		action2..ctor(local5, {'ServerOnUsingCompleted' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		InventorySystem.Items.Usables.UsableItemsController.add_ServerOnUsingCompleted(action2) //(Action`2 value)
+		System.Action`1<InventorySystem.Items.ThrowableProjectiles.ThrownProjectile> action3 = new System.Action`1<InventorySystem.Items.ThrowableProjectiles.ThrownProjectile>()
+		ulong local8 = 0
+
+		action3..ctor(local8, {'OnThrown' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		InventorySystem.Items.ThrowableProjectiles.ThrownProjectile.add_OnProjectileSpawned(action3) //(Action`1 value)
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AllocateInstanceAction at (0x181AB810F) is corrupt (ConstantDefinition: Don't know how to get IL to load a Mono.Cecil.MethodDefinition) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Respawning.ScpItemsTokens
+	static System.Void ServerOnUsingCompleted(ReferenceHub ply, InventorySystem.Items.Usables.UsableItem ui)
+		System.UInt16 ItemSerial = ui.<ItemSerial>k__BackingField
+		ItemType itemTypeId = ui.ItemTypeId
+
+		PlayerRoles.RoleTypeId roleId = PlayerRoles.PlayerRolesUtils.GetRoleId(ply) //(ReferenceHub hub)
+		System.Int32 local7 = itemTypeId.value__
+
+		Respawning.ScpItemsTokens.GrantTokens()
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.Implicit4ByteFieldReadAction at (0x181AB830E) is corrupt (Local local7 has been stripped out for being unused, so doesn't have a variable.) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Respawning.ScpItemsTokens
+	static System.Void OnThrown(InventorySystem.Items.ThrowableProjectiles.ThrownProjectile projectile)
+		InventorySystem.Items.Pickups.PickupSyncInfo info = projectile.Info
+		System.UInt16 serial = projectile.Info.Serial
+		PlayerRoles.RoleTypeId role = projectile.PreviousOwner.Role
+		ItemType local5 = info.ItemId
+
+		Respawning.ScpItemsTokens.GrantTokens(serial, local5, role) //(UInt16 serial, ItemType itemType, RoleTypeId role)
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld InventorySystem.Items.Pickups.PickupSyncInfo InventorySystem.Items.Pickups.ItemPickupBase::Info
+	IL_0006: stloc.0
+	IL_0007: ldarg.0
+	IL_0008: ldfld InventorySystem.Items.Pickups.PickupSyncInfo InventorySystem.Items.Pickups.ItemPickupBase::Info
+	IL_000d: ldfld System.UInt16 InventorySystem.Items.Pickups.PickupSyncInfo::Serial
+	IL_0012: stloc.1
+	IL_0013: ldarg.0
+	IL_0014: ldfld Footprinting.Footprint InventorySystem.Items.Pickups.ItemPickupBase::PreviousOwner
+	IL_0019: ldfld PlayerRoles.RoleTypeId Footprinting.Footprint::Role
+	IL_001e: stloc.2
+	IL_001f: ldloc.0
+	IL_0020: ldfld ItemType InventorySystem.Items.Pickups.PickupSyncInfo::ItemId
+	IL_0025: stloc.3
+	IL_0026: ldloc.1
+	IL_0027: ldloc.3
+	IL_0028: ldloc.2
+	IL_0029: call System.Void Respawning.ScpItemsTokens::GrantTokens(System.UInt16,ItemType,PlayerRoles.RoleTypeId)
+	IL_002e: ret
+	IL_002f: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0034: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Respawning.ScpItemsTokens
+	static System.Void GrantTokens(System.UInt16 serial, ItemType itemType, PlayerRoles.RoleTypeId role)
+		System.Int32 local3 = itemType.value__
+		ulong local4 = 0
+		System.Collections.Generic.HashSet`1<System.UInt16> alreadyUsedItems = Respawning.ScpItemsTokens.AlreadyUsedItems
+
+		System.Boolean boolean = alreadyUsedItems.Add(serial) //(T item)
+
+		if (boolean != False)
+		    System.Collections.Generic.Dictionary`2<ItemType,System.Single> itemUseRewards = Respawning.ScpItemsTokens.ItemUseRewards
+
+		    System.Boolean boolean2 = itemUseRewards.TryGetValue()
+
+		    if (boolean2 != False)
+
+		        PlayerRoles.Faction faction = PlayerRoles.PlayerRolesUtils.GetFaction(role) //(RoleTypeId role)
+
+		        if (faction == constant39)
+		        else
+
+		            if (faction == constant41)
+		            endif
+                    
+
+		            Respawning.RespawnTokensManager.GrantTokens(1, local4) //(SpawnableTeamType team, Single tokens)
+		        endif
+                
+		        return
+		        throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.Implicit4ByteFieldReadAction at (0x181AB7F1A) is corrupt (Local local3 has been stripped out for being unused, so doesn't have a variable.) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Respawning.ScpItemsTokens
+	static System.Void .cctor()
+		System.Collections.Generic.Dictionary`2<ItemType,System.Single> dictionary = new System.Collections.Generic.Dictionary`2<ItemType,System.Single>()
+
+		dictionary..ctor()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		Respawning.ScpItemsTokens.ItemUseRewards = dictionary
+		System.Collections.Generic.HashSet`1<System.UInt16> hashSet = new System.Collections.Generic.HashSet`1<System.UInt16>()
+
+		hashSet..ctor()
+		 += 8
+		Respawning.ScpItemsTokens.ItemUseRewards = hashSet
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x181AB84B0) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+

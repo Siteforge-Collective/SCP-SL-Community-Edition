@@ -1,0 +1,57 @@
+Type: HttpWorkaround+HttpProxyException
+
+Method: System.Void .ctor(System.String message)
+
+Disassembly:
+	mov [rsp+8],rbx
+	push rdi
+	sub rsp,20h
+	cmp byte ptr [1826FE403h],0
+	mov rbx,rdx
+	mov rdi,rcx
+	jne short 0000000181BAB18Bh
+	mov ecx,[1822C60CCh]
+	call 0000000180294190h
+	mov byte ptr [1826FE403h],1
+	mov rcx,[182722C10h]
+	test byte ptr [rcx+12Fh],2
+	je short 0000000181BAB1A9h
+	cmp dword ptr [rcx+0E0h],0
+	jne short 0000000181BAB1A9h
+	call 000000018021A070h
+	xor r8d,r8d
+	mov rdx,rbx
+	mov rcx,rdi
+	mov rbx,[rsp+30h]
+	add rsp,20h
+	pop rdi
+	jmp near ptr 000000018076C5A0h
+
+ISIL:
+	001 Move stack:0x8, rbx
+	002 ShiftStack -8
+	003 Move stack:0x0, rdi
+	004 ShiftStack -32
+	005 Compare [0x1826FE403], 0
+	006 Move rbx, rdx
+	007 Move rdi, rcx
+	008 JumpIfNotEqual {12}
+	009 Move rcx, [0x1822C60CC]
+	010 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	011 Move [0x1826FE403], 1
+	012 Move rcx, typeof(System.Exception)
+	013 Compare [rcx+303], 2
+	014 JumpIfEqual {18}
+	015 Compare [rcx+224], 0
+	016 JumpIfNotEqual {18}
+	017 Call "il2cpp_runtime_class_init_export", rcx, rdx, r8, r9
+	018 Move r8, 0
+	019 Move rdx, rbx
+	020 Move rcx, rdi
+	021 Move rbx, stack:0x30
+	022 ShiftStack 32
+	023 Move rdi, stack:0x0
+	024 ShiftStack 8
+	025 Call Exception..ctor, rcx, rdx
+	026 Return 
+

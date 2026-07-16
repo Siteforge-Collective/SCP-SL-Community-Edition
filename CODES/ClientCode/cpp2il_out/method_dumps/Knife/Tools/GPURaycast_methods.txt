@@ -1,0 +1,2814 @@
+Type: GPURaycast
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Knife.Tools.GPURaycast
+	static System.Int32 get_LastPixelWidth()
+		System.Int32 lastPixelWidth = Knife.Tools.GPURaycast.lastPixelWidth
+		return lastPixelWidth
+
+
+Generated IL:
+	IL_0000: ldsfld System.Int32 Knife.Tools.GPURaycast::lastPixelWidth
+	IL_0005: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Knife.Tools.GPURaycast
+	static System.Void set_LastPixelWidth(System.Int32 value)
+		Knife.Tools.GPURaycast.lastPixelWidth = value
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: stsfld System.Int32 Knife.Tools.GPURaycast::lastPixelWidth
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Knife.Tools.GPURaycast
+	static System.Int32 get_LastPixelHeight()
+		System.Int32 lastPixelHeight = Knife.Tools.GPURaycast.lastPixelHeight
+		return lastPixelHeight
+
+
+Generated IL:
+	IL_0000: ldsfld System.Int32 Knife.Tools.GPURaycast::lastPixelHeight
+	IL_0005: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Knife.Tools.GPURaycast
+	static System.Void set_LastPixelHeight(System.Int32 value)
+		Knife.Tools.GPURaycast.lastPixelHeight = value
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: stsfld System.Int32 Knife.Tools.GPURaycast::lastPixelHeight
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Knife.Tools.GPURaycast
+	static System.Boolean Raycast(UnityEngine.Camera camera, UnityEngine.Vector2 pixelPosition, System.Boolean renderersHitInfo, Knife.Tools.GPURaycastInfo& hitInfo)
+		ulong local4 = 0
+
+		Knife.Tools.GPURaycast.InitRes()
+
+		if (renderersHitInfo == False)
+
+		    System.Boolean boolean = Knife.Tools.GPURaycast.RaycastWithoutRenderer(camera, pixelPosition, hitInfo) //(Camera camera, Vector2 pixelPosition, GPURaycastInfo& hitInfo)
+		else
+
+		    System.Boolean boolean2 = Knife.Tools.GPURaycast.Raycast(camera, pixelPosition, hitInfo) //(Camera camera, Vector2 pixelPosition, GPURaycastInfo& hitInfo)
+		endif
+        
+		return boolean2
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: call System.Void Knife.Tools.GPURaycast::InitRes()
+	IL_0007: ldarg.2
+	IL_0008: ldc.i4.0
+	IL_0009: bne.un.s IL_0014
+	IL_000b: ldarg.0
+	IL_000c: ldarg.1
+	IL_000d: ldarg.3
+	IL_000e: call System.Boolean Knife.Tools.GPURaycast::RaycastWithoutRenderer(UnityEngine.Camera,UnityEngine.Vector2,Knife.Tools.GPURaycastInfo&)
+	IL_0013: stloc.1
+	IL_0014: ldarg.0
+	IL_0015: ldarg.1
+	IL_0016: ldarg.3
+	IL_0017: call System.Boolean Knife.Tools.GPURaycast::Raycast(UnityEngine.Camera,UnityEngine.Vector2,Knife.Tools.GPURaycastInfo&)
+	IL_001c: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Knife.Tools.GPURaycast
+	static System.Void InitRes()
+		UnityEngine.Texture2D posBufferCopy = Knife.Tools.GPURaycast.posBufferCopy
+		ulong local2 = 0
+
+		System.Boolean boolean = UnityEngine.Object.op_Equality(posBufferCopy, local2) //(Object x, Object y)
+
+		if (boolean != False)
+		    UnityEngine.Texture2D texture2D = new UnityEngine.Texture2D()
+
+		    texture2D..ctor()
+		     += 96
+		    Knife.Tools.GPURaycast.worldPosBuffer = texture2D
+		endif
+        
+		UnityEngine.Texture2D normBufferCopy = Knife.Tools.GPURaycast.normBufferCopy
+		ulong local10 = 0
+
+		System.Boolean boolean2 = UnityEngine.Object.op_Equality(normBufferCopy, local10) //(Object x, Object y)
+
+		if (boolean2 == False)
+            goto INSN_18052FD53
+        endif
+		UnityEngine.Texture2D texture2D2 = new UnityEngine.Texture2D()
+
+		texture2D2..ctor()
+		 += 104
+		Knife.Tools.GPURaycast.worldPosBuffer = texture2D2
+
+		INSN_18052FD53:
+		UnityEngine.Texture2D idBufferCopy = Knife.Tools.GPURaycast.idBufferCopy
+		ulong local18 = 0
+
+		System.Boolean boolean3 = UnityEngine.Object.op_Equality(idBufferCopy, local18) //(Object x, Object y)
+
+		if (boolean3 == False)
+            goto INSN_18052FE24
+        endif
+		UnityEngine.Texture2D texture2D3 = new UnityEngine.Texture2D()
+
+		texture2D3..ctor()
+		 += 112
+		Knife.Tools.GPURaycast.worldPosBuffer = texture2D3
+
+		INSN_18052FE24:
+		UnityEngine.MaterialPropertyBlock materialPropertyBlock = new UnityEngine.MaterialPropertyBlock()
+
+		materialPropertyBlock..ctor()
+		 += 88
+		Knife.Tools.GPURaycast.worldPosBuffer = materialPropertyBlock
+		UnityEngine.Shader gpuRaycastShader = Knife.Tools.GPURaycast.gpuRaycastShader
+		ulong local28 = 0
+
+		System.Boolean boolean4 = UnityEngine.Object.op_Equality(gpuRaycastShader, local28) //(Object x, Object y)
+
+		if (boolean4 == False)
+            goto INSN_18052FF64
+        endif
+
+		UnityEngine.Shader shader = UnityEngine.Resources.Load<UnityEngine.Shader>("Knife/GPURaycast/GPURaycastInfoShader") //(String path)
+		 += 136
+		Knife.Tools.GPURaycast.worldPosBuffer = shader
+
+		INSN_18052FF64:
+		UnityEngine.Shader gpuPackedRaycastShader = Knife.Tools.GPURaycast.gpuPackedRaycastShader
+		ulong local33 = 0
+
+		System.Boolean boolean5 = UnityEngine.Object.op_Equality(gpuPackedRaycastShader, local33) //(Object x, Object y)
+
+		if (boolean5 == False)
+            goto INSN_18053001D
+        endif
+
+		UnityEngine.Shader shader2 = UnityEngine.Resources.Load<UnityEngine.Shader>("Knife/GPURaycast/GPURaycastPackedInfoShader") //(String path)
+		 += 144
+		Knife.Tools.GPURaycast.worldPosBuffer = shader2
+
+		INSN_18053001D:
+		UnityEngine.ComputeShader gpuRaycastCopyDataShader = Knife.Tools.GPURaycast.gpuRaycastCopyDataShader
+		ulong local38 = 0
+
+		System.Boolean boolean6 = UnityEngine.Object.op_Equality(gpuRaycastCopyDataShader, local38) //(Object x, Object y)
+
+		if (boolean6 == False)
+            goto INSN_1805300DB
+        endif
+
+		UnityEngine.ComputeShader computeShader = UnityEngine.Resources.Load<UnityEngine.ComputeShader>("Knife/GPURaycast/RenderTextureToBuffer") //(String path)
+		 += 152
+		Knife.Tools.GPURaycast.worldPosBuffer = computeShader
+
+		INSN_1805300DB:
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AllocateInstanceAction at (0x18052FC1A) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (4)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Knife.Tools.GPURaycast
+	static System.Void AddDecalsTarget(Knife.Tools.DecalsTarget target)
+		ulong local2 = 0
+
+		System.Boolean boolean = UnityEngine.Object.op_Equality(target, local2) //(Object x, Object y)
+
+		if (boolean == False)
+		    System.Collections.Generic.Dictionary`2<UnityEngine.Renderer,Knife.Tools.DecalsTarget> targets = Knife.Tools.GPURaycast.targets
+
+		    System.Boolean boolean2 = targets.ContainsValue(target) //(TValue value)
+
+		    if (boolean2 != False)
+
+		        Knife.Tools.GPURaycast.RemoveDecalsTarget(target) //(DecalsTarget target)
+		    endif
+            
+		    ulong local7 = 0
+
+		    while (target.myRenderers == 0)
+
+		        UnityEngine.Renderer[] componentsInChildren = target.GetComponentsInChildren<UnityEngine.Renderer>()
+		        target.myRenderers = componentsInChildren
+		        UnityEngine.Renderer[] myRenderers = target.myRenderers
+
+		        if (local7 < myRenderers.Length)
+		            System.Collections.Generic.Dictionary`2<UnityEngine.Renderer,Knife.Tools.DecalsTarget> targets2 = Knife.Tools.GPURaycast.targets
+
+		            UnityEngine.Renderer[] renderers = target.Renderers
+		            UnityEngine.Renderer local13 = renderers[]
+		            throw new System.NullReferenceException()
+		            System.Collections.Generic.List`1<UnityEngine.Renderer> allRegisteredRenderers = Knife.Tools.GPURaycast.allRegisteredRenderers
+
+		            UnityEngine.Renderer[] renderers2 = target.Renderers
+		            UnityEngine.Renderer local18 = renderers2[]
+
+		            System.Boolean boolean3 = allRegisteredRenderers.Remove(local18) //(T item)
+		            local7 += 1
+		        endwhile
+                
+		        goto INSN_18052D4A1
+                
+
+		        if ( == 2)
+                    goto INSN_18052D5A4
+                endif
+
+		        if ( != 0)
+                    goto INSN_18052D5A4
+                endif
+
+		        INSN_18052D5A4:
+		        System.Collections.Generic.List`1<UnityEngine.Renderer> allRegisteredRenderers2 = Knife.Tools.GPURaycast.allRegisteredRenderers
+
+		        UnityEngine.Renderer[] renderers3 = target.Renderers
+
+		        allRegisteredRenderers2.AddRange(renderers3) //(IEnumerable`1 collection)
+		        return
+		    endif
+            
+		    System.ArgumentNullException argumentNullException = new System.ArgumentNullException()
+
+		    argumentNullException..ctor("Decals Target cannot be null") //(String paramName)
+
+
+Generated IL:
+	Don't know how to write IL for Cpp2IL.Core.Analysis.Actions.x86.Important.RegOffsetArrayValueReadRegToRegAction. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Knife.Tools.GPURaycast
+	static System.Void RemoveDecalsTarget(Knife.Tools.DecalsTarget target)
+		ulong local2 = 0
+
+		System.Boolean boolean = UnityEngine.Object.op_Equality(target, local2) //(Object x, Object y)
+
+		if (boolean == False)
+		    ulong local4 = 0
+
+		    while (target.myRenderers == 0)
+
+		        UnityEngine.Renderer[] componentsInChildren = target.GetComponentsInChildren<UnityEngine.Renderer>()
+		        target.myRenderers = componentsInChildren
+		        UnityEngine.Renderer[] myRenderers = target.myRenderers
+
+		        if (local4 < myRenderers.Length)
+		            System.Collections.Generic.Dictionary`2<UnityEngine.Renderer,Knife.Tools.DecalsTarget> targets = Knife.Tools.GPURaycast.targets
+
+		            UnityEngine.Renderer[] renderers = target.Renderers
+		            UnityEngine.Renderer local10 = renderers[]
+
+		            System.Boolean boolean2 = targets.Remove(local10) //(TKey key)
+		            System.Collections.Generic.List`1<UnityEngine.Renderer> allRegisteredRenderers = Knife.Tools.GPURaycast.allRegisteredRenderers
+
+		            UnityEngine.Renderer[] renderers2 = target.Renderers
+		            UnityEngine.Renderer local15 = renderers2[]
+
+		            System.Boolean boolean3 = allRegisteredRenderers.Remove(local15) //(T item)
+		            local4 += 1
+		        endwhile
+                
+		        goto INSN_180535B79
+                
+		        return
+		        throw new System.IndexOutOfRangeException()
+		    endif
+            
+		    System.ArgumentNullException argumentNullException = new System.ArgumentNullException()
+
+		    argumentNullException..ctor("Decals Target cannot be null") //(String paramName)
+
+
+Generated IL:
+	Don't know how to write IL for Cpp2IL.Core.Analysis.Actions.x86.Important.RegOffsetArrayValueReadRegToRegAction. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Knife.Tools.GPURaycast
+	static System.Single LinearEyeDepth(System.Single z)
+		  = z * .
+		return constant11
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.MultiplyRegByFieldAction at (0x18053014E) is corrupt (FieldRead was null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Knife.Tools.GPURaycast
+	static System.Single Unlinear01Depth(System.Single linear01depth)
+		return constant10
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x180535DEB) is corrupt (ConstantDefinition: Don't know how to get IL to load a Cpp2IL.Core.Analysis.ResultModels.UnknownGlobalAddr) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Knife.Tools.GPURaycast
+	static System.Void PackZBufferParams(UnityEngine.Camera camera)
+
+		System.Single farClipPlane = camera.farClipPlane
+
+		System.Single nearClipPlane = camera.nearClipPlane
+		Knife.Tools.GPURaycast._ZBufferParams = constant11
+
+		System.Single farClipPlane2 = camera.farClipPlane
+		farClipPlane = farClipPlane2
+
+		System.Single nearClipPlane2 = camera.nearClipPlane
+		. = farClipPlane
+		UnityEngine.Vector4 _ZBufferParams = Knife.Tools.GPURaycast._ZBufferParams
+
+		System.Single farClipPlane3 = camera.farClipPlane
+		. = _ZBufferParams
+		  = .
+
+		System.Single farClipPlane4 = camera.farClipPlane
+		. = _ZBufferParams
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.RegToStaticFieldAction at (0x180531787) is corrupt (ConstantDefinition: Don't know how to get IL to load a Cpp2IL.Core.Analysis.ResultModels.UnknownGlobalAddr) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Knife.Tools.GPURaycast
+	static UnityEngine.Color UnpackData(System.Single packedData)
+
+		[instruction error - managed method being called is null]
+		System.Single local3 = local1 / 1000000
+		System.Single local4 = local3 * 1000000
+		System.Single local5 = local3 / 1000
+		local4 = local5
+		local5 = local4
+		System.Single local6 = local5 * 1000
+		System.Single local7 = local4 / 256000000
+		System.Single local8 = local6 * 0,00390625
+		local4 = local8
+		local4 = local7
+		System.Single local9 = local4 * 0,00390625
+		return 
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180535E36) is corrupt (Don't know what method is being called) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Knife.Tools.GPURaycast
+	static System.Void SetupHitInfo(Knife.Tools.GPURaycastDecalsTargetInfo& hitInfo)
+
+		UnityEngine.Vector3 zero = UnityEngine.Vector3.zero
+		System.Single single = zero.z
+		hitInfo. = single
+
+		UnityEngine.Vector3 zero2 = UnityEngine.Vector3.zero
+		System.Single single2 = zero2.z
+		hitInfo.normal.z = single2
+		hitInfo.IsHitted = False
+		hitInfo.VertexIndex = 4294967295
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.RegToFieldAction at (0x180535D1B) is corrupt (Instance or field is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Knife.Tools.GPURaycast
+	static System.Boolean RaycastToRegisteredTargets(UnityEngine.Camera camera, System.Single pixelX, System.Single pixelY, Knife.Tools.GPURaycastDecalsTargetInfo& hitInfo)
+		ulong local4 = 0
+
+		UnityEngine.Vector2 zero = UnityEngine.Vector2.zero
+
+		System.Int32 pixelWidth = camera.pixelWidth
+
+		System.Int32 pixelHeight = camera.pixelHeight
+
+		System.Boolean boolean = Knife.Tools.GPURaycast.RaycastToRegisteredTargets()
+		return boolean
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180532ECB) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (3)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Knife.Tools.GPURaycast
+	static System.Boolean RaycastToRegisteredTargetsFromMousePosition(UnityEngine.Camera camera, Knife.Tools.GPURaycastDecalsTargetInfo& hitInfo)
+
+		UnityEngine.Vector3 mousePosition = UnityEngine.Input.mousePosition
+
+		UnityEngine.Vector3 mousePosition2 = UnityEngine.Input.mousePosition
+		ulong local6 = 0
+
+		UnityEngine.Vector2 zero = UnityEngine.Vector2.zero
+
+		System.Int32 pixelWidth = camera.pixelWidth
+
+		System.Int32 pixelHeight = camera.pixelHeight
+
+		System.Boolean boolean = Knife.Tools.GPURaycast.RaycastToRegisteredTargets()
+		return boolean
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180531980) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (3)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Knife.Tools.GPURaycast
+	static System.Boolean RaycastToRegisteredTargets(UnityEngine.Camera camera, UnityEngine.Vector2 uv, Knife.Tools.GPURaycastDecalsTargetInfo& hitInfo)
+		ulong local3 = 0
+		ulong local4 = 0
+		ulong local5 = 0
+		ulong local6 = 0
+
+		Knife.Tools.GPURaycast.InitRes()
+
+		UnityEngine.Vector3 zero = UnityEngine.Vector3.zero
+		System.Single single = zero.z
+		hitInfo. = single
+
+		UnityEngine.Vector3 zero2 = UnityEngine.Vector3.zero
+		System.Single single2 = zero2.z
+		hitInfo.normal.z = single2
+		hitInfo.hittedRenderer = local4
+		hitInfo.IsHitted = local4
+		hitInfo.hittedTarget = local4
+		hitInfo.VertexIndex = 4294967295
+
+		UnityEngine.RenderTexture targetTexture = camera.targetTexture
+		ulong local18 = 0
+
+		System.Boolean boolean = UnityEngine.Object.op_Equality(targetTexture, local18) //(Object x, Object y)
+
+		if (boolean != False)
+
+		    System.Int32 pixelWidth = camera.pixelWidth
+		else
+
+		    UnityEngine.RenderTexture targetTexture2 = camera.targetTexture
+
+		    System.String string = targetTexture2.ToString()
+		endif
+        
+
+		UnityEngine.RenderTexture targetTexture3 = camera.targetTexture
+		ulong local27 = 0
+
+		System.Boolean boolean2 = UnityEngine.Object.op_Equality(targetTexture3, local27) //(Object x, Object y)
+
+		if (boolean2 == False)
+            goto INSN_180531BCD
+        endif
+
+		System.Int32 pixelHeight = camera.pixelHeight
+
+		INSN_180531BCD:
+
+		UnityEngine.RenderTexture targetTexture4 = camera.targetTexture
+
+		targetTexture4.set_width()
+		System.Single local32 = local3 * 0,2
+		System.Single local33 = local32 * 0,2
+		UnityEngine.Camera lastCamera = Knife.Tools.GPURaycast.lastCamera
+
+		System.Boolean boolean3 = UnityEngine.Object.op_Inequality(lastCamera, camera) //(Object x, Object y)
+
+		if (boolean3 != False)
+            goto INSN_180531CE8
+        endif
+		UnityEngine.Camera gpuRaycastCamera = Knife.Tools.GPURaycast.gpuRaycastCamera
+		ulong local39 = 0
+
+		System.Boolean boolean4 = UnityEngine.Object.op_Equality(gpuRaycastCamera, local39) //(Object x, Object y)
+
+		if (boolean4 == False)
+            goto INSN_180531E7E
+        endif
+
+		INSN_180531CE8:
+		System.Int64 local41 = 1
+		System.Type[] local42 = new System.Type[1]
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'Camera' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+
+		if (typeFromHandle == 0)
+            goto INSN_180531D54
+        endif
+
+		if (typeFromHandle == 0)
+            goto INSN_180532DCA
+        endif
+
+		INSN_180531D54:
+		local42[0] = typeFromHandle
+		UnityEngine.GameObject gameObject = new UnityEngine.GameObject()
+
+		gameObject..ctor("GPURaycastCamera", local42) //(String name, Type[] components)
+
+		UnityEngine.Camera component = gameObject.GetComponent<UnityEngine.Camera>()
+		 += 32
+		Knife.Tools.GPURaycast.worldPosBuffer = component
+		UnityEngine.Camera gpuRaycastCamera2 = Knife.Tools.GPURaycast.gpuRaycastCamera
+
+		UnityEngine.GameObject gameObject2 = gpuRaycastCamera2.gameObject
+		ulong local52 = 0
+
+		gameObject2.SetActive(local52) //(Boolean value)
+		UnityEngine.Camera gpuRaycastCamera3 = Knife.Tools.GPURaycast.gpuRaycastCamera
+		ulong local55 = 0
+
+		gpuRaycastCamera3.enabled = local55
+		UnityEngine.Camera gpuRaycastCamera4 = Knife.Tools.GPURaycast.gpuRaycastCamera
+
+		UnityEngine.GameObject gameObject3 = gpuRaycastCamera4.gameObject
+		System.Int32 61 = 61
+
+		gameObject3.hideFlags = 61
+
+		INSN_180531E7E:
+		UnityEngine.Camera gpuRaycastCamera5 = Knife.Tools.GPURaycast.gpuRaycastCamera
+		System.Int32 1 = 1
+
+		gpuRaycastCamera5.cameraType = 1
+		UnityEngine.Camera gpuRaycastCamera6 = Knife.Tools.GPURaycast.gpuRaycastCamera
+		ulong local64 = 0
+
+		gpuRaycastCamera6.targetTexture = local64
+		UnityEngine.Camera gpuRaycastCamera7 = Knife.Tools.GPURaycast.gpuRaycastCamera
+
+		UnityEngine.Transform transform = gpuRaycastCamera7.transform
+
+		UnityEngine.Transform transform2 = camera.transform
+
+		UnityEngine.Vector3 position = .position
+		System.Single single3 = position.z
+
+		transform.set_position()
+		UnityEngine.Camera gpuRaycastCamera8 = Knife.Tools.GPURaycast.gpuRaycastCamera
+
+		UnityEngine.Transform transform3 = gpuRaycastCamera8.transform
+
+		UnityEngine.Transform transform4 = camera.transform
+
+		UnityEngine.Quaternion rotation = .rotation
+
+		transform3.set_rotation()
+		UnityEngine.Camera gpuRaycastCamera9 = Knife.Tools.GPURaycast.gpuRaycastCamera
+		System.Int32 2 = 2
+
+		gpuRaycastCamera9.clearFlags = 2
+		UnityEngine.Camera gpuRaycastCamera10 = Knife.Tools.GPURaycast.gpuRaycastCamera
+
+		[instruction error - managed method being called is null]
+
+		gpuRaycastCamera10.set_backgroundColor()
+		UnityEngine.Camera gpuRaycastCamera11 = Knife.Tools.GPURaycast.gpuRaycastCamera
+		System.Int32 1 = 1
+
+		gpuRaycastCamera11.renderingPath = 1
+		UnityEngine.Camera gpuRaycastCamera12 = Knife.Tools.GPURaycast.gpuRaycastCamera
+
+		UnityEngine.Rect rect = .rect
+
+		gpuRaycastCamera12.set_rect()
+		Knife.Tools.GPURaycast.worldPosBuffer = camera
+		UnityEngine.Camera gpuRaycastCamera13 = Knife.Tools.GPURaycast.gpuRaycastCamera
+
+		UnityEngine.Plane[] planeArray = UnityEngine.GeometryUtility.CalculateFrustumPlanes(gpuRaycastCamera13) //(Camera camera)
+		 += 40
+		Knife.Tools.GPURaycast.worldPosBuffer = planeArray
+		System.Collections.Generic.List`1<UnityEngine.Renderer> visibleRegisteredRenderers = Knife.Tools.GPURaycast.visibleRegisteredRenderers
+
+		visibleRegisteredRenderers.Clear()
+		System.Collections.Generic.List`1<UnityEngine.Renderer> visibleRegisteredRenderers2 = Knife.Tools.GPURaycast.visibleRegisteredRenderers
+		System.Collections.Generic.List`1<UnityEngine.Renderer> allRegisteredRenderers = Knife.Tools.GPURaycast.allRegisteredRenderers
+		System.Predicate`1<UnityEngine.Renderer> <>9__42_0 = Knife.Tools.GPURaycast/<>c.<>9__42_0
+
+		if (<>9__42_0 != 0)
+            goto INSN_1805321C7
+        endif
+		Knife.Tools.GPURaycast/<>c <>c = Knife.Tools.GPURaycast/<>c.<>9
+		System.Predicate`1<UnityEngine.Renderer> predicate = new System.Predicate`1<UnityEngine.Renderer>()
+
+		predicate..ctor(<>c, {'<RaycastToRegisteredTargets>b__42_0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		 += 8
+		Knife.Tools.GPURaycast/<>c.<>9 = predicate
+
+		INSN_1805321C7:
+
+		System.Collections.Generic.List`1<UnityEngine.Renderer> list = allRegisteredRenderers.FindAll(predicate) //(Predicate`1 match)
+
+		visibleRegisteredRenderers2.AddRange(list) //(IEnumerable`1 collection)
+		ulong local106 = 0
+		System.Collections.Generic.List`1<UnityEngine.Renderer> visibleRegisteredRenderers3 = Knife.Tools.GPURaycast.visibleRegisteredRenderers
+
+		if (local106 >= )
+            goto INSN_18053232C
+        endif
+		System.Collections.Generic.List`1<UnityEngine.Renderer> visibleRegisteredRenderers4 = Knife.Tools.GPURaycast.visibleRegisteredRenderers
+		UnityEngine.MaterialPropertyBlock propertyBlock = Knife.Tools.GPURaycast.propertyBlock
+
+		[instruction error - managed method being called is null]
+		UnityEngine.MaterialPropertyBlock propertyBlock2 = Knife.Tools.GPURaycast.propertyBlock
+		System.Int32 1 = 1
+
+		propertyBlock2.SetInt("ObjectID", 1) //(String name, Int32 value)
+		System.Collections.Generic.List`1<UnityEngine.Renderer> visibleRegisteredRenderers5 = Knife.Tools.GPURaycast.visibleRegisteredRenderers
+		UnityEngine.MaterialPropertyBlock propertyBlock3 = Knife.Tools.GPURaycast.propertyBlock
+
+		[instruction error - managed method being called is null]
+		local106 += 1
+
+		INSN_18053232C:
+		UnityEngine.RenderTexture worldPosBuffer = Knife.Tools.GPURaycast.worldPosBuffer
+		ulong local118 = 0
+
+		System.Boolean boolean5 = UnityEngine.Object.op_Equality(worldPosBuffer, local118) //(Object x, Object y)
+
+		if (boolean5 == False)
+            goto INSN_180532671
+        endif
+		UnityEngine.RenderTexture worldPosBuffer2 = Knife.Tools.GPURaycast.worldPosBuffer
+		ulong local122 = 0
+
+		System.Boolean boolean6 = UnityEngine.Object.op_Inequality(worldPosBuffer2, local122) //(Object x, Object y)
+
+		if (boolean6 == False)
+            goto INSN_18053254A
+        endif
+		UnityEngine.RenderTexture worldPosBuffer3 = Knife.Tools.GPURaycast.worldPosBuffer
+
+		worldPosBuffer3.Release()
+		UnityEngine.RenderTexture worldPosBuffer4 = Knife.Tools.GPURaycast.worldPosBuffer
+		System.Int64 local128 = 1
+
+		UnityEngine.Object.DestroyImmediate(worldPosBuffer4, local128) //(Object obj, Boolean allowDestroyingAssets)
+
+		INSN_18053254A:
+		UnityEngine.RenderTexture renderTexture = new UnityEngine.RenderTexture()
+
+		renderTexture..ctor()
+		Knife.Tools.GPURaycast.worldPosBuffer = renderTexture
+		UnityEngine.RenderTexture worldPosBuffer5 = Knife.Tools.GPURaycast.worldPosBuffer
+
+		System.Boolean boolean7 = worldPosBuffer5.Create()
+		Knife.Tools.GPURaycast.lastPixelWidth = 
+		Knife.Tools.GPURaycast.lastPixelHeight = predicate
+
+		INSN_180532671:
+		UnityEngine.Camera gpuRaycastCamera14 = Knife.Tools.GPURaycast.gpuRaycastCamera
+		UnityEngine.RenderTexture worldPosBuffer6 = Knife.Tools.GPURaycast.worldPosBuffer
+
+		gpuRaycastCamera14.targetTexture = worldPosBuffer6
+		UnityEngine.Camera gpuRaycastCamera15 = Knife.Tools.GPURaycast.gpuRaycastCamera
+		UnityEngine.Shader gpuPackedRaycastShader = Knife.Tools.GPURaycast.gpuPackedRaycastShader
+
+		gpuRaycastCamera15.RenderWithShader(gpuPackedRaycastShader, "") //(Shader shader, String replacementTag)
+		ulong local142 = 0
+
+		if (local142 > uv)
+            goto INSN_180532DC0
+        endif
+		ulong local143 = 0
+
+		[instruction error - managed method being called is null]
+		ulong local144 = 0
+		UnityEngine.RenderTexture worldPosBuffer7 = Knife.Tools.GPURaycast.worldPosBuffer
+
+		[instruction error - managed method being called is null]
+		ulong local146 = 0
+		ulong local147 = 0
+		UnityEngine.Texture2D posBufferCopy = Knife.Tools.GPURaycast.posBufferCopy
+		ulong local150 = 0
+		ulong local151 = 0
+
+		posBufferCopy.ReadPixels(local144, local151, local150) //(Rect source, Int32 destX, Int32 destY)
+
+		[instruction error - managed method being called is null]
+		UnityEngine.Texture2D posBufferCopy2 = Knife.Tools.GPURaycast.posBufferCopy
+
+		posBufferCopy2.Apply()
+		UnityEngine.Texture2D posBufferCopy3 = Knife.Tools.GPURaycast.posBufferCopy
+
+		UnityEngine.Color pixel = .GetPixel()
+
+		[instruction error - managed method being called is null]
+
+		UnityEngine.Matrix4x4 projectionMatrix = .projectionMatrix
+
+		UnityEngine.Matrix4x4 cameraToWorldMatrix = .cameraToWorldMatrix
+		local165 = local166
+
+		UnityEngine.Vector2 vector2 = UnityEngine.Vector2.op_Multiply()
+		ulong local175 = 0
+
+		UnityEngine.Vector2 one = UnityEngine.Vector2.one
+
+		UnityEngine.Vector2 vector22 = UnityEngine.Vector2.op_Subtraction(local175, one) //(Vector2 a, Vector2 b)
+
+		UnityEngine.Vector2 vector23 = UnityEngine.Vector2.op_Subtraction(vector22, one) //(Vector2 a, Vector2 b)
+		ulong local181 = 0
+
+		UnityEngine.Vector3 vector3 = UnityEngine.Vector3.op_Multiply()
+		System.Single single4 = vector3.z
+		System.Single local186 = single4 * -1
+		  = local186.
+
+		UnityEngine.Transform transform5 = camera.transform
+
+		UnityEngine.Vector3 position2 = .position
+		System.Single single5 = position2.z
+
+		UnityEngine.Vector3 vector32 = UnityEngine.Vector3.op_Addition()
+		System.Single single6 = vector32.z
+
+		[instruction error - managed method being called is null]
+		System.Single local197 = local166 / 1000000
+		local197 = local166
+		System.Single local198 = local197 * 1000000
+		System.Single local199 = local197 / 1000
+		System.Single local200 = local199 * 1000
+		local199 = local166
+		System.Single local201 = local199 * 0,00390625
+		System.Single local203 = local198 / 256000000
+		System.Single local204 = local199 * 0,00390625
+
+		[instruction error - managed method being called is null]
+
+		UnityEngine.Color white = UnityEngine.Color.white
+
+		[instruction error - managed method being called is null]
+		Knife.Tools.GPURaycast.normalRead = constant386
+		  = .
+		  = .
+		UnityEngine.Color normalRead = Knife.Tools.GPURaycast.normalRead
+
+		System.Int32 int32 = UnityEngine.Mathf.RoundToInt()
+		hitInfo.normal.z = int32
+		hitInfo. = single6
+		System.Collections.Generic.List`1<UnityEngine.Renderer> visibleRegisteredRenderers6 = Knife.Tools.GPURaycast.visibleRegisteredRenderers
+
+		if (int32 >= )
+            goto INSN_180532D54
+        endif
+		System.Collections.Generic.List`1<UnityEngine.Renderer> visibleRegisteredRenderers7 = Knife.Tools.GPURaycast.visibleRegisteredRenderers
+		hitInfo.hittedRenderer = constant407
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.RegToFieldAction at (0x180531AC7) is corrupt (Instance or field is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Knife.Tools.GPURaycast
+	static System.Boolean Raycast(UnityEngine.Camera camera, UnityEngine.Vector2 pixelPosition, Knife.Tools.GPURaycastInfo& hitInfo)
+		ulong local3 = 0
+
+		UnityEngine.Vector3 zero = UnityEngine.Vector3.zero
+		System.Single single = zero.z
+		hitInfo. = single
+
+		UnityEngine.Vector3 zero2 = UnityEngine.Vector3.zero
+		System.Single single2 = zero2.z
+		hitInfo.normal.z = single2
+		hitInfo.hittedRenderer = local3
+		hitInfo.IsHitted = local3
+
+		UnityEngine.RenderTexture targetTexture = camera.targetTexture
+		ulong local14 = 0
+
+		System.Boolean boolean = UnityEngine.Object.op_Equality(targetTexture, local14) //(Object x, Object y)
+
+		if (boolean != False)
+
+		    System.Int32 pixelWidth = camera.pixelWidth
+		else
+
+		    UnityEngine.RenderTexture targetTexture2 = camera.targetTexture
+
+		    System.String string = targetTexture2.ToString()
+		endif
+        
+
+		UnityEngine.RenderTexture targetTexture3 = camera.targetTexture
+		ulong local23 = 0
+
+		System.Boolean boolean2 = UnityEngine.Object.op_Equality(targetTexture3, local23) //(Object x, Object y)
+
+		if (boolean2 == False)
+            goto INSN_1805344A7
+        endif
+
+		System.Int32 pixelHeight = camera.pixelHeight
+
+		INSN_1805344A7:
+
+		UnityEngine.RenderTexture targetTexture4 = camera.targetTexture
+
+		targetTexture4.set_width()
+		UnityEngine.Camera lastCamera = Knife.Tools.GPURaycast.lastCamera
+
+		System.Boolean boolean3 = UnityEngine.Object.op_Inequality(lastCamera, camera) //(Object x, Object y)
+
+		if (boolean3 != False)
+            goto INSN_180534598
+        endif
+		UnityEngine.Camera gpuRaycastCamera = Knife.Tools.GPURaycast.gpuRaycastCamera
+		ulong local33 = 0
+
+		System.Boolean boolean4 = UnityEngine.Object.op_Equality(gpuRaycastCamera, local33) //(Object x, Object y)
+
+		if (boolean4 == False)
+            goto INSN_18053472E
+        endif
+
+		INSN_180534598:
+		System.Int64 local35 = 1
+		System.Type[] local36 = new System.Type[1]
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'Camera' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+
+		if (typeFromHandle == 0)
+            goto INSN_180534604
+        endif
+
+		if (typeFromHandle == 0)
+            goto INSN_180535A2F
+        endif
+
+		INSN_180534604:
+		local36[0] = typeFromHandle
+		UnityEngine.GameObject gameObject = new UnityEngine.GameObject()
+
+		gameObject..ctor("GPURaycastCamera", local36) //(String name, Type[] components)
+
+		UnityEngine.Camera component = gameObject.GetComponent<UnityEngine.Camera>()
+		 += 32
+		Knife.Tools.GPURaycast.worldPosBuffer = component
+		UnityEngine.Camera gpuRaycastCamera2 = Knife.Tools.GPURaycast.gpuRaycastCamera
+
+		UnityEngine.GameObject gameObject2 = gpuRaycastCamera2.gameObject
+		ulong local46 = 0
+
+		gameObject2.SetActive(local46) //(Boolean value)
+		UnityEngine.Camera gpuRaycastCamera3 = Knife.Tools.GPURaycast.gpuRaycastCamera
+		ulong local49 = 0
+
+		gpuRaycastCamera3.enabled = local49
+		UnityEngine.Camera gpuRaycastCamera4 = Knife.Tools.GPURaycast.gpuRaycastCamera
+
+		UnityEngine.GameObject gameObject3 = gpuRaycastCamera4.gameObject
+		System.Int32 61 = 61
+
+		gameObject3.hideFlags = 61
+
+		INSN_18053472E:
+		UnityEngine.Camera gpuRaycastCamera5 = Knife.Tools.GPURaycast.gpuRaycastCamera
+		System.Int32 1 = 1
+
+		gpuRaycastCamera5.cameraType = 1
+		UnityEngine.Camera gpuRaycastCamera6 = Knife.Tools.GPURaycast.gpuRaycastCamera
+		ulong local58 = 0
+
+		gpuRaycastCamera6.targetTexture = local58
+		UnityEngine.Camera gpuRaycastCamera7 = Knife.Tools.GPURaycast.gpuRaycastCamera
+
+		UnityEngine.Transform transform = gpuRaycastCamera7.transform
+
+		UnityEngine.Transform transform2 = camera.transform
+
+		UnityEngine.Vector3 position = .position
+
+		transform.set_position()
+		UnityEngine.Camera gpuRaycastCamera8 = Knife.Tools.GPURaycast.gpuRaycastCamera
+
+		UnityEngine.Transform transform3 = gpuRaycastCamera8.transform
+
+		UnityEngine.Transform transform4 = camera.transform
+
+		UnityEngine.Quaternion rotation = camera.rotation
+
+		transform3.set_rotation()
+		UnityEngine.Camera gpuRaycastCamera9 = Knife.Tools.GPURaycast.gpuRaycastCamera
+		System.Int32 2 = 2
+
+		gpuRaycastCamera9.clearFlags = 2
+		ulong local78 = 0
+		UnityEngine.Camera gpuRaycastCamera10 = Knife.Tools.GPURaycast.gpuRaycastCamera
+
+		[instruction error - managed method being called is null]
+
+		gpuRaycastCamera10.backgroundColor = local78
+		UnityEngine.Camera gpuRaycastCamera11 = Knife.Tools.GPURaycast.gpuRaycastCamera
+		System.Int32 1 = 1
+
+		gpuRaycastCamera11.renderingPath = 1
+		UnityEngine.Camera gpuRaycastCamera12 = Knife.Tools.GPURaycast.gpuRaycastCamera
+
+		UnityEngine.Rect rect = .rect
+
+		gpuRaycastCamera12.set_rect()
+		Knife.Tools.GPURaycast.worldPosBuffer = camera
+		UnityEngine.Camera gpuRaycastCamera13 = Knife.Tools.GPURaycast.gpuRaycastCamera
+
+		UnityEngine.Plane[] planeArray = UnityEngine.GeometryUtility.CalculateFrustumPlanes(gpuRaycastCamera13) //(Camera camera)
+		 += 40
+		Knife.Tools.GPURaycast.worldPosBuffer = planeArray
+
+		UnityEngine.Renderer[] rendererArray = UnityEngine.Object.FindObjectsOfType<UnityEngine.Renderer>()
+		 += 48
+		Knife.Tools.GPURaycast.worldPosBuffer = rendererArray
+		UnityEngine.Renderer[] allSceneRenderers = Knife.Tools.GPURaycast.allSceneRenderers
+
+		System.Collections.Generic.List`1<UnityEngine.Renderer> list = System.Linq.Enumerable.ToList<UnityEngine.Renderer>(allSceneRenderers) //(IEnumerable`1 source)
+		System.Predicate`1<UnityEngine.Renderer> <>9__43_0 = Knife.Tools.GPURaycast/<>c.<>9__43_0
+
+		if (<>9__43_0 != 0)
+            goto INSN_180534A9C
+        endif
+		Knife.Tools.GPURaycast/<>c <>c = Knife.Tools.GPURaycast/<>c.<>9
+		System.Predicate`1<UnityEngine.Renderer> predicate = new System.Predicate`1<UnityEngine.Renderer>()
+
+		predicate..ctor(<>c, {'<Raycast>b__43_0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		 += 16
+		Knife.Tools.GPURaycast/<>c.<>9 = predicate
+
+		INSN_180534A9C:
+
+		System.Collections.Generic.List`1<UnityEngine.Renderer> list2 = list.FindAll(predicate) //(Predicate`1 match)
+
+		UnityEngine.Renderer[] rendererArray2 = list2.ToArray()
+		 += 56
+		Knife.Tools.GPURaycast.worldPosBuffer = rendererArray2
+		ulong local98 = 0
+		UnityEngine.Renderer[] visibleRenderers = Knife.Tools.GPURaycast.visibleRenderers
+
+		if (local98 >= visibleRenderers.Length)
+            goto INSN_180534C2A
+        endif
+		UnityEngine.Renderer[] visibleRenderers2 = Knife.Tools.GPURaycast.visibleRenderers
+		UnityEngine.Renderer renderer = visibleRenderers2[local98]
+		UnityEngine.MaterialPropertyBlock propertyBlock = Knife.Tools.GPURaycast.propertyBlock
+
+		renderer.Internal_GetPropertyBlock(propertyBlock) //(MaterialPropertyBlock dest)
+		UnityEngine.MaterialPropertyBlock propertyBlock2 = Knife.Tools.GPURaycast.propertyBlock
+
+		propertyBlock2.SetInt("ObjectID", local98) //(String name, Int32 value)
+		UnityEngine.Renderer[] visibleRenderers3 = Knife.Tools.GPURaycast.visibleRenderers
+		UnityEngine.Renderer renderer2 = visibleRenderers3[local98]
+		UnityEngine.MaterialPropertyBlock propertyBlock3 = Knife.Tools.GPURaycast.propertyBlock
+
+		renderer2.Internal_SetPropertyBlock(propertyBlock3) //(MaterialPropertyBlock properties)
+		local98 += 1
+
+		INSN_180534C2A:
+
+		if ( == 2)
+            goto INSN_180534C47
+        endif
+
+		if ( != local98)
+            goto INSN_180534C47
+        endif
+
+		INSN_180534C47:
+		UnityEngine.RenderTexture worldPosBuffer = Knife.Tools.GPURaycast.worldPosBuffer
+		ulong local112 = 0
+
+		System.Boolean boolean5 = UnityEngine.Object.op_Equality(worldPosBuffer, local112) //(Object x, Object y)
+
+		if (boolean5 != False)
+            goto INSN_180534E21
+        endif
+		UnityEngine.RenderTexture worldNormBuffer = Knife.Tools.GPURaycast.worldNormBuffer
+		ulong local116 = 0
+
+		System.Boolean boolean6 = UnityEngine.Object.op_Equality(worldNormBuffer, local116) //(Object x, Object y)
+
+		if (boolean6 != False)
+            goto INSN_180534E21
+        endif
+		UnityEngine.RenderTexture idBuffer = Knife.Tools.GPURaycast.idBuffer
+		ulong local120 = 0
+
+		System.Boolean boolean7 = UnityEngine.Object.op_Equality(idBuffer, local120) //(Object x, Object y)
+
+		if (boolean7 == False)
+            goto INSN_1805353F9
+        endif
+
+		INSN_180534E21:
+		UnityEngine.RenderTexture worldPosBuffer2 = Knife.Tools.GPURaycast.worldPosBuffer
+		ulong local124 = 0
+
+		System.Boolean boolean8 = UnityEngine.Object.op_Inequality(worldPosBuffer2, local124) //(Object x, Object y)
+
+		if (boolean8 == False)
+            goto INSN_180534EF9
+        endif
+		UnityEngine.RenderTexture worldPosBuffer3 = Knife.Tools.GPURaycast.worldPosBuffer
+
+		worldPosBuffer3.Release()
+		UnityEngine.RenderTexture worldPosBuffer4 = Knife.Tools.GPURaycast.worldPosBuffer
+		System.Int64 local130 = 1
+
+		UnityEngine.Object.DestroyImmediate(worldPosBuffer4, local130) //(Object obj, Boolean allowDestroyingAssets)
+
+		INSN_180534EF9:
+		UnityEngine.RenderTexture worldNormBuffer2 = Knife.Tools.GPURaycast.worldNormBuffer
+		ulong local133 = 0
+
+		System.Boolean boolean9 = UnityEngine.Object.op_Inequality(worldNormBuffer2, local133) //(Object x, Object y)
+
+		if (boolean9 == False)
+            goto INSN_180534FD7
+        endif
+		UnityEngine.RenderTexture worldNormBuffer3 = Knife.Tools.GPURaycast.worldNormBuffer
+
+		worldNormBuffer3.Release()
+		UnityEngine.RenderTexture worldNormBuffer4 = Knife.Tools.GPURaycast.worldNormBuffer
+		System.Int64 local139 = 1
+
+		UnityEngine.Object.DestroyImmediate(worldNormBuffer4, local139) //(Object obj, Boolean allowDestroyingAssets)
+
+		INSN_180534FD7:
+		UnityEngine.RenderTexture idBuffer2 = Knife.Tools.GPURaycast.idBuffer
+		ulong local142 = 0
+
+		System.Boolean boolean10 = UnityEngine.Object.op_Inequality(idBuffer2, local142) //(Object x, Object y)
+
+		if (boolean10 == False)
+            goto INSN_1805350B5
+        endif
+		UnityEngine.RenderTexture idBuffer3 = Knife.Tools.GPURaycast.idBuffer
+
+		idBuffer3.Release()
+		UnityEngine.RenderTexture idBuffer4 = Knife.Tools.GPURaycast.idBuffer
+		System.Int64 local148 = 1
+
+		UnityEngine.Object.DestroyImmediate(idBuffer4, local148) //(Object obj, Boolean allowDestroyingAssets)
+
+		INSN_1805350B5:
+		UnityEngine.RenderTexture renderTexture = new UnityEngine.RenderTexture()
+
+		renderTexture..ctor()
+		Knife.Tools.GPURaycast.worldPosBuffer = renderTexture
+		UnityEngine.RenderTexture renderTexture2 = new UnityEngine.RenderTexture()
+
+		renderTexture2..ctor()
+		 += 8
+		Knife.Tools.GPURaycast.worldPosBuffer = renderTexture2
+		UnityEngine.RenderTexture renderTexture3 = new UnityEngine.RenderTexture()
+
+		renderTexture3..ctor()
+		 += 16
+		Knife.Tools.GPURaycast.worldPosBuffer = renderTexture3
+		UnityEngine.RenderTexture worldPosBuffer5 = Knife.Tools.GPURaycast.worldPosBuffer
+
+		System.Boolean boolean11 = worldPosBuffer5.Create()
+		UnityEngine.RenderTexture worldNormBuffer5 = Knife.Tools.GPURaycast.worldNormBuffer
+
+		System.Boolean boolean12 = worldNormBuffer5.Create()
+		UnityEngine.RenderTexture idBuffer5 = Knife.Tools.GPURaycast.idBuffer
+
+		System.Boolean boolean13 = idBuffer5.Create()
+		System.Int64 local167 = 3
+		UnityEngine.RenderBuffer[] local168 = new UnityEngine.RenderBuffer[3]
+		 += 24
+		Knife.Tools.GPURaycast.worldPosBuffer = local168
+		UnityEngine.RenderTexture worldPosBuffer6 = Knife.Tools.GPURaycast.worldPosBuffer
+		UnityEngine.RenderBuffer[] mrtBuffers = Knife.Tools.GPURaycast.mrtBuffers
+
+		UnityEngine.RenderBuffer colorBuffer = .colorBuffer
+		mrtBuffers[0] = constant355
+		UnityEngine.RenderTexture worldNormBuffer6 = Knife.Tools.GPURaycast.worldNormBuffer
+		UnityEngine.RenderBuffer[] mrtBuffers2 = Knife.Tools.GPURaycast.mrtBuffers
+
+		UnityEngine.RenderBuffer colorBuffer2 = .colorBuffer
+		mrtBuffers2[2] = constant361
+		UnityEngine.RenderTexture idBuffer6 = Knife.Tools.GPURaycast.idBuffer
+		UnityEngine.RenderBuffer[] mrtBuffers3 = Knife.Tools.GPURaycast.mrtBuffers
+
+		UnityEngine.RenderBuffer colorBuffer3 = .colorBuffer
+		mrtBuffers3[4] = constant367
+		Knife.Tools.GPURaycast.lastPixelWidth = string
+		Knife.Tools.GPURaycast.lastPixelHeight = targetTexture4
+		UnityEngine.RenderTexture worldPosBuffer7 = Knife.Tools.GPURaycast.worldPosBuffer
+		UnityEngine.Camera gpuRaycastCamera14 = Knife.Tools.GPURaycast.gpuRaycastCamera
+		UnityEngine.RenderBuffer[] mrtBuffers4 = Knife.Tools.GPURaycast.mrtBuffers
+		ulong local184 = 0
+
+		UnityEngine.RenderBuffer depthBuffer = .depthBuffer
+
+		gpuRaycastCamera14.SetTargetBuffers(mrtBuffers4, local184) //(RenderBuffer[] colorBuffer, RenderBuffer depthBuffer)
+
+		INSN_1805353F9:
+		UnityEngine.RenderTexture worldPosBuffer8 = Knife.Tools.GPURaycast.worldPosBuffer
+		UnityEngine.Camera gpuRaycastCamera15 = Knife.Tools.GPURaycast.gpuRaycastCamera
+		UnityEngine.RenderBuffer[] mrtBuffers5 = Knife.Tools.GPURaycast.mrtBuffers
+		ulong local190 = 0
+
+		UnityEngine.RenderBuffer depthBuffer2 = .depthBuffer
+
+		gpuRaycastCamera15.SetTargetBuffers(mrtBuffers5, local190) //(RenderBuffer[] colorBuffer, RenderBuffer depthBuffer)
+		UnityEngine.Camera gpuRaycastCamera16 = Knife.Tools.GPURaycast.gpuRaycastCamera
+		UnityEngine.Shader gpuRaycastShader = Knife.Tools.GPURaycast.gpuRaycastShader
+
+		gpuRaycastCamera16.RenderWithShader(gpuRaycastShader, "") //(Shader shader, String replacementTag)
+
+		System.Int32 pixelWidth2 = camera.pixelWidth
+
+		System.Int32 pixelHeight2 = camera.pixelHeight
+		ulong local201 = 0
+
+		if (local201 > pixelPosition)
+            goto INSN_180535A25
+        endif
+
+		if (local201 > constant402)
+            goto INSN_180535A25
+        endif
+		ulong local202 = 0
+
+		[instruction error - managed method being called is null]
+		ulong local203 = 0
+		UnityEngine.RenderTexture worldPosBuffer9 = Knife.Tools.GPURaycast.worldPosBuffer
+
+		[instruction error - managed method being called is null]
+		ulong local206 = 0
+		UnityEngine.Texture2D posBufferCopy = Knife.Tools.GPURaycast.posBufferCopy
+		ulong local209 = 0
+		ulong local210 = 0
+
+		posBufferCopy.ReadPixels(local203, local210, local209) //(Rect source, Int32 destX, Int32 destY)
+		ulong local211 = 0
+		UnityEngine.RenderTexture worldNormBuffer7 = Knife.Tools.GPURaycast.worldNormBuffer
+
+		UnityEngine.RenderTexture.SetActive(worldNormBuffer7) //(RenderTexture rt)
+		UnityEngine.Texture2D normBufferCopy = Knife.Tools.GPURaycast.normBufferCopy
+		ulong local216 = 0
+		ulong local217 = 0
+
+		normBufferCopy.ReadPixels(local211, local217, local216) //(Rect source, Int32 destX, Int32 destY)
+		UnityEngine.RenderTexture idBuffer7 = Knife.Tools.GPURaycast.idBuffer
+
+		UnityEngine.RenderTexture.SetActive(idBuffer7) //(RenderTexture rt)
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.RegToFieldAction at (0x1805343B8) is corrupt (Instance or field is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Knife.Tools.GPURaycast
+	static System.Boolean RaycastWithoutRenderer(UnityEngine.Camera camera, UnityEngine.Vector2 pixelPosition, Knife.Tools.GPURaycastInfo& hitInfo)
+		ulong local3 = 0
+
+		UnityEngine.Vector3 zero = UnityEngine.Vector3.zero
+		System.Single single = zero.z
+		hitInfo. = single
+
+		UnityEngine.Vector3 zero2 = UnityEngine.Vector3.zero
+		System.Single single2 = zero2.z
+		hitInfo.normal.z = single2
+		hitInfo.hittedRenderer = local3
+		hitInfo.IsHitted = local3
+
+		UnityEngine.RenderTexture targetTexture = camera.targetTexture
+		ulong local14 = 0
+
+		System.Boolean boolean = UnityEngine.Object.op_Equality(targetTexture, local14) //(Object x, Object y)
+
+		if (boolean != False)
+
+		    System.Int32 pixelWidth = camera.pixelWidth
+		else
+
+		    UnityEngine.RenderTexture targetTexture2 = camera.targetTexture
+
+		    System.String string = targetTexture2.ToString()
+		endif
+        
+
+		UnityEngine.RenderTexture targetTexture3 = camera.targetTexture
+		ulong local23 = 0
+
+		System.Boolean boolean2 = UnityEngine.Object.op_Equality(targetTexture3, local23) //(Object x, Object y)
+
+		if (boolean2 == False)
+            goto INSN_180533077
+        endif
+
+		System.Int32 pixelHeight = camera.pixelHeight
+
+		INSN_180533077:
+
+		UnityEngine.RenderTexture targetTexture4 = camera.targetTexture
+
+		targetTexture4.set_width()
+		UnityEngine.Camera lastCamera = Knife.Tools.GPURaycast.lastCamera
+
+		System.Boolean boolean3 = UnityEngine.Object.op_Inequality(lastCamera, camera) //(Object x, Object y)
+
+		if (boolean3 != False)
+            goto INSN_180533168
+        endif
+		UnityEngine.Camera gpuRaycastCamera = Knife.Tools.GPURaycast.gpuRaycastCamera
+		ulong local33 = 0
+
+		System.Boolean boolean4 = UnityEngine.Object.op_Equality(gpuRaycastCamera, local33) //(Object x, Object y)
+
+		if (boolean4 == False)
+            goto INSN_1805332FE
+        endif
+
+		INSN_180533168:
+		System.Int64 local35 = 1
+		System.Type[] local36 = new System.Type[1]
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'Camera' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+
+		if (typeFromHandle == 0)
+            goto INSN_1805331D4
+        endif
+
+		if (typeFromHandle == 0)
+            goto INSN_1805341BF
+        endif
+
+		INSN_1805331D4:
+		local36[0] = typeFromHandle
+		UnityEngine.GameObject gameObject = new UnityEngine.GameObject()
+
+		gameObject..ctor("GPURaycastCamera", local36) //(String name, Type[] components)
+
+		UnityEngine.Camera component = gameObject.GetComponent<UnityEngine.Camera>()
+		 += 32
+		Knife.Tools.GPURaycast.worldPosBuffer = component
+		UnityEngine.Camera gpuRaycastCamera2 = Knife.Tools.GPURaycast.gpuRaycastCamera
+
+		UnityEngine.GameObject gameObject2 = gpuRaycastCamera2.gameObject
+		ulong local46 = 0
+
+		gameObject2.SetActive(local46) //(Boolean value)
+		UnityEngine.Camera gpuRaycastCamera3 = Knife.Tools.GPURaycast.gpuRaycastCamera
+		ulong local49 = 0
+
+		gpuRaycastCamera3.enabled = local49
+		UnityEngine.Camera gpuRaycastCamera4 = Knife.Tools.GPURaycast.gpuRaycastCamera
+
+		UnityEngine.GameObject gameObject3 = gpuRaycastCamera4.gameObject
+		System.Int32 61 = 61
+
+		gameObject3.hideFlags = 61
+
+		INSN_1805332FE:
+		UnityEngine.Camera gpuRaycastCamera5 = Knife.Tools.GPURaycast.gpuRaycastCamera
+		System.Int32 1 = 1
+
+		gpuRaycastCamera5.cameraType = 1
+		UnityEngine.Camera gpuRaycastCamera6 = Knife.Tools.GPURaycast.gpuRaycastCamera
+		ulong local58 = 0
+
+		gpuRaycastCamera6.targetTexture = local58
+		UnityEngine.Camera gpuRaycastCamera7 = Knife.Tools.GPURaycast.gpuRaycastCamera
+
+		UnityEngine.Transform transform = gpuRaycastCamera7.transform
+
+		UnityEngine.Transform transform2 = camera.transform
+
+		UnityEngine.Vector3 position = .position
+
+		transform.set_position()
+		UnityEngine.Camera gpuRaycastCamera8 = Knife.Tools.GPURaycast.gpuRaycastCamera
+
+		UnityEngine.Transform transform3 = gpuRaycastCamera8.transform
+
+		UnityEngine.Transform transform4 = camera.transform
+
+		UnityEngine.Quaternion rotation = camera.rotation
+
+		transform3.set_rotation()
+		UnityEngine.Camera gpuRaycastCamera9 = Knife.Tools.GPURaycast.gpuRaycastCamera
+		System.Int32 2 = 2
+
+		gpuRaycastCamera9.clearFlags = 2
+		ulong local78 = 0
+		UnityEngine.Camera gpuRaycastCamera10 = Knife.Tools.GPURaycast.gpuRaycastCamera
+
+		[instruction error - managed method being called is null]
+
+		gpuRaycastCamera10.backgroundColor = local78
+		UnityEngine.Camera gpuRaycastCamera11 = Knife.Tools.GPURaycast.gpuRaycastCamera
+		System.Int32 1 = 1
+
+		gpuRaycastCamera11.renderingPath = 1
+		UnityEngine.Camera gpuRaycastCamera12 = Knife.Tools.GPURaycast.gpuRaycastCamera
+
+		UnityEngine.Rect rect = .rect
+
+		gpuRaycastCamera12.set_rect()
+		UnityEngine.Camera gpuRaycastCamera13 = Knife.Tools.GPURaycast.gpuRaycastCamera
+
+		System.Single fieldOfView = camera.fieldOfView
+
+		gpuRaycastCamera13.fieldOfView = fieldOfView
+		UnityEngine.Camera gpuRaycastCamera14 = Knife.Tools.GPURaycast.gpuRaycastCamera
+
+		System.Single aspect = camera.aspect
+		fieldOfView = aspect
+
+		gpuRaycastCamera14.aspect = fieldOfView
+		Knife.Tools.GPURaycast.worldPosBuffer = camera
+
+		System.Int32 pixelWidth2 = camera.pixelWidth
+
+		System.Int32 pixelHeight2 = camera.pixelHeight
+		ulong local100 = 0
+
+		if (local100 > aspect)
+            goto INSN_1805341B5
+        endif
+
+		if (aspect > 1)
+            goto INSN_1805341B5
+        endif
+
+		if (local100 > aspect)
+            goto INSN_1805341B5
+        endif
+
+		if (aspect > 1)
+            goto INSN_1805341B5
+        endif
+
+		if (pixelHeight2 != string)
+            goto INSN_180533796
+        endif
+
+		if (pixelHeight2 != targetTexture4)
+            goto INSN_180533796
+        endif
+		UnityEngine.RenderTexture worldPosBuffer = Knife.Tools.GPURaycast.worldPosBuffer
+		ulong local105 = 0
+
+		System.Boolean boolean5 = UnityEngine.Object.op_Equality(worldPosBuffer, local105) //(Object x, Object y)
+
+		if (boolean5 != False)
+            goto INSN_180533796
+        endif
+		UnityEngine.RenderTexture worldNormBuffer = Knife.Tools.GPURaycast.worldNormBuffer
+		ulong local109 = 0
+
+		System.Boolean boolean6 = UnityEngine.Object.op_Equality(worldNormBuffer, local109) //(Object x, Object y)
+
+		if (boolean6 != False)
+            goto INSN_180533796
+        endif
+		UnityEngine.RenderTexture idBuffer = Knife.Tools.GPURaycast.idBuffer
+		ulong local113 = 0
+
+		System.Boolean boolean7 = UnityEngine.Object.op_Equality(idBuffer, local113) //(Object x, Object y)
+
+		if (boolean7 == False)
+            goto INSN_180533D01
+        endif
+
+		INSN_180533796:
+		UnityEngine.RenderTexture worldPosBuffer2 = Knife.Tools.GPURaycast.worldPosBuffer
+		ulong local117 = 0
+
+		System.Boolean boolean8 = UnityEngine.Object.op_Inequality(worldPosBuffer2, local117) //(Object x, Object y)
+
+		if (boolean8 == False)
+            goto INSN_180533875
+        endif
+		UnityEngine.RenderTexture worldPosBuffer3 = Knife.Tools.GPURaycast.worldPosBuffer
+
+		worldPosBuffer3.Release()
+		UnityEngine.RenderTexture worldPosBuffer4 = Knife.Tools.GPURaycast.worldPosBuffer
+		System.Int64 local123 = 1
+
+		UnityEngine.Object.DestroyImmediate(worldPosBuffer4, local123) //(Object obj, Boolean allowDestroyingAssets)
+
+		INSN_180533875:
+		UnityEngine.RenderTexture worldNormBuffer2 = Knife.Tools.GPURaycast.worldNormBuffer
+		ulong local126 = 0
+
+		System.Boolean boolean9 = UnityEngine.Object.op_Inequality(worldNormBuffer2, local126) //(Object x, Object y)
+
+		if (boolean9 == False)
+            goto INSN_18053395B
+        endif
+		UnityEngine.RenderTexture worldNormBuffer3 = Knife.Tools.GPURaycast.worldNormBuffer
+
+		worldNormBuffer3.Release()
+		UnityEngine.RenderTexture worldNormBuffer4 = Knife.Tools.GPURaycast.worldNormBuffer
+		System.Int64 local132 = 1
+
+		UnityEngine.Object.DestroyImmediate(worldNormBuffer4, local132) //(Object obj, Boolean allowDestroyingAssets)
+
+		INSN_18053395B:
+		UnityEngine.RenderTexture idBuffer2 = Knife.Tools.GPURaycast.idBuffer
+		ulong local135 = 0
+
+		System.Boolean boolean10 = UnityEngine.Object.op_Inequality(idBuffer2, local135) //(Object x, Object y)
+
+		if (boolean10 == False)
+            goto INSN_180533A41
+        endif
+		UnityEngine.RenderTexture idBuffer3 = Knife.Tools.GPURaycast.idBuffer
+
+		idBuffer3.Release()
+		UnityEngine.RenderTexture idBuffer4 = Knife.Tools.GPURaycast.idBuffer
+		System.Int64 local141 = 1
+
+		UnityEngine.Object.DestroyImmediate(idBuffer4, local141) //(Object obj, Boolean allowDestroyingAssets)
+
+		INSN_180533A41:
+		UnityEngine.RenderTexture renderTexture = new UnityEngine.RenderTexture()
+
+		renderTexture..ctor()
+		Knife.Tools.GPURaycast.worldPosBuffer = renderTexture
+		UnityEngine.RenderTexture renderTexture2 = new UnityEngine.RenderTexture()
+
+		renderTexture2..ctor()
+		 += 8
+		Knife.Tools.GPURaycast.worldPosBuffer = renderTexture2
+		UnityEngine.RenderTexture renderTexture3 = new UnityEngine.RenderTexture()
+
+		renderTexture3..ctor()
+		 += 16
+		Knife.Tools.GPURaycast.worldPosBuffer = renderTexture3
+		UnityEngine.RenderTexture worldPosBuffer5 = Knife.Tools.GPURaycast.worldPosBuffer
+
+		System.Boolean boolean11 = worldPosBuffer5.Create()
+		UnityEngine.RenderTexture worldNormBuffer5 = Knife.Tools.GPURaycast.worldNormBuffer
+
+		System.Boolean boolean12 = worldNormBuffer5.Create()
+		UnityEngine.RenderTexture idBuffer5 = Knife.Tools.GPURaycast.idBuffer
+
+		System.Boolean boolean13 = idBuffer5.Create()
+		System.Int64 local160 = 3
+		UnityEngine.RenderBuffer[] local161 = new UnityEngine.RenderBuffer[3]
+		 += 24
+		Knife.Tools.GPURaycast.worldPosBuffer = local161
+		UnityEngine.RenderTexture worldPosBuffer6 = Knife.Tools.GPURaycast.worldPosBuffer
+		UnityEngine.RenderBuffer[] mrtBuffers = Knife.Tools.GPURaycast.mrtBuffers
+
+		UnityEngine.RenderBuffer colorBuffer = .colorBuffer
+		mrtBuffers[0] = constant272
+		UnityEngine.RenderTexture worldNormBuffer6 = Knife.Tools.GPURaycast.worldNormBuffer
+		UnityEngine.RenderBuffer[] mrtBuffers2 = Knife.Tools.GPURaycast.mrtBuffers
+
+		UnityEngine.RenderBuffer colorBuffer2 = .colorBuffer
+		mrtBuffers2[2] = constant278
+		UnityEngine.RenderTexture idBuffer6 = Knife.Tools.GPURaycast.idBuffer
+		UnityEngine.RenderBuffer[] mrtBuffers3 = Knife.Tools.GPURaycast.mrtBuffers
+
+		UnityEngine.RenderBuffer colorBuffer3 = .colorBuffer
+		mrtBuffers3[4] = constant284
+		UnityEngine.RenderTexture worldPosBuffer7 = Knife.Tools.GPURaycast.worldPosBuffer
+		UnityEngine.Camera gpuRaycastCamera15 = Knife.Tools.GPURaycast.gpuRaycastCamera
+		UnityEngine.RenderBuffer[] mrtBuffers4 = Knife.Tools.GPURaycast.mrtBuffers
+		ulong local179 = 0
+
+		UnityEngine.RenderBuffer depthBuffer = .depthBuffer
+
+		gpuRaycastCamera15.SetTargetBuffers(mrtBuffers4, local179) //(RenderBuffer[] colorBuffer, RenderBuffer depthBuffer)
+
+		INSN_180533D01:
+		UnityEngine.RenderTexture worldPosBuffer8 = Knife.Tools.GPURaycast.worldPosBuffer
+		UnityEngine.Camera gpuRaycastCamera16 = Knife.Tools.GPURaycast.gpuRaycastCamera
+		UnityEngine.RenderBuffer[] mrtBuffers5 = Knife.Tools.GPURaycast.mrtBuffers
+		ulong local185 = 0
+
+		UnityEngine.RenderBuffer depthBuffer2 = .depthBuffer
+
+		gpuRaycastCamera16.SetTargetBuffers(mrtBuffers5, local185) //(RenderBuffer[] colorBuffer, RenderBuffer depthBuffer)
+		UnityEngine.Camera gpuRaycastCamera17 = Knife.Tools.GPURaycast.gpuRaycastCamera
+		UnityEngine.Shader gpuRaycastShader = Knife.Tools.GPURaycast.gpuRaycastShader
+
+		gpuRaycastCamera17.RenderWithShader(gpuRaycastShader, "") //(Shader shader, String replacementTag)
+		ulong local191 = 0
+		  =  * .
+
+		[instruction error - managed method being called is null]
+		UnityEngine.RenderTexture worldPosBuffer9 = Knife.Tools.GPURaycast.worldPosBuffer
+
+		[instruction error - managed method being called is null]
+		UnityEngine.Texture2D posBufferCopy = Knife.Tools.GPURaycast.posBufferCopy
+
+		posBufferCopy.ReadPixels()
+		ulong local199 = 0
+		UnityEngine.RenderTexture worldNormBuffer7 = Knife.Tools.GPURaycast.worldNormBuffer
+
+		UnityEngine.RenderTexture.SetActive(worldNormBuffer7) //(RenderTexture rt)
+		UnityEngine.Texture2D normBufferCopy = Knife.Tools.GPURaycast.normBufferCopy
+		ulong local204 = 0
+		ulong local205 = 0
+
+		normBufferCopy.ReadPixels(local199, local205, local204) //(Rect source, Int32 destX, Int32 destY)
+		ulong local206 = 0
+		UnityEngine.RenderTexture idBuffer7 = Knife.Tools.GPURaycast.idBuffer
+
+		UnityEngine.RenderTexture.SetActive(idBuffer7) //(RenderTexture rt)
+		UnityEngine.Texture2D idBufferCopy = Knife.Tools.GPURaycast.idBufferCopy
+		ulong local211 = 0
+		ulong local212 = 0
+
+		idBufferCopy.ReadPixels(local206, local212, local211) //(Rect source, Int32 destX, Int32 destY)
+
+		[instruction error - managed method being called is null]
+		UnityEngine.Texture2D posBufferCopy2 = Knife.Tools.GPURaycast.posBufferCopy
+
+		posBufferCopy2.Apply()
+		UnityEngine.Texture2D normBufferCopy2 = Knife.Tools.GPURaycast.normBufferCopy
+
+		normBufferCopy2.Apply()
+		UnityEngine.Texture2D idBufferCopy2 = Knife.Tools.GPURaycast.idBufferCopy
+
+		idBufferCopy2.Apply()
+		UnityEngine.Texture2D posBufferCopy3 = Knife.Tools.GPURaycast.posBufferCopy
+
+		UnityEngine.Color pixel = .GetPixel()
+		Knife.Tools.GPURaycast.positionRead = constant331
+		UnityEngine.Texture2D normBufferCopy3 = Knife.Tools.GPURaycast.normBufferCopy
+
+		UnityEngine.Color pixel2 = .GetPixel()
+		Knife.Tools.GPURaycast.normalRead = constant337
+		UnityEngine.Texture2D idBufferCopy3 = Knife.Tools.GPURaycast.idBufferCopy
+
+		UnityEngine.Color pixel3 = .GetPixel()
+		Knife.Tools.GPURaycast.idRead = constant343
+		ulong local232 = 0
+		UnityEngine.Color positionRead = Knife.Tools.GPURaycast.positionRead
+		  = .
+		  = .
+		hitInfo. = local232
+		ulong local234 = 0
+		UnityEngine.Color normalRead = Knife.Tools.GPURaycast.normalRead
+		  = .
+		  = .
+		hitInfo.normal.z = local234
+		  = .
+		hitInfo.IsHitted = GPURaycast
+		return GPURaycast
+
+		INSN_1805341B5:
+		throw new System.NullReferenceException()
+
+		INSN_1805341BF:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.RegToFieldAction at (0x180532F89) is corrupt (Instance or field is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Knife.Tools.GPURaycast
+	static System.Void FullscreenRaycastAsync(UnityEngine.Camera camera, System.Single resolutionFactor, System.Int32& width, System.Int32& height, System.Action`1<Knife.Tools.GPURaycastInfo[]> callback)
+		ulong local5 = 0
+		ulong local6 = 0
+
+		Knife.Tools.GPURaycast.InitRes()
+
+		UnityEngine.RenderTexture targetTexture = camera.targetTexture
+		ulong local10 = 0
+
+		System.Boolean boolean = UnityEngine.Object.op_Equality(targetTexture, local10) //(Object x, Object y)
+
+		if (boolean != False)
+
+		    System.Int32 pixelWidth = camera.pixelWidth
+		else
+
+		    UnityEngine.RenderTexture targetTexture2 = camera.targetTexture
+
+		    System.String string = targetTexture2.ToString()
+		endif
+        
+
+		UnityEngine.RenderTexture targetTexture3 = camera.targetTexture
+		ulong local19 = 0
+
+		System.Boolean boolean2 = UnityEngine.Object.op_Equality(targetTexture3, local19) //(Object x, Object y)
+
+		if (boolean2 == False)
+            goto INSN_18052D782
+        endif
+
+		System.Int32 pixelHeight = camera.pixelHeight
+
+		INSN_18052D782:
+
+		UnityEngine.RenderTexture targetTexture4 = camera.targetTexture
+
+		targetTexture4.set_width()
+		width.m_value = targetTexture4
+		height.m_value = targetTexture4
+		UnityEngine.Camera lastCamera = Knife.Tools.GPURaycast.lastCamera
+
+		System.Boolean boolean3 = UnityEngine.Object.op_Inequality(lastCamera, camera) //(Object x, Object y)
+
+		if (boolean3 != False)
+            goto INSN_18052D896
+        endif
+		UnityEngine.Camera gpuRaycastCamera = Knife.Tools.GPURaycast.gpuRaycastCamera
+		ulong local29 = 0
+
+		System.Boolean boolean4 = UnityEngine.Object.op_Equality(gpuRaycastCamera, local29) //(Object x, Object y)
+
+		if (boolean4 == False)
+            goto INSN_18052DA2C
+        endif
+
+		INSN_18052D896:
+		System.Int64 local31 = 1
+		System.Type[] local32 = new System.Type[1]
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'Camera' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+
+		if (typeFromHandle == 0)
+            goto INSN_18052D902
+        endif
+
+		if (typeFromHandle == 0)
+            goto INSN_18052E782
+        endif
+
+		INSN_18052D902:
+		local32[0] = typeFromHandle
+		UnityEngine.GameObject gameObject = new UnityEngine.GameObject()
+
+		gameObject..ctor("GPURaycastCamera", local32) //(String name, Type[] components)
+
+		UnityEngine.Camera component = gameObject.GetComponent<UnityEngine.Camera>()
+		 += 32
+		Knife.Tools.GPURaycast.worldPosBuffer = component
+		UnityEngine.Camera gpuRaycastCamera2 = Knife.Tools.GPURaycast.gpuRaycastCamera
+
+		UnityEngine.GameObject gameObject2 = gpuRaycastCamera2.gameObject
+		ulong local42 = 0
+
+		gameObject2.SetActive(local42) //(Boolean value)
+		UnityEngine.Camera gpuRaycastCamera3 = Knife.Tools.GPURaycast.gpuRaycastCamera
+		ulong local45 = 0
+
+		gpuRaycastCamera3.enabled = local45
+		UnityEngine.Camera gpuRaycastCamera4 = Knife.Tools.GPURaycast.gpuRaycastCamera
+
+		UnityEngine.GameObject gameObject3 = gpuRaycastCamera4.gameObject
+		System.Int32 61 = 61
+
+		gameObject3.hideFlags = 61
+
+		INSN_18052DA2C:
+		UnityEngine.Camera gpuRaycastCamera5 = Knife.Tools.GPURaycast.gpuRaycastCamera
+		System.Int32 1 = 1
+
+		gpuRaycastCamera5.cameraType = 1
+		UnityEngine.Camera gpuRaycastCamera6 = Knife.Tools.GPURaycast.gpuRaycastCamera
+		ulong local54 = 0
+
+		gpuRaycastCamera6.targetTexture = local54
+		UnityEngine.Camera gpuRaycastCamera7 = Knife.Tools.GPURaycast.gpuRaycastCamera
+
+		UnityEngine.Transform transform = gpuRaycastCamera7.transform
+
+		UnityEngine.Transform transform2 = camera.transform
+
+		UnityEngine.Vector3 position = camera.position
+
+		transform.set_position()
+		UnityEngine.Camera gpuRaycastCamera8 = Knife.Tools.GPURaycast.gpuRaycastCamera
+
+		UnityEngine.Transform transform3 = gpuRaycastCamera8.transform
+
+		UnityEngine.Transform transform4 = camera.transform
+
+		UnityEngine.Quaternion rotation = camera.rotation
+
+		transform3.set_rotation()
+		UnityEngine.Camera gpuRaycastCamera9 = Knife.Tools.GPURaycast.gpuRaycastCamera
+		System.Int32 2 = 2
+
+		gpuRaycastCamera9.clearFlags = 2
+		ulong local74 = 0
+		UnityEngine.Camera gpuRaycastCamera10 = Knife.Tools.GPURaycast.gpuRaycastCamera
+
+		[instruction error - managed method being called is null]
+
+		gpuRaycastCamera10.backgroundColor = local74
+		UnityEngine.Camera gpuRaycastCamera11 = Knife.Tools.GPURaycast.gpuRaycastCamera
+		System.Int32 1 = 1
+
+		gpuRaycastCamera11.renderingPath = 1
+		UnityEngine.Camera gpuRaycastCamera12 = Knife.Tools.GPURaycast.gpuRaycastCamera
+
+		UnityEngine.Rect rect = .rect
+
+		gpuRaycastCamera12.set_rect()
+		UnityEngine.Camera gpuRaycastCamera13 = Knife.Tools.GPURaycast.gpuRaycastCamera
+
+		System.Single fieldOfView = camera.fieldOfView
+		resolutionFactor = fieldOfView
+
+		gpuRaycastCamera13.fieldOfView = resolutionFactor
+		UnityEngine.Camera gpuRaycastCamera14 = Knife.Tools.GPURaycast.gpuRaycastCamera
+
+		System.Single aspect = camera.aspect
+		resolutionFactor = aspect
+
+		gpuRaycastCamera14.aspect = resolutionFactor
+		Knife.Tools.GPURaycast.worldPosBuffer = camera
+		UnityEngine.RenderTexture worldPosBuffer = Knife.Tools.GPURaycast.worldPosBuffer
+		ulong local93 = 0
+
+		System.Boolean boolean5 = UnityEngine.Object.op_Equality(worldPosBuffer, local93) //(Object x, Object y)
+
+		if (boolean5 != False)
+            goto INSN_18052DEAD
+        endif
+		UnityEngine.RenderTexture worldNormBuffer = Knife.Tools.GPURaycast.worldNormBuffer
+		ulong local97 = 0
+
+		System.Boolean boolean6 = UnityEngine.Object.op_Equality(worldNormBuffer, local97) //(Object x, Object y)
+
+		if (boolean6 != False)
+            goto INSN_18052DEAD
+        endif
+		UnityEngine.RenderTexture idBuffer = Knife.Tools.GPURaycast.idBuffer
+		ulong local101 = 0
+
+		System.Boolean boolean7 = UnityEngine.Object.op_Equality(idBuffer, local101) //(Object x, Object y)
+
+		if (boolean7 == False)
+            goto INSN_18052E4B3
+        endif
+
+		INSN_18052DEAD:
+		UnityEngine.RenderTexture worldPosBuffer2 = Knife.Tools.GPURaycast.worldPosBuffer
+		ulong local105 = 0
+
+		System.Boolean boolean8 = UnityEngine.Object.op_Inequality(worldPosBuffer2, local105) //(Object x, Object y)
+
+		if (boolean8 == False)
+            goto INSN_18052DF8C
+        endif
+		UnityEngine.RenderTexture worldPosBuffer3 = Knife.Tools.GPURaycast.worldPosBuffer
+
+		worldPosBuffer3.Release()
+		UnityEngine.RenderTexture worldPosBuffer4 = Knife.Tools.GPURaycast.worldPosBuffer
+		System.Int64 local111 = 1
+
+		UnityEngine.Object.DestroyImmediate(worldPosBuffer4, local111) //(Object obj, Boolean allowDestroyingAssets)
+
+		INSN_18052DF8C:
+		UnityEngine.RenderTexture worldNormBuffer2 = Knife.Tools.GPURaycast.worldNormBuffer
+		ulong local114 = 0
+
+		System.Boolean boolean9 = UnityEngine.Object.op_Inequality(worldNormBuffer2, local114) //(Object x, Object y)
+
+		if (boolean9 == False)
+            goto INSN_18052E072
+        endif
+		UnityEngine.RenderTexture worldNormBuffer3 = Knife.Tools.GPURaycast.worldNormBuffer
+
+		worldNormBuffer3.Release()
+		UnityEngine.RenderTexture worldNormBuffer4 = Knife.Tools.GPURaycast.worldNormBuffer
+		System.Int64 local120 = 1
+
+		UnityEngine.Object.DestroyImmediate(worldNormBuffer4, local120) //(Object obj, Boolean allowDestroyingAssets)
+
+		INSN_18052E072:
+		UnityEngine.RenderTexture idBuffer2 = Knife.Tools.GPURaycast.idBuffer
+		ulong local123 = 0
+
+		System.Boolean boolean10 = UnityEngine.Object.op_Inequality(idBuffer2, local123) //(Object x, Object y)
+
+		if (boolean10 == False)
+            goto INSN_18052E158
+        endif
+		UnityEngine.RenderTexture idBuffer3 = Knife.Tools.GPURaycast.idBuffer
+
+		idBuffer3.Release()
+		UnityEngine.RenderTexture idBuffer4 = Knife.Tools.GPURaycast.idBuffer
+		System.Int64 local129 = 1
+
+		UnityEngine.Object.DestroyImmediate(idBuffer4, local129) //(Object obj, Boolean allowDestroyingAssets)
+
+		INSN_18052E158:
+		UnityEngine.RenderTexture renderTexture = new UnityEngine.RenderTexture()
+
+		renderTexture..ctor()
+		Knife.Tools.GPURaycast.worldPosBuffer = renderTexture
+		UnityEngine.RenderTexture renderTexture2 = new UnityEngine.RenderTexture()
+
+		renderTexture2..ctor()
+		 += 8
+		Knife.Tools.GPURaycast.worldPosBuffer = renderTexture2
+		UnityEngine.RenderTexture renderTexture3 = new UnityEngine.RenderTexture()
+
+		renderTexture3..ctor()
+		 += 16
+		Knife.Tools.GPURaycast.worldPosBuffer = renderTexture3
+		UnityEngine.RenderTexture worldPosBuffer5 = Knife.Tools.GPURaycast.worldPosBuffer
+
+		System.Boolean boolean11 = worldPosBuffer5.Create()
+		UnityEngine.RenderTexture worldNormBuffer5 = Knife.Tools.GPURaycast.worldNormBuffer
+
+		System.Boolean boolean12 = worldNormBuffer5.Create()
+		UnityEngine.RenderTexture idBuffer5 = Knife.Tools.GPURaycast.idBuffer
+
+		System.Boolean boolean13 = idBuffer5.Create()
+		System.Int64 local148 = 3
+		UnityEngine.RenderBuffer[] local149 = new UnityEngine.RenderBuffer[3]
+		 += 24
+		Knife.Tools.GPURaycast.worldPosBuffer = local149
+		UnityEngine.RenderTexture worldPosBuffer6 = Knife.Tools.GPURaycast.worldPosBuffer
+		UnityEngine.RenderBuffer[] mrtBuffers = Knife.Tools.GPURaycast.mrtBuffers
+
+		UnityEngine.RenderBuffer colorBuffer = .colorBuffer
+		mrtBuffers[0] = constant288
+		UnityEngine.RenderTexture worldNormBuffer6 = Knife.Tools.GPURaycast.worldNormBuffer
+		UnityEngine.RenderBuffer[] mrtBuffers2 = Knife.Tools.GPURaycast.mrtBuffers
+
+		UnityEngine.RenderBuffer colorBuffer2 = .colorBuffer
+		mrtBuffers2[2] = constant294
+		UnityEngine.RenderTexture idBuffer6 = Knife.Tools.GPURaycast.idBuffer
+		UnityEngine.RenderBuffer[] mrtBuffers3 = Knife.Tools.GPURaycast.mrtBuffers
+
+		UnityEngine.RenderBuffer colorBuffer3 = .colorBuffer
+		mrtBuffers3[4] = constant300
+		Knife.Tools.GPURaycast.lastPixelWidth = constant302
+		Knife.Tools.GPURaycast.lastPixelHeight = constant311
+		UnityEngine.RenderTexture worldPosBuffer7 = Knife.Tools.GPURaycast.worldPosBuffer
+		UnityEngine.Camera gpuRaycastCamera15 = Knife.Tools.GPURaycast.gpuRaycastCamera
+		UnityEngine.RenderBuffer[] mrtBuffers4 = Knife.Tools.GPURaycast.mrtBuffers
+		ulong local165 = 0
+
+		UnityEngine.RenderBuffer depthBuffer = .depthBuffer
+
+		gpuRaycastCamera15.SetTargetBuffers(mrtBuffers4, local165) //(RenderBuffer[] colorBuffer, RenderBuffer depthBuffer)
+
+		INSN_18052E4B3:
+		UnityEngine.RenderTexture worldPosBuffer8 = Knife.Tools.GPURaycast.worldPosBuffer
+		UnityEngine.Camera gpuRaycastCamera16 = Knife.Tools.GPURaycast.gpuRaycastCamera
+		UnityEngine.RenderBuffer[] mrtBuffers5 = Knife.Tools.GPURaycast.mrtBuffers
+		ulong local171 = 0
+
+		UnityEngine.RenderBuffer depthBuffer2 = .depthBuffer
+
+		gpuRaycastCamera16.SetTargetBuffers(mrtBuffers5, local171) //(RenderBuffer[] colorBuffer, RenderBuffer depthBuffer)
+		UnityEngine.Camera gpuRaycastCamera17 = Knife.Tools.GPURaycast.gpuRaycastCamera
+		UnityEngine.Shader gpuRaycastShader = Knife.Tools.GPURaycast.gpuRaycastShader
+
+		gpuRaycastCamera17.RenderWithShader(gpuRaycastShader, "") //(Shader shader, String replacementTag)
+		UnityEngine.ComputeBuffer computeBuffer = new UnityEngine.ComputeBuffer()
+		System.Int32 16 = 16
+
+		computeBuffer..ctor()
+		UnityEngine.ComputeBuffer computeBuffer2 = new UnityEngine.ComputeBuffer()
+		System.Int32 16 = 16
+
+		computeBuffer2..ctor()
+		UnityEngine.ComputeShader gpuRaycastCopyDataShader = Knife.Tools.GPURaycast.gpuRaycastCopyDataShader
+
+		gpuRaycastCopyDataShader.GetKernelThreadGroupSizes()
+		UnityEngine.ComputeShader gpuRaycastCopyDataShader2 = Knife.Tools.GPURaycast.gpuRaycastCopyDataShader
+
+		gpuRaycastCopyDataShader2.SetInt()
+		UnityEngine.ComputeShader gpuRaycastCopyDataShader3 = Knife.Tools.GPURaycast.gpuRaycastCopyDataShader
+		UnityEngine.RenderTexture worldPosBuffer9 = Knife.Tools.GPURaycast.worldPosBuffer
+		ulong local187 = 0
+
+		gpuRaycastCopyDataShader3.SetTexture(local187, "posTex", worldPosBuffer9) //(Int32 kernelIndex, String name, Texture texture)
+		UnityEngine.ComputeShader gpuRaycastCopyDataShader4 = Knife.Tools.GPURaycast.gpuRaycastCopyDataShader
+		UnityEngine.RenderTexture worldNormBuffer7 = Knife.Tools.GPURaycast.worldNormBuffer
+		ulong local190 = 0
+
+		gpuRaycastCopyDataShader4.SetTexture(local190, "normalTex", worldNormBuffer7) //(Int32 kernelIndex, String name, Texture texture)
+		UnityEngine.ComputeShader gpuRaycastCopyDataShader5 = Knife.Tools.GPURaycast.gpuRaycastCopyDataShader
+		ulong local192 = 0
+
+		gpuRaycastCopyDataShader5.SetBuffer(local192, "positions", computeBuffer) //(Int32 kernelIndex, String name, ComputeBuffer buffer)
+		UnityEngine.ComputeShader gpuRaycastCopyDataShader6 = Knife.Tools.GPURaycast.gpuRaycastCopyDataShader
+		ulong local194 = 0
+
+		gpuRaycastCopyDataShader6.SetBuffer(local194, "normals", computeBuffer2) //(Int32 kernelIndex, String name, ComputeBuffer buffer)
+		UnityEngine.ComputeShader gpuRaycastCopyDataShader7 = Knife.Tools.GPURaycast.gpuRaycastCopyDataShader
+
+		gpuRaycastCopyDataShader7.Dispatch()
+		UnityEngine.Vector4[] local198 = new UnityEngine.Vector4[0]
+		UnityEngine.Vector4[] local199 = new UnityEngine.Vector4[0]
+		return
+		throw new System.NullReferenceException()
+
+		INSN_18052E782:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallVirtualMethodAction at (0x18052D79D) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Knife.Tools.GPURaycast
+	static Knife.Tools.GPURaycastInfo[] FullscreenRaycast(UnityEngine.Camera camera, System.Single resolutionFactor, System.Int32& width, System.Int32& height)
+		ulong local4 = 0
+		ulong local5 = 0
+
+		Knife.Tools.GPURaycast.InitRes()
+
+		UnityEngine.RenderTexture targetTexture = camera.targetTexture
+		ulong local9 = 0
+
+		System.Boolean boolean = UnityEngine.Object.op_Equality(targetTexture, local9) //(Object x, Object y)
+
+		if (boolean != False)
+
+		    System.Int32 pixelWidth = camera.pixelWidth
+		else
+
+		    UnityEngine.RenderTexture targetTexture2 = camera.targetTexture
+
+		    System.String string = targetTexture2.ToString()
+		endif
+        
+
+		UnityEngine.RenderTexture targetTexture3 = camera.targetTexture
+		ulong local18 = 0
+
+		System.Boolean boolean2 = UnityEngine.Object.op_Equality(targetTexture3, local18) //(Object x, Object y)
+
+		if (boolean2 == False)
+            goto INSN_18052E939
+        endif
+
+		System.Int32 pixelHeight = camera.pixelHeight
+
+		INSN_18052E939:
+
+		UnityEngine.RenderTexture targetTexture4 = camera.targetTexture
+
+		targetTexture4.set_width()
+		width.m_value = targetTexture4
+		height.m_value = targetTexture4
+		UnityEngine.Camera lastCamera = Knife.Tools.GPURaycast.lastCamera
+
+		System.Boolean boolean3 = UnityEngine.Object.op_Inequality(lastCamera, camera) //(Object x, Object y)
+
+		if (boolean3 != False)
+            goto INSN_18052EA4E
+        endif
+		UnityEngine.Camera gpuRaycastCamera = Knife.Tools.GPURaycast.gpuRaycastCamera
+		ulong local28 = 0
+
+		System.Boolean boolean4 = UnityEngine.Object.op_Equality(gpuRaycastCamera, local28) //(Object x, Object y)
+
+		if (boolean4 == False)
+            goto INSN_18052EBE4
+        endif
+
+		INSN_18052EA4E:
+		System.Int64 local30 = 1
+		System.Type[] local31 = new System.Type[1]
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'Camera' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+
+		if (typeFromHandle == 0)
+            goto INSN_18052EABA
+        endif
+
+		if (typeFromHandle == 0)
+            goto INSN_18052FAF9
+        endif
+
+		INSN_18052EABA:
+		local31[0] = typeFromHandle
+		UnityEngine.GameObject gameObject = new UnityEngine.GameObject()
+
+		gameObject..ctor("GPURaycastCamera", local31) //(String name, Type[] components)
+
+		UnityEngine.Camera component = gameObject.GetComponent<UnityEngine.Camera>()
+		 += 32
+		Knife.Tools.GPURaycast.worldPosBuffer = component
+		UnityEngine.Camera gpuRaycastCamera2 = Knife.Tools.GPURaycast.gpuRaycastCamera
+
+		UnityEngine.GameObject gameObject2 = gpuRaycastCamera2.gameObject
+		ulong local41 = 0
+
+		gameObject2.SetActive(local41) //(Boolean value)
+		UnityEngine.Camera gpuRaycastCamera3 = Knife.Tools.GPURaycast.gpuRaycastCamera
+		ulong local44 = 0
+
+		gpuRaycastCamera3.enabled = local44
+		UnityEngine.Camera gpuRaycastCamera4 = Knife.Tools.GPURaycast.gpuRaycastCamera
+
+		UnityEngine.GameObject gameObject3 = gpuRaycastCamera4.gameObject
+		System.Int32 61 = 61
+
+		gameObject3.hideFlags = 61
+
+		INSN_18052EBE4:
+		UnityEngine.Camera gpuRaycastCamera5 = Knife.Tools.GPURaycast.gpuRaycastCamera
+		System.Int32 1 = 1
+
+		gpuRaycastCamera5.cameraType = 1
+		UnityEngine.Camera gpuRaycastCamera6 = Knife.Tools.GPURaycast.gpuRaycastCamera
+		ulong local53 = 0
+
+		gpuRaycastCamera6.targetTexture = local53
+		UnityEngine.Camera gpuRaycastCamera7 = Knife.Tools.GPURaycast.gpuRaycastCamera
+
+		UnityEngine.Transform transform = gpuRaycastCamera7.transform
+
+		UnityEngine.Transform transform2 = camera.transform
+
+		UnityEngine.Vector3 position = camera.position
+
+		transform.set_position()
+		UnityEngine.Camera gpuRaycastCamera8 = Knife.Tools.GPURaycast.gpuRaycastCamera
+
+		UnityEngine.Transform transform3 = gpuRaycastCamera8.transform
+
+		UnityEngine.Transform transform4 = camera.transform
+
+		UnityEngine.Quaternion rotation = .rotation
+
+		transform3.set_rotation()
+		UnityEngine.Camera gpuRaycastCamera9 = Knife.Tools.GPURaycast.gpuRaycastCamera
+		System.Int32 2 = 2
+
+		gpuRaycastCamera9.clearFlags = 2
+		ulong local73 = 0
+		UnityEngine.Camera gpuRaycastCamera10 = Knife.Tools.GPURaycast.gpuRaycastCamera
+
+		[instruction error - managed method being called is null]
+
+		gpuRaycastCamera10.backgroundColor = local73
+		UnityEngine.Camera gpuRaycastCamera11 = Knife.Tools.GPURaycast.gpuRaycastCamera
+		System.Int32 1 = 1
+
+		gpuRaycastCamera11.renderingPath = 1
+		UnityEngine.Camera gpuRaycastCamera12 = Knife.Tools.GPURaycast.gpuRaycastCamera
+
+		UnityEngine.Rect rect = .rect
+
+		gpuRaycastCamera12.set_rect()
+		UnityEngine.Camera gpuRaycastCamera13 = Knife.Tools.GPURaycast.gpuRaycastCamera
+
+		System.Single fieldOfView = camera.fieldOfView
+		resolutionFactor = fieldOfView
+
+		gpuRaycastCamera13.fieldOfView = resolutionFactor
+		UnityEngine.Camera gpuRaycastCamera14 = Knife.Tools.GPURaycast.gpuRaycastCamera
+
+		System.Single aspect = camera.aspect
+		resolutionFactor = aspect
+
+		gpuRaycastCamera14.aspect = resolutionFactor
+		Knife.Tools.GPURaycast.worldPosBuffer = camera
+		UnityEngine.RenderTexture worldPosBuffer = Knife.Tools.GPURaycast.worldPosBuffer
+		ulong local92 = 0
+
+		System.Boolean boolean5 = UnityEngine.Object.op_Equality(worldPosBuffer, local92) //(Object x, Object y)
+
+		if (boolean5 != False)
+            goto INSN_18052F069
+        endif
+		UnityEngine.RenderTexture worldNormBuffer = Knife.Tools.GPURaycast.worldNormBuffer
+		ulong local96 = 0
+
+		System.Boolean boolean6 = UnityEngine.Object.op_Equality(worldNormBuffer, local96) //(Object x, Object y)
+
+		if (boolean6 != False)
+            goto INSN_18052F069
+        endif
+		UnityEngine.RenderTexture idBuffer = Knife.Tools.GPURaycast.idBuffer
+		ulong local100 = 0
+
+		System.Boolean boolean7 = UnityEngine.Object.op_Equality(idBuffer, local100) //(Object x, Object y)
+
+		if (boolean7 == False)
+            goto INSN_18052F677
+        endif
+
+		INSN_18052F069:
+		UnityEngine.RenderTexture worldPosBuffer2 = Knife.Tools.GPURaycast.worldPosBuffer
+		ulong local104 = 0
+
+		System.Boolean boolean8 = UnityEngine.Object.op_Inequality(worldPosBuffer2, local104) //(Object x, Object y)
+
+		if (boolean8 == False)
+            goto INSN_18052F148
+        endif
+		UnityEngine.RenderTexture worldPosBuffer3 = Knife.Tools.GPURaycast.worldPosBuffer
+
+		worldPosBuffer3.Release()
+		UnityEngine.RenderTexture worldPosBuffer4 = Knife.Tools.GPURaycast.worldPosBuffer
+		System.Int64 local110 = 1
+
+		UnityEngine.Object.DestroyImmediate(worldPosBuffer4, local110) //(Object obj, Boolean allowDestroyingAssets)
+
+		INSN_18052F148:
+		UnityEngine.RenderTexture worldNormBuffer2 = Knife.Tools.GPURaycast.worldNormBuffer
+		ulong local113 = 0
+
+		System.Boolean boolean9 = UnityEngine.Object.op_Inequality(worldNormBuffer2, local113) //(Object x, Object y)
+
+		if (boolean9 == False)
+            goto INSN_18052F22E
+        endif
+		UnityEngine.RenderTexture worldNormBuffer3 = Knife.Tools.GPURaycast.worldNormBuffer
+
+		worldNormBuffer3.Release()
+		UnityEngine.RenderTexture worldNormBuffer4 = Knife.Tools.GPURaycast.worldNormBuffer
+		System.Int64 local119 = 1
+
+		UnityEngine.Object.DestroyImmediate(worldNormBuffer4, local119) //(Object obj, Boolean allowDestroyingAssets)
+
+		INSN_18052F22E:
+		UnityEngine.RenderTexture idBuffer2 = Knife.Tools.GPURaycast.idBuffer
+		ulong local122 = 0
+
+		System.Boolean boolean10 = UnityEngine.Object.op_Inequality(idBuffer2, local122) //(Object x, Object y)
+
+		if (boolean10 == False)
+            goto INSN_18052F314
+        endif
+		UnityEngine.RenderTexture idBuffer3 = Knife.Tools.GPURaycast.idBuffer
+
+		idBuffer3.Release()
+		UnityEngine.RenderTexture idBuffer4 = Knife.Tools.GPURaycast.idBuffer
+		System.Int64 local128 = 1
+
+		UnityEngine.Object.DestroyImmediate(idBuffer4, local128) //(Object obj, Boolean allowDestroyingAssets)
+
+		INSN_18052F314:
+		UnityEngine.RenderTexture renderTexture = new UnityEngine.RenderTexture()
+
+		renderTexture..ctor()
+		Knife.Tools.GPURaycast.worldPosBuffer = renderTexture
+		UnityEngine.RenderTexture renderTexture2 = new UnityEngine.RenderTexture()
+
+		renderTexture2..ctor()
+		 += 8
+		Knife.Tools.GPURaycast.worldPosBuffer = renderTexture2
+		UnityEngine.RenderTexture renderTexture3 = new UnityEngine.RenderTexture()
+
+		renderTexture3..ctor()
+		 += 16
+		Knife.Tools.GPURaycast.worldPosBuffer = renderTexture3
+		UnityEngine.RenderTexture worldPosBuffer5 = Knife.Tools.GPURaycast.worldPosBuffer
+
+		System.Boolean boolean11 = worldPosBuffer5.Create()
+		UnityEngine.RenderTexture worldNormBuffer5 = Knife.Tools.GPURaycast.worldNormBuffer
+
+		System.Boolean boolean12 = worldNormBuffer5.Create()
+		UnityEngine.RenderTexture idBuffer5 = Knife.Tools.GPURaycast.idBuffer
+
+		System.Boolean boolean13 = idBuffer5.Create()
+		System.Int64 local147 = 3
+		UnityEngine.RenderBuffer[] local148 = new UnityEngine.RenderBuffer[3]
+		 += 24
+		Knife.Tools.GPURaycast.worldPosBuffer = local148
+		UnityEngine.RenderTexture worldPosBuffer6 = Knife.Tools.GPURaycast.worldPosBuffer
+		UnityEngine.RenderBuffer[] mrtBuffers = Knife.Tools.GPURaycast.mrtBuffers
+
+		UnityEngine.RenderBuffer colorBuffer = .colorBuffer
+		mrtBuffers[0] = constant293
+		UnityEngine.RenderTexture worldNormBuffer6 = Knife.Tools.GPURaycast.worldNormBuffer
+		UnityEngine.RenderBuffer[] mrtBuffers2 = Knife.Tools.GPURaycast.mrtBuffers
+
+		UnityEngine.RenderBuffer colorBuffer2 = .colorBuffer
+		mrtBuffers2[2] = constant300
+		UnityEngine.RenderTexture idBuffer6 = Knife.Tools.GPURaycast.idBuffer
+		UnityEngine.RenderBuffer[] mrtBuffers3 = Knife.Tools.GPURaycast.mrtBuffers
+
+		UnityEngine.RenderBuffer colorBuffer3 = .colorBuffer
+		mrtBuffers3[4] = constant307
+		Knife.Tools.GPURaycast.lastPixelWidth = constant309
+		Knife.Tools.GPURaycast.lastPixelHeight = constant318
+		UnityEngine.RenderTexture worldPosBuffer7 = Knife.Tools.GPURaycast.worldPosBuffer
+		UnityEngine.Camera gpuRaycastCamera15 = Knife.Tools.GPURaycast.gpuRaycastCamera
+		UnityEngine.RenderBuffer[] mrtBuffers4 = Knife.Tools.GPURaycast.mrtBuffers
+		ulong local164 = 0
+
+		UnityEngine.RenderBuffer depthBuffer = .depthBuffer
+
+		gpuRaycastCamera15.SetTargetBuffers(mrtBuffers4, local164) //(RenderBuffer[] colorBuffer, RenderBuffer depthBuffer)
+
+		INSN_18052F677:
+		UnityEngine.RenderTexture worldPosBuffer8 = Knife.Tools.GPURaycast.worldPosBuffer
+		UnityEngine.Camera gpuRaycastCamera16 = Knife.Tools.GPURaycast.gpuRaycastCamera
+		UnityEngine.RenderBuffer[] mrtBuffers5 = Knife.Tools.GPURaycast.mrtBuffers
+		ulong local170 = 0
+
+		UnityEngine.RenderBuffer depthBuffer2 = .depthBuffer
+
+		gpuRaycastCamera16.SetTargetBuffers(mrtBuffers5, local170) //(RenderBuffer[] colorBuffer, RenderBuffer depthBuffer)
+		UnityEngine.Camera gpuRaycastCamera17 = Knife.Tools.GPURaycast.gpuRaycastCamera
+		UnityEngine.Shader gpuRaycastShader = Knife.Tools.GPURaycast.gpuRaycastShader
+
+		gpuRaycastCamera17.RenderWithShader(gpuRaycastShader, "") //(Shader shader, String replacementTag)
+		UnityEngine.ComputeBuffer computeBuffer = new UnityEngine.ComputeBuffer()
+		System.Int32 16 = 16
+
+		computeBuffer..ctor()
+		UnityEngine.ComputeBuffer computeBuffer2 = new UnityEngine.ComputeBuffer()
+		System.Int32 16 = 16
+
+		computeBuffer2..ctor()
+		UnityEngine.ComputeShader gpuRaycastCopyDataShader = Knife.Tools.GPURaycast.gpuRaycastCopyDataShader
+
+		gpuRaycastCopyDataShader.GetKernelThreadGroupSizes()
+		UnityEngine.ComputeShader gpuRaycastCopyDataShader2 = Knife.Tools.GPURaycast.gpuRaycastCopyDataShader
+
+		gpuRaycastCopyDataShader2.SetInt()
+		UnityEngine.ComputeShader gpuRaycastCopyDataShader3 = Knife.Tools.GPURaycast.gpuRaycastCopyDataShader
+		UnityEngine.RenderTexture worldPosBuffer9 = Knife.Tools.GPURaycast.worldPosBuffer
+		ulong local186 = 0
+
+		gpuRaycastCopyDataShader3.SetTexture(local186, "posTex", worldPosBuffer9) //(Int32 kernelIndex, String name, Texture texture)
+		UnityEngine.ComputeShader gpuRaycastCopyDataShader4 = Knife.Tools.GPURaycast.gpuRaycastCopyDataShader
+		UnityEngine.RenderTexture worldNormBuffer7 = Knife.Tools.GPURaycast.worldNormBuffer
+		ulong local189 = 0
+
+		gpuRaycastCopyDataShader4.SetTexture(local189, "normalTex", worldNormBuffer7) //(Int32 kernelIndex, String name, Texture texture)
+		UnityEngine.ComputeShader gpuRaycastCopyDataShader5 = Knife.Tools.GPURaycast.gpuRaycastCopyDataShader
+		ulong local191 = 0
+
+		gpuRaycastCopyDataShader5.SetBuffer(local191, "positions", computeBuffer) //(Int32 kernelIndex, String name, ComputeBuffer buffer)
+		UnityEngine.ComputeShader gpuRaycastCopyDataShader6 = Knife.Tools.GPURaycast.gpuRaycastCopyDataShader
+		ulong local193 = 0
+
+		gpuRaycastCopyDataShader6.SetBuffer(local193, "normals", computeBuffer2) //(Int32 kernelIndex, String name, ComputeBuffer buffer)
+		UnityEngine.ComputeShader gpuRaycastCopyDataShader7 = Knife.Tools.GPURaycast.gpuRaycastCopyDataShader
+
+		gpuRaycastCopyDataShader7.Dispatch()
+		UnityEngine.Vector4[] local197 = new UnityEngine.Vector4[0]
+		UnityEngine.Vector4[] local198 = new UnityEngine.Vector4[0]
+
+		computeBuffer.GetData(local197) //(Array data)
+
+		computeBuffer2.GetData(local198) //(Array data)
+		Knife.Tools.GPURaycastInfo[] local201 = new Knife.Tools.GPURaycastInfo[0]
+		ulong local202 = 0
+
+		while (local4 < local201.Length)
+		    System.Int32 2 = 2
+		     += 2
+
+		    UnityEngine.Vector3 vector3 = UnityEngine.Vector4.op_Implicit()
+
+		    UnityEngine.Vector3 vector32 = UnityEngine.Vector4.op_Implicit()
+		    local4 += local4
+		    System.Int32 0 = 0
+		    local201[0] = constant341
+		    local201[2] = resolutionFactor
+		    local4 += 1
+		endwhile
+        
+
+		[instruction error - managed method being called is null]
+
+		computeBuffer2.Dispose()
+		return local201
+		throw new System.NullReferenceException()
+
+		INSN_18052FAF9:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallVirtualMethodAction at (0x18052E954) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Knife.Tools.GPURaycast
+	static System.Int32 MultiRaycastWithoutRenderer(UnityEngine.Camera camera, UnityEngine.Vector2[] pixelPositions, System.Collections.Generic.List`1<Knife.Tools.GPURaycastInfo> hitsInfo)
+
+		hitsInfo.Clear()
+
+		if (pixelPositions.Length != 0)
+
+		    UnityEngine.RenderTexture targetTexture = camera.targetTexture
+		    ulong local8 = 0
+
+		    System.Boolean boolean = UnityEngine.Object.op_Equality(targetTexture, local8) //(Object x, Object y)
+
+		    if (boolean != False)
+
+		        System.Int32 pixelWidth = camera.pixelWidth
+		    else
+
+		        UnityEngine.RenderTexture targetTexture2 = camera.targetTexture
+
+		        System.String string = targetTexture2.ToString()
+		    endif
+            
+
+		    UnityEngine.RenderTexture targetTexture3 = camera.targetTexture
+		    ulong local17 = 0
+
+		    System.Boolean boolean2 = UnityEngine.Object.op_Equality(targetTexture3, local17) //(Object x, Object y)
+
+		    if (boolean2 == False)
+                goto INSN_1805302C4
+            endif
+
+		    System.Int32 pixelHeight = camera.pixelHeight
+
+		    INSN_1805302C4:
+
+		    UnityEngine.RenderTexture targetTexture4 = camera.targetTexture
+
+		    targetTexture4.set_width()
+		    ulong local22 = 0
+		    System.Int32 length = pixelPositions.Length
+
+		    if (local22 >= length)
+                goto INSN_18053038F
+            endif
+		    UnityEngine.Vector2 vector2 = pixelPositions[local22]
+
+		    UnityEngine.Vector2 vector22 = UnityEngine.Vector2.op_Multiply(vector2, 0.4000000059604645) //(Vector2 a, Single d)
+		    local22 += 1
+		    pixelPositions[0] = vector22
+		    pixelPositions[0] = constant34
+
+		    INSN_18053038F:
+		    UnityEngine.Camera lastCamera = Knife.Tools.GPURaycast.lastCamera
+
+		    System.Boolean boolean3 = UnityEngine.Object.op_Inequality(lastCamera, camera) //(Object x, Object y)
+
+		    if (boolean3 != False)
+                goto INSN_18053045B
+            endif
+		    UnityEngine.Camera gpuRaycastCamera = Knife.Tools.GPURaycast.gpuRaycastCamera
+		    ulong local32 = 0
+
+		    System.Boolean boolean4 = UnityEngine.Object.op_Equality(gpuRaycastCamera, local32) //(Object x, Object y)
+
+		    if (boolean4 == False)
+                goto INSN_1805305F1
+            endif
+
+		    INSN_18053045B:
+		    System.Int64 local34 = 1
+		    System.Type[] local35 = new System.Type[1]
+
+		    System.Type typeFromHandle = System.Type.GetTypeFromHandle({'Camera' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+
+		    if (typeFromHandle == 0)
+                goto INSN_1805304C7
+            endif
+
+		    if (typeFromHandle == 0)
+                goto INSN_18053165C
+            endif
+
+		    INSN_1805304C7:
+		    local35[0] = typeFromHandle
+		    UnityEngine.GameObject gameObject = new UnityEngine.GameObject()
+
+		    gameObject..ctor("GPURaycastCamera", local35) //(String name, Type[] components)
+
+		    UnityEngine.Camera component = gameObject.GetComponent<UnityEngine.Camera>()
+		     += 32
+		    Knife.Tools.GPURaycast.worldPosBuffer = component
+		    UnityEngine.Camera gpuRaycastCamera2 = Knife.Tools.GPURaycast.gpuRaycastCamera
+
+		    UnityEngine.GameObject gameObject2 = gpuRaycastCamera2.gameObject
+		    ulong local45 = 0
+
+		    gameObject2.SetActive(local45) //(Boolean value)
+		    UnityEngine.Camera gpuRaycastCamera3 = Knife.Tools.GPURaycast.gpuRaycastCamera
+		    ulong local48 = 0
+
+		    gpuRaycastCamera3.enabled = local48
+		    UnityEngine.Camera gpuRaycastCamera4 = Knife.Tools.GPURaycast.gpuRaycastCamera
+
+		    UnityEngine.GameObject gameObject3 = gpuRaycastCamera4.gameObject
+		    System.Int32 61 = 61
+
+		    gameObject3.hideFlags = 61
+
+		    INSN_1805305F1:
+		    UnityEngine.Camera gpuRaycastCamera5 = Knife.Tools.GPURaycast.gpuRaycastCamera
+		    System.Int32 1 = 1
+
+		    gpuRaycastCamera5.cameraType = 1
+		    UnityEngine.Camera gpuRaycastCamera6 = Knife.Tools.GPURaycast.gpuRaycastCamera
+		    ulong local57 = 0
+
+		    gpuRaycastCamera6.targetTexture = local57
+		    UnityEngine.Camera gpuRaycastCamera7 = Knife.Tools.GPURaycast.gpuRaycastCamera
+
+		    UnityEngine.Transform transform = gpuRaycastCamera7.transform
+
+		    UnityEngine.Transform transform2 = camera.transform
+
+		    UnityEngine.Vector3 position = .position
+		    System.Single single = position.z
+
+		    transform.set_position()
+		    UnityEngine.Camera gpuRaycastCamera8 = Knife.Tools.GPURaycast.gpuRaycastCamera
+
+		    UnityEngine.Transform transform3 = gpuRaycastCamera8.transform
+
+		    UnityEngine.Transform transform4 = camera.transform
+
+		    UnityEngine.Quaternion rotation = .rotation
+
+		    transform3.set_rotation()
+		    UnityEngine.Camera gpuRaycastCamera9 = Knife.Tools.GPURaycast.gpuRaycastCamera
+		    System.Int32 2 = 2
+
+		    gpuRaycastCamera9.clearFlags = 2
+		    UnityEngine.Camera gpuRaycastCamera10 = Knife.Tools.GPURaycast.gpuRaycastCamera
+
+		    [instruction error - managed method being called is null]
+
+		    gpuRaycastCamera10.set_backgroundColor()
+		    UnityEngine.Camera gpuRaycastCamera11 = Knife.Tools.GPURaycast.gpuRaycastCamera
+		    System.Int32 1 = 1
+
+		    gpuRaycastCamera11.renderingPath = 1
+		    UnityEngine.Camera gpuRaycastCamera12 = Knife.Tools.GPURaycast.gpuRaycastCamera
+
+		    UnityEngine.Rect rect = .rect
+
+		    gpuRaycastCamera12.set_rect()
+		    UnityEngine.Camera gpuRaycastCamera13 = Knife.Tools.GPURaycast.gpuRaycastCamera
+
+		    System.Single fieldOfView = camera.fieldOfView
+
+		    gpuRaycastCamera13.fieldOfView = fieldOfView
+		    UnityEngine.Camera gpuRaycastCamera14 = Knife.Tools.GPURaycast.gpuRaycastCamera
+
+		    System.Single aspect = camera.aspect
+		    fieldOfView = aspect
+
+		    gpuRaycastCamera14.aspect = fieldOfView
+		    Knife.Tools.GPURaycast.worldPosBuffer = camera
+
+		    if (GPURaycast != )
+                goto INSN_1805309F7
+            endif
+
+		    if (GPURaycast != )
+                goto INSN_1805309F7
+            endif
+		    UnityEngine.RenderTexture worldPosBuffer = Knife.Tools.GPURaycast.worldPosBuffer
+		    ulong local101 = 0
+
+		    System.Boolean boolean5 = UnityEngine.Object.op_Equality(worldPosBuffer, local101) //(Object x, Object y)
+
+		    if (boolean5 != False)
+                goto INSN_1805309F7
+            endif
+		    UnityEngine.RenderTexture worldNormBuffer = Knife.Tools.GPURaycast.worldNormBuffer
+		    ulong local105 = 0
+
+		    System.Boolean boolean6 = UnityEngine.Object.op_Equality(worldNormBuffer, local105) //(Object x, Object y)
+
+		    if (boolean6 != False)
+                goto INSN_1805309F7
+            endif
+		    UnityEngine.RenderTexture idBuffer = Knife.Tools.GPURaycast.idBuffer
+		    ulong local109 = 0
+
+		    System.Boolean boolean7 = UnityEngine.Object.op_Equality(idBuffer, local109) //(Object x, Object y)
+
+		    if (boolean7 == False)
+                goto INSN_180530F66
+            endif
+
+		    INSN_1805309F7:
+		    UnityEngine.RenderTexture worldPosBuffer2 = Knife.Tools.GPURaycast.worldPosBuffer
+		    ulong local113 = 0
+
+		    System.Boolean boolean8 = UnityEngine.Object.op_Inequality(worldPosBuffer2, local113) //(Object x, Object y)
+
+		    if (boolean8 == False)
+                goto INSN_180530AD6
+            endif
+		    UnityEngine.RenderTexture worldPosBuffer3 = Knife.Tools.GPURaycast.worldPosBuffer
+
+		    worldPosBuffer3.Release()
+		    UnityEngine.RenderTexture worldPosBuffer4 = Knife.Tools.GPURaycast.worldPosBuffer
+		    System.Int64 local119 = 1
+
+		    UnityEngine.Object.DestroyImmediate(worldPosBuffer4, local119) //(Object obj, Boolean allowDestroyingAssets)
+
+		    INSN_180530AD6:
+		    UnityEngine.RenderTexture worldNormBuffer2 = Knife.Tools.GPURaycast.worldNormBuffer
+		    ulong local122 = 0
+
+		    System.Boolean boolean9 = UnityEngine.Object.op_Inequality(worldNormBuffer2, local122) //(Object x, Object y)
+
+		    if (boolean9 == False)
+                goto INSN_180530BBC
+            endif
+		    UnityEngine.RenderTexture worldNormBuffer3 = Knife.Tools.GPURaycast.worldNormBuffer
+
+		    worldNormBuffer3.Release()
+		    UnityEngine.RenderTexture worldNormBuffer4 = Knife.Tools.GPURaycast.worldNormBuffer
+		    System.Int64 local128 = 1
+
+		    UnityEngine.Object.DestroyImmediate(worldNormBuffer4, local128) //(Object obj, Boolean allowDestroyingAssets)
+
+		    INSN_180530BBC:
+		    UnityEngine.RenderTexture idBuffer2 = Knife.Tools.GPURaycast.idBuffer
+		    ulong local131 = 0
+
+		    System.Boolean boolean10 = UnityEngine.Object.op_Inequality(idBuffer2, local131) //(Object x, Object y)
+
+		    if (boolean10 == False)
+                goto INSN_180530CA2
+            endif
+		    UnityEngine.RenderTexture idBuffer3 = Knife.Tools.GPURaycast.idBuffer
+
+		    idBuffer3.Release()
+		    UnityEngine.RenderTexture idBuffer4 = Knife.Tools.GPURaycast.idBuffer
+		    System.Int64 local137 = 1
+
+		    UnityEngine.Object.DestroyImmediate(idBuffer4, local137) //(Object obj, Boolean allowDestroyingAssets)
+
+		    INSN_180530CA2:
+		    UnityEngine.RenderTexture renderTexture = new UnityEngine.RenderTexture()
+		    ulong local139 = 0
+		    System.Int32 16 = 16
+
+		    renderTexture..ctor()
+		    Knife.Tools.GPURaycast.worldPosBuffer = renderTexture
+		    UnityEngine.RenderTexture renderTexture2 = new UnityEngine.RenderTexture()
+
+		    renderTexture2..ctor()
+		     += 8
+		    Knife.Tools.GPURaycast.worldPosBuffer = renderTexture2
+		    UnityEngine.RenderTexture renderTexture3 = new UnityEngine.RenderTexture()
+
+		    renderTexture3..ctor()
+		     += 16
+		    Knife.Tools.GPURaycast.worldPosBuffer = renderTexture3
+		    UnityEngine.RenderTexture worldPosBuffer5 = Knife.Tools.GPURaycast.worldPosBuffer
+
+		    System.Boolean boolean11 = worldPosBuffer5.Create()
+		    UnityEngine.RenderTexture worldNormBuffer5 = Knife.Tools.GPURaycast.worldNormBuffer
+
+		    System.Boolean boolean12 = worldNormBuffer5.Create()
+		    UnityEngine.RenderTexture idBuffer5 = Knife.Tools.GPURaycast.idBuffer
+
+		    System.Boolean boolean13 = idBuffer5.Create()
+		    System.Int64 local156 = 3
+		    UnityEngine.RenderBuffer[] local157 = new UnityEngine.RenderBuffer[3]
+		     += 24
+		    Knife.Tools.GPURaycast.worldPosBuffer = local157
+		    UnityEngine.RenderTexture worldPosBuffer6 = Knife.Tools.GPURaycast.worldPosBuffer
+		    UnityEngine.RenderBuffer[] mrtBuffers = Knife.Tools.GPURaycast.mrtBuffers
+
+		    UnityEngine.RenderBuffer colorBuffer = .colorBuffer
+		    mrtBuffers[0] = constant310
+		    UnityEngine.RenderTexture worldNormBuffer6 = Knife.Tools.GPURaycast.worldNormBuffer
+		    UnityEngine.RenderBuffer[] mrtBuffers2 = Knife.Tools.GPURaycast.mrtBuffers
+
+		    UnityEngine.RenderBuffer colorBuffer2 = .colorBuffer
+		    mrtBuffers2[2] = constant317
+		    UnityEngine.RenderTexture idBuffer6 = Knife.Tools.GPURaycast.idBuffer
+		    UnityEngine.RenderBuffer[] mrtBuffers3 = Knife.Tools.GPURaycast.mrtBuffers
+
+		    UnityEngine.RenderBuffer colorBuffer3 = .colorBuffer
+		    mrtBuffers3[4] = constant324
+		    UnityEngine.RenderTexture worldPosBuffer7 = Knife.Tools.GPURaycast.worldPosBuffer
+		    UnityEngine.Camera gpuRaycastCamera15 = Knife.Tools.GPURaycast.gpuRaycastCamera
+		    UnityEngine.RenderBuffer[] mrtBuffers4 = Knife.Tools.GPURaycast.mrtBuffers
+
+		    UnityEngine.RenderBuffer depthBuffer = .depthBuffer
+
+		    gpuRaycastCamera15.SetTargetBuffers()
+
+		    INSN_180530F66:
+		    UnityEngine.RenderTexture worldPosBuffer8 = Knife.Tools.GPURaycast.worldPosBuffer
+		    UnityEngine.Camera gpuRaycastCamera16 = Knife.Tools.GPURaycast.gpuRaycastCamera
+		    UnityEngine.RenderBuffer[] mrtBuffers5 = Knife.Tools.GPURaycast.mrtBuffers
+
+		    UnityEngine.RenderBuffer depthBuffer2 = .depthBuffer
+
+		    gpuRaycastCamera16.SetTargetBuffers()
+		    UnityEngine.Camera gpuRaycastCamera17 = Knife.Tools.GPURaycast.gpuRaycastCamera
+		    UnityEngine.Shader gpuRaycastShader = Knife.Tools.GPURaycast.gpuRaycastShader
+
+		    gpuRaycastCamera17.RenderWithShader(gpuRaycastShader, "") //(Shader shader, String replacementTag)
+		    System.Int32 length2 = pixelPositions.Length
+		    ulong local190 = 0
+		    ulong local193 = 0
+
+		    while (local193 < length2)
+		        UnityEngine.Vector2 vector23 = pixelPositions[local190]
+
+		        if (constant342 > vector23)
+		        else
+		        endif
+                
+
+		        if (constant342 <= vector23)
+                    goto INSN_180531081
+                endif
+
+		        INSN_180531081:
+		        local190 += 1
+		        local193 = local190
+		    endwhile
+            
+		    local193 -= camera
+		    System.Int32 1 = 1
+
+		    System.Int32 int32 = UnityEngine.Mathf.Clamp(local193, 1, length2) //(Int32 value, Int32 min, Int32 max)
+		    local193 -= 
+		    System.Int32 1 = 1
+
+		    System.Int32 int322 = UnityEngine.Mathf.Clamp(local193, 1, length2) //(Int32 value, Int32 min, Int32 max)
+		    UnityEngine.Texture2D texture2D = new UnityEngine.Texture2D()
+		    ulong local200 = 0
+		    length2 = int322
+		    System.Int32 20 = 20
+
+		    texture2D..ctor(int32, length2, 20, local200) //(Int32 width, Int32 height, TextureFormat textureFormat, Boolean mipChain)
+		    UnityEngine.Texture2D texture2D2 = new UnityEngine.Texture2D()
+		    System.Int32 20 = 20
+		    length2 = int322
+
+		    texture2D2..ctor(int32, length2, 20, local200) //(Int32 width, Int32 height, TextureFormat textureFormat, Boolean mipChain)
+		    ulong local202 = 0
+
+		    [instruction error - managed method being called is null]
+		    UnityEngine.RenderTexture worldPosBuffer9 = Knife.Tools.GPURaycast.worldPosBuffer
+
+		    [instruction error - managed method being called is null]
+		    ulong local205 = 0
+		    ulong local206 = 0
+		    ulong local207 = 0
+		    ulong local208 = 0
+
+		    texture2D.ReadPixels(local205, local208, local207) //(Rect source, Int32 destX, Int32 destY)
+		    UnityEngine.RenderTexture worldNormBuffer7 = Knife.Tools.GPURaycast.worldNormBuffer
+
+		    UnityEngine.RenderTexture.SetActive(worldNormBuffer7) //(RenderTexture rt)
+		    ulong local211 = 0
+		    ulong local212 = 0
+		    ulong local213 = 0
+
+		    camera.ReadPixels(local211, local213, local212) //(Rect source, Int32 destX, Int32 destY)
+
+		    [instruction error - managed method being called is null]
+
+		    texture2D.Apply()
+
+		    camera.Apply()
+
+		    UnityEngine.Color[] pixels = texture2D.GetPixels()
+
+		    UnityEngine.Color[] pixels2 = camera.GetPixels()
+		    ulong local221 = 0
+		    ulong local222 = 0
+		    System.Int32 length3 = pixelPositions.Length
+
+		    if (local221 >= length3)
+                goto INSN_18053159D
+            endif
+		    UnityEngine.Vector2 vector24 = pixelPositions[local221]
+
+		    UnityEngine.Vector2 vector25 = UnityEngine.Vector2.op_Subtraction(vector24, local221) //(Vector2 a, Vector2 b)
+		    ulong local228 = 0
+
+		    UnityEngine.Vector2 one = UnityEngine.Vector2.one
+		    ulong local230 = 0
+
+		    UnityEngine.Vector2 vector26 = UnityEngine.Vector2.op_Subtraction(local228, one) //(Vector2 a, Vector2 b)
+		    System.Int32 local232 = int32 - 1
+
+		    System.Single single2 = UnityEngine.Mathf.Clamp()
+
+		    System.Single single3 = UnityEngine.Mathf.Clamp(0.4000000059604645, local222, local230) //(Single value, Single min, Single max)
+		    UnityEngine.Camera local237 = camera * int32
+		    local237 += int322
+		    local237 += local237
+		    Knife.Tools.GPURaycast.positionRead = 0.4000000059604645
+		    Knife.Tools.GPURaycast.normalRead = single3
+		      = .
+
+		    if (single3 <= local222)
+                goto INSN_180531592
+            endif
+		    ulong local239 = 0
+		    UnityEngine.Color positionRead = Knife.Tools.GPURaycast.positionRead
+		      = .
+		      = .
+		    ulong local241 = 0
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallVirtualMethodAction at (0x1805302DF) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Knife.Tools.GPURaycast
+	static System.Void .cctor()
+		System.Collections.Generic.Dictionary`2<UnityEngine.Renderer,Knife.Tools.DecalsTarget> dictionary = new System.Collections.Generic.Dictionary`2<UnityEngine.Renderer,Knife.Tools.DecalsTarget>()
+
+		dictionary..ctor()
+		 += 64
+		Knife.Tools.GPURaycast.worldPosBuffer = dictionary
+		System.Collections.Generic.List`1<UnityEngine.Renderer> list = new System.Collections.Generic.List`1<UnityEngine.Renderer>()
+
+		list..ctor()
+		 += 72
+		Knife.Tools.GPURaycast.worldPosBuffer = list
+		System.Collections.Generic.List`1<UnityEngine.Renderer> list2 = new System.Collections.Generic.List`1<UnityEngine.Renderer>()
+
+		list2..ctor()
+		 += 80
+		Knife.Tools.GPURaycast.worldPosBuffer = list2
+		ulong local3 = 0
+		Knife.Tools.GPURaycast._ZBufferParams = local3
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x180535F70) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+

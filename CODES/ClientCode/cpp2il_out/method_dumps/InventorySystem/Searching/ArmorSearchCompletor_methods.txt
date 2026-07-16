@@ -1,0 +1,181 @@
+Type: ArmorSearchCompletor
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Searching.ArmorSearchCompletor
+	System.Void .ctor(ReferenceHub hub, InventorySystem.Items.Pickups.ItemPickupBase targetPickup, InventorySystem.Items.ItemBase targetItem, System.Double maxDistanceSquared)
+
+		base..ctor()
+		ItemType itemTypeId = targetItem.ItemTypeId
+		this._armorType = itemTypeId
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1804291D5) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (4)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Searching.ArmorSearchCompletor
+	System.Boolean ValidateAny()
+
+		System.Boolean boolean = base.ValidateAny()
+
+		if (boolean != False)
+		    ReferenceHub referenceHub = this.Hub
+		    InventorySystem.Inventory inventory = referenceHub.inventory
+		    InventorySystem.InventoryInfo userInventory = inventory.UserInventory
+		    System.Collections.Generic.Dictionary`2<System.UInt16,InventorySystem.Items.ItemBase> items = userInventory.Items
+
+		    System.Int32 count = items.Count
+		    ReferenceHub referenceHub2 = this.Hub
+		    InventorySystem.Inventory inventory2 = referenceHub2.inventory
+
+		    System.Boolean boolean2 = InventorySystem.Items.Armor.BodyArmorUtils.TryGetBodyArmorAndItsSerial()
+
+		    if (boolean2 == False)
+		        ReferenceHub referenceHub3 = this.Hub
+		        Hints.HintDisplay hints = referenceHub3.hints
+		        Hints.HintParameter[] local14 = new Hints.HintParameter[1]
+		        Hints.ByteHintParameter byteHintParameter = new Hints.ByteHintParameter()
+
+		        byteHintParameter..ctor({'8' (constant value of type System.Byte)}) //(Byte value)
+
+		        if (byteHintParameter != 0)
+
+		            if (byteHintParameter == 0)
+                        goto INSN_18042964D
+                    endif
+		        endif
+                
+		        local14[0] = byteHintParameter
+		        Hints.HintEffect[] local17 = new Hints.HintEffect[1]
+		        ulong local18 = 0
+
+		        Hints.AlphaCurveHintEffect alphaCurveHintEffect = Hints.HintEffectPresets.TrailingPulseAlpha(0.5, 1, 0.5, 2, local18, local20) //(Single floorValue, Single peakValue, Single startTrailScalar, Single iterationScalar, Single startScalar, Int32 count)
+
+		        if (alphaCurveHintEffect == 0)
+                    goto INSN_1804295CB
+                endif
+
+		        if (alphaCurveHintEffect == 0)
+                    goto INSN_18042966D
+                endif
+
+		        INSN_1804295CB:
+		        local17[0] = alphaCurveHintEffect
+		        Hints.TranslationHint translationHint = new Hints.TranslationHint()
+
+		        translationHint..ctor(5, local14, local17, local24) //(HintTranslations translation, HintParameter[] parameters, HintEffect[] effects, Single durationScalar)
+
+		        hints.Show(translationHint) //(Hint hint)
+		        ulong local26 = 0
+		        return local26
+		    endif
+            
+		endif
+        
+		ulong local27 = 0
+		return local27
+
+		INSN_18042964D:
+
+		INSN_18042966D:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1804294B8) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (3)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Searching.ArmorSearchCompletor
+	System.Boolean ValidateStart()
+
+		System.Boolean boolean = base.ValidateStart()
+
+		if (boolean != False)
+		    InventorySystem.Items.ItemBase targetItem = this.TargetItem
+
+		    if (targetItem.ItemTypeId == -1)
+                goto INSN_180429728
+            endif
+
+		    if (targetItem.Category == constant7)
+                goto INSN_1804296F7
+            endif
+		    return True
+		endif
+        
+		ulong local4 = 0
+		return local4
+
+		INSN_1804296F7:
+		System.InvalidOperationException invalidOperationException = new System.InvalidOperationException()
+
+		invalidOperationException..ctor("Item is not equippable (can be held in inventory).") //(String message)
+
+		INSN_180429728:
+		System.InvalidOperationException invalidOperationException2 = new System.InvalidOperationException()
+
+		invalidOperationException2..ctor("Item has an invalid ItemType.") //(String message)
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfZeroOrNullAction at (0x1804296E5) is corrupt (ConstantDefinition: Don't know how to get IL to load a System.Byte) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Searching.ArmorSearchCompletor
+	System.Void Complete()
+		InventorySystem.Items.Armor.BodyArmor _currentArmor = this._currentArmor
+		ulong local3 = 0
+
+		System.Boolean boolean = UnityEngine.Object.op_Inequality(_currentArmor, local3) //(Object x, Object y)
+
+		if (boolean != False)
+		    InventorySystem.Items.Armor.BodyArmor _currentArmor2 = this._currentArmor
+		    _currentArmor2.DontRemoveExcessOnDrop = True
+		    ReferenceHub referenceHub = this.Hub
+		    System.UInt16 _currentArmorSerial = this._currentArmorSerial
+		    InventorySystem.Inventory inventory = referenceHub.inventory
+
+		    InventorySystem.Items.Pickups.ItemPickupBase itemPickupBase = InventorySystem.InventoryExtensions.ServerDropItem(inventory, _currentArmorSerial) //(Inventory inv, UInt16 itemSerial)
+		endif
+        
+		ReferenceHub referenceHub2 = this.Hub
+		InventorySystem.Items.Pickups.ItemPickupBase targetPickup = this.TargetPickup
+		ulong local14 = 0
+		InventorySystem.Inventory inventory2 = referenceHub2.inventory
+
+		InventorySystem.Items.ItemBase itemBase = InventorySystem.InventoryExtensions.ServerAddItem()
+
+		if (itemBase != 0)
+            goto INSN_18042939A
+        endif
+
+		INSN_18042939A:
+		//UNKNOWN CLASS OFFSET READ HERE
+		ulong local18 = 0
+		ReferenceHub referenceHub3 = this.Hub
+		InventorySystem.Inventory inventory3 = referenceHub3.inventory
+
+		InventorySystem.Items.Armor.BodyArmorUtils.RemoveEverythingExceedingLimits()
+		InventorySystem.Items.Pickups.ItemPickupBase targetPickup2 = this.TargetPickup
+
+		targetPickup2.DestroySelf()
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180429389) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (4)) and cannot be created as IL. Aborting here.
+
+

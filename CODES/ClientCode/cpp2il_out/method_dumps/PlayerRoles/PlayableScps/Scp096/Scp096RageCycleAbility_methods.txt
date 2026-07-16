@@ -1,0 +1,584 @@
+Type: Scp096RageCycleAbility
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp096.Scp096RageCycleAbility
+	System.Single get_HudEnterRageSustain()
+		PlayerRoles.PlayableScps.Subroutines.AbilityCooldown _activationTime = this._activationTime
+
+		System.Single remaining = _activationTime.Remaining
+
+		System.Single single = UnityEngine.Mathf.InverseLerp(0.4000000059604645, 9.800000190734863, remaining) //(Single a, Single b, Single value)
+		return single
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld PlayerRoles.PlayableScps.Subroutines.AbilityCooldown PlayerRoles.PlayableScps.Scp096.Scp096RageCycleAbility::_activationTime
+	IL_0006: call System.Single PlayerRoles.PlayableScps.Subroutines.AbilityCooldown::get_Remaining()
+	IL_000b: stloc.0
+	IL_000c: ldc.r4 0,4
+	IL_0011: ldc.r4 9,8
+	IL_0016: ldloc.0
+	IL_0017: call System.Single UnityEngine.Mathf::InverseLerp(System.Single,System.Single,System.Single)
+	IL_001c: ret
+	IL_001d: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0022: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp096.Scp096RageCycleAbility
+	System.Single get_HudEnterRageKeyProgress()
+		System.Single local2 = local1 / 0,4
+
+		System.Single single = UnityEngine.Mathf.Clamp01(local2) //(Single value)
+		return single
+
+
+Generated IL:
+	Don't know how to write IL for Cpp2IL.Core.Analysis.Actions.x86.Important.DivideRegByGlobalAction. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp096.Scp096RageCycleAbility
+	System.Boolean get_CanStartCycle()
+		PlayerRoles.PlayableScps.Subroutines.AbilityCooldown _activationTime = this._activationTime
+
+		System.String string = _activationTime.ToString()
+
+		if (string != 0)
+		    ulong local3 = 0
+		    return local3
+		endif
+        
+		PlayerRoles.PlayableScps.Scp096.Scp096TargetsTracker _targetsTracker = this._targetsTracker
+		  = _targetsTracker.
+		  = string.
+		System.Boolean local5 = "{il2cpp field on {'constant8' (constant value of type Cpp2IL.Core.Analysis.ResultModels.Il2CppString)}, offset 0x48}" == 0
+		return local5
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x18030A10D) is corrupt (Return value has a type of System.Int32, expecting an object of type System.Boolean) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp096.Scp096RageCycleAbility
+	System.Boolean get_CanEndCycle()
+		  = this.
+		System.Boolean local1 = "{il2cpp field on {'constant3' (constant value of type Cpp2IL.Core.Analysis.ResultModels.Il2CppString)}, offset 0x48}" == 2
+		return local1
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.FieldToLocalAction at (0x18030A0B4) is corrupt (No further info) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp096.Scp096RageCycleAbility
+	ActionName get_TargetKey()
+		return 5
+
+
+Generated IL:
+	IL_0000: ldc.i4.5
+	IL_0001: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp096.Scp096RageCycleAbility
+	System.Boolean ServerTryEnableInput(System.Single duration)
+		PlayerRoles.PlayableScps.Subroutines.AbilityCooldown _activationTime = this._activationTime
+
+		System.Boolean isReady = _activationTime.IsReady
+
+		base.ServerSendRpc(True) //(Boolean toAll)
+		return True
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld PlayerRoles.PlayableScps.Subroutines.AbilityCooldown PlayerRoles.PlayableScps.Scp096.Scp096RageCycleAbility::_activationTime
+	IL_0006: callvirt System.Boolean PlayerRoles.PlayableScps.Subroutines.AbilityCooldown::get_IsReady()
+	IL_000b: stloc.0
+	IL_000c: ldarg.0
+	IL_000d: ldc.i4.1
+	IL_000e: call System.Void PlayerRoles.PlayableScps.Subroutines.ScpSubroutineBase::ServerSendRpc(System.Boolean)
+	IL_0013: ldc.i4.1
+	IL_0014: ret
+	IL_0015: newobj System.Void System.NullReferenceException::.ctor()
+	IL_001a: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp096.Scp096RageCycleAbility
+	System.Void ServerProcessCmd(Mirror.NetworkReader reader)
+
+		base.ServerProcessCmd(reader) //(NetworkReader reader)
+
+		System.Boolean canStartCycle = this.CanStartCycle
+
+		if (canStartCycle == False)
+		      = this.
+		      = canStartCycle.
+		    PlayerRoles.PlayableScps.Scp096.Scp096RageManager _rageManager = this._rageManager
+
+		    _rageManager.ServerEndEnrage(True) //(Boolean clearTime)
+		    return
+		    return
+		endif
+        
+		PlayerRoles.PlayableScps.Scp096.Scp096RageManager _rageManager2 = this._rageManager
+
+		_rageManager2.EnragedTimeLeft = 20
+		  = _rageManager2.
+		_rageManager2.<TotalRageTime>k__BackingField = 20
+		  = _rageManager2.
+
+		_rageManager2.RageState = 1
+		PlayerRoles.PlayableScps.Scp096.Scp096TargetsTracker _targetsTracker = _rageManager2._targetsTracker
+		System.Collections.Generic.HashSet`1<ReferenceHub> targets = _targetsTracker.Targets
+
+		System.Single single = UnityEngine.Mathf.Max()
+
+		_rageManager2.ServerIncreaseDuration(single) //(Single addedDuration)
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.FieldToLocalAction at (0x180309919) is corrupt (No further info) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp096.Scp096RageCycleAbility
+	System.Void ServerWriteRpc(Mirror.NetworkWriter writer)
+
+		base.ClientWriteCmd(writer) //(NetworkWriter writer)
+		PlayerRoles.PlayableScps.Subroutines.AbilityCooldown _activationTime = this._activationTime
+
+		_activationTime.WriteCooldown(writer) //(NetworkWriter writer)
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: call System.Void PlayerRoles.PlayableScps.Subroutines.ScpSubroutineBase::ClientWriteCmd(Mirror.NetworkWriter)
+	IL_0007: ldarg.0
+	IL_0008: ldfld PlayerRoles.PlayableScps.Subroutines.AbilityCooldown PlayerRoles.PlayableScps.Scp096.Scp096RageCycleAbility::_activationTime
+	IL_000d: ldarg.1
+	IL_000e: call System.Void PlayerRoles.PlayableScps.Subroutines.AbilityCooldown::WriteCooldown(Mirror.NetworkWriter)
+	IL_0013: ret
+	IL_0014: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0019: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp096.Scp096RageCycleAbility
+	System.Void ClientProcessRpc(Mirror.NetworkReader reader)
+
+		base.ServerProcessCmd(reader) //(NetworkReader reader)
+		PlayerRoles.PlayableScps.Subroutines.AbilityCooldown _activationTime = this._activationTime
+
+		_activationTime.ReadCooldown(reader) //(NetworkReader reader)
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: call System.Void PlayerRoles.PlayableScps.Subroutines.ScpSubroutineBase::ServerProcessCmd(Mirror.NetworkReader)
+	IL_0007: ldarg.0
+	IL_0008: ldfld PlayerRoles.PlayableScps.Subroutines.AbilityCooldown PlayerRoles.PlayableScps.Scp096.Scp096RageCycleAbility::_activationTime
+	IL_000d: ldarg.1
+	IL_000e: call System.Void PlayerRoles.PlayableScps.Subroutines.AbilityCooldown::ReadCooldown(Mirror.NetworkReader)
+	IL_0013: ret
+	IL_0014: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0019: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp096.Scp096RageCycleAbility
+	System.Void ResetObject()
+
+		base.ResetObject()
+		PlayerRoles.PlayableScps.Subroutines.AbilityCooldown _activationTime = this._activationTime
+
+		_activationTime.Clear()
+		this._holdingRageCycleKey = 0
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void PlayerRoles.PlayableScps.Subroutines.ScpKeySubroutine`1::ResetObject()
+	IL_0006: ldarg.0
+	IL_0007: ldfld PlayerRoles.PlayableScps.Subroutines.AbilityCooldown PlayerRoles.PlayableScps.Scp096.Scp096RageCycleAbility::_activationTime
+	IL_000c: call System.Void PlayerRoles.PlayableScps.Subroutines.AbilityCooldown::Clear()
+	IL_0011: ldarg.0
+	IL_0012: ldc.r4 0
+	IL_0017: stfld System.Single PlayerRoles.PlayableScps.Scp096.Scp096RageCycleAbility::_holdingRageCycleKey
+	IL_001c: ret
+	IL_001d: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0022: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp096.Scp096RageCycleAbility
+	System.Void OnKeyDown()
+
+		base.OnKeyDown()
+		this._wantsToToggle = True
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void PlayerRoles.PlayableScps.Subroutines.ScpKeySubroutine`1::OnKeyDown()
+	IL_0006: ldarg.0
+	IL_0007: ldc.i4.1
+	IL_0008: stfld System.Boolean PlayerRoles.PlayableScps.Scp096.Scp096RageCycleAbility::_wantsToToggle
+	IL_000d: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp096.Scp096RageCycleAbility
+	System.Void Awake()
+
+		base.Awake()
+		  = this.
+
+		System.Boolean boolean = this.TryGetSubroutine<PlayerRoles.PlayableScps.Scp096.Scp096TargetsTracker>()
+		  = this.
+		  = boolean.
+
+		System.Boolean boolean2 = this.TryGetSubroutine<PlayerRoles.PlayableScps.Scp096.Scp096RageManager>()
+		PlayerRoles.PlayableScps.Scp096.Scp096TargetsTracker _targetsTracker = this._targetsTracker
+		System.Action`1<ReferenceHub> action = new System.Action`1<ReferenceHub>()
+
+		action..ctor(this, {'AddTarget' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		_targetsTracker.add_OnTargetAdded(action) //(Action`1 value)
+		PlayerRoles.PlayableScps.Scp096.Scp096TargetsTracker _targetsTracker2 = this._targetsTracker
+		System.Action`1<ReferenceHub> action2 = new System.Action`1<ReferenceHub>()
+
+		action2..ctor(this, {'AddTarget' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		System.Action`1<ReferenceHub> onTargetAttacked = _targetsTracker2.OnTargetAttacked
+
+		System.Delegate delegate = System.Delegate.Combine(onTargetAttacked, action2) //(Delegate a, Delegate b)
+
+		if (delegate != 0)
+
+		    if (delegate == 0)
+                goto INSN_1803097E9
+            endif
+		endif
+        
+
+		if (delegate == onTargetAttacked)
+		      = this.
+		      = delegate.
+		    System.Action`1<PlayerRoles.PlayableScps.Scp096.Scp096RageState> action3 = new System.Action`1<PlayerRoles.PlayableScps.Scp096.Scp096RageState>()
+
+		    action3..ctor(this, {'<Awake>b__28_0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		    delegate.add_OnRageUpdate(action3) //(Action`1 value)
+		    return
+		    throw new System.NullReferenceException()
+
+		    INSN_1803097E9:
+		    throw new System.InvalidCastException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.FieldToLocalAction at (0x180309647) is corrupt (No further info) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp096.Scp096RageCycleAbility
+	System.Void Update()
+
+		base.Update()
+
+		if (this._wantsToToggle != False)
+		      = this.
+
+		    System.Boolean canStartCycle = this.CanStartCycle
+
+		    if (canStartCycle == False)
+                goto INSN_180309FFE
+            endif
+
+		    ActionName targetKey = this.TargetKey
+
+		    if (targetKey == 0)
+                goto INSN_180309FFE
+            endif
+		    ulong local5 = 0
+
+		    System.Single deltaTime = UnityEngine.Time.deltaTime
+		    this._holdingRageCycleKey = deltaTime
+
+		    base.ClientSendCmd()
+		    this._holdingRageCycleKey = 0
+		endif
+        
+
+		this.UpdateServerside()
+		return
+		return
+
+		INSN_180309FFE:
+		this._holdingRageCycleKey = 0
+		this._wantsToToggle = False
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.FieldToLocalAction at (0x180309EE8) is corrupt (No further info) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp096.Scp096RageCycleAbility
+	System.Void UpdateKeyHeld()
+		  = this.
+
+		System.Boolean canStartCycle = this.CanStartCycle
+
+		if (canStartCycle != False)
+
+		    ActionName targetKey = this.TargetKey
+
+		    if (targetKey != 0)
+		        ulong local5 = 0
+
+		        System.Single deltaTime = UnityEngine.Time.deltaTime
+		        this._holdingRageCycleKey = deltaTime
+
+		        base.ClientSendCmd()
+		        this._holdingRageCycleKey = 0
+		        return
+		    endif
+            
+		    this._holdingRageCycleKey = 0
+		    this._wantsToToggle = False
+		    return
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.FieldToLocalAction at (0x180309B74) is corrupt (No further info) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp096.Scp096RageCycleAbility
+	System.Void UpdateServerside()
+		  = this.
+
+		if (constant5 != 0)
+
+		    if (constant5 != 0)
+		        PlayerRoles.PlayableScps.Scp096.Scp096TargetsTracker _targetsTracker = this._targetsTracker
+		        System.Collections.Generic.HashSet`1<ReferenceHub> targets = _targetsTracker.Targets
+
+		        System.Collections.Generic.HashSet`1/Enumerator<T> enumerator = .GetEnumerator()
+
+		        if (enumerator != 0)
+		            PlayerRoles.PlayableScps.Scp096.Scp096TargetsTracker _targetsTracker2 = this._targetsTracker
+
+		            System.Boolean isObservedBy = _targetsTracker2.IsObservedBy()
+
+		            if (isObservedBy != False)
+		                PlayerRoles.PlayableScps.Subroutines.AbilityCooldown _activationTime = this._activationTime
+
+		                System.Boolean isReady = _activationTime.IsReady
+		                System.Int64 local10 = 1
+
+		                base.ServerSendRpc(local10) //(Boolean toAll)
+		            endif
+                    
+
+		            [instruction error - managed method being called is null]
+
+		            [instruction error - managed method being called is null]
+
+		            if (True != 0)
+                        goto INSN_180309E7D
+                    endif
+		            PlayerRoles.PlayableScps.Subroutines.AbilityCooldown _activationTime2 = this._activationTime
+
+		            System.String string = _activationTime2.ToString()
+
+		            if (string == 0)
+                        goto INSN_180309E20
+                    endif
+		            PlayerRoles.PlayableScps.Scp096.Scp096TargetsTracker _targetsTracker3 = this._targetsTracker
+		            System.Collections.Generic.HashSet`1<ReferenceHub> targets2 = _targetsTracker3.Targets
+
+		            if ( <= 0)
+                        goto INSN_180309E20
+                    endif
+
+		            _targetsTracker3.ClearAllTargets()
+		            System.Int64 local17 = 1
+
+		            base.ServerSendRpc(local17) //(Boolean toAll)
+		            return
+		            System.Single _timeToChangeState = this._timeToChangeState
+		            ulong local19 = 0
+
+		            System.Single deltaTime = UnityEngine.Time.deltaTime
+		            this._timeToChangeState = _timeToChangeState
+		            ulong local21 = 0
+
+		            if (local21 <= _timeToChangeState)
+                        goto INSN_180309E20
+                    endif
+		              = this.
+		              = targets2.
+		            ulong local23 = 0
+
+		            local19.RageState = local23
+		        endif
+                
+		        return
+		    endif
+            
+		    System.Single _timeToChangeState2 = this._timeToChangeState
+		    ulong local25 = 0
+
+		    System.Single deltaTime2 = UnityEngine.Time.deltaTime
+		    this._timeToChangeState = _timeToChangeState2
+		    ulong local27 = 0
+
+		    if (local27 <= _timeToChangeState2)
+                goto INSN_180309E20
+            endif
+		      = this.
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+
+		    INSN_180309E7D:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.FieldToLocalAction at (0x180309C57) is corrupt (No further info) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp096.Scp096RageCycleAbility
+	System.Void AddTarget(ReferenceHub hub)
+		PlayerRoles.PlayableScps.Subroutines.AbilityCooldown _activationTime = this._activationTime
+
+		System.Boolean isReady = _activationTime.IsReady
+
+		base.ServerSendRpc(True) //(Boolean toAll)
+		return
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld PlayerRoles.PlayableScps.Subroutines.AbilityCooldown PlayerRoles.PlayableScps.Scp096.Scp096RageCycleAbility::_activationTime
+	IL_0006: callvirt System.Boolean PlayerRoles.PlayableScps.Subroutines.AbilityCooldown::get_IsReady()
+	IL_000b: stloc.0
+	IL_000c: ldarg.0
+	IL_000d: ldc.i4.1
+	IL_000e: call System.Void PlayerRoles.PlayableScps.Subroutines.ScpSubroutineBase::ServerSendRpc(System.Boolean)
+	IL_0013: ret
+	IL_0014: ret
+	IL_0015: newobj System.Void System.NullReferenceException::.ctor()
+	IL_001a: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp096.Scp096RageCycleAbility
+	System.Void .ctor()
+		PlayerRoles.PlayableScps.Subroutines.AbilityCooldown abilityCooldown = new PlayerRoles.PlayableScps.Subroutines.AbilityCooldown()
+
+		abilityCooldown..ctor()
+		this._activationTime = abilityCooldown
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: newobj System.Void PlayerRoles.PlayableScps.Subroutines.AbilityCooldown::.ctor()
+	IL_0005: stloc.0
+	IL_0006: ldarg.0
+	IL_0007: ldloc.0
+	IL_0008: stfld PlayerRoles.PlayableScps.Subroutines.AbilityCooldown PlayerRoles.PlayableScps.Scp096.Scp096RageCycleAbility::_activationTime
+	IL_000d: ldarg.0
+	IL_000e: call System.Void PlayerRoles.PlayableScps.Subroutines.ScpKeySubroutine`1::.ctor()
+	IL_0013: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp096.Scp096RageCycleAbility
+	System.Void <Awake>b__28_0(PlayerRoles.PlayableScps.Scp096.Scp096RageState newState)
+
+		if (newState == constant1)
+		    this._timeToChangeState = 6,1
+		    return
+		endif
+        
+
+		if (newState != constant2)
+            goto INSN_180309B49
+        endif
+		this._timeToChangeState = 5
+
+		INSN_180309B49:
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfNonZeroOrNonNullAction at (0x180309B33) is corrupt (ConstantDefinition: Don't know how to get IL to load a System.Byte) and cannot be created as IL. Aborting here.
+
+

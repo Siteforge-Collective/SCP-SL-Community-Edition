@@ -1,0 +1,2500 @@
+Type: NicknameSync
+
+
+	Generated Pseudocode:
+
+	Declaring Type: NicknameSync
+	System.Boolean get_NickSet()
+		System.Boolean NickSet = this.<NickSet>k__BackingField
+		return NickSet
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Boolean NicknameSync::<NickSet>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: NicknameSync
+	System.Void set_NickSet(System.Boolean value)
+		this.<NickSet>k__BackingField = value
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: stfld System.Boolean NicknameSync::<NickSet>k__BackingField
+	IL_0007: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: NicknameSync
+	PlayerInfoArea get_ShownPlayerInfo()
+		PlayerInfoArea _playerInfoToShow = this._playerInfoToShow
+		return _playerInfoToShow
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld PlayerInfoArea NicknameSync::_playerInfoToShow
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: NicknameSync
+	System.Void set_ShownPlayerInfo(PlayerInfoArea value)
+		System.Int32 local2 = value.value__
+
+		this.set_Network_playerInfoToShow()
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.Implicit4ByteFieldReadAction at (0x181B68271) is corrupt (Local local2 has been stripped out for being unused, so doesn't have a variable.) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: NicknameSync
+	System.String get_CustomPlayerInfo()
+		System.String _customPlayerInfoString = this._customPlayerInfoString
+		return _customPlayerInfoString
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String NicknameSync::_customPlayerInfoString
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: NicknameSync
+	System.Void set_CustomPlayerInfo(System.String value)
+
+		this.Network_customPlayerInfoString = value
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: call System.Void NicknameSync::set_Network_customPlayerInfoString(System.String)
+	IL_0007: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: NicknameSync
+	System.String get_DisplayName()
+		System.String _cleanDisplayName = this._cleanDisplayName
+
+		if (_cleanDisplayName == 0)
+
+		    System.String myNick = this.MyNick
+
+		    if (myNick == 0)
+		        System.String empty = System.String.Empty
+		    endif
+            
+		    return _cleanDisplayName
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String NicknameSync::_cleanDisplayName
+	IL_0006: stloc.0
+	IL_0007: ldloc.0
+	IL_0008: ldc.i4.0
+	IL_0009: bne.un.s IL_0014
+	IL_000b: ldarg.0
+	IL_000c: call System.String NicknameSync::get_MyNick()
+	IL_0011: ldc.i4.0
+	IL_0012: bne.un.s IL_0014
+	IL_0014: ldloc.0
+	IL_0015: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: NicknameSync
+	System.Void set_DisplayName(System.String value)
+
+		this.Network_displayName = value
+		System.String _displayName = this._displayName
+		ulong local5 = 0
+
+		this.UpdatePlayerlistInstance(local5, _displayName) //(String p, String username)
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: call System.Void NicknameSync::set_Network_displayName(System.String)
+	IL_0007: ldarg.0
+	IL_0008: ldfld System.String NicknameSync::_displayName
+	IL_000d: stloc.0
+	IL_000e: ldc.i4.0
+	IL_000f: stloc.1
+	IL_0010: ldarg.0
+	IL_0011: ldloc.1
+	IL_0012: ldloc.0
+	IL_0013: call System.Void NicknameSync::UpdatePlayerlistInstance(System.String,System.String)
+	IL_0018: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: NicknameSync
+	System.Boolean get_HasCustomName()
+		return 
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x181B67A6B) is corrupt (Return value is missing) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: NicknameSync
+	System.Void UpdatePlayerlistInstance(System.String p, System.String username)
+
+		UnityEngine.GameObject gameObject = base.gameObject
+
+		ReferenceHub hub = ReferenceHub.GetHub(gameObject) //(GameObject player)
+
+		PlayerList.UpdatePlayerNickname(hub) //(ReferenceHub instance)
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call UnityEngine.GameObject UnityEngine.Component::get_gameObject()
+	IL_0006: call ReferenceHub ReferenceHub::GetHub(UnityEngine.GameObject)
+	IL_000b: call System.Void PlayerList::UpdatePlayerNickname(ReferenceHub)
+	IL_0010: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: NicknameSync
+	System.Void UpdateCustomName(System.String p, System.String username)
+
+		System.Boolean isNullOrWhiteSpace = System.String.IsNullOrWhiteSpace(username) //(String value)
+
+		if (isNullOrWhiteSpace == False)
+
+		    System.String string = username.Replace("<", "＜") //(String oldValue, String newValue)
+
+		    System.String string2 = string.Replace(">", "＞") //(String oldValue, String newValue)
+		    System.String empty = System.String.Empty
+
+		    System.String string3 = string2.Replace("
+            ", empty) //(String oldValue, String newValue)
+		    System.String empty2 = System.String.Empty
+
+		    System.String string4 = string3.Replace("", empty2) //(String oldValue, String newValue)
+
+		    System.String string5 = string4.Trim()
+		    this._cleanDisplayName = string5
+		    ulong local18 = 0
+		    System.Int32 48 = 48
+
+		    System.String string6 = .Substring(local18, 48) //(Int32 startIndex, Int32 length)
+		    this._cleanDisplayName = string6
+
+		    System.String string7 = System.String.Concat()
+		else
+		    ulong local22 = 0
+		endif
+        
+		this._cleanDisplayName = local22
+
+		this.UpdatePlayerlistInstance(p, username) //(String p, String username)
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181B65FC5) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: NicknameSync
+	System.String get_CombinedName()
+		System.String _cleanDisplayName = this._cleanDisplayName
+
+		System.String myNick = this.MyNick
+
+		if (_cleanDisplayName != 0)
+
+		    System.String string = System.String.Concat(_cleanDisplayName, " (", myNick, ")") //(String str0, String str1, String str2, String str3)
+		endif
+        
+		return myNick
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String NicknameSync::_cleanDisplayName
+	IL_0006: stloc.0
+	IL_0007: ldarg.0
+	IL_0008: call System.String NicknameSync::get_MyNick()
+	IL_000d: stloc.1
+	IL_000e: ldloc.0
+	IL_000f: ldc.i4.0
+	IL_0010: beq.s IL_0024
+	IL_0012: ldloc.0
+	IL_0013: ldstr " ("
+	IL_0018: ldloc.1
+	IL_0019: ldstr ")"
+	IL_001e: call System.String System.String::Concat(System.String,System.String,System.String,System.String)
+	IL_0023: stloc.3
+	IL_0024: ldloc.1
+	IL_0025: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: NicknameSync
+	System.String get_MyNick()
+
+		if (this.<NickSet>k__BackingField == False)
+		    System.String _myNickSync = this._myNickSync
+
+		    if (_myNickSync != 0)
+		        this.<NickSet>k__BackingField = True
+
+		        System.String string = _myNickSync.Replace("<", "＜") //(String oldValue, String newValue)
+
+		        System.String string2 = string.Replace(">", "＞") //(String oldValue, String newValue)
+		        System.String empty = System.String.Empty
+
+		        System.String string3 = string2.Replace("
+                ", empty) //(String oldValue, String newValue)
+		        System.String empty2 = System.String.Empty
+
+		        System.String string4 = string3.Replace("", empty2) //(String oldValue, String newValue)
+		        this._firstNickname = string4
+
+		        if (string4.m_stringLength <= 48)
+                    goto INSN_181B67BA3
+                endif
+		        ulong local13 = 0
+		        System.Int32 48 = 48
+
+		        System.String string5 = string4.Substring(local13, 48) //(Int32 startIndex, Int32 length)
+		        this._firstNickname = string5
+		        return string5
+		    endif
+            
+		    return "(null)"
+		endif
+        
+		System.String _firstNickname = this._firstNickname
+
+		INSN_181B67BA3:
+		return _firstNickname
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Boolean NicknameSync::<NickSet>k__BackingField
+	IL_0006: ldc.i4.0
+	IL_0007: bne.un IL_009e
+	IL_000c: ldarg.0
+	IL_000d: ldfld System.String NicknameSync::_myNickSync
+	IL_0012: stloc.0
+	IL_0013: ldloc.0
+	IL_0014: ldc.i4.0
+	IL_0015: beq IL_0098
+	IL_001a: ldarg.0
+	IL_001b: ldc.i4.1
+	IL_001c: stfld System.Boolean NicknameSync::<NickSet>k__BackingField
+	IL_0021: ldloc.0
+	IL_0022: ldstr "<"
+	IL_0027: ldstr "＜"
+	IL_002c: call System.String System.String::Replace(System.String,System.String)
+	IL_0031: ldstr ">"
+	IL_0036: ldstr "＞"
+	IL_003b: call System.String System.String::Replace(System.String,System.String)
+	IL_0040: stloc.1
+	IL_0041: ldsfld System.String System.String::Empty
+	IL_0046: stloc.2
+	IL_0047: ldloc.1
+	IL_0048: ldstr "
+"
+	IL_004d: ldloc.2
+	IL_004e: call System.String System.String::Replace(System.String,System.String)
+	IL_0053: stloc.3
+	IL_0054: ldsfld System.String System.String::Empty
+	IL_0059: stloc.s V_4
+	IL_005b: ldloc.3
+	IL_005c: ldstr ""
+	IL_0061: ldloc.s V_4
+	IL_0063: call System.String System.String::Replace(System.String,System.String)
+	IL_0068: stloc.s V_5
+	IL_006a: ldarg.0
+	IL_006b: ldloc.s V_5
+	IL_006d: stfld System.String NicknameSync::_firstNickname
+	IL_0072: ldloc.s V_5
+	IL_0074: ldfld System.Int32 System.String::m_stringLength
+	IL_0079: ldc.i4.s 48
+	IL_007b: ble.s IL_0000
+	IL_007d: ldc.i4.0
+	IL_007e: stloc.s V_6
+	IL_0080: ldloc.s V_5
+	IL_0082: ldloc.s V_6
+	IL_0084: ldc.i4.s 48
+	IL_0086: call System.String System.String::Substring(System.Int32,System.Int32)
+	IL_008b: stloc.s V_7
+	IL_008d: ldarg.0
+	IL_008e: ldloc.s V_7
+	IL_0090: stfld System.String NicknameSync::_firstNickname
+	IL_0095: ldloc.s V_7
+	IL_0097: ret
+	IL_0098: ldstr "(null)"
+	IL_009d: ret
+	IL_009e: ldarg.0
+	IL_009f: ldfld System.String NicknameSync::_firstNickname
+	IL_00a4: ret
+	IL_00a5: newobj System.Void System.NullReferenceException::.ctor()
+	IL_00aa: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: NicknameSync
+	System.Void set_MyNick(System.String value)
+
+		if (value == 0)
+		endif
+        
+
+		System.String string = value.Replace("<", "＜") //(String oldValue, String newValue)
+
+		System.String string2 = string.Replace(">", "＞") //(String oldValue, String newValue)
+
+		System.String string3 = string.Replace(">", "＞") //(String oldValue, String newValue)
+
+		System.String string4 = string3.Replace(">", "＞") //(String oldValue, String newValue)
+		ulong local10 = 0
+		System.Int32 48 = 48
+
+		System.String string5 = string4.Substring(local10, 48) //(Int32 startIndex, Int32 length)
+
+		this.Network_myNickSync = string5
+		System.String _myNickSync = this._myNickSync
+		this._firstNickname = _myNickSync
+		this.<NickSet>k__BackingField = True
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.1
+	IL_0001: ldc.i4.0
+	IL_0002: bne.un.s IL_0004
+	IL_0004: ldarg.1
+	IL_0005: ldstr "<"
+	IL_000a: ldstr "＜"
+	IL_000f: call System.String System.String::Replace(System.String,System.String)
+	IL_0014: stloc.0
+	IL_0015: ldloc.0
+	IL_0016: ldstr ">"
+	IL_001b: ldstr "＞"
+	IL_0020: call System.String System.String::Replace(System.String,System.String)
+	IL_0025: stloc.1
+	IL_0026: ldloc.0
+	IL_0027: ldstr ">"
+	IL_002c: ldstr "＞"
+	IL_0031: call System.String System.String::Replace(System.String,System.String)
+	IL_0036: ldstr ">"
+	IL_003b: ldstr "＞"
+	IL_0040: call System.String System.String::Replace(System.String,System.String)
+	IL_0045: stloc.2
+	IL_0046: ldc.i4.0
+	IL_0047: stloc.3
+	IL_0048: ldloc.2
+	IL_0049: ldloc.3
+	IL_004a: ldc.i4.s 48
+	IL_004c: call System.String System.String::Substring(System.Int32,System.Int32)
+	IL_0051: stloc.s V_4
+	IL_0053: ldarg.0
+	IL_0054: ldloc.s V_4
+	IL_0056: call System.Void NicknameSync::set_Network_myNickSync(System.String)
+	IL_005b: ldarg.0
+	IL_005c: ldfld System.String NicknameSync::_myNickSync
+	IL_0061: stloc.s V_5
+	IL_0063: ldarg.0
+	IL_0064: ldloc.s V_5
+	IL_0066: stfld System.String NicknameSync::_firstNickname
+	IL_006b: ldarg.0
+	IL_006c: ldc.i4.1
+	IL_006d: stfld System.Boolean NicknameSync::<NickSet>k__BackingField
+	IL_0072: ret
+	IL_0073: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0078: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: NicknameSync
+	System.Void Start()
+
+		UnityEngine.GameObject gameObject = base.gameObject
+
+		ReferenceHub hub = ReferenceHub.GetHub(gameObject) //(GameObject player)
+		this._hub = hub
+		ulong local5 = 0
+		this._nickFilter = local5
+		this._replacement = ""
+		YamlConfig serverConfig = GameCore.ConfigFile.ServerConfig
+
+		System.Single float = serverConfig.GetFloat("player_info_range", 10) //(String key, Single def)
+
+		this.NetworkViewRange = float
+		YamlConfig serverConfig2 = GameCore.ConfigFile.ServerConfig
+
+		System.String string = serverConfig2.GetString("nickname_filter", "") //(String key, String def)
+
+		[instruction error - managed method being called is null]
+
+		if (string == 0)
+
+		    System.TimeSpan timeSpan = System.TimeSpan.FromMilliseconds(float) //(Double value)
+		    System.Text.RegularExpressions.Regex regex = new System.Text.RegularExpressions.Regex()
+
+		    regex..ctor(string, 9, timeSpan) //(String pattern, RegexOptions options, TimeSpan matchTimeout)
+		    this._nickFilter = regex
+		    YamlConfig serverConfig3 = GameCore.ConfigFile.ServerConfig
+
+		    System.String string2 = serverConfig3.GetString("nickname_filter_replacement", "") //(String key, String def)
+		    this._replacement = string2
+		endif
+        
+
+		System.Boolean isLocalPlayer = base.isLocalPlayer
+
+		if (isLocalPlayer == False)
+            goto INSN_181B65D3C
+        endif
+		GameCore.DistributionPlatform Platform = CentralAuthManager.<Platform>k__BackingField
+
+		if (Platform != 1)
+            goto INSN_181B658E6
+        endif
+		ulong local24 = 0
+		System.UInt64 SteamId64 = SteamManager.<SteamId64>k__BackingField
+
+		System.String personaName = SteamManager.GetPersonaName(SteamId64) //(UInt64 steamid)
+
+		INSN_181B658E6:
+
+		if (local24 != 2)
+            goto INSN_181B65A15
+        endif
+
+		if ( == local24)
+            goto INSN_181B6590C
+        endif
+
+		if ( != local5)
+            goto INSN_181B6590C
+        endif
+
+		INSN_181B6590C:
+		Discord.Discord Discord = CentralAuthManager.<Discord>k__BackingField
+
+		Discord.UserManager userManager = Discord.GetUserManager()
+
+		Discord.User currentUser = .GetCurrentUser()
+
+		INSN_181B65A15:
+
+		if (currentUser != 1)
+            goto INSN_181B65AA5
+        endif
+
+		UnityEngine.Color color = UnityEngine.Color32.op_Implicit()
+
+		INSN_181B65AA5:
+
+		if (color != 2)
+            goto INSN_181B65B2F
+        endif
+
+		UnityEngine.Color color2 = UnityEngine.Color32.op_Implicit()
+
+		GameCore.Console.AddLog()
+
+		INSN_181B65B2F:
+
+		System.Boolean boolean = PlayerPrefsSl.HasKey("nickname", 13) //(String key, DataType type)
+
+		if (boolean != False)
+            goto INSN_181B65BB8
+        endif
+		ulong local47 = 0
+
+		[instruction error - managed method being called is null]
+
+		System.String string3 = System.String.Concat()
+
+		PlayerPrefsSl.Set("nickname", string3) //(String key, String value)
+
+		INSN_181B65BB8:
+
+		System.String string4 = PlayerPrefsSl.Get("nickname", "") //(String key, String defaultValue)
+
+		[instruction error - managed method being called is null]
+		string  = string4 != 0 ? "SCP:SL Player" : ""
+		ulong local54 = 0
+
+		Mirror.PooledNetworkWriter writer = Mirror.NetworkWriterPool.GetWriter()
+
+		Mirror.NetworkWriterExtensions.WriteString(writer, "SCP:SL Player") //(NetworkWriter writer, String value)
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'NicknameSync' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+
+		base.SendCommandInternal(typeFromHandle, "CmdSetNick", writer, local60, local59) //(Type invokeClass, String cmdName, NetworkWriter writer, Int32 channelId, Boolean requiresAuthority)
+
+		Mirror.NetworkWriterPool.Recycle(writer) //(PooledNetworkWriter writer)
+
+		this.SetNick("Dedicated Server") //(String nick)
+
+		UnityEngine.GameObject gameObject2 = UnityEngine.GameObject.Find("Nickname Text") //(String name)
+
+		UnityEngine.UI.Text component = gameObject2.GetComponent<UnityEngine.UI.Text>()
+		this._nText = component
+		UnityEngine.UI.Text _nText = this._nText
+
+		UnityEngine.CanvasRenderer component2 = _nText.GetComponent<UnityEngine.CanvasRenderer>()
+		this._renderer = component2
+
+		INSN_181B65D3C:
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181B65629) is corrupt (Don't know what method is being called) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: NicknameSync
+	System.Boolean TryGetRayTransform(UnityEngine.Transform& tr)
+		ReferenceHub _hub = this._hub
+		PlayerRoles.PlayerRoleManager roleManager = _hub.roleManager
+
+		PlayerRoles.PlayerRoleBase currentRole = roleManager.CurrentRole
+
+		if (currentRole == 0)
+
+		    System.Boolean boolean = PlayerRoles.Spectating.SpectatorTargetTracker.TryGetTrackedPlayer()
+
+		    if (boolean != False)
+		          = local3.
+
+		        PlayerRoles.PlayerRoleBase currentRole2 = .CurrentRole
+
+		        if (currentRole2 != 0)
+		            UnityEngine.Transform _currentCamera = MainCameraController._currentCamera
+		            tr. = _currentCamera
+		            return True
+		        endif
+                
+		        ulong local13 = 0
+		        return local13
+		    endif
+            
+		    ReferenceHub _hub2 = this._hub
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181B65DE4) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: NicknameSync
+	System.Void Update()
+		ulong local1 = 0
+
+		System.Boolean isLocalPlayer = base.isLocalPlayer
+
+		if (isLocalPlayer != False)
+		    ulong local4 = 0
+		    ReferenceHub _hub = this._hub
+		    PlayerRoles.PlayerRoleManager roleManager = _hub.roleManager
+
+		    PlayerRoles.PlayerRoleBase currentRole = roleManager.CurrentRole
+
+		    if (currentRole != 0)
+                goto INSN_181B669FE
+            endif
+
+		    System.Boolean boolean = PlayerRoles.Spectating.SpectatorTargetTracker.TryGetTrackedPlayer()
+
+		    if (boolean != False)
+		          = boolean.
+
+		        PlayerRoles.PlayerRoleBase currentRole2 = currentRole.CurrentRole
+
+		        if (currentRole2 != 0)
+		            UnityEngine.Transform _currentCamera = MainCameraController._currentCamera
+		        else
+		            ulong local16 = 0
+
+		            System.Single deltaTime = UnityEngine.Time.deltaTime
+		            this._transparency = deltaTime
+
+		            if (local16 != 0)
+		                System.Single viewRange = this.ViewRange
+
+		                UnityEngine.Transform transform = base.transform
+
+		                UnityEngine.Vector3 position = this.position
+
+		                System.Single single = UnityEngine.Vector3.Distance()
+		                ulong local33 = 0
+		                single = local31
+
+		                System.Single single2 = UnityEngine.Mathf.Clamp(single, local33, viewRange) //(Single value, Single min, Single max)
+		                this._transparency = single2
+		            endif
+                    
+		            deltaTime = local35
+
+		            System.Single single3 = UnityEngine.Mathf.Clamp01(deltaTime) //(Single value)
+		            UnityEngine.CanvasRenderer _renderer = this._renderer
+		            this._transparency = single3
+		            deltaTime = single3
+
+		            _renderer.SetAlpha(deltaTime) //(Single alpha)
+		        endif
+                
+		        return
+
+		        INSN_181B669FE:
+		        ReferenceHub _hub2 = this._hub
+		        UnityEngine.Transform playerCameraReference = _hub2.PlayerCameraReference
+		    endif
+            
+
+		    UnityEngine.Vector3 position2 = this.position
+
+		    UnityEngine.Vector3 forward = this.forward
+		    UnityEngine.LayerMask raycastMask = this.RaycastMask
+
+		    System.Int32 int32 = UnityEngine.LayerMask.op_Implicit(raycastMask) //(LayerMask mask)
+
+		    System.Boolean boolean2 = UnityEngine.Physics.Raycast()
+
+		    if (boolean2 != False)
+
+		        UnityEngine.Transform transform2 = boolean2.transform
+		        ulong local60 = 0
+
+		        System.Boolean boolean3 = UnityEngine.Object.op_Inequality(transform2, local60) //(Object x, Object y)
+
+		        if (boolean3 == False)
+                    goto INSN_181B66B83
+                endif
+		        ulong local62 = 0
+
+		        UnityEngine.GameObject gameObject = transform2.gameObject
+
+		        System.Boolean boolean4 = ReferenceHub.TryGetHub(gameObject, local62) //(GameObject player, ReferenceHub& hub)
+
+		        if (boolean4 != False)
+                    goto INSN_181B66B83
+                endif
+
+		        UnityEngine.Transform parent = transform2.parent
+
+		        INSN_181B66B83:
+
+		        System.Boolean boolean5 = ReferenceHub.op_Inequality()
+
+		        if (boolean5 != False)
+		              = boolean5.
+
+		            System.Boolean isLocalPlayer2 = transform2.isLocalPlayer
+
+		            if (isLocalPlayer2 == False)
+		                NorthwoodLib.Pools.StringBuilderPool shared = NorthwoodLib.Pools.StringBuilderPool.Shared
+
+		                System.Text.StringBuilder stringBuilder = shared.Rent()
+		                  = shared.
+		                System.Int64 local77 = 1
+
+		                System.Boolean isAlive = PlayerRoles.PlayerRolesUtils.IsAlive()
+
+		                if (isAlive == False)
+                            goto INSN_181B66ED9
+                        endif
+		                UnityEngine.UI.Text _nText = this._nText
+		                  = isAlive.
+
+		                PlayerRoles.PlayerRoleBase currentRole3 = shared.CurrentRole
+
+		                PlayerRoles.Team team = shared.Team
+
+		                UnityEngine.Color color = _nText.color
+
+		                if ( != 2)
+                            goto INSN_181B66D27
+                        endif
+		                  = color.
+
+		                System.Boolean globalSet = _nText.GlobalSet
+
+		                if (globalSet != False)
+                            goto INSN_181B66D27
+                        endif
+		                  = globalSet.
+		                  = _nText.
+
+		                [instruction error - managed method being called is null]
+
+		                if (globalSet != False)
+                            goto INSN_181B66D65
+                        endif
+
+		                INSN_181B66D27:
+		                  = globalSet.
+		                ulong local88 = 0
+
+		                System.String coloredRoleString = _nText.GetColoredRoleString(local88) //(Boolean newLine)
+
+		                System.Text.StringBuilder stringBuilder2 = stringBuilder.AppendLine(coloredRoleString) //(String value)
+
+		                INSN_181B66D65:
+
+		                if ( == 4)
+                            goto INSN_181B66DD6
+                        endif
+		                  = stringBuilder2.
+		                  = stringBuilder.
+		                ulong local92 = 0
+
+		                [instruction error - managed method being called is null]
+
+		                if (stringBuilder2 != 0)
+                            goto INSN_181B66DD6
+                        endif
+		                  = stringBuilder2.
+		                  = local92.
+
+		                System.Text.StringBuilder stringBuilder3 = stringBuilder.AppendLine(local92) //(String value)
+
+		                INSN_181B66DD6:
+		                  = gameObject.
+
+		                if (local77 == stringBuilder3)
+                            goto INSN_181B66E68
+                        endif
+		                UnityEngine.Material m_MaskMaterial = _nText.m_MaskMaterial
+		                  = m_MaskMaterial.
+
+		                if (stringBuilder3 != 0)
+                            goto INSN_181B66E4A
+                        endif
+
+		                System.String myNick = m_MaskMaterial.MyNick
+
+		                if (myNick != 0)
+                            goto INSN_181B66E4A
+                        endif
+		                System.String empty = System.String.Empty
+
+		                INSN_181B66E4A:
+
+		                System.Text.StringBuilder stringBuilder4 = stringBuilder.AppendLine(empty) //(String value)
+		                  = gameObject.
+
+		                INSN_181B66E68:
+
+		                if (stringBuilder4 == 8)
+                            goto INSN_181B66EB7
+                        endif
+		                  = stringBuilder4.
+
+		                PlayerRoles.PlayerRoleBase currentRole4 = stringBuilder.CurrentRole
+
+		                System.String roleName = currentRole4.RoleName
+
+		                System.Text.StringBuilder stringBuilder5 = stringBuilder.Append(roleName) //(String value)
+
+		                INSN_181B66EB7:
+
+		                PlayerRoles.RoleTypeId roleId = PlayerRoles.PlayerRolesUtils.GetRoleId()
+
+		                if (roleId != constant127)
+                            goto INSN_181B66ED9
+                        endif
+
+		                System.Text.StringBuilder stringBuilder6 = stringBuilder.Clear()
+
+		                INSN_181B66ED9:
+		                  = stringBuilder6.
+		                ulong local111 = 0
+
+		                PlayerRoles.PlayerRoleBase currentRole5 = stringBuilder.CurrentRole
+
+		                if (currentRole5 == 0)
+                            goto INSN_181B67164
+                        endif
+		                //UNKNOWN CLASS OFFSET READ HERE
+
+		                System.Boolean usesUnitNames = currentRole5.UsesUnitNames
+
+		                if (usesUnitNames == False)
+                            goto INSN_181B67164
+                        endif
+		                ReferenceHub _hub3 = this._hub
+		                PlayerRoles.PlayerRoleManager roleManager2 = _hub3.roleManager
+		                ulong local117 = 0
+
+		                PlayerRoles.PlayerRoleBase currentRole6 = roleManager2.CurrentRole
+
+		                if (currentRole6 == 0)
+                            goto INSN_181B67164
+                        endif
+		                //UNKNOWN CLASS OFFSET READ HERE
+		                  = currentRole5.
+
+		                if ( != currentRole6)
+                            goto INSN_181B67164
+                        endif
+		                  = gameObject.
+
+		                if (currentRole6 == 0)
+                            goto INSN_181B67015
+                        endif
+
+		                System.Text.StringBuilder stringBuilder7 = stringBuilder.Append(" (") //(String value)
+
+		                System.String unitName = currentRole5.UnitName
+
+		                System.Text.StringBuilder stringBuilder8 = stringBuilder.Append(unitName) //(String value)
+
+		                System.Text.StringBuilder stringBuilder9 = stringBuilder.Append(")") //(String value)
+
+		                INSN_181B67015:
+
+		                System.Text.StringBuilder stringBuilder10 = stringBuilder.AppendLine("
+                        ") //(String value)
+
+		                if ( == 32)
+                            goto INSN_181B67164
+                        endif
+
+		                PlayerRoles.RoleTypeId roleId2 = PlayerRoles.PlayerRolesUtils.GetRoleId()
+
+		                if (roleId2 == constant151)
+                            goto INSN_181B67067
+                        endif
+
+		                if (roleId2 == constant151)
+                            goto INSN_181B67067
+                        endif
+
+		                if (roleId2 == constant151)
+                            goto INSN_181B6705F
+                        endif
+
+		                if (stringBuilder != 1)
+                            goto INSN_181B6706D
+                        endif
+
+		                INSN_181B6705F:
+
+		                INSN_181B67067:
+		                System.Int64 local132 = 200
+
+		                INSN_181B6706D:
+		                ReferenceHub _hub4 = this._hub
+
+		                PlayerRoles.RoleTypeId roleId3 = PlayerRoles.PlayerRolesUtils.GetRoleId(_hub4) //(ReferenceHub hub)
+
+		                if (roleId3 == constant153)
+                            goto INSN_181B6709A
+                        endif
+
+		                if (roleId3 == constant153)
+                            goto INSN_181B6709A
+                        endif
+
+		                if (roleId3 == constant153)
+                            goto INSN_181B67093
+                        endif
+
+		                if (_hub4 != 1)
+                            goto INSN_181B6709F
+                        endif
+
+		                INSN_181B67093:
+
+		                INSN_181B6709A:
+		                System.Int64 local137 = 200
+
+		                INSN_181B6709F:
+
+		                System.Text.StringBuilder stringBuilder11 = stringBuilder.Append("<b>") //(String value)
+
+		                if (local137 > local132)
+                            goto INSN_181B67108
+                        endif
+
+		                if (local137 != local132)
+                            goto INSN_181B6714C
+                        endif
+
+		                INSN_181B67108:
+		                ulong local142 = 0
+
+		                System.String string = TranslationReader.Get("Legancy_Interfaces", local142, "NO_TRANSLATION") //(String keyName, Int32 index, String defaultValue)
+
+		                System.Text.StringBuilder stringBuilder12 = stringBuilder.Append(string) //(String value)
+
+		                INSN_181B6714C:
+
+		                System.Text.StringBuilder stringBuilder13 = stringBuilder.Append("</b>") //(String value)
+
+		                INSN_181B67164:
+		                UnityEngine.UI.Text _nText2 = this._nText
+
+		                System.Int32 hashCode = stringBuilder.GetHashCode()
+
+		                System.String text = _nText2.text
+		                NorthwoodLib.Pools.StringBuilderPool shared2 = NorthwoodLib.Pools.StringBuilderPool.Shared
+
+		                shared2.Return(stringBuilder) //(StringBuilder stringBuilder)
+		                throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181B667D6) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: NicknameSync
+	System.Void SetCustomInfo(System.String oldValue, System.String newValue)
+
+		if (newValue != 0)
+		    System.Text.RegularExpressions.Regex playerCustomInfoRegex = Misc.PlayerCustomInfoRegex
+
+		    System.Boolean isMatch = playerCustomInfoRegex.IsMatch(newValue) //(String input)
+		    ulong local6 = 0
+
+		    if (isMatch == False)
+		        this._sanitizedPlayerInfoString = local6
+
+		        System.String myNick = this.MyNick
+
+		        System.String string = System.String.Concat("Custom info of player ", myNick, " has been REJECTED. Info: ", newValue) //(String str0, String str1, String str2, String str3)
+		        ulong local11 = 0
+
+		        [instruction error - managed method being called is null]
+		        ulong local12 = 0
+
+		        GameCore.Console.AddLog(string, local11, local12, 1) //(String text, Color c, Boolean nospace, ConsoleLogType type)
+		    endif
+            
+
+		    System.Boolean boolean = newValue.Contains("<") //(String value)
+
+		    if (boolean == False)
+                goto INSN_181B64D3B
+            endif
+		    System.Char[] local15 = new System.Char[1]
+		    local15[0] = 60
+
+		    System.String[] stringArray = newValue.Split(local15) //(Char[] separator)
+		    System.Int32 length = stringArray.Length
+
+		    if (local6 >= length)
+                goto INSN_181B64D3B
+            endif
+		    System.String string2 = stringArray[local6]
+		    System.Int32 4 = 4
+
+		    System.Boolean boolean2 = string2.StartsWith("/", 4) //(String value, StringComparison comparisonType)
+
+		    if (boolean2 != False)
+                goto INSN_181B64C79
+            endif
+		    System.Int32 4 = 4
+
+		    System.Boolean boolean3 = string2.StartsWith("b>", 4) //(String value, StringComparison comparisonType)
+
+		    if (boolean3 != False)
+                goto INSN_181B64C79
+            endif
+		    System.Int32 4 = 4
+
+		    System.Boolean boolean4 = string2.StartsWith("i>", 4) //(String value, StringComparison comparisonType)
+
+		    if (boolean4 != False)
+                goto INSN_181B64C79
+            endif
+		    System.Int32 4 = 4
+
+		    System.Boolean boolean5 = string2.StartsWith("size=", 4) //(String value, StringComparison comparisonType)
+
+		    if (boolean5 != False)
+                goto INSN_181B64C79
+            endif
+
+		    if (string2.m_stringLength == local6)
+                goto INSN_181B64C79
+            endif
+		    System.Int32 4 = 4
+
+		    System.Boolean boolean6 = string2.StartsWith("color=", 4) //(String value, StringComparison comparisonType)
+
+		    if (boolean6 != False)
+                goto INSN_181B64C01
+            endif
+		    System.Int32 4 = 4
+
+		    System.Boolean boolean7 = string2.StartsWith("#", 4) //(String value, StringComparison comparisonType)
+
+		    if (boolean7 == False)
+                goto INSN_181B64C82
+            endif
+		    System.Int32 7 = 7
+
+		    System.Char chars = string2.Chars
+
+		    if (chars != constant51)
+                goto INSN_181B64C82
+            endif
+
+		    INSN_181B64C01:
+		    System.Int32 13 = 13
+
+		    System.Char chars2 = string2.Chars
+
+		    if (chars2 != constant60)
+                goto INSN_181B64C82
+            endif
+		    System.String[] acceptedColours = Misc.AcceptedColours
+		    System.Int32 6 = 6
+
+		    System.String string3 = string2.Substring(7, 6) //(Int32 startIndex, Int32 length)
+
+		    System.Boolean boolean8 = CollectionExtensions.Contains<System.String>()
+
+		    if (boolean8 == False)
+                goto INSN_181B64C82
+            endif
+
+		    INSN_181B64C79:
+		    local6 += 1
+
+		    INSN_181B64C82:
+		    this._sanitizedPlayerInfoString = local6
+
+		    System.String myNick2 = this.MyNick
+
+		    System.String string4 = System.String.Concat("Custom info of player ", myNick2, " has been REJECTED. Info: ", newValue) //(String str0, String str1, String str2, String str3)
+		    ulong local44 = 0
+
+		    [instruction error - managed method being called is null]
+		    ulong local45 = 0
+
+		    GameCore.Console.AddLog(string4, local44, local45, 1) //(String text, Color c, Boolean nospace, ConsoleLogType type)
+		    return
+
+		    INSN_181B64D3B:
+		    this._sanitizedPlayerInfoString = newValue
+		endif
+        
+		ulong local46 = 0
+		this._sanitizedPlayerInfoString = local46
+		throw new System.IndexOutOfRangeException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181B64A23) is corrupt (Don't know what method is being called) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: NicknameSync
+	System.Void CmdSetNick(System.String n)
+		ulong local2 = 0
+
+		Mirror.PooledNetworkWriter writer = Mirror.NetworkWriterPool.GetWriter()
+
+		Mirror.NetworkWriterExtensions.WriteString(writer, n) //(NetworkWriter writer, String value)
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'NicknameSync' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+
+		base.SendCommandInternal(typeFromHandle, "CmdSetNick", writer, local9, local8) //(Type invokeClass, String cmdName, NetworkWriter writer, Int32 channelId, Boolean requiresAuthority)
+
+		Mirror.NetworkWriterPool.Recycle(writer) //(PooledNetworkWriter writer)
+		return
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: call Mirror.PooledNetworkWriter Mirror.NetworkWriterPool::GetWriter()
+	IL_0007: stloc.1
+	IL_0008: ldloc.1
+	IL_0009: ldarg.1
+	IL_000a: call System.Void Mirror.NetworkWriterExtensions::WriteString(Mirror.NetworkWriter,System.String)
+	IL_000f: ldtoken NicknameSync
+	IL_0014: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+	IL_0019: stloc.2
+	IL_001a: ldarg.0
+	IL_001b: ldloc.2
+	IL_001c: ldstr "CmdSetNick"
+	IL_0021: ldloc.1
+	IL_0022: ldloc.s V_5
+	IL_0024: ldloc.s V_4
+	IL_0026: call System.Void Mirror.NetworkBehaviour::SendCommandInternal(System.Type,System.String,Mirror.NetworkWriter,System.Int32,System.Boolean)
+	IL_002b: ldloc.1
+	IL_002c: call System.Void Mirror.NetworkWriterPool::Recycle(Mirror.PooledNetworkWriter)
+	IL_0031: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: NicknameSync
+	System.Void UpdateNickname(System.String n)
+		this.<NickSet>k__BackingField = True
+
+		if (n != 0)
+		    NorthwoodLib.Pools.StringBuilderPool shared = NorthwoodLib.Pools.StringBuilderPool.Shared
+		    System.Int32 m_stringLength = n.m_stringLength
+
+		    System.Text.StringBuilder stringBuilder = shared.Rent(m_stringLength) //(Int32 capacity)
+		    ulong local6 = 0
+		    ulong local7 = 0
+
+		    if (local7 < n.m_stringLength)
+
+		        System.Char chars = n.Chars
+
+		        System.Boolean isLetterOrDigit = System.Char.IsLetterOrDigit(chars) //(Char c)
+
+		        if (isLetterOrDigit == False)
+
+		            System.Boolean isPunctuation = System.Char.IsPunctuation(chars) //(Char c)
+
+		            if (isPunctuation == False)
+
+		                System.Boolean isSymbol = System.Char.IsSymbol(chars) //(Char c)
+
+		                if (isSymbol == False)
+
+		                    System.Boolean isWhiteSpace = System.Char.IsWhiteSpace(chars) //(Char c)
+
+		                    if (isWhiteSpace != False)
+
+		                        if (0xFFFA != isWhiteSpace)
+                                    goto INSN_181B6632B
+                                endif
+
+		                        if (chars == constant58)
+                                    goto INSN_181B6632B
+                                endif
+		                    endif
+                            
+
+		                    System.Boolean isHighSurrogate = System.Char.IsHighSurrogate(chars) //(Char c)
+
+		                    if (isHighSurrogate != False)
+                                goto INSN_181B6631D
+                            endif
+
+		                    System.Boolean isLowSurrogate = System.Char.IsLowSurrogate(chars) //(Char c)
+
+		                    if (isLowSurrogate == False)
+                                goto INSN_181B66342
+                            endif
+
+		                    System.Boolean isSurrogatePair = System.Char.IsSurrogatePair({'48' (constant value of type System.Char)}, chars) //(Char highSurrogate, Char lowSurrogate)
+
+		                    if (isSurrogatePair == False)
+                                goto INSN_181B66342
+                            endif
+
+		                    System.Text.StringBuilder stringBuilder2 = stringBuilder.Append({'48' (constant value of type System.Char)}) //(Char value)
+
+		                    System.Text.StringBuilder stringBuilder3 = stringBuilder.Append(chars) //(Char value)
+		                    local7 += 1
+
+		                    INSN_181B6631D:
+		                    local7 += 1
+		                endif
+                        
+
+		                INSN_181B6632B:
+
+		                System.Text.StringBuilder stringBuilder4 = stringBuilder.Append(chars) //(Char value)
+
+		                INSN_181B66342:
+		                local7 += 1
+		            endif
+                    
+
+		            if (local6 == 0)
+                        goto INSN_181B6640B
+                    endif
+
+		            System.Int32 hashCode = stringBuilder.GetHashCode()
+		            NorthwoodLib.Pools.StringBuilderPool shared2 = NorthwoodLib.Pools.StringBuilderPool.Shared
+
+		            shared2.Return(stringBuilder) //(StringBuilder stringBuilder)
+
+		            if ( <= 48)
+                        goto INSN_181B663D7
+                    endif
+		            ulong local34 = 0
+		            System.Int32 48 = 48
+
+		            System.String string = hashCode.Substring(local34, 48) //(Int32 startIndex, Int32 length)
+
+		            INSN_181B663D7:
+
+		            this.SetNick(string) //(String nick)
+		            return
+
+		            INSN_181B6640B:
+
+		            Mirror.NetworkConnection connectionToClient = base.connectionToClient
+
+		            System.String string2 = connectionToClient.ToString()
+
+		            System.String string3 = System.String.Concat("Kicked ", string2, " for having an empty name.") //(String str0, String str1, String str2)
+		            System.Int32 7 = 7
+
+		            ServerConsole.AddLog(string3, 7) //(String q, ConsoleColor color)
+
+		            Mirror.NetworkConnection connectionToClient2 = base.connectionToClient
+
+		            ServerConsole.Disconnect(connectionToClient2, "You may not have an empty name.") //(NetworkConnection conn, String message)
+
+		            this.SetNick("Empty Name") //(String nick)
+		            NorthwoodLib.Pools.StringBuilderPool shared3 = NorthwoodLib.Pools.StringBuilderPool.Shared
+
+		            shared3.Return()
+
+		            Mirror.NetworkConnection connectionToClient3 = base.connectionToClient
+
+		            System.String string4 = connectionToClient3.ToString()
+
+		            System.String string5 = System.String.Concat("Banned ", string4, " for passing a too long name.") //(String str0, String str1, String str2)
+		            System.Int32 7 = 7
+
+		            ServerConsole.AddLog(string5, 7) //(String q, ConsoleColor color)
+		            ReferenceHub _hub = this._hub
+
+		            System.Boolean boolean = BanPlayer.BanUser(_hub, "Too long name", {'1577847600' (constant value of type System.Int64)}) //(ReferenceHub target, String reason, Int64 duration)
+		        endif
+                
+
+		        Mirror.NetworkConnection connectionToClient4 = base.connectionToClient
+
+		        System.String string6 = connectionToClient4.ToString()
+
+		        System.String string7 = System.String.Concat("Banned ", string6, " for passing null name.") //(String str0, String str1, String str2)
+		        System.Int32 7 = 7
+
+		        ServerConsole.AddLog(string7, 7) //(String q, ConsoleColor color)
+		        ReferenceHub _hub2 = this._hub
+
+		        System.Boolean boolean2 = BanPlayer.BanUser(_hub2, "Null name", {'1577847600' (constant value of type System.Int64)}) //(ReferenceHub target, String reason, Int64 duration)
+		        throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfZeroOrNullAction at (0x181B66256) is corrupt (ConstantDefinition: Don't know how to get IL to load a System.Char) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: NicknameSync
+	System.Void SetNick(System.String nick)
+		ulong local2 = 0
+
+		this.MyNick = nick
+		System.Text.RegularExpressions.Regex _nickFilter = this._nickFilter
+
+		if (_nickFilter != 0)
+		    System.String _replacement = this._replacement
+
+		    System.String string = _nickFilter.Replace(nick, _replacement) //(String input, String replacement)
+
+		    if (string != 0)
+                goto INSN_181B64E92
+            endif
+		endif
+        
+
+		INSN_181B64E92:
+
+		System.String string2 = System.String.Format("Error when filtering nick {0}: {1}", nick, local2) //(String format, Object arg0, Object arg1)
+		System.Int32 7 = 7
+
+		ServerConsole.AddLog(string2, 7) //(String q, ConsoleColor color)
+
+		System.Boolean boolean = System.String.op_Inequality(nick, "(filter failed)") //(String a, String b)
+
+		if (boolean == False)
+            goto INSN_181B64F1D
+        endif
+
+		this.Network_displayName = "(filter failed)"
+		System.String _displayName = this._displayName
+		ulong local15 = 0
+
+		this.UpdatePlayerlistInstance(local15, _displayName) //(String p, String username)
+
+		INSN_181B64F1D:
+
+		System.Boolean isLocalPlayer = base.isLocalPlayer
+
+		if (isLocalPlayer == False)
+            goto INSN_181B64F63
+        endif
+
+		INSN_181B64F63:
+		System.String[] local18 = new System.String[5]
+
+		if ("Nickname of " == 0)
+            goto INSN_181B64FAB
+        endif
+
+		if ("Nickname of " == 0)
+            goto INSN_181B65315
+        endif
+
+		INSN_181B64FAB:
+		local18[0] = "Nickname of "
+		ReferenceHub _hub = this._hub
+		CharacterClassManager characterClassManager = _hub.characterClassManager
+
+		System.String userId = characterClassManager.UserId
+
+		if (userId == 0)
+            goto INSN_181B65005
+        endif
+
+		if (userId == 0)
+            goto INSN_181B65335
+        endif
+
+		INSN_181B65005:
+		local18[1] = userId
+
+		if (" is now " == 0)
+            goto INSN_181B65049
+        endif
+
+		if (" is now " == 0)
+            goto INSN_181B65355
+        endif
+
+		INSN_181B65049:
+		local18[2] = " is now "
+
+		if (nick == 0)
+            goto INSN_181B6507F
+        endif
+
+		if (" is now " == 0)
+            goto INSN_181B65375
+        endif
+
+		INSN_181B6507F:
+		local18[3] = nick
+
+		if ("." == 0)
+            goto INSN_181B650C3
+        endif
+
+		if ("." == 0)
+            goto INSN_181B65395
+        endif
+
+		INSN_181B650C3:
+		local18[4] = "."
+
+		System.String string3 = System.String.Concat(local18) //(String[] values)
+		System.Int32 7 = 7
+
+		ServerConsole.AddLog(string3, 7) //(String q, ConsoleColor color)
+		System.String[] local26 = new System.String[5]
+
+		if ("Nickname of " == 0)
+            goto INSN_181B6515E
+        endif
+
+		if ("Nickname of " == 0)
+            goto INSN_181B653B5
+        endif
+
+		INSN_181B6515E:
+		local26[0] = "Nickname of "
+		ReferenceHub _hub2 = this._hub
+		CharacterClassManager characterClassManager2 = _hub2.characterClassManager
+
+		System.String userId2 = characterClassManager2.UserId
+
+		if (userId2 == 0)
+            goto INSN_181B651B8
+        endif
+
+		if (userId2 == 0)
+            goto INSN_181B653D5
+        endif
+
+		INSN_181B651B8:
+		local26[1] = userId2
+
+		if (" is now " == 0)
+            goto INSN_181B651FC
+        endif
+
+		if (" is now " == 0)
+            goto INSN_181B653F5
+        endif
+
+		INSN_181B651FC:
+		local26[2] = " is now "
+
+		if (nick == 0)
+            goto INSN_181B65232
+        endif
+
+		if (" is now " == 0)
+            goto INSN_181B65415
+        endif
+
+		INSN_181B65232:
+		local26[3] = nick
+
+		if ("." == 0)
+            goto INSN_181B65276
+        endif
+
+		if ("." == 0)
+            goto INSN_181B65435
+        endif
+
+		INSN_181B65276:
+		local26[4] = "."
+
+		System.String string4 = System.String.Concat(local26) //(String[] values)
+		ulong local34 = 0
+		ulong local35 = 0
+
+		ServerLogs.AddLog(1, string4, local35, local34) //(Modules module, String msg, ServerLogType type, Boolean init)
+		return
+
+		UnityEngine.Debug.LogWarning("[Server] function 'System.Void NicknameSync::SetNick(System.String)' called when server was not active") //(Object message)
+		return
+
+		INSN_181B65315:
+
+		INSN_181B65335:
+
+		INSN_181B65355:
+
+		INSN_181B65375:
+
+		INSN_181B65395:
+
+		INSN_181B653B5:
+
+		INSN_181B653D5:
+
+		INSN_181B653F5:
+
+		INSN_181B65415:
+
+		INSN_181B65435:
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: ldarg.0
+	IL_0003: ldarg.1
+	IL_0004: call System.Void NicknameSync::set_MyNick(System.String)
+	IL_0009: ldarg.0
+	IL_000a: ldfld System.Text.RegularExpressions.Regex NicknameSync::_nickFilter
+	IL_000f: stloc.1
+	IL_0010: ldloc.1
+	IL_0011: ldc.i4.0
+	IL_0012: beq.s IL_0026
+	IL_0014: ldarg.0
+	IL_0015: ldfld System.String NicknameSync::_replacement
+	IL_001a: stloc.2
+	IL_001b: ldloc.1
+	IL_001c: ldarg.1
+	IL_001d: ldloc.2
+	IL_001e: call System.String System.Text.RegularExpressions.Regex::Replace(System.String,System.String)
+	IL_0023: ldc.i4.0
+	IL_0024: bne.un.s IL_0026
+	IL_0026: ldstr "Error when filtering nick {0}: {1}"
+	IL_002b: ldarg.1
+	IL_002c: ldloc.0
+	IL_002d: call System.String System.String::Format(System.String,System.Object,System.Object)
+	IL_0032: ldc.i4.7
+	IL_0033: call System.Void ServerConsole::AddLog(System.String,System.ConsoleColor)
+	IL_0038: ldarg.1
+	IL_0039: ldstr "(filter failed)"
+	IL_003e: call System.Boolean System.String::op_Inequality(System.String,System.String)
+	IL_0043: ldc.i4.0
+	IL_0044: beq.s IL_0064
+	IL_0046: ldarg.0
+	IL_0047: ldstr "(filter failed)"
+	IL_004c: call System.Void NicknameSync::set_Network_displayName(System.String)
+	IL_0051: ldarg.0
+	IL_0052: ldfld System.String NicknameSync::_displayName
+	IL_0057: stloc.3
+	IL_0058: ldc.i4.0
+	IL_0059: stloc.s V_4
+	IL_005b: ldarg.0
+	IL_005c: ldloc.s V_4
+	IL_005e: ldloc.3
+	IL_005f: call System.Void NicknameSync::UpdatePlayerlistInstance(System.String,System.String)
+	IL_0064: ldarg.0
+	IL_0065: call System.Boolean Mirror.NetworkBehaviour::get_isLocalPlayer()
+	IL_006a: ldc.i4.0
+	IL_006b: beq.s IL_006d
+	IL_006d: ldc.i4.5
+	IL_006e: newarr System.String
+	IL_0073: stloc.s V_5
+	IL_0075: ldstr "Nickname of "
+	IL_007a: ldc.i4.0
+	IL_007b: beq.s IL_0088
+	IL_007d: ldstr "Nickname of "
+	IL_0082: ldc.i4.0
+	IL_0083: beq IL_0000
+	IL_0088: ldloc.s V_5
+	IL_008a: ldc.i4.0
+	IL_008b: ldstr "Nickname of "
+	IL_0090: stelem.any System.String
+	IL_0095: ldarg.0
+	IL_0096: ldfld ReferenceHub NicknameSync::_hub
+	IL_009b: ldfld CharacterClassManager ReferenceHub::characterClassManager
+	IL_00a0: call System.String CharacterClassManager::get_UserId()
+	IL_00a5: stloc.s V_6
+	IL_00a7: ldloc.s V_6
+	IL_00a9: ldc.i4.0
+	IL_00aa: beq.s IL_00b4
+	IL_00ac: ldloc.s V_6
+	IL_00ae: ldc.i4.0
+	IL_00af: beq IL_0000
+	IL_00b4: ldloc.s V_5
+	IL_00b6: ldc.i4.1
+	IL_00b7: ldloc.s V_6
+	IL_00b9: stelem.any System.String
+	IL_00be: ldstr " is now "
+	IL_00c3: ldc.i4.0
+	IL_00c4: beq.s IL_00d1
+	IL_00c6: ldstr " is now "
+	IL_00cb: ldc.i4.0
+	IL_00cc: beq IL_0000
+	IL_00d1: ldloc.s V_5
+	IL_00d3: ldc.i4.2
+	IL_00d4: ldstr " is now "
+	IL_00d9: stelem.any System.String
+	IL_00de: ldarg.1
+	IL_00df: ldc.i4.0
+	IL_00e0: beq.s IL_00ed
+	IL_00e2: ldstr " is now "
+	IL_00e7: ldc.i4.0
+	IL_00e8: beq IL_0000
+	IL_00ed: ldloc.s V_5
+	IL_00ef: ldc.i4.3
+	IL_00f0: ldarg.1
+	IL_00f1: stelem.any System.String
+	IL_00f6: ldstr "."
+	IL_00fb: ldc.i4.0
+	IL_00fc: beq.s IL_0109
+	IL_00fe: ldstr "."
+	IL_0103: ldc.i4.0
+	IL_0104: beq IL_0000
+	IL_0109: ldloc.s V_5
+	IL_010b: ldc.i4.4
+	IL_010c: ldstr "."
+	IL_0111: stelem.any System.String
+	IL_0116: ldloc.s V_5
+	IL_0118: call System.String System.String::Concat(System.String[])
+	IL_011d: ldc.i4.7
+	IL_011e: call System.Void ServerConsole::AddLog(System.String,System.ConsoleColor)
+	IL_0123: ldc.i4.5
+	IL_0124: newarr System.String
+	IL_0129: stloc.s V_7
+	IL_012b: ldstr "Nickname of "
+	IL_0130: ldc.i4.0
+	IL_0131: beq.s IL_013e
+	IL_0133: ldstr "Nickname of "
+	IL_0138: ldc.i4.0
+	IL_0139: beq IL_0000
+	IL_013e: ldloc.s V_7
+	IL_0140: ldc.i4.0
+	IL_0141: ldstr "Nickname of "
+	IL_0146: stelem.any System.String
+	IL_014b: ldarg.0
+	IL_014c: ldfld ReferenceHub NicknameSync::_hub
+	IL_0151: ldfld CharacterClassManager ReferenceHub::characterClassManager
+	IL_0156: call System.String CharacterClassManager::get_UserId()
+	IL_015b: stloc.s V_8
+	IL_015d: ldloc.s V_8
+	IL_015f: ldc.i4.0
+	IL_0160: beq.s IL_016a
+	IL_0162: ldloc.s V_8
+	IL_0164: ldc.i4.0
+	IL_0165: beq IL_0000
+	IL_016a: ldloc.s V_7
+	IL_016c: ldc.i4.1
+	IL_016d: ldloc.s V_8
+	IL_016f: stelem.any System.String
+	IL_0174: ldstr " is now "
+	IL_0179: ldc.i4.0
+	IL_017a: beq.s IL_0187
+	IL_017c: ldstr " is now "
+	IL_0181: ldc.i4.0
+	IL_0182: beq IL_0000
+	IL_0187: ldloc.s V_7
+	IL_0189: ldc.i4.2
+	IL_018a: ldstr " is now "
+	IL_018f: stelem.any System.String
+	IL_0194: ldarg.1
+	IL_0195: ldc.i4.0
+	IL_0196: beq.s IL_01a3
+	IL_0198: ldstr " is now "
+	IL_019d: ldc.i4.0
+	IL_019e: beq IL_0000
+	IL_01a3: ldloc.s V_7
+	IL_01a5: ldc.i4.3
+	IL_01a6: ldarg.1
+	IL_01a7: stelem.any System.String
+	IL_01ac: ldstr "."
+	IL_01b1: ldc.i4.0
+	IL_01b2: beq.s IL_01bf
+	IL_01b4: ldstr "."
+	IL_01b9: ldc.i4.0
+	IL_01ba: beq IL_0000
+	IL_01bf: ldloc.s V_7
+	IL_01c1: ldc.i4.4
+	IL_01c2: ldstr "."
+	IL_01c7: stelem.any System.String
+	IL_01cc: ldloc.s V_7
+	IL_01ce: call System.String System.String::Concat(System.String[])
+	IL_01d3: stloc.s V_9
+	IL_01d5: ldc.i4.0
+	IL_01d6: stloc.s V_11
+	IL_01d8: ldc.i4.0
+	IL_01d9: stloc.s V_12
+	IL_01db: ldc.i4.1
+	IL_01dc: conv.i8
+	IL_01dd: conv.u8
+	IL_01de: ldloc.s V_9
+	IL_01e0: ldloc.s V_12
+	IL_01e2: ldloc.s V_11
+	IL_01e4: call System.Void ServerLogs::AddLog(ServerLogs/Modules,System.String,ServerLogs/ServerLogType,System.Boolean)
+	IL_01e9: ret
+	IL_01ea: ldstr "[Server] function 'System.Void NicknameSync::SetNick(System.String)' called when server was not active"
+	IL_01ef: call System.Void UnityEngine.Debug::LogWarning(System.Object)
+	IL_01f4: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: NicknameSync
+	System.Void .ctor()
+		this._playerInfoToShow = 63
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldc.i4.s 63
+	IL_0003: conv.i8
+	IL_0004: conv.u8
+	IL_0005: stfld PlayerInfoArea NicknameSync::_playerInfoToShow
+	IL_000a: ldarg.0
+	IL_000b: call System.Void Mirror.NetworkBehaviour::.ctor()
+	IL_0010: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: NicknameSync
+	System.Void MirrorProcessed()
+
+
+Generated IL:
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: NicknameSync
+	System.Single get_NetworkViewRange()
+		System.Single viewRange = this.ViewRange
+		return viewRange
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Single NicknameSync::ViewRange
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: NicknameSync
+	System.Void set_NetworkViewRange(System.Single value)
+
+		System.Boolean boolean = base.SyncVarEqual<System.Single>()
+
+		if (boolean == False)
+
+		    base.SetSyncVar<System.Single>()
+		endif
+        
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181B67E64) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: NicknameSync
+	System.String get_Network_customPlayerInfoString()
+		System.String _customPlayerInfoString = this._customPlayerInfoString
+		return _customPlayerInfoString
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String NicknameSync::_customPlayerInfoString
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: NicknameSync
+	System.Void set_Network_customPlayerInfoString(System.String value)
+
+		System.Boolean boolean = base.SyncVarEqual<System.String>()
+
+		if (boolean == False)
+		    System.String _customPlayerInfoString = this._customPlayerInfoString
+
+		    base.SetSyncVar<System.String>()
+		    ulong local5 = 0
+
+		    System.Boolean localClientActive = Mirror.NetworkServer.localClientActive
+
+		    if (localClientActive != False)
+		        System.Int32 0x200000000 = 2
+
+		        System.Boolean syncVarHookGuard = base.getSyncVarHookGuard(0x200000000) //(UInt64 dirtyBit)
+
+		        if (syncVarHookGuard == False)
+		            System.Int32 0x200000000 = 2
+
+		            base.setSyncVarHookGuard(0x200000000, True) //(UInt64 dirtyBit, Boolean value)
+
+		            this.SetCustomInfo(_customPlayerInfoString, value) //(String oldValue, String newValue)
+		            ulong local12 = 0
+		            System.Int32 0x200000000 = 2
+
+		            base.setSyncVarHookGuard(0x200000000, local12) //(UInt64 dirtyBit, Boolean value)
+		        endif
+                
+		    endif
+            
+		    return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181B67EF4) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: NicknameSync
+	PlayerInfoArea get_Network_playerInfoToShow()
+		PlayerInfoArea _playerInfoToShow = this._playerInfoToShow
+		return _playerInfoToShow
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld PlayerInfoArea NicknameSync::_playerInfoToShow
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: NicknameSync
+	System.Void set_Network_playerInfoToShow(PlayerInfoArea value)
+		System.Int32 local2 = value.value__
+
+		System.Boolean boolean = base.SyncVarEqual<PlayerInfoArea>()
+
+		if (boolean == False)
+		    throw new System.NullReferenceException()
+		endif
+        
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.Implicit4ByteFieldReadAction at (0x181B681F6) is corrupt (Local local2 has been stripped out for being unused, so doesn't have a variable.) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: NicknameSync
+	System.String get_Network_myNickSync()
+		System.String _myNickSync = this._myNickSync
+		return _myNickSync
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String NicknameSync::_myNickSync
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: NicknameSync
+	System.Void set_Network_myNickSync(System.String value)
+
+		System.Boolean boolean = base.SyncVarEqual<System.String>()
+
+		if (boolean == False)
+		    System.String _myNickSync = this._myNickSync
+
+		    base.SetSyncVar<System.String>()
+		    ulong local5 = 0
+
+		    System.Boolean localClientActive = Mirror.NetworkServer.localClientActive
+
+		    if (localClientActive != False)
+		        System.Int32 0x800000000 = 8
+
+		        System.Boolean syncVarHookGuard = base.getSyncVarHookGuard(0x800000000) //(UInt64 dirtyBit)
+
+		        if (syncVarHookGuard == False)
+		            System.Int32 0x800000000 = 8
+
+		            base.setSyncVarHookGuard(0x800000000, True) //(UInt64 dirtyBit, Boolean value)
+
+		            this.UpdatePlayerlistInstance(_myNickSync, value) //(String p, String username)
+		            ulong local12 = 0
+		            System.Int32 0x800000000 = 8
+
+		            base.setSyncVarHookGuard(0x800000000, local12) //(UInt64 dirtyBit, Boolean value)
+		        endif
+                
+		    endif
+            
+		    return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181B68114) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: NicknameSync
+	System.String get_Network_displayName()
+		System.String _displayName = this._displayName
+		return _displayName
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String NicknameSync::_displayName
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: NicknameSync
+	System.Void set_Network_displayName(System.String value)
+
+		System.Boolean boolean = base.SyncVarEqual<System.String>()
+
+		if (boolean == False)
+		    System.String _displayName = this._displayName
+
+		    base.SetSyncVar<System.String>()
+		    ulong local5 = 0
+
+		    System.Boolean localClientActive = Mirror.NetworkServer.localClientActive
+
+		    if (localClientActive != False)
+		        System.Int32 0x1000000000 = 16
+
+		        System.Boolean syncVarHookGuard = base.getSyncVarHookGuard(0x1000000000) //(UInt64 dirtyBit)
+
+		        if (syncVarHookGuard == False)
+		            System.Int32 0x1000000000 = 16
+
+		            base.setSyncVarHookGuard(0x1000000000, True) //(UInt64 dirtyBit, Boolean value)
+
+		            this.UpdateCustomName(_displayName, value) //(String p, String username)
+		            ulong local12 = 0
+		            System.Int32 0x1000000000 = 16
+
+		            base.setSyncVarHookGuard(0x1000000000, local12) //(UInt64 dirtyBit, Boolean value)
+		        endif
+                
+		    endif
+            
+		    return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181B68004) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: NicknameSync
+	System.Void UserCode_CmdSetNick(System.String n)
+
+		System.Boolean isLocalPlayer = base.isLocalPlayer
+
+		if (isLocalPlayer == False)
+
+		    if (this.<NickSet>k__BackingField == isLocalPlayer)
+
+		        if (n == 0)
+                    goto INSN_181B677EB
+                endif
+		        NorthwoodLib.Pools.StringBuilderPool shared = NorthwoodLib.Pools.StringBuilderPool.Shared
+		        System.Int32 m_stringLength = n.m_stringLength
+
+		        System.Text.StringBuilder stringBuilder = shared.Rent(m_stringLength) //(Int32 capacity)
+		        ulong local8 = 0
+		        ulong local9 = 0
+
+		        if (local9 < n.m_stringLength)
+
+		            System.Char chars = n.Chars
+
+		            System.Boolean isLetterOrDigit = System.Char.IsLetterOrDigit(chars) //(Char c)
+
+		            if (isLetterOrDigit == False)
+
+		                System.Boolean isPunctuation = System.Char.IsPunctuation(chars) //(Char c)
+
+		                if (isPunctuation == False)
+
+		                    System.Boolean isSymbol = System.Char.IsSymbol(chars) //(Char c)
+
+		                    if (isSymbol == False)
+
+		                        System.Boolean isWhiteSpace = System.Char.IsWhiteSpace(chars) //(Char c)
+
+		                        if (isWhiteSpace != False)
+
+		                            if (0xFFFA != isWhiteSpace)
+                                        goto INSN_181B674DC
+                                    endif
+
+		                            if (chars == constant50)
+                                        goto INSN_181B674DC
+                                    endif
+		                        endif
+                                
+
+		                        System.Boolean isHighSurrogate = System.Char.IsHighSurrogate(chars) //(Char c)
+
+		                        if (isHighSurrogate != False)
+                                    goto INSN_181B674CE
+                                endif
+
+		                        System.Boolean isLowSurrogate = System.Char.IsLowSurrogate(chars) //(Char c)
+
+		                        if (isLowSurrogate == False)
+                                    goto INSN_181B674F3
+                                endif
+
+		                        System.Boolean isSurrogatePair = System.Char.IsSurrogatePair({'48' (constant value of type System.Char)}, chars) //(Char highSurrogate, Char lowSurrogate)
+
+		                        if (isSurrogatePair == False)
+                                    goto INSN_181B674F3
+                                endif
+
+		                        System.Text.StringBuilder stringBuilder2 = stringBuilder.Append({'48' (constant value of type System.Char)}) //(Char value)
+
+		                        System.Text.StringBuilder stringBuilder3 = stringBuilder.Append(chars) //(Char value)
+		                        local9 += 1
+
+		                        INSN_181B674CE:
+		                        local9 += 1
+		                    endif
+                            
+
+		                    INSN_181B674DC:
+
+		                    System.Text.StringBuilder stringBuilder4 = stringBuilder.Append(chars) //(Char value)
+
+		                    INSN_181B674F3:
+		                    local9 += 1
+		                endif
+                        
+
+		                if (local8 == 0)
+                            goto INSN_181B67641
+                        endif
+
+		                System.Int32 hashCode = stringBuilder.GetHashCode()
+		                NorthwoodLib.Pools.StringBuilderPool shared2 = NorthwoodLib.Pools.StringBuilderPool.Shared
+
+		                shared2.Return(stringBuilder) //(StringBuilder stringBuilder)
+
+		                System.String string = hashCode.Replace("<", "＜") //(String oldValue, String newValue)
+
+		                System.String string2 = string.Replace(">", "＞") //(String oldValue, String newValue)
+
+		                System.String string3 = string2.Replace("[", "(") //(String oldValue, String newValue)
+
+		                System.String string4 = string3.Replace("]", ")") //(String oldValue, String newValue)
+
+		                if (string4.m_stringLength <= 48)
+                            goto INSN_181B6760D
+                        endif
+		                ulong local44 = 0
+		                System.Int32 48 = 48
+
+		                System.String string5 = string4.Substring(local44, 48) //(Int32 startIndex, Int32 length)
+
+		                INSN_181B6760D:
+
+		                this.SetNick(string5) //(String nick)
+		                ReferenceHub _hub = this._hub
+		                CharacterClassManager characterClassManager = _hub.characterClassManager
+
+		                characterClassManager.SyncServerCmdBinding()
+
+		                INSN_181B67641:
+
+		                Mirror.NetworkConnection connectionToClient = base.connectionToClient
+
+		                System.String string6 = connectionToClient.ToString()
+
+		                System.String string7 = System.String.Concat("Kicked ", string6, " for having an empty name.") //(String str0, String str1, String str2)
+		                System.Int32 7 = 7
+
+		                ServerConsole.AddLog(string7, 7) //(String q, ConsoleColor color)
+
+		                Mirror.NetworkConnection connectionToClient2 = base.connectionToClient
+
+		                ServerConsole.Disconnect(connectionToClient2, "You may not have an empty name.") //(NetworkConnection conn, String message)
+
+		                this.SetNick("Empty Name") //(String nick)
+		                NorthwoodLib.Pools.StringBuilderPool shared3 = NorthwoodLib.Pools.StringBuilderPool.Shared
+
+		                shared3.Return(stringBuilder) //(StringBuilder stringBuilder)
+
+		                Mirror.NetworkConnection connectionToClient3 = base.connectionToClient
+
+		                System.String string8 = connectionToClient3.ToString()
+
+		                System.String string9 = System.String.Concat("Banned ", string8, " for passing a too long name.") //(String str0, String str1, String str2)
+		                System.Int32 7 = 7
+
+		                ServerConsole.AddLog(string9, 7) //(String q, ConsoleColor color)
+		                ReferenceHub _hub2 = this._hub
+
+		                System.Boolean boolean = BanPlayer.BanUser(_hub2, "Too long name", {'1577847600' (constant value of type System.Int64)}) //(ReferenceHub target, String reason, Int64 duration)
+
+		                this.SetNick("(too long)") //(String nick)
+		            endif
+                    
+		            return
+
+		            INSN_181B677EB:
+
+		            Mirror.NetworkConnection connectionToClient4 = base.connectionToClient
+
+		            System.String string10 = connectionToClient4.ToString()
+
+		            System.String string11 = System.String.Concat("Banned ", string10, " for passing null name.") //(String str0, String str1, String str2)
+		            System.Int32 7 = 7
+
+		            ServerConsole.AddLog(string11, 7) //(String q, ConsoleColor color)
+		            ReferenceHub _hub3 = this._hub
+
+		            System.Boolean boolean2 = BanPlayer.BanUser(_hub3, "Null name", {'1577847600' (constant value of type System.Int64)}) //(ReferenceHub target, String reason, Int64 duration)
+		        endif
+                
+
+		        this.MyNick = n
+		        return
+		        throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfZeroOrNullAction at (0x181B67407) is corrupt (ConstantDefinition: Don't know how to get IL to load a System.Char) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: NicknameSync
+	static System.Void InvokeUserCode_CmdSetNick(Mirror.NetworkBehaviour obj, Mirror.NetworkReader reader, Mirror.NetworkConnectionToClient senderConnection)
+		ulong local3 = 0
+
+		System.String string = Mirror.NetworkReaderExtensions.ReadString(reader) //(NetworkReader reader)
+		//UNKNOWN CLASS OFFSET READ HERE
+
+		obj.UserCode_CmdSetNick(string) //(String n)
+		return
+
+		UnityEngine.Debug.LogError("Command CmdSetNick called on client.") //(Object message)
+		return
+		throw new System.InvalidCastException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.UnknownClassOffsetReadAction at (0x181B6467A) is corrupt (Unknown class offset read) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: NicknameSync
+	static System.Void .cctor()
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'NicknameSync' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		Mirror.RemoteCalls.CmdDelegate cmdDelegate = new Mirror.RemoteCalls.CmdDelegate()
+		ulong local4 = 0
+
+		cmdDelegate..ctor(local4, {'InvokeUserCode_CmdSetNick' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		Mirror.RemoteCalls.RemoteCallHelper.RegisterCommandDelegate(typeFromHandle, "CmdSetNick", cmdDelegate, True) //(Type invokeClass, String cmdName, CmdDelegate func, Boolean requiresAuthority)
+		return
+
+
+Generated IL:
+	IL_0000: ldtoken NicknameSync
+	IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+	IL_000a: stloc.0
+	IL_000b: ldloc.2
+	IL_000c: ldftn System.Void NicknameSync::InvokeUserCode_CmdSetNick(Mirror.NetworkBehaviour,Mirror.NetworkReader,Mirror.NetworkConnectionToClient)
+	IL_0012: newobj System.Void Mirror.RemoteCalls.CmdDelegate::.ctor(System.Object,System.IntPtr)
+	IL_0017: stloc.1
+	IL_0018: ldc.i4.0
+	IL_0019: stloc.2
+	IL_001a: ldloc.0
+	IL_001b: ldstr "CmdSetNick"
+	IL_0020: ldloc.1
+	IL_0021: ldc.i4.1
+	IL_0022: call System.Void Mirror.RemoteCalls.RemoteCallHelper::RegisterCommandDelegate(System.Type,System.String,Mirror.RemoteCalls.CmdDelegate,System.Boolean)
+	IL_0027: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: NicknameSync
+	System.Boolean SerializeSyncVars(Mirror.NetworkWriter writer, System.Boolean forceAll)
+
+		System.Boolean boolean = base.SerializeSyncVars(writer, forceAll) //(NetworkWriter writer, Boolean initialState)
+
+		if (forceAll == False)
+		    System.UInt64 syncVarDirtyBits = this.<syncVarDirtyBits>k__BackingField
+
+		    Mirror.NetworkWriterExtensions.WriteUInt64(writer, syncVarDirtyBits) //(NetworkWriter writer, UInt64 value)
+
+		    if ( != 1)
+		        System.Single viewRange = this.ViewRange
+
+		        Mirror.NetworkWriterExtensions.WriteSingle(writer, viewRange) //(NetworkWriter writer, Single value)
+		    endif
+            
+
+		    if ( == 2)
+                goto INSN_181B647F5
+            endif
+		    System.String _customPlayerInfoString = this._customPlayerInfoString
+
+		    Mirror.NetworkWriterExtensions.WriteString(writer, _customPlayerInfoString) //(NetworkWriter writer, String value)
+
+		    INSN_181B647F5:
+		    System.UInt64 syncVarDirtyBits2 = this.<syncVarDirtyBits>k__BackingField
+
+		    if (syncVarDirtyBits2 == 4)
+                goto INSN_181B64815
+            endif
+		    PlayerInfoArea _playerInfoToShow = this._playerInfoToShow
+
+		    Mirror.GeneratedNetworkCode._Write_PlayerInfoArea(writer, _playerInfoToShow) //(NetworkWriter writer, PlayerInfoArea value)
+		    System.UInt64 syncVarDirtyBits3 = this.<syncVarDirtyBits>k__BackingField
+
+		    INSN_181B64815:
+
+		    if (syncVarDirtyBits3 == 8)
+                goto INSN_181B6484F
+            endif
+		    System.String _myNickSync = this._myNickSync
+
+		    Mirror.NetworkWriterExtensions.WriteString(writer, _myNickSync) //(NetworkWriter writer, String value)
+
+		    INSN_181B6484F:
+
+		    if ( == 16)
+                goto INSN_181B6488B
+            endif
+		    System.String _displayName = this._displayName
+
+		    Mirror.NetworkWriterExtensions.WriteString(writer, _displayName) //(NetworkWriter writer, String value)
+
+		    INSN_181B6488B:
+		else
+		    System.Single viewRange2 = this.ViewRange
+
+		    Mirror.NetworkWriterExtensions.WriteSingle(writer, viewRange2) //(NetworkWriter writer, Single value)
+		    System.String _customPlayerInfoString2 = this._customPlayerInfoString
+
+		    Mirror.NetworkWriterExtensions.WriteString(writer, _customPlayerInfoString2) //(NetworkWriter writer, String value)
+		    PlayerInfoArea _playerInfoToShow2 = this._playerInfoToShow
+
+		    Mirror.GeneratedNetworkCode._Write_PlayerInfoArea(writer, _playerInfoToShow2) //(NetworkWriter writer, PlayerInfoArea value)
+		    System.String _myNickSync2 = this._myNickSync
+
+		    Mirror.NetworkWriterExtensions.WriteString(writer, _myNickSync2) //(NetworkWriter writer, String value)
+		    System.String _displayName2 = this._displayName
+
+		    Mirror.NetworkWriterExtensions.WriteString(writer, _displayName2) //(NetworkWriter writer, String value)
+		endif
+        
+		return True
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfZeroOrNullAction at (0x181B64780) is corrupt (One of the arguments is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: NicknameSync
+	System.Void DeserializeSyncVars(Mirror.NetworkReader reader, System.Boolean initialState)
+
+		this.MirrorProcessed()
+
+		if (initialState == False)
+
+		    System.UInt64 uInt64 = Mirror.NetworkReaderExtensions.ReadUInt64(reader) //(NetworkReader reader)
+
+		    if (uInt64 != 1)
+
+		        System.Single single = Mirror.NetworkReaderExtensions.ReadSingle(reader) //(NetworkReader reader)
+
+		        System.Boolean boolean = base.SyncVarEqual<System.Single>()
+
+		        if (boolean == False)
+
+		            base.SetSyncVar<System.Single>()
+		        endif
+                
+
+		        if (uInt64 == 2)
+                    goto INSN_181B6425D
+                endif
+		        System.String _customPlayerInfoString = this._customPlayerInfoString
+
+		        System.String string = Mirror.NetworkReaderExtensions.ReadString(reader) //(NetworkReader reader)
+
+		        this.Network_customPlayerInfoString = string
+
+		        System.Boolean boolean2 = base.SyncVarEqual<System.String>()
+
+		        if (boolean2 != False)
+                    goto INSN_181B6425D
+                endif
+		        System.String _customPlayerInfoString2 = this._customPlayerInfoString
+
+		        this.SetCustomInfo(_customPlayerInfoString, _customPlayerInfoString2) //(String oldValue, String newValue)
+
+		        INSN_181B6425D:
+
+		        if (uInt64 == 4)
+                    goto INSN_181B642C9
+                endif
+
+		        PlayerInfoArea playerInfoArea = Mirror.GeneratedNetworkCode._Read_PlayerInfoArea(reader) //(NetworkReader reader)
+		        System.Int32 local19 = playerInfoArea.value__
+
+		        System.Boolean boolean3 = base.SyncVarEqual<PlayerInfoArea>()
+
+		        if (boolean3 != False)
+                    goto INSN_181B642C9
+                endif
+		        throw new System.NullReferenceException()
+
+		        INSN_181B642C9:
+
+		        if (uInt64 == 8)
+                    goto INSN_181B6433E
+                endif
+		        System.String _myNickSync = this._myNickSync
+
+		        System.String string2 = Mirror.NetworkReaderExtensions.ReadString(reader) //(NetworkReader reader)
+
+		        this.Network_myNickSync = string2
+
+		        System.Boolean boolean4 = base.SyncVarEqual<System.String>()
+
+		        if (boolean4 != False)
+                    goto INSN_181B6433E
+                endif
+		        System.String _myNickSync2 = this._myNickSync
+
+		        this.UpdatePlayerlistInstance(_myNickSync, _myNickSync2) //(String p, String username)
+
+		        INSN_181B6433E:
+
+		        if (uInt64 == 16)
+                    goto INSN_181B64567
+                endif
+		    else
+
+		        System.Single single2 = Mirror.NetworkReaderExtensions.ReadSingle(reader) //(NetworkReader reader)
+
+		        System.Boolean boolean5 = base.SyncVarEqual<System.Single>()
+
+		        if (boolean5 == False)
+
+		            base.SetSyncVar<System.Single>()
+		        endif
+                
+		        System.String _customPlayerInfoString3 = this._customPlayerInfoString
+
+		        System.String string3 = Mirror.NetworkReaderExtensions.ReadString(reader) //(NetworkReader reader)
+
+		        this.Network_customPlayerInfoString = string3
+
+		        System.Boolean boolean6 = base.SyncVarEqual<System.String>()
+
+		        if (boolean6 != False)
+                    goto INSN_181B64423
+                endif
+		        System.String _customPlayerInfoString4 = this._customPlayerInfoString
+
+		        this.SetCustomInfo(_customPlayerInfoString3, _customPlayerInfoString4) //(String oldValue, String newValue)
+
+		        INSN_181B64423:
+
+		        PlayerInfoArea playerInfoArea2 = Mirror.GeneratedNetworkCode._Read_PlayerInfoArea(reader) //(NetworkReader reader)
+		        System.Int32 local43 = playerInfoArea2.value__
+
+		        System.Boolean boolean7 = base.SyncVarEqual<PlayerInfoArea>()
+
+		        if (boolean7 != False)
+                    goto INSN_181B64489
+                endif
+		        throw new System.NullReferenceException()
+
+		        INSN_181B64489:
+		        System.String _myNickSync3 = this._myNickSync
+
+		        System.String string4 = Mirror.NetworkReaderExtensions.ReadString(reader) //(NetworkReader reader)
+
+		        this.Network_myNickSync = string4
+
+		        System.Boolean boolean8 = base.SyncVarEqual<System.String>()
+
+		        if (boolean8 != False)
+                    goto INSN_181B644F8
+                endif
+		        System.String _myNickSync4 = this._myNickSync
+
+		        this.UpdatePlayerlistInstance(_myNickSync3, _myNickSync4) //(String p, String username)
+		    endif
+            
+		    System.String _displayName = this._displayName
+
+		    System.String string5 = Mirror.NetworkReaderExtensions.ReadString(reader) //(NetworkReader reader)
+
+		    this.Network_displayName = string5
+
+		    System.Boolean boolean9 = base.SyncVarEqual<System.String>()
+
+		    if (boolean9 != False)
+                goto INSN_181B64567
+            endif
+		    System.String _displayName2 = this._displayName
+
+		    this.UpdateCustomName(_displayName, _displayName2) //(String p, String username)
+
+		    INSN_181B64567:
+		    return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181B641B6) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+

@@ -1,0 +1,203 @@
+Type: GotoCommand
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.GotoCommand
+	System.String get_Command()
+		System.String Command = this.<Command>k__BackingField
+		return Command
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String CommandSystem.Commands.RemoteAdmin.GotoCommand::<Command>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.GotoCommand
+	System.String[] get_Aliases()
+		System.String[] Aliases = this.<Aliases>k__BackingField
+		return Aliases
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String[] CommandSystem.Commands.RemoteAdmin.GotoCommand::<Aliases>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.GotoCommand
+	System.String get_Description()
+		System.String Description = this.<Description>k__BackingField
+		return Description
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String CommandSystem.Commands.RemoteAdmin.GotoCommand::<Description>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.GotoCommand
+	System.String[] get_Usage()
+		System.String[] Usage = this.<Usage>k__BackingField
+		return Usage
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String[] CommandSystem.Commands.RemoteAdmin.GotoCommand::<Usage>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.GotoCommand
+	System.Boolean Execute(System.ArraySegment`1<System.String> arguments, CommandSystem.ICommandSender sender, System.String& response)
+		ulong local4 = 0
+
+		System.Boolean boolean = Misc.CheckPermission(sender, 0x4000, response) //(ICommandSender sender, PlayerPermissions perm, String& response)
+
+		if (boolean != False)
+
+		    if (sender != 0)
+		        //UNKNOWN CLASS OFFSET READ HERE
+		          = sender.
+
+		        System.Boolean isAlive = PlayerRoles.PlayerRolesUtils.IsAlive()
+
+		        if (isAlive != False)
+
+		            System.Collections.Generic.List`1<ReferenceHub> list = Utils.RAUtils.ProcessPlayerIdOrNamesList()
+
+		            if (list != 0)
+
+		                if ( == 1)
+		                      = sender.
+		                    T[] _items = list._items
+		                    T local14 = _items[0]
+
+		                    UnityEngine.Transform transform = local14.transform
+
+		                    UnityEngine.Vector3 position = .position
+		                    System.Single single = position.z
+
+		                    UnityEngine.Vector3 zero = UnityEngine.Vector3.zero
+		                    System.Single single2 = zero.z
+
+		                    System.Boolean boolean2 = PlayerRoles.FirstPersonControl.FpcExtensionMethods.TryOverridePosition()
+
+		                    if (boolean2 == False)
+		                        response. = "Your current role does not support this operation."
+		                    else
+
+		                        if ( <= local4)
+		                            ulong local25 = 0
+
+		                            System.ThrowHelper.ThrowArgumentOutOfRangeException()
+		                        endif
+                                
+		                        T[] _items2 = list._items
+		                        T local27 = _items2[0]
+
+		                        System.String string = Misc.LoggedNameFromRefHub()
+
+		                        System.String string2 = System.String.Concat()
+		                        ulong local31 = 0
+
+		                        ServerLogs.AddLog(4, string2, 1, local31) //(Modules module, String msg, ServerLogType type, Boolean init)
+		                        response. = "Done!"
+		                        return True
+		                    endif
+                            
+		                    response. = "This commands you to specify exactly one specific player!"
+		                else
+		                    response. = "Command disabled when you are not alive!"
+		                    //UNKNOWN CLASS OFFSET READ HERE
+
+		                    System.String string3 = CommandSystem.HelpProviderExtensions.DisplayCommandUsage(this) //(IUsageProvider provider)
+
+		                    System.String string4 = System.String.Concat()
+		                    response. = string4
+		                else
+		                    response. = "You must be in-game to use this command!"
+		                endif
+                        
+		            endif
+                    
+		            ulong local35 = 0
+		            return local35
+		            throw new System.IndexOutOfRangeException()
+
+
+Generated IL:
+	IL Generation Skipped due to invalid local _items of type T[]
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.GotoCommand
+	System.Void .ctor()
+		this.<Command>k__BackingField = "goto"
+		this.<Description>k__BackingField = "Teleports you to the specified player."
+		System.String[] local1 = new System.String[1]
+
+		if ("%player%" != 0)
+
+		    if (local1 == 0)
+                goto INSN_18061799C
+            endif
+		endif
+        
+		local1[0] = "%player%"
+		this.<Usage>k__BackingField = local1
+
+		base..ctor()
+		return
+		throw new System.NullReferenceException()
+
+		INSN_18061799C:
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldstr "goto"
+	IL_0006: stfld System.String CommandSystem.Commands.RemoteAdmin.GotoCommand::<Command>k__BackingField
+	IL_000b: ldarg.0
+	IL_000c: ldstr "Teleports you to the specified player."
+	IL_0011: stfld System.String CommandSystem.Commands.RemoteAdmin.GotoCommand::<Description>k__BackingField
+	IL_0016: ldc.i4.1
+	IL_0017: newarr System.String
+	IL_001c: stloc.0
+	IL_001d: ldstr "%player%"
+	IL_0022: ldc.i4.0
+	IL_0023: beq.s IL_0029
+	IL_0025: ldloc.0
+	IL_0026: ldc.i4.0
+	IL_0027: beq.s IL_0000
+	IL_0029: ldloc.0
+	IL_002a: ldc.i4.0
+	IL_002b: ldstr "%player%"
+	IL_0030: stelem.any System.String
+	IL_0035: ldarg.0
+	IL_0036: ldloc.0
+	IL_0037: stfld System.String[] CommandSystem.Commands.RemoteAdmin.GotoCommand::<Usage>k__BackingField
+	IL_003c: ldarg.0
+	IL_003d: call System.Void System.Object::.ctor()
+	IL_0042: ret
+	IL_0043: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0048: throw
+	
+

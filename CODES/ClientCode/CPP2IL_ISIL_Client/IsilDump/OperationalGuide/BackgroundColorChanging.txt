@@ -1,0 +1,207 @@
+Type: OperationalGuide.BackgroundColorChanging
+
+Method: System.Void Start()
+
+Disassembly:
+	push rbx
+	sub rsp,30h
+	xor edx,edx
+	mov rbx,rcx
+	lea ecx,[rdx+2]
+	call 000000018046D340h
+	test al,al
+	je short 0000000181B5373Dh
+	xor edx,edx
+	lea rcx,[rsp+20h]
+	call 0000000181041770h
+	xor edx,edx
+	lea rcx,[rsp+20h]
+	movups xmm0,[rax]
+	movups [rbx+20h],xmm0
+	call 00000001810415F0h
+	movups xmm0,[rax]
+	movups [rbx+30h],xmm0
+	mov rcx,[rbx+18h]
+	test rcx,rcx
+	je short 0000000181B5376Ah
+	mov rax,[rcx]
+	lea rdx,[rsp+20h]
+	movups xmm0,[rbx+20h]
+	mov r8,[rax+2A8h]
+	movaps [rsp+20h],xmm0
+	call qword ptr [rax+2A0h]
+	add rsp,30h
+	pop rbx
+	ret
+	call 0000000180294310h
+
+ISIL:
+	001 ShiftStack -8
+	002 Move stack:0x0, rbx
+	003 ShiftStack -48
+	004 Move rdx, 0
+	005 Move rbx, rcx
+	006 LoadAddress rcx, [rdx+2]
+	007 Call ClutterSpawner.IsHolidayActive, rcx, rdx
+	008 Compare rax, 0
+	009 JumpIfEqual {20}
+	010 Move rdx, 0
+	011 LoadAddress rcx, stack:0x20
+	012 Call Color.get_red, rcx
+	013 Move rdx, 0
+	014 LoadAddress rcx, stack:0x20
+	015 Move xmm0, [rax]
+	016 Move [rbx+32], xmm0
+	017 Call Color.get_green, rcx
+	018 Move xmm0, [rax]
+	019 Move [rbx+48], xmm0
+	020 Move rcx, [rbx+24]
+	021 Compare rcx, 0
+	022 JumpIfEqual {33}
+	023 Move rax, [rcx]
+	024 LoadAddress rdx, stack:0x20
+	025 Move xmm0, [rbx+32]
+	026 Move r8, [rax+680]
+	027 Move stack:0x20, xmm0
+	028 Call 0, rcx, rdx, r8, r9, stack:0x0, stack:0x8, stack:0x10, stack:0x18, stack:0x20, stack:0x28, stack:0x30, stack:0x38, stack:0x40
+	029 ShiftStack 48
+	030 Move rbx, stack:0x0
+	031 ShiftStack 8
+	032 Return 
+	033 Call 0x180294310, rcx, rdx, r8, r9
+
+Method: System.Void Update()
+
+Disassembly:
+	push rbx
+	sub rsp,30h
+	mov eax,[rcx+44h]
+	mov rbx,rcx
+	cmp eax,2
+	jl short 0000000181B537B2h
+	mov dword ptr [rcx+44h],0
+	mov rcx,[rcx+18h]
+	test rcx,rcx
+	je short 0000000181B537FFh
+	mov rax,[rcx]
+	lea rdx,[rsp+20h]
+	movups xmm0,[rbx+20h]
+	mov r8,[rax+2A8h]
+	movaps [rsp+20h],xmm0
+	call qword ptr [rax+2A0h]
+	mov eax,[rbx+44h]
+	test eax,eax
+	je short 0000000181B537BEh
+	add eax,1
+	mov [rbx+44h],eax
+	jne short 0000000181B537F9h
+	xor ecx,ecx
+	call 000000018116C990h
+	comiss xmm0,dword ptr [rbx+40h]
+	jbe short 0000000181B537F9h
+	mov rcx,[rbx+18h]
+	mov dword ptr [rbx+44h],1
+	test rcx,rcx
+	je short 0000000181B537FFh
+	mov rax,[rcx]
+	lea rdx,[rsp+20h]
+	movups xmm0,[rbx+30h]
+	mov r8,[rax+2A8h]
+	movaps [rsp+20h],xmm0
+	call qword ptr [rax+2A0h]
+	add rsp,30h
+	pop rbx
+	ret
+	call 0000000180294310h
+
+ISIL:
+	001 ShiftStack -8
+	002 Move stack:0x0, rbx
+	003 ShiftStack -48
+	004 Move rax, [rcx+68]
+	005 Move rbx, rcx
+	006 Compare rax, 2
+	007 JumpIfLess {19}
+	008 Move [rcx+68], 0
+	009 Move rcx, [rcx+24]
+	010 Compare rcx, 0
+	011 JumpIfEqual {42}
+	012 Move rax, [rcx]
+	013 LoadAddress rdx, stack:0x20
+	014 Move xmm0, [rbx+32]
+	015 Move r8, [rax+680]
+	016 Move stack:0x20, xmm0
+	017 Call 0, rcx, rdx, r8, r9, stack:0x0, stack:0x8, stack:0x10, stack:0x18, stack:0x20, stack:0x28, stack:0x30, stack:0x38, stack:0x40
+	018 Move rax, [rbx+68]
+	019 Compare rax, 0
+	020 JumpIfEqual {24}
+	021 Add rax, rax, 1
+	022 Move [rbx+68], rax
+	023 JumpIfNotEqual {38}
+	024 Move rcx, 0
+	025 Call Random.get_value, rcx
+	026 Compare xmm0, [rbx+64]
+	027 JumpIfLessOrEqual {38}
+	028 Move rcx, [rbx+24]
+	029 Move [rbx+68], 1
+	030 Compare rcx, 0
+	031 JumpIfEqual {42}
+	032 Move rax, [rcx]
+	033 LoadAddress rdx, stack:0x20
+	034 Move xmm0, [rbx+48]
+	035 Move r8, [rax+680]
+	036 Move stack:0x20, xmm0
+	037 Call 0, rcx, rdx, r8, r9, stack:0x0, stack:0x8, stack:0x10, stack:0x18, stack:0x20, stack:0x28, stack:0x30, stack:0x38, stack:0x40
+	038 ShiftStack 48
+	039 Move rbx, stack:0x0
+	040 ShiftStack 8
+	041 Return 
+	042 Call 0x180294310, rcx, rdx, r8, r9
+
+Method: System.Void .ctor()
+
+Disassembly:
+	push rbx
+	sub rsp,30h
+	mov rbx,rcx
+	xor edx,edx
+	lea rcx,[rsp+20h]
+	call 0000000181041790h
+	xor edx,edx
+	lea rcx,[rsp+20h]
+	movups xmm0,[rax]
+	movups [rbx+20h],xmm0
+	call 0000000181041770h
+	xor edx,edx
+	mov rcx,rbx
+	movups xmm0,[rax]
+	mov dword ptr [rbx+40h],3F4CCCCDh
+	movups [rbx+30h],xmm0
+	add rsp,30h
+	pop rbx
+	jmp near ptr 0000000180FD1850h
+
+ISIL:
+	001 ShiftStack -8
+	002 Move stack:0x0, rbx
+	003 ShiftStack -48
+	004 Move rbx, rcx
+	005 Move rdx, 0
+	006 LoadAddress rcx, stack:0x20
+	007 Call Color.get_white, rcx
+	008 Move rdx, 0
+	009 LoadAddress rcx, stack:0x20
+	010 Move xmm0, [rax]
+	011 Move [rbx+32], xmm0
+	012 Call Color.get_red, rcx
+	013 Move rdx, 0
+	014 Move rcx, rbx
+	015 Move xmm0, [rax]
+	016 Move [rbx+64], 0x3F4CCCCD
+	017 Move [rbx+48], xmm0
+	018 ShiftStack 48
+	019 Move rbx, stack:0x0
+	020 ShiftStack 8
+	021 Call 0x180FD1850, rcx, rdx
+	022 Return 
+

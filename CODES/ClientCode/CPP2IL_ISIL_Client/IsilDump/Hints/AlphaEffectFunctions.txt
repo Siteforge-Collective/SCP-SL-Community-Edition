@@ -1,0 +1,103 @@
+Type: Hints.AlphaEffectFunctions
+
+Method: System.Void Serialize(Mirror.NetworkWriter writer, Hints.AlphaEffect value)
+
+Disassembly:
+	sub rsp,28h
+	mov r9,rdx
+	test rdx,rdx
+	je short 000000018136B347h
+	mov rax,[rdx]
+	mov rdx,rcx
+	mov rcx,r9
+	mov r8,[rax+198h]
+	add rsp,28h
+	jmp qword ptr [rax+190h]
+	call 0000000180294310h
+
+ISIL:
+	001 ShiftStack -40
+	002 Move r9, rdx
+	003 Compare rdx, 0
+	004 JumpIfEqual {12}
+	005 Move rax, [rdx]
+	006 Move rdx, rcx
+	007 Move rcx, r9
+	008 Move r8, [rax+408]
+	009 ShiftStack 40
+	010 Call 0, rcx, rdx, r8, r9, stack:0x0, stack:0x8, stack:0x10, stack:0x18, stack:0x20, stack:0x28, stack:0x30, stack:0x38, stack:0x40
+	011 Return 
+	012 Call 0x180294310, rcx, rdx, r8, r9
+
+Method: Hints.AlphaEffect Deserialize(Mirror.NetworkReader reader)
+
+Disassembly:
+	mov [rsp+8],rbx
+	push rdi
+	sub rsp,20h
+	cmp byte ptr [1826FDECEh],0
+	mov rdi,rcx
+	jne short 0000000181B1CF28h
+	mov ecx,[1822E31D0h]
+	call 0000000180294190h
+	mov byte ptr [1826FDECEh],1
+	mov rcx,[18273A8F8h]
+	call 00000001802942D0h
+	cmp byte ptr [1826FDEF3h],0
+	mov rbx,rax
+	jne short 0000000181B1CF52h
+	mov ecx,[1822C52BCh]
+	call 0000000180294190h
+	mov byte ptr [1826FDEF3h],1
+	mov r8,[18273F108h]
+	mov rcx,rbx
+	movss xmm1,dword ptr [181EA337Ch]
+	call 0000000180A90DA0h
+	mov r9,[rbx]
+	mov rdx,rdi
+	mov dword ptr [rbx+30h],0
+	mov rcx,rbx
+	mov r8,[r9+188h]
+	call qword ptr [r9+180h]
+	mov rax,rbx
+	mov rbx,[rsp+30h]
+	add rsp,20h
+	pop rdi
+	ret
+
+ISIL:
+	001 Move stack:0x8, rbx
+	002 ShiftStack -8
+	003 Move stack:0x0, rdi
+	004 ShiftStack -32
+	005 Compare [0x1826FDECE], 0
+	006 Move rdi, rcx
+	007 JumpIfNotEqual {11}
+	008 Move rcx, [0x1822E31D0]
+	009 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	010 Move [0x1826FDECE], 1
+	011 Move rcx, typeof(Hints.AlphaEffect)
+	012 Call "il2cpp_codegen_object_new", rcx, rdx, r8, r9
+	013 Compare [0x1826FDEF3], 0
+	014 Move rbx, rax
+	015 JumpIfNotEqual {19}
+	016 Move rcx, [0x1822C52BC]
+	017 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	018 Move [0x1826FDEF3], 1
+	019 Move r8, [0x18273F108]
+	020 Move rcx, rbx
+	021 Move xmm1, [0x181EA337C]
+	022 Call 0x180A90DA0, rcx, rdx
+	023 Move r9, [rbx]
+	024 Move rdx, rdi
+	025 Move [rbx+48], 0
+	026 Move rcx, rbx
+	027 Move r8, [r9+392]
+	028 Call 0, rcx, rdx, r8, r9, stack:0x0, stack:0x8, stack:0x10, stack:0x18, stack:0x20, stack:0x28, stack:0x30, stack:0x38, stack:0x40
+	029 Move rax, rbx
+	030 Move rbx, stack:0x30
+	031 ShiftStack 32
+	032 Move rdi, stack:0x0
+	033 ShiftStack 8
+	034 Return rax
+

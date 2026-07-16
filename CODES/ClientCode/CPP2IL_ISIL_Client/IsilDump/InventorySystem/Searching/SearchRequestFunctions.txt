@@ -1,0 +1,203 @@
+Type: InventorySystem.Searching.SearchRequestFunctions
+
+Method: System.Void Serialize(Mirror.NetworkWriter writer, InventorySystem.Searching.SearchRequest value)
+
+Disassembly:
+	mov [rsp+8],rbx
+	push rdi
+	sub rsp,20h
+	mov rdi,rdx
+	mov rbx,rcx
+	test rcx,rcx
+	je short 000000018053B49Ah
+	movzx edx,byte ptr [rdx]
+	xor r8d,r8d
+	call 00000001818CA4C0h
+	lea rcx,[rdi+8]
+	xor r8d,r8d
+	mov rdx,rbx
+	call 000000018053D1D0h
+	mov rbx,[rsp+30h]
+	add rsp,20h
+	pop rdi
+	ret
+	call 0000000180294310h
+	int 3
+	mov [rsp+10h],rbx
+	push rdi
+	sub rsp,60h
+	movsd xmm0,qword ptr [rcx+18h]
+	mov rbx,rdx
+	movups xmm2,[rcx+8]
+	mov rdi,rcx
+	xor r8d,r8d
+	movups xmm1,[rdx+8]
+	movsd qword ptr [rsp+30h],xmm0
+	movq rcx,xmm2
+	movsd xmm0,qword ptr [rdx+18h]
+	movq rdx,xmm1
+	movsd qword ptr [rsp+50h],xmm0
+	movups [rsp+20h],xmm2
+	movaps [rsp+40h],xmm1
+	call 0000000180CC3D70h
+	test al,al
+	je short 000000018053B547h
+	movsd xmm0,qword ptr [rsp+28h]
+	lea rcx,[rsp+70h]
+	movsd xmm1,qword ptr [rsp+48h]
+	xor r8d,r8d
+	movsd qword ptr [rsp+70h],xmm0
+	call 0000000180763FB0h
+	test al,al
+	je short 000000018053B547h
+	movsd xmm0,qword ptr [rsp+30h]
+	lea rcx,[rsp+70h]
+	movsd xmm1,qword ptr [rsp+50h]
+	xor r8d,r8d
+	movsd qword ptr [rsp+70h],xmm0
+	call 0000000180763FB0h
+	test al,al
+	je short 000000018053B547h
+	movzx eax,byte ptr [rbx]
+	cmp [rdi],al
+	sete al
+	mov rbx,[rsp+78h]
+	add rsp,60h
+	pop rdi
+	ret
+	mov rbx,[rsp+78h]
+	xor al,al
+	add rsp,60h
+	pop rdi
+	ret
+
+ISIL:
+	001 Move stack:0x8, rbx
+	002 ShiftStack -8
+	003 Move stack:0x0, rdi
+	004 ShiftStack -32
+	005 Move rdi, rdx
+	006 Move rbx, rcx
+	007 Compare rcx, 0
+	008 JumpIfEqual {21}
+	009 Move rdx, [rdx]
+	010 Move r8, 0
+	011 Call NetworkWriter.WriteByte, rcx, rdx
+	012 LoadAddress rcx, [rdi+8]
+	013 Move r8, 0
+	014 Move rdx, rbx
+	015 Call 0x18053D1D0, rcx, rdx, r8, r9
+	016 Move rbx, stack:0x30
+	017 ShiftStack 32
+	018 Move rdi, stack:0x0
+	019 ShiftStack 8
+	020 Return 
+	021 Call 0x180294310, rcx, rdx, r8, r9
+	022 Interrupt 
+	023 Move stack:0x10, rbx
+	024 ShiftStack -8
+	025 Move stack:0x0, rdi
+	026 ShiftStack -96
+	027 Move xmm0, [rcx+24]
+	028 Move rbx, rdx
+	029 Move xmm2, [rcx+8]
+	030 Move rdi, rcx
+	031 Move r8, 0
+	032 Move xmm1, [rdx+8]
+	033 Move stack:0x30, xmm0
+	034 Move rcx, xmm2
+	035 Move xmm0, [rdx+24]
+	036 Move rdx, xmm1
+	037 Move stack:0x50, xmm0
+	038 Move stack:0x20, xmm2
+	039 Move stack:0x40, xmm1
+	040 Call Object.Equals, rcx, rdx, r8
+	041 Compare rax, 0
+	042 JumpIfEqual {67}
+	043 Move xmm0, stack:0x28
+	044 LoadAddress rcx, stack:0x70
+	045 Move xmm1, stack:0x48
+	046 Move r8, 0
+	047 Move stack:0x70, xmm0
+	048 Call 0x180763FB0, rcx, rdx, r8, r9
+	049 Compare rax, 0
+	050 JumpIfEqual {67}
+	051 Move xmm0, stack:0x30
+	052 LoadAddress rcx, stack:0x70
+	053 Move xmm1, stack:0x50
+	054 Move r8, 0
+	055 Move stack:0x70, xmm0
+	056 Call 0x180763FB0, rcx, rdx, r8, r9
+	057 Compare rax, 0
+	058 JumpIfEqual {67}
+	059 Move rax, [rbx]
+	060 Compare [rdi], rax
+	061 NotImplemented "sete al"
+	062 Move rbx, stack:0x78
+	063 ShiftStack 96
+	064 Move rdi, stack:0x0
+	065 ShiftStack 8
+	066 Return 
+	067 Move rbx, stack:0x78
+	068 Move rax, 0
+	069 ShiftStack 96
+	070 Move rdi, stack:0x0
+	071 ShiftStack 8
+	072 Return 
+
+Method: InventorySystem.Searching.SearchRequest Deserialize(Mirror.NetworkReader reader)
+
+Disassembly:
+	mov [rsp+8],rbx
+	push rdi
+	sub rsp,20h
+	xorps xmm0,xmm0
+	mov rdi,rdx
+	mov rbx,rcx
+	movups [rcx],xmm0
+	movups [rcx+10h],xmm0
+	test rdx,rdx
+	je short 000000018053B458h
+	xor edx,edx
+	mov rcx,rdi
+	call 00000001818BF710h
+	lea rcx,[rbx+8]
+	mov [rbx],al
+	xor r8d,r8d
+	mov rdx,rdi
+	call 000000018053CEF0h
+	mov rax,rbx
+	mov rbx,[rsp+30h]
+	add rsp,20h
+	pop rdi
+	ret
+	call 0000000180294310h
+
+ISIL:
+	001 Move stack:0x8, rbx
+	002 ShiftStack -8
+	003 Move stack:0x0, rdi
+	004 ShiftStack -32
+	005 Move xmm0, 0
+	006 Move rdi, rdx
+	007 Move rbx, rcx
+	008 Move [rcx], xmm0
+	009 Move [rcx+16], xmm0
+	010 Compare rdx, 0
+	011 JumpIfEqual {26}
+	012 Move rdx, 0
+	013 Move rcx, rdi
+	014 Call NetworkReader.ReadByte, rcx, rdx
+	015 LoadAddress rcx, [rbx+8]
+	016 Move [rbx], rax
+	017 Move r8, 0
+	018 Move rdx, rdi
+	019 Call 0x18053CEF0, rcx, rdx, r8, r9
+	020 Move rax, rbx
+	021 Move rbx, stack:0x30
+	022 ShiftStack 32
+	023 Move rdi, stack:0x0
+	024 ShiftStack 8
+	025 Return rax
+	026 Call 0x180294310, rcx, rdx, r8, r9
+

@@ -1,0 +1,247 @@
+Type: UsersCommand
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.PermissionsManagement.UsersCommand
+	System.String get_Command()
+		System.String Command = this.<Command>k__BackingField
+		return Command
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String CommandSystem.Commands.RemoteAdmin.PermissionsManagement.UsersCommand::<Command>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.PermissionsManagement.UsersCommand
+	System.String[] get_Aliases()
+		System.String[] Aliases = this.<Aliases>k__BackingField
+		return Aliases
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String[] CommandSystem.Commands.RemoteAdmin.PermissionsManagement.UsersCommand::<Aliases>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.PermissionsManagement.UsersCommand
+	System.String get_Description()
+		System.String Description = this.<Description>k__BackingField
+		return Description
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String CommandSystem.Commands.RemoteAdmin.PermissionsManagement.UsersCommand::<Description>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.PermissionsManagement.UsersCommand
+	System.Boolean Execute(System.ArraySegment`1<System.String> arguments, CommandSystem.ICommandSender sender, System.String& response)
+
+		System.Boolean boolean = Misc.CheckPermission(sender, 0x8000, response) //(ICommandSender sender, PlayerPermissions perm, String& response)
+
+		if (boolean != False)
+		    YamlConfig rolesConfig = ServerStatic.RolesConfig
+
+		    System.Collections.Generic.Dictionary`2<System.String,System.String> stringDictionary = rolesConfig.GetStringDictionary("Members") //(String key)
+		    YamlConfig sharedGroupsMembersConfig = ServerStatic.SharedGroupsMembersConfig
+
+		    if (sharedGroupsMembersConfig != 0)
+
+		        System.Collections.Generic.Dictionary`2<System.String,System.String> stringDictionary2 = sharedGroupsMembersConfig.GetStringDictionary("SharedMembers") //(String key)
+		    else
+		        ulong local13 = 0
+		    endif
+            
+		    NorthwoodLib.Pools.StringBuilderPool shared = NorthwoodLib.Pools.StringBuilderPool.Shared
+
+		    System.Text.StringBuilder stringBuilder = shared.Rent("Players with assigned groups:") //(String text)
+
+		    System.Collections.Generic.Dictionary`2/Enumerator<TKey,TValue> enumerator = shared.GetEnumerator()
+
+		    if (enumerator == 0)
+                goto INSN_18062EEFD
+            endif
+
+		    System.String string = System.String.Concat()
+
+		    System.Text.StringBuilder stringBuilder2 = stringBuilder.Append(string) //(String value)
+
+		    INSN_18062EEFD:
+
+		    stringBuilder.Dispose()
+
+		    stringBuilder.Dispose()
+
+		    if (stringBuilder != 0)
+                goto INSN_18062F234
+            endif
+
+		    if (local13 == -1)
+                goto INSN_18062EF6F
+            endif
+
+		    INSN_18062EF6F:
+
+		    if (local13 == 0)
+                goto INSN_18062F199
+            endif
+
+		    System.Collections.Generic.Dictionary`2/Enumerator<TKey,TValue> enumerator2 = stringBuilder.GetEnumerator()
+
+		    if (enumerator2 == 0)
+                goto INSN_18062F153
+            endif
+		    System.String[] local22 = new System.String[5]
+
+		    if ("
+            " == 0)
+                goto INSN_18062F018
+            endif
+
+		    if ("
+            " == 0)
+                goto INSN_18062F23C
+            endif
+
+		    INSN_18062F018:
+		    local22[0] = "
+            "
+
+		    if (stringDictionary == 0)
+                goto INSN_18062F052
+            endif
+
+		    if ("
+            " == 0)
+                goto INSN_18062F25A
+            endif
+
+		    INSN_18062F052:
+		    local22[1] = stringDictionary
+
+		    if (" - " == 0)
+                goto INSN_18062F096
+            endif
+
+		    if (" - " == 0)
+                goto INSN_18062F278
+            endif
+
+		    INSN_18062F096:
+		    local22[2] = " - "
+
+		    if (stringDictionary == 0)
+                goto INSN_18062F0D0
+            endif
+
+		    if (" - " == 0)
+                goto INSN_18062F296
+            endif
+
+		    INSN_18062F0D0:
+		    local22[3] = stringDictionary
+
+		    if (" <color=#FFD700>[SHARED MEMBERSHIP]</color>" == 0)
+                goto INSN_18062F114
+            endif
+
+		    if (" <color=#FFD700>[SHARED MEMBERSHIP]</color>" == 0)
+                goto INSN_18062F2B4
+            endif
+
+		    INSN_18062F114:
+		    local22[4] = " <color=#FFD700>[SHARED MEMBERSHIP]</color>"
+
+		    System.String string2 = System.String.Concat(local22) //(String[] values)
+
+		    System.Text.StringBuilder stringBuilder3 = stringBuilder.Append(string2) //(String value)
+
+		    INSN_18062F153:
+		    . = 256
+
+		    stringBuilder.Dispose()
+
+		    stringBuilder.Dispose()
+
+		    if (stringBuilder != 0)
+                goto INSN_18062F2DD
+            endif
+
+		    INSN_18062F199:
+
+		    System.Int32 hashCode = stringBuilder.GetHashCode()
+		    response. = hashCode
+		    NorthwoodLib.Pools.StringBuilderPool shared2 = NorthwoodLib.Pools.StringBuilderPool.Shared
+
+		    shared2.Return(stringBuilder) //(StringBuilder stringBuilder)
+		else
+		    ulong local30 = 0
+		endif
+        
+		return local30
+		throw new System.NullReferenceException()
+
+		INSN_18062F234:
+
+		INSN_18062F23C:
+		throw new System.IndexOutOfRangeException()
+
+		INSN_18062F25A:
+		throw new System.IndexOutOfRangeException()
+
+		INSN_18062F278:
+		throw new System.IndexOutOfRangeException()
+
+		INSN_18062F296:
+		throw new System.IndexOutOfRangeException()
+
+		INSN_18062F2B4:
+		throw new System.IndexOutOfRangeException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+
+		INSN_18062F2DD:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18062EE8C) is corrupt (Mismatched instance parameter. Expecting an instance of System.Collections.Generic.Dictionary`2, actually {'shared' (type NorthwoodLib.Pools.StringBuilderPool)}) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.PermissionsManagement.UsersCommand
+	System.Void .ctor()
+		this.<Command>k__BackingField = "users"
+		this.<Description>k__BackingField = "List all the users that are assigned to any group."
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldstr "users"
+	IL_0006: stfld System.String CommandSystem.Commands.RemoteAdmin.PermissionsManagement.UsersCommand::<Command>k__BackingField
+	IL_000b: ldarg.0
+	IL_000c: ldstr "List all the users that are assigned to any group."
+	IL_0011: stfld System.String CommandSystem.Commands.RemoteAdmin.PermissionsManagement.UsersCommand::<Description>k__BackingField
+	IL_0016: ldarg.0
+	IL_0017: call System.Void System.Object::.ctor()
+	IL_001c: ret
+	
+

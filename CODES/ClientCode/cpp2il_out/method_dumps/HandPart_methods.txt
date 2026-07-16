@@ -1,0 +1,268 @@
+Type: HandPart
+
+
+	Generated Pseudocode:
+
+	Declaring Type: HandPart
+	System.Boolean get_CurrentlyEnabled()
+		System.Boolean CurrentlyEnabled = this.<CurrentlyEnabled>k__BackingField
+		return CurrentlyEnabled
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Boolean HandPart::<CurrentlyEnabled>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: HandPart
+	System.Void set_CurrentlyEnabled(System.Boolean value)
+		this.<CurrentlyEnabled>k__BackingField = value
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: stfld System.Boolean HandPart::<CurrentlyEnabled>k__BackingField
+	IL_0007: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: HandPart
+	UnityEngine.GameObject get_SpawnedObject()
+		UnityEngine.GameObject SpawnedObject = this.<SpawnedObject>k__BackingField
+		return SpawnedObject
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld UnityEngine.GameObject HandPart::<SpawnedObject>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: HandPart
+	System.Void set_SpawnedObject(UnityEngine.GameObject value)
+		this.<SpawnedObject>k__BackingField = value
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: stfld UnityEngine.GameObject HandPart::<SpawnedObject>k__BackingField
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: HandPart
+	System.Void UpdateItem()
+		PlayerRoles.FirstPersonControl.Thirdperson.HumanCharacterModel TargetModel = this.<TargetModel>k__BackingField
+		ulong local2 = 0
+		ReferenceHub OwnerHub = TargetModel.<OwnerHub>k__BackingField
+		InventorySystem.Inventory inventory = OwnerHub.inventory
+		InventorySystem.Items.ItemIdentifier curItem = inventory.CurItem
+		ItemType targetItemId = this.TargetItemId
+		System.Boolean local7 = curItem == targetItemId
+
+		if (local7 != this.<CurrentlyEnabled>k__BackingField)
+		    UnityEngine.GameObject targetPart = this.TargetPart
+		    this.<CurrentlyEnabled>k__BackingField = local7
+
+		    targetPart.SetActive(local7) //(Boolean value)
+
+		    if (curItem != targetItemId)
+                goto INSN_181B29446
+            endif
+		    UnityEngine.GameObject optionalPrefab = this.optionalPrefab
+		    ulong local12 = 0
+
+		    System.Boolean boolean = UnityEngine.Object.op_Inequality(optionalPrefab, local12) //(Object x, Object y)
+
+		    if (boolean == False)
+                goto INSN_181B29446
+            endif
+		    UnityEngine.GameObject optionalPrefab2 = this.optionalPrefab
+		    GameObjectPools.PoolManager singleton = GameObjectPools.PoolManager.Singleton
+		    UnityEngine.GameObject targetPart2 = this.TargetPart
+
+		    UnityEngine.Transform transform = targetPart2.transform
+
+		    System.Boolean boolean2 = singleton.TryGetPoolObject(optionalPrefab2, local2) //(GameObject prefab, PoolObject& poolObject)
+
+		    if (boolean2 != False)
+
+		        UnityEngine.Transform transform2 = local2.transform
+
+		        transform2.parentInternal = transform
+
+		        local2.SpawnPoolObject()
+
+		        UnityEngine.GameObject gameObject = local2.gameObject
+		    else
+		        UnityEngine.GameObject targetPart3 = this.TargetPart
+		        UnityEngine.GameObject optionalPrefab3 = this.optionalPrefab
+
+		        UnityEngine.Transform transform3 = targetPart3.transform
+
+		        UnityEngine.GameObject gameObject2 = UnityEngine.Object.Instantiate<UnityEngine.GameObject>(optionalPrefab3, transform3) //(T original, Transform parent)
+		    endif
+            
+		    this.<SpawnedObject>k__BackingField = gameObject2
+		    UnityEngine.GameObject SpawnedObject = this.<SpawnedObject>k__BackingField
+
+		    UnityEngine.Transform transform4 = SpawnedObject.transform
+
+		    UnityEngine.Vector3 one = UnityEngine.Vector3.one
+		    System.Single single = one.z
+
+		    transform4.set_localScale()
+		    UnityEngine.GameObject SpawnedObject2 = this.<SpawnedObject>k__BackingField
+
+		    UnityEngine.Transform transform5 = SpawnedObject2.transform
+
+		    UnityEngine.Vector3 zero = UnityEngine.Vector3.zero
+		    System.Single single2 = zero.z
+
+		    transform5.set_localPosition()
+		    UnityEngine.GameObject SpawnedObject3 = this.<SpawnedObject>k__BackingField
+
+		    UnityEngine.Transform transform6 = SpawnedObject3.transform
+
+		    UnityEngine.Quaternion identity = UnityEngine.Quaternion.identity
+
+		    transform6.set_localRotation()
+
+		    this.Initialize()
+		endif
+        
+		return
+
+		INSN_181B29446:
+		UnityEngine.GameObject SpawnedObject4 = this.<SpawnedObject>k__BackingField
+		ulong local55 = 0
+
+		System.Boolean boolean3 = UnityEngine.Object.op_Inequality(SpawnedObject4, local55) //(Object x, Object y)
+
+		if (boolean3 == False)
+            goto INSN_181B29435
+        endif
+
+		this.Initialize()
+		UnityEngine.GameObject SpawnedObject5 = this.<SpawnedObject>k__BackingField
+		GameObjectPools.PoolManager singleton2 = GameObjectPools.PoolManager.Singleton
+		ulong local61 = 0
+
+		System.Boolean boolean4 = UnityEngine.Object.op_Equality(SpawnedObject5, local61) //(Object x, Object y)
+
+		if (boolean4 != False)
+            goto INSN_181B2953F
+        endif
+		System.Collections.Generic.Dictionary`2<UnityEngine.GameObject,GameObjectPools.PoolObject> poolObjectLookup = singleton2.PoolObjectLookup
+
+		System.Boolean boolean5 = poolObjectLookup.TryGetValue(SpawnedObject5, local2) //(TKey key, TValue& value)
+
+		if (boolean5 == False)
+            goto INSN_181B2953F
+        endif
+
+		local2.ReturnToPool(True) //(Boolean checkChildren)
+		return
+
+		INSN_181B2953F:
+		UnityEngine.GameObject SpawnedObject6 = this.<SpawnedObject>k__BackingField
+
+		UnityEngine.Object.Destroy(SpawnedObject6) //(Object obj)
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181B29263) is corrupt (Mismatched instance parameter. Expecting an instance of UnityEngine.Component, actually {'local2' (type System.Int32)}) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: HandPart
+	System.Void ResetObject()
+
+		base.ResetObject()
+		UnityEngine.GameObject targetPart = this.TargetPart
+		ulong local4 = 0
+
+		targetPart.SetActive(local4) //(Boolean value)
+		this.<CurrentlyEnabled>k__BackingField = False
+
+		base.ResetObject()
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void InventorySystem.Items.Thirdperson.ThirdpersonItemBase::ResetObject()
+	IL_0006: ldarg.0
+	IL_0007: ldfld UnityEngine.GameObject HandPart::TargetPart
+	IL_000c: stloc.0
+	IL_000d: ldc.i4.0
+	IL_000e: stloc.1
+	IL_000f: ldloc.0
+	IL_0010: ldloc.1
+	IL_0011: call System.Void UnityEngine.GameObject::SetActive(System.Boolean)
+	IL_0016: ldarg.0
+	IL_0017: ldc.i4.0
+	IL_0018: stfld System.Boolean HandPart::<CurrentlyEnabled>k__BackingField
+	IL_001d: ldarg.0
+	IL_001e: call System.Void GameObjectPools.IPoolResettable::ResetObject()
+	IL_0023: ret
+	IL_0024: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0029: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: HandPart
+	System.Void OnActiveStateChange(System.Boolean isEnabled)
+
+
+Generated IL:
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: HandPart
+	System.Single GetTransitionTime(InventorySystem.Items.ItemIdentifier iid)
+		return constant1
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x1804CB7D8) is corrupt (ConstantDefinition: Don't know how to get IL to load a Cpp2IL.Core.Analysis.ResultModels.UnknownGlobalAddr) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: HandPart
+	System.Void .ctor()
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void InventorySystem.Items.Thirdperson.ThirdpersonItemBase::.ctor()
+	IL_0006: ret
+	
+

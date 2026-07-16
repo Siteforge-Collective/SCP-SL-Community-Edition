@@ -1,0 +1,468 @@
+Type: ElevatorManager
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Interobjects.ElevatorManager
+	static System.Void Init()
+		System.Action <>9__5_0 = Interactables.Interobjects.ElevatorManager/<>c.<>9__5_0
+
+		if (<>9__5_0 == 0)
+		    Interactables.Interobjects.ElevatorManager/<>c <>c = Interactables.Interobjects.ElevatorManager/<>c.<>9
+		    System.Action action = new System.Action()
+
+		    action..ctor(<>c, {'<Init>b__5_0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		     += 8
+		    Interactables.Interobjects.ElevatorManager/<>c.<>9 = action
+		endif
+        
+
+		CustomNetworkManager.add_OnClientReady(<>9__5_0) //(Action value)
+		System.Action`2<Interactables.Interobjects.ElevatorManager/ElevatorGroup,Interactables.Interobjects.ElevatorDoor> onPairsChanged = Interactables.Interobjects.ElevatorDoor.OnPairsChanged
+		System.Action`2<Interactables.Interobjects.ElevatorManager/ElevatorGroup,Interactables.Interobjects.ElevatorDoor> <>9__5_1 = Interactables.Interobjects.ElevatorManager/<>c.<>9__5_1
+
+		if (<>9__5_1 != 0)
+            goto INSN_1803E9B43
+        endif
+		Interactables.Interobjects.ElevatorManager/<>c <>c2 = Interactables.Interobjects.ElevatorManager/<>c.<>9
+		System.Action`2<Interactables.Interobjects.ElevatorManager/ElevatorGroup,Interactables.Interobjects.ElevatorDoor> action2 = new System.Action`2<Interactables.Interobjects.ElevatorManager/ElevatorGroup,Interactables.Interobjects.ElevatorDoor>()
+
+		action2..ctor(<>c2, {'<Init>b__5_1' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		 += 16
+		Interactables.Interobjects.ElevatorManager/<>c.<>9 = action2
+
+		INSN_1803E9B43:
+
+		System.Delegate delegate = System.Delegate.Combine(onPairsChanged, action2) //(Delegate a, Delegate b)
+
+		if (delegate == 0)
+            goto INSN_1803E9B9C
+        endif
+
+		if (delegate == 0)
+            goto INSN_1803E9C56
+        endif
+
+		INSN_1803E9B9C:
+		 += 8
+		Interactables.Interobjects.ElevatorDoor.AllElevatorDoors = delegate
+		System.Action`1<ReferenceHub> onPlayerAdded = ReferenceHub.OnPlayerAdded
+		System.Action`1<ReferenceHub> action3 = new System.Action`1<ReferenceHub>()
+		ulong local14 = 0
+
+		action3..ctor(local14, {'ServerSendAllToPlayer' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		System.Delegate delegate2 = System.Delegate.Combine(onPlayerAdded, action3) //(Delegate a, Delegate b)
+
+		if (delegate2 == 0)
+            goto INSN_1803E9C2E
+        endif
+
+		if (delegate2 == 0)
+            goto INSN_1803E9C62
+        endif
+
+		INSN_1803E9C2E:
+		ReferenceHub.OnPlayerAdded = delegate2
+
+		INSN_1803E9C56:
+		throw new System.InvalidCastException()
+
+		INSN_1803E9C62:
+		throw new System.InvalidCastException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x1803E9A3B) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Interobjects.ElevatorManager
+	System.Void Update()
+
+		this.RefreshChambers()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void Interactables.Interobjects.ElevatorManager::RefreshChambers()
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Interobjects.ElevatorManager
+	static System.Void ServerSendAllToPlayer(ReferenceHub ply)
+
+		System.Boolean isLocalPlayer = ply.isLocalPlayer
+
+		if (isLocalPlayer == False)
+		    System.Collections.Generic.Dictionary`2<Interactables.Interobjects.ElevatorManager/ElevatorGroup,System.Int32> syncedDestinations = Interactables.Interobjects.ElevatorManager.SyncedDestinations
+
+		    System.Collections.Generic.Dictionary`2/Enumerator<TKey,TValue> enumerator = .GetEnumerator()
+
+		    if (enumerator != 0)
+		        ulong local5 = 0
+
+		        Mirror.NetworkConnection connectionToClient = ply.connectionToClient
+		        ulong local8 = 0
+
+		        connectionToClient.Send<Interactables.Interobjects.ElevatorManager/ElevatorSyncMsg>(local5, local8) //(T msg, Int32 channelId)
+		    endif
+            
+
+		    [instruction error - managed method being called is null]
+
+		    [instruction error - managed method being called is null]
+
+		    if (ElevatorManager != 0)
+                goto INSN_1803EA5C7
+            endif
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+		INSN_1803EA5C7:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1803EA4F1) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Interobjects.ElevatorManager
+	Interactables.Interobjects.ElevatorChamber GetChamberForGroup(Interactables.Interobjects.ElevatorManager/ElevatorGroup group)
+		Interactables.Interobjects.ElevatorManager/ChamberTypePair[] _customChambers = this._customChambers
+		ulong local3 = 0
+		System.Int32 local4 = group.value__
+		System.Int32 length = _customChambers.Length
+
+		if (local3 < length)
+		    local3 += 2
+		    local3 += local3
+
+		    if ( != local4)
+		        local3 += 1
+		    endif
+            
+		    return group
+		endif
+        
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfZeroOrNullAction at (0x1803E993C) is corrupt (One of the arguments is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Interobjects.ElevatorManager
+	static System.Boolean TrySetDestination(Interactables.Interobjects.ElevatorManager/ElevatorGroup group, System.Int32 lvl, System.Boolean force)
+		System.Int32 local3 = group.value__
+		System.Collections.Generic.Dictionary`2<Interactables.Interobjects.ElevatorManager/ElevatorGroup,Interactables.Interobjects.ElevatorChamber> spawnedChambers = Interactables.Interobjects.ElevatorManager.SpawnedChambers
+		lvl = local3
+
+		System.Boolean boolean = spawnedChambers.TryGetValue()
+
+		if (boolean != False)
+
+		    System.Boolean boolean2 = UnityEngine.Object.op_Equality()
+
+		    if (boolean2 == False)
+
+		        System.Boolean boolean3 = local4.TrySetDestination(lvl, force) //(Int32 targetLevel, Boolean force)
+
+		        if (boolean3 != False)
+
+		            if (boolean3 != False)
+		                lvl = local3
+
+		                Mirror.NetworkServer.SendToReady<Interactables.Interobjects.ElevatorManager/ElevatorSyncMsg>()
+		                System.Collections.Generic.Dictionary`2<Interactables.Interobjects.ElevatorManager/ElevatorGroup,System.Int32> syncedDestinations = Interactables.Interobjects.ElevatorManager.SyncedDestinations
+		                throw new System.NullReferenceException()
+		            endif
+                    
+		            return True
+		        endif
+                
+		        ulong local18 = 0
+		        return local18
+		        throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.Implicit4ByteFieldReadAction at (0x1803EA5FC) is corrupt (Local local3 has been stripped out for being unused, so doesn't have a variable.) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Interobjects.ElevatorManager
+	static System.Void ClientReceiveMessage(Interactables.Interobjects.ElevatorManager/ElevatorSyncMsg msg)
+		ulong local1 = 0
+		System.Collections.Generic.Dictionary`2<Interactables.Interobjects.ElevatorManager/ElevatorGroup,System.Int32> syncedDestinations = Interactables.Interobjects.ElevatorManager.SyncedDestinations
+		throw new System.NullReferenceException()
+
+		System.Boolean boolean = Interactables.Interobjects.ElevatorManager.TrySetDestination(local1, local1, True) //(ElevatorGroup group, Int32 lvl, Boolean force)
+		return
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: ldsfld System.Collections.Generic.Dictionary`2<Interactables.Interobjects.ElevatorManager/ElevatorGroup,System.Int32> Interactables.Interobjects.ElevatorManager::SyncedDestinations
+	IL_0007: stloc.1
+	IL_0008: newobj System.Void System.NullReferenceException::.ctor()
+	IL_000d: throw
+	IL_000e: ldloc.0
+	IL_000f: ldloc.0
+	IL_0010: ldc.i4.1
+	IL_0011: call System.Boolean Interactables.Interobjects.ElevatorManager::TrySetDestination(Interactables.Interobjects.ElevatorManager/ElevatorGroup,System.Int32,System.Boolean)
+	IL_0016: stloc.2
+	IL_0017: ret
+	IL_0018: ret
+	IL_0019: newobj System.Void System.NullReferenceException::.ctor()
+	IL_001e: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Interobjects.ElevatorManager
+	static System.Void ServerReceiveMessage(Mirror.NetworkConnection conn, Interactables.Interobjects.ElevatorManager/ElevatorSyncMsg msg)
+		Mirror.NetworkIdentity identity = conn.<identity>k__BackingField
+		System.UInt32 netId = identity.<netId>k__BackingField
+		ulong local5 = 0
+
+		System.Boolean boolean = ReferenceHub.TryGetHubNetID()
+
+		if (boolean != False)
+		    ulong local7 = 0
+
+		    System.Boolean isAlive = PlayerRoles.PlayerRolesUtils.IsAlive()
+
+		    if (isAlive != False)
+		        System.Collections.Generic.Dictionary`2<Interactables.Interobjects.ElevatorManager/ElevatorGroup,Interactables.Interobjects.ElevatorChamber> spawnedChambers = Interactables.Interobjects.ElevatorManager.SpawnedChambers
+
+		        System.Boolean boolean2 = spawnedChambers.TryGetValue(local7, local5) //(TKey key, TValue& value)
+
+		        if (boolean2 != False)
+
+		            System.Boolean boolean3 = UnityEngine.Object.op_Equality()
+
+		            if (boolean3 == False)
+		                ulong local15 = 0
+
+		                System.Boolean isReady = netId.IsReady
+
+		                if (isReady != False)
+		                      = isReady.
+
+		                    System.Collections.Generic.List`1/Enumerator<T> enumerator = netId.GetEnumerator()
+
+		                    if (enumerator != 0)
+		                          = netId.
+
+		                        if ( == null)
+
+		                            if ( != 0)
+		                                  = enumerator.
+
+		                                if ( != 0)
+		                                endif
+                                        
+
+		                                if (enumerator != 0)
+
+		                                    System.Boolean boolean4 = Interactables.Interobjects.ElevatorManager.TrySetDestination()
+
+		                                    [instruction error - managed method being called is null]
+		                                else
+
+		                                    netId.Dispose()
+
+		                                    netId.Dispose()
+
+		                                    if (netId != 0)
+                                                goto INSN_1803EA3BD
+                                            endif
+		                                endif
+                                        
+		                                return
+		                                throw new System.NullReferenceException()
+		                                throw new System.NullReferenceException()
+		                                throw new System.NullReferenceException()
+		                                throw new System.NullReferenceException()
+		                                throw new System.NullReferenceException()
+
+		                                INSN_1803EA3BD:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1803EA159) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Interobjects.ElevatorManager
+	System.Void RefreshChambers()
+		System.Collections.Generic.Dictionary`2<Interactables.Interobjects.ElevatorManager/ElevatorGroup,System.Collections.Generic.List`1<Interactables.Interobjects.ElevatorDoor>> allElevatorDoors = Interactables.Interobjects.ElevatorDoor.AllElevatorDoors
+
+		System.Collections.Generic.Dictionary`2/Enumerator<TKey,TValue> enumerator = .GetEnumerator()
+
+		if (enumerator != 0)
+
+		    if ( != 0)
+
+		        if ( != 0)
+		            System.Collections.Generic.Dictionary`2<Interactables.Interobjects.ElevatorManager/ElevatorGroup,Interactables.Interobjects.ElevatorChamber> spawnedChambers = Interactables.Interobjects.ElevatorManager.SpawnedChambers
+
+		            System.Boolean boolean = spawnedChambers.TryGetValue()
+
+		            if (boolean == False)
+                        goto INSN_1803E9DFB
+                    endif
+		            ulong local7 = 0
+
+		            System.Boolean boolean2 = UnityEngine.Object.op_Inequality()
+
+		            if (boolean2 == False)
+
+		                INSN_1803E9DFB:
+
+		                Interactables.Interobjects.ElevatorChamber chamberForGroup = this.GetChamberForGroup(local7) //(ElevatorGroup group)
+
+		                Interactables.Interobjects.ElevatorChamber elevatorChamber = UnityEngine.Object.Instantiate<Interactables.Interobjects.ElevatorChamber>(chamberForGroup) //(T original)
+
+		                elevatorChamber.set_AssignedGroup()
+		                System.Collections.Generic.Dictionary`2<Interactables.Interobjects.ElevatorManager/ElevatorGroup,Interactables.Interobjects.ElevatorChamber> spawnedChambers2 = Interactables.Interobjects.ElevatorManager.SpawnedChambers
+		                throw new System.NullReferenceException()
+
+		                UnityEngine.Transform transform = elevatorChamber.transform
+
+		                if ( > 0)
+                            goto INSN_1803E9EBB
+                        endif
+		                ulong local17 = 0
+
+		                System.ThrowHelper.ThrowArgumentOutOfRangeException()
+
+		                INSN_1803E9EBB:
+		                  = transform.
+
+		                UnityEngine.Transform transform2 = elevatorChamber.transform
+		                  = elevatorChamber.
+
+		                UnityEngine.Vector3 vector3 = elevatorChamber.TransformPoint()
+		                System.Single single = vector3.z
+
+		                transform.set_position()
+
+		                if ( > 0)
+                            goto INSN_1803E9F3C
+                        endif
+		                ulong local24 = 0
+
+		                System.ThrowHelper.ThrowArgumentOutOfRangeException()
+
+		                INSN_1803E9F3C:
+		                  = single.
+
+		                UnityEngine.Transform transform3 = local24.transform
+
+		                UnityEngine.Transform parent = transform3.parent
+
+		                transform.parentInternal = parent
+		                System.Collections.Generic.Dictionary`2<Interactables.Interobjects.ElevatorManager/ElevatorGroup,System.Int32> syncedDestinations = Interactables.Interobjects.ElevatorManager.SyncedDestinations
+
+		                System.Boolean boolean3 = syncedDestinations.TryGetValue()
+
+		                if (boolean3 != False)
+                            goto INSN_1803E9FEE
+                        endif
+
+		                if (boolean3 != False)
+		                    ulong local34 = 0
+
+		                    [instruction error - managed method being called is null]
+
+		                    INSN_1803E9FEE:
+
+		                    System.Boolean boolean4 = Interactables.Interobjects.ElevatorManager.TrySetDestination()
+		                endif
+                        
+
+		                [instruction error - managed method being called is null]
+
+		                [instruction error - managed method being called is null]
+
+		                if (ElevatorDoor != 0)
+                            goto INSN_1803EA0A7
+                        endif
+		                return
+		                throw new System.NullReferenceException()
+		                throw new System.NullReferenceException()
+		                throw new System.NullReferenceException()
+		                throw new System.NullReferenceException()
+		                throw new System.NullReferenceException()
+		                throw new System.NullReferenceException()
+		                throw new System.NullReferenceException()
+		                throw new System.NullReferenceException()
+		                throw new System.NullReferenceException()
+
+		                INSN_1803EA0A7:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1803E9D16) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Interobjects.ElevatorManager
+	System.Void .ctor()
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void UnityEngine.MonoBehaviour::.ctor()
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Interobjects.ElevatorManager
+	static System.Void .cctor()
+		System.Collections.Generic.Dictionary`2<Interactables.Interobjects.ElevatorManager/ElevatorGroup,Interactables.Interobjects.ElevatorChamber> dictionary = new System.Collections.Generic.Dictionary`2<Interactables.Interobjects.ElevatorManager/ElevatorGroup,Interactables.Interobjects.ElevatorChamber>()
+
+		dictionary..ctor()
+		 += 8
+		Interactables.Interobjects.ElevatorManager._refreshNextFrame = dictionary
+		System.Collections.Generic.Dictionary`2<Interactables.Interobjects.ElevatorManager/ElevatorGroup,System.Int32> dictionary2 = new System.Collections.Generic.Dictionary`2<Interactables.Interobjects.ElevatorManager/ElevatorGroup,System.Int32>()
+
+		dictionary2..ctor()
+		 += 16
+		Interactables.Interobjects.ElevatorManager._refreshNextFrame = dictionary2
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x1803EA8B0) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+

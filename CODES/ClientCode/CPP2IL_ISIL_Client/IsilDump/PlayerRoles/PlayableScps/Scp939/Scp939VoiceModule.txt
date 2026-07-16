@@ -1,0 +1,233 @@
+Type: PlayerRoles.PlayableScps.Scp939.Scp939VoiceModule
+
+Method: VoiceChat.Codec.OpusDecoder get_Decoder()
+
+Disassembly:
+	push rdi
+	sub rsp,20h
+	cmp byte ptr [1826EA7E8h],0
+	mov rdi,rcx
+	jne short 0000000180457854h
+	mov ecx,[1822F81DCh]
+	call 0000000180294190h
+	mov byte ptr [1826EA7E8h],1
+	cmp dword ptr [rdi+18h],7
+	jne short 00000001804578ACh
+	cmp byte ptr [rdi+90h],0
+	jne short 000000018045789Fh
+	mov rcx,[182722A58h]
+	mov [rsp+30h],rbx
+	call 00000001802942D0h
+	xor edx,edx
+	mov rcx,rax
+	mov rbx,rax
+	call 0000000181B89CD0h
+	lea rcx,[rdi+88h]
+	mov rdx,rbx
+	mov [rcx],rbx
+	call 0000000180293EF0h
+	mov rbx,[rsp+30h]
+	mov byte ptr [rdi+90h],1
+	mov rax,[rdi+88h]
+	add rsp,20h
+	pop rdi
+	ret
+	mov rax,[rdi+20h]
+	add rsp,20h
+	pop rdi
+	ret
+
+ISIL:
+	001 ShiftStack -8
+	002 Move stack:0x0, rdi
+	003 ShiftStack -32
+	004 Compare [0x1826EA7E8], 0
+	005 Move rdi, rcx
+	006 JumpIfNotEqual {10}
+	007 Move rcx, [0x1822F81DC]
+	008 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	009 Move [0x1826EA7E8], 1
+	010 Compare [rdi+24], 7
+	011 JumpIfNotEqual {32}
+	012 Compare [rdi+144], 0
+	013 JumpIfNotEqual {27}
+	014 Move rcx, typeof(VoiceChat.Codec.OpusDecoder)
+	015 Move stack:0x30, rbx
+	016 Call "il2cpp_codegen_object_new", rcx, rdx, r8, r9
+	017 Move rdx, 0
+	018 Move rcx, rax
+	019 Move rbx, rax
+	020 Call OpusDecoder..ctor, rcx, rdx
+	021 LoadAddress rcx, [rdi+136]
+	022 Move rdx, rbx
+	023 Move [rcx], rbx
+	024 Call 0x180293EF0, rcx, rdx, r8, r9
+	025 Move rbx, stack:0x30
+	026 Move [rdi+144], 1
+	027 Move rax, [rdi+136]
+	028 ShiftStack 32
+	029 Move rdi, stack:0x0
+	030 ShiftStack 8
+	031 Return rax
+	032 Move rax, [rdi+32]
+	033 ShiftStack 32
+	034 Move rdi, stack:0x0
+	035 ShiftStack 8
+	036 Return rax
+
+Method: System.Void ProcessSamples(System.Single[] data, System.Int32 len)
+
+Disassembly:
+	mov [rsp+8],rbx
+	push rdi
+	sub rsp,20h
+	cmp dword ptr [rcx+18h],7
+	mov ebx,r8d
+	mov rdi,rdx
+	je short 0000000180457768h
+	xor r9d,r9d
+	mov rbx,[rsp+30h]
+	add rsp,20h
+	pop rdi
+	jmp near ptr 00000001803D0240h
+	mov rcx,[rcx+80h]
+	test rcx,rcx
+	je short 000000018045779Bh
+	xor edx,edx
+	call 0000000181B8EB30h
+	test rax,rax
+	je short 000000018045779Bh
+	xor r9d,r9d
+	mov r8d,ebx
+	mov rdx,rdi
+	mov rcx,rax
+	mov rbx,[rsp+30h]
+	add rsp,20h
+	pop rdi
+	jmp near ptr 0000000181B8D6C0h
+	call 0000000180294310h
+
+ISIL:
+	001 Move stack:0x8, rbx
+	002 ShiftStack -8
+	003 Move stack:0x0, rdi
+	004 ShiftStack -32
+	005 Compare [rcx+24], 7
+	006 Move rbx, r8
+	007 Move rdi, rdx
+	008 JumpIfEqual {16}
+	009 Move r9, 0
+	010 Move rbx, stack:0x30
+	011 ShiftStack 32
+	012 Move rdi, stack:0x0
+	013 ShiftStack 8
+	014 Call GlobalVoiceModuleBase.ProcessSamples, rcx, rdx, r8
+	015 Return 
+	016 Move rcx, [rcx+128]
+	017 Compare rcx, 0
+	018 JumpIfEqual {33}
+	019 Move rdx, 0
+	020 Call SingleBufferPlayback.get_Buffer, rcx, rdx
+	021 Compare rax, 0
+	022 JumpIfEqual {33}
+	023 Move r9, 0
+	024 Move r8, rbx
+	025 Move rdx, rdi
+	026 Move rcx, rax
+	027 Move rbx, stack:0x30
+	028 ShiftStack 32
+	029 Move rdi, stack:0x0
+	030 ShiftStack 8
+	031 Call PlaybackBuffer.Write, rcx, rdx, r8
+	032 Return 
+	033 Call 0x180294310, rcx, rdx, r8, r9
+
+Method: VoiceChat.VoiceChatChannel ValidateReceive(ReferenceHub speaker, VoiceChat.VoiceChatChannel channel)
+
+Disassembly:
+	cmp r8d,7
+	jne short 00000001804577FAh
+	mov eax,r8d
+	ret
+	xor r9d,r9d
+	jmp near ptr 00000001803D0290h
+
+ISIL:
+	001 Compare r8, 7
+	002 JumpIfNotEqual {5}
+	003 Move rax, r8
+	004 Return rax
+	005 Move r9, 0
+	006 Call GlobalVoiceModuleBase.ValidateReceive, rcx, rdx, r8
+	007 Return rax
+
+Method: VoiceChat.VoiceChatChannel ValidateSend(VoiceChat.VoiceChatChannel channel)
+
+Disassembly:
+	cmp edx,7
+	jne short 0000000180457818h
+	mov eax,edx
+	ret
+	xor r8d,r8d
+	jmp near ptr 00000001803D02F0h
+
+ISIL:
+	001 Compare rdx, 7
+	002 JumpIfNotEqual {5}
+	003 Move rax, rdx
+	004 Return rax
+	005 Move r8, 0
+	006 Call GlobalVoiceModuleBase.ValidateSend, rcx, rdx
+	007 Return rax
+
+Method: System.Void ResetObject()
+
+Disassembly:
+	push rbx
+	sub rsp,20h
+	xor edx,edx
+	mov rbx,rcx
+	call 00000001803E1630h
+	cmp byte ptr [rbx+90h],0
+	je short 00000001804577E3h
+	mov rcx,[rbx+88h]
+	test rcx,rcx
+	je short 00000001804577DCh
+	xor edx,edx
+	call 0000000181B89C30h
+	mov byte ptr [rbx+90h],0
+	add rsp,20h
+	pop rbx
+	ret
+
+ISIL:
+	001 ShiftStack -8
+	002 Move stack:0x0, rbx
+	003 ShiftStack -32
+	004 Move rdx, 0
+	005 Move rbx, rcx
+	006 Call StandardVoiceModule.ResetObject, rcx, rdx
+	007 Compare [rbx+144], 0
+	008 JumpIfEqual {15}
+	009 Move rcx, [rbx+136]
+	010 Compare rcx, 0
+	011 JumpIfEqual {14}
+	012 Move rdx, 0
+	013 Call OpusDecoder.Dispose, rcx, rdx
+	014 Move [rbx+144], 0
+	015 ShiftStack 32
+	016 Move rbx, stack:0x0
+	017 ShiftStack 8
+	018 Return 
+
+Method: System.Void .ctor()
+
+Disassembly:
+	xor edx,edx
+	jmp near ptr 00000001803D0320h
+
+ISIL:
+	001 Move rdx, 0
+	002 Call 0x1803D0320, rcx, rdx
+	003 Return 
+

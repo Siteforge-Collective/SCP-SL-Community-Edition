@@ -1,0 +1,361 @@
+Type: AuthenticatedMessage
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AuthenticatedMessage
+	System.Void .ctor(System.String m, System.Boolean a)
+
+		base..ctor()
+		this.Message = m
+		this.Administrator = a
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void System.Object::.ctor()
+	IL_0006: ldarg.0
+	IL_0007: ldarg.1
+	IL_0008: stfld System.String AuthenticatedMessage::Message
+	IL_000d: ldarg.0
+	IL_000e: ldarg.2
+	IL_000f: stfld System.Boolean AuthenticatedMessage::Administrator
+	IL_0014: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AuthenticatedMessage
+	static System.String GenerateAuthenticatedMessage(System.String message, System.Int64 timestamp, System.String password)
+
+		System.Boolean boolean = message.Contains(":[:BR:]:") //(String value)
+
+		if (boolean == False)
+
+		    System.String string = System.Convert.ToString(timestamp) //(Int64 value)
+
+		    System.String string2 = System.String.Concat(message, ":[:BR:]:", string) //(String str0, String str1, String str2)
+
+		    System.Byte[] byteArray = Cryptography.Sha.Sha512(password) //(String message)
+
+		    System.Byte[] bytes = Utf8.GetBytes(string2) //(String data)
+
+		    System.Byte[] byteArray2 = Cryptography.Sha.Sha512Hmac(byteArray, bytes) //(Byte[] key, Byte[] message)
+
+		    System.String string3 = Cryptography.Sha.HashToString(byteArray2) //(Byte[] hash)
+
+		    System.String string4 = System.String.Concat(string2, ":[:BR:]:", string3) //(String str0, String str1, String str2)
+		    return string4
+		    throw new System.NullReferenceException()
+		endif
+        
+		MessageUnallowedCharsException messageUnallowedCharsException = new MessageUnallowedCharsException()
+
+		messageUnallowedCharsException..ctor("Message can't contain :[:BR:]:") //(String message)
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldstr ":[:BR:]:"
+	IL_0006: call System.Boolean System.String::Contains(System.String)
+	IL_000b: ldc.i4.0
+	IL_000c: bne.un.s IL_0052
+	IL_000e: ldarg.1
+	IL_000f: call System.String System.Convert::ToString(System.Int64)
+	IL_0014: stloc.0
+	IL_0015: ldarg.0
+	IL_0016: ldstr ":[:BR:]:"
+	IL_001b: ldloc.0
+	IL_001c: call System.String System.String::Concat(System.String,System.String,System.String)
+	IL_0021: stloc.1
+	IL_0022: ldarg.2
+	IL_0023: call System.Byte[] Cryptography.Sha::Sha512(System.String)
+	IL_0028: stloc.2
+	IL_0029: ldloc.1
+	IL_002a: call System.Byte[] Utf8::GetBytes(System.String)
+	IL_002f: stloc.3
+	IL_0030: ldloc.2
+	IL_0031: ldloc.3
+	IL_0032: call System.Byte[] Cryptography.Sha::Sha512Hmac(System.Byte[],System.Byte[])
+	IL_0037: call System.String Cryptography.Sha::HashToString(System.Byte[])
+	IL_003c: stloc.s V_4
+	IL_003e: ldloc.1
+	IL_003f: ldstr ":[:BR:]:"
+	IL_0044: ldloc.s V_4
+	IL_0046: call System.String System.String::Concat(System.String,System.String,System.String)
+	IL_004b: ret
+	IL_004c: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0051: throw
+	IL_0052: ldstr "Message can't contain :[:BR:]:"
+	IL_0057: newobj System.Void MessageUnallowedCharsException::.ctor(System.String)
+	IL_005c: stloc.s V_5
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AuthenticatedMessage
+	static System.String GenerateNonAuthenticatedMessage(System.String message)
+
+		System.Boolean boolean = message.Contains(":[:BR:]:") //(String value)
+
+		if (boolean == False)
+
+		    System.String string = System.String.Concat(message, ":[:BR:]:Guest") //(String str0, String str1)
+		    return string
+		    throw new System.NullReferenceException()
+		endif
+        
+		MessageUnallowedCharsException messageUnallowedCharsException = new MessageUnallowedCharsException()
+
+		messageUnallowedCharsException..ctor("Message can't contain :[:BR:]:") //(String message)
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldstr ":[:BR:]:"
+	IL_0006: call System.Boolean System.String::Contains(System.String)
+	IL_000b: ldc.i4.0
+	IL_000c: bne.un.s IL_0020
+	IL_000e: ldarg.0
+	IL_000f: ldstr ":[:BR:]:Guest"
+	IL_0014: call System.String System.String::Concat(System.String,System.String)
+	IL_0019: ret
+	IL_001a: newobj System.Void System.NullReferenceException::.ctor()
+	IL_001f: throw
+	IL_0020: ldstr "Message can't contain :[:BR:]:"
+	IL_0025: newobj System.Void MessageUnallowedCharsException::.ctor(System.String)
+	IL_002a: stloc.0
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AuthenticatedMessage
+	static AuthenticatedMessage AuthenticateMessage(System.String message, System.Int64 timestamp, System.String password)
+
+		System.Boolean boolean = message.Contains(":[:BR:]:") //(String value)
+
+		if (boolean != False)
+		    System.String[] local5 = new System.String[1]
+
+		    if (":[:BR:]:" != 0)
+
+		        if (local5 == 0)
+                    goto INSN_1804E1FD0
+                endif
+		    endif
+            
+		    local5[0] = ":[:BR:]:"
+		    ulong local7 = 0
+
+		    System.String[] stringArray = message.Split(local5, local7) //(String[] separator, StringSplitOptions options)
+		    System.Int32 length = stringArray.Length
+
+		    if (message > 1)
+                goto INSN_1804E2125
+            endif
+		    System.String local11 = stringArray[1]
+
+		    System.Boolean boolean2 = System.String.Equals(local11, "Guest") //(String a, String b)
+
+		    if (boolean2 != False)
+                goto INSN_1804E1F8E
+            endif
+		    System.String local13 = stringArray[1]
+
+		    System.Int64 int64 = System.Convert.ToInt64(local13) //(String value)
+
+		    System.Boolean boolean3 = TimeBehaviour.ValidateTimestamp(timestamp, int64, {'1200000' (constant value of type System.Int64)}) //(Int64 timestampentry, Int64 timestampexit, Int64 limit)
+
+		    if (boolean3 == False)
+                goto INSN_1804E2092
+            endif
+
+		    System.Byte[] byteArray = Cryptography.Sha.Sha512(password) //(String message)
+		    System.Int32 length2 = stringArray.Length
+		    System.String local22 = stringArray[1]
+		    System.String local23 = stringArray[0]
+
+		    System.String string = System.String.Concat(local23, ":[:BR:]:", local22) //(String str0, String str1, String str2)
+
+		    System.Byte[] bytes = Utf8.GetBytes(string) //(String data)
+
+		    System.Byte[] byteArray2 = Cryptography.Sha.Sha512Hmac(byteArray, bytes) //(Byte[] key, Byte[] message)
+
+		    System.String string2 = Cryptography.Sha.HashToString(byteArray2) //(Byte[] hash)
+		    System.String local32 = stringArray[2]
+
+		    System.Boolean boolean4 = System.String.op_Inequality(string2, local32) //(String a, String b)
+
+		    if (boolean4 != False)
+                goto INSN_1804E2061
+            endif
+
+		    System.Boolean isNullOrEmpty = System.String.IsNullOrEmpty(password) //(String value)
+
+		    if (isNullOrEmpty != False)
+                goto INSN_1804E1F82
+            endif
+
+		    System.Boolean boolean5 = System.String.Equals(password, "none") //(String a, String b)
+
+		    if (boolean5 != False)
+                goto INSN_1804E1F82
+            endif
+		    System.String local38 = stringArray[0]
+		    AuthenticatedMessage authenticatedMessage = new AuthenticatedMessage()
+
+		    authenticatedMessage..ctor()
+		    authenticatedMessage.Message = local38
+		    authenticatedMessage.Administrator = True
+		    return authenticatedMessage
+
+		    INSN_1804E1F82:
+
+		    INSN_1804E1F8E:
+		      = local38.
+		    AuthenticatedMessage authenticatedMessage2 = new AuthenticatedMessage()
+
+		    authenticatedMessage2..ctor()
+		    authenticatedMessage2.Message = local38
+		    authenticatedMessage2.Administrator = False
+		    throw new System.NullReferenceException()
+
+		    INSN_1804E1FD0:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1804E1E62) is corrupt (ConstantDefinition: Don't know how to get IL to load a System.Int64) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AuthenticatedMessage
+	static System.Byte[] Encode(System.Byte[] data)
+		System.Int32 length = data.Length
+		length += 4
+		System.Byte[] local2 = new System.Byte[length]
+		System.Int32 length2 = data.Length
+
+		System.Byte[] bytes = System.BitConverter.GetBytes(length2) //(Int32 value)
+
+		System.Array.Reverse(bytes) //(Array array)
+		System.Int32 length3 = bytes.Length
+		ulong local8 = 0
+		ulong local10 = 0
+
+		System.Array.Copy(bytes, local10, local2, local8, length3) //(Array sourceArray, Int32 sourceIndex, Array destinationArray, Int32 destinationIndex, Int32 length)
+		System.Int32 length4 = data.Length
+		System.Int64 local12 = 4
+		ulong local14 = 0
+
+		System.Array.Copy(data, local14, local2, local12, length4) //(Array sourceArray, Int32 sourceIndex, Array destinationArray, Int32 destinationIndex, Int32 length)
+		return local2
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Int32 System.Array::get_Length()
+	IL_0006: stloc.0
+	IL_0007: ldloc.0
+	IL_0008: ldc.i4.4
+	IL_0009: add
+	IL_000a: stloc.0
+	IL_000b: ldloc.0
+	IL_000c: newarr System.Byte
+	IL_0011: stloc.1
+	IL_0012: ldarg.0
+	IL_0013: call System.Int32 System.Array::get_Length()
+	IL_0018: call System.Byte[] System.BitConverter::GetBytes(System.Int32)
+	IL_001d: stloc.2
+	IL_001e: ldloc.2
+	IL_001f: call System.Void System.Array::Reverse(System.Array)
+	IL_0024: ldloc.2
+	IL_0025: call System.Int32 System.Array::get_Length()
+	IL_002a: stloc.3
+	IL_002b: ldc.i4.0
+	IL_002c: stloc.s V_4
+	IL_002e: ldc.i4.0
+	IL_002f: stloc.s V_6
+	IL_0031: ldloc.2
+	IL_0032: ldloc.s V_6
+	IL_0034: ldloc.1
+	IL_0035: ldloc.s V_4
+	IL_0037: ldloc.3
+	IL_0038: call System.Void System.Array::Copy(System.Array,System.Int32,System.Array,System.Int32,System.Int32)
+	IL_003d: ldarg.0
+	IL_003e: call System.Int32 System.Array::get_Length()
+	IL_0043: stloc.s V_7
+	IL_0045: ldc.i4.0
+	IL_0046: stloc.s V_10
+	IL_0048: ldarg.0
+	IL_0049: ldloc.s V_10
+	IL_004b: ldloc.1
+	IL_004c: ldloc.s V_8
+	IL_004e: ldloc.s V_7
+	IL_0050: call System.Void System.Array::Copy(System.Array,System.Int32,System.Array,System.Int32,System.Int32)
+	IL_0055: ldloc.1
+	IL_0056: ret
+	IL_0057: newobj System.Void System.NullReferenceException::.ctor()
+	IL_005c: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AuthenticatedMessage
+	static System.Collections.Generic.List`1<System.Byte[]> Decode(System.Byte[] data)
+		System.Collections.Generic.List`1<System.Byte[]> list = new System.Collections.Generic.List`1<System.Byte[]>()
+
+		list..ctor()
+		ulong local2 = 0
+
+		while (data.Length != local2)
+		    System.Int64 local3 = 4
+		    System.Byte[] local4 = new System.Byte[4]
+		    System.Int32 length = local4.Length
+		    System.Byte local6 = data[0]
+		    local4[0] = local6
+		    System.Byte local7 = data[0]
+		    local4[0] = local7
+		    System.Byte local8 = data[0]
+		    local4[0] = local8
+		    System.Byte local9 = data[0]
+		    local4[0] = local9
+
+		    System.Array.Reverse(local4) //(Array array)
+		    ulong local12 = 0
+
+		    System.Int16 int16 = System.BitConverter.ToInt16(local4, local12) //(Byte[] value, Int32 startIndex)
+
+		    if (int16 != constant20)
+		        System.Byte[] local14 = new System.Byte[local12]
+		        System.Int32 4 = 4
+
+		        System.Array.Copy()
+
+		        list.Add(local14) //(T item)
+		        System.Int32 length2 = data.Length
+		        length2 -= 
+		        length2 += 18446744073709551612
+		        System.Byte[] local17 = new System.Byte[length2]
+		        System.Int32 length3 = data.Length
+		        length3 -= 
+		        ulong local19 = 0
+
+		        System.Array.Copy(data, length2, local17, local19, length3) //(Array sourceArray, Int32 sourceIndex, Array destinationArray, Int32 destinationIndex, Int32 length)
+		    endwhile
+            
+		    return list
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfZeroOrNullAction at (0x1804E22BA) is corrupt (ConstantDefinition: Don't know how to get IL to load a System.Int16) and cannot be created as IL. Aborting here.
+
+

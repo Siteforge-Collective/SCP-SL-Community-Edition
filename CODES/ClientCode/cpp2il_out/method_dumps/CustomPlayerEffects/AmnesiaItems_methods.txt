@@ -1,0 +1,264 @@
+Type: AmnesiaItems
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomPlayerEffects.AmnesiaItems
+	System.Boolean get_ParamsActive()
+
+		if ( <= 0)
+		    ulong local1 = 0
+		    return local1
+		endif
+        
+		System.Single _activeTime = this._activeTime
+		return 
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfGreaterThanAction at (0x181AE9C14) is corrupt (One of the arguments is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomPlayerEffects.AmnesiaItems
+	System.Void OnAwake()
+
+		UnityEngine.Rendering.PostProcessing.PostProcessVolume component = base.GetComponent<UnityEngine.Rendering.PostProcessing.PostProcessVolume>()
+
+		UnityEngine.Rendering.PostProcessing.PostProcessProfile profile = component.profile
+
+		System.Boolean boolean = profile.TryGetSettings<UnityEngine.Rendering.PostProcessing.Vignette>()
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181AE97DA) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomPlayerEffects.AmnesiaItems
+	System.Void OnEffectUpdate()
+		ReferenceHub Hub = this.<Hub>k__BackingField
+
+		System.Boolean isLocalPlayer = Hub.isLocalPlayer
+
+		if (isLocalPlayer == False)
+		    ReferenceHub Hub2 = this.<Hub>k__BackingField
+
+		    System.Boolean isLocallySpectated = PlayerRoles.Spectating.SpectatorNetworking.IsLocallySpectated(Hub2) //(ReferenceHub target)
+
+		    if (isLocallySpectated == False)
+                goto INSN_181AE9916
+            endif
+		endif
+        
+		UnityEngine.Rendering.PostProcessing.Vignette _vignette = this._vignette
+		UnityEngine.Rendering.PostProcessing.FloatParameter smoothness = _vignette.smoothness
+		  = smoothness.
+		ulong local9 = 0
+		System.Single _pulseTarget = this._pulseTarget
+
+		System.Single deltaTime = UnityEngine.Time.deltaTime
+
+		System.Single single = UnityEngine.Mathf.Lerp(deltaTime, _pulseTarget, deltaTime) //(Single a, Single b, Single t)
+		smoothness. = single
+		UnityEngine.AnimationCurve _pulseMinOverTime = this._pulseMinOverTime
+		System.Single _activeTime = this._activeTime
+
+		System.Single single2 = _pulseMinOverTime.Evaluate(_activeTime) //(Single time)
+		ulong local20 = 0
+		deltaTime = single2
+
+		System.Single deltaTime2 = UnityEngine.Time.deltaTime
+		System.Single _pulseDrop = this._pulseDrop
+		_activeTime = deltaTime
+		deltaTime2 = local16
+
+		System.Single single3 = UnityEngine.Mathf.MoveTowards(deltaTime2, _activeTime, _pulseDrop) //(Single current, Single target, Single maxDelta)
+		this._pulseTarget = single3
+
+		INSN_181AE9916:
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.FieldToLocalAction at (0x181AE9868) is corrupt (No further info) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomPlayerEffects.AmnesiaItems
+	System.Void Update()
+
+		if ( > 0)
+		    System.Single _duration = this._duration
+
+		    if ( != 0)
+		        ulong local4 = 0
+
+		        System.Single deltaTime = UnityEngine.Time.deltaTime
+		        _duration = local3
+
+		        base.TimeLeft = _duration
+		    endif
+            
+
+		    this.OnAwake()
+		endif
+        
+
+		if ( <= 0)
+            goto INSN_181AE9BEF
+        endif
+		ulong local8 = 0
+
+		System.Single deltaTime2 = UnityEngine.Time.deltaTime
+		this._activeTime = deltaTime2
+
+		INSN_181AE9BEF:
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfLessThanOrEqualToAction at (0x181AE9B92) is corrupt (One of the arguments is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomPlayerEffects.AmnesiaItems
+	System.Void Enabled()
+		this._activeTime = 0
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldc.r4 0
+	IL_0006: stfld System.Single CustomPlayerEffects.AmnesiaItems::_activeTime
+	IL_000b: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomPlayerEffects.AmnesiaItems
+	System.Boolean TryGetSpeed(ItemType item, System.Single& speed)
+		System.Int32 local3 = item.value__
+		ItemType[] _blockedUsableItems = this._blockedUsableItems
+
+		System.Boolean boolean = CollectionExtensions.Contains<ItemType>()
+
+		if (boolean != False)
+		    System.Single _blockDelay = this._blockDelay
+
+		    if (_blockDelay <= this._activeTime)
+
+		        this.ServerSendPulse()
+		        return True
+		    endif
+            
+		    ulong local8 = 0
+		    return local8
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.Implicit4ByteFieldReadAction at (0x181AE99A9) is corrupt (Local local3 has been stripped out for being unused, so doesn't have a variable.) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomPlayerEffects.AmnesiaItems
+	System.Boolean TryGetWeaponParam(InventorySystem.Items.Firearms.Attachments.AttachmentParam param, System.Single& val)
+		System.Int32 local3 = param.value__
+
+		if (local3 == 21)
+		    System.Single _blockDelay = this._blockDelay
+
+		    if (_blockDelay <= this._activeTime)
+
+		        this.ServerSendPulse()
+		        return True
+		    endif
+            
+		    ulong local6 = 0
+		    return local6
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x181AE9B7D) is corrupt (Return value has a type of System.Int32, expecting an object of type System.Boolean) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomPlayerEffects.AmnesiaItems
+	System.Void ExecutePulse()
+		System.Single _pulseMax = this._pulseMax
+		this._pulseTarget = _pulseMax
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Single CustomPlayerEffects.AmnesiaItems::_pulseMax
+	IL_0006: stloc.0
+	IL_0007: ldarg.0
+	IL_0008: ldloc.0
+	IL_0009: stfld System.Single CustomPlayerEffects.AmnesiaItems::_pulseTarget
+	IL_000e: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomPlayerEffects.AmnesiaItems
+	System.Void ServerSendPulse()
+		ReferenceHub Hub = this.<Hub>k__BackingField
+		PlayerEffectsController playerEffectsController = Hub.playerEffectsController
+
+		playerEffectsController.ServerSendPulse<CustomPlayerEffects.AmnesiaItems>()
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld ReferenceHub CustomPlayerEffects.StatusEffectBase::<Hub>k__BackingField
+	IL_0006: ldfld PlayerEffectsController ReferenceHub::playerEffectsController
+	IL_000b: call System.Void PlayerEffectsController::ServerSendPulse<CustomPlayerEffects.AmnesiaItems>()
+	IL_0010: ret
+	IL_0011: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0016: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomPlayerEffects.AmnesiaItems
+	System.Void .ctor()
+		this.<MaxIntensity>k__BackingField = 255
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldc.i4 255
+	IL_0006: conv.i8
+	IL_0007: conv.u8
+	IL_0008: stfld System.Byte CustomPlayerEffects.StatusEffectBase::<MaxIntensity>k__BackingField
+	IL_000d: ldarg.0
+	IL_000e: call System.Void UnityEngine.MonoBehaviour::.ctor()
+	IL_0013: ret
+	
+

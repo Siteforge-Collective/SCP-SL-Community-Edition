@@ -1,0 +1,89 @@
+Type: RandomMaterialReplacer
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RandomMaterialReplacer
+	System.Void Start()
+		UnityEngine.Material[] mats = this.mats
+		System.Int32 length = mats.Length
+		ulong local4 = 0
+
+		System.Int32 int32 = UnityEngine.Random.Range(local4, length) //(Int32 min, Int32 max)
+
+		UnityEngine.MeshRenderer[] componentsInChildren = base.GetComponentsInChildren<UnityEngine.MeshRenderer>()
+		ulong local7 = 0
+		System.Int32 length2 = componentsInChildren.Length
+
+		if (local7 < length2)
+		    UnityEngine.Material[] mats2 = this.mats
+		    UnityEngine.MeshRenderer meshRenderer = componentsInChildren[local7]
+		    UnityEngine.Material material = mats2[int32]
+
+		    meshRenderer.SetMaterial(material) //(Material m)
+		    local7 += 1
+		endif
+        
+		return
+		throw new System.IndexOutOfRangeException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld UnityEngine.Material[] RandomMaterialReplacer::mats
+	IL_0006: call System.Int32 System.Array::get_Length()
+	IL_000b: stloc.0
+	IL_000c: ldc.i4.0
+	IL_000d: ldloc.0
+	IL_000e: call System.Int32 UnityEngine.Random::Range(System.Int32,System.Int32)
+	IL_0013: stloc.1
+	IL_0014: ldarg.0
+	IL_0015: call T[] UnityEngine.Component::GetComponentsInChildren<UnityEngine.MeshRenderer>()
+	IL_001a: stloc.2
+	IL_001b: ldc.i4.0
+	IL_001c: stloc.3
+	IL_001d: ldloc.2
+	IL_001e: call System.Int32 System.Array::get_Length()
+	IL_0023: stloc.s V_4
+	IL_0025: ldloc.3
+	IL_0026: ldloc.s V_4
+	IL_0028: bge.s IL_0052
+	IL_002a: ldarg.0
+	IL_002b: ldfld UnityEngine.Material[] RandomMaterialReplacer::mats
+	IL_0030: stloc.s V_5
+	IL_0032: ldloc.2
+	IL_0033: ldloc.3
+	IL_0034: ldelem.any UnityEngine.MeshRenderer
+	IL_0039: stloc.s V_6
+	IL_003b: ldloc.s V_5
+	IL_003d: ldloc.1
+	IL_003e: ldelem.any UnityEngine.Material
+	IL_0043: stloc.s V_7
+	IL_0045: ldloc.s V_6
+	IL_0047: ldloc.s V_7
+	IL_0049: call System.Void UnityEngine.Renderer::SetMaterial(UnityEngine.Material)
+	IL_004e: ldloc.3
+	IL_004f: ldc.i4.1
+	IL_0050: add
+	IL_0051: stloc.3
+	IL_0052: ret
+	IL_0053: newobj System.Void System.IndexOutOfRangeException::.ctor()
+	IL_0058: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RandomMaterialReplacer
+	System.Void .ctor()
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void UnityEngine.MonoBehaviour::.ctor()
+	IL_0006: ret
+	
+

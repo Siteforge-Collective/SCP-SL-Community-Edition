@@ -1,0 +1,293 @@
+Type: CameraFilterPack_Rain_RainFX
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CameraFilterPack_Rain_RainFX
+	UnityEngine.Material get_material()
+
+		System.Boolean boolean = UnityEngine.Object.op_Equality()
+
+		if (boolean != False)
+		    UnityEngine.Shader sCShader = this.SCShader
+		    UnityEngine.Material material = new UnityEngine.Material()
+
+		    material..ctor(sCShader) //(Shader shader)
+		    this.SCMaterial = material
+		    System.Int32 61 = 61
+
+		    .hideFlags = 61
+		endif
+        
+		return boolean
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1813676EA) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CameraFilterPack_Rain_RainFX
+	System.Void Start()
+
+		UnityEngine.Object object = UnityEngine.Resources.Load("CameraFilterPack_RainFX_Anm2") //(String path)
+		ulong local3 = 0
+
+		if (object != 0)
+		endif
+        
+		this.Texture2 = local3
+
+		UnityEngine.Object object2 = UnityEngine.Resources.Load("CameraFilterPack_RainFX_Anm") //(String path)
+
+		if (object2 == 0)
+            goto INSN_1813675D0
+        endif
+
+		INSN_1813675D0:
+		this.Texture3 = object2
+
+		UnityEngine.Shader shader = UnityEngine.Shader.Find("CameraFilterPack/RainFX") //(String name)
+		this.SCShader = shader
+		ulong local8 = 0
+
+		[instruction error - managed method being called is null]
+
+		if (shader != 0)
+            goto INSN_181367614
+        endif
+		ulong local10 = 0
+
+		base.enabled = local10
+
+		INSN_181367614:
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1813675FE) is corrupt (Don't know what method is being called) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CameraFilterPack_Rain_RainFX
+	System.Void OnRenderImage(UnityEngine.RenderTexture sourceTexture, UnityEngine.RenderTexture destTexture)
+		UnityEngine.Shader sCShader = this.SCShader
+		ulong local5 = 0
+
+		System.Boolean boolean = UnityEngine.Object.op_Inequality(sCShader, local5) //(Object x, Object y)
+
+		if (boolean == False)
+
+		    UnityEngine.Graphics.Blit(sourceTexture, destTexture) //(Texture source, RenderTexture dest)
+		    return
+		endif
+        
+		ulong local8 = 0
+
+		System.Single deltaTime = UnityEngine.Time.deltaTime
+		ulong local11 = 0
+		this.TimeX = deltaTime
+
+		if (deltaTime <= 100)
+            goto INSN_181366F25
+        endif
+		this.TimeX = local11
+
+		INSN_181366F25:
+
+		UnityEngine.Material material = this.material
+		System.Single timeX = this.TimeX
+
+		material.SetFloat("_TimeX", timeX) //(String name, Single value)
+
+		UnityEngine.Material material2 = this.material
+		System.Single fade = this.Fade
+
+		material2.SetFloat("_Value", fade) //(String name, Single value)
+
+		UnityEngine.Material material3 = this.material
+		System.Single speed = this.Speed
+
+		material3.SetFloat("_Speed", speed) //(String name, Single value)
+
+		UnityEngine.Material material4 = this.material
+
+		System.String string = sourceTexture.ToString()
+
+		sourceTexture.set_width()
+		ulong local27 = 0
+		ulong local28 = 0
+
+		material4.SetVector("_ScreenResolution", local27) //(String name, Vector4 value)
+
+		UnityEngine.Camera component = base.GetComponent<UnityEngine.Camera>()
+		System.Int32 1 = 1
+
+		component.depthTextureMode = 1
+		UnityEngine.AnimationCurve animationCurve = new UnityEngine.AnimationCurve()
+
+		animationCurve..ctor()
+		UnityEngine.AnimationCurve animationCurve2 = new UnityEngine.AnimationCurve()
+
+		animationCurve2..ctor()
+		ulong local38 = 0
+
+		System.Int32 int32 = animationCurve2.AddKey(local38, 0.009999999776482582) //(Single time, Single value)
+
+		System.Int32 int322 = animationCurve2.AddKey(64, 5) //(Single time, Single value)
+
+		System.Int32 int323 = animationCurve2.AddKey(128, 80) //(Single time, Single value)
+
+		System.Int32 int324 = animationCurve2.AddKey(255, 255) //(Single time, Single value)
+
+		System.Int32 int325 = animationCurve2.AddKey(300, 255) //(Single time, Single value)
+		UnityEngine.Vector4[] coord = this.Coord
+		local11 += local11
+		coord[1] = local27
+		UnityEngine.Vector4[] coord2 = this.Coord
+
+		if (local11 != coord2.Length)
+            goto INSN_18136722F
+        endif
+		System.Int32 2 = 2
+		 += 2
+		UnityEngine.Vector4[] coord3 = this.Coord
+
+		INSN_18136722F:
+
+		System.Single single = UnityEngine.Random.Range(local28, 0.8999999761581421) //(Single min, Single max)
+
+		System.Single single2 = UnityEngine.Random.Range(0.20000000298023224, 1.100000023841858) //(Single min, Single max)
+		ulong local56 = 0
+		System.Int32 3 = 3
+
+		System.Int32 int326 = UnityEngine.Random.Range(local56, 3) //(Int32 min, Int32 max)
+		ulong local58 = 0
+		System.Int32 2 = 2
+		 += 2
+		coord3.x = local58
+
+		UnityEngine.Material material5 = this.material
+		System.Int32 1 = 1
+
+		System.String string2 = System.String.Concat("Coord", local63) //(Object arg0, Object arg1)
+		UnityEngine.Vector4[] coord4 = this.Coord
+		System.Int32 2 = 2
+		 += 2
+
+		System.Single single3 = animationCurve2.Evaluate(single) //(Single time)
+		UnityEngine.Vector4[] coord5 = this.Coord
+		ulong local70 = 0
+		single2 = single
+		single = single2
+
+		material5.SetVector(string2, local70) //(String name, Vector4 value)
+
+		if (1 >= 4)
+            goto INSN_1813673C2
+        endif
+
+		INSN_1813673C2:
+
+		UnityEngine.Material material6 = this.material
+		UnityEngine.Texture2D texture2 = this.Texture2
+
+		material6.SetTexture("Texture2", texture2) //(String name, Texture value)
+
+		UnityEngine.Material material7 = this.material
+		UnityEngine.Texture2D texture3 = this.Texture3
+
+		material7.SetTexture("Texture3", texture3) //(String name, Texture value)
+
+		UnityEngine.Material material8 = this.material
+
+		UnityEngine.Graphics.Blit()
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallVirtualMethodAction at (0x181366FE7) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CameraFilterPack_Rain_RainFX
+	System.Void Update()
+
+
+Generated IL:
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CameraFilterPack_Rain_RainFX
+	System.Void OnDisable()
+		UnityEngine.Material sCMaterial = this.SCMaterial
+
+		System.Boolean boolean = UnityEngine.Object.op_Implicit(sCMaterial) //(Object exists)
+
+		if (boolean != False)
+		    UnityEngine.Material sCMaterial2 = this.SCMaterial
+
+		    UnityEngine.Object.DestroyImmediate(sCMaterial2) //(Object obj)
+		endif
+        
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld UnityEngine.Material CameraFilterPack_Rain_RainFX::SCMaterial
+	IL_0006: call System.Boolean UnityEngine.Object::op_Implicit(UnityEngine.Object)
+	IL_000b: ldc.i4.0
+	IL_000c: beq.s IL_0019
+	IL_000e: ldarg.0
+	IL_000f: ldfld UnityEngine.Material CameraFilterPack_Rain_RainFX::SCMaterial
+	IL_0014: call System.Void UnityEngine.Object::DestroyImmediate(UnityEngine.Object)
+	IL_0019: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CameraFilterPack_Rain_RainFX
+	System.Void .ctor()
+		this.TimeX = 1
+		this.Speed = 1
+		this.Fade = 1
+		UnityEngine.Vector4[] local1 = new UnityEngine.Vector4[4]
+		this.Coord = local1
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldc.r4 1
+	IL_0006: stfld System.Single CameraFilterPack_Rain_RainFX::TimeX
+	IL_000b: ldarg.0
+	IL_000c: ldc.r4 1
+	IL_0011: stfld System.Single CameraFilterPack_Rain_RainFX::Speed
+	IL_0016: ldarg.0
+	IL_0017: ldc.r4 1
+	IL_001c: stfld System.Single CameraFilterPack_Rain_RainFX::Fade
+	IL_0021: ldc.i4.4
+	IL_0022: newarr UnityEngine.Vector4
+	IL_0027: stloc.0
+	IL_0028: ldarg.0
+	IL_0029: ldloc.0
+	IL_002a: stfld UnityEngine.Vector4[] CameraFilterPack_Rain_RainFX::Coord
+	IL_002f: ldarg.0
+	IL_0030: call System.Void UnityEngine.MonoBehaviour::.ctor()
+	IL_0035: ret
+	
+

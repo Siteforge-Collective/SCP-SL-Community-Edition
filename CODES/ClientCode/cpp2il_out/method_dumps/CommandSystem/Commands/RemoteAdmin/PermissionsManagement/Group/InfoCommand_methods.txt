@@ -1,0 +1,281 @@
+Type: InfoCommand
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.PermissionsManagement.Group.InfoCommand
+	System.String get_Command()
+		System.String Command = this.<Command>k__BackingField
+		return Command
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String CommandSystem.Commands.RemoteAdmin.PermissionsManagement.Group.InfoCommand::<Command>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.PermissionsManagement.Group.InfoCommand
+	System.String[] get_Aliases()
+		System.String[] Aliases = this.<Aliases>k__BackingField
+		return Aliases
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String[] CommandSystem.Commands.RemoteAdmin.PermissionsManagement.Group.InfoCommand::<Aliases>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.PermissionsManagement.Group.InfoCommand
+	System.String get_Description()
+		System.String Description = this.<Description>k__BackingField
+		return Description
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String CommandSystem.Commands.RemoteAdmin.PermissionsManagement.Group.InfoCommand::<Description>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.PermissionsManagement.Group.InfoCommand
+	System.String[] get_Usage()
+		System.String[] Usage = this.<Usage>k__BackingField
+		return Usage
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String[] CommandSystem.Commands.RemoteAdmin.PermissionsManagement.Group.InfoCommand::<Usage>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.PermissionsManagement.Group.InfoCommand
+	System.Boolean Execute(System.ArraySegment`1<System.String> arguments, CommandSystem.ICommandSender sender, System.String& response)
+
+		System.Boolean boolean = Misc.CheckPermission(sender, 0x8000, response) //(ICommandSender sender, PlayerPermissions perm, String& response)
+
+		if (boolean != False)
+		    PermissionsHandler permissionsHandler = ServerStatic.PermissionsHandler
+
+		    UserGroup group = permissionsHandler.GetGroup()
+
+		    if (group != 0)
+		        System.Object[] local10 = new System.Object[8]
+
+		        if (arguments != 0)
+
+		            if (constant29 == 0)
+                        goto INSN_18061AD12
+                    endif
+		        endif
+                
+		        local10[0] = arguments
+		        System.String badgeText = group.BadgeText
+
+		        if (badgeText == 0)
+                    goto INSN_18061AA3D
+                endif
+
+		        if (constant29 == 0)
+                    goto INSN_18061AD32
+                endif
+
+		        INSN_18061AA3D:
+		        local10[1] = badgeText
+		        System.String badgeColor = group.BadgeColor
+
+		        if (badgeColor == 0)
+                    goto INSN_18061AA77
+                endif
+
+		        if (constant29 == 0)
+                    goto INSN_18061AD52
+                endif
+
+		        INSN_18061AA77:
+		        local10[2] = badgeColor
+		        System.UInt64 permissions = group.Permissions
+
+		        if (permissions == 0)
+                    goto INSN_18061AACA
+                endif
+
+		        if (permissions == 0)
+                    goto INSN_18061AD72
+                endif
+
+		        INSN_18061AACA:
+		        local10[3] = permissions
+
+		        if (group.Cover != False)
+                    goto INSN_18061AB03
+                endif
+
+		        INSN_18061AB03:
+
+		        if ("NO" == 0)
+                    goto INSN_18061AB20
+                endif
+
+		        if (permissions == 0)
+                    goto INSN_18061AD92
+                endif
+
+		        INSN_18061AB20:
+		        local10[4] = "NO"
+		        string local15 = group.HiddenByDefault != False ? "YES" : "NO"
+
+		        if (local15 == 0)
+                    goto INSN_18061AB69
+                endif
+
+		        if (permissions == 0)
+                    goto INSN_18061ADB2
+                endif
+
+		        INSN_18061AB69:
+		        local10[5] = local15
+		        System.Byte kickPower = group.KickPower
+
+		        if (kickPower == constant72)
+                    goto INSN_18061ABC1
+                endif
+
+		        if (kickPower == constant74)
+                    goto INSN_18061ADD2
+                endif
+
+		        INSN_18061ABC1:
+		        local10[6] = kickPower
+		        System.Byte requiredKickPower = group.RequiredKickPower
+		        kickPower = requiredKickPower
+
+		        if (requiredKickPower == constant79)
+                    goto INSN_18061AC19
+                endif
+
+		        if (requiredKickPower == constant81)
+                    goto INSN_18061ADF2
+                endif
+
+		        INSN_18061AC19:
+		        local10[7] = kickPower
+
+		        System.String string = System.String.Format("Details of group {0}
+                Tag text: {1}
+                Tag color: {2}
+                Permissions: {3}
+                Cover: {4}
+                Hidden by default: {5}
+                Kick power: {6}
+                Required kick power: {7}", local10) //(String format, Object[] args)
+		        response. = string
+		        return True
+		    endif
+            
+		    response. = "Group can't be found."
+		    ulong local20 = 0
+		    return local20
+		    //UNKNOWN CLASS OFFSET READ HERE
+
+		    System.String string2 = CommandSystem.HelpProviderExtensions.DisplayCommandUsage()
+
+		    System.String string3 = System.String.Concat()
+		    response. = string3
+		endif
+        
+		ulong local25 = 0
+		return local25
+		throw new System.NullReferenceException()
+
+		INSN_18061AD12:
+
+		INSN_18061AD32:
+
+		INSN_18061AD52:
+
+		INSN_18061AD72:
+
+		INSN_18061AD92:
+
+		INSN_18061ADB2:
+
+		INSN_18061ADD2:
+
+		INSN_18061ADF2:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18061A98F) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.PermissionsManagement.Group.InfoCommand
+	System.Void .ctor()
+		this.<Command>k__BackingField = "info"
+		this.<Description>k__BackingField = "Displays group info."
+		System.String[] local1 = new System.String[1]
+
+		if ("Group Name" != 0)
+
+		    if (local1 == 0)
+                goto INSN_18061AEFC
+            endif
+		endif
+        
+		local1[0] = "Group Name"
+		this.<Usage>k__BackingField = local1
+
+		base..ctor()
+		return
+		throw new System.NullReferenceException()
+
+		INSN_18061AEFC:
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldstr "info"
+	IL_0006: stfld System.String CommandSystem.Commands.RemoteAdmin.PermissionsManagement.Group.InfoCommand::<Command>k__BackingField
+	IL_000b: ldarg.0
+	IL_000c: ldstr "Displays group info."
+	IL_0011: stfld System.String CommandSystem.Commands.RemoteAdmin.PermissionsManagement.Group.InfoCommand::<Description>k__BackingField
+	IL_0016: ldc.i4.1
+	IL_0017: newarr System.String
+	IL_001c: stloc.0
+	IL_001d: ldstr "Group Name"
+	IL_0022: ldc.i4.0
+	IL_0023: beq.s IL_0029
+	IL_0025: ldloc.0
+	IL_0026: ldc.i4.0
+	IL_0027: beq.s IL_0000
+	IL_0029: ldloc.0
+	IL_002a: ldc.i4.0
+	IL_002b: ldstr "Group Name"
+	IL_0030: stelem.any System.String
+	IL_0035: ldarg.0
+	IL_0036: ldloc.0
+	IL_0037: stfld System.String[] CommandSystem.Commands.RemoteAdmin.PermissionsManagement.Group.InfoCommand::<Usage>k__BackingField
+	IL_003c: ldarg.0
+	IL_003d: call System.Void System.Object::.ctor()
+	IL_0042: ret
+	IL_0043: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0048: throw
+	
+

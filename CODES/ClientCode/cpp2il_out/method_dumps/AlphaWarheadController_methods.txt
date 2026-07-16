@@ -1,0 +1,1620 @@
+Type: AlphaWarheadController
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AlphaWarheadController
+	AlphaWarheadController/DetonationScenario get_CurScenario()
+
+		if ( != 0)
+		else
+		    AlphaWarheadController/DetonationScenario[] _startScenarios = this._startScenarios
+		endif
+        
+		AlphaWarheadSyncInfo info = this.Info
+		AlphaWarheadController/DetonationScenario detonationScenario = _startScenarios[info]
+		return detonationScenario
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfZeroOrNullAction at (0x1805998AB) is corrupt (One of the arguments is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AlphaWarheadController
+	System.Int32 get_WarheadKills()
+		System.Int32 WarheadKills = this.<WarheadKills>k__BackingField
+		return WarheadKills
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Int32 AlphaWarheadController::<WarheadKills>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AlphaWarheadController
+	System.Void set_WarheadKills(System.Int32 value)
+		this.<WarheadKills>k__BackingField = value
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: stfld System.Int32 AlphaWarheadController::<WarheadKills>k__BackingField
+	IL_0007: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AlphaWarheadController
+	System.Boolean get_IsLocked()
+		System.Boolean IsLocked = this.<IsLocked>k__BackingField
+		return IsLocked
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Boolean AlphaWarheadController::<IsLocked>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AlphaWarheadController
+	System.Void set_IsLocked(System.Boolean value)
+		this.<IsLocked>k__BackingField = value
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: stfld System.Boolean AlphaWarheadController::<IsLocked>k__BackingField
+	IL_0007: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AlphaWarheadController
+	static ReferenceHub get_WarheadTriggeredby()
+		AlphaWarheadController singleton = AlphaWarheadController.Singleton
+
+		if (singleton != 0)
+		    Footprinting.Footprint _triggeringPlayer = singleton._triggeringPlayer
+		    return _triggeringPlayer
+		endif
+        
+		return singleton
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x180599BEE) is corrupt (Return value has a type of Footprinting.Footprint, expecting an object of type ReferenceHub) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AlphaWarheadController
+	static System.Boolean get_Detonated()
+		ulong local0 = 0
+
+		System.Boolean inProgress = AlphaWarheadController.InProgress
+
+		if (inProgress != False)
+		    ulong local2 = 0
+
+		    System.Single timeUntilDetonation = AlphaWarheadController.TimeUntilDetonation
+		    return True
+		endif
+        
+		ulong local5 = 0
+		return local5
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x180599974) is corrupt (Return value has a type of System.Int32, expecting an object of type System.Boolean) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AlphaWarheadController
+	static System.Boolean get_InProgress()
+		AlphaWarheadController singleton = AlphaWarheadController.Singleton
+
+		if (singleton == 0)
+		    ulong local2 = 0
+		    return local2
+		endif
+        
+		return True
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x1805999EF) is corrupt (Return value has a type of System.Int32, expecting an object of type System.Boolean) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AlphaWarheadController
+	static System.Single get_TimeUntilDetonation()
+		AlphaWarheadController singleton = AlphaWarheadController.Singleton
+
+		if ( != 0)
+		else
+		    AlphaWarheadController/DetonationScenario[] _startScenarios = singleton._startScenarios
+		endif
+        
+		AlphaWarheadSyncInfo info = singleton.Info
+		AlphaWarheadController/DetonationScenario detonationScenario = _startScenarios[info]
+		ulong local6 = 0
+
+		System.Double time = Mirror.NetworkTime.time
+
+		System.Single single = UnityEngine.Mathf.Max()
+		return single
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfZeroOrNullAction at (0x180599A9E) is corrupt (One of the arguments is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AlphaWarheadController
+	System.Void Start()
+		AlphaWarheadController.Singleton = this
+
+		UnityEngine.AudioSource component = base.GetComponent<UnityEngine.AudioSource>()
+		this._alarmSource = component
+		ulong local3 = 0
+
+		this.NetworkCooldownEndTime = local3
+		YamlConfig serverConfig = GameCore.ConfigFile.ServerConfig
+		ulong local6 = 0
+		ulong local7 = 0
+
+		System.Single float = serverConfig.GetFloat("auto_warhead_start_minutes", local6) //(String key, Single def)
+		System.Single local9 = float * 60
+		this._autoDetonateTime = local9
+		this._autoDetonate = constant37
+		YamlConfig serverConfig2 = GameCore.ConfigFile.ServerConfig
+		ulong local12 = 0
+
+		System.Boolean bool = serverConfig2.GetBool("auto_warhead_lock", local12) //(String key, Boolean def)
+		this._autoDetonateLock = bool
+		YamlConfig serverConfig3 = GameCore.ConfigFile.ServerConfig
+
+		System.Boolean bool2 = serverConfig3.GetBool("open_doors_on_countdown", True) //(String key, Boolean def)
+		this._openDoors = bool2
+		YamlConfig serverConfig4 = GameCore.ConfigFile.ServerConfig
+		System.Int32 40 = 40
+
+		System.Int32 int = serverConfig4.GetInt("warhead_cooldown", 40) //(String key, Int32 def)
+		this._cooldown = int
+		ulong local20 = 0
+		YamlConfig serverConfig5 = GameCore.ConfigFile.ServerConfig
+		System.Int32 90 = 90
+
+		System.Int32 int2 = serverConfig5.GetInt("warhead_tminus_start_duration", 90) //(String key, Int32 def)
+		System.Int32 _defaultScenarioId = this._defaultScenarioId
+		ulong local25 = 0
+		AlphaWarheadController/DetonationScenario[] _startScenarios = this._startScenarios
+		ulong local27 = 0
+		System.Int32 length = _startScenarios.Length
+
+		if (local27 < length)
+		    AlphaWarheadController/DetonationScenario detonationScenario = _startScenarios[local25]
+
+		    if (detonationScenario.TimeToDetonate == int2)
+		    endif
+            
+		    local25 += 1
+		endif
+        
+
+		System.Boolean boolean = base.SyncVarEqual<AlphaWarheadSyncInfo>()
+
+		if (boolean != False)
+            goto INSN_18059911C
+        endif
+
+		base.SetSyncVar<AlphaWarheadSyncInfo>()
+
+		INSN_18059911C:
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.RegToFieldAction at (0x180598F7C) is corrupt (ConstantDefinition: Don't know how to get IL to load a Cpp2IL.Core.Analysis.ResultModels.StaticFieldsPtr) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AlphaWarheadController
+	System.Void Update()
+		AlphaWarheadSyncInfo info = this.Info
+		AlphaWarheadSyncInfo _prevInfo = this._prevInfo
+
+		this.OnInfoUpdated()
+		AlphaWarheadSyncInfo info2 = this.Info
+		this._prevInfo = info2
+		FlickerableLightController.WarheadEnabled = 1
+
+		if (this._fogEnabled != False)
+		    PostProcessing.FogController singleton = PostProcessing.FogController.Singleton
+		    System.Int32 4 = 4
+
+		    PostProcessing.FogSetting fogSetting = singleton.GetFogSetting(4) //(FogType fogType)
+
+		    if (fogSetting._state == False)
+                goto INSN_180599581
+            endif
+		    System.Int32 4 = 4
+
+		    PostProcessing.FogController.DisableFogType(4, 15) //(FogType fogType, Single seconds)
+		endif
+        
+
+		this.ServerUpdateDetonationTime()
+		ulong local12 = 0
+
+		System.Boolean roundStarted = GameCore.RoundStart.RoundStarted
+
+		if (roundStarted == False)
+            goto INSN_180599571
+        endif
+
+		if (this._autoDetonate == False)
+            goto INSN_180599571
+        endif
+
+		if (this._alreadyDetonated != False)
+            goto INSN_180599571
+        endif
+
+		if (this._alreadyDetonated != False)
+            goto INSN_180599571
+        endif
+		System.Single _autoDetonateTime = this._autoDetonateTime
+		ulong local15 = 0
+
+		System.Single deltaTime = UnityEngine.Time.deltaTime
+		ulong local17 = 0
+		this._autoDetonateTime = _autoDetonateTime
+
+		if (_autoDetonateTime > local17)
+            goto INSN_180599571
+        endif
+		ulong local18 = 0
+		ulong local20 = 0
+
+		this.StartDetonation(True, local20, local18) //(Boolean isAutomatic, Boolean suppressSubtitles, ReferenceHub trigger)
+		this._autoDetonate = False
+
+		INSN_180599571:
+		return
+
+		INSN_180599581:
+		. = 0
+		BloodEffectsSystem localPlayerSingleton = BloodEffectsSystem.LocalPlayerSingleton
+		localPlayerSingleton.<DisableHurtEffect>k__BackingField = False
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ImmediateToFieldAction at (0x180599581) is corrupt (Instance or field is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AlphaWarheadController
+	System.Boolean TryGetBroadcaster(Broadcast& broadcaster)
+		ulong local2 = 0
+		broadcaster. = local2
+
+		System.Boolean boolean = ReferenceHub.TryGetLocalHub(local2) //(ReferenceHub& hub)
+
+		if (boolean == False)
+		    return boolean
+		endif
+        
+
+		System.Boolean boolean2 = local2.TryGetComponent<Broadcast>()
+		return boolean2
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.RegToFieldAction at (0x180599180) is corrupt (Instance or field is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AlphaWarheadController
+	System.Void OnInfoUpdated()
+		UnityEngine.AudioSource _alarmSource = this._alarmSource
+
+		_alarmSource.Stop()
+		UnityEngine.AudioSource _alarmSource2 = this._alarmSource
+
+		if (_alarmSource == 0)
+		    UnityEngine.AudioClip _cancelSound = this._cancelSound
+
+		    _alarmSource2.PlayOneShot(_cancelSound) //(AudioClip clip)
+		    return
+		endif
+        
+
+		_alarmSource2.volume = 1
+		UnityEngine.AudioSource _alarmSource3 = this._alarmSource
+
+		if ( == 0)
+            goto INSN_180598076
+        endif
+
+		INSN_180598076:
+		AlphaWarheadController/DetonationScenario[] _startScenarios = this._startScenarios
+		AlphaWarheadSyncInfo info = this.Info
+		AlphaWarheadController/DetonationScenario detonationScenario = _startScenarios[info]
+		UnityEngine.AudioClip clip = detonationScenario.Clip
+
+		_alarmSource3.clip = clip
+		ulong local15 = 0
+
+		System.Double time = Mirror.NetworkTime.time
+		UnityEngine.AudioSource _alarmSource4 = this._alarmSource
+		ulong local18 = 0
+		ulong local19 = 0
+
+		if (local19 > local18)
+            goto INSN_18059814E
+        endif
+
+		UnityEngine.AudioClip clip2 = _alarmSource4.clip
+
+		System.Single length = clip2.length
+
+		if (length > local18)
+		    UnityEngine.AudioSource _alarmSource5 = this._alarmSource
+
+		    _alarmSource5.Play()
+		    UnityEngine.AudioSource _alarmSource6 = this._alarmSource
+
+		    _alarmSource6.time = local18
+		    return
+
+		    INSN_18059814E:
+
+		    _alarmSource6.PlayDelayed()
+		    return
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfZeroOrNullAction at (0x18059806B) is corrupt (One of the arguments is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AlphaWarheadController
+	System.Void ForceTime(System.Single remaining)
+
+		System.Boolean boolean = base.SyncVarEqual<AlphaWarheadSyncInfo>()
+
+		if (boolean == False)
+
+		    base.SetSyncVar<AlphaWarheadSyncInfo>()
+		endif
+        
+		ulong local9 = 0
+
+		this.NetworkCooldownEndTime = local9
+		ulong local10 = 0
+		System.Int64 local12 = 1
+		ulong local13 = 0
+
+		this.StartDetonation(local13, local12, local10) //(Boolean isAutomatic, Boolean suppressSubtitles, ReferenceHub trigger)
+
+		if ( == 0)
+            goto INSN_180597B00
+        endif
+
+		INSN_180597B00:
+		AlphaWarheadController/DetonationScenario[] _startScenarios = this._startScenarios
+		AlphaWarheadController/DetonationScenario detonationScenario = _startScenarios[boolean]
+		ulong local18 = 0
+
+		System.Double time = Mirror.NetworkTime.time
+
+		System.Boolean boolean2 = base.SyncVarEqual<AlphaWarheadSyncInfo>()
+
+		if (boolean2 != False)
+            goto INSN_180597BDA
+        endif
+
+		base.SetSyncVar<AlphaWarheadSyncInfo>()
+
+		INSN_180597BDA:
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180597A8D) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AlphaWarheadController
+	System.Void InstantPrepare()
+		AlphaWarheadSyncInfo info = this.Info
+
+		System.Boolean boolean = base.SyncVarEqual<AlphaWarheadSyncInfo>()
+
+		if (boolean == False)
+
+		    base.SetSyncVar<AlphaWarheadSyncInfo>()
+		endif
+        
+		ulong local6 = 0
+
+		this.NetworkCooldownEndTime = local6
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180597E68) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AlphaWarheadController
+	System.Void StartDetonation(System.Boolean isAutomatic, System.Boolean suppressSubtitles, ReferenceHub trigger)
+		ulong local6 = 0
+
+		System.Double time = Mirror.NetworkTime.time
+
+		if (this.<IsLocked>k__BackingField == False)
+		    this._isAutomatic = isAutomatic
+		    this._alreadyDetonated = False
+
+		    if (isAutomatic != False)
+		        System.Boolean local8 = this._autoDetonateLock != False
+		        this.<IsLocked>k__BackingField = local8
+
+		        if (this._autoDetonateLock == False)
+
+		            System.Boolean boolean = this.TryGetBroadcaster()
+
+		            if (boolean != False)
+		                ulong local11 = 0
+		                System.UInt16 warheadBroadcastMessageTime = AlphaWarheadController.WarheadBroadcastMessageTime
+		                System.String warheadBroadcastMessage = AlphaWarheadController.WarheadBroadcastMessage
+
+		                local5.RpcAddElement(warheadBroadcastMessage, warheadBroadcastMessageTime, local11) //(String data, UInt16 time, BroadcastFlags flags)
+		            endif
+                    
+		            this._doorsAlreadyOpen = False
+		            ulong local18 = 0
+
+		            ServerLogs.AddLog()
+		            ulong local19 = 0
+		            ulong local20 = 0
+		            this._triggeringPlayer = local19
+		            this._triggeringPlayer = local19
+		            this._triggeringPlayer = local19
+		            AlphaWarheadSyncInfo info = this.Info
+		            ulong local24 = 0
+
+		            System.Double time2 = Mirror.NetworkTime.time
+
+		            this.NetworkInfo = info
+
+		            if (suppressSubtitles != False)
+                        goto INSN_180598DA2
+                    endif
+		            System.Boolean resumeScenario = this.Info.ResumeScenario
+		            System.Int64 local28 = 1
+		            Subtitles.SubtitlePart[] local29 = new Subtitles.SubtitlePart[1]
+		            System.String[] local32 = new System.String[1]
+
+		            if ( == 0)
+                        goto INSN_180598CA5
+                    endif
+
+		            INSN_180598CA5:
+		            AlphaWarheadController/DetonationScenario[] _startScenarios = this._startScenarios
+		            AlphaWarheadSyncInfo info2 = this.Info
+		            AlphaWarheadController/DetonationScenario detonationScenario = _startScenarios[info2]
+
+		            if (info2 == 0)
+                        goto INSN_180598D07
+                    endif
+
+		            if (info2 == 0)
+                        goto INSN_180598DDC
+                    endif
+
+		            INSN_180598D07:
+		            local32[0] = info2
+		            ulong local38 = 0
+		            local29[0] = local38
+
+		            Utils.Networking.NetworkUtils.SendToAuthenticated<Subtitles.SubtitleMessage>()
+		        endif
+                
+		        return
+		        throw new System.NullReferenceException()
+
+		        INSN_180598DDC:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180598AF5) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AlphaWarheadController
+	System.Void CancelDetonation()
+		ulong local2 = 0
+
+		this.CancelDetonation(local2) //(ReferenceHub disabler)
+		return
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: ldarg.0
+	IL_0003: ldloc.0
+	IL_0004: call System.Void AlphaWarheadController::CancelDetonation(ReferenceHub)
+	IL_0009: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AlphaWarheadController
+	System.Void CancelDetonation(ReferenceHub disabler)
+		ulong local3 = 0
+
+		System.Single timeUntilDetonation = AlphaWarheadController.TimeUntilDetonation
+
+		if (this.<IsLocked>k__BackingField == False)
+		    ulong local5 = 0
+		    ulong local8 = 0
+
+		    ServerLogs.AddLog()
+		    ulong local9 = 0
+
+		    System.Single timeUntilDetonation2 = AlphaWarheadController.TimeUntilDetonation
+		    ulong local12 = 0
+
+		    System.Boolean boolean = ReferenceHub.op_Inequality(disabler, local12) //(ReferenceHub left, ReferenceHub right)
+
+		    if (boolean != False)
+
+		        Mirror.NetworkConnection connectionToClient = disabler.connectionToClient
+		        System.Int32 21 = 21
+
+		        Achievements.AchievementHandlerBase.ServerAchieve(connectionToClient, 21) //(NetworkConnection conn, AchievementName targetAchievement)
+		    endif
+            
+		    AlphaWarheadSyncInfo info = this.Info
+		    ulong local18 = 0
+
+		    System.Single timeUntilDetonation3 = AlphaWarheadController.TimeUntilDetonation
+
+		    AlphaWarheadController/DetonationScenario curScenario = this.CurScenario
+
+		    System.Single single = UnityEngine.Mathf.Min(timeUntilDetonation3, 15) //(Single a, Single b)
+		    AlphaWarheadController/DetonationScenario[] _resumeScenarios = this._resumeScenarios
+		    System.Int64 local26 = 0x7FFFFFFF
+		    System.Int32 length = _resumeScenarios.Length
+
+		    while (local5 < length)
+		        AlphaWarheadController/DetonationScenario detonationScenario = _resumeScenarios[local5]
+		        System.Int32 timeToDetonate = detonationScenario.TimeToDetonate
+		        timeToDetonate -= 
+		        local5 += 1
+		    endwhile
+            
+
+		    System.Boolean boolean2 = base.SyncVarEqual<AlphaWarheadSyncInfo>()
+
+		    if (boolean2 != False)
+                goto INSN_180596B8A
+            endif
+
+		    base.SetSyncVar<AlphaWarheadSyncInfo>()
+
+		    INSN_180596B8A:
+		    ulong local34 = 0
+
+		    System.Double time = Mirror.NetworkTime.time
+
+		    System.Boolean boolean3 = base.SyncVarEqual<System.Double>()
+
+		    if (boolean3 != False)
+                goto INSN_180596C18
+            endif
+
+		    base.SetSyncVar<System.Double>()
+
+		    INSN_180596C18:
+		    System.Int32 1 = 1
+
+		    Interactables.Interobjects.DoorUtils.DoorEventOpenerExtension.TriggerAction(1) //(OpenerEventType eventType)
+		    this._isAutomatic = False
+		    System.Int64 local40 = 1
+		    Subtitles.SubtitlePart[] local41 = new Subtitles.SubtitlePart[1]
+		    ulong local42 = 0
+		    local41[0] = local42
+
+		    Utils.Networking.NetworkUtils.SendToAuthenticated<Subtitles.SubtitleMessage>()
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1805969B3) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (4)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AlphaWarheadController
+	System.Void Detonate()
+
+		if (this._isAutomatic != False)
+
+		    if (this._alreadyDetonated == False)
+
+		        if (this._alreadyDetonated == False)
+
+		            System.Boolean boolean = this.TryGetBroadcaster()
+
+		            if (boolean != False)
+		                ulong local7 = 0
+		                System.UInt16 warheadExplodedBroadcastMessageTime = AlphaWarheadController.WarheadExplodedBroadcastMessageTime
+		                System.String warheadExplodedBroadcastMessage = AlphaWarheadController.WarheadExplodedBroadcastMessage
+
+		                .RpcAddElement(warheadExplodedBroadcastMessage, warheadExplodedBroadcastMessageTime, local7) //(String data, UInt16 time, BroadcastFlags flags)
+		            endif
+                    
+		            ulong local11 = 0
+		            ulong local12 = 0
+
+		            ServerLogs.AddLog(local12, "Warhead detonated.", 4, local11) //(Modules module, String msg, ServerLogType type, Boolean init)
+		            LightContainmentZoneDecontamination.DecontaminationController singleton = LightContainmentZoneDecontamination.DecontaminationController.Singleton
+
+		            if (singleton.DecontaminationOverride == constant37)
+                        goto INSN_18059731B
+                    endif
+		            ulong local15 = 0
+
+		            ServerLogs.AddLog(4, "LCZ decontamination has been disabled by detonation of the Alpha Warhead.", 1, local15) //(Modules module, String msg, ServerLogType type, Boolean init)
+		            LightContainmentZoneDecontamination.DecontaminationController singleton2 = LightContainmentZoneDecontamination.DecontaminationController.Singleton
+
+		            singleton2.NetworkDecontaminationOverride = 1
+
+		            INSN_18059731B:
+		            this._alreadyDetonated = True
+		            System.Collections.Generic.HashSet`1<PlayerRoles.Team> hashSet = new System.Collections.Generic.HashSet`1<PlayerRoles.Team>()
+
+		            hashSet..ctor()
+		            System.Collections.Generic.HashSet`1<ReferenceHub> AllHubs = ReferenceHub.<AllHubs>k__BackingField
+
+		            System.Collections.Generic.HashSet`1/Enumerator<T> enumerator = .GetEnumerator()
+
+		            if (enumerator == 0)
+                        goto INSN_180597519
+                    endif
+
+		            PlayerRoles.PlayerRoleBase currentRole = .CurrentRole
+
+		            System.Boolean isAlive = PlayerRoles.PlayerRolesUtils.IsAlive()
+
+		            if (isAlive == False)
+                        goto INSN_1805973F0
+                    endif
+
+		            if (isAlive == False)
+                        goto INSN_1805974B5
+                    endif
+		              = isAlive.
+
+		            System.Boolean boolean2 = AlphaWarheadController.CanBeDetonated()
+
+		            if (boolean2 == False)
+                        goto INSN_1805973F0
+                    endif
+
+		            INSN_1805974B5:
+
+		            PlayerRoles.Team team = PlayerRoles.PlayerRolesUtils.GetTeam()
+
+		            System.Boolean boolean3 = hashSet.Add(team) //(T item)
+		            PlayerStatsSystem.WarheadDamageHandler warheadDamageHandler = new PlayerStatsSystem.WarheadDamageHandler()
+
+		            warheadDamageHandler..ctor()
+
+		            System.Boolean boolean4 = warheadDamageHandler.DealDamage(warheadDamageHandler) //(DamageHandlerBase handler)
+
+		            INSN_180597519:
+		            ulong local36 = 0
+
+		            warheadDamageHandler.Dispose()
+
+		            warheadDamageHandler.Dispose()
+
+		            if (warheadDamageHandler != 0)
+                        goto INSN_1805979DD
+                    endif
+
+		            if (local36 == -1)
+                        goto INSN_18059759D
+                    endif
+
+		            INSN_18059759D:
+		            System.Collections.Generic.HashSet`1<InventorySystem.Items.Usables.Scp244.Scp244DeployablePickup> instances = InventorySystem.Items.Usables.Scp244.Scp244DeployablePickup.Instances
+
+		            System.Collections.Generic.HashSet`1/Enumerator<T> enumerator2 = .GetEnumerator()
+
+		            if (enumerator2 == 0)
+                        goto INSN_18059768E
+                    endif
+		            System.Int32 _index = enumerator2._index
+
+		            System.Boolean boolean5 = AlphaWarheadController.CanBeDetonated()
+
+		            if (boolean5 == False)
+                        goto INSN_180597610
+                    endif
+
+		            warheadDamageHandler.DestroySelf()
+
+		            INSN_18059768E:
+		            local36 += 1
+		            _index. = 348
+
+		            warheadDamageHandler.Dispose()
+
+		            warheadDamageHandler.Dispose()
+
+		            if (warheadDamageHandler != 0)
+                        goto INSN_1805979EB
+                    endif
+
+		            if (local36 == -1)
+                        goto INSN_180597705
+                    endif
+
+		            if (constant120 != 348)
+                        goto INSN_180597705
+                    endif
+
+		            INSN_180597705:
+		            System.Collections.Generic.HashSet`1<Interactables.Interobjects.DoorUtils.DoorVariant> allDoors = Interactables.Interobjects.DoorUtils.DoorVariant.AllDoors
+
+		            System.Collections.Generic.HashSet`1/Enumerator<T> enumerator3 = .GetEnumerator()
+
+		            if (enumerator3 == 0)
+                        goto INSN_1805977DA
+                    endif
+
+		            if (MoveNext == 0)
+                        goto INSN_180597770
+                    endif
+		            ulong local46 = 0
+
+		            if (MoveNext == 0)
+                        goto INSN_180597770
+                    endif
+
+		            .set_NetworkActiveLocks()
+
+		            INSN_1805977DA:
+		            _index. = 420
+
+		            [instruction error - managed method being called is null]
+
+		            [instruction error - managed method being called is null]
+
+		            if (MoveNext != 0)
+                        goto INSN_1805979F3
+                    endif
+		            ulong local49 = 0
+
+		            Mirror.PooledNetworkWriter writer = Mirror.NetworkWriterPool.GetWriter()
+
+		            Mirror.NetworkWriterExtensions.WriteByte(writer, {'1' (constant value of type System.Byte)}) //(NetworkWriter writer, Byte value)
+
+		            System.Type typeFromHandle = System.Type.GetTypeFromHandle({'AlphaWarheadController' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+
+		            base.SendRPCInternal(typeFromHandle, "RpcShake", writer, local56, local55) //(Type invokeClass, String rpcName, NetworkWriter writer, Int32 channelId, Boolean includeOwner)
+
+		            Mirror.NetworkWriterPool.Recycle(writer) //(PooledNetworkWriter writer)
+
+		            if ( == 0)
+                        goto INSN_180597958
+                    endif
+		            PlayerRoles.RoleTypeId role = this._triggeringPlayer.Role
+
+		            PlayerRoles.Faction faction = PlayerRoles.PlayerRolesUtils.GetFaction(role) //(RoleTypeId role)
+
+		            if (faction != constant166)
+                        goto INSN_180597971
+                    endif
+
+		            System.Boolean boolean6 = hashSet.Contains(3) //(T item)
+
+		            if (boolean6 != False)
+                        goto INSN_180597958
+                    endif
+
+		            Respawning.RespawnTokensManager.GrantTokens(2, 6) //(SpawnableTeamType team, Single tokens)
+
+		            INSN_180597958:
+		            return
+
+		            INSN_180597971:
+
+		            if (boolean6 != True)
+                        goto INSN_180597958
+                    endif
+
+		            System.Boolean boolean7 = hashSet.Contains(4) //(T item)
+
+		            if (boolean7 != False)
+                        goto INSN_180597958
+                    endif
+		            throw new System.NullReferenceException()
+		            throw new System.NullReferenceException()
+		            throw new System.NullReferenceException()
+		            throw new System.NullReferenceException()
+		            throw new System.NullReferenceException()
+		            throw new System.NullReferenceException()
+
+		            INSN_1805979DD:
+		            throw new System.NullReferenceException()
+
+		            INSN_1805979EB:
+
+		            INSN_1805979F3:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1805971FF) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AlphaWarheadController
+	static System.Boolean CanBeDetonated(UnityEngine.Vector3 pos, System.Boolean includeOnlyLifts)
+		ulong local2 = 0
+
+		if (includeOnlyLifts == False)
+		    return True
+		endif
+        
+		System.Collections.Generic.Dictionary`2<Interactables.Interobjects.ElevatorManager/ElevatorGroup,System.Collections.Generic.List`1<Interactables.Interobjects.ElevatorDoor>> allElevatorDoors = Interactables.Interobjects.ElevatorDoor.AllElevatorDoors
+
+		System.Collections.Generic.Dictionary`2/ValueCollection<Interactables.Interobjects.ElevatorManager/ElevatorGroup,System.Collections.Generic.List`1<Interactables.Interobjects.ElevatorDoor>> values = allElevatorDoors.Values
+
+		System.Collections.Generic.Dictionary`2/ValueCollection/Enumerator<Interactables.Interobjects.ElevatorManager/ElevatorGroup,System.Collections.Generic.List`1<Interactables.Interobjects.ElevatorDoor>> enumerator = allElevatorDoors.GetEnumerator()
+
+		if (enumerator == 0)
+            goto INSN_18059685A
+        endif
+		  = includeOnlyLifts.
+
+		if (enumerator == 0)
+            goto INSN_180596790
+        endif
+		  = includeOnlyLifts.
+		  = enumerator.
+		  = enumerator.
+		  = enumerator.
+
+		System.Boolean boolean = allElevatorDoors.MoveNext()
+		throw new System.MissingMethodException()
+
+		if (local13 == 0)
+            goto INSN_180596790
+        endif
+
+		allElevatorDoors.Dispose()
+
+		INSN_18059685A:
+		ulong local15 = 0
+
+		allElevatorDoors.Dispose()
+
+		allElevatorDoors.Dispose()
+
+		if (allElevatorDoors != 0)
+            goto INSN_1805968DD
+        endif
+
+		if (local15 == -1)
+            goto INSN_1805968BB
+        endif
+
+		INSN_1805968BB:
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+
+		INSN_1805968DD:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180596776) is corrupt (Mismatched instance parameter. Expecting an instance of System.Collections.Generic.Dictionary`2/ValueCollection, actually {'allElevatorDoors' (type System.Collections.Generic.Dictionary`2<Interactables.Interobjects.ElevatorManager/ElevatorGroup,System.Collections.Generic.List`1<Interactables.Interobjects.ElevatorDoor>>)}) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AlphaWarheadController
+	System.Void RpcShake(System.Boolean achieve)
+		ulong local2 = 0
+
+		Mirror.PooledNetworkWriter writer = Mirror.NetworkWriterPool.GetWriter()
+
+		Mirror.NetworkWriterExtensions.WriteByte(writer, achieve) //(NetworkWriter writer, Byte value)
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'AlphaWarheadController' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		ulong local7 = 0
+
+		base.SendRPCInternal(typeFromHandle, "RpcShake", writer, local7, local8) //(Type invokeClass, String rpcName, NetworkWriter writer, Int32 channelId, Boolean includeOwner)
+
+		Mirror.NetworkWriterPool.Recycle(writer) //(PooledNetworkWriter writer)
+		return
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: call Mirror.PooledNetworkWriter Mirror.NetworkWriterPool::GetWriter()
+	IL_0007: stloc.1
+	IL_0008: ldloc.1
+	IL_0009: ldarg.1
+	IL_000a: call System.Void Mirror.NetworkWriterExtensions::WriteByte(Mirror.NetworkWriter,System.Byte)
+	IL_000f: ldtoken AlphaWarheadController
+	IL_0014: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+	IL_0019: stloc.2
+	IL_001a: ldc.i4.0
+	IL_001b: stloc.3
+	IL_001c: ldarg.0
+	IL_001d: ldloc.2
+	IL_001e: ldstr "RpcShake"
+	IL_0023: ldloc.1
+	IL_0024: ldloc.3
+	IL_0025: ldloc.s V_4
+	IL_0027: call System.Void Mirror.NetworkBehaviour::SendRPCInternal(System.Type,System.String,Mirror.NetworkWriter,System.Int32,System.Boolean)
+	IL_002c: ldloc.1
+	IL_002d: call System.Void Mirror.NetworkWriterPool::Recycle(Mirror.PooledNetworkWriter)
+	IL_0032: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AlphaWarheadController
+	System.Void UpdateFog()
+
+		if (this._fogEnabled != False)
+		    PostProcessing.FogController singleton = PostProcessing.FogController.Singleton
+		    System.Int32 4 = 4
+
+		    PostProcessing.FogSetting fogSetting = singleton.GetFogSetting(4) //(FogType fogType)
+
+		    if (fogSetting._state == False)
+                goto INSN_180599274
+            endif
+		    System.Int32 4 = 4
+
+		    PostProcessing.FogController.DisableFogType(4, 15) //(FogType fogType, Single seconds)
+		    return
+		endif
+        
+		return
+
+		INSN_180599274:
+		this._fogEnabled = False
+		BloodEffectsSystem localPlayerSingleton = BloodEffectsSystem.LocalPlayerSingleton
+		localPlayerSingleton.<DisableHurtEffect>k__BackingField = False
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Boolean AlphaWarheadController::_fogEnabled
+	IL_0006: ldc.i4.0
+	IL_0007: beq.s IL_0028
+	IL_0009: ldsfld PostProcessing.FogController PostProcessing.FogController::Singleton
+	IL_000e: ldc.i4.4
+	IL_000f: call PostProcessing.FogSetting PostProcessing.FogController::GetFogSetting(PostProcessing.FogType)
+	IL_0014: ldfld System.Boolean PostProcessing.FogSetting::_state
+	IL_0019: ldc.i4.0
+	IL_001a: beq.s IL_0029
+	IL_001c: ldc.i4.4
+	IL_001d: ldc.r4 15
+	IL_0022: call System.Void PostProcessing.FogController::DisableFogType(PostProcessing.FogType,System.Single)
+	IL_0027: ret
+	IL_0028: ret
+	IL_0029: ldarg.0
+	IL_002a: ldc.i4.0
+	IL_002b: stfld System.Boolean AlphaWarheadController::_fogEnabled
+	IL_0030: ldsfld BloodEffectsSystem BloodEffectsSystem::LocalPlayerSingleton
+	IL_0035: ldc.i4.0
+	IL_0036: stfld System.Boolean BloodEffectsSystem::<DisableHurtEffect>k__BackingField
+	IL_003b: ret
+	IL_003c: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0041: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AlphaWarheadController
+	System.Void ServerUpdateAutonuke()
+		ulong local1 = 0
+
+		System.Boolean roundStarted = GameCore.RoundStart.RoundStarted
+
+		if (roundStarted != False)
+
+		    if (this._autoDetonate != False)
+
+		        if (this._alreadyDetonated == False)
+
+		            if (this._alreadyDetonated == False)
+		                System.Single _autoDetonateTime = this._autoDetonateTime
+		                ulong local5 = 0
+
+		                System.Single deltaTime = UnityEngine.Time.deltaTime
+		                ulong local7 = 0
+		                this._autoDetonateTime = _autoDetonateTime
+
+		                if (_autoDetonateTime <= local7)
+		                    ulong local8 = 0
+		                    ulong local10 = 0
+
+		                    this.StartDetonation(True, local10, local8) //(Boolean isAutomatic, Boolean suppressSubtitles, ReferenceHub trigger)
+		                    this._autoDetonate = False
+		                endif
+                        
+		                return
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: call System.Boolean GameCore.RoundStart::get_RoundStarted()
+	IL_0007: ldc.i4.0
+	IL_0008: beq.s IL_005b
+	IL_000a: ldarg.0
+	IL_000b: ldfld System.Boolean AlphaWarheadController::_autoDetonate
+	IL_0010: ldc.i4.0
+	IL_0011: beq.s IL_005b
+	IL_0013: ldarg.0
+	IL_0014: ldfld System.Boolean AlphaWarheadController::_alreadyDetonated
+	IL_0019: ldc.i4.0
+	IL_001a: bne.un.s IL_005b
+	IL_001c: ldarg.0
+	IL_001d: ldfld System.Boolean AlphaWarheadController::_alreadyDetonated
+	IL_0022: ldc.i4.0
+	IL_0023: bne.un.s IL_005b
+	IL_0025: ldarg.0
+	IL_0026: ldfld System.Single AlphaWarheadController::_autoDetonateTime
+	IL_002b: stloc.1
+	IL_002c: ldc.i4.0
+	IL_002d: stloc.2
+	IL_002e: call System.Single UnityEngine.Time::get_deltaTime()
+	IL_0033: stloc.3
+	IL_0034: ldc.i4.0
+	IL_0035: stloc.s V_4
+	IL_0037: ldarg.0
+	IL_0038: ldloc.1
+	IL_0039: stfld System.Single AlphaWarheadController::_autoDetonateTime
+	IL_003e: ldloc.1
+	IL_003f: ldloc.s V_4
+	IL_0041: bgt.s IL_005b
+	IL_0043: ldc.i4.0
+	IL_0044: stloc.s V_5
+	IL_0046: ldc.i4.0
+	IL_0047: stloc.s V_7
+	IL_0049: ldarg.0
+	IL_004a: ldc.i4.1
+	IL_004b: ldloc.s V_7
+	IL_004d: ldloc.s V_5
+	IL_004f: call System.Void AlphaWarheadController::StartDetonation(System.Boolean,System.Boolean,ReferenceHub)
+	IL_0054: ldarg.0
+	IL_0055: ldc.i4.0
+	IL_0056: stfld System.Boolean AlphaWarheadController::_autoDetonate
+	IL_005b: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AlphaWarheadController
+	System.Void ServerUpdateDetonationTime()
+
+		if (this._blastDoorsShut == False)
+		    ulong local2 = 0
+
+		    System.Single timeUntilDetonation = AlphaWarheadController.TimeUntilDetonation
+		    this._blastDoorsShut = True
+		    System.Collections.Generic.HashSet`1<BlastDoor> instances = BlastDoor.Instances
+		    System.Action`1<BlastDoor> <>9__60_0 = AlphaWarheadController/<>c.<>9__60_0
+
+		    if (<>9__60_0 == 0)
+		        AlphaWarheadController/<>c <>c = AlphaWarheadController/<>c.<>9
+		        System.Action`1<BlastDoor> action = new System.Action`1<BlastDoor>()
+
+		        action..ctor(<>c, {'<ServerUpdateDetonationTime>b__60_0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		         += 8
+		        AlphaWarheadController/<>c.<>9 = action
+		    endif
+            
+
+		    Utils.NonAllocLINQ.HashsetExtensions.ForEach<BlastDoor>(instances, <>9__60_0) //(HashSet`1 target, Action`1 action)
+		endif
+        
+
+		if (this._openDoors == False)
+            goto INSN_18059896B
+        endif
+
+		if (this._doorsAlreadyOpen != False)
+            goto INSN_18059896B
+        endif
+		ulong local8 = 0
+
+		System.Single timeUntilDetonation2 = AlphaWarheadController.TimeUntilDetonation
+
+		AlphaWarheadController/DetonationScenario curScenario = this.CurScenario
+
+		if ( <= timeUntilDetonation2)
+            goto INSN_18059896B
+        endif
+		this._doorsAlreadyOpen = True
+		ulong local13 = 0
+
+		Interactables.Interobjects.DoorUtils.DoorEventOpenerExtension.TriggerAction(local13) //(OpenerEventType eventType)
+
+		INSN_18059896B:
+
+		if (this._alreadyDetonated != False)
+            goto INSN_1805989A8
+        endif
+		ulong local14 = 0
+
+		System.Single timeUntilDetonation3 = AlphaWarheadController.TimeUntilDetonation
+		ulong local16 = 0
+
+		if (timeUntilDetonation3 > local16)
+            goto INSN_1805989A8
+        endif
+
+		this.Detonate()
+
+		INSN_1805989A8:
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x1805988BA) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AlphaWarheadController
+	static System.Void Init()
+		System.Action onTargetChanged = PlayerRoles.Spectating.SpectatorTargetTracker.OnTargetChanged
+		System.Action <>9__61_0 = AlphaWarheadController/<>c.<>9__61_0
+
+		if (<>9__61_0 == 0)
+		    AlphaWarheadController/<>c <>c = AlphaWarheadController/<>c.<>9
+		    System.Action action = new System.Action()
+
+		    action..ctor(<>c, {'<Init>b__61_0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		     += 16
+		    AlphaWarheadController/<>c.<>9 = action
+		endif
+        
+
+		System.Delegate delegate = System.Delegate.Combine(onTargetChanged, <>9__61_0) //(Delegate a, Delegate b)
+
+		if (delegate == 0)
+            goto INSN_180597D1B
+        endif
+
+		if (delegate == 0)
+            goto INSN_180597DE6
+        endif
+
+		INSN_180597D1B:
+		 += 96
+		PlayerRoles.Spectating.SpectatorTargetTracker._trackedTransformSet = delegate
+		PlayerRoles.PlayerRoleManager/RoleChanged <>9__61_1 = AlphaWarheadController/<>c.<>9__61_1
+
+		if (<>9__61_1 != 0)
+            goto INSN_180597DD2
+        endif
+		AlphaWarheadController/<>c <>c2 = AlphaWarheadController/<>c.<>9
+		PlayerRoles.PlayerRoleManager/RoleChanged roleChanged = new PlayerRoles.PlayerRoleManager/RoleChanged()
+
+		roleChanged..ctor(<>c2, {'<Init>b__61_1' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		 += 24
+		AlphaWarheadController/<>c.<>9 = roleChanged
+
+		INSN_180597DD2:
+
+		PlayerRoles.PlayerRoleManager.add_OnRoleChanged(roleChanged) //(RoleChanged value)
+		return
+
+		INSN_180597DE6:
+		throw new System.InvalidCastException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x180597CDE) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AlphaWarheadController
+	System.Void .ctor()
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void Mirror.NetworkBehaviour::.ctor()
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AlphaWarheadController
+	System.Void MirrorProcessed()
+
+
+Generated IL:
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AlphaWarheadController
+	AlphaWarheadSyncInfo get_NetworkInfo()
+		this. = 
+		return this
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.RegToFieldAction at (0x180599A2A) is corrupt (Instance or field is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AlphaWarheadController
+	System.Void set_NetworkInfo(AlphaWarheadSyncInfo value)
+
+		System.Boolean boolean = base.SyncVarEqual<AlphaWarheadSyncInfo>()
+
+		if (boolean == False)
+
+		    base.SetSyncVar<AlphaWarheadSyncInfo>()
+		endif
+        
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180599CEE) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AlphaWarheadController
+	System.Double get_NetworkCooldownEndTime()
+		return 
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x180599A18) is corrupt (Return value is missing) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AlphaWarheadController
+	System.Void set_NetworkCooldownEndTime(System.Double value)
+
+		System.Boolean boolean = base.SyncVarEqual<System.Double>()
+
+		if (boolean == False)
+
+		    base.SetSyncVar<System.Double>()
+		endif
+        
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180599C54) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AlphaWarheadController
+	System.Void UserCode_RpcShake(System.Boolean achieve)
+		ExplosionCameraShake singleton = ExplosionCameraShake.singleton
+
+		singleton.Shake(1) //(Single explosionForce)
+		UnityEngine.Transform _currentCamera = MainCameraController._currentCamera
+
+		UnityEngine.Vector3 position = .position
+		System.Single single = position.z
+
+		System.Boolean boolean = AlphaWarheadController.CanBeDetonated()
+
+		if (boolean == False)
+
+		    if (achieve != False)
+
+		        System.Boolean boolean2 = ReferenceHub.TryGetLocalHub()
+
+		        if (boolean2 != False)
+
+		            System.Boolean isAlive = PlayerRoles.PlayerRolesUtils.IsAlive()
+
+		            if (isAlive != False)
+		                ulong local16 = 0
+		                System.Collections.Generic.Dictionary`2<Achievements.AchievementName,Achievements.Achievement> achievements = Achievements.AchievementManager.Achievements
+
+		                System.Boolean boolean3 = achievements.TryGetValue(17, local16) //(TKey key, TValue& value)
+
+		                if (boolean3 != False)
+		                endif
+                        
+		                return
+		            endif
+                    
+		            this._fogEnabled = True
+		            System.Int32 4 = 4
+
+		            PostProcessing.FogController.EnableFogType(4, 0.6000000238418579) //(FogType fogType, Single seconds)
+		            BloodEffectsSystem localPlayerSingleton = BloodEffectsSystem.LocalPlayerSingleton
+		            localPlayerSingleton.<DisableHurtEffect>k__BackingField = True
+		            return
+		            throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180599659) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AlphaWarheadController
+	static System.Void InvokeUserCode_RpcShake(Mirror.NetworkBehaviour obj, Mirror.NetworkReader reader, Mirror.NetworkConnectionToClient senderConnection)
+		ulong local3 = 0
+
+		System.Boolean active = Mirror.NetworkClient.active
+
+		if (active != False)
+		    ulong local5 = 0
+
+		    System.Boolean boolean = Mirror.NetworkReaderExtensions.ReadBoolean(reader) //(NetworkReader reader)
+		    //UNKNOWN CLASS OFFSET READ HERE
+
+		    obj.UserCode_RpcShake(boolean) //(Boolean achieve)
+		    return
+		endif
+        
+
+		UnityEngine.Debug.LogError("RPC RpcShake called on server.") //(Object message)
+		return
+		throw new System.InvalidCastException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.UnknownClassOffsetReadAction at (0x180597F5B) is corrupt (Unknown class offset read) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AlphaWarheadController
+	static System.Void .cctor()
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'AlphaWarheadController' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		Mirror.RemoteCalls.CmdDelegate cmdDelegate = new Mirror.RemoteCalls.CmdDelegate()
+		ulong local4 = 0
+
+		cmdDelegate..ctor(local4, {'InvokeUserCode_RpcShake' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		Mirror.RemoteCalls.RemoteCallHelper.RegisterRpcDelegate(typeFromHandle, "RpcShake", cmdDelegate) //(Type invokeClass, String rpcName, CmdDelegate func)
+		return
+
+
+Generated IL:
+	IL_0000: ldtoken AlphaWarheadController
+	IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+	IL_000a: stloc.0
+	IL_000b: ldloc.2
+	IL_000c: ldftn System.Void AlphaWarheadController::InvokeUserCode_RpcShake(Mirror.NetworkBehaviour,Mirror.NetworkReader,Mirror.NetworkConnectionToClient)
+	IL_0012: newobj System.Void Mirror.RemoteCalls.CmdDelegate::.ctor(System.Object,System.IntPtr)
+	IL_0017: stloc.1
+	IL_0018: ldc.i4.0
+	IL_0019: stloc.2
+	IL_001a: ldloc.0
+	IL_001b: ldstr "RpcShake"
+	IL_0020: ldloc.1
+	IL_0021: call System.Void Mirror.RemoteCalls.RemoteCallHelper::RegisterRpcDelegate(System.Type,System.String,Mirror.RemoteCalls.CmdDelegate)
+	IL_0026: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AlphaWarheadController
+	System.Boolean SerializeSyncVars(Mirror.NetworkWriter writer, System.Boolean forceAll)
+
+		System.Boolean boolean = base.SerializeSyncVars(writer, forceAll) //(NetworkWriter writer, Boolean initialState)
+
+		if (forceAll == False)
+		    System.UInt64 syncVarDirtyBits = this.<syncVarDirtyBits>k__BackingField
+
+		    Mirror.NetworkWriterExtensions.WriteUInt64(writer, syncVarDirtyBits) //(NetworkWriter writer, UInt64 value)
+		    System.UInt64 syncVarDirtyBits2 = this.<syncVarDirtyBits>k__BackingField
+
+		    if (syncVarDirtyBits2 != 1)
+		        AlphaWarheadSyncInfo info = this.Info
+
+		        Mirror.NetworkWriterExtensions.WriteDouble(writer, syncVarDirtyBits) //(NetworkWriter writer, Double value)
+		        if (info == 0) System.Int32 local11 = info.ScenarioId
+
+		        writer.WriteByte(local11) //(Byte value)
+		    endif
+            
+
+		    if (syncVarDirtyBits2 == 2)
+                goto INSN_1805983F6
+            endif
+
+		    Mirror.NetworkWriterExtensions.WriteDouble(writer, syncVarDirtyBits) //(NetworkWriter writer, Double value)
+
+		    INSN_1805983F6:
+		    return True
+		endif
+        
+		AlphaWarheadSyncInfo info2 = this.Info
+
+		Mirror.NetworkWriterExtensions.WriteDouble()
+		if (info2 == 0) System.Int32 local18 = info2.ScenarioId
+
+		writer.WriteByte(local18) //(Byte value)
+
+		Mirror.NetworkWriterExtensions.WriteDouble(writer, local18) //(NetworkWriter writer, Double value)
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180598468) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AlphaWarheadController
+	System.Void DeserializeSyncVars(Mirror.NetworkReader reader, System.Boolean initialState)
+
+		this.MirrorProcessed()
+
+		if (initialState == False)
+
+		    System.UInt64 uInt64 = Mirror.NetworkReaderExtensions.ReadUInt64(reader) //(NetworkReader reader)
+
+		    if (uInt64 != 1)
+
+		        System.Double double = Mirror.NetworkReaderExtensions.ReadDouble(reader) //(NetworkReader reader)
+
+		        System.Byte byte = reader.ReadByte()
+		        ulong local12 = 0
+
+		        System.Boolean boolean = base.SyncVarEqual<AlphaWarheadSyncInfo>()
+
+		        if (boolean == False)
+
+		            base.SetSyncVar<AlphaWarheadSyncInfo>()
+		        endif
+                
+		    endif
+            
+
+		    if (uInt64 == 2)
+                goto INSN_180596FDB
+            endif
+
+		    System.Double double2 = Mirror.NetworkReaderExtensions.ReadDouble(reader) //(NetworkReader reader)
+
+		    System.Boolean boolean2 = base.SyncVarEqual<System.Double>()
+
+		    if (boolean2 != False)
+                goto INSN_180596FDB
+            endif
+
+		    base.SetSyncVar<System.Double>()
+
+		    INSN_180596FDB:
+		    return
+		endif
+        
+
+		System.Double double3 = Mirror.NetworkReaderExtensions.ReadDouble(reader) //(NetworkReader reader)
+
+		System.Byte byte2 = reader.ReadByte()
+		ulong local25 = 0
+
+		System.Boolean boolean3 = base.SyncVarEqual<AlphaWarheadSyncInfo>()
+
+		if (boolean3 != False)
+            goto INSN_180596F54
+        endif
+
+		base.SetSyncVar<AlphaWarheadSyncInfo>()
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180596F10) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+

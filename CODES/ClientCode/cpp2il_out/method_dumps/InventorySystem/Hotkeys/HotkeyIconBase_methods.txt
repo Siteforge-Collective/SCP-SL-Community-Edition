@@ -1,0 +1,369 @@
+Type: HotkeyIconBase
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Hotkeys.HotkeyIconBase
+	System.Boolean Setup(System.UInt16 serial, UnityEngine.KeyCode keycode, System.Boolean hidden)
+		System.Int32 local4 = keycode.value__
+
+		if (this._prevSerial == serial)
+
+		    if (hidden == this._prevHidden)
+
+		        this.UpdateIcons()
+
+		        if (constant4 == 0)
+		            return constant4
+		        endif
+                
+		        ulong local6 = 0
+
+		        ReferenceHub localHub = ReferenceHub.LocalHub
+		        InventorySystem.Inventory inventory = localHub.inventory
+
+		        if (serial == constant15)
+                    goto INSN_1803ECF69
+                endif
+		        InventorySystem.InventoryInfo userInventory = inventory.UserInventory
+		        System.Collections.Generic.Dictionary`2<System.UInt16,InventorySystem.Items.ItemBase> items = userInventory.Items
+
+		        System.Boolean boolean = items.TryGetValue()
+
+		        if (boolean == False)
+                    goto INSN_1803ECF69
+                endif
+
+		        UnityEngine.GameObject gameObject = base.gameObject
+
+		        gameObject.SetActive(hidden) //(Boolean value)
+		        TMPro.TextMeshProUGUI keycodeText = this.KeycodeText
+		        ulong local16 = 0
+		        ulong local17 = 0
+
+		        System.String text = keycodeText.text
+
+		        System.String string = this.ToString()
+
+		        if (this._prevSerial != constant28)
+                    goto INSN_1803ECF85
+                endif
+		        UnityEngine.UI.Image highlightImage = this.HighlightImage
+		        this._highlightTimer = 0
+		        this._highlightPlaying = True
+
+		        highlightImage.enabled = True
+
+		        System.Boolean boolean2 = this.ForceRefresh(serial) //(UInt16 serial)
+		        this._prevSerial = serial
+		        this._prevHidden = hidden
+		        return True
+
+		        INSN_1803ECF69:
+
+		        UnityEngine.GameObject gameObject2 = .gameObject
+		        ulong local27 = 0
+
+		        gameObject2.SetActive(local27) //(Boolean value)
+
+		        INSN_1803ECF85:
+		        throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.Implicit4ByteFieldReadAction at (0x1803ECDB7) is corrupt (Local local4 has been stripped out for being unused, so doesn't have a variable.) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Hotkeys.HotkeyIconBase
+	System.Void UpdateAnimations()
+
+		if (this._highlightPlaying != False)
+		    ulong local1 = 0
+
+		    System.Boolean inventoryVisible = InventorySystem.GUI.InventoryGuiController.InventoryVisible
+
+		    if (inventoryVisible == False)
+		        ulong local4 = 0
+
+		        System.Single deltaTime = UnityEngine.Time.deltaTime
+		        this._highlightTimer = deltaTime
+		    endif
+            
+		    UnityEngine.UI.Image outline = this.Outline
+		    UnityEngine.UI.Image highlightImage = this.HighlightImage
+		    UnityEngine.Color _highlightTransparentColor = this._highlightTransparentColor
+
+		    System.Boolean isDestroyed = .IsDestroyed()
+		    UnityEngine.AnimationCurve highlightAnimation = InventorySystem.Hotkeys.HotkeyIconBase.HighlightAnimation
+		    System.Single _highlightTimer = this._highlightTimer
+
+		    System.Single single = highlightAnimation.Evaluate(_highlightTimer) //(Single time)
+
+		    UnityEngine.Color color = UnityEngine.Color.Lerp()
+
+		    UnityEngine.Color color2 = highlightImage.color
+		    System.Single _highlightTimer2 = this._highlightTimer
+
+		    if (_highlightTimer2 <= 1)
+                goto INSN_1803ED10D
+            endif
+		    UnityEngine.UI.Image highlightImage2 = this.HighlightImage
+		    ulong local22 = 0
+
+		    highlightImage2.enabled = local22
+		    this._highlightPlaying = False
+
+		    INSN_1803ED10D:
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallVirtualMethodAction at (0x1803ED045) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Hotkeys.HotkeyIconBase
+	System.Void PlayHighlightAnimation()
+		this._highlightTimer = 0
+		this._highlightPlaying = True
+		UnityEngine.UI.Image highlightImage = this.HighlightImage
+
+		highlightImage.enabled = True
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldc.r4 0
+	IL_0006: stfld System.Single InventorySystem.Hotkeys.HotkeyIconBase::_highlightTimer
+	IL_000b: ldarg.0
+	IL_000c: ldc.i4.1
+	IL_000d: stfld System.Boolean InventorySystem.Hotkeys.HotkeyIconBase::_highlightPlaying
+	IL_0012: ldarg.0
+	IL_0013: ldfld UnityEngine.UI.Image InventorySystem.Hotkeys.HotkeyIconBase::HighlightImage
+	IL_0018: ldc.i4.1
+	IL_0019: call System.Void UnityEngine.Behaviour::set_enabled(System.Boolean)
+	IL_001e: ret
+	IL_001f: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0024: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Hotkeys.HotkeyIconBase
+	System.Void CancelHighlightAnimation()
+
+		if (this._highlightPlaying != False)
+		    UnityEngine.UI.Image highlightImage = this.HighlightImage
+		    UnityEngine.Color _highlightTransparentColor = this._highlightTransparentColor
+
+		    UnityEngine.Color color = highlightImage.color
+		    UnityEngine.UI.Image highlightImage2 = this.HighlightImage
+		    ulong local6 = 0
+
+		    highlightImage2.enabled = local6
+		    this._highlightPlaying = False
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Boolean InventorySystem.Hotkeys.HotkeyIconBase::_highlightPlaying
+	IL_0006: ldc.i4.0
+	IL_0007: beq.s IL_0037
+	IL_0009: ldarg.0
+	IL_000a: ldfld UnityEngine.UI.Image InventorySystem.Hotkeys.HotkeyIconBase::HighlightImage
+	IL_000f: stloc.0
+	IL_0010: ldarg.0
+	IL_0011: ldfld UnityEngine.Color InventorySystem.Hotkeys.HotkeyIconBase::_highlightTransparentColor
+	IL_0016: stloc.1
+	IL_0017: ldloc.0
+	IL_0018: callvirt UnityEngine.Color UnityEngine.UI.Graphic::get_color()
+	IL_001d: stloc.2
+	IL_001e: ldarg.0
+	IL_001f: ldfld UnityEngine.UI.Image InventorySystem.Hotkeys.HotkeyIconBase::HighlightImage
+	IL_0024: stloc.3
+	IL_0025: ldc.i4.0
+	IL_0026: stloc.s V_4
+	IL_0028: ldloc.3
+	IL_0029: ldloc.s V_4
+	IL_002b: call System.Void UnityEngine.Behaviour::set_enabled(System.Boolean)
+	IL_0030: ldarg.0
+	IL_0031: ldc.i4.0
+	IL_0032: stfld System.Boolean InventorySystem.Hotkeys.HotkeyIconBase::_highlightPlaying
+	IL_0037: ret
+	IL_0038: newobj System.Void System.NullReferenceException::.ctor()
+	IL_003d: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Hotkeys.HotkeyIconBase
+	System.Void SetColors(UnityEngine.Color color)
+		UnityEngine.UI.Image outline = this.Outline
+
+		UnityEngine.Color color = outline.color
+		TMPro.TextMeshProUGUI keycodeText = this.KeycodeText
+
+		UnityEngine.Color color2 = keycodeText.color
+		ulong local10 = 0
+		ulong local11 = 0
+		this._highlightTransparentColor = local11
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld UnityEngine.UI.Image InventorySystem.Hotkeys.HotkeyIconBase::Outline
+	IL_0006: callvirt UnityEngine.Color UnityEngine.UI.Graphic::get_color()
+	IL_000b: stloc.0
+	IL_000c: ldarg.0
+	IL_000d: ldfld TMPro.TextMeshProUGUI InventorySystem.Hotkeys.HotkeyIconBase::KeycodeText
+	IL_0012: callvirt UnityEngine.Color TMPro.TMP_Text::get_color()
+	IL_0017: stloc.1
+	IL_0018: ldc.i4.0
+	IL_0019: stloc.2
+	IL_001a: ldc.i4.0
+	IL_001b: stloc.3
+	IL_001c: ldarg.0
+	IL_001d: ldloc.3
+	IL_001e: stfld UnityEngine.Color InventorySystem.Hotkeys.HotkeyIconBase::_highlightTransparentColor
+	IL_0023: ret
+	IL_0024: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0029: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Hotkeys.HotkeyIconBase
+	System.Boolean ForceRefresh(System.UInt16 serial)
+		ulong local2 = 0
+		return local2
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x1802D39F2) is corrupt (Return value has a type of System.Int32, expecting an object of type System.Boolean) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Hotkeys.HotkeyIconBase
+	System.Void OnRefreshed(System.UInt16 serial)
+
+
+Generated IL:
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Hotkeys.HotkeyIconBase
+	System.Void .ctor()
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void UnityEngine.MonoBehaviour::.ctor()
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Hotkeys.HotkeyIconBase
+	static System.Void .cctor()
+		UnityEngine.Keyframe[] local0 = new UnityEngine.Keyframe[3]
+		ulong local1 = 0
+		ulong local2 = 0
+		ulong local3 = 0
+		ulong local4 = 0
+		local0[0] = local3
+		ulong local9 = 0
+		local0[3] = local2
+		ulong local10 = 0
+		local0[3] = local9
+		ulong local15 = 0
+		local0[6] = local10
+		ulong local17 = 0
+		local0[7] = local15
+		local0[10] = local17
+		UnityEngine.AnimationCurve animationCurve = new UnityEngine.AnimationCurve()
+
+		animationCurve..ctor(local0) //(Keyframe[] keys)
+		InventorySystem.Hotkeys.HotkeyIconBase.HighlightAnimation = animationCurve
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldc.i4.3
+	IL_0001: newarr UnityEngine.Keyframe
+	IL_0006: stloc.0
+	IL_0007: ldc.i4.0
+	IL_0008: stloc.1
+	IL_0009: ldc.i4.0
+	IL_000a: stloc.2
+	IL_000b: ldc.i4.0
+	IL_000c: stloc.3
+	IL_000d: ldc.i4.0
+	IL_000e: stloc.s V_4
+	IL_0010: ldloc.0
+	IL_0011: ldc.i4.0
+	IL_0012: ldloc.3
+	IL_0013: stelem.any UnityEngine.Keyframe
+	IL_0018: ldc.i4.0
+	IL_0019: stloc.s V_5
+	IL_001b: ldloc.0
+	IL_001c: ldc.i4.3
+	IL_001d: ldloc.2
+	IL_001e: stelem.any UnityEngine.Keyframe
+	IL_0023: ldc.i4.0
+	IL_0024: stloc.s V_6
+	IL_0026: ldloc.0
+	IL_0027: ldc.i4.3
+	IL_0028: ldloc.s V_5
+	IL_002a: stelem.any UnityEngine.Keyframe
+	IL_002f: ldc.i4.0
+	IL_0030: stloc.s V_7
+	IL_0032: ldloc.0
+	IL_0033: ldc.i4.6
+	IL_0034: ldloc.s V_6
+	IL_0036: stelem.any UnityEngine.Keyframe
+	IL_003b: ldc.i4.0
+	IL_003c: stloc.s V_8
+	IL_003e: ldloc.0
+	IL_003f: ldc.i4.7
+	IL_0040: ldloc.s V_7
+	IL_0042: stelem.any UnityEngine.Keyframe
+	IL_0047: ldloc.0
+	IL_0048: ldc.i4.s 10
+	IL_004a: ldloc.s V_8
+	IL_004c: stelem.any UnityEngine.Keyframe
+	IL_0051: ldloc.0
+	IL_0052: newobj System.Void UnityEngine.AnimationCurve::.ctor(UnityEngine.Keyframe[])
+	IL_0057: stsfld UnityEngine.AnimationCurve InventorySystem.Hotkeys.HotkeyIconBase::HighlightAnimation
+	IL_005c: ret
+	IL_005d: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0062: throw
+	
+

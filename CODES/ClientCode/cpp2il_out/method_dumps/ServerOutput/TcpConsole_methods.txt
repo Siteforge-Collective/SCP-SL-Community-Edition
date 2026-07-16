@@ -1,0 +1,477 @@
+Type: TcpConsole
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ServerOutput.TcpConsole
+	System.Void .ctor(System.UInt16 port)
+		System.Collections.Concurrent.ConcurrentQueue`1<ServerOutput.IOutputEntry> concurrentQueue = new System.Collections.Concurrent.ConcurrentQueue`1<ServerOutput.IOutputEntry>()
+
+		concurrentQueue..ctor()
+		this._prompterQueue = concurrentQueue
+
+		base..ctor()
+		System.Net.Sockets.TcpClient tcpClient = new System.Net.Sockets.TcpClient()
+
+		tcpClient..ctor()
+		this._client = tcpClient
+		System.Threading.ThreadStart threadStart = new System.Threading.ThreadStart()
+
+		threadStart..ctor(this, {'Receive' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		System.Threading.Thread thread = new System.Threading.Thread()
+
+		thread..ctor(threadStart) //(ThreadStart start)
+		ulong local11 = 0
+
+		thread.Priority = local11
+
+		thread.IsBackground = True
+
+		thread.Name = "Dedicated server console input"
+		this._receiveThread = thread
+		System.Threading.ThreadStart threadStart2 = new System.Threading.ThreadStart()
+
+		threadStart2..ctor(this, {'Send' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		System.Threading.Thread thread2 = new System.Threading.Thread()
+
+		thread2..ctor(threadStart2) //(ThreadStart start)
+		ulong local19 = 0
+
+		thread2.Priority = local19
+
+		thread2.IsBackground = True
+
+		thread2.Name = "Dedicated server console output"
+		this._queueThread = thread2
+		this._port = port
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: newobj System.Void System.Collections.Concurrent.ConcurrentQueue`1::.ctor()
+	IL_0005: stloc.0
+	IL_0006: ldarg.0
+	IL_0007: ldloc.0
+	IL_0008: stfld System.Collections.Concurrent.ConcurrentQueue`1<ServerOutput.IOutputEntry> ServerOutput.TcpConsole::_prompterQueue
+	IL_000d: ldarg.0
+	IL_000e: call System.Void System.Object::.ctor()
+	IL_0013: newobj System.Void System.Net.Sockets.TcpClient::.ctor()
+	IL_0018: stloc.1
+	IL_0019: ldarg.0
+	IL_001a: ldloc.1
+	IL_001b: stfld System.Net.Sockets.TcpClient ServerOutput.TcpConsole::_client
+	IL_0020: ldarg.0
+	IL_0021: ldftn System.Void ServerOutput.TcpConsole::Receive()
+	IL_0027: newobj System.Void System.Threading.ThreadStart::.ctor(System.Object,System.IntPtr)
+	IL_002c: newobj System.Void System.Threading.Thread::.ctor(System.Threading.ThreadStart)
+	IL_0031: stloc.2
+	IL_0032: ldc.i4.0
+	IL_0033: stloc.3
+	IL_0034: ldloc.2
+	IL_0035: ldloc.3
+	IL_0036: call System.Void System.Threading.Thread::set_Priority(System.Threading.ThreadPriority)
+	IL_003b: ldloc.2
+	IL_003c: ldc.i4.1
+	IL_003d: call System.Void System.Threading.Thread::set_IsBackground(System.Boolean)
+	IL_0042: ldloc.2
+	IL_0043: ldstr "Dedicated server console input"
+	IL_0048: call System.Void System.Threading.Thread::set_Name(System.String)
+	IL_004d: ldarg.0
+	IL_004e: ldloc.2
+	IL_004f: stfld System.Threading.Thread ServerOutput.TcpConsole::_receiveThread
+	IL_0054: ldarg.0
+	IL_0055: ldftn System.Void ServerOutput.TcpConsole::Send()
+	IL_005b: newobj System.Void System.Threading.ThreadStart::.ctor(System.Object,System.IntPtr)
+	IL_0060: newobj System.Void System.Threading.Thread::.ctor(System.Threading.ThreadStart)
+	IL_0065: stloc.s V_4
+	IL_0067: ldc.i4.0
+	IL_0068: stloc.s V_5
+	IL_006a: ldloc.s V_4
+	IL_006c: ldloc.s V_5
+	IL_006e: call System.Void System.Threading.Thread::set_Priority(System.Threading.ThreadPriority)
+	IL_0073: ldloc.s V_4
+	IL_0075: ldc.i4.1
+	IL_0076: call System.Void System.Threading.Thread::set_IsBackground(System.Boolean)
+	IL_007b: ldloc.s V_4
+	IL_007d: ldstr "Dedicated server console output"
+	IL_0082: call System.Void System.Threading.Thread::set_Name(System.String)
+	IL_0087: ldarg.0
+	IL_0088: ldloc.s V_4
+	IL_008a: stfld System.Threading.Thread ServerOutput.TcpConsole::_queueThread
+	IL_008f: ldarg.0
+	IL_0090: ldarg.1
+	IL_0091: stfld System.UInt16 ServerOutput.TcpConsole::_port
+	IL_0096: ret
+	IL_0097: newobj System.Void System.NullReferenceException::.ctor()
+	IL_009c: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ServerOutput.TcpConsole
+	System.Void Start()
+		System.Net.Sockets.TcpClient _client = this._client
+		System.UInt16 _port = this._port
+		System.Net.IPAddress loopback = System.Net.IPAddress.Loopback
+		System.Net.IPEndPoint iPEndPoint = new System.Net.IPEndPoint()
+
+		iPEndPoint..ctor(loopback, _port) //(IPAddress address, Int32 port)
+
+		_client.Connect(iPEndPoint) //(IPEndPoint remoteEP)
+		System.Net.Sockets.TcpClient _client2 = this._client
+
+		System.Net.Sockets.NetworkStream stream = _client2.GetStream()
+		this._stream = stream
+		System.Threading.Thread _queueThread = this._queueThread
+
+		_queueThread.Start()
+		System.Threading.Thread _receiveThread = this._receiveThread
+
+		_receiveThread.Start()
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Net.Sockets.TcpClient ServerOutput.TcpConsole::_client
+	IL_0006: stloc.0
+	IL_0007: ldarg.0
+	IL_0008: ldfld System.UInt16 ServerOutput.TcpConsole::_port
+	IL_000d: stloc.1
+	IL_000e: ldsfld System.Net.IPAddress System.Net.IPAddress::Loopback
+	IL_0013: ldloc.1
+	IL_0014: newobj System.Void System.Net.IPEndPoint::.ctor(System.Net.IPAddress,System.Int32)
+	IL_0019: stloc.2
+	IL_001a: ldloc.0
+	IL_001b: ldloc.2
+	IL_001c: call System.Void System.Net.Sockets.TcpClient::Connect(System.Net.IPEndPoint)
+	IL_0021: ldarg.0
+	IL_0022: ldfld System.Net.Sockets.TcpClient ServerOutput.TcpConsole::_client
+	IL_0027: call System.Net.Sockets.NetworkStream System.Net.Sockets.TcpClient::GetStream()
+	IL_002c: stloc.3
+	IL_002d: ldarg.0
+	IL_002e: ldloc.3
+	IL_002f: stfld System.Net.Sockets.NetworkStream ServerOutput.TcpConsole::_stream
+	IL_0034: ldarg.0
+	IL_0035: ldfld System.Threading.Thread ServerOutput.TcpConsole::_queueThread
+	IL_003a: call System.Void System.Threading.Thread::Start()
+	IL_003f: ldarg.0
+	IL_0040: ldfld System.Threading.Thread ServerOutput.TcpConsole::_receiveThread
+	IL_0045: call System.Void System.Threading.Thread::Start()
+	IL_004a: ret
+	IL_004b: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0050: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ServerOutput.TcpConsole
+	System.Void Dispose()
+		this._disposing = True
+		System.Threading.Thread _receiveThread = this._receiveThread
+
+		System.Boolean isAlive = _receiveThread.IsAlive
+
+		if (isAlive != False)
+		    System.Threading.Thread _receiveThread2 = this._receiveThread
+
+		    _receiveThread2.Abort()
+		endif
+        
+		System.Threading.Thread _queueThread = this._queueThread
+
+		System.Boolean isAlive2 = _queueThread.IsAlive
+
+		if (isAlive2 == False)
+            goto INSN_181B81FEF
+        endif
+		System.Threading.Thread _queueThread2 = this._queueThread
+
+		_queueThread2.Abort()
+
+		INSN_181B81FEF:
+		System.Net.Sockets.NetworkStream _stream = this._stream
+
+		if (_stream == 0)
+            goto INSN_181B82005
+        endif
+
+		_stream.Dispose()
+
+		INSN_181B82005:
+		System.Net.Sockets.TcpClient _client = this._client
+
+		_client.Dispose()
+		return
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldc.i4.1
+	IL_0002: stfld System.Boolean ServerOutput.TcpConsole::_disposing
+	IL_0007: ldarg.0
+	IL_0008: ldfld System.Threading.Thread ServerOutput.TcpConsole::_receiveThread
+	IL_000d: call System.Boolean System.Threading.Thread::get_IsAlive()
+	IL_0012: ldc.i4.0
+	IL_0013: beq.s IL_0020
+	IL_0015: ldarg.0
+	IL_0016: ldfld System.Threading.Thread ServerOutput.TcpConsole::_receiveThread
+	IL_001b: call System.Void System.Threading.Thread::Abort()
+	IL_0020: ldarg.0
+	IL_0021: ldfld System.Threading.Thread ServerOutput.TcpConsole::_queueThread
+	IL_0026: call System.Boolean System.Threading.Thread::get_IsAlive()
+	IL_002b: ldc.i4.0
+	IL_002c: beq.s IL_0039
+	IL_002e: ldarg.0
+	IL_002f: ldfld System.Threading.Thread ServerOutput.TcpConsole::_queueThread
+	IL_0034: call System.Void System.Threading.Thread::Abort()
+	IL_0039: ldarg.0
+	IL_003a: ldfld System.Net.Sockets.NetworkStream ServerOutput.TcpConsole::_stream
+	IL_003f: stloc.0
+	IL_0040: ldloc.0
+	IL_0041: ldc.i4.0
+	IL_0042: beq.s IL_004a
+	IL_0044: ldloc.0
+	IL_0045: call System.Void System.IO.Stream::Dispose()
+	IL_004a: ldarg.0
+	IL_004b: ldfld System.Net.Sockets.TcpClient ServerOutput.TcpConsole::_client
+	IL_0050: call System.Void System.Net.Sockets.TcpClient::Dispose()
+	IL_0055: ret
+	IL_0056: newobj System.Void System.NullReferenceException::.ctor()
+	IL_005b: throw
+	IL_005c: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0061: throw
+	IL_0062: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0067: throw
+	IL_0068: newobj System.Void System.NullReferenceException::.ctor()
+	IL_006d: throw
+	IL_006e: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0073: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ServerOutput.TcpConsole
+	System.Void Receive()
+		System.Byte[] local1 = new System.Byte[4]
+
+		while (this._disposing == False)
+		    System.Net.Sockets.NetworkStream _stream = this._stream
+
+		    _stream.SetLength()
+
+		    System.Span`1<T> span = System.Span`1.op_Implicit()
+
+		    System.Span`1<System.Byte> span2 = System.Runtime.InteropServices.MemoryMarshal.Cast<System.Byte, System.Int32>()
+
+		    System.String string = span2.ToString()
+		    System.Net.Sockets.NetworkStream _stream2 = this._stream
+
+		    _stream2.SetLength()
+
+		    System.String string2 = Utf8.GetString()
+
+		    System.Int32 int32 = string2.CompareTo(string) //(Object value)
+		    System.Collections.Concurrent.ConcurrentQueue`1<System.String> prompterQueue = ServerConsole.PrompterQueue
+
+		    prompterQueue.Enqueue(string2) //(T item)
+		endwhile
+        
+		goto INSN_181B822F5
+        
+
+		System.Int32 int322 = string2.CompareTo()
+
+		System.String string3 = System.String.Concat()
+
+		this.AddLog(string3) //(String text)
+
+		System.Boolean boolean = string2.System.IConvertible.ToBoolean()
+
+		System.String string4 = System.String.Concat()
+
+		this.AddLog(string4) //(String text)
+
+		UnityEngine.Debug.LogException()
+
+		INSN_181B822F5:
+		return
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallVirtualMethodAction at (0x181B820D2) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ServerOutput.TcpConsole
+	System.Void AddLog(System.String text, System.ConsoleColor color)
+		System.Int32 local3 = color.value__
+
+		System.Boolean isNullOrWhiteSpace = System.String.IsNullOrWhiteSpace(text) //(String value)
+
+		if (isNullOrWhiteSpace == False)
+
+		    [instruction error - managed method being called is null]
+		    System.Boolean isDedicated = ServerStatic.IsDedicated
+
+		    GameCore.Console.AddLog()
+		endif
+        
+		return
+		System.Collections.Concurrent.ConcurrentQueue`1<ServerOutput.IOutputEntry> _prompterQueue = this._prompterQueue
+
+		_prompterQueue.Enqueue()
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.Implicit4ByteFieldReadAction at (0x181B81D86) is corrupt (Local local3 has been stripped out for being unused, so doesn't have a variable.) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ServerOutput.TcpConsole
+	System.Void AddLog(System.String text)
+
+		System.Boolean isNullOrWhiteSpace = System.String.IsNullOrWhiteSpace(text) //(String value)
+
+		if (isNullOrWhiteSpace == False)
+
+		    [instruction error - managed method being called is null]
+		    System.Boolean isDedicated = ServerStatic.IsDedicated
+
+		    GameCore.Console.AddLog()
+		endif
+        
+		return
+		System.Collections.Concurrent.ConcurrentQueue`1<ServerOutput.IOutputEntry> _prompterQueue = this._prompterQueue
+
+		_prompterQueue.Enqueue()
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181B81CAD) is corrupt (Don't know what method is being called) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ServerOutput.TcpConsole
+	System.Void AddOutput(ServerOutput.IOutputEntry entry)
+		System.Collections.Concurrent.ConcurrentQueue`1<ServerOutput.IOutputEntry> _prompterQueue = this._prompterQueue
+
+		_prompterQueue.Enqueue(entry) //(T item)
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Collections.Concurrent.ConcurrentQueue`1<ServerOutput.IOutputEntry> ServerOutput.TcpConsole::_prompterQueue
+	IL_0006: ldarg.1
+	IL_0007: call System.Void System.Collections.Concurrent.ConcurrentQueue`1::Enqueue(T)
+	IL_000c: ret
+	IL_000d: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0012: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ServerOutput.TcpConsole
+	System.Void Send()
+		ulong local1 = 0
+
+		while (this._disposing == False)
+		    System.Collections.Concurrent.ConcurrentQueue`1<ServerOutput.IOutputEntry> _prompterQueue = this._prompterQueue
+
+		    System.Int32 count = _prompterQueue.Count
+
+		    if (count == 0)
+                goto INSN_181B825B6
+            endif
+		    System.Collections.Concurrent.ConcurrentQueue`1<ServerOutput.IOutputEntry> _prompterQueue2 = this._prompterQueue
+
+		    System.Boolean boolean = _prompterQueue2.TryDequeue()
+
+		    if (boolean == False)
+                goto INSN_181B8250B
+            endif
+
+		    System.String string = boolean.ToString()
+		    //UNKNOWN CLASS OFFSET READ HERE
+		    local1 += local1
+		    local1 += 1
+		      = local1.
+		    System.Net.Sockets.NetworkStream _stream = this._stream
+
+		    System.Int32 int32 = _stream.ReadByte()
+
+		    System.Int32 int322 = int32.CompareTo()
+		endwhile
+        
+		goto INSN_181B825C5
+        
+		 += IOutputEntry
+		int322 += 2
+		int322 += 19
+		int322 += constant22
+
+		INSN_181B8250B:
+
+		System.Int32 int323 = boolean.CompareTo()
+
+		System.String string2 = System.String.Concat()
+
+		this.AddLog(string2) //(String text)
+
+		System.Char char = boolean.System.IConvertible.ToChar()
+
+		System.String string3 = System.String.Concat()
+
+		this.AddLog(string3) //(String text)
+
+		UnityEngine.Debug.LogException()
+
+		INSN_181B825B6:
+		System.Int32 25 = 25
+
+		System.Threading.Thread.Sleep(25) //(Int32 millisecondsTimeout)
+
+		INSN_181B825C5:
+		return
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181B823C3) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+

@@ -1,0 +1,590 @@
+Type: UBER_MouseOrbit_DynamicDistance
+
+
+	Generated Pseudocode:
+
+	Declaring Type: UBER_MouseOrbit_DynamicDistance
+	System.Void Start()
+
+		UnityEngine.Transform transform = base.transform
+
+		UnityEngine.Vector3 eulerAngles = .eulerAngles
+		this.y = 
+		this.x = 
+
+		this.Reset()
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18075A030) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: UBER_MouseOrbit_DynamicDistance
+	System.Void DisableSteering(System.Boolean state)
+		this.disableSteering = state
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: stfld System.Boolean UBER_MouseOrbit_DynamicDistance::disableSteering
+	IL_0007: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: UBER_MouseOrbit_DynamicDistance
+	System.Void Reset()
+		ulong local2 = 0
+
+		System.Boolean mouseButton = UnityEngine.Input.GetMouseButton(local2) //(Int32 button)
+		ulong local4 = 0
+		this.lastLMBState = mouseButton
+		System.Single distance = this.distance
+		this.cur_distance = distance
+		this.disableSteering = False
+		this.cur_xSpeed = local4
+		this.req_xSpeed = local4
+		this.surfaceColliders = local4
+		UnityEngine.GameObject target = this.target
+		this.cur_ObjxSpeed = local4
+		this.req_ObjxSpeed = local4
+
+		System.Boolean boolean = UnityEngine.Object.op_Implicit(target) //(Object exists)
+
+		if (boolean != False)
+		    UnityEngine.GameObject target2 = this.target
+
+		    UnityEngine.Renderer[] componentsInChildren = target2.GetComponentsInChildren<UnityEngine.Renderer>()
+		    ulong local12 = 0
+		    ulong local14 = 0
+		    System.Int32 length = componentsInChildren.Length
+
+		    if (local4 < length)
+		        UnityEngine.Renderer renderer = componentsInChildren[local4]
+
+		        if (local12 != 0)
+
+		            UnityEngine.Bounds bounds = local4.bounds
+		            local4 += 1
+		        endif
+                
+
+		        UnityEngine.Bounds bounds2 = local4.bounds
+		        local4 += 1
+		    endif
+            
+		      = length.
+
+		    if ( > local14)
+                goto INSN_180759F74
+            endif
+
+		    INSN_180759F74:
+
+		    if (local14 <= local14)
+                goto INSN_180759F89
+            endif
+
+		    INSN_180759F89:
+		    UnityEngine.GameObject target3 = this.target
+		    this.bounds_MaxSize = local14
+		    System.Single local24 = local14 * 1,2
+		    this.cur_distance = local24
+
+		    UnityEngine.Collider[] componentsInChildren2 = target3.GetComponentsInChildren<UnityEngine.Collider>()
+		    this.surfaceColliders = componentsInChildren2
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180759EE0) is corrupt (Mismatched instance parameter. Expecting an instance of UnityEngine.Renderer, actually {'local4' (type System.Int32)}) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: UBER_MouseOrbit_DynamicDistance
+	System.Void LateUpdate()
+		ulong local1 = 0
+		UnityEngine.GameObject target = this.target
+
+		System.Boolean boolean = UnityEngine.Object.op_Implicit(target) //(Object exists)
+
+		if (boolean != False)
+		    UnityEngine.Transform targetFocus = this.targetFocus
+
+		    System.Boolean boolean2 = UnityEngine.Object.op_Implicit(targetFocus) //(Object exists)
+
+		    if (boolean2 != False)
+		        ulong local9 = 0
+
+		        if (this.lastLMBState == local9)
+		            ulong local11 = 0
+
+		            System.Boolean mouseButton = UnityEngine.Input.GetMouseButton(local11) //(Int32 button)
+
+		            if (mouseButton != False)
+		                this.DraggingObject = local9
+
+		                if (this.surfaceColliders == local9)
+                            goto INSN_180759111
+                        endif
+		                ulong local13 = 0
+
+		                UnityEngine.Camera main = UnityEngine.Camera.main
+
+		                UnityEngine.Vector3 mousePosition = UnityEngine.Input.mousePosition
+		                System.Single single = mousePosition.z
+
+		                UnityEngine.Ray ray = single.ScreenPointToRay()
+		                UnityEngine.Collider[] surfaceColliders = this.surfaceColliders
+		                System.Int32 length = surfaceColliders.Length
+
+		                if (local9 >= length)
+                            goto INSN_180759111
+                        endif
+		                UnityEngine.Collider collider = surfaceColliders[local9]
+
+		                System.Boolean boolean3 = collider.Raycast()
+
+		                if (boolean3 == False)
+		                    local9 += 1
+		                endif
+                        
+		                this.DraggingObject = True
+		            else
+
+		                if (this.lastLMBState != local9)
+		                endif
+                        
+		                ulong local25 = 0
+
+		                System.Boolean mouseButton2 = UnityEngine.Input.GetMouseButton(local25) //(Int32 button)
+
+		                if (mouseButton2 == False)
+		                    this.DraggingObject = local9
+		                endif
+                        
+		                ulong local28 = 0
+
+		                System.Boolean mouseButton3 = UnityEngine.Input.GetMouseButton(local28) //(Int32 button)
+		                this.lastLMBState = mouseButton3
+		                ulong local31 = 0
+
+		                if (this.DraggingObject != local9)
+                            goto INSN_18075929A
+                        endif
+
+		                System.Boolean mouseButton4 = UnityEngine.Input.GetMouseButton(local31) //(Int32 button)
+
+		                if (mouseButton4 == False)
+                            goto INSN_1807591FE
+                        endif
+
+		                if (this.disableSteering != local9)
+                            goto INSN_1807591FE
+                        endif
+
+		                System.Single axis = UnityEngine.Input.GetAxis("Mouse X") //(String axisName)
+		                System.Single xSpeed = this.xSpeed
+		                ulong local38 = 0
+
+		                System.Single deltaTime = UnityEngine.Time.deltaTime
+		                System.Single local42 = xSpeed * 0,02
+		                System.Single local43 = deltaTime * 10
+		                this.req_xSpeed = local43
+
+		                System.Single axis2 = UnityEngine.Input.GetAxis("Mouse Y") //(String axisName)
+		                System.Single ySpeed = this.ySpeed
+		                ulong local47 = 0
+		                axis = axis2
+
+		                System.Single deltaTime2 = UnityEngine.Time.deltaTime
+		                System.Single local50 = ySpeed * 0,02
+		                System.Single local51 = deltaTime2 * 10
+
+		                INSN_1807591FE:
+		                ulong local53 = 0
+
+		                System.Single deltaTime3 = UnityEngine.Time.deltaTime
+		                ulong local56 = 0
+		                this.req_xSpeed = deltaTime3
+
+		                System.Single deltaTime4 = UnityEngine.Time.deltaTime
+		                this.req_ySpeed = deltaTime4
+		                ulong local60 = 0
+
+		                System.Single deltaTime5 = UnityEngine.Time.deltaTime
+		                ulong local64 = 0
+		                this.req_ObjxSpeed = deltaTime5
+
+		                System.Single deltaTime6 = UnityEngine.Time.deltaTime
+		                this.req_ObjySpeed = deltaTime6
+
+		                INSN_18075929A:
+
+		                System.Boolean mouseButton5 = UnityEngine.Input.GetMouseButton(local64) //(Int32 button)
+
+		                if (mouseButton5 == False)
+                            goto INSN_180759367
+                        endif
+
+		                if (this.disableSteering != local9)
+                            goto INSN_180759367
+                        endif
+
+		                System.Single axis3 = UnityEngine.Input.GetAxis("Mouse X") //(String axisName)
+		                System.Single xObjSpeed = this.xObjSpeed
+		                ulong local74 = 0
+		                local65 = axis3
+
+		                System.Single deltaTime7 = UnityEngine.Time.deltaTime
+		                System.Single local78 = xObjSpeed * 0,02
+		                System.Single local79 = deltaTime7 * 10
+		                this.req_ObjxSpeed = local79
+
+		                System.Single axis4 = UnityEngine.Input.GetAxis("Mouse Y") //(String axisName)
+		                System.Single yObjSpeed = this.yObjSpeed
+		                ulong local83 = 0
+		                local65 = axis4
+
+		                System.Single deltaTime8 = UnityEngine.Time.deltaTime
+		                System.Single local86 = yObjSpeed * 0,02
+		                System.Single local87 = deltaTime8 * 10
+
+		                INSN_180759367:
+		                ulong local89 = 0
+
+		                System.Single deltaTime9 = UnityEngine.Time.deltaTime
+		                ulong local92 = 0
+		                this.req_ObjxSpeed = deltaTime9
+
+		                System.Single deltaTime10 = UnityEngine.Time.deltaTime
+		                this.req_ObjySpeed = deltaTime10
+		                ulong local96 = 0
+
+		                System.Single deltaTime11 = UnityEngine.Time.deltaTime
+		                ulong local100 = 0
+		                this.req_xSpeed = deltaTime11
+
+		                System.Single deltaTime12 = UnityEngine.Time.deltaTime
+		                this.req_ySpeed = deltaTime12
+		                System.Single distance = this.distance
+
+		                System.Single axis5 = UnityEngine.Input.GetAxis("Mouse ScrollWheel") //(String axisName)
+		                System.Single local107 = axis5 * this.ZoomWheelSpeed
+		                System.Single minDistance = this.minDistance
+		                System.Single maxDistance = this.maxDistance
+		                this.distance = distance
+		                local107 = distance
+
+		                System.Single single2 = UnityEngine.Mathf.Clamp(local107, minDistance, maxDistance) //(Single value, Single min, Single max)
+		                ulong local113 = 0
+		                this.distance = single2
+
+		                System.Single deltaTime13 = UnityEngine.Time.deltaTime
+		                ulong local116 = 0
+		                this.cur_ObjxSpeed = deltaTime13
+
+		                System.Single deltaTime14 = UnityEngine.Time.deltaTime
+		                UnityEngine.GameObject target2 = this.target
+		                this.cur_ObjySpeed = deltaTime14
+
+		                UnityEngine.Transform transform = target2.transform
+		                UnityEngine.Transform targetFocus2 = this.targetFocus
+
+		                UnityEngine.Vector3 position = .position
+		                UnityEngine.Transform targetFocus3 = this.targetFocus
+		                System.Single single3 = position.z
+
+		                UnityEngine.Vector3 position2 = .position
+		                System.Single single4 = position2.z
+
+		                UnityEngine.Transform transform2 = base.transform
+
+		                UnityEngine.Vector3 position3 = .position
+		                System.Single single5 = position3.z
+
+		                UnityEngine.Vector3 vector3 = UnityEngine.Vector3.op_Subtraction()
+		                System.Single single6 = vector3.z
+
+		                UnityEngine.Transform transform3 = base.transform
+
+		                UnityEngine.Vector3 right = .right
+		                System.Single single7 = right.z
+
+		                UnityEngine.Vector3 vector32 = UnityEngine.Vector3.Cross()
+		                System.Single single8 = vector32.z
+
+		                transform.RotateAround()
+		                UnityEngine.GameObject target3 = this.target
+
+		                UnityEngine.Transform transform4 = target3.transform
+		                UnityEngine.Transform targetFocus4 = this.targetFocus
+
+		                UnityEngine.Vector3 position4 = .position
+		                UnityEngine.Transform targetFocus5 = this.targetFocus
+		                System.Single single9 = position4.z
+
+		                UnityEngine.Vector3 position5 = .position
+		                System.Single single10 = position5.z
+
+		                UnityEngine.Transform transform5 = base.transform
+
+		                UnityEngine.Vector3 position6 = .position
+		                System.Single single11 = position6.z
+
+		                UnityEngine.Vector3 vector33 = UnityEngine.Vector3.op_Subtraction()
+		                System.Single single12 = vector33.z
+
+		                UnityEngine.Transform transform6 = base.transform
+
+		                UnityEngine.Vector3 up = .up
+		                System.Single single13 = up.z
+
+		                UnityEngine.Vector3 vector34 = UnityEngine.Vector3.Cross()
+		                System.Single single14 = vector34.z
+
+		                transform4.RotateAround()
+		                ulong local177 = 0
+
+		                System.Single deltaTime15 = UnityEngine.Time.deltaTime
+		                ulong local180 = 0
+		                System.Single cur_ySpeed = this.cur_ySpeed
+		                this.cur_xSpeed = deltaTime15
+
+		                System.Single deltaTime16 = UnityEngine.Time.deltaTime
+		                System.Single single15 = this.x
+		                System.Single single16 = this.y
+		                this.x = single15
+		                this.cur_ySpeed = deltaTime16
+		                this.y = single16
+
+		                if (single16 <= 360)
+                            goto INSN_18075983B
+                        endif
+
+		                INSN_18075983B:
+		                cur_ySpeed = local185
+		                maxDistance = local185
+
+		                System.Single single17 = UnityEngine.Mathf.Clamp(single16, cur_ySpeed, maxDistance) //(Single value, Single min, Single max)
+		                this.y = single17
+
+		                if (this.surfaceColliders == local9)
+                            goto INSN_180759B9B
+                        endif
+		                UnityEngine.Transform targetFocus6 = this.targetFocus
+
+		                UnityEngine.Vector3 position7 = .position
+		                System.Single single18 = position7.z
+
+		                UnityEngine.Transform transform7 = base.transform
+
+		                UnityEngine.Vector3 position8 = .position
+		                System.Single single19 = position8.z
+
+		                UnityEngine.Vector3 vector35 = UnityEngine.Vector3.op_Subtraction()
+		                System.Single single20 = vector35.z
+
+		                UnityEngine.Vector3 vector36 = UnityEngine.Vector3.Normalize()
+		                UnityEngine.Collider[] surfaceColliders2 = this.surfaceColliders
+		                ulong local206 = 0
+		                ulong local207 = 0
+		                System.Single single21 = vector36.z
+		                System.Int32 length2 = surfaceColliders2.Length
+
+		                if (local206 >= length2)
+                            goto INSN_180759B6F
+                        endif
+		                UnityEngine.Collider collider2 = surfaceColliders2[local207]
+
+		                UnityEngine.Transform transform8 = base.transform
+
+		                UnityEngine.Vector3 position9 = this.position
+		                maxDistance = local215
+
+		                UnityEngine.Vector3 vector37 = UnityEngine.Vector3.op_Multiply()
+		                System.Single single22 = vector37.z
+
+		                UnityEngine.Vector3 vector38 = UnityEngine.Vector3.op_Subtraction()
+
+		                System.Boolean boolean4 = collider2.Raycast()
+
+		                if (boolean4 == False)
+                            goto INSN_180759B66
+                        endif
+		                UnityEngine.Transform targetFocus7 = this.targetFocus
+		                  = boolean4.
+
+		                UnityEngine.Vector3 position10 = .position
+		                System.Single single23 = position10.z
+
+		                System.Single single24 = UnityEngine.Vector3.Distance()
+		                local215 = single24
+		                single24 = local235
+
+		                System.Single single25 = UnityEngine.Mathf.Max(single24, 0.009999999776482582) //(Single a, Single b)
+
+		                INSN_180759B66:
+		                local207 += 1
+
+		                INSN_180759B6F:
+
+		                if (1 == 0)
+                            goto INSN_180759B98
+                        endif
+		                ulong local239 = 0
+
+		                System.Single deltaTime17 = UnityEngine.Time.deltaTime
+		                this.cur_distance = deltaTime17
+
+		                INSN_180759B98:
+		                ulong local241 = 0
+
+		                INSN_180759B9B:
+		                System.Single single26 = this.y
+		                maxDistance = local243
+
+		                UnityEngine.Quaternion quaternion = UnityEngine.Quaternion.Euler(deltaTime17, single26, maxDistance) //(Single x, Single y, Single z)
+		                ulong local246 = 0
+
+		                UnityEngine.Vector3 vector39 = UnityEngine.Quaternion.op_Multiply()
+		                UnityEngine.Transform targetFocus8 = this.targetFocus
+		                System.Single single27 = vector39.z
+
+		                UnityEngine.Vector3 position11 = .position
+		                System.Single single28 = position11.z
+
+		                UnityEngine.Vector3 vector310 = UnityEngine.Vector3.op_Addition()
+		                System.Single single29 = vector310.z
+
+		                UnityEngine.Transform transform9 = base.transform
+
+		                transform9.set_rotation()
+
+		                UnityEngine.Transform transform10 = base.transform
+
+		                transform10.set_position()
+		            endif
+                    
+		            return
+		            throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18075907F) is corrupt (Mismatched instance parameter. Expecting an instance of UnityEngine.Camera, actually {'single' (type System.Single)}) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: UBER_MouseOrbit_DynamicDistance
+	static System.Single ClampAngle(System.Single angle, System.Single min, System.Single max)
+
+		if (angle > 360)
+		endif
+        
+
+		System.Single single = UnityEngine.Mathf.Clamp(angle, min, max) //(Single value, Single min, Single max)
+		return single
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldc.r4 360
+	IL_0006: ble.s IL_0008
+	IL_0008: ldarg.0
+	IL_0009: ldarg.1
+	IL_000a: ldarg.2
+	IL_000b: call System.Single UnityEngine.Mathf::Clamp(System.Single,System.Single,System.Single)
+	IL_0010: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: UBER_MouseOrbit_DynamicDistance
+	System.Void set_normal_angle(System.Single a)
+		this.normal_angle = a
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: stfld System.Single UBER_MouseOrbit_DynamicDistance::normal_angle
+	IL_0007: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: UBER_MouseOrbit_DynamicDistance
+	System.Void .ctor()
+		this.distance = 1
+		this.ZoomWheelSpeed = 4
+		this.minDistance = 0,5
+		this.maxDistance = 10
+		this.xSpeed = 250
+		this.ySpeed = 120
+		this.xObjSpeed = 250
+		this.yObjSpeed = 120
+		this.yMinLimit = -20
+		this.yMaxLimit = 80
+		this.bounds_MaxSize = 20
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldc.r4 1
+	IL_0006: stfld System.Single UBER_MouseOrbit_DynamicDistance::distance
+	IL_000b: ldarg.0
+	IL_000c: ldc.r4 4
+	IL_0011: stfld System.Single UBER_MouseOrbit_DynamicDistance::ZoomWheelSpeed
+	IL_0016: ldarg.0
+	IL_0017: ldc.r4 0,5
+	IL_001c: stfld System.Single UBER_MouseOrbit_DynamicDistance::minDistance
+	IL_0021: ldarg.0
+	IL_0022: ldc.r4 10
+	IL_0027: stfld System.Single UBER_MouseOrbit_DynamicDistance::maxDistance
+	IL_002c: ldarg.0
+	IL_002d: ldc.r4 250
+	IL_0032: stfld System.Single UBER_MouseOrbit_DynamicDistance::xSpeed
+	IL_0037: ldarg.0
+	IL_0038: ldc.r4 120
+	IL_003d: stfld System.Single UBER_MouseOrbit_DynamicDistance::ySpeed
+	IL_0042: ldarg.0
+	IL_0043: ldc.r4 250
+	IL_0048: stfld System.Single UBER_MouseOrbit_DynamicDistance::xObjSpeed
+	IL_004d: ldarg.0
+	IL_004e: ldc.r4 120
+	IL_0053: stfld System.Single UBER_MouseOrbit_DynamicDistance::yObjSpeed
+	IL_0058: ldarg.0
+	IL_0059: ldc.r4 -20
+	IL_005e: stfld System.Single UBER_MouseOrbit_DynamicDistance::yMinLimit
+	IL_0063: ldarg.0
+	IL_0064: ldc.r4 80
+	IL_0069: stfld System.Single UBER_MouseOrbit_DynamicDistance::yMaxLimit
+	IL_006e: ldarg.0
+	IL_006f: ldc.r4 20
+	IL_0074: stfld System.Single UBER_MouseOrbit_DynamicDistance::bounds_MaxSize
+	IL_0079: ldarg.0
+	IL_007a: call System.Void UnityEngine.MonoBehaviour::.ctor()
+	IL_007f: ret
+	
+

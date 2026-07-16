@@ -1,0 +1,344 @@
+Type: StandardDamageHandler
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerStatsSystem.StandardDamageHandler
+	System.Single get_DealtHealthDamage()
+		System.Single DealtHealthDamage = this.<DealtHealthDamage>k__BackingField
+		return DealtHealthDamage
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Single PlayerStatsSystem.StandardDamageHandler::<DealtHealthDamage>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerStatsSystem.StandardDamageHandler
+	System.Void set_DealtHealthDamage(System.Single value)
+		this.<DealtHealthDamage>k__BackingField = value
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: stfld System.Single PlayerStatsSystem.StandardDamageHandler::<DealtHealthDamage>k__BackingField
+	IL_0007: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerStatsSystem.StandardDamageHandler
+	System.Single get_AbsorbedAhpDamage()
+		System.Single AbsorbedAhpDamage = this.<AbsorbedAhpDamage>k__BackingField
+		return AbsorbedAhpDamage
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Single PlayerStatsSystem.StandardDamageHandler::<AbsorbedAhpDamage>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerStatsSystem.StandardDamageHandler
+	System.Void set_AbsorbedAhpDamage(System.Single value)
+		this.<AbsorbedAhpDamage>k__BackingField = value
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: stfld System.Single PlayerStatsSystem.StandardDamageHandler::<AbsorbedAhpDamage>k__BackingField
+	IL_0007: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerStatsSystem.StandardDamageHandler
+	System.Single get_AbsorbedHumeDamage()
+		System.Single AbsorbedHumeDamage = this.<AbsorbedHumeDamage>k__BackingField
+		return AbsorbedHumeDamage
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Single PlayerStatsSystem.StandardDamageHandler::<AbsorbedHumeDamage>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerStatsSystem.StandardDamageHandler
+	System.Void set_AbsorbedHumeDamage(System.Single value)
+		this.<AbsorbedHumeDamage>k__BackingField = value
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: stfld System.Single PlayerStatsSystem.StandardDamageHandler::<AbsorbedHumeDamage>k__BackingField
+	IL_0007: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerStatsSystem.StandardDamageHandler
+	PlayerStatsSystem.DamageHandlerBase/HandlerOutput ApplyDamage(ReferenceHub ply)
+
+		UnityEngine.Vector3 velocity = PlayerRoles.FirstPersonControl.FpcExtensionMethods.GetVelocity()
+		System.Single single = velocity.z
+		this.StartVelocity.z = single
+		System.Single single2 = this.StartVelocity.y
+		ulong local7 = 0
+
+		System.Single single3 = UnityEngine.Mathf.Max(single2, local7) //(Single a, Single b)
+		this.StartVelocity.y = single3
+		PlayerRoles.PlayerRoleManager roleManager = ply.roleManager
+		PlayerStatsSystem.PlayerStats playerStats = ply.playerStats
+
+		PlayerRoles.PlayerRoleBase currentRole = roleManager.CurrentRole
+
+		if (currentRole != 0)
+
+		    System.Boolean boolean = UnityEngine.Object.op_Inequality(currentRole, playerStats) //(Object x, Object y)
+
+		    if (boolean != False)
+                goto INSN_181B50233
+            endif
+		endif
+        
+
+		PlayerStatsSystem.AhpStat module = playerStats.GetModule<PlayerStatsSystem.AhpStat>()
+
+		PlayerStatsSystem.HealthStat module2 = playerStats.GetModule<PlayerStatsSystem.HealthStat>()
+
+		PlayerStatsSystem.HumeShieldStat module3 = playerStats.GetModule<PlayerStatsSystem.HumeShieldStat>()
+
+		PlayerStatsSystem.DamageHandlerBase/HandlerOutput handlerOutput = this.ApplyDamage()
+
+		if (playerStats != 0)
+            goto INSN_181B4FFBF
+        endif
+
+		System.Single curValue = module.CurValue
+		ulong local22 = 0
+
+		System.Single curValue2 = module2.CurValue
+		return 2
+
+		INSN_181B4FFBF:
+
+		this.Damage = local22
+		PlayerEffectsController playerEffectsController = ply.playerEffectsController
+		CustomPlayerEffects.StatusEffectBase[] AllEffects = playerEffectsController.<AllEffects>k__BackingField
+		ulong local26 = 0
+		System.Int32 length = AllEffects.Length
+
+		if (local26 >= length)
+            goto INSN_181B500B7
+        endif
+		CustomPlayerEffects.StatusEffectBase statusEffectBase = AllEffects[local26]
+
+		System.Boolean isEnabled = statusEffectBase.IsEnabled
+
+		if (isEnabled == False)
+            goto INSN_181B500AE
+        endif
+
+		if (isEnabled == False)
+            goto INSN_181B500AE
+        endif
+
+		PlayerStatsSystem.DamageHandlerBase/HandlerOutput handlerOutput2 = this.ApplyDamage()
+
+		PlayerStatsSystem.DamageHandlerBase/HandlerOutput handlerOutput3 = this.ApplyDamage()
+		HitboxType hitbox = this.Hitbox
+
+		System.Single damage = this.Damage
+
+		INSN_181B500AE:
+		local26 += 1
+
+		INSN_181B500B7:
+
+		PlayerStatsSystem.DamageHandlerBase/HandlerOutput handlerOutput4 = this.ApplyDamage()
+
+		if (constant43 >= damage)
+            goto INSN_181B50233
+        endif
+		  = handlerOutput4.
+
+		PlayerStatsSystem.DamageHandlerBase/HandlerOutput handlerOutput5 = this.ApplyDamage()
+		curValue2 = damage
+
+		System.Single single4 = .ServerProcessDamage(curValue2) //(Single damage)
+
+		PlayerStatsSystem.DamageHandlerBase/HandlerOutput handlerOutput6 = this.ApplyDamage()
+		this.<AbsorbedAhpDamage>k__BackingField = single4
+		  = handlerOutput6.
+		curValue2 = single4
+		curValue2 = single4
+		single4 = curValue2
+
+		System.Single single5 = UnityEngine.Mathf.Min(single4, curValue2) //(Single a, Single b)
+		this.<AbsorbedHumeDamage>k__BackingField = single5
+		  = handlerOutput6.
+		curValue2 = single5
+
+		if (constant43 <= curValue2)
+            goto INSN_181B501DE
+        endif
+		  = handlerOutput6.
+		  = handlerOutput6.
+		curValue2 = single5
+
+		INSN_181B501DE:
+		  = handlerOutput6.
+		  = handlerOutput6.
+		this.<DealtHealthDamage>k__BackingField = damage
+		  = handlerOutput6.
+		handlerOutput6 += 1
+
+		INSN_181B50233:
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181B4FDD0) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerStatsSystem.StandardDamageHandler
+	System.Void ProcessDamage(ReferenceHub ply)
+
+
+Generated IL:
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerStatsSystem.StandardDamageHandler
+	System.Void WriteAdditionalData(Mirror.NetworkWriter writer)
+
+		this.ProcessDamage()
+		UnityEngine.Vector3 startVelocity = this.StartVelocity
+		System.Single local4 = startVelocity * 100
+
+		System.Int32 int32 = UnityEngine.Mathf.RoundToInt(local4) //(Single f)
+		this._velX = int32
+		System.Single single = this.StartVelocity.y
+		System.Single local9 = single * 100
+
+		System.Int32 int322 = UnityEngine.Mathf.RoundToInt(local9) //(Single f)
+		this._velY = int322
+		System.Single single2 = this.StartVelocity.z
+		System.Single local13 = single2 * 100
+
+		System.Int32 int323 = UnityEngine.Mathf.RoundToInt(local13) //(Single f)
+		System.Int16 _velX = this._velX
+		this._velZ = int323
+
+		Mirror.NetworkWriterExtensions.WriteInt16(writer, _velX) //(NetworkWriter writer, Int16 value)
+		System.Int16 _velY = this._velY
+
+		Mirror.NetworkWriterExtensions.WriteInt16(writer, _velY) //(NetworkWriter writer, Int16 value)
+		System.Int16 _velZ = this._velZ
+
+		Mirror.NetworkWriterExtensions.WriteInt16(writer, _velZ) //(NetworkWriter writer, Int16 value)
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181B504AE) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerStatsSystem.StandardDamageHandler
+	System.Void ReadAdditionalData(Mirror.NetworkReader reader)
+
+		this.ProcessDamage()
+
+		System.Int16 int16 = Mirror.NetworkReaderExtensions.ReadInt16(reader) //(NetworkReader reader)
+		this._velX = int16
+
+		System.Int16 int162 = Mirror.NetworkReaderExtensions.ReadInt16(reader) //(NetworkReader reader)
+		this._velY = int162
+
+		System.Int16 int163 = Mirror.NetworkReaderExtensions.ReadInt16(reader) //(NetworkReader reader)
+		this._velZ = int163
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181B50414) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerStatsSystem.StandardDamageHandler
+	System.Void ProcessRagdoll(BasicRagdoll ragdoll)
+
+		this.ProcessDamage()
+
+		if (ragdoll != 0)
+		    //UNKNOWN CLASS OFFSET READ HERE
+		    ulong local3 = 0
+		    ulong local4 = 0
+
+		    UnityEngine.Vector3 vector3 = UnityEngine.Vector3.op_Division()
+		      = ragdoll.
+		    System.Single single = vector3.z
+		    System.Single lastSyncTime = ragdoll.lastSyncTime
+
+		    if (local4 < lastSyncTime)
+
+		        local4.set_velocity()
+		        local4 += 1
+		    endif
+            
+		endif
+        
+		return
+		throw new System.IndexOutOfRangeException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181B50284) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerStatsSystem.StandardDamageHandler
+	System.Void .ctor()
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void System.Runtime.Remoting.Contexts.CrossContextChannel::.ctor()
+	IL_0006: ret
+	
+

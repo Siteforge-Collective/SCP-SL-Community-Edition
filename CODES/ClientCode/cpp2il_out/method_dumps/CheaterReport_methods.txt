@@ -1,0 +1,1272 @@
+Type: CheaterReport
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CheaterReport
+	System.Void Start()
+
+		ReferenceHub hub = ReferenceHub.GetHub(this) //(MonoBehaviour player)
+		this._hub = hub
+		ReferenceHub _hub = this._hub
+		Security.PlayerRateLimitHandler playerRateLimitHandler = _hub.playerRateLimitHandler
+		Security.RateLimit[] rateLimits = playerRateLimitHandler.RateLimits
+		Security.RateLimit local6 = rateLimits[2]
+		this._commandRateLimit = local6
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call ReferenceHub ReferenceHub::GetHub(UnityEngine.MonoBehaviour)
+	IL_0006: stloc.0
+	IL_0007: ldarg.0
+	IL_0008: ldloc.0
+	IL_0009: stfld ReferenceHub CheaterReport::_hub
+	IL_000e: ldarg.0
+	IL_000f: ldfld ReferenceHub CheaterReport::_hub
+	IL_0014: ldfld Security.PlayerRateLimitHandler ReferenceHub::playerRateLimitHandler
+	IL_0019: ldfld Security.RateLimit[] Security.PlayerRateLimitHandler::RateLimits
+	IL_001e: ldc.i4.2
+	IL_001f: ldelem.any Security.RateLimit
+	IL_0024: stloc.1
+	IL_0025: ldarg.0
+	IL_0026: ldloc.1
+	IL_0027: stfld Security.RateLimit CheaterReport::_commandRateLimit
+	IL_002c: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0031: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CheaterReport
+	System.Void Report(System.UInt32 playerNetId, System.String reason, System.Boolean notifyGm)
+
+		System.Boolean boolean = ReferenceHub.TryGetHubNetID()
+
+		if (boolean != False)
+
+		    if (notifyGm != False)
+		          = local4.
+
+		        System.String userId = playerNetId.UserId
+
+		        System.String string = System.String.Concat(userId, ";", reason) //(String str0, String str1, String str2)
+		        Org.BouncyCastle.Crypto.AsymmetricCipherKeyPair SessionKeys = CentralAuthManager.<SessionKeys>k__BackingField
+		        Org.BouncyCastle.Crypto.AsymmetricKeyParameter privateParameter = SessionKeys.privateParameter
+
+		        System.Byte[] byteArray = Cryptography.ECDSA.SignBytes(string, privateParameter) //(String data, AsymmetricKeyParameter privKey)
+		    else
+		    endif
+            
+		    ulong local16 = 0
+
+		    Mirror.PooledNetworkWriter writer = Mirror.NetworkWriterPool.GetWriter()
+
+		    Mirror.NetworkWriterExtensions.WriteUInt32(writer, playerNetId) //(NetworkWriter writer, UInt32 value)
+
+		    Mirror.NetworkWriterExtensions.WriteString(writer, reason) //(NetworkWriter writer, String value)
+
+		    Mirror.NetworkWriterExtensions.WriteBytesAndSize()
+
+		    [instruction error - managed method being called is null]
+
+		    System.Type typeFromHandle = System.Type.GetTypeFromHandle({'CheaterReport' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+
+		    base.SendCommandInternal(typeFromHandle, "CmdReport", writer, local26, local25) //(Type invokeClass, String cmdName, NetworkWriter writer, Int32 channelId, Boolean requiresAuthority)
+
+		    Mirror.NetworkWriterPool.Recycle(writer) //(PooledNetworkWriter writer)
+		    return
+		endif
+        
+
+		UnityEngine.Color red = UnityEngine.Color.red
+
+		GameCore.Console.AddLog()
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1804698C8) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CheaterReport
+	System.Void CmdReport(System.UInt32 playerNetId, System.String reason, System.Byte[] signature, System.Boolean notifyGm)
+		ulong local5 = 0
+
+		Mirror.PooledNetworkWriter writer = Mirror.NetworkWriterPool.GetWriter()
+
+		Mirror.NetworkWriterExtensions.WriteUInt32(writer, playerNetId) //(NetworkWriter writer, UInt32 value)
+
+		Mirror.NetworkWriterExtensions.WriteString(writer, reason) //(NetworkWriter writer, String value)
+
+		Mirror.NetworkWriterExtensions.WriteBytesAndSize(writer, signature) //(NetworkWriter writer, Byte[] buffer)
+
+		[instruction error - managed method being called is null]
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'CheaterReport' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+
+		base.SendCommandInternal(typeFromHandle, "CmdReport", writer, local15, local14) //(Type invokeClass, String cmdName, NetworkWriter writer, Int32 channelId, Boolean requiresAuthority)
+
+		Mirror.NetworkWriterPool.Recycle(writer) //(PooledNetworkWriter writer)
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18046873C) is corrupt (Don't know what method is being called) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CheaterReport
+	System.Void IssueReport(GameConsoleTransmission reporter, System.String reporterUserId, System.String reportedUserId, System.String reportedAuth, System.String reportedIp, System.String reporterAuth, System.String reporterIp, System.String& reason, System.Byte[]& signature, System.String reporterPublicKey, System.UInt32 reportedNetId, System.String reporterNickname, System.String reportedNickname)
+		System.Object[] local14 = new System.Object[10]
+
+		System.String string = NorthwoodLib.StringUtils.Base64Encode()
+
+		if (string != 0)
+
+		    if (string == 0)
+                goto INSN_1804694F0
+            endif
+		endif
+        
+		local14[0] = string
+
+		if (string == 0)
+            goto INSN_180468DD3
+        endif
+
+		if (string == 0)
+            goto INSN_18046950F
+        endif
+
+		INSN_180468DD3:
+		local14[1] = string
+
+		System.String string2 = NorthwoodLib.StringUtils.Base64Encode()
+
+		if (string2 == 0)
+            goto INSN_180468E1A
+        endif
+
+		if (string2 == 0)
+            goto INSN_18046952D
+        endif
+
+		INSN_180468E1A:
+		local14[2] = string2
+
+		if (string2 == 0)
+            goto INSN_180468E57
+        endif
+
+		if (string2 == 0)
+            goto INSN_18046954B
+        endif
+
+		INSN_180468E57:
+		local14[3] = string2
+
+		System.String string3 = CheaterReport.ConvertToLatin(string2) //(String str)
+
+		System.String string4 = NorthwoodLib.StringUtils.Base64Encode(string3) //(String plainText)
+
+		if (string4 == 0)
+            goto INSN_180468ECC
+        endif
+
+		if (string4 == 0)
+            goto INSN_180469569
+        endif
+
+		INSN_180468ECC:
+		local14[4] = string4
+
+		System.String string5 = System.Convert.ToBase64String()
+
+		if (string5 == 0)
+            goto INSN_180468F37
+        endif
+
+		if (string5 == 0)
+            goto INSN_180469587
+        endif
+
+		INSN_180468F37:
+		local14[5] = string5
+
+		System.String string6 = NorthwoodLib.StringUtils.Base64Encode()
+
+		if (string6 == 0)
+            goto INSN_180468F7E
+        endif
+
+		if (string6 == 0)
+            goto INSN_1804695A5
+        endif
+
+		INSN_180468F7E:
+		local14[6] = string6
+		System.String password = ServerConsole.Password
+
+		if (password == 0)
+            goto INSN_180468FE7
+        endif
+
+		if (constant85 == 0)
+            goto INSN_1804695C3
+        endif
+
+		INSN_180468FE7:
+		local14[7] = password
+		ulong local28 = 0
+
+		System.UInt16 portToReport = ServerConsole.PortToReport
+
+		if (portToReport == constant92)
+            goto INSN_18046903B
+        endif
+
+		if (portToReport == constant94)
+            goto INSN_1804695E1
+        endif
+
+		INSN_18046903B:
+		local14[8] = portToReport
+		System.String string7 = ServerConsole.Ip
+
+		if (string7 == 0)
+            goto INSN_180469083
+        endif
+
+		if (ServerConsole == 0)
+            goto INSN_1804695FF
+        endif
+
+		INSN_180469083:
+		local14[9] = string7
+
+		System.String string8 = System.String.Format("reporterAuth={0}&reporterIp={1}&reportedAuth={2}&reportedIp={3}&reason={4}&signature={5}&reporterKey={6}&token={7}&port={8}&serverIp={9}", local14) //(String format, Object[] args)
+		System.String StandardUrl = CentralServer.<StandardUrl>k__BackingField
+
+		System.String string9 = System.String.Concat(StandardUrl, "ingamereport.php") //(String str0, String str1)
+
+		System.String string10 = HttpQuery.Post(string9, string8) //(String url, String data)
+		ulong local39 = 0
+
+		System.Boolean boolean = UnityEngine.Object.op_Equality(reporter, local39) //(Object x, Object y)
+
+		if (boolean != False)
+            goto INSN_180469320
+        endif
+
+		[instruction error - managed method being called is null]
+
+		if (boolean == False)
+            goto INSN_180469208
+        endif
+		System.Collections.Generic.HashSet`1<System.UInt32> _reportedPlayers = this._reportedPlayers
+
+		System.Boolean boolean2 = _reportedPlayers.Add()
+
+		Mirror.NetworkConnection connectionToClient = base.connectionToClient
+		ulong local46 = 0
+
+		reporter.SendToClient(connectionToClient, "[REPORTING] Player report successfully sent.", "green") //(NetworkConnection connection, String text, String color)
+
+		INSN_180469208:
+
+		[instruction error - managed method being called is null]
+
+		if (connectionToClient == 0)
+            goto INSN_18046926E
+        endif
+
+		Mirror.NetworkConnection connectionToClient2 = base.connectionToClient
+		ulong local50 = 0
+
+		System.String newLine = System.Environment.NewLine
+
+		System.String string11 = System.String.Concat("[REPORTING] A report for this User ID already exists!", newLine) //(String str0, String str1)
+		ulong local54 = 0
+
+		reporter.SendToClient(connectionToClient2, string11, "yellow") //(NetworkConnection connection, String text, String color)
+
+		INSN_18046926E:
+
+		[instruction error - managed method being called is null]
+
+		Mirror.NetworkConnection connectionToClient3 = base.connectionToClient
+		ulong local58 = 0
+
+		System.String newLine2 = System.Environment.NewLine
+
+		System.String string12 = System.String.Concat("[REPORTING] You are Ratelimited! Try again tomorrow.", newLine2) //(String str0, String str1)
+		ulong local62 = 0
+
+		reporter.SendToClient(connectionToClient3, string12, "red") //(NetworkConnection connection, String text, String color)
+
+		Mirror.NetworkConnection connectionToClient4 = reporter.connectionToClient
+		ulong local64 = 0
+
+		System.String newLine3 = System.Environment.NewLine
+
+		System.String string13 = System.String.Concat("[REPORTING] Error during **PROCESSING** player report:", newLine3, local62) //(String str0, String str1, String str2)
+		ulong local68 = 0
+
+		reporter.SendToClient(connectionToClient4, string13, "red") //(NetworkConnection connection, String text, String color)
+
+		INSN_180469320:
+		ulong local69 = 0
+
+		System.String newLine4 = System.Environment.NewLine
+
+		System.Int32 int32 = local69.CompareTo()
+
+		System.String string14 = System.String.Concat()
+		ulong local74 = 0
+
+		UnityEngine.Color red = UnityEngine.Color.red
+		ulong local76 = 0
+		System.Int32 1 = 1
+		ulong local77 = 0
+
+		GameCore.Console.AddLog(string14, local74, local77, 1) //(String text, Color c, Boolean nospace, ConsoleLogType type)
+
+		System.Boolean boolean3 = UnityEngine.Object.op_Equality()
+
+		if (boolean3 != False)
+            goto INSN_1804694DB
+        endif
+
+		Mirror.NetworkConnection connectionToClient5 = base.connectionToClient
+
+		string14.SendToClient(connectionToClient5, "[REPORTING] Error during **SENDING** player report.", "yellow") //(NetworkConnection connection, String text, String color)
+
+		this.LogReport()
+
+		UnityEngine.Debug.LogWarning("[Server] function 'System.Void CheaterReport::IssueReport(GameConsoleTransmission,System.String,System.String,System.String,System.String,System.String,System.String,System.String&,System.Byte[]&,System.String,System.UInt32,System.String,System.String)' called when server was not active") //(Object message)
+
+		INSN_1804694DB:
+		return
+
+		INSN_1804694F0:
+		throw new System.IndexOutOfRangeException()
+
+		INSN_18046950F:
+		throw new System.IndexOutOfRangeException()
+
+		INSN_18046952D:
+		throw new System.IndexOutOfRangeException()
+
+		INSN_18046954B:
+		throw new System.IndexOutOfRangeException()
+
+		INSN_180469569:
+		throw new System.IndexOutOfRangeException()
+
+		INSN_180469587:
+		throw new System.IndexOutOfRangeException()
+
+		INSN_1804695A5:
+		throw new System.IndexOutOfRangeException()
+
+		INSN_1804695C3:
+		throw new System.IndexOutOfRangeException()
+
+		INSN_1804695E1:
+		throw new System.IndexOutOfRangeException()
+
+		INSN_1804695FF:
+		throw new System.IndexOutOfRangeException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180468D68) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CheaterReport
+	System.Void LogReport(GameConsoleTransmission reporter, System.String reporterUserId, System.String reportedUserId, System.String& reason, System.UInt32 reportedNetId, System.Boolean notifyGm, System.String reporterNickname, System.String reportedNickname)
+
+		System.Boolean boolean = CheaterReport.SubmitReport()
+
+		if (boolean == False)
+
+		    Mirror.NetworkConnection connectionToClient = base.connectionToClient
+
+		    reporter.SendToClient(connectionToClient, "[REPORTING] Failed to send report to local administrators by webhooks.", "red") //(NetworkConnection connection, String text, String color)
+		else
+
+		    if ( == 0)
+		        System.Collections.Generic.HashSet`1<System.UInt32> _reportedPlayers = this._reportedPlayers
+
+		        System.Boolean boolean2 = _reportedPlayers.Add()
+
+		        Mirror.NetworkConnection connectionToClient2 = base.connectionToClient
+
+		        reporter.SendToClient(connectionToClient2, "[REPORTING] Player report successfully sent to local administrators by webhooks.", "green") //(NetworkConnection connection, String text, String color)
+
+		        UnityEngine.Debug.LogWarning("[Server] function 'System.Void CheaterReport::LogReport(GameConsoleTransmission,System.String,System.String,System.String&,System.UInt32,System.Boolean,System.String,System.String)' called when server was not active") //(Object message)
+		    endif
+            
+		    return
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180469769) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (7)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CheaterReport
+	static System.Boolean SubmitReport(System.String reporterUserId, System.String reportedUserId, System.String reason, System.UInt32 reportedId, System.String reporterNickname, System.String reportedNickname, System.Boolean friendlyFire)
+		System.String webhookUrl = FriendlyFireConfig.WebhookUrl
+		System.String webhookUrl2 = CheaterReport.WebhookUrl
+		System.String empty = System.String.Empty
+		System.String webhookUsername = CheaterReport.WebhookUsername
+		System.String webhookAvatar = CheaterReport.WebhookAvatar
+		DiscordEmbed[] local12 = new DiscordEmbed[1]
+		System.String reportHeader = CheaterReport.ReportHeader
+		System.String reportContent = CheaterReport.ReportContent
+		System.Int32 webhookColor = CheaterReport.WebhookColor
+		DiscordEmbedField[] local16 = new DiscordEmbedField[10]
+		System.String serverName = CheaterReport.ServerName
+		ulong local19 = 0
+		local16[0] = local18
+		System.String string = ServerConsole.Ip
+		ulong local23 = 0
+
+		System.UInt16 portToReport = ServerConsole.PortToReport
+
+		System.String string2 = System.String.Format("{0}:{1}", string, local25) //(String format, Object arg0, Object arg1)
+		ulong local30 = 0
+		local16[3] = local28
+
+		System.String string3 = reporterUserId.Replace("`", "'") //(String oldValue, String newValue)
+
+		System.String string4 = System.String.Concat("`", string3, "`") //(String str0, String str1, String str2)
+		local16[6] = local37
+
+		System.String string5 = CheaterReport.DiscordSanitize()
+		local16[9] = local43
+
+		System.String string6 = reportedUserId.Replace("`", "'") //(String oldValue, String newValue)
+
+		System.String string7 = System.String.Concat("`", string6, "`") //(String str0, String str1, String str2)
+		local16[12] = local51
+
+		System.String string8 = CheaterReport.DiscordSanitize()
+		local16[15] = local57
+		local16[18] = local62
+
+		System.String string9 = CheaterReport.DiscordSanitize(reason) //(String text)
+		local16[21] = local68
+		ulong local72 = 0
+
+		System.String string10 = TimeBehaviour.Rfc3339Time()
+		local16[24] = local74
+
+		System.DateTimeOffset utcNow = System.DateTimeOffset.UtcNow
+
+		System.String string11 = TimeBehaviour.Rfc3339Time()
+		local16[27] = local82
+		ulong local87 = 0
+		local12[0] = local86
+		local12[0] = 
+		ulong local90 = 0
+
+		System.String string12 = Utf8Json.JsonSerializer.ToJsonString<DiscordWebhook>()
+
+		System.String string13 = System.String.Concat("payload_json=", string12) //(String str0, String str1)
+
+		System.String string14 = HttpQuery.Post(webhookUrl2, string13) //(String url, String data)
+
+		System.Int32 int32 = string13.CompareTo()
+
+		System.String string15 = System.String.Concat()
+		System.Int32 7 = 7
+
+		ServerConsole.AddLog(string15, 7) //(String q, ConsoleColor color)
+
+		UnityEngine.Debug.LogException()
+		ulong local101 = 0
+		return local101
+		throw new System.NullReferenceException()
+		throw new System.IndexOutOfRangeException()
+		throw new System.IndexOutOfRangeException()
+		throw new System.IndexOutOfRangeException()
+		throw new System.IndexOutOfRangeException()
+		throw new System.IndexOutOfRangeException()
+		throw new System.IndexOutOfRangeException()
+		throw new System.IndexOutOfRangeException()
+		throw new System.IndexOutOfRangeException()
+		throw new System.IndexOutOfRangeException()
+		throw new System.IndexOutOfRangeException()
+		throw new System.IndexOutOfRangeException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.RegisterToArrayViaPointerAction at (0x180469DCB) is corrupt (Local local18 is a variable but it has been stripped out. Are you missing a call to RegisterUsedLocal?) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CheaterReport
+	static System.String ConvertToLatin(System.String str)
+		System.Collections.Generic.Dictionary`2<System.Char,System.String> characterReplacements = CheaterReport.CharacterReplacements
+
+		System.Collections.Generic.Dictionary`2/Enumerator<TKey,TValue> enumerator = .GetEnumerator()
+
+		if (enumerator != 0)
+
+		    System.String string = str.Replace()
+		endif
+        
+
+		[instruction error - managed method being called is null]
+
+		[instruction error - managed method being called is null]
+
+		if (CheaterReport != 0)
+            goto INSN_18046891A
+        endif
+		return str
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+
+		INSN_18046891A:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18046884F) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CheaterReport
+	static System.String AsDiscordCode(System.String text)
+
+		System.String string = text.Replace("`", "'") //(String oldValue, String newValue)
+
+		System.String string2 = System.String.Concat("`", string, "`") //(String str0, String str1, String str2)
+		return string2
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldstr "`"
+	IL_0006: ldstr "'"
+	IL_000b: call System.String System.String::Replace(System.String,System.String)
+	IL_0010: stloc.0
+	IL_0011: ldstr "`"
+	IL_0016: ldloc.0
+	IL_0017: ldstr "`"
+	IL_001c: call System.String System.String::Concat(System.String,System.String,System.String)
+	IL_0021: ret
+	IL_0022: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0027: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CheaterReport
+	static System.String DiscordSanitize(System.String text)
+
+		System.String string = text.Replace("<", "(") //(String oldValue, String newValue)
+
+		System.String string2 = string.Replace(">", ")") //(String oldValue, String newValue)
+
+		System.String string3 = string2.Replace("@", "@ ") //(String oldValue, String newValue)
+
+		System.String string4 = string3.Replace("`", "'") //(String oldValue, String newValue)
+
+		System.String string5 = string4.Replace("~~", "∼∼") //(String oldValue, String newValue)
+
+		System.String string6 = string5.Replace("*", "★") //(String oldValue, String newValue)
+
+		System.String string7 = string6.Replace("_", "＿") //(String oldValue, String newValue)
+
+		System.String string8 = string7.Replace("&", " [AMP] ") //(String oldValue, String newValue)
+
+		System.String string9 = string8.Replace("?", " [QM] ") //(String oldValue, String newValue)
+		return string9
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldstr "<"
+	IL_0006: ldstr "("
+	IL_000b: call System.String System.String::Replace(System.String,System.String)
+	IL_0010: ldstr ">"
+	IL_0015: ldstr ")"
+	IL_001a: call System.String System.String::Replace(System.String,System.String)
+	IL_001f: ldstr "@"
+	IL_0024: ldstr "@ "
+	IL_0029: call System.String System.String::Replace(System.String,System.String)
+	IL_002e: ldstr "`"
+	IL_0033: ldstr "'"
+	IL_0038: call System.String System.String::Replace(System.String,System.String)
+	IL_003d: ldstr "~~"
+	IL_0042: ldstr "∼∼"
+	IL_0047: call System.String System.String::Replace(System.String,System.String)
+	IL_004c: ldstr "*"
+	IL_0051: ldstr "★"
+	IL_0056: call System.String System.String::Replace(System.String,System.String)
+	IL_005b: ldstr "_"
+	IL_0060: ldstr "＿"
+	IL_0065: call System.String System.String::Replace(System.String,System.String)
+	IL_006a: ldstr "&"
+	IL_006f: ldstr " [AMP] "
+	IL_0074: call System.String System.String::Replace(System.String,System.String)
+	IL_0079: ldstr "?"
+	IL_007e: ldstr " [QM] "
+	IL_0083: call System.String System.String::Replace(System.String,System.String)
+	IL_0088: ret
+	IL_0089: newobj System.Void System.NullReferenceException::.ctor()
+	IL_008e: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CheaterReport
+	System.Void .ctor()
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void Mirror.NetworkBehaviour::.ctor()
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CheaterReport
+	static System.Void .cctor()
+		System.Collections.Generic.Dictionary`2<System.Char,System.String> dictionary = new System.Collections.Generic.Dictionary`2<System.Char,System.String>()
+
+		dictionary..ctor()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		CheaterReport.CharacterReplacements = dictionary
+		. = 0
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'CheaterReport' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		Mirror.RemoteCalls.CmdDelegate cmdDelegate = new Mirror.RemoteCalls.CmdDelegate()
+		ulong local71 = 0
+
+		cmdDelegate..ctor(local71, {'InvokeUserCode_CmdReport' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		Mirror.RemoteCalls.RemoteCallHelper.RegisterCommandDelegate(typeFromHandle, "CmdReport", cmdDelegate, True) //(Type invokeClass, String cmdName, CmdDelegate func, Boolean requiresAuthority)
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ImmediateToFieldAction at (0x18046BBFA) is corrupt (Instance or field is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CheaterReport
+	System.Void MirrorProcessed()
+
+
+Generated IL:
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CheaterReport
+	System.Void UserCode_CmdReport(System.UInt32 playerNetId, System.String reason, System.Byte[] signature, System.Boolean notifyGm)
+		ulong local5 = 0
+		CheaterReport/<>c__DisplayClass16_0 enumeratorInstance = new CheaterReport/<>c__DisplayClass16_0()
+		ulong local7 = 0
+
+		enumeratorInstance.FieldGetter(local7, reason, signature) //(String typeName, String fieldName, Object& val)
+		enumeratorInstance.<>4__this = this
+		enumeratorInstance.reason = reason
+		enumeratorInstance.playerNetId = playerNetId
+		enumeratorInstance.signature = signature
+		Security.RateLimit _commandRateLimit = this._commandRateLimit
+
+		System.Boolean boolean = _commandRateLimit.CanExecute(True) //(Boolean countUsage)
+
+		if (boolean != False)
+
+		    if (enumeratorInstance.reason != local5)
+		        ulong local11 = 0
+
+		        System.Single time = UnityEngine.Time.time
+
+		        if (time > 60)
+		            this._reportedPlayersAmount = local5
+		        else
+		        endif
+                
+
+		        if (constant15 == 0)
+                    goto INSN_18046A7D9
+                endif
+		        PermissionsHandler permissionsHandler = ServerStatic.PermissionsHandler
+
+		        if (permissionsHandler.<IsVerified>k__BackingField == local5)
+                    goto INSN_18046A76B
+                endif
+		        System.String password = ServerConsole.Password
+
+		        [instruction error - managed method being called is null]
+
+		        if (constant36 == 0)
+                    goto INSN_18046A7D9
+                endif
+
+		        INSN_18046A76B:
+		        ReferenceHub _hub = this._hub
+		        GameConsoleTransmission gameConsoleTransmission = _hub.gameConsoleTransmission
+
+		        Mirror.NetworkConnection connectionToClient = base.connectionToClient
+
+		        gameConsoleTransmission.SendToClient(connectionToClient, "[REPORTING] Server is not verified - you can't use report feature on this server.", "red") //(NetworkConnection connection, String text, String color)
+		    endif
+            
+		    return
+
+		    INSN_18046A7D9:
+		    System.UInt32 playerNetId = enumeratorInstance.playerNetId
+
+		    System.Boolean boolean2 = ReferenceHub.TryGetHubNetID(playerNetId, local5) //(UInt32 netId, ReferenceHub& hub)
+
+		    if (boolean2 == False)
+                goto INSN_18046B216
+            endif
+		      = local5.
+		    enumeratorInstance.reportedCcm = local5
+		    System.Collections.Generic.HashSet`1<System.UInt32> _reportedPlayers = this._reportedPlayers
+
+		    if (_reportedPlayers != 0)
+                goto INSN_18046A875
+            endif
+		    System.Collections.Generic.HashSet`1<System.UInt32> hashSet = new System.Collections.Generic.HashSet`1<System.UInt32>()
+
+		    hashSet..ctor()
+		    this._reportedPlayers = hashSet
+		    System.Collections.Generic.HashSet`1<System.UInt32> _reportedPlayers2 = this._reportedPlayers
+
+		    INSN_18046A875:
+		    System.UInt32 playerNetId2 = enumeratorInstance.playerNetId
+
+		    System.Boolean boolean3 = _reportedPlayers2.Contains(playerNetId2) //(T item)
+
+		    if (boolean3 != False)
+                goto INSN_18046B1D5
+            endif
+		    CharacterClassManager reportedCcm = enumeratorInstance.reportedCcm
+
+		    System.String userId = reportedCcm.UserId
+
+		    [instruction error - managed method being called is null]
+		    ReferenceHub _hub2 = this._hub
+
+		    if (userId != 0)
+                goto INSN_18046B198
+            endif
+		    CharacterClassManager characterClassManager = _hub2.characterClassManager
+
+		    System.String userId2 = characterClassManager.UserId
+
+		    [instruction error - managed method being called is null]
+		    ReferenceHub _hub3 = this._hub
+
+		    if (userId2 != 0)
+                goto INSN_18046B15B
+            endif
+		    CharacterClassManager characterClassManager2 = _hub3.characterClassManager
+
+		    System.String userId3 = characterClassManager2.UserId
+		    CharacterClassManager reportedCcm2 = enumeratorInstance.reportedCcm
+
+		    System.String userId4 = reportedCcm2.UserId
+
+		    [instruction error - managed method being called is null]
+
+		    if (userId4 != 0)
+                goto INSN_18046B0FF
+            endif
+		      = local5.
+
+		    System.String myNick = userId3.MyNick
+		    enumeratorInstance.reportedNickname = myNick
+
+		    if (playerNetId == 0)
+                goto INSN_18046AD3F
+            endif
+
+		    if (enumeratorInstance.signature == local5)
+                goto INSN_18046A7B0
+            endif
+		    CharacterClassManager reportedCcm3 = enumeratorInstance.reportedCcm
+		    System.String reason = enumeratorInstance.reason
+		    System.String syncedUserId = reportedCcm3.SyncedUserId
+
+		    System.String string = System.String.Concat(syncedUserId, ";", reason) //(String str0, String str1, String str2)
+		    System.Byte[] signature = enumeratorInstance.signature
+
+		    ServerRoles component = base.GetComponent<ServerRoles>()
+		    Org.BouncyCastle.Crypto.AsymmetricKeyParameter publicKey = component.PublicKey
+
+		    System.Boolean boolean4 = Cryptography.ECDSA.VerifyBytes(string, signature, publicKey) //(String data, Byte[] signature, AsymmetricKeyParameter pubKey)
+
+		    if (boolean4 == False)
+                goto INSN_18046ACFE
+            endif
+		    ulong local57 = 0
+
+		    System.Single time2 = UnityEngine.Time.time
+		    this._lastReport = time2
+		    System.String[] local59 = new System.String[7]
+
+		    if ("Player " == 0)
+                goto INSN_18046AA32
+            endif
+
+		    if ("Player " == 0)
+                goto INSN_18046B2C9
+            endif
+
+		    INSN_18046AA32:
+		    local59[0] = "Player "
+		    ReferenceHub _hub4 = this._hub
+
+		    System.String string2 = Misc.LoggedNameFromRefHub(_hub4) //(ReferenceHub me)
+
+		    if (string2 == 0)
+                goto INSN_18046AA97
+            endif
+
+		    if (string2 == 0)
+                goto INSN_18046B2E9
+            endif
+
+		    INSN_18046AA97:
+		    local59[1] = string2
+
+		    if (" reported player " == 0)
+                goto INSN_18046AADB
+            endif
+
+		    if (" reported player " == 0)
+                goto INSN_18046B309
+            endif
+
+		    INSN_18046AADB:
+		    local59[2] = " reported player "
+
+		    System.String string3 = Misc.LoggedNameFromRefHub(local5) //(ReferenceHub me)
+
+		    if (string3 == 0)
+                goto INSN_18046AB20
+            endif
+
+		    if (string3 == 0)
+                goto INSN_18046B329
+            endif
+
+		    INSN_18046AB20:
+		    local59[3] = string3
+
+		    if (" with reason " == 0)
+                goto INSN_18046AB64
+            endif
+
+		    if (" with reason " == 0)
+                goto INSN_18046B349
+            endif
+
+		    INSN_18046AB64:
+		    local59[4] = " with reason "
+		    System.String reason2 = enumeratorInstance.reason
+
+		    if (reason2 == 0)
+                goto INSN_18046AB9E
+            endif
+
+		    if (" with reason " == 0)
+                goto INSN_18046B369
+            endif
+
+		    INSN_18046AB9E:
+		    local59[5] = reason2
+
+		    if (". Sending report to Global Moderation." == 0)
+                goto INSN_18046ABE2
+            endif
+
+		    if (". Sending report to Global Moderation." == 0)
+                goto INSN_18046B389
+            endif
+
+		    INSN_18046ABE2:
+		    local59[6] = ". Sending report to Global Moderation."
+
+		    System.String string4 = System.String.Concat(local59) //(String[] values)
+
+		    [instruction error - managed method being called is null]
+		    ulong local69 = 0
+		    System.Int32 1 = 1
+
+		    GameCore.Console.AddLog()
+		    System.Threading.ThreadStart threadStart = new System.Threading.ThreadStart()
+
+		    threadStart..ctor(enumeratorInstance, {'<CmdReport>b__1' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		    System.Threading.Thread thread = new System.Threading.Thread()
+
+		    thread..ctor(threadStart) //(ThreadStart start)
+		    ulong local77 = 0
+
+		    thread.Priority = local77
+
+		    thread.IsBackground = True
+		    CharacterClassManager reportedCcm4 = enumeratorInstance.reportedCcm
+
+		    System.String userId5 = reportedCcm4.UserId
+		    ReferenceHub _hub5 = this._hub
+		    CharacterClassManager characterClassManager3 = _hub5.characterClassManager
+
+		    System.String userId6 = characterClassManager3.UserId
+
+		    INSN_18046ACFE:
+		    ReferenceHub _hub6 = this._hub
+		    GameConsoleTransmission gameConsoleTransmission2 = _hub6.gameConsoleTransmission
+
+		    Mirror.NetworkConnection connectionToClient2 = base.connectionToClient
+		    ulong local90 = 0
+
+		    INSN_18046AD3F:
+		    System.String[] local91 = new System.String[7]
+
+		    if ("Player " == 0)
+                goto INSN_18046AD87
+            endif
+
+		    if ("Player " == 0)
+                goto INSN_18046B3A9
+            endif
+
+		    INSN_18046AD87:
+		    local91[0] = "Player "
+		    ReferenceHub _hub7 = this._hub
+
+		    System.String string5 = Misc.LoggedNameFromRefHub(_hub7) //(ReferenceHub me)
+
+		    if (string5 == 0)
+                goto INSN_18046ADEC
+            endif
+
+		    if (string5 == 0)
+                goto INSN_18046B3C9
+            endif
+
+		    INSN_18046ADEC:
+		    local91[1] = string5
+
+		    if (" reported player " == 0)
+                goto INSN_18046AE30
+            endif
+
+		    if (" reported player " == 0)
+                goto INSN_18046B3E9
+            endif
+
+		    INSN_18046AE30:
+		    local91[2] = " reported player "
+
+		    System.String string6 = Misc.LoggedNameFromRefHub(local5) //(ReferenceHub me)
+
+		    if (string6 == 0)
+                goto INSN_18046AE75
+            endif
+
+		    if (string6 == 0)
+                goto INSN_18046B409
+            endif
+
+		    INSN_18046AE75:
+		    local91[3] = string6
+
+		    if (" with reason " == 0)
+                goto INSN_18046AEB9
+            endif
+
+		    if (" with reason " == 0)
+                goto INSN_18046B429
+            endif
+
+		    INSN_18046AEB9:
+		    local91[4] = " with reason "
+		    System.String reason3 = enumeratorInstance.reason
+
+		    if (reason3 == 0)
+                goto INSN_18046AEF3
+            endif
+
+		    if (" with reason " == 0)
+                goto INSN_18046B449
+            endif
+
+		    INSN_18046AEF3:
+		    local91[5] = reason3
+
+		    if ("." == 0)
+                goto INSN_18046AF37
+            endif
+
+		    if ("." == 0)
+                goto INSN_18046B469
+            endif
+
+		    INSN_18046AF37:
+		    local91[6] = "."
+
+		    System.String string7 = System.String.Concat(local91) //(String[] values)
+
+		    [instruction error - managed method being called is null]
+		    ulong local101 = 0
+		    System.Int32 1 = 1
+
+		    GameCore.Console.AddLog()
+		    ReferenceHub _hub8 = this._hub
+		    GameConsoleTransmission gameConsoleTransmission3 = _hub8.gameConsoleTransmission
+
+		    Mirror.NetworkConnection connectionToClient3 = base.connectionToClient
+
+		    gameConsoleTransmission3.SendToClient(connectionToClient3, "[REPORTING] Player report successfully sent to local administrators.", "green") //(NetworkConnection connection, String text, String color)
+		    System.Threading.ThreadStart threadStart2 = new System.Threading.ThreadStart()
+
+		    threadStart2..ctor(enumeratorInstance, {'<CmdReport>b__0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		    System.Threading.Thread thread2 = new System.Threading.Thread()
+
+		    thread2..ctor(threadStart2) //(ThreadStart start)
+		    ulong local113 = 0
+
+		    thread2.Priority = local113
+
+		    thread2.IsBackground = True
+		    CharacterClassManager reportedCcm5 = enumeratorInstance.reportedCcm
+
+		    System.String userId7 = reportedCcm5.UserId
+		    ReferenceHub _hub9 = this._hub
+		    CharacterClassManager characterClassManager4 = _hub9.characterClassManager
+
+		    System.String userId8 = characterClassManager4.UserId
+
+		    System.String string8 = System.String.Concat("Reporting player (locally) - ", userId7, " by ", userId8) //(String str0, String str1, String str2, String str3)
+
+		    thread2.Name = string8
+
+		    thread2.Start()
+
+		    INSN_18046B0FF:
+		    ReferenceHub _hub10 = this._hub
+		    GameConsoleTransmission gameConsoleTransmission4 = _hub10.gameConsoleTransmission
+
+		    Mirror.NetworkConnection connectionToClient4 = base.connectionToClient
+		    ulong local129 = 0
+
+		    System.String newLine = System.Environment.NewLine
+
+		    System.String string9 = System.String.Concat("[REPORTING] You can't report yourself!", newLine) //(String str0, String str1)
+		    ulong local133 = 0
+
+		    INSN_18046B15B:
+
+		    Mirror.NetworkConnection connectionToClient5 = connectionToClient4.connectionToClient
+		    ulong local136 = 0
+
+		    INSN_18046B198:
+		      = connectionToClient4.
+
+		    Mirror.NetworkConnection connectionToClient6 = connectionToClient4.connectionToClient
+		    ulong local139 = 0
+
+		    INSN_18046B1D5:
+		      = connectionToClient4.
+		      = connectionToClient6.
+
+		    Mirror.NetworkConnection connectionToClient7 = connectionToClient4.connectionToClient
+		    ulong local142 = 0
+
+		    INSN_18046B216:
+		      = connectionToClient4.
+		      = connectionToClient7.
+
+		    Mirror.NetworkConnection connectionToClient8 = connectionToClient4.connectionToClient
+		      = connectionToClient4.
+		      = connectionToClient8.
+
+		    Mirror.NetworkConnection connectionToClient9 = connectionToClient4.connectionToClient
+		      = connectionToClient4.
+		      = connectionToClient9.
+
+		    Mirror.NetworkConnection connectionToClient10 = connectionToClient4.connectionToClient
+		    throw new System.NullReferenceException()
+
+		    INSN_18046B2C9:
+
+		    INSN_18046B2E9:
+
+		    INSN_18046B309:
+
+		    INSN_18046B329:
+
+		    INSN_18046B349:
+
+		    INSN_18046B369:
+
+		    INSN_18046B389:
+
+		    INSN_18046B3A9:
+
+		    INSN_18046B3C9:
+
+		    INSN_18046B3E9:
+
+		    INSN_18046B409:
+
+		    INSN_18046B429:
+
+		    INSN_18046B449:
+
+		    INSN_18046B469:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AllocateInstanceAction at (0x18046A5EA) is corrupt (Managed method being called is FieldGetter, not a ctor.) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CheaterReport
+	static System.Void InvokeUserCode_CmdReport(Mirror.NetworkBehaviour obj, Mirror.NetworkReader reader, Mirror.NetworkConnectionToClient senderConnection)
+
+		System.UInt32 uInt32 = Mirror.NetworkReaderExtensions.ReadUInt32(reader) //(NetworkReader reader)
+
+		System.String string = Mirror.NetworkReaderExtensions.ReadString(reader) //(NetworkReader reader)
+
+		System.Byte[] byteArray = Mirror.NetworkReaderExtensions.ReadBytesAndSize(reader) //(NetworkReader reader)
+		ulong local9 = 0
+
+		System.Boolean boolean = Mirror.NetworkReaderExtensions.ReadBoolean(reader) //(NetworkReader reader)
+		//UNKNOWN CLASS OFFSET READ HERE
+
+		obj.UserCode_CmdReport(uInt32, string, byteArray, boolean) //(UInt32 playerNetId, String reason, Byte[] signature, Boolean notifyGm)
+		return
+
+		UnityEngine.Debug.LogError("Command CmdReport called on client.") //(Object message)
+		return
+		throw new System.InvalidCastException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.UnknownClassOffsetReadAction at (0x180468BB7) is corrupt (Unknown class offset read) and cannot be created as IL. Aborting here.
+
+

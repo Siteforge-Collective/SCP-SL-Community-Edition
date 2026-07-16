@@ -1,0 +1,169 @@
+Type: Tooltips.CustomTooltipData
+
+Method: Tooltips.TooltipData[] get_StoredInfo()
+
+Disassembly:
+	mov rax,[rcx+18h]
+	ret
+
+ISIL:
+	001 Move rax, [rcx+24]
+	002 Return rax
+
+Method: System.Void set_StoredInfo(Tooltips.TooltipData[] value)
+
+Disassembly:
+	add rcx,18h
+	mov [rcx],rdx
+	jmp near ptr 0000000180293EF0h
+
+ISIL:
+	001 Add rcx, rcx, 24
+	002 Move [rcx], rdx
+	003 Call 0x180293EF0, rcx, rdx, r8, r9
+	004 Return 
+
+Method: Tooltips.TooltipManager get_Manager()
+
+Disassembly:
+	mov rax,[rcx+20h]
+	ret
+
+ISIL:
+	001 Move rax, [rcx+32]
+	002 Return rax
+
+Method: System.Void set_Manager(Tooltips.TooltipManager value)
+
+Disassembly:
+	add rcx,20h
+	mov [rcx],rdx
+	jmp near ptr 0000000180293EF0h
+
+ISIL:
+	001 Add rcx, rcx, 32
+	002 Move [rcx], rdx
+	003 Call 0x180293EF0, rcx, rdx, r8, r9
+	004 Return 
+
+Method: System.Void Awake()
+
+Disassembly:
+	mov [rsp+8],rbx
+	mov [rsp+10h],rsi
+	push rdi
+	sub rsp,40h
+	cmp byte ptr [1826EA1EDh],0
+	mov rsi,rcx
+	jne short 0000000180393E5Dh
+	mov ecx,[1822CE208h]
+	call 0000000180294190h
+	mov byte ptr [1826EA1EDh],1
+	mov rdi,[rsi+18h]
+	xor ebx,ebx
+	mov edx,ebx
+	test rdi,rdi
+	je short 0000000180393EE1h
+	nop word ptr [rax+rax]
+	mov eax,[rdi+18h]
+	cmp edx,eax
+	jge short 0000000180393EC1h
+	cmp ebx,eax
+	jae short 0000000180393ED1h
+	mov rcx,[rsi+20h]
+	movsxd rax,ebx
+	add rax,2
+	add rax,rax
+	movups xmm0,[rdi+rax*8]
+	movups [rsp+30h],xmm0
+	test rcx,rcx
+	je short 0000000180393EE1h
+	mov rcx,[rcx+18h]
+	movups [rsp+20h],xmm0
+	test rcx,rcx
+	je short 0000000180393EE1h
+	mov r9,[182730710h]
+	mov r8,[rsp+28h]
+	mov rdx,[rsp+30h]
+	call 0000000181466450h
+	inc ebx
+	mov edx,ebx
+	jmp short 0000000180393E70h
+	mov rbx,[rsp+50h]
+	mov rsi,[rsp+58h]
+	add rsp,40h
+	pop rdi
+	ret
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294310h
+
+ISIL:
+	001 Move stack:0x8, rbx
+	002 Move stack:0x10, rsi
+	003 ShiftStack -8
+	004 Move stack:0x0, rdi
+	005 ShiftStack -64
+	006 Compare [0x1826EA1ED], 0
+	007 Move rsi, rcx
+	008 JumpIfNotEqual {12}
+	009 Move rcx, [0x1822CE208]
+	010 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	011 Move [0x1826EA1ED], 1
+	012 Move rdi, [rsi+24]
+	013 Move rbx, 0
+	014 Move rdx, rbx
+	015 Compare rdi, 0
+	016 JumpIfEqual {53}
+	017 Nop 
+	018 Move rax, [rdi+24]
+	019 Compare rdx, rax
+	020 JumpIfGreaterOrEqual {42}
+	021 Compare rbx, rax
+	022 JumpIfGreaterOrEqual {48}
+	023 Move rcx, [rsi+32]
+	024 Move rax, rbx
+	025 Add rax, rax, 2
+	026 Add rax, rax, rax
+	027 Move xmm0, [rdi+rax*8]
+	028 Move stack:0x30, xmm0
+	029 Compare rcx, 0
+	030 JumpIfEqual {53}
+	031 Move rcx, [rcx+24]
+	032 Move stack:0x20, xmm0
+	033 Compare rcx, 0
+	034 JumpIfEqual {53}
+	035 Move r9, [0x182730710]
+	036 Move r8, stack:0x28
+	037 Move rdx, stack:0x30
+	038 Call 0x181466450, rcx, rdx, r8
+	039 Add rbx, rbx, 1
+	040 Move rdx, rbx
+	041 Goto {18}
+	042 Move rbx, stack:0x50
+	043 Move rsi, stack:0x58
+	044 ShiftStack 64
+	045 Move rdi, stack:0x0
+	046 ShiftStack 8
+	047 Return 
+	048 Call 0x180294110, rcx, rdx, r8, r9
+	049 Move rcx, rax
+	050 Move rdx, 0
+	051 Call 0x1802942E0, rcx, rdx, r8, r9
+	052 Interrupt 
+	053 Call 0x180294310, rcx, rdx, r8, r9
+
+Method: System.Void .ctor()
+
+Disassembly:
+	xor edx,edx
+	jmp near ptr 0000000180FD1850h
+
+ISIL:
+	001 Move rdx, 0
+	002 Call 0x180FD1850, rcx, rdx
+	003 Return 
+

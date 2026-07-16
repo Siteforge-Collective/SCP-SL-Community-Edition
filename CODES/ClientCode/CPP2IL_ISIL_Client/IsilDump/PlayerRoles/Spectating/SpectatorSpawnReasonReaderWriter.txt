@@ -1,0 +1,44 @@
+Type: PlayerRoles.Spectating.SpectatorSpawnReasonReaderWriter
+
+Method: System.Void WriteSpawnReason(Mirror.NetworkWriter writer, PlayerRoles.Spectating.SpectatorSpawnReason reason)
+
+Disassembly:
+	sub rsp,28h
+	test rcx,rcx
+	je short 00000001803DF2C5h
+	xor r8d,r8d
+	add rsp,28h
+	jmp near ptr 00000001818CA4C0h
+	call 0000000180294310h
+
+ISIL:
+	001 ShiftStack -40
+	002 Compare rcx, 0
+	003 JumpIfEqual {8}
+	004 Move r8, 0
+	005 ShiftStack 40
+	006 Call NetworkWriter.WriteByte, rcx, rdx
+	007 Return 
+	008 Call 0x180294310, rcx, rdx, r8, r9
+
+Method: PlayerRoles.Spectating.SpectatorSpawnReason ReadSpawnReason(Mirror.NetworkReader reader)
+
+Disassembly:
+	sub rsp,28h
+	test rcx,rcx
+	je short 00000001803DF2A4h
+	xor edx,edx
+	add rsp,28h
+	jmp near ptr 00000001818BF710h
+	call 0000000180294310h
+
+ISIL:
+	001 ShiftStack -40
+	002 Compare rcx, 0
+	003 JumpIfEqual {8}
+	004 Move rdx, 0
+	005 ShiftStack 40
+	006 Call NetworkReader.ReadByte, rcx, rdx
+	007 Return rax
+	008 Call 0x180294310, rcx, rdx, r8, r9
+

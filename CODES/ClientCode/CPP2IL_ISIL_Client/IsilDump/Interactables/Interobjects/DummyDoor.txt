@@ -1,0 +1,211 @@
+Type: Interactables.Interobjects.DummyDoor
+
+Method: System.Boolean get_IsDestroyed()
+
+Disassembly:
+	mov al,1
+	ret
+
+ISIL:
+	001 Move rax, 1
+	002 Return rax
+
+Method: System.Void set_IsDestroyed(System.Boolean value)
+
+Disassembly:
+	ret 0
+
+ISIL:
+	001 Return 
+
+Method: System.Boolean get_IgnoreLockdowns()
+
+Disassembly:
+	movzx eax,byte ptr [rcx+88h]
+	ret
+
+ISIL:
+	001 Move rax, [rcx+136]
+	002 Return rax
+
+Method: System.Void set_IgnoreLockdowns(System.Boolean value)
+
+Disassembly:
+	mov [rcx+88h],dl
+	ret
+
+ISIL:
+	001 Move [rcx+136], rdx
+	002 Return 
+
+Method: System.Boolean get_IgnoreRemoteAdmin()
+
+Disassembly:
+	movzx eax,byte ptr [rcx+89h]
+	ret
+
+ISIL:
+	001 Move rax, [rcx+137]
+	002 Return rax
+
+Method: System.Void set_IgnoreRemoteAdmin(System.Boolean value)
+
+Disassembly:
+	mov [rcx+89h],dl
+	ret
+
+ISIL:
+	001 Move [rcx+137], rdx
+	002 Return 
+
+Method: System.Void LockBypassDenied(ReferenceHub ply, System.Byte colliderId)
+
+Disassembly:
+	ret 0
+
+ISIL:
+	001 Return 
+
+Method: System.Void PermissionsDenied(ReferenceHub ply, System.Byte colliderId)
+
+Disassembly:
+	ret 0
+
+ISIL:
+	001 Return 
+
+Method: System.Boolean AllowInteracting(ReferenceHub ply, System.Byte colliderId)
+
+Disassembly:
+	xor al,al
+	ret
+
+ISIL:
+	001 Move rax, 0
+	002 Return rax
+
+Method: System.Boolean AnticheatPassageApproved()
+
+Disassembly:
+	xor al,al
+	ret
+
+ISIL:
+	001 Move rax, 0
+	002 Return rax
+
+Method: System.Single GetExactState()
+
+Disassembly:
+	xchg ax,ax
+	xor eax,eax
+	cmp [rcx+48h],al
+	setne al
+	movd xmm0,eax
+	cvtdq2ps xmm0,xmm0
+	ret
+
+ISIL:
+	001 Nop 
+	002 Move rax, 0
+	003 Compare [rcx+72], rax
+	004 NotImplemented "setne al"
+	005 Move xmm0, rax
+	006 Move xmm0, xmm0
+	007 Return xmm0
+
+Method: System.Single GetHealthPercent()
+
+Disassembly:
+	xorps xmm0,xmm0
+	ret
+
+ISIL:
+	001 Move xmm0, 0
+	002 Return xmm0
+
+Method: System.Boolean IsConsideredOpen()
+
+Disassembly:
+	movzx eax,byte ptr [rcx+48h]
+	ret
+
+ISIL:
+	001 Move rax, [rcx+72]
+	002 Return rax
+
+Method: System.Boolean ServerDamage(System.Single hp, Interactables.Interobjects.DoorUtils.DoorDamageType type)
+
+Disassembly:
+	xor al,al
+	ret
+
+ISIL:
+	001 Move rax, 0
+	002 Return rax
+
+Method: System.Void ClientDestroyEffects()
+
+Disassembly:
+	ret 0
+
+ISIL:
+	001 Return 
+
+Method: System.Void .ctor()
+
+Disassembly:
+	push rbx
+	sub rsp,20h
+	cmp byte ptr [1826FE4C1h],0
+	mov rbx,rcx
+	jne short 0000000181BA7EA4h
+	mov ecx,[1822EEC20h]
+	call 0000000180294190h
+	mov byte ptr [1826FE4C1h],1
+	mov rcx,[1827442C8h]
+	test byte ptr [rcx+12Fh],2
+	je short 0000000181BA7EC2h
+	cmp dword ptr [rcx+0E0h],0
+	jne short 0000000181BA7EC2h
+	call 000000018021A070h
+	xor edx,edx
+	mov byte ptr [rbx+64h],0FFh
+	mov rcx,rbx
+	add rsp,20h
+	pop rbx
+	jmp near ptr 00000001808D5330h
+
+ISIL:
+	001 ShiftStack -8
+	002 Move stack:0x0, rbx
+	003 ShiftStack -32
+	004 Compare [0x1826FE4C1], 0
+	005 Move rbx, rcx
+	006 JumpIfNotEqual {10}
+	007 Move rcx, [0x1822EEC20]
+	008 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	009 Move [0x1826FE4C1], 1
+	010 Move rcx, typeof(Interactables.Interobjects.DoorUtils.DoorVariant)
+	011 Compare [rcx+303], 2
+	012 JumpIfEqual {16}
+	013 Compare [rcx+224], 0
+	014 JumpIfNotEqual {16}
+	015 Call "il2cpp_runtime_class_init_export", rcx, rdx, r8, r9
+	016 Move rdx, 0
+	017 Move [rbx+100], 255
+	018 Move rcx, rbx
+	019 ShiftStack 32
+	020 Move rbx, stack:0x0
+	021 ShiftStack 8
+	022 Call NetworkBehaviour..ctor, rcx, rdx
+	023 Return 
+
+Method: System.Void MirrorProcessed()
+
+Disassembly:
+	ret 0
+
+ISIL:
+	001 Return 
+

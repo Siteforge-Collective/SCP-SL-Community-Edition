@@ -1,0 +1,113 @@
+Type: AudibleShooterInfo
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Firearms.FirearmAudioManager/AudibleShooterInfo
+	System.Void .ctor(ReferenceHub hub)
+
+		base..ctor()
+		this._hub = hub
+		System.Collections.Generic.Queue`1<InventorySystem.Items.Firearms.FirearmAudioClip> queue = new System.Collections.Generic.Queue`1<InventorySystem.Items.Firearms.FirearmAudioClip>()
+
+		queue..ctor()
+		this._remainingClips = queue
+		ulong local4 = 0
+
+		System.Diagnostics.Stopwatch stopwatch = System.Diagnostics.Stopwatch.StartNew()
+		this._lastShotStopwatch = stopwatch
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void System.Object::.ctor()
+	IL_0006: ldarg.0
+	IL_0007: ldarg.1
+	IL_0008: stfld ReferenceHub InventorySystem.Items.Firearms.FirearmAudioManager/AudibleShooterInfo::_hub
+	IL_000d: newobj System.Void System.Collections.Generic.Queue`1::.ctor()
+	IL_0012: stloc.0
+	IL_0013: ldarg.0
+	IL_0014: ldloc.0
+	IL_0015: stfld System.Collections.Generic.Queue`1<InventorySystem.Items.Firearms.FirearmAudioClip> InventorySystem.Items.Firearms.FirearmAudioManager/AudibleShooterInfo::_remainingClips
+	IL_001a: ldc.i4.0
+	IL_001b: stloc.1
+	IL_001c: call System.Diagnostics.Stopwatch System.Diagnostics.Stopwatch::StartNew()
+	IL_0021: stloc.2
+	IL_0022: ldarg.0
+	IL_0023: ldloc.2
+	IL_0024: stfld System.Diagnostics.Stopwatch InventorySystem.Items.Firearms.FirearmAudioManager/AudibleShooterInfo::_lastShotStopwatch
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Firearms.FirearmAudioManager/AudibleShooterInfo
+	System.Void Enqueue(UnityEngine.AudioClip clip, System.Single distance, System.Boolean useDedicatedChannel)
+		System.Collections.Generic.Queue`1<InventorySystem.Items.Firearms.FirearmAudioClip> _remainingClips = this._remainingClips
+
+		if ( < 7)
+		    System.Collections.Generic.Queue`1<InventorySystem.Items.Firearms.FirearmAudioClip> _remainingClips2 = this._remainingClips
+
+		    if (useDedicatedChannel != False)
+		    endif
+            
+		    this._isEmpty = False
+
+		    _remainingClips2.Enqueue()
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfGreaterThanOrEqualToAction at (0x180664D02) is corrupt (One of the arguments is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Firearms.FirearmAudioManager/AudibleShooterInfo
+	System.Void Play()
+		ulong local1 = 0
+
+		if (this._isEmpty == False)
+		    System.Diagnostics.Stopwatch _lastShotStopwatch = this._lastShotStopwatch
+
+		    System.TimeSpan elapsed = _lastShotStopwatch.Elapsed
+
+		    if (_lastShotStopwatch <= 0)
+		        System.Collections.Generic.Queue`1<InventorySystem.Items.Firearms.FirearmAudioClip> _remainingClips = this._remainingClips
+
+		        System.Boolean boolean = CollectionExtensions.TryDequeue<InventorySystem.Items.Firearms.FirearmAudioClip>(_remainingClips, local1) //(Queue`1 queue, T& element)
+
+		        if (boolean == False)
+                    goto INSN_180664F54
+                endif
+		        ReferenceHub _hub = this._hub
+		        ulong local10 = 0
+
+		        System.Boolean boolean2 = ReferenceHub.op_Equality(_hub, local10) //(ReferenceHub left, ReferenceHub right)
+
+		        if (boolean2 == False)
+		            ulong local13 = 0
+		            ReferenceHub _hub2 = this._hub
+
+		            UnityEngine.Transform transform = _hub2.transform
+
+		            UnityEngine.AudioSource audioSource = AudioPooling.AudioSourcePoolManager.PlaySound()
+		        endif
+                
+		    endif
+            
+		    return
+
+		    INSN_180664F54:
+		    this._isEmpty = True
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180664F34) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (8)) and cannot be created as IL. Aborting here.
+
+

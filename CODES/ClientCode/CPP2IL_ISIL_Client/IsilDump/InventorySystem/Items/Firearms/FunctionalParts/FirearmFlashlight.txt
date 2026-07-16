@@ -1,0 +1,322 @@
+Type: InventorySystem.Items.Firearms.FunctionalParts.FirearmFlashlight
+
+Method: System.Void Update()
+
+Disassembly:
+	push rdi
+	sub rsp,20h
+	cmp byte ptr [1826EC0B9h],0
+	mov rdi,rcx
+	jne short 000000018066E384h
+	mov ecx,[1822DC8ACh]
+	call 0000000180294190h
+	mov byte ptr [1826EC0B9h],1
+	xor edx,edx
+	mov rcx,rdi
+	call 0000000180674D10h
+	test rax,rax
+	je short 000000018066E3EFh
+	mov r8,[rax]
+	mov rcx,rax
+	mov [rsp+30h],rbx
+	mov rdx,[r8+408h]
+	call qword ptr [r8+400h]
+	mov rcx,[182737928h]
+	mov rbx,rax
+	shr rbx,8
+	test byte ptr [rcx+12Fh],2
+	je short 000000018066E3D1h
+	cmp dword ptr [rcx+0E0h],0
+	jne short 000000018066E3D1h
+	call 000000018021A070h
+	shr bl,3
+	xor r8d,r8d
+	and bl,1
+	mov rcx,rdi
+	movzx edx,bl
+	mov rbx,[rsp+30h]
+	add rsp,20h
+	pop rdi
+	jmp near ptr 000000018066E2B0h
+	call 0000000180294310h
+
+ISIL:
+	001 ShiftStack -8
+	002 Move stack:0x0, rdi
+	003 ShiftStack -32
+	004 Compare [0x1826EC0B9], 0
+	005 Move rdi, rcx
+	006 JumpIfNotEqual {10}
+	007 Move rcx, [0x1822DC8AC]
+	008 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	009 Move [0x1826EC0B9], 1
+	010 Move rdx, 0
+	011 Move rcx, rdi
+	012 Call FunctionalFirearmPart.get_Firearm, rcx, rdx
+	013 Compare rax, 0
+	014 JumpIfEqual {39}
+	015 Move r8, [rax]
+	016 Move rcx, rax
+	017 Move stack:0x30, rbx
+	018 Move rdx, [r8+1032]
+	019 Call 0, rcx, rdx, r8, r9, stack:0x0, stack:0x8, stack:0x10, stack:0x18, stack:0x20, stack:0x28, stack:0x30, stack:0x38, stack:0x40
+	020 Move rcx, typeof(InventorySystem.Items.Firearms.BasicMessages.FirearmBasicMessagesHandler)
+	021 Move rbx, rax
+	022 ShiftRight rbx, 8
+	023 Compare [rcx+303], 2
+	024 JumpIfEqual {28}
+	025 Compare [rcx+224], 0
+	026 JumpIfNotEqual {28}
+	027 Call "il2cpp_runtime_class_init_export", rcx, rdx, r8, r9
+	028 ShiftRight rbx, 3
+	029 Move r8, 0
+	030 And rbx, rbx, 1
+	031 Move rcx, rdi
+	032 Move rdx, rbx
+	033 Move rbx, stack:0x30
+	034 ShiftStack 32
+	035 Move rdi, stack:0x0
+	036 ShiftStack 8
+	037 Call FirearmFlashlight.SetStatus, rcx, rdx
+	038 Return 
+	039 Call 0x180294310, rcx, rdx, r8, r9
+
+Method: System.Void OnEnable()
+
+Disassembly:
+	mov dword ptr [rcx+50h],0
+	ret
+
+ISIL:
+	001 Move [rcx+80], 0
+	002 Return 
+
+Method: System.Void OnDisable()
+
+Disassembly:
+	push rsi
+	sub rsp,20h
+	mov rsi,rcx
+	cmp dword ptr [rcx+50h],2
+	je short 000000018066E284h
+	mov [rsp+30h],rbx
+	mov [rsp+38h],rdi
+	mov rcx,[rcx+30h]
+	test rcx,rcx
+	je short 000000018066E29Ah
+	xor r8d,r8d
+	xor edx,edx
+	call 000000018103CB10h
+	mov rdi,[rsi+38h]
+	xor ebx,ebx
+	mov dword ptr [rsi+50h],2
+	mov ecx,ebx
+	test rdi,rdi
+	je short 000000018066E29Ah
+	mov eax,[rdi+18h]
+	cmp ecx,eax
+	jge short 000000018066E27Ah
+	cmp ebx,eax
+	jae short 000000018066E28Ah
+	movsxd rax,ebx
+	mov rcx,[rdi+rax*8+20h]
+	test rcx,rcx
+	je short 000000018066E29Ah
+	mov rdx,[rsi+48h]
+	xor r8d,r8d
+	call 0000000180FD1800h
+	inc ebx
+	mov ecx,ebx
+	jmp short 000000018066E250h
+	mov rbx,[rsp+30h]
+	mov rdi,[rsp+38h]
+	add rsp,20h
+	pop rsi
+	ret
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294310h
+
+ISIL:
+	001 ShiftStack -8
+	002 Move stack:0x0, rsi
+	003 ShiftStack -32
+	004 Move rsi, rcx
+	005 Compare [rcx+80], 2
+	006 JumpIfEqual {38}
+	007 Move stack:0x30, rbx
+	008 Move stack:0x38, rdi
+	009 Move rcx, [rcx+48]
+	010 Compare rcx, 0
+	011 JumpIfEqual {47}
+	012 Move r8, 0
+	013 Move rdx, 0
+	014 Call Behaviour.set_enabled, rcx, rdx
+	015 Move rdi, [rsi+56]
+	016 Move rbx, 0
+	017 Move [rsi+80], 2
+	018 Move rcx, rbx
+	019 Compare rdi, 0
+	020 JumpIfEqual {47}
+	021 Move rax, [rdi+24]
+	022 Compare rcx, rax
+	023 JumpIfGreaterOrEqual {36}
+	024 Compare rbx, rax
+	025 JumpIfGreaterOrEqual {42}
+	026 Move rax, rbx
+	027 Move rcx, [rdi+32+rax*8]
+	028 Compare rcx, 0
+	029 JumpIfEqual {47}
+	030 Move rdx, [rsi+72]
+	031 Move r8, 0
+	032 Call 0x180FD1800, rcx, rdx
+	033 Add rbx, rbx, 1
+	034 Move rcx, rbx
+	035 Goto {21}
+	036 Move rbx, stack:0x30
+	037 Move rdi, stack:0x38
+	038 ShiftStack 32
+	039 Move rsi, stack:0x0
+	040 ShiftStack 8
+	041 Return 
+	042 Call 0x180294110, rcx, rdx, r8, r9
+	043 Move rcx, rax
+	044 Move rdx, 0
+	045 Call 0x1802942E0, rcx, rdx, r8, r9
+	046 Interrupt 
+	047 Call 0x180294310, rcx, rdx, r8, r9
+
+Method: System.Void SetStatus(System.Boolean isEnabled)
+
+Disassembly:
+	mov [rsp+10h],rbx
+	mov [rsp+18h],rbp
+	push rdi
+	sub rsp,20h
+	movzx ebp,dl
+	mov rdi,rcx
+	mov ebx,ebp
+	xor ebx,1
+	inc ebx
+	cmp [rcx+50h],ebx
+	je short 000000018066E33Ah
+	mov [rsp+30h],rsi
+	mov rcx,[rcx+30h]
+	test rcx,rcx
+	je short 000000018066E35Ah
+	xor r8d,r8d
+	movzx edx,bpl
+	call 000000018103CB10h
+	mov rsi,[rdi+38h]
+	mov [rdi+50h],ebx
+	xor ebx,ebx
+	mov ecx,ebx
+	test rsi,rsi
+	je short 000000018066E35Ah
+	nop dword ptr [rax+rax]
+	mov eax,[rsi+18h]
+	cmp ecx,eax
+	jge short 000000018066E335h
+	cmp ebx,eax
+	jae short 000000018066E34Ah
+	movsxd rax,ebx
+	mov rcx,[rsi+rax*8+20h]
+	test bpl,bpl
+	je short 000000018066E31Eh
+	mov rdx,[rdi+40h]
+	jmp short 000000018066E322h
+	mov rdx,[rdi+48h]
+	test rcx,rcx
+	je short 000000018066E35Ah
+	xor r8d,r8d
+	call 0000000180FD1800h
+	inc ebx
+	mov ecx,ebx
+	jmp short 000000018066E300h
+	mov rsi,[rsp+30h]
+	mov rbx,[rsp+38h]
+	mov rbp,[rsp+40h]
+	add rsp,20h
+	pop rdi
+	ret
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294310h
+
+ISIL:
+	001 Move stack:0x10, rbx
+	002 Move stack:0x18, rbp
+	003 ShiftStack -8
+	004 Move stack:0x0, rdi
+	005 ShiftStack -32
+	006 Move rbp, rdx
+	007 Move rdi, rcx
+	008 Move rbx, rbp
+	009 Xor rbx, rbx, 1
+	010 Add rbx, rbx, 1
+	011 Compare [rcx+80], rbx
+	012 JumpIfEqual {47}
+	013 Move stack:0x30, rsi
+	014 Move rcx, [rcx+48]
+	015 Compare rcx, 0
+	016 JumpIfEqual {58}
+	017 Move r8, 0
+	018 Move rdx, rbp
+	019 Call Behaviour.set_enabled, rcx, rdx
+	020 Move rsi, [rdi+56]
+	021 Move [rdi+80], rbx
+	022 Move rbx, 0
+	023 Move rcx, rbx
+	024 Compare rsi, 0
+	025 JumpIfEqual {58}
+	026 Nop 
+	027 Move rax, [rsi+24]
+	028 Compare rcx, rax
+	029 JumpIfGreaterOrEqual {46}
+	030 Compare rbx, rax
+	031 JumpIfGreaterOrEqual {53}
+	032 Move rax, rbx
+	033 Move rcx, [rsi+32+rax*8]
+	034 Compare rbp, 0
+	035 JumpIfEqual {38}
+	036 Move rdx, [rdi+64]
+	037 Goto {39}
+	038 Move rdx, [rdi+72]
+	039 Compare rcx, 0
+	040 JumpIfEqual {58}
+	041 Move r8, 0
+	042 Call 0x180FD1800, rcx, rdx
+	043 Add rbx, rbx, 1
+	044 Move rcx, rbx
+	045 Goto {27}
+	046 Move rsi, stack:0x30
+	047 Move rbx, stack:0x38
+	048 Move rbp, stack:0x40
+	049 ShiftStack 32
+	050 Move rdi, stack:0x0
+	051 ShiftStack 8
+	052 Return 
+	053 Call 0x180294110, rcx, rdx, r8, r9
+	054 Move rcx, rax
+	055 Move rdx, 0
+	056 Call 0x1802942E0, rcx, rdx, r8, r9
+	057 Interrupt 
+	058 Call 0x180294310, rcx, rdx, r8, r9
+
+Method: System.Void .ctor()
+
+Disassembly:
+	xor edx,edx
+	jmp near ptr 0000000180FD1850h
+
+ISIL:
+	001 Move rdx, 0
+	002 Call 0x180FD1850, rcx, rdx
+	003 Return 
+

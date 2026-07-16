@@ -1,0 +1,56 @@
+namespace VoiceChat.Playbacks
+{
+	public class SingleBufferPlayback : global::VoiceChat.Playbacks.VoiceChatPlaybackBase
+	{
+		private global::VoiceChat.Networking.PlaybackBuffer _buffer;
+
+		private bool _bufferSet;
+
+		public global::VoiceChat.Networking.PlaybackBuffer Buffer
+		{
+			get
+			{
+				if (!_bufferSet)
+				{
+					_buffer = new global::VoiceChat.Networking.PlaybackBuffer();
+					_bufferSet = true;
+				}
+				return _buffer;
+			}
+		}
+
+		public override int MaxSamples
+		{
+			get
+			{
+				if (!_bufferSet)
+				{
+					return 0;
+				}
+				return Buffer.Length;
+			}
+		}
+
+		private void OnDestroy()
+		{
+			if (_bufferSet)
+			{
+				Buffer.Dispose();
+			}
+		}
+
+		protected override void OnDisable()
+		{
+			base.OnDisable();
+			if (_bufferSet)
+			{
+				Buffer.Clear();
+			}
+		}
+
+		protected override float ReadSample()
+		{
+			return Buffer.Read();
+		}
+	}
+}

@@ -1,0 +1,155 @@
+Type: EscapeHandler
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Achievements.Handlers.EscapeHandler
+	System.Void OnInitialize()
+		System.Action`1<ReferenceHub> action = new System.Action`1<ReferenceHub>()
+		ulong local2 = 0
+
+		action..ctor(local2, {'OnEscaped' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		Escape.add_OnServerPlayerEscape(action) //(Action`1 value)
+		PlayerRoles.PlayerRoleManager/ServerRoleSet serverRoleSet = new PlayerRoles.PlayerRoleManager/ServerRoleSet()
+		ulong local6 = 0
+
+		serverRoleSet..ctor(local6, {'OnRoleSet' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		PlayerRoles.PlayerRoleManager.add_OnServerRoleSet(serverRoleSet) //(ServerRoleSet value)
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1805A7D1E) is corrupt (Mismatched instance parameter. Expecting an instance of System.Action`1, actually {'serverRoleSet' (type PlayerRoles.PlayerRoleManager/ServerRoleSet)}) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Achievements.Handlers.EscapeHandler
+	static System.Void OnRoleSet(ReferenceHub userHub, PlayerRoles.RoleTypeId newId, PlayerRoles.RoleChangeReason reason)
+
+		if (reason == constant22)
+		    System.Diagnostics.Stopwatch roundStartTimer = GameCore.RoundStart.RoundStartTimer
+
+		    System.TimeSpan elapsed = roundStartTimer.Elapsed
+		    Mirror.NetworkIdentity networkIdentity = userHub.networkIdentity
+		    Mirror.NetworkConnectionToClient _connectionToClient = networkIdentity._connectionToClient
+		    System.Int32 26 = 26
+
+		    Achievements.AchievementHandlerBase.ServerAchieve(_connectionToClient, 26) //(NetworkConnection conn, AchievementName targetAchievement)
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfNonZeroOrNonNullAction at (0x1805A7DEC) is corrupt (ConstantDefinition: Don't know how to get IL to load a System.Byte) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Achievements.Handlers.EscapeHandler
+	static System.Void OnEscaped(ReferenceHub userHub)
+		InventorySystem.Inventory inventory = userHub.inventory
+
+		System.Boolean isDisarmed = InventorySystem.Disarming.DisarmedPlayers.IsDisarmed(inventory) //(Inventory inv)
+
+		if (isDisarmed == False)
+		    Mirror.NetworkIdentity networkIdentity = userHub.networkIdentity
+		    Mirror.NetworkConnectionToClient _connectionToClient = networkIdentity._connectionToClient
+		    PlayerRoles.PlayerRoleManager roleManager = userHub.roleManager
+
+		    PlayerRoles.PlayerRoleBase currentRole = roleManager.CurrentRole
+		    PlayerEffectsController playerEffectsController = userHub.playerEffectsController
+
+		    CustomPlayerEffects.Scp207 effect = playerEffectsController.GetEffect<CustomPlayerEffects.Scp207>()
+
+		    System.Boolean movementModifierActive = effect.MovementModifierActive
+
+		    if (movementModifierActive != False)
+		        System.Int32 27 = 27
+
+		        Achievements.AchievementHandlerBase.ServerAchieve(_connectionToClient, 27) //(NetworkConnection conn, AchievementName targetAchievement)
+		    endif
+            
+
+		    System.String string = currentRole.ToString()
+
+		    if (string == 1)
+                goto INSN_1805A7B6C
+            endif
+
+		    System.String string2 = currentRole.ToString()
+
+		    if (string2 != 6)
+                goto INSN_1805A7B61
+            endif
+		    System.Int32 10 = 10
+
+		    Achievements.AchievementHandlerBase.ServerAchieve(_connectionToClient, 10) //(NetworkConnection conn, AchievementName targetAchievement)
+		endif
+        
+		return
+
+		INSN_1805A7B6C:
+		System.Int32 5 = 5
+
+		Achievements.AchievementHandlerBase.ServerAchieve()
+		ulong local18 = 0
+		InventorySystem.Inventory inventory2 = userHub.inventory
+		InventorySystem.InventoryInfo userInventory = inventory2.UserInventory
+		System.Collections.Generic.Dictionary`2<System.UInt16,InventorySystem.Items.ItemBase> items = userInventory.Items
+
+		System.Collections.Generic.Dictionary`2/ValueCollection<System.UInt16,InventorySystem.Items.ItemBase> values = items.Values
+
+		System.Collections.Generic.Dictionary`2/ValueCollection/Enumerator<System.UInt16,InventorySystem.Items.ItemBase> enumerator = items.GetEnumerator()
+
+		if (enumerator == 0)
+            goto INSN_1805A7C1A
+        endif
+
+		if ( != 6)
+            goto INSN_1805A7BF0
+        endif
+		local18 += 1
+
+		INSN_1805A7C1A:
+
+		items.Dispose()
+
+		items.Dispose()
+
+		if (items != 0)
+            goto INSN_1805A7C7A
+        endif
+		System.Int32 32 = 32
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+
+		INSN_1805A7C7A:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1805A7B76) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Achievements.Handlers.EscapeHandler
+	System.Void .ctor()
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void System.Object::.ctor()
+	IL_0006: ret
+	
+

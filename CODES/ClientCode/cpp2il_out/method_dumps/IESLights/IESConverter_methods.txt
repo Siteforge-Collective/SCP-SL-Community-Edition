@@ -1,0 +1,304 @@
+Type: IESConverter
+
+
+	Generated Pseudocode:
+
+	Declaring Type: IESLights.IESConverter
+	System.Void ConvertIES(System.String filePath, System.String targetPath, System.Boolean createSpotlightCookies, System.Boolean rawImport, System.Boolean applyVignette, UnityEngine.Cubemap& pointLightCookie, UnityEngine.Texture2D& spotlightCookie, IESLights.EXRData& exrData, System.String& targetFilename)
+		ulong local10 = 0
+
+		if ( == local10)
+		endif
+        
+
+		IESLights.IESData iESData = IESLights.ParseIES.Parse(filePath, local10) //(String path, NormalizationMode normalizationMode)
+
+		UnityEngine.Texture2D texture2D = IESLights.IESToTexture.ConvertIesData(iESData) //(IESData data)
+		this._iesTexture = texture2D
+
+		if ( == local10)
+            goto INSN_181BAEB28
+        endif
+
+		this.RawImport()
+
+		INSN_181BAEB28:
+
+		this.RegularImport()
+		ulong local26 = 0
+
+		System.Boolean boolean = UnityEngine.Object.op_Inequality(this, local26) //(Object x, Object y)
+
+		if (boolean == False)
+            goto INSN_181BAEBE2
+        endif
+
+		UnityEngine.Object.Destroy()
+
+		INSN_181BAEBE2:
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfNonZeroOrNonNullAction at (0x181BAEA94) is corrupt (One of the arguments is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: IESLights.IESConverter
+	System.Void RegularImport(System.String filePath, System.String targetPath, System.Boolean createSpotlightCookies, System.Boolean applyVignette, UnityEngine.Cubemap& pointLightCookie, UnityEngine.Texture2D& spotlightCookie, System.String& targetFilename, IESLights.IESData iesData)
+
+		if (createSpotlightCookies != False)
+		endif
+        
+		ulong local9 = 0
+
+		IESLights.IESToCubemap component = base.GetComponent<IESLights.IESToCubemap>()
+		System.Int32 resolution = this.Resolution
+
+		component.PrepMaterial()
+		UnityEngine.Cubemap cubemap = new UnityEngine.Cubemap()
+		ulong local16 = 0
+		System.Int32 5 = 5
+
+		cubemap..ctor(resolution, 5, local16) //(Int32 width, TextureFormat textureFormat, Boolean mipChain)
+		System.Int32 2 = 2
+
+		cubemap.filterMode = 2
+
+		UnityEngine.Camera component2 = component.GetComponent<UnityEngine.Camera>()
+
+		System.Boolean boolean = component2.RenderToCubemap()
+		ulong local21 = 0
+
+		IESLights.IESToSpotlightCookie component3 = base.GetComponent<IESLights.IESToSpotlightCookie>()
+
+		component3.CreateSpotlightCookie()
+
+		System.String fileNameWithoutExtension = System.IO.Path.GetFileNameWithoutExtension(filePath) //(String path)
+
+		System.Boolean boolean2 = UnityEngine.Object.op_Inequality()
+		IESLights.NormalizationMode normalizationMode = this.NormalizationMode
+
+		this.BuildTargetFilename()
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181BAEF0E) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: IESLights.IESConverter
+	System.Void RawImport(IESLights.IESData iesData, System.String filePath, System.String targetPath, System.Boolean createSpotlightCookie, IESLights.EXRData& exrData, System.String& targetFilename)
+		ulong local7 = 0
+
+		if ( != local7)
+
+		    if (iesData.<VerticalType>k__BackingField != local7)
+                goto INSN_181BAECF9
+            endif
+		endif
+        
+
+		if (iesData.<PhotometricType>k__BackingField == 3)
+            goto INSN_181BAECF9
+        endif
+
+		IESLights.IESToCubemap component = base.GetComponent<IESLights.IESToCubemap>()
+		System.Int32 resolution = this.Resolution
+		UnityEngine.Texture2D _iesTexture = this._iesTexture
+
+		UnityEngine.Color[] colorArray = component.CreateRawCubemap(_iesTexture, iesData, resolution) //(Texture2D iesTexture, IESData iesData, Int32 resolution)
+		System.Int32 resolution2 = this.Resolution
+		colorArray += colorArray
+
+		INSN_181BAECF9:
+
+		IESLights.IESToSpotlightCookie component2 = base.GetComponent<IESLights.IESToSpotlightCookie>()
+
+		component2.CreateSpotlightCookie()
+
+		UnityEngine.Color[] pixels = local7.GetPixels()
+		System.Int32 resolution3 = this.Resolution
+
+		UnityEngine.Object.DestroyImmediate(local7) //(Object obj)
+
+		System.String fileNameWithoutExtension = System.IO.Path.GetFileNameWithoutExtension(filePath) //(String path)
+
+		this.BuildTargetFilename()
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfZeroOrNullAction at (0x181BAEC62) is corrupt (One of the arguments is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: IESLights.IESConverter
+	System.Void BuildTargetFilename(System.String name, System.String folderHierarchy, System.Boolean isCubemap, System.Boolean isRaw, IESLights.NormalizationMode normalizationMode, IESLights.IESData iesData, System.String& targetFilePath)
+		ulong local8 = 0
+
+		System.String dataPath = UnityEngine.Application.dataPath
+
+		System.String string = System.String.Format("IES/Imports/{0}", folderHierarchy) //(String format, Object arg0)
+
+		System.String string2 = System.IO.Path.Combine(dataPath, string) //(String path1, String path2)
+
+		System.Boolean boolean = System.IO.Directory.Exists(string2) //(String path)
+
+		if (boolean == False)
+		    ulong local16 = 0
+
+		    System.String dataPath2 = UnityEngine.Application.dataPath
+
+		    System.String string3 = System.String.Format("IES/Imports/{0}", folderHierarchy) //(String format, Object arg0)
+
+		    System.String string4 = System.IO.Path.Combine(dataPath2, string3) //(String path1, String path2)
+
+		    System.IO.DirectoryInfo directoryInfo = System.IO.Directory.CreateDirectory(string4) //(String path)
+		endif
+        
+
+		if (isCubemap != False)
+            goto INSN_181BAE75A
+        endif
+
+		System.Single single = System.Linq.Enumerable.Max(string2) //(IEnumerable`1 source)
+
+		System.Single single2 = System.Linq.Enumerable.Min(string2) //(IEnumerable`1 source)
+
+		INSN_181BAE75A:
+
+		if (constant22 == 2)
+            goto INSN_181BAE77B
+        endif
+
+		if (constant22 != 1)
+            goto INSN_181BAE782
+        endif
+
+		INSN_181BAE77B:
+
+		INSN_181BAE782:
+
+		if ( != 0)
+            goto INSN_181BAE7A0
+        endif
+		string local29 = isCubemap != False ? "cubemap" : "asset"
+
+		INSN_181BAE7A0:
+
+		System.String string5 = System.IO.Path.Combine("Assets/IES/Imports/", folderHierarchy) //(String path1, String path2)
+		System.Object[] local32 = new System.Object[4]
+
+		if ("[H] " == 0)
+            goto INSN_181BAE814
+        endif
+
+		if (local32 == 0)
+            goto INSN_181BAE9B5
+        endif
+
+		INSN_181BAE814:
+		local32[0] = "[H] "
+
+		if (isCubemap == False)
+            goto INSN_181BAE848
+        endif
+
+		INSN_181BAE848:
+
+		System.String string6 = System.String.Concat("[FOV ", local32, "] ") //(Object arg0, Object arg1, Object arg2)
+
+		if (string6 == 0)
+            goto INSN_181BAE89E
+        endif
+
+		if (string6 == 0)
+            goto INSN_181BAE9D5
+        endif
+
+		INSN_181BAE89E:
+		local32[1] = string6
+
+		if (name == 0)
+            goto INSN_181BAE8D4
+        endif
+
+		if (string6 == 0)
+            goto INSN_181BAE9F5
+        endif
+
+		INSN_181BAE8D4:
+		local32[2] = name
+
+		if ("exr" == 0)
+            goto INSN_181BAE90A
+        endif
+
+		if (string6 == 0)
+            goto INSN_181BAEA15
+        endif
+
+		INSN_181BAE90A:
+		local32[3] = "exr"
+
+		System.String string7 = System.String.Format("{0}{1}{2}.{3}", local32) //(String format, Object[] args)
+
+		System.String string8 = System.IO.Path.Combine(string5, string7) //(String path1, String path2)
+
+		System.Boolean boolean2 = System.IO.File.Exists()
+
+		if (boolean2 == False)
+            goto INSN_181BAE98E
+        endif
+
+		System.IO.File.Delete()
+
+		INSN_181BAE98E:
+		return
+		throw new System.NullReferenceException()
+
+		INSN_181BAE9B5:
+
+		INSN_181BAE9D5:
+
+		INSN_181BAE9F5:
+
+		INSN_181BAEA15:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfZeroOrNullAction at (0x181BAE76B) is corrupt (ConstantDefinition: Don't know how to get IL to load a Cpp2IL.Core.Analysis.ResultModels.StackPointer) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: IESLights.IESConverter
+	System.Void .ctor()
+		this.Resolution = 512
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldc.i4 512
+	IL_0006: conv.i8
+	IL_0007: conv.u8
+	IL_0008: stfld System.Int32 IESLights.IESConverter::Resolution
+	IL_000d: ldarg.0
+	IL_000e: call System.Void UnityEngine.MonoBehaviour::.ctor()
+	IL_0013: ret
+	
+

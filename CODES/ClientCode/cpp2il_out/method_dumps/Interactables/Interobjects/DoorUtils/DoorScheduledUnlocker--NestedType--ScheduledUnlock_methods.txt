@@ -1,0 +1,59 @@
+Type: ScheduledUnlock
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Interobjects.DoorUtils.DoorScheduledUnlocker/ScheduledUnlock
+	System.Void .ctor(Interactables.Interobjects.DoorUtils.DoorVariant targetDoor, System.Single time, Interactables.Interobjects.DoorUtils.DoorLockReason flags)
+		ulong local4 = 0
+
+		base.FieldGetter(local4, null, flags) //(String typeName, String fieldName, Object& val)
+		this.Door = targetDoor
+		ulong local5 = 0
+
+		System.Single timeSinceLevelLoad = UnityEngine.Time.timeSinceLevelLoad
+		this._flagsToUnset = flags
+		this._targetTime = timeSinceLevelLoad
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181BB7D73) is corrupt (Found null operand in Arguments: [{'local4' (type System.Int32)}, , {'flags' (function parameter, type Interactables.Interobjects.DoorUtils.DoorLockReason)}]) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Interobjects.DoorUtils.DoorScheduledUnlocker/ScheduledUnlock
+	System.Boolean Refresh()
+		ulong local1 = 0
+
+		System.Single timeSinceLevelLoad = UnityEngine.Time.timeSinceLevelLoad
+		System.Single _targetTime = this._targetTime
+
+		if (_targetTime <= timeSinceLevelLoad)
+		    Interactables.Interobjects.DoorUtils.DoorVariant door = this.Door
+		    ulong local6 = 0
+
+		    System.Boolean boolean = UnityEngine.Object.op_Inequality(door, local6) //(Object x, Object y)
+
+		    if (boolean != False)
+		        Interactables.Interobjects.DoorUtils.DoorVariant door2 = this.Door
+		        Interactables.Interobjects.DoorUtils.DoorLockReason _flagsToUnset = this._flagsToUnset
+		        ulong local11 = 0
+
+		        door2.ServerChangeLock(_flagsToUnset, local11) //(DoorLockReason reason, Boolean newState)
+		    endif
+            
+		    return True
+		endif
+        
+		ulong local12 = 0
+		return local12
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x181BB7D49) is corrupt (Return value has a type of System.Int32, expecting an object of type System.Boolean) and cannot be created as IL. Aborting here.
+
+

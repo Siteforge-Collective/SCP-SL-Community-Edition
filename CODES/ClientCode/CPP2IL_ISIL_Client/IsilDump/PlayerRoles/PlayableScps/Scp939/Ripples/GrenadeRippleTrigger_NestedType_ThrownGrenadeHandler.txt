@@ -1,0 +1,155 @@
+Type: PlayerRoles.PlayableScps.Scp939.Ripples.GrenadeRippleTrigger+ThrownGrenadeHandler
+
+Method: System.Void .ctor(PlayerRoles.PlayableScps.Scp939.Ripples.GrenadeRippleTrigger trigger)
+
+Disassembly:
+	mov [rsp+8],rbx
+	push rdi
+	sub rsp,20h
+	mov rbx,rdx
+	mov rdi,rcx
+	xor edx,edx
+	call 00000001802D5040h
+	lea rcx,[rdi+10h]
+	mov rdx,rbx
+	mov [rcx],rbx
+	call 0000000180293EF0h
+	xor ecx,ecx
+	call 0000000180FDAE10h
+	mov rbx,[rsp+30h]
+	movss dword ptr [rdi+18h],xmm0
+	add rsp,20h
+	pop rdi
+	ret
+
+ISIL:
+	001 Move stack:0x8, rbx
+	002 ShiftStack -8
+	003 Move stack:0x0, rdi
+	004 ShiftStack -32
+	005 Move rbx, rdx
+	006 Move rdi, rcx
+	007 Move rdx, 0
+	008 Call 0x1802D5040, rcx, rdx, r8, r9, stack:0x0
+	009 LoadAddress rcx, [rdi+16]
+	010 Move rdx, rbx
+	011 Move [rcx], rbx
+	012 Call 0x180293EF0, rcx, rdx, r8, r9
+	013 Move rcx, 0
+	014 Call Time.get_timeSinceLevelLoad, rcx
+	015 Move rbx, stack:0x30
+	016 Move [rdi+24], xmm0
+	017 ShiftStack 32
+	018 Move rdi, stack:0x0
+	019 ShiftStack 8
+	020 Return 
+
+Method: System.Boolean UpdateSound()
+
+Disassembly:
+	push rbx
+	sub rsp,20h
+	mov rax,[rcx+10h]
+	mov rbx,rcx
+	test rax,rax
+	je short 000000018037819Eh
+	mov rax,[rax+48h]
+	test rax,rax
+	je short 000000018037819Eh
+	mov eax,[rax+18h]
+	cmp [rcx+1Ch],eax
+	jge short 0000000180378196h
+	xor ecx,ecx
+	call 0000000180FDAE10h
+	mov rdx,[rbx+10h]
+	movaps xmm1,xmm0
+	test rdx,rdx
+	je short 000000018037819Eh
+	mov rdx,[rdx+48h]
+	test rdx,rdx
+	je short 000000018037819Eh
+	movsxd rcx,dword ptr [rbx+1Ch]
+	cmp ecx,[rdx+18h]
+	jae short 00000001803781A4h
+	subss xmm1,dword ptr [rbx+18h]
+	movss xmm0,dword ptr [rdx+rcx*4+20h]
+	comiss xmm0,xmm1
+	ja short 0000000180378196h
+	lea eax,[rcx+1]
+	mov [rbx+1Ch],eax
+	xchg ax,ax
+	xor edx,edx
+	mov rcx,rbx
+	call 0000000180378120h
+	test al,al
+	jne short 0000000180378180h
+	mov al,1
+	add rsp,20h
+	pop rbx
+	ret
+	xor al,al
+	add rsp,20h
+	pop rbx
+	ret
+	call 0000000180294310h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+
+ISIL:
+	001 ShiftStack -8
+	002 Move stack:0x0, rbx
+	003 ShiftStack -32
+	004 Move rax, [rcx+16]
+	005 Move rbx, rcx
+	006 Compare rax, 0
+	007 JumpIfEqual {48}
+	008 Move rax, [rax+72]
+	009 Compare rax, 0
+	010 JumpIfEqual {48}
+	011 Move rax, [rax+24]
+	012 Compare [rcx+28], rax
+	013 JumpIfGreaterOrEqual {43}
+	014 Move rcx, 0
+	015 Call Time.get_timeSinceLevelLoad, rcx
+	016 Move rdx, [rbx+16]
+	017 Move xmm1, xmm0
+	018 Compare rdx, 0
+	019 JumpIfEqual {48}
+	020 Move rdx, [rdx+72]
+	021 Compare rdx, 0
+	022 JumpIfEqual {48}
+	023 Move rcx, [rbx+28]
+	024 Compare rcx, [rdx+24]
+	025 JumpIfGreaterOrEqual {50}
+	026 Subtract xmm1, xmm1, [rbx+24]
+	027 Move xmm0, [rdx+32+rcx*4]
+	028 Compare xmm0, xmm1
+	029 JumpIfGreater {43}
+	030 LoadAddress rax, [rcx+1]
+	031 Move [rbx+28], rax
+	032 Nop 
+	033 Move rdx, 0
+	034 Move rcx, rbx
+	035 Call ThrownGrenadeHandler.UpdateSound, rcx, rdx
+	036 Compare rax, 0
+	037 JumpIfNotEqual {33}
+	038 Move rax, 1
+	039 ShiftStack 32
+	040 Move rbx, stack:0x0
+	041 ShiftStack 8
+	042 Return rax
+	043 Move rax, 0
+	044 ShiftStack 32
+	045 Move rbx, stack:0x0
+	046 ShiftStack 8
+	047 Return rax
+	048 Call 0x180294310, rcx, rdx, r8, r9
+	049 Interrupt 
+	050 Call 0x180294110, rcx, rdx, r8, r9
+	051 Move rcx, rax
+	052 Move rdx, 0
+	053 Call 0x1802942E0, rcx, rdx, r8, r9
+

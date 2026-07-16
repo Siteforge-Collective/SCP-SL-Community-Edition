@@ -1,0 +1,294 @@
+Type: HoldableButton
+
+
+	Generated Pseudocode:
+
+	Declaring Type: HoldableButton
+	System.Boolean get_IsHeld()
+
+		System.Boolean isPressed = base.IsPressed()
+		return isPressed
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Boolean UnityEngine.UI.Selectable::IsPressed()
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: HoldableButton
+	System.Boolean get_IsHovering()
+
+		System.Boolean isHighlighted = base.IsHighlighted()
+
+		if (isHighlighted != False)
+		    return True
+		endif
+        
+
+		System.Boolean isPressed = base.IsPressed()
+		return isPressed
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Boolean UnityEngine.UI.Selectable::IsHighlighted()
+	IL_0006: ldc.i4.0
+	IL_0007: beq.s IL_000b
+	IL_0009: ldc.i4.1
+	IL_000a: ret
+	IL_000b: ldarg.0
+	IL_000c: call System.Boolean UnityEngine.UI.Selectable::IsPressed()
+	IL_0011: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: HoldableButton
+	System.Single get_HeldPercent()
+		ulong local1 = 0
+
+		if (local1 < this.<HoldTime>k__BackingField)
+
+		    System.Boolean isPressed = base.IsPressed()
+
+		    if (isPressed != False)
+		        System.Diagnostics.Stopwatch _holdSw = this._holdSw
+
+		        System.TimeSpan elapsed = _holdSw.Elapsed
+		        ulong local9 = 0
+
+		        System.Single single = UnityEngine.Mathf.Clamp01(local9) //(Single value)
+		        return single
+		    endif
+            
+		    ulong local12 = 0
+		    return local12
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x181BAA8F8) is corrupt (Return value has a type of System.Int32, expecting an object of type System.Single) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: HoldableButton
+	System.Single get_HoldTime()
+		System.Single HoldTime = this.<HoldTime>k__BackingField
+		return HoldTime
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Single HoldableButton::<HoldTime>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: HoldableButton
+	System.Void set_HoldTime(System.Single value)
+		this.<HoldTime>k__BackingField = value
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: stfld System.Single HoldableButton::<HoldTime>k__BackingField
+	IL_0007: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: HoldableButton
+	UnityEngine.UI.Button/ButtonClickedEvent get_OnHeld()
+		UnityEngine.UI.Button/ButtonClickedEvent OnHeld = this.<OnHeld>k__BackingField
+		return OnHeld
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld UnityEngine.UI.Button/ButtonClickedEvent HoldableButton::<OnHeld>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: HoldableButton
+	System.Void set_OnHeld(UnityEngine.UI.Button/ButtonClickedEvent value)
+		this.<OnHeld>k__BackingField = value
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: stfld UnityEngine.UI.Button/ButtonClickedEvent HoldableButton::<OnHeld>k__BackingField
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: HoldableButton
+	System.Void OnPointerDown(UnityEngine.EventSystems.PointerEventData eventData)
+
+		base.OnPointerDown(eventData) //(PointerEventData eventData)
+		System.Diagnostics.Stopwatch _holdSw = this._holdSw
+
+		_holdSw.Restart()
+		this._eventCalled = False
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: call System.Void UnityEngine.UI.Selectable::OnPointerDown(UnityEngine.EventSystems.PointerEventData)
+	IL_0007: ldarg.0
+	IL_0008: ldfld System.Diagnostics.Stopwatch HoldableButton::_holdSw
+	IL_000d: call System.Void System.Diagnostics.Stopwatch::Restart()
+	IL_0012: ldarg.0
+	IL_0013: ldc.i4.0
+	IL_0014: stfld System.Boolean HoldableButton::_eventCalled
+	IL_0019: ret
+	IL_001a: newobj System.Void System.NullReferenceException::.ctor()
+	IL_001f: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: HoldableButton
+	System.Void OnPointerUp(UnityEngine.EventSystems.PointerEventData eventData)
+
+		base.OnPointerUp(eventData) //(PointerEventData eventData)
+		System.Diagnostics.Stopwatch _holdSw = this._holdSw
+
+		_holdSw.Reset()
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: call System.Void UnityEngine.UI.Selectable::OnPointerUp(UnityEngine.EventSystems.PointerEventData)
+	IL_0007: ldarg.0
+	IL_0008: ldfld System.Diagnostics.Stopwatch HoldableButton::_holdSw
+	IL_000d: call System.Void System.Diagnostics.Stopwatch::Reset()
+	IL_0012: ret
+	IL_0013: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0018: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: HoldableButton
+	System.Void Update()
+
+		if (this._eventCalled == False)
+
+		    System.Boolean isPressed = base.IsPressed()
+
+		    if (isPressed != False)
+		        ulong local3 = 0
+
+		        if (local3 < this.<HoldTime>k__BackingField)
+
+		            System.Boolean isPressed2 = base.IsPressed()
+
+		            if (isPressed2 != False)
+		                System.Diagnostics.Stopwatch _holdSw = this._holdSw
+
+		                System.TimeSpan elapsed = _holdSw.Elapsed
+		                ulong local11 = 0
+
+		                System.Single single = UnityEngine.Mathf.Clamp01(local11) //(Single value)
+		                UnityEngine.UI.Button/ButtonClickedEvent OnHeld = this.<OnHeld>k__BackingField
+		                this._eventCalled = True
+
+		                if (OnHeld != 0)
+
+		                    OnHeld.Invoke()
+		                endif
+                        
+		                return
+		                throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Boolean HoldableButton::_eventCalled
+	IL_0006: ldc.i4.0
+	IL_0007: bne.un.s IL_004f
+	IL_0009: ldarg.0
+	IL_000a: call System.Boolean UnityEngine.UI.Selectable::IsPressed()
+	IL_000f: ldc.i4.0
+	IL_0010: beq.s IL_004f
+	IL_0012: ldc.i4.0
+	IL_0013: ldarg.0
+	IL_0014: ldfld System.Single HoldableButton::<HoldTime>k__BackingField
+	IL_0019: bge.s IL_004f
+	IL_001b: ldarg.0
+	IL_001c: call System.Boolean UnityEngine.UI.Selectable::IsPressed()
+	IL_0021: ldc.i4.0
+	IL_0022: beq.s IL_004f
+	IL_0024: ldarg.0
+	IL_0025: ldfld System.Diagnostics.Stopwatch HoldableButton::_holdSw
+	IL_002a: call System.TimeSpan System.Diagnostics.Stopwatch::get_Elapsed()
+	IL_002f: stloc.0
+	IL_0030: ldc.i4.0
+	IL_0031: call System.Single UnityEngine.Mathf::Clamp01(System.Single)
+	IL_0036: stloc.1
+	IL_0037: ldarg.0
+	IL_0038: ldfld UnityEngine.UI.Button/ButtonClickedEvent HoldableButton::<OnHeld>k__BackingField
+	IL_003d: stloc.2
+	IL_003e: ldarg.0
+	IL_003f: ldc.i4.1
+	IL_0040: stfld System.Boolean HoldableButton::_eventCalled
+	IL_0045: ldloc.2
+	IL_0046: ldc.i4.0
+	IL_0047: beq.s IL_004f
+	IL_0049: ldloc.2
+	IL_004a: call System.Void UnityEngine.Events.UnityEvent::Invoke()
+	IL_004f: ret
+	IL_0050: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0055: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: HoldableButton
+	System.Void .ctor()
+		System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch()
+
+		stopwatch..ctor()
+		this._holdSw = stopwatch
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: newobj System.Void System.Diagnostics.Stopwatch::.ctor()
+	IL_0005: stloc.0
+	IL_0006: ldarg.0
+	IL_0007: ldloc.0
+	IL_0008: stfld System.Diagnostics.Stopwatch HoldableButton::_holdSw
+	IL_000d: ldarg.0
+	IL_000e: call System.Void UnityEngine.UI.Button::.ctor()
+	IL_0013: ret
+	
+

@@ -1,0 +1,551 @@
+Type: Scp106PocketItemManager
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp106.Scp106PocketItemManager
+	static System.Single get_RandomVel()
+
+		System.Single single = UnityEngine.Random.Range(-0.20000000298023224, 0.20000000298023224) //(Single min, Single max)
+		return single
+
+
+Generated IL:
+	IL_0000: ldc.r4 -0,2
+	IL_0005: ldc.r4 0,2
+	IL_000a: call System.Single UnityEngine.Random::Range(System.Single,System.Single)
+	IL_000f: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp106.Scp106PocketItemManager
+	static System.Void Init()
+		System.Action`1<InventorySystem.Items.Pickups.ItemPickupBase> action = new System.Action`1<InventorySystem.Items.Pickups.ItemPickupBase>()
+		ulong local1 = 0
+
+		action..ctor(local1, {'OnAdded' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		InventorySystem.Items.Pickups.ItemPickupBase.add_OnPickupAdded(action) //(Action`1 value)
+		System.Action`1<InventorySystem.Items.Pickups.ItemPickupBase> action2 = new System.Action`1<InventorySystem.Items.Pickups.ItemPickupBase>()
+		ulong local4 = 0
+
+		action2..ctor(local4, {'OnRemoved' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		InventorySystem.Items.Pickups.ItemPickupBase.add_OnPickupDestroyed(action2) //(Action`1 value)
+		System.Action action3 = new System.Action()
+		ulong local8 = 0
+
+		action3..ctor(local8, {'Update' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		StaticUnityMethods.add_OnUpdate(action3) //(Action value)
+		System.Action <>9__14_0 = PlayerRoles.PlayableScps.Scp106.Scp106PocketItemManager/<>c.<>9__14_0
+
+		if (<>9__14_0 == 0)
+		    PlayerRoles.PlayableScps.Scp106.Scp106PocketItemManager/<>c <>c = PlayerRoles.PlayableScps.Scp106.Scp106PocketItemManager/<>c.<>9
+		    System.Action action4 = new System.Action()
+
+		    action4..ctor(<>c, {'<Init>b__14_0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		     += 16
+		    PlayerRoles.PlayableScps.Scp106.Scp106PocketItemManager/<>c.<>9 = action4
+		endif
+        
+
+		CustomNetworkManager.add_OnClientReady(<>9__14_0) //(Action value)
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1803191D5) is corrupt (Mismatched instance parameter. Expecting an instance of System.Action`1, actually {'action3' (type System.Action)}) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp106.Scp106PocketItemManager
+	static System.Void Update()
+		ulong local0 = 0
+		ulong local1 = 0
+		System.Collections.Generic.Dictionary`2<InventorySystem.Items.Pickups.ItemPickupBase,PlayerRoles.PlayableScps.Scp106.Scp106PocketItemManager/PocketItem> trackedItems = PlayerRoles.PlayableScps.Scp106.Scp106PocketItemManager.TrackedItems
+
+		System.Collections.Generic.Dictionary`2/Enumerator<TKey,TValue> enumerator = .GetEnumerator()
+
+		if (enumerator != 0)
+		    ulong local6 = 0
+
+		    System.Boolean boolean = UnityEngine.Object.op_Equality()
+
+		    if (boolean == False)
+		        ulong local8 = 0
+
+		        System.Boolean boolean2 = PlayerRoles.PlayableScps.Scp106.Scp106PocketItemManager.ValidateHeight()
+
+		        if (boolean2 != False)
+		            ulong local10 = 0
+
+		            System.Double time = Mirror.NetworkTime.time
+
+		            if ( == 0)
+
+		                if ( == 0)
+
+		                    Mirror.NetworkServer.SendToAll<PlayerRoles.PlayableScps.Scp106.Scp106PocketItemManager/WarningMessage>()
+		                    . = 1
+		                endif
+                        
+
+		                if ( != 0)
+                            goto INSN_180319D1E
+                        endif
+
+		                System.Boolean boolean3 = local10.TryGetComponent<UnityEngine.Rigidbody>(local8) //(T& component)
+
+		                if (boolean3 == False)
+                            goto INSN_180319D31
+                        endif
+
+		                System.Single single = UnityEngine.Random.Range(-0.20000000298023224, 0.20000000298023224) //(Single min, Single max)
+		                ulong local17 = 0
+
+		                UnityEngine.Vector3 gravity = UnityEngine.Physics.gravity
+
+		                System.Single single2 = UnityEngine.Random.Range(-0.20000000298023224, 0.20000000298023224) //(Single min, Single max)
+
+		                .velocity = local17
+		                ulong local23 = 0
+
+		                UnityEngine.Transform transform = .transform
+		                  = transform.
+
+		                transform.position = local23
+
+		                transform.RefreshPositionAndRotation()
+
+		                INSN_180319D1E:
+		                ulong local28 = 0
+
+		                transform.DestroySelf()
+
+		                INSN_180319D31:
+		                System.Collections.Generic.HashSet`1<InventorySystem.Items.Pickups.ItemPickupBase> toRemove = PlayerRoles.PlayableScps.Scp106.Scp106PocketItemManager.ToRemove
+
+		                System.Boolean boolean4 = toRemove.Add(local28) //(T item)
+		            endif
+                    
+		            System.Collections.Generic.HashSet`1<InventorySystem.Items.Pickups.ItemPickupBase> toRemove2 = PlayerRoles.PlayableScps.Scp106.Scp106PocketItemManager.ToRemove
+
+		            System.Boolean boolean5 = toRemove2.Add(local6) //(T item)
+		            System.Boolean local33 = toRemove2 != 0
+		        endif
+                
+
+		        [instruction error - managed method being called is null]
+
+		        [instruction error - managed method being called is null]
+
+		        if (Scp106PocketItemManager != 0)
+                    goto INSN_180319F7D
+                endif
+
+		        if (local1 == 0)
+                    goto INSN_180319F1A
+                endif
+		        System.Collections.Generic.HashSet`1<InventorySystem.Items.Pickups.ItemPickupBase> toRemove3 = PlayerRoles.PlayableScps.Scp106.Scp106PocketItemManager.ToRemove
+		        System.Action`1<InventorySystem.Items.Pickups.ItemPickupBase> <>9__15_0 = PlayerRoles.PlayableScps.Scp106.Scp106PocketItemManager/<>c.<>9__15_0
+
+		        if (<>9__15_0 != 0)
+                    goto INSN_180319F08
+                endif
+		        PlayerRoles.PlayableScps.Scp106.Scp106PocketItemManager/<>c <>c = PlayerRoles.PlayableScps.Scp106.Scp106PocketItemManager/<>c.<>9
+		        System.Action`1<InventorySystem.Items.Pickups.ItemPickupBase> action = new System.Action`1<InventorySystem.Items.Pickups.ItemPickupBase>()
+
+		        action..ctor(<>c, {'<Update>b__15_0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		         += 24
+		        PlayerRoles.PlayableScps.Scp106.Scp106PocketItemManager/<>c.<>9 = action
+
+		        INSN_180319F08:
+
+		        Utils.NonAllocLINQ.HashsetExtensions.ForEach<InventorySystem.Items.Pickups.ItemPickupBase>(toRemove3, action) //(HashSet`1 , Action`1 )
+
+		        INSN_180319F1A:
+		        return
+		        throw new System.NullReferenceException()
+		        throw new System.NullReferenceException()
+		        throw new System.NullReferenceException()
+		        throw new System.NullReferenceException()
+		        throw new System.NullReferenceException()
+		        throw new System.NullReferenceException()
+		        throw new System.NullReferenceException()
+		        throw new System.NullReferenceException()
+
+		        INSN_180319F7D:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180319A81) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp106.Scp106PocketItemManager
+	static System.Void OnAdded(InventorySystem.Items.Pickups.ItemPickupBase ipb)
+
+		System.Boolean boolean = PlayerRoles.PlayableScps.Scp106.Scp106PocketItemManager.ValidateHeight(ipb) //(ItemPickupBase ipb)
+
+		if (boolean != False)
+		    InventorySystem.Items.Pickups.PickupSyncInfo info = ipb.Info
+		    ItemType local5 = info.ItemId
+
+		    System.Boolean boolean2 = InventorySystem.InventoryItemLoader.TryGetItem<InventorySystem.Items.ItemBase>()
+
+		    if (boolean2 != False)
+		        System.Collections.Generic.Dictionary`2<InventorySystem.Items.Pickups.ItemPickupBase,PlayerRoles.PlayableScps.Scp106.Scp106PocketItemManager/PocketItem> trackedItems = PlayerRoles.PlayableScps.Scp106.Scp106PocketItemManager.TrackedItems
+		        PlayerRoles.PlayableScps.Scp106.Scp106PocketItemManager/PocketItem pocketItem = new PlayerRoles.PlayableScps.Scp106.Scp106PocketItemManager/PocketItem()
+
+		        pocketItem..ctor()
+		        ulong local10 = 0
+
+		        System.Single value = UnityEngine.Random.value
+		        System.Single[] recycleChances = PlayerRoles.PlayableScps.Scp106.Scp106PocketItemManager.RecycleChances
+		          = local1.
+		          = local1.
+
+		        if (Scp106PocketItemManager != 1)
+		             += 1
+		        endif
+                
+		          = local1.
+		        System.Single[] recycleChances2 = PlayerRoles.PlayableScps.Scp106.Scp106PocketItemManager.RecycleChances
+		        System.Int32 length = recycleChances2.Length
+
+		        System.Int32 int32 = UnityEngine.Mathf.Min()
+		        pocketItem.Remove = int32
+		        ulong local17 = 0
+
+		        System.Double time = Mirror.NetworkTime.time
+		          = .
+		        UnityEngine.Vector2 timerRage = PlayerRoles.PlayableScps.Scp106.Scp106PocketItemManager.TimerRage
+
+		        System.Single single = UnityEngine.Random.Range()
+		        ulong local23 = 0
+
+		        RelativePositioning.RelativePosition randomValidSpawnPosition = PlayerRoles.PlayableScps.Scp106.Scp106PocketItemManager.GetRandomValidSpawnPosition()
+		        pocketItem.DropPosition = randomValidSpawnPosition
+		        pocketItem.WarningSent = False
+		        throw new System.NullReferenceException()
+		    endif
+            
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1803193EF) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp106.Scp106PocketItemManager
+	static System.Void OnRemoved(InventorySystem.Items.Pickups.ItemPickupBase ipb)
+		System.Collections.Generic.Dictionary`2<InventorySystem.Items.Pickups.ItemPickupBase,PlayerRoles.PlayableScps.Scp106.Scp106PocketItemManager/PocketItem> trackedItems = PlayerRoles.PlayableScps.Scp106.Scp106PocketItemManager.TrackedItems
+
+		System.Boolean boolean = trackedItems.Remove(ipb) //(TKey key)
+		return
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldsfld System.Collections.Generic.Dictionary`2<InventorySystem.Items.Pickups.ItemPickupBase,PlayerRoles.PlayableScps.Scp106.Scp106PocketItemManager/PocketItem> PlayerRoles.PlayableScps.Scp106.Scp106PocketItemManager::TrackedItems
+	IL_0005: ldarg.0
+	IL_0006: call System.Boolean System.Collections.Generic.Dictionary`2::Remove(TKey)
+	IL_000b: stloc.0
+	IL_000c: ret
+	IL_000d: ret
+	IL_000e: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0013: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp106.Scp106PocketItemManager
+	static System.Boolean ValidateHeight(InventorySystem.Items.Pickups.ItemPickupBase ipb)
+
+		UnityEngine.Transform transform = ipb.transform
+
+		UnityEngine.Vector3 position = .position
+		ulong local5 = 0
+		return local5
+		UnityEngine.Vector2 heightLimit = PlayerRoles.PlayableScps.Scp106.Scp106PocketItemManager.HeightLimit
+		return constant22
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180319FE0) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp106.Scp106PocketItemManager
+	static System.Int32 GetRarity(InventorySystem.Items.ItemBase ib)
+		ItemTierFlags tierFlags = ib.TierFlags
+		System.Byte local2 = tierFlags.value__
+		ItemTierFlags tierFlags2 = ib.TierFlags
+
+		if (tierFlags2 != constant16)
+		    local2 += 1
+		endif
+        
+		ItemTierFlags tierFlags3 = ib.TierFlags
+		System.Single[] recycleChances = PlayerRoles.PlayableScps.Scp106.Scp106PocketItemManager.RecycleChances
+		System.Int32 length = recycleChances.Length
+
+		System.Int32 int32 = UnityEngine.Mathf.Min(local2, length) //(Int32 a, Int32 b)
+		return int32
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfZeroOrNullAction at (0x18031906D) is corrupt (ConstantDefinition: Don't know how to get IL to load a System.Byte) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp106.Scp106PocketItemManager
+	static RelativePositioning.RelativePosition GetRandomValidSpawnPosition()
+		ulong local2 = 0
+		System.Collections.Generic.HashSet`1<ReferenceHub> AllHubs = ReferenceHub.<AllHubs>k__BackingField
+
+		System.Collections.Generic.HashSet`1/Enumerator<T> enumerator = .GetEnumerator()
+
+		if (enumerator != 0)
+		      = enumerator.
+
+		    PlayerRoles.PlayerRoleBase currentRole = .CurrentRole
+
+		    if (currentRole != 0)
+		          = currentRole.
+		        UnityEngine.Vector2 heightLimit = PlayerRoles.PlayableScps.Scp106.Scp106PocketItemManager.HeightLimit
+
+		        System.Boolean boolean = PlayerRoles.PlayableScps.Scp106.Scp106PocketItemManager.TryGetRoofPosition()
+
+		        if (boolean != False)
+		            UnityEngine.Vector3[] validPositionsNonAlloc = PlayerRoles.PlayableScps.Scp106.Scp106PocketItemManager.ValidPositionsNonAlloc
+		            System.Int32 False = 0
+		            validPositionsNonAlloc[1] = local2
+		            System.Int32 1 = 1
+
+		            if (1 > 64)
+
+		                [instruction error - managed method being called is null]
+		            else
+		                ulong local13 = 0
+
+		                [instruction error - managed method being called is null]
+
+		                [instruction error - managed method being called is null]
+
+		                if (ReferenceHub != 0)
+                            goto INSN_180318F4E
+                        endif
+
+		                if (local13 == -1)
+                            goto INSN_180318C3D
+                        endif
+		            endif
+                    
+
+		            INSN_180318C3D:
+		            System.Collections.Generic.HashSet`1<MapGeneration.RoomIdentifier> allRoomIdentifiers = MapGeneration.RoomIdentifier.AllRoomIdentifiers
+
+		            System.Collections.Generic.HashSet`1/Enumerator<T> enumerator2 = .GetEnumerator()
+
+		            if (enumerator2 == 0)
+                        goto INSN_180318DD5
+                    endif
+
+		            if (enumerator2 == 2)
+                        goto INSN_180318CE2
+                    endif
+
+		            if (enumerator2 != 3)
+                        goto INSN_180318CB0
+                    endif
+
+		            INSN_180318CE2:
+
+		            UnityEngine.Transform transform = .transform
+
+		            UnityEngine.Vector3 position = .position
+
+		            System.Boolean boolean2 = PlayerRoles.PlayableScps.Scp106.Scp106PocketItemManager.TryGetRoofPosition()
+
+		            if (boolean2 == False)
+                        goto INSN_180318CB0
+                    endif
+		            UnityEngine.Vector3[] validPositionsNonAlloc2 = PlayerRoles.PlayableScps.Scp106.Scp106PocketItemManager.ValidPositionsNonAlloc
+		            System.Int32 False = 0
+		            validPositionsNonAlloc2[1] = local2
+		            System.Int32 1 = 1
+
+		            if (1 <= 64)
+                        goto INSN_180318CB0
+                    endif
+		            . = 273
+
+		            [instruction error - managed method being called is null]
+
+		            INSN_180318DD5:
+		            . = 273
+
+		            [instruction error - managed method being called is null]
+
+		            [instruction error - managed method being called is null]
+
+		            if (False != 0)
+                        goto INSN_180318F75
+                    endif
+
+		            if (1 == 0)
+                        goto INSN_180318F93
+                    endif
+		            ulong local25 = 0
+
+		            System.Int32 int32 = UnityEngine.Random.Range(local25, 1) //(Int32 min, Int32 max)
+		            UnityEngine.Vector3[] validPositionsNonAlloc3 = PlayerRoles.PlayableScps.Scp106.Scp106PocketItemManager.ValidPositionsNonAlloc
+		            UnityEngine.Vector3[] validPositionsNonAlloc4 = PlayerRoles.PlayableScps.Scp106.Scp106PocketItemManager.ValidPositionsNonAlloc
+		            ulong local30 = 0
+
+		            System.Int32 int322 = UnityEngine.Random.Range(local30, int32) //(Int32 min, Int32 max)
+		            return int322
+		            throw new System.NullReferenceException()
+		            throw new System.IndexOutOfRangeException()
+		            throw new System.NullReferenceException()
+		            throw new System.NullReferenceException()
+		            throw new System.NullReferenceException()
+		            throw new System.NullReferenceException()
+
+		            INSN_180318F4E:
+		            throw new System.IndexOutOfRangeException()
+		            throw new System.NullReferenceException()
+		            throw new System.NullReferenceException()
+		            throw new System.NullReferenceException()
+
+		            INSN_180318F75:
+
+		            INSN_180318F93:
+		            System.InvalidOperationException invalidOperationException = new System.InvalidOperationException()
+
+		            invalidOperationException..ctor("GetRandomValidSpawnPosition found no valid spawn positions.") //(String message)
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180318A2C) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp106.Scp106PocketItemManager
+	static System.Boolean TryGetRoofPosition(UnityEngine.Vector3 point, UnityEngine.Vector3& result)
+		ulong local2 = 0
+
+		UnityEngine.Vector3 up = UnityEngine.Vector3.up
+		ulong local6 = 0
+
+		UnityEngine.LayerMask mask = PlayerRoles.FirstPersonControl.FpcStateProcessor.Mask
+		System.Int32 local10 = mask.m_Mask
+
+		[instruction error - managed method being called is null]
+		System.Single single = point.z
+
+		System.Boolean boolean = UnityEngine.Physics.Raycast()
+
+		if (boolean == False)
+
+		    UnityEngine.Vector3 zero = UnityEngine.Vector3.zero
+		else
+		      = boolean.
+
+		    UnityEngine.Vector3 down = UnityEngine.Vector3.down
+
+		    UnityEngine.Vector3 vector3 = UnityEngine.Vector3.op_Multiply()
+
+		    UnityEngine.Vector3 vector32 = UnityEngine.Vector3.op_Addition()
+		    System.Single single2 = vector32.z
+		endif
+        
+		result.z = single2
+		return True
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1803197FE) is corrupt (Don't know what method is being called) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp106.Scp106PocketItemManager
+	static System.Boolean HasFlagFast(InventorySystem.Items.ItemBase ib, ItemTierFlags flag)
+		ItemTierFlags tierFlags = ib.TierFlags
+		System.Boolean local3 = tierFlags == flag
+		return local3
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld ItemTierFlags InventorySystem.Items.ItemBase::TierFlags
+	IL_0006: ldarg.1
+	IL_0007: ceq
+	IL_0009: ret
+	IL_000a: newobj System.Void System.NullReferenceException::.ctor()
+	IL_000f: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp106.Scp106PocketItemManager
+	static System.Void .cctor()
+		System.Int64 local0 = 64
+		UnityEngine.Vector3[] local1 = new UnityEngine.Vector3[64]
+		PlayerRoles.PlayableScps.Scp106.Scp106PocketItemManager.ValidPositionsNonAlloc = local1
+		System.Collections.Generic.HashSet`1<InventorySystem.Items.Pickups.ItemPickupBase> hashSet = new System.Collections.Generic.HashSet`1<InventorySystem.Items.Pickups.ItemPickupBase>()
+
+		hashSet..ctor()
+		 += 8
+		PlayerRoles.PlayableScps.Scp106.Scp106PocketItemManager.ValidPositionsNonAlloc = hashSet
+		System.Collections.Generic.Dictionary`2<InventorySystem.Items.Pickups.ItemPickupBase,PlayerRoles.PlayableScps.Scp106.Scp106PocketItemManager/PocketItem> dictionary = new System.Collections.Generic.Dictionary`2<InventorySystem.Items.Pickups.ItemPickupBase,PlayerRoles.PlayableScps.Scp106.Scp106PocketItemManager/PocketItem>()
+
+		dictionary..ctor()
+		 += 16
+		PlayerRoles.PlayableScps.Scp106.Scp106PocketItemManager.ValidPositionsNonAlloc = dictionary
+		ulong local4 = 0
+		PlayerRoles.PlayableScps.Scp106.Scp106PocketItemManager.HeightLimit = local4
+		. = constant19
+		System.Int32 3 = 3
+		PlayerRoles.PlayableScps.Scp106.Scp106PocketItemManager.TimerRage = local4
+		. = constant26
+		System.Single[] local7 = new System.Single[0]
+
+		local7 = new System.Single[] {}
+		 += 40
+		PlayerRoles.PlayableScps.Scp106.Scp106PocketItemManager.ValidPositionsNonAlloc = local7
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x18031A0FA) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+

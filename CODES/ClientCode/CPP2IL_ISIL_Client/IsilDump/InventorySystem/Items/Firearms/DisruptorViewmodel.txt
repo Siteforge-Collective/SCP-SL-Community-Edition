@@ -1,0 +1,519 @@
+Type: InventorySystem.Items.Firearms.DisruptorViewmodel
+
+Method: System.Void OnEquipped()
+
+Disassembly:
+	push rbx
+	sub rsp,20h
+	cmp byte ptr [1826EC058h],0
+	mov rbx,rcx
+	jne short 0000000180669B14h
+	mov ecx,[1822EBDF4h]
+	call 0000000180294190h
+	mov byte ptr [1826EC058h],1
+	xor edx,edx
+	mov rcx,rbx
+	call 000000018047A4F0h
+	mov r8,[rbx+18h]
+	test r8,r8
+	jne short 0000000180669B2Bh
+	xor edx,edx
+	jmp short 0000000180669B60h
+	mov rdx,[182736678h]
+	mov rax,[r8]
+	movzx ecx,byte ptr [rdx+128h]
+	cmp [rax+128h],cl
+	jb short 0000000180669B56h
+	mov rax,[rax+0C8h]
+	cmp [rax+rcx*8-8],rdx
+	jne short 0000000180669B56h
+	mov al,1
+	jmp short 0000000180669B58h
+	xor al,al
+	xor edx,edx
+	test al,al
+	cmovne rdx,r8
+	lea rcx,[rbx+120h]
+	mov [rcx],rdx
+	add rsp,20h
+	pop rbx
+	jmp near ptr 0000000180293EF0h
+
+ISIL:
+	001 ShiftStack -8
+	002 Move stack:0x0, rbx
+	003 ShiftStack -32
+	004 Compare [0x1826EC058], 0
+	005 Move rbx, rcx
+	006 JumpIfNotEqual {10}
+	007 Move rcx, [0x1822EBDF4]
+	008 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	009 Move [0x1826EC058], 1
+	010 Move rdx, 0
+	011 Move rcx, rbx
+	012 Call AnimatedFirearmViewmodel.OnEquipped, rcx, rdx
+	013 Move r8, [rbx+24]
+	014 Compare r8, 0
+	015 JumpIfNotEqual {18}
+	016 Move rdx, 0
+	017 Goto {34}
+	018 Move rdx, typeof(InventorySystem.Items.Firearms.ParticleDisruptor)
+	019 Move rax, [r8]
+	020 Move rcx, [rdx+296]
+	021 Compare [rax+296], rcx
+	022 JumpIfLess {28}
+	023 Move rax, [rax+200]
+	024 Compare [rax+0xFFFFFFF8+rcx*8], rdx
+	025 JumpIfNotEqual {28}
+	026 Move rax, 1
+	027 Goto {29}
+	028 Move rax, 0
+	029 Move rdx, 0
+	030 Compare rax, 0
+	031 JumpIfEqual {33}
+	032 Move rdx, r8
+	033 Nop 
+	034 LoadAddress rcx, [rbx+288]
+	035 Move [rcx], rdx
+	036 ShiftStack 32
+	037 Move rbx, stack:0x0
+	038 ShiftStack 8
+	039 Call 0x180293EF0, rcx, rdx, r8, r9
+	040 Return 
+
+Method: System.Void OnShot()
+
+Disassembly:
+	push rbx
+	sub rsp,20h
+	cmp byte ptr [1826EC059h],0
+	mov rbx,rcx
+	jne short 0000000180669BA4h
+	mov ecx,[1822EBE08h]
+	call 0000000180294190h
+	mov byte ptr [1826EC059h],1
+	cmp byte ptr [rbx+29h],0
+	je short 0000000180669C25h
+	xor edx,edx
+	mov rcx,rbx
+	call 000000018047A620h
+	mov rcx,[rbx+120h]
+	test rcx,rcx
+	je short 0000000180669C2Bh
+	mov rax,[rcx]
+	mov rdx,[rax+388h]
+	call qword ptr [rax+380h]
+	mov r8,rax
+	test rax,rax
+	je short 0000000180669C2Bh
+	mov rdx,[182736658h]
+	mov rax,[rax]
+	movzx ecx,byte ptr [rdx+128h]
+	cmp [rax+128h],cl
+	jb short 0000000180669C2Bh
+	mov r9d,ecx
+	mov rcx,[rax+0C8h]
+	cmp [rcx+r9*8-8],rdx
+	jne short 0000000180669C2Bh
+	sete al
+	xor ecx,ecx
+	test al,al
+	cmovne rcx,r8
+	xor r9d,r9d
+	xor r8d,r8d
+	movss xmm1,dword ptr [rcx+2Ch]
+	mov rcx,rbx
+	add rsp,20h
+	pop rbx
+	jmp near ptr 000000018047B400h
+	add rsp,20h
+	pop rbx
+	ret
+	call 0000000180294310h
+
+ISIL:
+	001 ShiftStack -8
+	002 Move stack:0x0, rbx
+	003 ShiftStack -32
+	004 Compare [0x1826EC059], 0
+	005 Move rbx, rcx
+	006 JumpIfNotEqual {10}
+	007 Move rcx, [0x1822EBE08]
+	008 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	009 Move [0x1826EC059], 1
+	010 Compare [rbx+41], 0
+	011 JumpIfEqual {48}
+	012 Move rdx, 0
+	013 Move rcx, rbx
+	014 Call AnimatedFirearmViewmodel.OnShot, rcx, rdx
+	015 Move rcx, [rbx+288]
+	016 Compare rcx, 0
+	017 JumpIfEqual {52}
+	018 Move rax, [rcx]
+	019 Move rdx, [rax+904]
+	020 Call 0, rcx, rdx, r8, r9, stack:0x0, stack:0x8, stack:0x10, stack:0x18, stack:0x20, stack:0x28, stack:0x30, stack:0x38, stack:0x40
+	021 Move r8, rax
+	022 Compare rax, 0
+	023 JumpIfEqual {52}
+	024 Move rdx, typeof(InventorySystem.Items.Firearms.Modules.DisruptorAction)
+	025 Move rax, [rax]
+	026 Move rcx, [rdx+296]
+	027 Compare [rax+296], rcx
+	028 JumpIfLess {52}
+	029 Move r9, rcx
+	030 Move rcx, [rax+200]
+	031 Compare [rcx+0xFFFFFFF8+r9*8], rdx
+	032 JumpIfNotEqual {52}
+	033 NotImplemented "sete al"
+	034 Move rcx, 0
+	035 Compare rax, 0
+	036 JumpIfEqual {38}
+	037 Move rcx, r8
+	038 Nop 
+	039 Move r9, 0
+	040 Move r8, 0
+	041 Move xmm1, [rcx+44]
+	042 Move rcx, rbx
+	043 ShiftStack 32
+	044 Move rbx, stack:0x0
+	045 ShiftStack 8
+	046 Call AnimatedViewmodelBase.AnimatorForceUpdate, rcx, rdx, r8
+	047 Return 
+	048 ShiftStack 32
+	049 Move rbx, stack:0x0
+	050 ShiftStack 8
+	051 Return 
+	052 Call 0x180294310, rcx, rdx, r8, r9
+
+Method: System.Void LateUpdate()
+
+Disassembly:
+	push rbx
+	sub rsp,90h
+	cmp byte ptr [1826EC05Ah],0
+	mov rbx,rcx
+	jne short 00000001806698B7h
+	mov ecx,[1822EBDD4h]
+	call 0000000180294190h
+	mov byte ptr [1826EC05Ah],1
+	mov [rsp+0A8h],rsi
+	xor edx,edx
+	mov [rsp+0B0h],rdi
+	mov rcx,rbx
+	movaps [rsp+80h],xmm6
+	call 0000000180479BA0h
+	mov rcx,[rbx+120h]
+	test rcx,rcx
+	je near ptr 0000000180669ADDh
+	mov rax,[rcx]
+	mov rdx,[rax+388h]
+	call qword ptr [rax+380h]
+	test rax,rax
+	je near ptr 0000000180669ADDh
+	mov rdx,[1827388F8h]
+	mov r8,rax
+	mov ecx,2
+	mov [rsp+0A0h],rbp
+	call 00000001800C7A30h
+	xor r9d,r9d
+	lea rcx,[rsp+48h]
+	xor r8d,r8d
+	mov rdx,rbx
+	mov rbp,rax
+	call 000000018047B8F0h
+	xor edx,edx
+	movups xmm0,[rax]
+	movups [rsp+20h],xmm0
+	movups xmm1,[rax+10h]
+	movups [rsp+30h],xmm1
+	mov ecx,[rax+20h]
+	mov [rsp+40h],ecx
+	lea rcx,[rsp+20h]
+	call 0000000181A69640h
+	mov rcx,[182737750h]
+	mov edi,eax
+	test byte ptr [rcx+12Fh],2
+	je short 000000018066997Fh
+	cmp dword ptr [rcx+0E0h],0
+	jne short 000000018066997Fh
+	call 000000018021A070h
+	mov rcx,[182737750h]
+	mov rcx,[rcx+0B8h]
+	cmp edi,[rcx+30h]
+	je short 0000000180669991h
+	xor edi,edi
+	mov esi,edi
+	jmp short 00000001806699AEh
+	xor edx,edx
+	lea rcx,[rsp+20h]
+	call 00000001810492F0h
+	movss xmm1,dword ptr [182188778h]
+	xor edi,edi
+	comiss xmm1,xmm0
+	seta sil
+	test sil,sil
+	jne short 00000001806699E0h
+	mov rcx,[182737928h]
+	shr rbp,8
+	test byte ptr [rcx+12Fh],2
+	je short 00000001806699D5h
+	cmp dword ptr [rcx+0E0h],0
+	jne short 00000001806699D5h
+	call 000000018021A070h
+	test bpl,4
+	jne short 00000001806699E0h
+	mov edi,1
+	movd xmm2,edi
+	xor r9d,r9d
+	cvtdq2ps xmm2,xmm2
+	mov rcx,rbx
+	lea edx,[r9+2]
+	call 000000018047B800h
+	mov rcx,[rbx+120h]
+	movss xmm6,dword ptr [rbx+128h]
+	mov rbp,[rsp+0A0h]
+	test rcx,rcx
+	je near ptr 0000000180669ADDh
+	mov rax,[rcx]
+	mov rdx,[rax+388h]
+	call qword ptr [rax+380h]
+	test rax,rax
+	je near ptr 0000000180669ADDh
+	mov rdx,[1827388F8h]
+	mov r8,rax
+	mov ecx,1
+	movaps [rsp+70h],xmm7
+	call 00000001800C7A30h
+	test al,al
+	mov edi,0FFFFFFF8h
+	mov ecx,11h
+	cmovne edi,ecx
+	xor ecx,ecx
+	call 0000000180FDAC30h
+	mov rcx,[182701818h]
+	movaps xmm7,xmm0
+	test byte ptr [rcx+12Fh],2
+	je short 0000000180669A7Fh
+	cmp dword ptr [rcx+0E0h],0
+	jne short 0000000180669A7Fh
+	call 000000018021A070h
+	movd xmm0,edi
+	xor edx,edx
+	cvtdq2ps xmm0,xmm0
+	mulss xmm0,xmm7
+	addss xmm0,xmm6
+	call 000000018115A320h
+	movaps xmm7,[rsp+70h]
+	movss dword ptr [rbx+128h],xmm0
+	test sil,sil
+	je short 0000000180669AAAh
+	xorps xmm0,xmm0
+	xor r9d,r9d
+	movaps xmm2,xmm0
+	mov rcx,rbx
+	lea edx,[r9+3]
+	call 000000018047B800h
+	movaps xmm6,[rsp+80h]
+	mov rdi,[rsp+0B0h]
+	mov rsi,[rsp+0A8h]
+	add rsp,90h
+	pop rbx
+	ret
+	call 0000000180294310h
+
+ISIL:
+	001 ShiftStack -8
+	002 Move stack:0x0, rbx
+	003 ShiftStack -144
+	004 Compare [0x1826EC05A], 0
+	005 Move rbx, rcx
+	006 JumpIfNotEqual {10}
+	007 Move rcx, [0x1822EBDD4]
+	008 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	009 Move [0x1826EC05A], 1
+	010 Move stack:0xA8, rsi
+	011 Move rdx, 0
+	012 Move stack:0xB0, rdi
+	013 Move rcx, rbx
+	014 Move stack:0x80, xmm6
+	015 Call AnimatedFirearmViewmodel.LateUpdate, rcx, rdx
+	016 Move rcx, [rbx+288]
+	017 Compare rcx, 0
+	018 JumpIfEqual {136}
+	019 Move rax, [rcx]
+	020 Move rdx, [rax+904]
+	021 Call 0, rcx, rdx, r8, r9, stack:0x0, stack:0x8, stack:0x10, stack:0x18, stack:0x20, stack:0x28, stack:0x30, stack:0x38, stack:0x40
+	022 Compare rax, 0
+	023 JumpIfEqual {136}
+	024 Move rdx, typeof(InventorySystem.Items.Firearms.Modules.IActionModule)
+	025 Move r8, rax
+	026 Move rcx, 2
+	027 Move stack:0xA0, rbp
+	028 Call 0x1800C7A30, rcx, rdx, r8, r9
+	029 Move r9, 0
+	030 LoadAddress rcx, stack:0x48
+	031 Move r8, 0
+	032 Move rdx, rbx
+	033 Move rbp, rax
+	034 Call AnimatedViewmodelBase.AnimatorStateInfo, rcx, rdx
+	035 Move rdx, 0
+	036 Move xmm0, [rax]
+	037 Move stack:0x20, xmm0
+	038 Move xmm1, [rax+16]
+	039 Move stack:0x30, xmm1
+	040 Move rcx, [rax+32]
+	041 Move stack:0x40, rcx
+	042 LoadAddress rcx, stack:0x20
+	043 Call 0x181A69640, rcx, rdx, r8, r9
+	044 Move rcx, typeof(InventorySystem.Items.Firearms.FirearmAnimatorHashes)
+	045 Move rdi, rax
+	046 Compare [rcx+303], 2
+	047 JumpIfEqual {52}
+	048 Compare [rcx+224], 0
+	049 JumpIfNotEqual {52}
+	050 Call "il2cpp_runtime_class_init_export", rcx, rdx, r8, r9
+	051 Move rcx, typeof(InventorySystem.Items.Firearms.FirearmAnimatorHashes)
+	052 Move rcx, [rcx+184]
+	053 Compare rdi, [rcx+48]
+	054 JumpIfEqual {58}
+	055 Move rdi, 0
+	056 Move rsi, rdi
+	057 Goto {65}
+	058 Move rdx, 0
+	059 LoadAddress rcx, stack:0x20
+	060 Call 0x1810492F0, rcx, rdx, r8, r9
+	061 Move xmm1, [0x182188778]
+	062 Move rdi, 0
+	063 Compare xmm1, xmm0
+	064 NotImplemented "seta sil"
+	065 Compare rsi, 0
+	066 JumpIfNotEqual {77}
+	067 Move rcx, typeof(InventorySystem.Items.Firearms.BasicMessages.FirearmBasicMessagesHandler)
+	068 ShiftRight rbp, 8
+	069 Compare [rcx+303], 2
+	070 JumpIfEqual {74}
+	071 Compare [rcx+224], 0
+	072 JumpIfNotEqual {74}
+	073 Call "il2cpp_runtime_class_init_export", rcx, rdx, r8, r9
+	074 Compare rbp, 4
+	075 JumpIfNotEqual {77}
+	076 Move rdi, 1
+	077 Move xmm2, rdi
+	078 Move r9, 0
+	079 Move xmm2, xmm2
+	080 Move rcx, rbx
+	081 LoadAddress rdx, [r9+2]
+	082 Call AnimatedViewmodelBase.AnimatorSetLayerWeight, rcx, xmm1, r8
+	083 Move rcx, [rbx+288]
+	084 Move xmm6, [rbx+296]
+	085 Move rbp, stack:0xA0
+	086 Compare rcx, 0
+	087 JumpIfEqual {136}
+	088 Move rax, [rcx]
+	089 Move rdx, [rax+904]
+	090 Call 0, rcx, rdx, r8, r9, stack:0x0, stack:0x8, stack:0x10, stack:0x18, stack:0x20, stack:0x28, stack:0x30, stack:0x38, stack:0x40
+	091 Compare rax, 0
+	092 JumpIfEqual {136}
+	093 Move rdx, typeof(InventorySystem.Items.Firearms.Modules.IActionModule)
+	094 Move r8, rax
+	095 Move rcx, 1
+	096 Move stack:0x70, xmm7
+	097 Call 0x1800C7A30, rcx, rdx, r8, r9
+	098 Compare rax, 0
+	099 Move rdi, 0xFFFFFFF8
+	100 Move rcx, 17
+	101 JumpIfEqual {103}
+	102 Move rdi, rcx
+	103 Nop 
+	104 Move rcx, 0
+	105 Call Time.get_deltaTime, rcx
+	106 Move rcx, typeof(UnityEngine.Mathf)
+	107 Move xmm7, xmm0
+	108 Compare [rcx+303], 2
+	109 JumpIfEqual {113}
+	110 Compare [rcx+224], 0
+	111 JumpIfNotEqual {113}
+	112 Call "il2cpp_runtime_class_init_export", rcx, rdx, r8, r9
+	113 Move xmm0, rdi
+	114 Move rdx, 0
+	115 Move xmm0, xmm0
+	116 Multiply xmm0, xmm0, xmm7
+	117 Add xmm0, xmm0, xmm6
+	118 Call Mathf.Clamp01, xmm0, rdx
+	119 Move xmm7, stack:0x70
+	120 Move [rbx+296], xmm0
+	121 Compare rsi, 0
+	122 JumpIfEqual {124}
+	123 Move xmm0, 0
+	124 Move r9, 0
+	125 Move xmm2, xmm0
+	126 Move rcx, rbx
+	127 LoadAddress rdx, [r9+3]
+	128 Call AnimatedViewmodelBase.AnimatorSetLayerWeight, rcx, xmm1, r8
+	129 Move xmm6, stack:0x80
+	130 Move rdi, stack:0xB0
+	131 Move rsi, stack:0xA8
+	132 ShiftStack 144
+	133 Move rbx, stack:0x0
+	134 ShiftStack 8
+	135 Return 
+	136 Call 0x180294310, rcx, rdx, r8, r9
+
+Method: System.Void SetLayerWeight(InventorySystem.Items.Firearms.DisruptorViewmodel+DisruptorLayer layer, System.Single val)
+
+Disassembly:
+	xor r9d,r9d
+	jmp near ptr 000000018047B800h
+
+ISIL:
+	001 Move r9, 0
+	002 Call AnimatedViewmodelBase.AnimatorSetLayerWeight, rcx, xmm1, r8
+	003 Return 
+
+Method: System.Void .ctor()
+
+Disassembly:
+	push rbx
+	sub rsp,20h
+	cmp byte ptr [1826EC05Bh],0
+	mov rbx,rcx
+	jne short 0000000180669C64h
+	mov ecx,[1822EBE28h]
+	call 0000000180294190h
+	mov byte ptr [1826EC05Bh],1
+	mov rcx,[1827377A0h]
+	test byte ptr [rcx+12Fh],2
+	je short 0000000180669C82h
+	cmp dword ptr [rcx+0E0h],0
+	jne short 0000000180669C82h
+	call 000000018021A070h
+	xor edx,edx
+	mov rcx,rbx
+	add rsp,20h
+	pop rbx
+	jmp near ptr 000000018047B210h
+
+ISIL:
+	001 ShiftStack -8
+	002 Move stack:0x0, rbx
+	003 ShiftStack -32
+	004 Compare [0x1826EC05B], 0
+	005 Move rbx, rcx
+	006 JumpIfNotEqual {10}
+	007 Move rcx, [0x1822EBE28]
+	008 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	009 Move [0x1826EC05B], 1
+	010 Move rcx, typeof(InventorySystem.Items.Firearms.AnimatedFirearmViewmodel)
+	011 Compare [rcx+303], 2
+	012 JumpIfEqual {16}
+	013 Compare [rcx+224], 0
+	014 JumpIfNotEqual {16}
+	015 Call "il2cpp_runtime_class_init_export", rcx, rdx, r8, r9
+	016 Move rdx, 0
+	017 Move rcx, rbx
+	018 ShiftStack 32
+	019 Move rbx, stack:0x0
+	020 ShiftStack 8
+	021 Call AnimatedFirearmViewmodel..ctor, rcx, rdx
+	022 Return 
+

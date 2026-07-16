@@ -1,0 +1,105 @@
+Type: Utils.CommandInterpolation.CommandInputException
+
+Method: System.String get_ArgumentName()
+
+Disassembly:
+	mov rax,[rcx+88h]
+	ret
+
+ISIL:
+	001 Move rax, [rcx+136]
+	002 Return rax
+
+Method: System.Object get_ArgumentValue()
+
+Disassembly:
+	mov rax,[rcx+90h]
+	ret
+
+ISIL:
+	001 Move rax, [rcx+144]
+	002 Return rax
+
+Method: System.Void .ctor(System.String argName, System.Object argValue, System.String message)
+
+Disassembly:
+	mov [rsp+8],rbx
+	mov [rsp+10h],rbp
+	mov [rsp+18h],rsi
+	push rdi
+	sub rsp,20h
+	cmp byte ptr [1826EEF39h],0
+	mov rbp,r9
+	mov rdi,r8
+	mov rsi,rdx
+	mov rbx,rcx
+	jne short 0000000180A4987Bh
+	mov ecx,[1822C446Ch]
+	call 0000000180294190h
+	mov byte ptr [1826EEF39h],1
+	mov rcx,[182722C10h]
+	test byte ptr [rcx+12Fh],2
+	je short 0000000180A49899h
+	cmp dword ptr [rcx+0E0h],0
+	jne short 0000000180A49899h
+	call 000000018021A070h
+	xor r8d,r8d
+	mov rdx,rbp
+	mov rcx,rbx
+	call 000000018076C5A0h
+	lea rcx,[rbx+88h]
+	mov rdx,rsi
+	mov [rcx],rsi
+	call 0000000180293EF0h
+	lea rcx,[rbx+90h]
+	mov rdx,rdi
+	mov [rcx],rdi
+	mov rbx,[rsp+30h]
+	mov rbp,[rsp+38h]
+	mov rsi,[rsp+40h]
+	add rsp,20h
+	pop rdi
+	jmp near ptr 0000000180293EF0h
+
+ISIL:
+	001 Move stack:0x8, rbx
+	002 Move stack:0x10, rbp
+	003 Move stack:0x18, rsi
+	004 ShiftStack -8
+	005 Move stack:0x0, rdi
+	006 ShiftStack -32
+	007 Compare [0x1826EEF39], 0
+	008 Move rbp, r9
+	009 Move rdi, r8
+	010 Move rsi, rdx
+	011 Move rbx, rcx
+	012 JumpIfNotEqual {16}
+	013 Move rcx, [0x1822C446C]
+	014 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	015 Move [0x1826EEF39], 1
+	016 Move rcx, typeof(System.Exception)
+	017 Compare [rcx+303], 2
+	018 JumpIfEqual {22}
+	019 Compare [rcx+224], 0
+	020 JumpIfNotEqual {22}
+	021 Call "il2cpp_runtime_class_init_export", rcx, rdx, r8, r9
+	022 Move r8, 0
+	023 Move rdx, rbp
+	024 Move rcx, rbx
+	025 Call Exception..ctor, rcx, rdx
+	026 LoadAddress rcx, [rbx+136]
+	027 Move rdx, rsi
+	028 Move [rcx], rsi
+	029 Call 0x180293EF0, rcx, rdx, r8, r9
+	030 LoadAddress rcx, [rbx+144]
+	031 Move rdx, rdi
+	032 Move [rcx], rdi
+	033 Move rbx, stack:0x30
+	034 Move rbp, stack:0x38
+	035 Move rsi, stack:0x40
+	036 ShiftStack 32
+	037 Move rdi, stack:0x0
+	038 ShiftStack 8
+	039 Call 0x180293EF0, rcx, rdx, r8, r9
+	040 Return 
+

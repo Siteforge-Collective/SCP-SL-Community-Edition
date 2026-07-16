@@ -1,0 +1,222 @@
+Type: CentralServerKeyCache
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CentralServerKeyCache
+	static System.Void .cctor()
+
+		System.String string = NorthwoodLib.StringUtils.Base64Decode("LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0KTUlHYk1CQUdCeXFHU000OUFnRUdCU3VCQkFBakE0R0dBQVFBYkwwWXZyaFZCMm1lcUNxNVh6akFKRDhJaTBoYgpCSGRJUTU4N041ODNjUDh0d2pEaGNJVGpaaEJISlBKRHVBODVYZHBnRzA0SHdUMFNEM1djQXZvUVhCVUFVc0cxCkxTOVRSNHVySHdmZ2Zyb3E0dEgySEFRRTZaeEZaZUlGU2dsTE84bnh5U2ltNHlLQmo5NkhMRzYyNGx6S3Z6b0QKSWQrR093amNkM1hza09xOUR3Yz0KLS0tLS1FTkQgUFVCTElDIEtFWS0tLS0t") //(String base64EncodedData)
+
+		Org.BouncyCastle.Crypto.AsymmetricKeyParameter asymmetricKeyParameter = Cryptography.ECDSA.PublicKeyFromString(string) //(String key)
+		. = asymmetricKeyParameter
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.RegToStaticFieldAction at (0x18045EA36) is corrupt (No further info) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CentralServerKeyCache
+	static System.String ReadCache()
+		ulong local1 = 0
+		System.Int64 local2 = 1
+
+		System.String appFolder = FileManager.GetAppFolder(local2, local1, "") //(Boolean addSeparator, Boolean serverConfig, String centralConfig)
+
+		System.String string = System.String.Concat(appFolder, "internal/KeyCache") //(String str0, String str1)
+
+		System.String string2 = System.String.Concat(appFolder, "internal/KeySignatureCache") //(String str0, String str1)
+
+		System.Boolean boolean = System.IO.File.Exists(string) //(String path)
+
+		if (boolean != False)
+
+		    System.Boolean boolean2 = System.IO.File.Exists(string2) //(String path)
+
+		    if (boolean2 != False)
+
+		        System.String[] stringArray = FileManager.ReadAllLines(string) //(String path)
+
+		        System.String[] stringArray2 = FileManager.ReadAllLines(string2) //(String path)
+
+		        if (stringArray2.Length != 0)
+		            System.Func`3<System.String,System.String,System.String> <>9__5_0 = CentralServerKeyCache/<>c.<>9__5_0
+
+		            if (<>9__5_0 == 0)
+		                CentralServerKeyCache/<>c <>c = CentralServerKeyCache/<>c.<>9
+		                System.Func`3<System.String,System.String,System.String> func = new System.Func`3<System.String,System.String,System.String>()
+
+		                func..ctor(<>c, {'<ReadCache>b__5_0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		                 += 8
+		                CentralServerKeyCache/<>c.<>9 = func
+		            endif
+                    
+
+		            System.String string3 = System.Linq.Enumerable.Aggregate<System.String, System.String>(stringArray, "", <>9__5_0) //(IEnumerable`1 source, TAccumulate seed, Func`3 func)
+
+		            System.String string4 = string3.Trim()
+		            System.String local22 = stringArray2[0]
+		              = .
+
+		            System.Boolean boolean3 = Cryptography.ECDSA.Verify()
+
+		            if (boolean3 != False)
+                        goto INSN_18045E41C
+                    endif
+		            ulong local25 = 0
+
+		            UnityEngine.Color red = UnityEngine.Color.red
+		            ulong local27 = 0
+		            System.Int32 1 = 1
+		            ulong local28 = 0
+
+		            GameCore.Console.AddLog("Invalid signature of Central Server Key in cache!", local25, local28, 1) //(String text, Color c, Boolean nospace, ConsoleLogType type)
+
+		            INSN_18045E41C:
+		              = .
+
+		            System.String string5 = System.String.Concat()
+		            ulong local31 = 0
+
+		            UnityEngine.Color magenta = UnityEngine.Color.magenta
+		            ulong local33 = 0
+		            System.Int32 1 = 1
+		            ulong local34 = 0
+
+		            GameCore.Console.AddLog(string5, local31, local34, 1) //(String text, Color c, Boolean nospace, ConsoleLogType type)
+
+		            System.Int32 int32 = string5.CompareTo()
+
+		            System.String string6 = System.String.Concat()
+		            System.Int32 7 = 7
+
+		            ServerConsole.AddLog(string6, 7) //(String q, ConsoleColor color)
+		        else
+		            System.Int32 7 = 7
+
+		            ServerConsole.AddLog("Can't load central server public key from cache - empty signature.", 7) //(String q, ConsoleColor color)
+		        else
+		            System.Int32 7 = 7
+
+		            ServerConsole.AddLog("Central server public key signature not found in cache.", 7) //(String q, ConsoleColor color)
+		        else
+		            System.Int32 7 = 7
+
+		            ServerConsole.AddLog("Central server public key not found in cache.", 7) //(String q, ConsoleColor color)
+		              = boolean.
+
+		            System.String string7 = System.String.Concat()
+		            System.Int32 7 = 7
+
+		            ServerConsole.AddLog(string7, 7) //(String q, ConsoleColor color)
+		            ulong local49 = 0
+		        endif
+                
+		        return local49
+		        throw new System.NullReferenceException()
+		        throw new System.IndexOutOfRangeException()
+		        throw new System.NullReferenceException()
+		        throw new System.NullReferenceException()
+		        throw new System.NullReferenceException()
+		        throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x18045E33B) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CentralServerKeyCache
+	static System.Void SaveCache(System.String key, System.String signature)
+		  = .
+
+		System.Boolean boolean = Cryptography.ECDSA.Verify()
+
+		if (boolean != False)
+		    ulong local5 = 0
+
+		    System.String appFolder = FileManager.GetAppFolder(True, local5, "") //(Boolean addSeparator, Boolean serverConfig, String centralConfig)
+
+		    System.String string = System.String.Concat(appFolder, "internal/KeyCache") //(String str0, String str1)
+		    ulong local10 = 0
+
+		    System.String appFolder2 = FileManager.GetAppFolder(True, local10, "") //(Boolean addSeparator, Boolean serverConfig, String centralConfig)
+
+		    System.String string2 = System.String.Concat(appFolder2, "internal/") //(String str0, String str1)
+
+		    System.Boolean boolean2 = System.IO.Directory.Exists(string2) //(String path)
+
+		    if (boolean2 == False)
+		        ulong local17 = 0
+
+		        System.String appFolder3 = FileManager.GetAppFolder(True, local17, "") //(Boolean addSeparator, Boolean serverConfig, String centralConfig)
+
+		        System.String string3 = System.String.Concat(appFolder3, "internal/") //(String str0, String str1)
+
+		        System.IO.DirectoryInfo directoryInfo = System.IO.Directory.CreateDirectory(string3) //(String path)
+		    endif
+            
+
+		    System.Boolean boolean3 = System.IO.File.Exists(string) //(String path)
+
+		    if (boolean3 == False)
+                goto INSN_18045E86E
+            endif
+		    ulong local25 = 0
+
+		    System.String string4 = CentralServerKeyCache.ReadCache()
+
+		    System.Boolean boolean4 = System.String.Equals(key, string4) //(String a, String b)
+
+		    if (boolean4 != False)
+                goto INSN_18045E837
+            endif
+
+		    System.IO.File.Delete(string) //(String path)
+
+		    INSN_18045E837:
+		    System.Int32 7 = 7
+
+		    ServerConsole.AddLog("Key cache is up to date.", 7) //(String q, ConsoleColor color)
+
+		    INSN_18045E86E:
+		    System.Int32 7 = 7
+
+		    ServerConsole.AddLog("Updating key cache...", 7) //(String q, ConsoleColor color)
+
+		    FileManager.WriteStringToFile(key, string) //(String data, String path)
+
+		    System.String string5 = System.String.Concat(appFolder, "internal/KeySignatureCache") //(String str0, String str1)
+
+		    FileManager.WriteStringToFile(signature, string5) //(String data, String path)
+		    System.Int32 7 = 7
+
+		    ServerConsole.AddLog("Key cache updated.", 7) //(String q, ConsoleColor color)
+		else
+		    ulong local37 = 0
+
+		    UnityEngine.Color red = UnityEngine.Color.red
+		    ulong local40 = 0
+
+		    GameCore.Console.AddLog("Invalid signature of Central Server Key!", local37, local40, 1) //(String text, Color c, Boolean nospace, ConsoleLogType type)
+		      = red.
+
+		    System.String string6 = System.String.Concat()
+		    System.Int32 7 = 7
+
+		    ServerConsole.AddLog(string6, 7) //(String q, ConsoleColor color)
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.StaticFieldToRegAction at (0x18045E707) is corrupt (Couldn't identify the field being read (or its type).) and cannot be created as IL. Aborting here.
+
+

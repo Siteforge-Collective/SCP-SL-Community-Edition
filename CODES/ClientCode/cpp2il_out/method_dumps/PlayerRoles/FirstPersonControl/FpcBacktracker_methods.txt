@@ -1,0 +1,239 @@
+Type: FpcBacktracker
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.FirstPersonControl.FpcBacktracker
+	System.Single get_MoveAmount()
+		System.Single single = this._newPos.z
+		System.Single single2 = this._prevPos.z
+
+		System.Single single3 = UnityEngine.Vector3.Distance()
+		return single3
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18037ACB1) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.FirstPersonControl.FpcBacktracker
+	System.Void .ctor(ReferenceHub attacker, UnityEngine.Vector3 claimedPos, UnityEngine.Quaternion claimedRot, System.Single backtrack, System.Single forecast)
+		System.Single single = claimedPos.z
+
+		this..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.2
+	IL_0001: ldfld System.Single UnityEngine.Vector3::z
+	IL_0006: stloc.0
+	IL_0007: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.FirstPersonControl.FpcBacktracker
+	System.Void .ctor(ReferenceHub target, UnityEngine.Vector3 claimedPos, System.Single backtrack)
+		UnityEngine.Transform playerCameraReference = target.PlayerCameraReference
+
+		UnityEngine.Quaternion rotation = .rotation
+		System.Single single = claimedPos.z
+		ulong local12 = 0
+
+		this..ctor()
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18037ABAD) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.FirstPersonControl.FpcBacktracker
+	System.Void .ctor(ReferenceHub hub, UnityEngine.Vector3 claimedPos, UnityEngine.Quaternion claimedRot, System.Single backtrack, System.Single forecast, System.Boolean ignoreTp, System.Boolean restoreUponDeath)
+
+		base..ctor()
+		PlayerRoles.PlayerRoleManager roleManager = hub.roleManager
+
+		PlayerRoles.PlayerRoleBase currentRole = roleManager.CurrentRole
+
+		if (currentRole == 0)
+		    this._moved = currentRole
+		else
+		    this._movedHub = hub
+		    this._moved = True
+		      = currentRole.
+		    this._prevPos.z = currentRole
+		    UnityEngine.Transform playerCameraReference = hub.PlayerCameraReference
+
+		    UnityEngine.Quaternion rotation = .rotation
+		    ulong local18 = 0
+		    this._prevRot = constant13
+		      = currentRole.
+		    ulong local19 = 0
+
+		    UnityEngine.Vector3 zero = UnityEngine.Vector3.zero
+		    System.Single single = zero.z
+		      = currentRole.
+
+		    UnityEngine.Bounds bounds = single.GenerateBounds()
+
+		    if ( > local18)
+		          = currentRole.
+
+		        System.String string = single.ToString()
+		          = string.
+
+		        UnityEngine.Vector3 vector3 = UnityEngine.Vector3.op_Multiply()
+
+		        UnityEngine.Vector3 vector32 = UnityEngine.Vector3.op_Addition()
+		    endif
+            
+		    System.Single single2 = claimedPos.z
+		      = single2.
+		    this._newPos.z = single
+		      = currentRole.
+		      = single2.
+
+		    single.position = local19
+		    currentRole. = 
+		    UnityEngine.Transform playerCameraReference2 = hub.PlayerCameraReference
+
+		    playerCameraReference2.rotation = local19
+		endif
+        
+		this._restoreUponDeath = False
+		return
+		System.Action`2<ReferenceHub,PlayerStatsSystem.DamageHandlerBase> action = new System.Action`2<ReferenceHub,PlayerStatsSystem.DamageHandlerBase>()
+
+		action..ctor(this, {'OnDied' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		PlayerStatsSystem.PlayerStats.add_OnAnyPlayerDied(action) //(Action`2 value)
+		this._restoreUponDeath = True
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.FieldToLocalAction at (0x18037A7F8) is corrupt (No further info) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.FirstPersonControl.FpcBacktracker
+	System.Void Cancel()
+		this._moved = True
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldc.i4.1
+	IL_0002: stfld System.Boolean PlayerRoles.FirstPersonControl.FpcBacktracker::_moved
+	IL_0007: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.FirstPersonControl.FpcBacktracker
+	System.Void Dispose()
+
+		this.RestorePosition()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void PlayerRoles.FirstPersonControl.FpcBacktracker::RestorePosition()
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.FirstPersonControl.FpcBacktracker
+	System.Void RestorePosition()
+
+		if (this._moved != False)
+		    ReferenceHub _movedHub = this._movedHub
+		    PlayerRoles.PlayerRoleManager roleManager = _movedHub.roleManager
+
+		    PlayerRoles.PlayerRoleBase currentRole = roleManager.CurrentRole
+
+		    if (currentRole != 0)
+		        ulong local5 = 0
+		          = currentRole.
+		        System.Single single = this._prevPos.z
+
+		        local5.set_position()
+		        currentRole. = single
+		        ReferenceHub _movedHub2 = this._movedHub
+		        UnityEngine.Transform playerCameraReference = _movedHub2.PlayerCameraReference
+		        UnityEngine.Quaternion _prevRot = this._prevRot
+
+		        playerCameraReference.rotation = _prevRot
+		    endif
+            
+		    this._moved = False
+		endif
+        
+
+		if (this._restoreUponDeath == False)
+            goto INSN_18037A6F5
+        endif
+		System.Action`2<ReferenceHub,PlayerStatsSystem.DamageHandlerBase> action = new System.Action`2<ReferenceHub,PlayerStatsSystem.DamageHandlerBase>()
+
+		action..ctor(this, {'OnDied' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		PlayerStatsSystem.PlayerStats.remove_OnAnyPlayerDied(action) //(Action`2 value)
+		this._restoreUponDeath = False
+
+		INSN_18037A6F5:
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.FieldToLocalAction at (0x18037A61E) is corrupt (No further info) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.FirstPersonControl.FpcBacktracker
+	System.Void OnDied(ReferenceHub ply, PlayerStatsSystem.DamageHandlerBase dhb)
+		ReferenceHub _movedHub = this._movedHub
+
+		System.Boolean boolean = ReferenceHub.op_Inequality(ply, _movedHub) //(ReferenceHub left, ReferenceHub right)
+
+		if (boolean == False)
+
+		    this.RestorePosition()
+		endif
+        
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld ReferenceHub PlayerRoles.FirstPersonControl.FpcBacktracker::_movedHub
+	IL_0006: stloc.0
+	IL_0007: ldarg.1
+	IL_0008: ldloc.0
+	IL_0009: call System.Boolean ReferenceHub::op_Inequality(ReferenceHub,ReferenceHub)
+	IL_000e: ldc.i4.0
+	IL_000f: bne.un.s IL_0017
+	IL_0011: ldarg.0
+	IL_0012: call System.Void PlayerRoles.FirstPersonControl.FpcBacktracker::RestorePosition()
+	IL_0017: ret
+	
+

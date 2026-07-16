@@ -1,0 +1,342 @@
+Type: Scp914Upgrader
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Scp914.Scp914Upgrader
+	static System.Void Upgrade(UnityEngine.Collider[] intake, UnityEngine.Vector3 moveVector, Scp914.Scp914Mode mode, Scp914.Scp914KnobSetting setting)
+		System.Int32 local4 = mode.value__
+		ulong local5 = 0
+		NorthwoodLib.Pools.HashSetPool`1<T> shared = NorthwoodLib.Pools.HashSetPool`1.Shared
+
+		System.Collections.Generic.HashSet`1<T> hashSet = shared.Rent()
+
+		if (shared == 0)
+		else
+		    System.Boolean local8 = local4 == 6
+		endif
+        
+		ulong local9 = 0
+		System.Int32 length = intake.Length
+
+		if (local9 >= length)
+            goto INSN_181AB7134
+        endif
+		UnityEngine.Collider collider = intake[local5]
+
+		UnityEngine.Transform transform = collider.transform
+
+		UnityEngine.Transform root = transform.root
+
+		UnityEngine.GameObject gameObject = root.gameObject
+
+		System.Boolean boolean = hashSet.Add()
+
+		if (boolean == False)
+            goto INSN_181AB7127
+        endif
+
+		System.Boolean boolean2 = ReferenceHub.TryGetHub(gameObject, local5) //(GameObject player, ReferenceHub& hub)
+
+		if (boolean2 != False)
+            goto INSN_181AB70C4
+        endif
+
+		System.Boolean boolean3 = gameObject.TryGetComponent<InventorySystem.Items.Pickups.ItemPickupBase>(local5) //(T& component)
+
+		if (boolean3 == False)
+            goto INSN_181AB7127
+        endif
+		System.Int32 72 = 72
+		System.Boolean local24 = boolean3 == False
+
+		if ( == local24)
+            goto INSN_181AB7127
+        endif
+		  = local5.
+
+		System.Boolean boolean4 = Scp914.Scp914Upgrader.TryGetProcessor()
+
+		if (boolean4 == False)
+            goto INSN_181AB7127
+        endif
+
+		UnityEngine.Transform transform2 = local5.transform
+
+		UnityEngine.Vector3 position = .position
+		System.Single single = position.z
+		System.Single single2 = moveVector.z
+
+		UnityEngine.Vector3 vector3 = UnityEngine.Vector3.op_Addition()
+		System.Single single3 = vector3.z
+		System.Action`2<InventorySystem.Items.Pickups.ItemPickupBase,Scp914.Scp914KnobSetting> onPickupUpgraded = Scp914.Scp914Upgrader.OnPickupUpgraded
+
+		if (onPickupUpgraded == 0)
+            goto INSN_181AB706E
+        endif
+
+		onPickupUpgraded.Invoke(local5, setting) //(T1 arg1, T2 arg2)
+
+		INSN_181AB706E:
+
+		System.Int32 int32 = local22.CompareTo(setting) //(Object value)
+		local5 += 1
+
+		INSN_181AB70C4:
+		System.Single single4 = moveVector.z
+
+		Scp914.Scp914Upgrader.ProcessPlayer()
+
+		INSN_181AB7127:
+		local5 += 1
+
+		INSN_181AB7134:
+		NorthwoodLib.Pools.HashSetPool`1<T> shared2 = NorthwoodLib.Pools.HashSetPool`1.Shared
+
+		shared2.Return(hashSet) //(HashSet`1 set)
+		return
+		System.InvalidOperationException invalidOperationException = new System.InvalidOperationException()
+
+		invalidOperationException..ctor("Scp914Upgrader.Upgrade is a serverside-only script.") //(String message)
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181AB6E7A) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Scp914.Scp914Upgrader
+	static System.Void ProcessPlayer(ReferenceHub ply, System.Boolean upgradeInventory, System.Boolean heldOnly, UnityEngine.Vector3 moveVector, Scp914.Scp914KnobSetting setting)
+
+		UnityEngine.Transform transform = ply.transform
+
+		UnityEngine.Vector3 position = ply.position
+		System.Single single = position.z
+		Scp914.Scp914Controller Singleton = Scp914.Scp914Controller.<Singleton>k__BackingField
+		UnityEngine.Transform IntakeChamber = Singleton.<IntakeChamber>k__BackingField
+
+		UnityEngine.Vector3 position2 = Singleton.position
+		System.Int32 solidObjectMask = Scp914.Scp914Upgrader.SolidObjectMask
+
+		System.Boolean boolean = UnityEngine.Physics.Linecast()
+
+		if (boolean == False)
+
+		    UnityEngine.Transform transform2 = ply.transform
+		    ulong local22 = 0
+
+		    UnityEngine.Vector3 position3 = ply.position
+
+		    UnityEngine.Vector3 vector3 = UnityEngine.Vector3.op_Addition()
+		    ulong local29 = 0
+
+		    UnityEngine.Vector3 zero = UnityEngine.Vector3.zero
+
+		    System.Boolean boolean2 = PlayerRoles.FirstPersonControl.FpcExtensionMethods.TryOverridePosition(ply, local29, local22) //(ReferenceHub hub, Vector3 position, Vector3 deltaRotation)
+
+		    if (upgradeInventory != False)
+		        NorthwoodLib.Pools.HashSetPool`1<T> shared = NorthwoodLib.Pools.HashSetPool`1.Shared
+
+		        System.Collections.Generic.HashSet`1<T> hashSet = shared.Rent()
+		        InventorySystem.Inventory inventory = ply.inventory
+		        InventorySystem.InventoryInfo userInventory = inventory.UserInventory
+		        System.Collections.Generic.Dictionary`2<System.UInt16,InventorySystem.Items.ItemBase> items = userInventory.Items
+
+		        System.Collections.Generic.Dictionary`2/Enumerator<TKey,TValue> enumerator = shared.GetEnumerator()
+
+		        if (enumerator != 0)
+
+		            if (heldOnly != False)
+		                InventorySystem.Inventory inventory2 = ply.inventory
+
+		                if (MoveNext == )
+		                else
+		                endif
+                        
+
+		                System.Boolean boolean3 = hashSet.Add()
+		            endif
+                    
+		            ulong local42 = 0
+
+		            shared.Dispose()
+
+		            shared.Dispose()
+
+		            if (shared != 0)
+                        goto INSN_181AB6BBC
+                    endif
+
+		            if (local42 == -1)
+                        goto INSN_181AB696C
+                    endif
+
+		            INSN_181AB696C:
+
+		            System.Collections.Generic.HashSet`1/Enumerator<T> enumerator2 = shared.GetEnumerator()
+
+		            if (enumerator2 == 0)
+                        goto INSN_181AB6AC4
+                    endif
+		            InventorySystem.Inventory inventory3 = ply.inventory
+		            InventorySystem.InventoryInfo userInventory2 = inventory3.UserInventory
+		            System.Collections.Generic.Dictionary`2<System.UInt16,InventorySystem.Items.ItemBase> items2 = userInventory2.Items
+
+		            System.Boolean boolean4 = items2.TryGetValue()
+
+		            if (boolean4 == False)
+                        goto INSN_181AB69B0
+                    endif
+		              = boolean4.
+
+		            System.Boolean boolean5 = Scp914.Scp914Upgrader.TryGetProcessor()
+
+		            if (boolean5 == False)
+                        goto INSN_181AB69B0
+                    endif
+		            System.Action`2<InventorySystem.Items.ItemBase,Scp914.Scp914KnobSetting> onInventoryItemUpgraded = Scp914.Scp914Upgrader.OnInventoryItemUpgraded
+
+		            if (onInventoryItemUpgraded == 0)
+                        goto INSN_181AB6A9C
+                    endif
+
+		            onInventoryItemUpgraded.Invoke()
+
+		            INSN_181AB6A9C:
+
+		            INSN_181AB6AC4:
+		            . = 305
+
+		            [instruction error - managed method being called is null]
+
+		            [instruction error - managed method being called is null]
+
+		            if (True != 0)
+                        goto INSN_181AB6BDE
+                    endif
+		            NorthwoodLib.Pools.HashSetPool`1<T> shared2 = NorthwoodLib.Pools.HashSetPool`1.Shared
+
+		            shared2.Return(hashSet) //(HashSet`1 set)
+		            InventorySystem.Inventory inventory4 = ply.inventory
+
+		            System.Boolean boolean6 = InventorySystem.Items.Armor.BodyArmorUtils.TryGetBodyArmor()
+		            ulong local55 = 0
+
+		            InventorySystem.Items.Armor.BodyArmorUtils.RemoveEverythingExceedingLimits(inventory4, local55, True, True) //(Inventory inv, BodyArmor armor, Boolean removeItems, Boolean removeAmmo)
+		        endif
+                
+		        return
+		        throw new System.NullReferenceException()
+		        throw new System.NullReferenceException()
+		        throw new System.NullReferenceException()
+
+		        INSN_181AB6BBC:
+		        throw new System.NullReferenceException()
+		        throw new System.NullReferenceException()
+		        throw new System.NullReferenceException()
+		        throw new System.NullReferenceException()
+		        throw new System.NullReferenceException()
+
+		        INSN_181AB6BDE:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181AB6606) is corrupt (Mismatched instance parameter. Expecting an instance of UnityEngine.Transform, actually {'ply' (function parameter, type ReferenceHub)}) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Scp914.Scp914Upgrader
+	static System.Void ProcessPickup(InventorySystem.Items.Pickups.ItemPickupBase pickup, System.Boolean upgradeDropped, UnityEngine.Vector3 moveVector, Scp914.Scp914KnobSetting setting)
+		ulong local4 = 0
+
+		if (upgradeDropped != False)
+		    InventorySystem.Items.Pickups.PickupSyncInfo info = pickup.Info
+		    ItemType local8 = info.ItemId
+
+		    System.Boolean boolean = Scp914.Scp914Upgrader.TryGetProcessor(local8, local4) //(ItemType itemType, Scp914ItemProcessor& processor)
+
+		    if (boolean != False)
+
+		        UnityEngine.Transform transform = pickup.transform
+
+		        UnityEngine.Vector3 position = .position
+		        System.Single single = position.z
+		        System.Single single2 = moveVector.z
+
+		        UnityEngine.Vector3 vector3 = UnityEngine.Vector3.op_Addition()
+		        System.Single single3 = vector3.z
+		        System.Action`2<InventorySystem.Items.Pickups.ItemPickupBase,Scp914.Scp914KnobSetting> onPickupUpgraded = Scp914.Scp914Upgrader.OnPickupUpgraded
+
+		        if (onPickupUpgraded != 0)
+
+		            onPickupUpgraded.Invoke(pickup, setting) //(T1 arg1, T2 arg2)
+		        endif
+                
+
+		        System.Int32 int32 = local4.CompareTo(setting) //(Object value)
+		    endif
+            
+		    return
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181AB6429) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Scp914.Scp914Upgrader
+	static System.Boolean TryGetProcessor(ItemType itemType, Scp914.Processors.Scp914ItemProcessor& processor)
+		System.Int32 local2 = itemType.value__
+		ulong local4 = 0
+
+		System.Collections.Generic.Dictionary`2<ItemType,InventorySystem.Items.ItemBase> availableItems = InventorySystem.InventoryItemLoader.AvailableItems
+
+		System.Boolean boolean = availableItems.TryGetValue()
+
+		if (boolean != False)
+
+		    System.Boolean boolean2 = local3.TryGetComponent<Scp914.Processors.Scp914ItemProcessor>()
+
+		    if (boolean2 != False)
+		        return True
+		    endif
+            
+		    ulong local9 = 0
+		    return local9
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.Implicit4ByteFieldReadAction at (0x181AB6C04) is corrupt (Local local2 has been stripped out for being unused, so doesn't have a variable.) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Scp914.Scp914Upgrader
+	static System.Void .cctor()
+		  = .
+		System.Action`2<InventorySystem.Items.Pickups.ItemPickupBase,Scp914.Scp914KnobSetting> action = new System.Action`2<InventorySystem.Items.Pickups.ItemPickupBase,Scp914.Scp914KnobSetting>()
+
+		action..ctor(null, {'<.cctor>b__7_0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		 += 8
+		Scp914.Scp914Upgrader.SolidObjectMask = action
+		  = .
+		System.Action`2<InventorySystem.Items.ItemBase,Scp914.Scp914KnobSetting> action2 = new System.Action`2<InventorySystem.Items.ItemBase,Scp914.Scp914KnobSetting>()
+
+		action2..ctor(action, {'<.cctor>b__7_1' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		 += 16
+		Scp914.Scp914Upgrader.SolidObjectMask = action2
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.StaticFieldToRegAction at (0x181AB724B) is corrupt (Couldn't identify the field being read (or its type).) and cannot be created as IL. Aborting here.
+
+

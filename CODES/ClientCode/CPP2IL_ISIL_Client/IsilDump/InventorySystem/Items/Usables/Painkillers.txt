@@ -1,0 +1,62 @@
+Type: InventorySystem.Items.Usables.Painkillers
+
+Method: System.Void OnEffectsActivated()
+
+Disassembly:
+	push rbx
+	sub rsp,30h
+	movss xmm3,dword ptr [181EA33DCh]
+	mov rbx,rcx
+	movss xmm2,dword ptr [18218809Ch]
+	mov rdx,[rcx+0B8h]
+	mov qword ptr [rsp+20h],0
+	call 0000000180440680h
+	mov rcx,[rbx+60h]
+	test rcx,rcx
+	je short 000000018042DB03h
+	mov rcx,[rcx+0B0h]
+	test rcx,rcx
+	je short 000000018042DB03h
+	xor r8d,r8d
+	mov rdx,rbx
+	add rsp,30h
+	pop rbx
+	jmp near ptr 0000000180386710h
+	call 0000000180294310h
+
+ISIL:
+	001 ShiftStack -8
+	002 Move stack:0x0, rbx
+	003 ShiftStack -48
+	004 Move xmm3, [0x181EA33DC]
+	005 Move rbx, rcx
+	006 Move xmm2, [0x18218809C]
+	007 Move rdx, [rcx+184]
+	008 Move stack:0x20, 0
+	009 Call UsableItem.ServerAddRegeneration, rcx, xmm1, xmm2, r9
+	010 Move rcx, [rbx+96]
+	011 Compare rcx, 0
+	012 JumpIfEqual {23}
+	013 Move rcx, [rcx+176]
+	014 Compare rcx, 0
+	015 JumpIfEqual {23}
+	016 Move r8, 0
+	017 Move rdx, rbx
+	018 ShiftStack 48
+	019 Move rbx, stack:0x0
+	020 ShiftStack 8
+	021 Call PlayerEffectsController.UseMedicalItem, rcx, rdx
+	022 Return 
+	023 Call 0x180294310, rcx, rdx, r8, r9
+
+Method: System.Void .ctor()
+
+Disassembly:
+	xor edx,edx
+	jmp near ptr 000000018042AE00h
+
+ISIL:
+	001 Move rdx, 0
+	002 Call Consumable..ctor, rcx, rdx
+	003 Return 
+

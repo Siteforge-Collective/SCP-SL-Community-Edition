@@ -1,0 +1,235 @@
+Type: FogController
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PostProcessing.FogController
+	static System.Void EnableFogType(PostProcessing.FogType fogType, System.Single seconds)
+		System.Int32 local2 = fogType.value__
+		PostProcessing.FogController singleton = PostProcessing.FogController.Singleton
+
+		PostProcessing.FogSetting fogSetting = singleton.GetFogSetting()
+
+		if (fogSetting._state != True)
+		    fogSetting._isDirty = True
+		endif
+        
+		fogSetting.<BlendTime>k__BackingField = seconds
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.Implicit4ByteFieldReadAction at (0x181B3D69D) is corrupt (Local local2 has been stripped out for being unused, so doesn't have a variable.) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PostProcessing.FogController
+	static System.Void DisableFogType(PostProcessing.FogType fogType, System.Single seconds)
+		System.Int32 local2 = fogType.value__
+		PostProcessing.FogController singleton = PostProcessing.FogController.Singleton
+
+		PostProcessing.FogSetting fogSetting = singleton.GetFogSetting()
+
+		if (fogSetting._state != False)
+		    fogSetting._isDirty = True
+		endif
+        
+		fogSetting.<BlendTime>k__BackingField = seconds
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.Implicit4ByteFieldReadAction at (0x181B3D61D) is corrupt (Local local2 has been stripped out for being unused, so doesn't have a variable.) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PostProcessing.FogController
+	PostProcessing.FogSetting GetFogSetting(PostProcessing.FogType fogType)
+		System.Int32 local2 = fogType.value__
+		PostProcessing.FogSetting[] _fogSettings = this._fogSettings
+		ulong local4 = 0
+		System.Int32 length = _fogSettings.Length
+
+		while (local4 < length)
+		    PostProcessing.FogSetting fogSetting = _fogSettings[local4]
+
+		    if (fogSetting.FogType != local2)
+		        local4 += 1
+		    endwhile
+            
+		    goto INSN_181B3D796
+            
+		    return fogSetting
+		    throw new System.NullReferenceException()
+
+		    INSN_181B3D796:
+
+		    System.String string = System.String.Format("The FogSetting component for '{0}' needs to be attached to the FogController GameObject.", local7) //(String format, Object arg0)
+		    System.NotImplementedException notImplementedException = new System.NotImplementedException()
+
+		    notImplementedException..ctor(string) //(String message)
+
+
+Generated IL:
+	IL_0000: ldarg.1
+	IL_0001: stloc.0
+	IL_0002: ldarg.0
+	IL_0003: ldfld PostProcessing.FogSetting[] PostProcessing.FogController::_fogSettings
+	IL_0008: stloc.1
+	IL_0009: ldc.i4.0
+	IL_000a: stloc.2
+	IL_000b: ldloc.1
+	IL_000c: call System.Int32 System.Array::get_Length()
+	IL_0011: stloc.3
+	IL_0012: ldloc.2
+	IL_0013: ldloc.3
+	IL_0014: bge.s IL_0036
+	IL_0016: ldloc.1
+	IL_0017: ldloc.2
+	IL_0018: ldelem.any PostProcessing.FogSetting
+	IL_001d: stloc.s V_4
+	IL_001f: ldloc.s V_4
+	IL_0021: ldfld PostProcessing.FogType PostProcessing.FogSetting::FogType
+	IL_0026: ldloc.0
+	IL_0027: beq.s IL_002d
+	IL_0029: ldloc.2
+	IL_002a: ldc.i4.1
+	IL_002b: add
+	IL_002c: stloc.2
+	IL_002d: ldloc.s V_4
+	IL_002f: ret
+	IL_0030: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0035: throw
+	IL_0036: ldstr "The FogSetting component for '{0}' needs to be attached to the FogController GameObject."
+	IL_003b: ldloc.s V_5
+	IL_003d: call System.String System.String::Format(System.String,System.Object)
+	IL_0042: newobj System.Void System.NotImplementedException::.ctor(System.String)
+	IL_0047: stloc.s V_6
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PostProcessing.FogController
+	System.Void Awake()
+		PostProcessing.FogController singleton = PostProcessing.FogController.Singleton
+		ulong local3 = 0
+
+		System.Boolean boolean = UnityEngine.Object.op_Equality(singleton, local3) //(Object x, Object y)
+
+		if (boolean == False)
+
+		    UnityEngine.Object.Destroy(this) //(Object obj)
+		    return
+		endif
+        
+		PostProcessing.FogController.Singleton = this
+
+		PostProcessing.FogSetting[] components = base.GetComponents<PostProcessing.FogSetting>()
+		System.Func`2<PostProcessing.FogSetting,System.Int32> <>9__6_0 = PostProcessing.FogController/<>c.<>9__6_0
+
+		if (<>9__6_0 != 0)
+            goto INSN_181B3D577
+        endif
+		PostProcessing.FogController/<>c <>c = PostProcessing.FogController/<>c.<>9
+		System.Func`2<PostProcessing.FogSetting,System.Int32> func = new System.Func`2<PostProcessing.FogSetting,System.Int32>()
+
+		func..ctor(<>c, {'<Awake>b__6_0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		 += 8
+		PostProcessing.FogController/<>c.<>9 = func
+
+		INSN_181B3D577:
+
+		System.Linq.IOrderedEnumerable`1<PostProcessing.FogSetting> iOrderedEnumerable = System.Linq.Enumerable.OrderBy<PostProcessing.FogSetting, System.Int32>(components, func) //(IEnumerable`1 source, Func`2 keySelector)
+
+		PostProcessing.FogSetting[] fogSettingArray = System.Linq.Enumerable.ToArray<PostProcessing.FogSetting>(iOrderedEnumerable) //(IEnumerable`1 source)
+		this._fogSettings = fogSettingArray
+		PostProcessing.FogSetting[] _fogSettings = this._fogSettings
+		ulong local13 = 0
+		System.Int32 length = _fogSettings.Length
+
+		if (local13 < length)
+		    PostProcessing.FogSetting fogSetting = _fogSettings[local13]
+		    System.Boolean local16 = fogSetting.FogType == 0
+
+		    fogSetting.enabled = local16
+		    local13 += 1
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x181B3D56B) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PostProcessing.FogController
+	System.Void Update()
+		PostProcessing.FogSetting[] _fogSettings = this._fogSettings
+		PostProcessing.FogSetting local2 = _fogSettings[0]
+		UnityEngine.Color color = local2.Color
+		ulong local4 = 0
+		System.Single endDistance = local2.EndDistance
+
+		while (1 < _fogSettings.Length)
+		    PostProcessing.FogSetting fogSetting = _fogSettings[]
+
+		    if (fogSetting._state == local4)
+
+		        if (fogSetting._state == local4)
+                    goto INSN_181B3D951
+                endif
+		    endif
+            
+
+		    fogSetting.UpdateWeight()
+		    UnityEngine.Color color2 = fogSetting.Color
+
+		    UnityEngine.Color color3 = UnityEngine.Color.Lerp()
+		    System.Single endDistance2 = fogSetting.EndDistance
+		    System.Single Weight = fogSetting.<Weight>k__BackingField
+
+		    System.Single single = UnityEngine.Mathf.Lerp(endDistance, endDistance2, Weight) //(Single a, Single b, Single t)
+		    PostProcessing.FogSetting[] _fogSettings2 = this._fogSettings
+		    endDistance = single
+
+		    INSN_181B3D951:
+		     += 1
+		endwhile
+        
+
+		UnityEngine.RenderSettings.set_fogColor()
+		single = endDistance
+
+		UnityEngine.RenderSettings.fogEndDistance = single
+		return
+		throw new System.IndexOutOfRangeException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ArrayElementReadToRegAction at (0x181B3D8B0) is corrupt (Array, offset, or destination is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PostProcessing.FogController
+	System.Void .ctor()
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void UnityEngine.MonoBehaviour::.ctor()
+	IL_0006: ret
+	
+

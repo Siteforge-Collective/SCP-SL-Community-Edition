@@ -1,0 +1,175 @@
+Type: Elevators.TransformElevatorFollower
+
+Method: System.Void Awake()
+
+Disassembly:
+	mov [rsp+8],rbx
+	push rdi
+	sub rsp,30h
+	cmp byte ptr [1826FDD50h],0
+	mov rdi,rcx
+	jne short 0000000181B1AED8h
+	mov ecx,[1822F2810h]
+	call 0000000180294190h
+	mov byte ptr [1826FDD50h],1
+	mov rcx,[182742B50h]
+	call 00000001802942D0h
+	mov rbx,rax
+	test rdi,rdi
+	je near ptr 0000000181B1AF89h
+	mov r8,[rdi]
+	xor r9d,r9d
+	mov rdx,rdi
+	mov rcx,rax
+	mov r8,[r8+1A8h]
+	call 0000000180368A70h
+	mov rcx,[182742B40h]
+	test byte ptr [rcx+12Fh],2
+	je short 0000000181B1AF26h
+	cmp dword ptr [rcx+0E0h],0
+	jne short 0000000181B1AF26h
+	call 000000018021A070h
+	xor edx,edx
+	mov rcx,rbx
+	call 0000000181BA9920h
+	xor edx,edx
+	mov rcx,rdi
+	call 0000000181042010h
+	test rax,rax
+	je short 0000000181B1AF89h
+	xor edx,edx
+	mov rcx,rax
+	call 0000000181046760h
+	mov rdx,rax
+	mov [rdi+38h],rax
+	lea rcx,[rdi+38h]
+	call 0000000180293EF0h
+	mov rdx,[rdi+38h]
+	test rdx,rdx
+	je short 0000000181B1AF89h
+	xor r8d,r8d
+	lea rcx,[rsp+20h]
+	call 0000000180FDD6B0h
+	mov rbx,[rsp+40h]
+	movsd xmm0,qword ptr [rax]
+	movsd qword ptr [rdi+18h],xmm0
+	mov eax,[rax+8]
+	mov [rdi+20h],eax
+	add rsp,30h
+	pop rdi
+	ret
+	call 0000000180294310h
+
+ISIL:
+	001 Move stack:0x8, rbx
+	002 ShiftStack -8
+	003 Move stack:0x0, rdi
+	004 ShiftStack -48
+	005 Compare [0x1826FDD50], 0
+	006 Move rdi, rcx
+	007 JumpIfNotEqual {11}
+	008 Move rcx, [0x1822F2810]
+	009 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	010 Move [0x1826FDD50], 1
+	011 Move rcx, typeof(Interactables.Interobjects.ElevatorChamber+ElevatorMoved)
+	012 Call "il2cpp_codegen_object_new", rcx, rdx, r8, r9
+	013 Move rbx, rax
+	014 Compare rdi, 0
+	015 JumpIfEqual {58}
+	016 Move r8, [rdi]
+	017 Move r9, 0
+	018 Move rdx, rdi
+	019 Move rcx, rax
+	020 Move r8, [r8+424]
+	021 Call 0x180368A70, rcx, rdx, r8
+	022 Move rcx, typeof(Interactables.Interobjects.ElevatorChamber)
+	023 Compare [rcx+303], 2
+	024 JumpIfEqual {28}
+	025 Compare [rcx+224], 0
+	026 JumpIfNotEqual {28}
+	027 Call "il2cpp_runtime_class_init_export", rcx, rdx, r8, r9
+	028 Move rdx, 0
+	029 Move rcx, rbx
+	030 Call ElevatorChamber.add_OnElevatorMoved, rcx, rdx
+	031 Move rdx, 0
+	032 Move rcx, rdi
+	033 Call Component.get_gameObject, rcx, rdx
+	034 Compare rax, 0
+	035 JumpIfEqual {58}
+	036 Move rdx, 0
+	037 Move rcx, rax
+	038 Call GameObject.get_transform, rcx, rdx
+	039 Move rdx, rax
+	040 Move [rdi+56], rax
+	041 LoadAddress rcx, [rdi+56]
+	042 Call 0x180293EF0, rcx, rdx, r8, r9
+	043 Move rdx, [rdi+56]
+	044 Compare rdx, 0
+	045 JumpIfEqual {58}
+	046 Move r8, 0
+	047 LoadAddress rcx, stack:0x20
+	048 Call Transform.get_position, rcx, rdx
+	049 Move rbx, stack:0x40
+	050 Move xmm0, [rax]
+	051 Move [rdi+24], xmm0
+	052 Move rax, [rax+8]
+	053 Move [rdi+32], rax
+	054 ShiftStack 48
+	055 Move rdi, stack:0x0
+	056 ShiftStack 8
+	057 Return 
+	058 Call 0x180294310, rcx, rdx, r8, r9
+
+Method: System.Void LateUpdate()
+
+Disassembly:
+	push rbx
+	sub rsp,30h
+	mov rdx,[rcx+38h]
+	mov rbx,rcx
+	test rdx,rdx
+	je short 0000000181B1AFC4h
+	xor r8d,r8d
+	lea rcx,[rsp+20h]
+	call 0000000180FDD6B0h
+	movsd xmm0,qword ptr [rax]
+	movsd qword ptr [rbx+18h],xmm0
+	mov eax,[rax+8]
+	mov [rbx+20h],eax
+	add rsp,30h
+	pop rbx
+	ret
+	call 0000000180294310h
+
+ISIL:
+	001 ShiftStack -8
+	002 Move stack:0x0, rbx
+	003 ShiftStack -48
+	004 Move rdx, [rcx+56]
+	005 Move rbx, rcx
+	006 Compare rdx, 0
+	007 JumpIfEqual {19}
+	008 Move r8, 0
+	009 LoadAddress rcx, stack:0x20
+	010 Call Transform.get_position, rcx, rdx
+	011 Move xmm0, [rax]
+	012 Move [rbx+24], xmm0
+	013 Move rax, [rax+8]
+	014 Move [rbx+32], rax
+	015 ShiftStack 48
+	016 Move rbx, stack:0x0
+	017 ShiftStack 8
+	018 Return 
+	019 Call 0x180294310, rcx, rdx, r8, r9
+
+Method: System.Void .ctor()
+
+Disassembly:
+	xor edx,edx
+	jmp near ptr 0000000180FD1850h
+
+ISIL:
+	001 Move rdx, 0
+	002 Call 0x180FD1850, rcx, rdx
+	003 Return 
+

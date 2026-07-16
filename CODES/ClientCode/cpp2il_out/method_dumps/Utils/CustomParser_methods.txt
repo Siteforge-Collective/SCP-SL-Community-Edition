@@ -1,0 +1,226 @@
+Type: CustomParser
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Utils.CustomParser
+	static System.Boolean RemoveUnknownCharacters(System.String source, System.String& res)
+		NorthwoodLib.Pools.StringBuilderPool shared = NorthwoodLib.Pools.StringBuilderPool.Shared
+		System.Int32 m_stringLength = source.m_stringLength
+
+		System.Text.StringBuilder stringBuilder = shared.Rent(m_stringLength) //(Int32 capacity)
+		ulong local6 = 0
+		ulong local7 = 0
+
+		if (local7 < source.m_stringLength)
+
+		    System.Char chars = source.Chars
+		      = .
+
+		    System.Boolean boolean = .Contains(chars) //(T item)
+
+		    if (boolean == False)
+		        local7 += 1
+		    endif
+            
+
+		    System.Text.StringBuilder stringBuilder2 = stringBuilder.Append(chars) //(Char value)
+		    local7 += 1
+		endif
+        
+
+		if (local6 == 0)
+            goto INSN_180A4A3E3
+        endif
+
+		System.Int32 hashCode = stringBuilder.GetHashCode()
+
+		INSN_180A4A3E3:
+		res. = hashCode
+		NorthwoodLib.Pools.StringBuilderPool shared2 = NorthwoodLib.Pools.StringBuilderPool.Shared
+
+		shared2.Return(stringBuilder) //(StringBuilder stringBuilder)
+		return local6
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.StaticFieldToRegAction at (0x180A4A37B) is corrupt (Couldn't identify the field being read (or its type).) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Utils.CustomParser
+	static Utils.CustomParser/ParseResult TryParseFloat(System.String source, System.Single& val)
+		ulong local2 = 0
+		ulong local3 = 0
+		val.m_value = local2
+
+		System.Boolean boolean = Utils.CustomParser.RemoveUnknownCharacters()
+
+		[instruction error - managed method being called is null]
+
+		if (boolean == False)
+
+		    System.String string = .Replace(",", ".") //(String oldValue, String newValue)
+
+		    System.Boolean boolean2 = string.Contains(".") //(String value)
+
+		    if (boolean2 == False)
+
+		        System.Boolean boolean3 = System.Single.TryParse(string, val) //(String s, Single& result)
+
+		        if (boolean3 == False)
+                    goto INSN_180A4A7B5
+                endif
+		    else
+		        System.Char[] local14 = new System.Char[1]
+		        local14[0] = 46
+
+		        System.String[] stringArray = string.Split(local14) //(Char[] separator)
+		        System.Int32 length = stringArray.Length
+
+		        if (length > 2)
+		            System.String empty = System.String.Empty
+		            System.Int32 length2 = stringArray.Length
+		            System.Int32 local20 = length2 - 1
+
+		            if (local2 < local20)
+		                System.String string2 = stringArray[local2]
+
+		                System.String string3 = System.String.Concat(empty, string2) //(String str0, String str1)
+		                local2 += 1
+		            endif
+                    
+
+		            if (empty == 0)
+                        goto INSN_180A4A629
+                    endif
+
+		            if (local20 == 0)
+                        goto INSN_180A4A7F4
+                    endif
+
+		            INSN_180A4A629:
+		            stringArray[0] = empty
+		            System.Int32 length3 = stringArray.Length
+		            System.Int32 local25 = length3 - 1
+		            System.String string4 = stringArray[local25]
+
+		            if (string4 == 0)
+                        goto INSN_180A4A674
+                    endif
+
+		            if (length3 == 0)
+                        goto INSN_180A4A824
+                    endif
+
+		            INSN_180A4A674:
+		            stringArray[1] = string4
+		            System.Int32 length4 = stringArray.Length
+		        endif
+                
+		        System.String local28 = stringArray[0]
+
+		        System.Boolean isNullOrEmpty = System.String.IsNullOrEmpty(local28) //(String value)
+
+		        if (isNullOrEmpty == False)
+                    goto INSN_180A4A6EC
+                endif
+
+		        if ("0" == 0)
+                    goto INSN_180A4A6D2
+                endif
+
+		        if ("0" == 0)
+                    goto INSN_180A4A854
+                endif
+
+		        INSN_180A4A6D2:
+		        stringArray[0] = "0"
+
+		        INSN_180A4A6EC:
+		        System.String local31 = stringArray[0]
+
+		        System.Single single = System.Single.Parse(local31) //(String s)
+		        val.m_value = single
+		        System.String local34 = stringArray[1]
+
+		        System.Boolean isNullOrEmpty2 = System.String.IsNullOrEmpty(local34) //(String value)
+
+		        if (isNullOrEmpty2 != False)
+                    goto INSN_180A4A7AF
+                endif
+		        System.String local37 = stringArray[1]
+
+		        System.Boolean boolean4 = System.Single.TryParse(local37, local3) //(String s, Single& result)
+
+		        if (boolean4 != False)
+                    goto INSN_180A4A74B
+                endif
+
+		        INSN_180A4A74B:
+		        System.String local40 = stringArray[1]
+		        val.m_value = local3
+
+		        INSN_180A4A7AF:
+		    else
+		    endif
+            
+		    return 2
+		    throw new System.IndexOutOfRangeException()
+
+		    INSN_180A4A7F4:
+
+		    INSN_180A4A824:
+
+		    INSN_180A4A854:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180A4A4E0) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Utils.CustomParser
+	static Utils.CustomParser/ParseResult TryParseInt(System.String source, System.Int32& val)
+		ulong local2 = 0
+
+		Utils.CustomParser/ParseResult parseResult = Utils.CustomParser.TryParseFloat(source, local2) //(String source, Single& val)
+
+		if (parseResult != constant10)
+		    val.m_value = source
+
+		    if (parseResult == constant10)
+                goto INSN_180A4A955
+            endif
+		    return 1
+		endif
+        
+
+		INSN_180A4A955:
+		return 2
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfZeroOrNullAction at (0x180A4A924) is corrupt (ConstantDefinition: Don't know how to get IL to load a System.Byte) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Utils.CustomParser
+	static System.Void .cctor()
+		System.Collections.Generic.HashSet`1<System.Char> hashSet = new System.Collections.Generic.HashSet`1<System.Char>()
+
+		hashSet..ctor()
+		. = hashSet
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AllocateInstanceAction at (0x180A4A988) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+

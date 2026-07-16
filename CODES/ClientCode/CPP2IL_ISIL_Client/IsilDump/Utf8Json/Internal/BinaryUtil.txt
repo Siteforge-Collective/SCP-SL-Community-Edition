@@ -1,0 +1,410 @@
+Type: Utf8Json.Internal.BinaryUtil
+
+Method: System.Void EnsureCapacity(ref System.Byte[] bytes, System.Int32 offset, System.Int32 appendLength)
+
+Disassembly:
+	mov [rsp+8],rbx
+	mov [rsp+10h],rsi
+	push rdi
+	sub rsp,20h
+	cmp byte ptr [1826F12CCh],0
+	mov edi,r8d
+	mov esi,edx
+	mov rbx,rcx
+	jne short 0000000180CFFD42h
+	mov ecx,[1822E4728h]
+	call 0000000180294190h
+	mov byte ptr [1826F12CCh],1
+	mov rax,[rbx]
+	lea edx,[rsi+rdi]
+	test rax,rax
+	je near ptr 0000000180CFFDD1h
+	mov eax,[rax+18h]
+	cmp edx,eax
+	jle near ptr 0000000180CFFDEBh
+	cmp edx,100h
+	jl short 0000000180CFFDB2h
+	cmp eax,7FFFFFC7h
+	je near ptr 0000000180CFFDFBh
+	add eax,eax
+	js short 0000000180CFFD93h
+	cmp edx,eax
+	jge short 0000000180CFFD98h
+	mov edx,eax
+	xor r8d,r8d
+	mov rcx,rbx
+	mov rbx,[rsp+30h]
+	mov rsi,[rsp+38h]
+	add rsp,20h
+	pop rdi
+	jmp near ptr 0000000180CFFF20h
+	mov edx,7FFFFFC7h
+	xor r8d,r8d
+	mov rcx,rbx
+	mov rbx,[rsp+30h]
+	mov rsi,[rsp+38h]
+	add rsp,20h
+	pop rdi
+	jmp near ptr 0000000180CFFF20h
+	xor r8d,r8d
+	mov edx,100h
+	mov rcx,rbx
+	mov rbx,[rsp+30h]
+	mov rsi,[rsp+38h]
+	add rsp,20h
+	pop rdi
+	jmp near ptr 0000000180CFFF20h
+	mov rcx,[182722828h]
+	call 0000000180293F70h
+	mov rdx,rax
+	mov [rbx],rax
+	mov rcx,rbx
+	call 0000000180293EF0h
+	mov rbx,[rsp+30h]
+	mov rsi,[rsp+38h]
+	add rsp,20h
+	pop rdi
+	ret
+	mov rcx,[182720558h]
+	call 00000001802942D0h
+	mov rdx,[182700780h]
+	xor r8d,r8d
+	mov rcx,rax
+	mov rbx,rax
+	call 0000000180CB3FE0h
+	mov rdx,[18275BF78h]
+	mov rcx,rbx
+	call 00000001802942E0h
+
+ISIL:
+	001 Move stack:0x8, rbx
+	002 Move stack:0x10, rsi
+	003 ShiftStack -8
+	004 Move stack:0x0, rdi
+	005 ShiftStack -32
+	006 Compare [0x1826F12CC], 0
+	007 Move rdi, r8
+	008 Move rsi, rdx
+	009 Move rbx, rcx
+	010 JumpIfNotEqual {14}
+	011 Move rcx, [0x1822E4728]
+	012 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	013 Move [0x1826F12CC], 1
+	014 Move rax, [rbx]
+	015 LoadAddress rdx, [rsi+rdi]
+	016 Compare rax, 0
+	017 JumpIfEqual {59}
+	018 Move rax, [rax+24]
+	019 Compare rdx, rax
+	020 JumpIfLessOrEqual {65}
+	021 Compare rdx, 256
+	022 JumpIfLess {49}
+	023 Compare rax, 0x7FFFFFC7
+	024 JumpIfEqual {71}
+	025 Add rax, rax, rax
+	026 JumpIfSign {39}
+	027 Compare rdx, rax
+	028 JumpIfGreaterOrEqual {40}
+	029 Move rdx, rax
+	030 Move r8, 0
+	031 Move rcx, rbx
+	032 Move rbx, stack:0x30
+	033 Move rsi, stack:0x38
+	034 ShiftStack 32
+	035 Move rdi, stack:0x0
+	036 ShiftStack 8
+	037 Call BinaryUtil.FastResize, rcx, rdx, r8
+	038 Return 
+	039 Move rdx, 0x7FFFFFC7
+	040 Move r8, 0
+	041 Move rcx, rbx
+	042 Move rbx, stack:0x30
+	043 Move rsi, stack:0x38
+	044 ShiftStack 32
+	045 Move rdi, stack:0x0
+	046 ShiftStack 8
+	047 Call BinaryUtil.FastResize, rcx, rdx, r8
+	048 Return 
+	049 Move r8, 0
+	050 Move rdx, 256
+	051 Move rcx, rbx
+	052 Move rbx, stack:0x30
+	053 Move rsi, stack:0x38
+	054 ShiftStack 32
+	055 Move rdi, stack:0x0
+	056 ShiftStack 8
+	057 Call BinaryUtil.FastResize, rcx, rdx, r8
+	058 Return 
+	059 Move rcx, typeof(System.Byte[1])
+	060 Call "SzArrayNew", rcx, rdx, r8, r9
+	061 Move rdx, rax
+	062 Move [rbx], rax
+	063 Move rcx, rbx
+	064 Call 0x180293EF0, rcx, rdx, r8, r9
+	065 Move rbx, stack:0x30
+	066 Move rsi, stack:0x38
+	067 ShiftStack 32
+	068 Move rdi, stack:0x0
+	069 ShiftStack 8
+	070 Return 
+	071 Move rcx, typeof(System.InvalidOperationException)
+	072 Call "il2cpp_codegen_object_new", rcx, rdx, r8, r9
+	073 Move rdx, "byte[] size reached maximum size of array(0x7FFFFFC7), can not write to single byte[]. Details: https://msdn.microsoft.com/en-us/library/system.array"
+	074 Move r8, 0
+	075 Move rcx, rax
+	076 Move rbx, rax
+	077 Call InvalidOperationException..ctor, rcx, rdx
+	078 Move rdx, [0x18275BF78]
+	079 Move rcx, rbx
+	080 Call 0x1802942E0, rcx, rdx, r8, r9
+
+Method: System.Void FastResize(ref System.Byte[] array, System.Int32 newSize)
+
+Disassembly:
+	mov [rsp+18h],rsi
+	push rdi
+	sub rsp,30h
+	cmp byte ptr [1826F12CDh],0
+	mov edi,edx
+	mov rsi,rcx
+	jne short 0000000180CFFF4Ah
+	mov ecx,[1822E4774h]
+	call 0000000180294190h
+	mov byte ptr [1826F12CDh],1
+	mov [rsp+40h],rbx
+	test edi,edi
+	js near ptr 0000000180CFFFD8h
+	mov [rsp+48h],rbp
+	mov rbp,[rsi]
+	test rbp,rbp
+	je short 0000000180CFFFC2h
+	cmp [rbp+18h],edi
+	je short 0000000180CFFFADh
+	mov rcx,[182722828h]
+	mov edx,edi
+	call 0000000180293F70h
+	mov edx,[rbp+18h]
+	mov rbx,rax
+	cmp edx,edi
+	cmovg edx,edi
+	mov qword ptr [rsp+28h],0
+	xor r9d,r9d
+	mov [rsp+20h],edx
+	mov r8,rax
+	xor edx,edx
+	mov rcx,rbp
+	call 0000000180DA8B80h
+	mov rdx,rbx
+	mov [rsi],rbx
+	mov rcx,rsi
+	call 0000000180293EF0h
+	mov rbp,[rsp+48h]
+	mov rbx,[rsp+40h]
+	mov rsi,[rsp+50h]
+	add rsp,30h
+	pop rdi
+	ret
+	mov rcx,[182722828h]
+	mov edx,edi
+	call 0000000180293F70h
+	mov [rsi],rax
+	mov rdx,rax
+	jmp short 0000000180CFFFA5h
+	mov rcx,[182721DB0h]
+	call 00000001802942D0h
+	mov rdx,[182700740h]
+	xor r8d,r8d
+	mov rcx,rax
+	mov rbx,rax
+	call 0000000180D9D4F0h
+	mov rdx,[18275BF48h]
+	mov rcx,rbx
+	call 00000001802942E0h
+
+ISIL:
+	001 Move stack:0x18, rsi
+	002 ShiftStack -8
+	003 Move stack:0x0, rdi
+	004 ShiftStack -48
+	005 Compare [0x1826F12CD], 0
+	006 Move rdi, rdx
+	007 Move rsi, rcx
+	008 JumpIfNotEqual {12}
+	009 Move rcx, [0x1822E4774]
+	010 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	011 Move [0x1826F12CD], 1
+	012 Move stack:0x40, rbx
+	013 Compare rdi, 0
+	014 JumpIfSign {54}
+	015 Move stack:0x48, rbp
+	016 Move rbp, [rsi]
+	017 Compare rbp, 0
+	018 JumpIfEqual {48}
+	019 Compare [rbp+24], rdi
+	020 JumpIfEqual {41}
+	021 Move rcx, typeof(System.Byte[1])
+	022 Move rdx, rdi
+	023 Call "SzArrayNew", rcx, rdx, r8, r9
+	024 Move rdx, [rbp+24]
+	025 Move rbx, rax
+	026 Compare rdx, rdi
+	027 JumpIfLessOrEqual {29}
+	028 Move rdx, rdi
+	029 Nop 
+	030 Move stack:0x28, 0
+	031 Move r9, 0
+	032 Move stack:0x20, rdx
+	033 Move r8, rax
+	034 Move rdx, 0
+	035 Move rcx, rbp
+	036 Call Buffer.BlockCopy, rcx, rdx, r8, r9, stack:0x0, stack:0x8
+	037 Move rdx, rbx
+	038 Move [rsi], rbx
+	039 Move rcx, rsi
+	040 Call 0x180293EF0, rcx, rdx, r8, r9
+	041 Move rbp, stack:0x48
+	042 Move rbx, stack:0x40
+	043 Move rsi, stack:0x50
+	044 ShiftStack 48
+	045 Move rdi, stack:0x0
+	046 ShiftStack 8
+	047 Return 
+	048 Move rcx, typeof(System.Byte[1])
+	049 Move rdx, rdi
+	050 Call "SzArrayNew", rcx, rdx, r8, r9
+	051 Move [rsi], rax
+	052 Move rdx, rax
+	053 Goto {39}
+	054 Move rcx, typeof(System.ArgumentOutOfRangeException)
+	055 Call "il2cpp_codegen_object_new", rcx, rdx, r8, r9
+	056 Move rdx, "newSize"
+	057 Move r8, 0
+	058 Move rcx, rax
+	059 Move rbx, rax
+	060 Call ArgumentOutOfRangeException..ctor, rcx, rdx
+	061 Move rdx, [0x18275BF48]
+	062 Move rcx, rbx
+	063 Call 0x1802942E0, rcx, rdx, r8, r9
+
+Method: System.Byte[] FastCloneWithResize(System.Byte[] src, System.Int32 newSize)
+
+Disassembly:
+	mov [rsp+10h],rsi
+	push rdi
+	sub rsp,30h
+	cmp byte ptr [1826F12CEh],0
+	mov edi,edx
+	mov rsi,rcx
+	jne short 0000000180CFFE5Ah
+	mov ecx,[1822E4764h]
+	call 0000000180294190h
+	mov byte ptr [1826F12CEh],1
+	mov [rsp+40h],rbx
+	test edi,edi
+	js short 0000000180CFFEB2h
+	test rsi,rsi
+	je near ptr 0000000180CFFF14h
+	cmp [rsi+18h],edi
+	jl short 0000000180CFFEE3h
+	mov rcx,[182722828h]
+	mov edx,edi
+	call 0000000180293F70h
+	xor r9d,r9d
+	mov qword ptr [rsp+28h],0
+	mov r8,rax
+	mov [rsp+20h],edi
+	xor edx,edx
+	mov rcx,rsi
+	mov rbx,rax
+	call 0000000180DA8B80h
+	mov rsi,[rsp+48h]
+	mov rax,rbx
+	mov rbx,[rsp+40h]
+	add rsp,30h
+	pop rdi
+	ret
+	mov rcx,[182721DB0h]
+	call 00000001802942D0h
+	mov rdx,[182700740h]
+	xor r8d,r8d
+	mov rcx,rax
+	mov rbx,rax
+	call 0000000180D9D4F0h
+	mov rdx,[182723E00h]
+	mov rcx,rbx
+	call 00000001802942E0h
+	int 3
+	mov rcx,[182722548h]
+	call 00000001802942D0h
+	mov rdx,[182700718h]
+	xor r8d,r8d
+	mov rcx,rax
+	mov rbx,rax
+	call 0000000180D9D030h
+	mov rdx,[182723E00h]
+	mov rcx,rbx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294310h
+
+ISIL:
+	001 Move stack:0x10, rsi
+	002 ShiftStack -8
+	003 Move stack:0x0, rdi
+	004 ShiftStack -48
+	005 Compare [0x1826F12CE], 0
+	006 Move rdi, rdx
+	007 Move rsi, rcx
+	008 JumpIfNotEqual {12}
+	009 Move rcx, [0x1822E4764]
+	010 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	011 Move [0x1826F12CE], 1
+	012 Move stack:0x40, rbx
+	013 Compare rdi, 0
+	014 JumpIfSign {37}
+	015 Compare rsi, 0
+	016 JumpIfEqual {59}
+	017 Compare [rsi+24], rdi
+	018 JumpIfLess {48}
+	019 Move rcx, typeof(System.Byte[1])
+	020 Move rdx, rdi
+	021 Call "SzArrayNew", rcx, rdx, r8, r9
+	022 Move r9, 0
+	023 Move stack:0x28, 0
+	024 Move r8, rax
+	025 Move stack:0x20, rdi
+	026 Move rdx, 0
+	027 Move rcx, rsi
+	028 Move rbx, rax
+	029 Call Buffer.BlockCopy, rcx, rdx, r8, r9, stack:0x0, stack:0x8
+	030 Move rsi, stack:0x48
+	031 Move rax, rbx
+	032 Move rbx, stack:0x40
+	033 ShiftStack 48
+	034 Move rdi, stack:0x0
+	035 ShiftStack 8
+	036 Return rax
+	037 Move rcx, typeof(System.ArgumentOutOfRangeException)
+	038 Call "il2cpp_codegen_object_new", rcx, rdx, r8, r9
+	039 Move rdx, "newSize"
+	040 Move r8, 0
+	041 Move rcx, rax
+	042 Move rbx, rax
+	043 Call ArgumentOutOfRangeException..ctor, rcx, rdx
+	044 Move rdx, [0x182723E00]
+	045 Move rcx, rbx
+	046 Call 0x1802942E0, rcx, rdx, r8, r9
+	047 Interrupt 
+	048 Move rcx, typeof(System.ArgumentException)
+	049 Call "il2cpp_codegen_object_new", rcx, rdx, r8, r9
+	050 Move rdx, "length < newSize"
+	051 Move r8, 0
+	052 Move rcx, rax
+	053 Move rbx, rax
+	054 Call ArgumentException..ctor, rcx, rdx
+	055 Move rdx, [0x182723E00]
+	056 Move rcx, rbx
+	057 Call 0x1802942E0, rcx, rdx, r8, r9
+	058 Interrupt 
+	059 Call 0x180294310, rcx, rdx, r8, r9
+

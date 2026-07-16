@@ -1,0 +1,363 @@
+Type: ByteArrayStringHashTable`1
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Utf8Json.Internal.ByteArrayStringHashTable`1
+	System.Void .ctor(System.Int32 capacity)
+
+		System.Collections.IEnumerator enumerator = base.GetEnumerator()
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Collections.IEnumerator System.Collections.IEnumerable::GetEnumerator()
+	IL_0006: stloc.0
+	IL_0007: ret
+	IL_0008: newobj System.Void System.NullReferenceException::.ctor()
+	IL_000d: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Utf8Json.Internal.ByteArrayStringHashTable`1
+	System.Void .ctor(System.Int32 capacity, System.Single loadFactor)
+
+		base..ctor()
+
+		System.Int32 int32 = Utf8Json.Internal.ByteArrayStringHashTable`1<T>.CalculateCapacity(capacity, loadFactor) //(Int32 , Single )
+		capacity = int32
+		Utf8Json.Internal.ByteArrayStringHashTable`1/Entry<T>[][] local5 = new Utf8Json.Internal.ByteArrayStringHashTable`1/Entry<T>[][capacity]
+		this.buckets = local5
+		Utf8Json.Internal.ByteArrayStringHashTable`1/Entry<T>[][] buckets = this.buckets
+		System.Int32 length = buckets.Length
+		this.indexFor = length
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.RegToRegMoveAction at (0x180B7CD5C) is corrupt (Local being overwritten, {'capacity' (function parameter, type System.Int32)} has been stripped or is a parameter) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Utf8Json.Internal.ByteArrayStringHashTable`1
+	System.Void Add(System.String key, T value)
+		ulong local3 = 0
+
+		System.Text.Encoding uTF8 = System.Text.Encoding.UTF8
+
+		System.Int32 bytes = uTF8.GetBytes(key) //(Char[] chars, Int32 charIndex, Int32 charCount, Byte[] bytes, Int32 byteIndex)
+		  = .
+		  = .
+		  = .
+		  = .
+
+		System.Boolean boolean = this.TryAddInternal()
+
+		if (boolean != False)
+		    return
+		endif
+        
+
+		System.String string = System.String.Concat("Key was already exists. Key:", key) //(String str0, String str1)
+		System.ArgumentException argumentException = new System.ArgumentException()
+
+		argumentException..ctor(string) //(String message)
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallVirtualMethodAction at (0x180B7660E) is corrupt (Couldn't get arguments, or actual count (1) is not equal to expected count (5)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Utf8Json.Internal.ByteArrayStringHashTable`1
+	System.Void Add(System.Byte[] key, T value)
+		  = .
+		  = .
+		  = .
+		  = .
+
+		System.Boolean boolean = this.TryAddInternal()
+
+		if (boolean != False)
+		    return
+		endif
+        
+
+		System.String string = System.String.Concat("Key was already exists. Key:", key) //(Object arg0, Object arg1)
+		System.ArgumentException argumentException = new System.ArgumentException()
+
+		argumentException..ctor(string) //(String message)
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.FieldToLocalAction at (0x180B761F3) is corrupt (No further info) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Utf8Json.Internal.ByteArrayStringHashTable`1
+	System.Boolean TryAddInternal(System.Byte[] key, T value)
+		ulong local3 = 0
+		System.Int32 length = key.Length
+
+		System.UInt64 uInt64 = Utf8Json.Internal.ByteArrayStringHashTable`1<T>.ByteArrayGetHashCode(key, local3, length) //(Byte[] , Int32 , Int32 )
+		ulong local6 = 0
+		ulong local7 = 0
+		  = .
+		  = .
+		  = .
+		  = .
+		System.Int64 local12 = 0x7FFFFFFFFFFFFFFF
+		System.UInt64 indexFor = this.indexFor
+		Utf8Json.Internal.ByteArrayStringHashTable`1/Entry<T>[][] buckets = this.buckets
+
+		if (indexFor <= local12)
+		    Utf8Json.Internal.ByteArrayStringHashTable`1/Entry<T>[] entryArray = buckets[indexFor]
+
+		    if (entryArray != 0)
+		        ulong local21 = 0
+		        System.Int32 length2 = entryArray.Length
+
+		        if (local21 < length2)
+		            System.Int32 length3 = key.Length
+		            System.Int32 0 = 0
+		            Utf8Json.Internal.ByteArrayStringHashTable`1/Entry local25 = entryArray[]
+
+		            System.Boolean boolean = Utf8Json.Internal.ByteArrayComparer.Equals()
+
+		            if (boolean == False)
+		                local21 += 1
+		            endif
+                    
+		            ulong local27 = 0
+		            return local27
+		        endif
+                
+		        System.Int32 local28 = length2 + 1
+		        Utf8Json.Internal.ByteArrayStringHashTable`1/Entry<T>[] local29 = new Utf8Json.Internal.ByteArrayStringHashTable`1/Entry<T>[local28]
+		        System.Int32 length4 = entryArray.Length
+
+		        System.Array.Copy(entryArray, local29, length4) //(Array sourceArray, Array destinationArray, Int32 length)
+		        System.Int32 length5 = local29.Length
+		        System.Int32 local33 = length5 - 1
+		        length5 += 32
+		        length5 += local29
+		        length5.m_value = key
+		        length5. = local15
+		        length5. = local16
+		        length5. = local17
+		        length5. = local18
+		        length5. = local19
+		        System.Int64 local35 = 0x7FFFFFFFFFFFFFFF
+		        Utf8Json.Internal.ByteArrayStringHashTable`1/Entry<T>[][] buckets2 = this.buckets
+
+		        if (uInt64 > local35)
+                    goto INSN_180B77503
+                endif
+
+		        if (local35 == 0)
+                    goto INSN_180B77518
+                endif
+		        throw new System.IndexOutOfRangeException()
+		    endif
+            
+		    System.Int64 local39 = 1
+		    Utf8Json.Internal.ByteArrayStringHashTable`1/Entry<T>[] local40 = new Utf8Json.Internal.ByteArrayStringHashTable`1/Entry<T>[1]
+		    local40[0] = key
+		    local40[0] = local15
+		    local40[0] = local16
+		    local40[0] = local17
+		    local40[0] = local18
+		    local40[0] = local19
+
+		    if (local40 == 0)
+                goto INSN_180B77538
+            endif
+		    buckets[0] = local40
+		    throw new System.NullReferenceException()
+		endif
+        
+		throw new System.OverflowException()
+
+		INSN_180B77503:
+		throw new System.OverflowException()
+
+		INSN_180B77518:
+
+		INSN_180B77538:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.FieldToLocalAction at (0x180B771A0) is corrupt (No further info) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Utf8Json.Internal.ByteArrayStringHashTable`1
+	System.Boolean TryGetValue(System.ArraySegment`1<System.Byte> key, T& value)
+		Utf8Json.Internal.ByteArrayStringHashTable`1/Entry<T>[][] buckets = this.buckets
+
+		System.UInt64 uInt64 = Utf8Json.Internal.ByteArrayStringHashTable`1<T>.ByteArrayGetHashCode()
+		System.UInt64 indexFor = this.indexFor
+
+		if (indexFor <= 0x7FFFFFFFFFFFFFFF)
+		    Utf8Json.Internal.ByteArrayStringHashTable`1/Entry<T>[] entryArray = buckets[indexFor]
+
+		    if (entryArray != 0)
+		        Utf8Json.Internal.ByteArrayStringHashTable`1/Entry<T> local9 = entryArray[0]
+		        Utf8Json.Internal.ByteArrayStringHashTable`1/Entry<T> local10 = entryArray[0]
+		        ulong local11 = 0
+		        Utf8Json.Internal.ByteArrayStringHashTable`1/Entry<T> local12 = entryArray[2]
+		        Utf8Json.Internal.ByteArrayStringHashTable`1/Entry<T> local13 = entryArray[4]
+		        Utf8Json.Internal.ByteArrayStringHashTable`1/Entry<T> local14 = entryArray[6]
+		        Utf8Json.Internal.ByteArrayStringHashTable`1/Entry<T> local15 = entryArray[8]
+		        Utf8Json.Internal.ByteArrayStringHashTable`1/Entry<T> local16 = entryArray[10]
+
+		        System.Boolean boolean = Utf8Json.Internal.ByteArrayComparer.Equals()
+
+		        if (boolean == False)
+		            System.Int32 length = entryArray.Length
+
+		            if (1 >= length)
+                        goto INSN_180B7BD66
+                    endif
+		            Utf8Json.Internal.ByteArrayStringHashTable`1/Entry local19 = entryArray[]
+		            Utf8Json.Internal.ByteArrayStringHashTable`1/Entry local20 = entryArray[]
+		            Utf8Json.Internal.ByteArrayStringHashTable`1/Entry local21 = entryArray[]
+		            Utf8Json.Internal.ByteArrayStringHashTable`1/Entry local22 = entryArray[]
+		            Utf8Json.Internal.ByteArrayStringHashTable`1/Entry local23 = entryArray[]
+		            Utf8Json.Internal.ByteArrayStringHashTable`1/Entry local24 = entryArray[]
+		            Utf8Json.Internal.ByteArrayStringHashTable`1/Entry local25 = entryArray[]
+
+		            System.Boolean boolean2 = Utf8Json.Internal.ByteArrayComparer.Equals()
+
+		            if (boolean2 == False)
+		                 += 1
+		            endif
+                    
+		            value. = 0
+		            value. = local16
+		            value. = 0
+		            value. = local16
+		            value. = 0
+		            return True
+		        endif
+                
+		        ulong local28 = 0
+		        ulong local29 = 0
+		        value. = local28
+		        value. = local28
+		        value. = local28
+		        value. = local28
+		        value. = local28
+		        value. = local29
+		        throw new System.NullReferenceException()
+		    endif
+            
+		    throw new System.OverflowException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallMethodSpecAction at (0x180B7BBF5) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (3)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Utf8Json.Internal.ByteArrayStringHashTable`1
+	static System.UInt64 ByteArrayGetHashCode(System.Byte[] x, System.Int32 offset, System.Int32 count)
+
+		if (x != 0)
+
+		    if (offset < )
+		        System.Int32 length = x.Length
+		        offset += 1
+		        System.Byte local5 = x[offset]
+		        System.Int64 local6 = local5 * 0x1000193
+		    endwhile
+            
+		    goto INSN_180B768C9
+            
+		    return local6
+
+		    INSN_180B768C9:
+		    throw new System.IndexOutOfRangeException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfGreaterThanOrEqualToAction at (0x180B7689C) is corrupt (One of the arguments is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Utf8Json.Internal.ByteArrayStringHashTable`1
+	static System.Int32 CalculateCapacity(System.Int32 collectionSize, System.Single loadFactor)
+		System.Int64 local2 = 1
+
+		if (collectionSize > local2)
+		    local2 += local2
+
+		    if (local2 >= 8)
+                goto INSN_180B76908
+            endif
+		endif
+        
+		System.Int64 local3 = 8
+
+		INSN_180B76908:
+		return local3
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x180B76908) is corrupt (Return value has a type of System.UInt32, expecting an object of type System.Int32) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Utf8Json.Internal.ByteArrayStringHashTable`1
+	System.Collections.Generic.IEnumerator`1<System.Collections.Generic.KeyValuePair`2<System.String,T>> GetEnumerator()
+		Utf8Json.Internal.ByteArrayStringHashTable`1/<GetEnumerator>d__10<T> enumeratorInstance = new Utf8Json.Internal.ByteArrayStringHashTable`1/<GetEnumerator>d__10<T>()
+		ulong local2 = 0
+
+		enumeratorInstance..ctor(local2) //(Int32 )
+		enumeratorInstance. = this
+		return enumeratorInstance
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.RegToFieldAction at (0x180B76C46) is corrupt (Instance or field is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Utf8Json.Internal.ByteArrayStringHashTable`1
+	System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+
+		System.Collections.IEnumerator enumerator = base.GetEnumerator()
+		return enumerator
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Collections.IEnumerator System.Collections.IEnumerable::GetEnumerator()
+	IL_0006: ret
+	IL_0007: newobj System.Void System.NullReferenceException::.ctor()
+	IL_000c: throw
+	
+

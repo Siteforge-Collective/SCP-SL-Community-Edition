@@ -1,0 +1,1188 @@
+Type: UBER_GlobalParams
+
+
+	Generated Pseudocode:
+
+	Declaring Type: UBER_GlobalParams
+	System.Void Update()
+		ulong local1 = 0
+
+		System.Single deltaTime = UnityEngine.Time.deltaTime
+		System.Single local4 = deltaTime * this.weatherTimeScale
+
+		this.SimulateDynamicWeather(local4) //(Single dt)
+		System.Single local5 = deltaTime * this.flowTimeScale
+		local4 = local5
+		System.Single local7 = local5 / 20
+		deltaTime = local5
+		System.Single local8 = local5 * 3
+		local4 = deltaTime
+		local4 = local8
+		local4 = local7
+		this.__Time = local4
+
+		UnityEngine.Shader.SetGlobalVector()
+		return
+
+
+Generated IL:
+	Don't know how to write IL for Cpp2IL.Core.Analysis.Actions.x86.Important.DivideRegByGlobalAction. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: UBER_GlobalParams
+	System.Void Start()
+
+		this.SetupIt()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void UBER_GlobalParams::SetupIt()
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: UBER_GlobalParams
+	System.Void SetupIt()
+
+		UnityEngine.Shader.SetGlobalFloat("_UBER_GlobalDry", 1) //(String name, Single value)
+
+		UnityEngine.Shader.SetGlobalFloat("_UBER_GlobalDryConst", 1) //(String name, Single value)
+
+		UnityEngine.Shader.SetGlobalFloat("_UBER_GlobalRainDamp", 1) //(String name, Single value)
+		System.Single flowBumpStrength = this.FlowBumpStrength
+
+		UnityEngine.Shader.SetGlobalFloat("_UBER_RippleStrength", flowBumpStrength) //(String name, Single value)
+
+		UnityEngine.Shader.SetGlobalFloat("_UBER_GlobalSnowDamp", 1) //(String name, Single value)
+
+		UnityEngine.Shader.SetGlobalFloat("_UBER_Frost", 1) //(String name, Single value)
+		System.Single snowDissolve = this.SnowDissolve
+
+		UnityEngine.Shader.SetGlobalFloat("_UBER_GlobalSnowDissolve", snowDissolve) //(String name, Single value)
+		System.Single snowBumpMicro = this.SnowBumpMicro
+
+		UnityEngine.Shader.SetGlobalFloat("_UBER_GlobalSnowBumpMicro", snowBumpMicro) //(String name, Single value)
+		UnityEngine.Color snowSpecGloss = this.SnowSpecGloss
+
+		UnityEngine.Shader.SetGlobalColor("_UBER_GlobalSnowSpecGloss", snowSpecGloss) //(String name, Color value)
+		UnityEngine.Color snowGlitterColor = this.SnowGlitterColor
+
+		UnityEngine.Shader.SetGlobalColor("_UBER_GlobalSnowGlitterColor", snowGlitterColor) //(String name, Color value)
+		return
+
+
+Generated IL:
+	IL_0000: ldstr "_UBER_GlobalDry"
+	IL_0005: ldc.r4 1
+	IL_000a: call System.Void UnityEngine.Shader::SetGlobalFloat(System.String,System.Single)
+	IL_000f: ldstr "_UBER_GlobalDryConst"
+	IL_0014: ldc.r4 1
+	IL_0019: call System.Void UnityEngine.Shader::SetGlobalFloat(System.String,System.Single)
+	IL_001e: ldstr "_UBER_GlobalRainDamp"
+	IL_0023: ldc.r4 1
+	IL_0028: call System.Void UnityEngine.Shader::SetGlobalFloat(System.String,System.Single)
+	IL_002d: ldarg.0
+	IL_002e: ldfld System.Single UBER_GlobalParams::FlowBumpStrength
+	IL_0033: stloc.0
+	IL_0034: ldstr "_UBER_RippleStrength"
+	IL_0039: ldloc.0
+	IL_003a: call System.Void UnityEngine.Shader::SetGlobalFloat(System.String,System.Single)
+	IL_003f: ldstr "_UBER_GlobalSnowDamp"
+	IL_0044: ldc.r4 1
+	IL_0049: call System.Void UnityEngine.Shader::SetGlobalFloat(System.String,System.Single)
+	IL_004e: ldstr "_UBER_Frost"
+	IL_0053: ldc.r4 1
+	IL_0058: call System.Void UnityEngine.Shader::SetGlobalFloat(System.String,System.Single)
+	IL_005d: ldarg.0
+	IL_005e: ldfld System.Single UBER_GlobalParams::SnowDissolve
+	IL_0063: stloc.1
+	IL_0064: ldstr "_UBER_GlobalSnowDissolve"
+	IL_0069: ldloc.1
+	IL_006a: call System.Void UnityEngine.Shader::SetGlobalFloat(System.String,System.Single)
+	IL_006f: ldarg.0
+	IL_0070: ldfld System.Single UBER_GlobalParams::SnowBumpMicro
+	IL_0075: stloc.2
+	IL_0076: ldstr "_UBER_GlobalSnowBumpMicro"
+	IL_007b: ldloc.2
+	IL_007c: call System.Void UnityEngine.Shader::SetGlobalFloat(System.String,System.Single)
+	IL_0081: ldarg.0
+	IL_0082: ldfld UnityEngine.Color UBER_GlobalParams::SnowSpecGloss
+	IL_0087: stloc.3
+	IL_0088: ldstr "_UBER_GlobalSnowSpecGloss"
+	IL_008d: ldloc.3
+	IL_008e: call System.Void UnityEngine.Shader::SetGlobalColor(System.String,UnityEngine.Color)
+	IL_0093: ldarg.0
+	IL_0094: ldfld UnityEngine.Color UBER_GlobalParams::SnowGlitterColor
+	IL_0099: stloc.s V_4
+	IL_009b: ldstr "_UBER_GlobalSnowGlitterColor"
+	IL_00a0: ldloc.s V_4
+	IL_00a2: call System.Void UnityEngine.Shader::SetGlobalColor(System.String,UnityEngine.Color)
+	IL_00a7: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: UBER_GlobalParams
+	System.Void AdvanceTime(System.Single amount)
+		System.Single local3 = amount * this.weatherTimeScale
+
+		this.SimulateDynamicWeather(local3) //(Single dt)
+		System.Single local4 = amount * this.flowTimeScale
+		local3 = local4
+		System.Single local6 = local4 / 20
+		System.Single local7 = local4 * 3
+		local3 = local4
+		local3 = local7
+		local3 = local6
+		this.__Time = local3
+
+		UnityEngine.Shader.SetGlobalVector()
+		return
+
+
+Generated IL:
+	Don't know how to write IL for Cpp2IL.Core.Analysis.Actions.x86.Important.DivideRegByGlobalAction. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: UBER_GlobalParams
+	System.Void SimulateDynamicWeather(System.Single dt)
+		ulong local2 = 0
+
+		if (this.Simulate != False)
+		    System.Single rainIntensity = this.RainIntensity
+		    System.Single temperature = this.temperature
+		    System.Single wind = this.wind
+		    System.Single local6 = wind * 4
+		    System.Single snowLevel = this.SnowLevel
+		    System.Single flowTimeScale = this.flowTimeScale
+		    System.Single waterLevel = this.WaterLevel
+		    System.Single snowDissolve = this.SnowDissolve
+		    System.Single snowBumpMicro = this.SnowBumpMicro
+		    UnityEngine.Color snowSpecGloss = this.SnowSpecGloss
+		    System.Single flowBumpStrength = this.FlowBumpStrength
+		    UnityEngine.Color snowGlitterColor = this.SnowGlitterColor
+		    System.Single wetnessAmount = this.WetnessAmount
+
+		    if (this.FreezeWetWhenSnowPresent != False)
+
+		        System.Single single = UnityEngine.Mathf.Clamp01(0.05000000074505806) //(Single value)
+		    else
+		    endif
+            
+		    System.Single temperature2 = this.temperature
+
+		    if (temperature2 > local2)
+                goto INSN_180758076
+            endif
+		    ulong local19 = 0
+		    System.Single local20 = temperature2 * 0,2
+		    this.RainIntensity = local20
+
+		    if (local2 <= local20)
+                goto INSN_180757D41
+            endif
+		    this.RainIntensity = local19
+
+		    INSN_180757D41:
+		    wetnessAmount = temperature2
+		    System.Single local21 = wetnessAmount * 0,3
+		    this.flowTimeScale = local21
+
+		    if (local2 <= local21)
+                goto INSN_180757D68
+            endif
+		    this.flowTimeScale = local19
+
+		    INSN_180757D68:
+		    System.Single flowBumpStrength2 = this.FlowBumpStrength
+
+		    if (flowBumpStrength2 <= 0.10000000149011612)
+                goto INSN_180757D9F
+            endif
+		    local20 = temperature2
+		    System.Single local24 = local20 * 0,5
+		    this.FlowBumpStrength = local24
+
+		    if (0.10000000149011612 <= local24)
+                goto INSN_180757D9F
+            endif
+		    this.FlowBumpStrength = 0,1
+
+		    INSN_180757D9F:
+		    System.Single snowDissolveCover = this.SnowDissolveCover
+		    System.Single snowDissolve2 = this.SnowDissolve
+		    System.Single local27 = temperature2 * this.fallIntensity
+
+		    if (snowDissolveCover > snowDissolve2)
+                goto INSN_180757E02
+            endif
+
+		    if (snowDissolve2 <= snowDissolveCover)
+                goto INSN_180757E10
+            endif
+
+		    if (snowDissolveCover <= snowDissolve2)
+                goto INSN_180757E10
+            endif
+		    snowDissolve2 = snowDissolveCover
+
+		    INSN_180757E02:
+		    local24 = snowDissolve2
+		    snowDissolve2 = snowDissolveCover
+
+		    INSN_180757E10:
+		    System.Single snowBumpMicroCover = this.SnowBumpMicroCover
+		    this.SnowDissolve = snowDissolve2
+		    System.Single snowBumpMicro2 = this.SnowBumpMicro
+
+		    if (snowBumpMicroCover > snowBumpMicro2)
+                goto INSN_180757E3E
+            endif
+
+		    if (snowBumpMicro2 <= snowBumpMicroCover)
+                goto INSN_180757E4C
+            endif
+
+		    if (snowBumpMicroCover <= snowBumpMicro2)
+                goto INSN_180757E4C
+            endif
+		    snowBumpMicro2 = snowBumpMicroCover
+
+		    INSN_180757E3E:
+		    local24 = snowBumpMicro2
+		    snowBumpMicro2 = snowBumpMicroCover
+
+		    INSN_180757E4C:
+		    this.SnowBumpMicro = snowBumpMicro2
+		    UnityEngine.Color snowSpecGlossCover = this.SnowSpecGlossCover
+		    UnityEngine.Color snowSpecGloss2 = this.SnowSpecGloss
+
+		    if (snowSpecGlossCover > snowSpecGloss2)
+                goto INSN_180757E73
+            endif
+
+		    if (snowSpecGloss2 <= snowSpecGlossCover)
+                goto INSN_180757E81
+            endif
+
+		    if (snowSpecGlossCover <= snowSpecGloss2)
+                goto INSN_180757E81
+            endif
+
+		    INSN_180757E73:
+
+		    INSN_180757E81:
+		    this.SnowSpecGloss = snowSpecGlossCover
+		    System.Single single2 = this.SnowSpecGlossCover.g
+		    System.Single single3 = this.SnowSpecGloss.g
+
+		    if (single2 > single3)
+                goto INSN_180757EA8
+            endif
+
+		    if (single3 <= single2)
+                goto INSN_180757EB6
+            endif
+
+		    if (single2 <= single3)
+                goto INSN_180757EB6
+            endif
+		    single3 = single2
+
+		    INSN_180757EA8:
+		    single3 = single2
+
+		    INSN_180757EB6:
+		    this.SnowSpecGloss.g = single3
+		    System.Single single4 = this.SnowSpecGlossCover.b
+		    System.Single single5 = this.SnowSpecGloss.b
+
+		    if (single4 > single5)
+                goto INSN_180757EDD
+            endif
+
+		    if (single5 <= single4)
+                goto INSN_180757EEB
+            endif
+
+		    if (single4 <= single5)
+                goto INSN_180757EEB
+            endif
+		    single5 = single4
+
+		    INSN_180757EDD:
+		    single3 = single5
+		    single5 = single4
+
+		    INSN_180757EEB:
+		    this.SnowSpecGloss.b = single5
+		    System.Single single6 = this.SnowSpecGlossCover.a
+		    System.Single single7 = this.SnowSpecGloss.a
+
+		    if (single6 > single7)
+                goto INSN_180757F12
+            endif
+
+		    if (single7 <= single6)
+                goto INSN_180757F20
+            endif
+
+		    if (single6 <= single7)
+                goto INSN_180757F20
+            endif
+		    single7 = single6
+
+		    INSN_180757F12:
+		    single3 = single7
+		    single7 = single6
+
+		    INSN_180757F20:
+		    this.SnowSpecGloss.a = single7
+		    UnityEngine.Color snowGlitterColorCover = this.SnowGlitterColorCover
+		    UnityEngine.Color snowGlitterColor2 = this.SnowGlitterColor
+
+		    if (snowGlitterColorCover > snowGlitterColor2)
+                goto INSN_180757F47
+            endif
+
+		    if (snowGlitterColor2 <= snowGlitterColorCover)
+                goto INSN_180757F55
+            endif
+
+		    if (snowGlitterColorCover <= snowGlitterColor2)
+                goto INSN_180757F55
+            endif
+
+		    INSN_180757F47:
+
+		    INSN_180757F55:
+		    this.SnowGlitterColor = snowGlitterColorCover
+		    System.Single single8 = this.SnowGlitterColorCover.g
+		    System.Single single9 = this.SnowGlitterColor.g
+
+		    if (single8 > single9)
+                goto INSN_180757F7C
+            endif
+
+		    if (single9 <= single8)
+                goto INSN_180757F8A
+            endif
+
+		    if (single8 <= single9)
+                goto INSN_180757F8A
+            endif
+		    single9 = single8
+
+		    INSN_180757F7C:
+		    single9 = single8
+
+		    INSN_180757F8A:
+		    this.SnowGlitterColor.g = single9
+		    System.Single single10 = this.SnowGlitterColorCover.b
+		    System.Single single11 = this.SnowGlitterColor.b
+
+		    if (single10 > single11)
+                goto INSN_180757FB1
+            endif
+
+		    if (single11 <= single10)
+                goto INSN_180757FBF
+            endif
+
+		    if (single10 <= single11)
+                goto INSN_180757FBF
+            endif
+		    single11 = single10
+
+		    INSN_180757FB1:
+		    single9 = single11
+		    single11 = single10
+
+		    INSN_180757FBF:
+		    this.SnowGlitterColor.b = single11
+		    System.Single single12 = this.SnowGlitterColorCover.a
+		    System.Single single13 = this.SnowGlitterColor.a
+
+		    if (single12 > single13)
+                goto INSN_180757FE9
+            endif
+
+		    if (single13 <= single12)
+                goto INSN_180757FF7
+            endif
+
+		    if (single12 <= single13)
+                goto INSN_180757FF7
+            endif
+		    single13 = single12
+
+		    INSN_180757FE9:
+		    single9 = single13
+		    single13 = single12
+
+		    INSN_180757FF7:
+		    this.SnowGlitterColor.a = single13
+		    single9 = temperature2
+		    System.Single frost = this.Frost
+		    System.Single local47 = single9 * 0,3
+		    this.Frost = frost
+
+		    if (frost <= 1)
+                goto INSN_180758023
+            endif
+		    this.Frost = 1
+
+		    INSN_180758023:
+		    System.Single snowLevel2 = this.SnowLevel
+		    System.Single local49 = temperature2 * 0,01
+		    System.Single local50 = local49 * this.fallIntensity
+		    this.SnowLevel = snowLevel2
+
+		    if (snowLevel2 <= 1)
+                goto INSN_180758055
+            endif
+		    this.SnowLevel = 1
+
+		    INSN_180758055:
+
+		    if (this.AddWetWhenSnowPresent == local19)
+                goto INSN_1807583F2
+            endif
+
+		    if (1 <= this.WaterLevel)
+                goto INSN_1807583F2
+            endif
+		    this.WaterLevel = 1
+
+		    INSN_180758076:
+		    System.Single local51 =  * this.fallIntensity
+		    this.RainIntensity = local51
+		    frost = local50
+		    System.Single local52 = frost * 0,3
+		    this.flowTimeScale = local52
+
+		    if (local52 <= 1)
+                goto INSN_1807580C0
+            endif
+		    this.flowTimeScale = 1
+
+		    INSN_1807580C0:
+		    this.FlowBumpStrength = local52
+
+		    if (local52 <= 1)
+                goto INSN_1807580D7
+            endif
+		    this.FlowBumpStrength = 1
+
+		    INSN_1807580D7:
+		    local52 = local51
+		    this.WaterLevel = local52
+
+		    if (local52 <= 1)
+                goto INSN_1807580FF
+            endif
+		    this.WaterLevel = 1
+
+		    INSN_1807580FF:
+		    local52 = local51
+		    System.Single local53 = local52 * 3
+		    this.WetnessAmount = local53
+
+		    if (local53 <= 1)
+                goto INSN_180758126
+            endif
+		    this.WetnessAmount = 1
+
+		    INSN_180758126:
+		    single12 = local50
+		    System.Single local54 = single12 * 0,03
+		    System.Single snowDissolveMelt = this.SnowDissolveMelt
+		    System.Single snowDissolve3 = this.SnowDissolve
+		    local27 = local54
+
+		    if (snowDissolveMelt > snowDissolve3)
+                goto INSN_180758191
+            endif
+
+		    if (snowDissolve3 <= snowDissolveMelt)
+                goto INSN_18075819F
+            endif
+
+		    if (snowDissolveMelt <= snowDissolve3)
+                goto INSN_18075819F
+            endif
+		    snowDissolve3 = snowDissolveMelt
+
+		    INSN_180758191:
+		    local53 = snowDissolve3
+		    snowDissolve3 = snowDissolveMelt
+
+		    INSN_18075819F:
+		    System.Single snowBumpMicroMelt = this.SnowBumpMicroMelt
+		    local27 = local54
+		    System.Single local58 = local27 * 0,1
+		    this.SnowDissolve = snowDissolve3
+		    System.Single snowBumpMicro3 = this.SnowBumpMicro
+
+		    if (snowBumpMicroMelt > snowBumpMicro3)
+                goto INSN_1807581D4
+            endif
+
+		    if (snowBumpMicro3 <= snowBumpMicroMelt)
+                goto INSN_1807581E2
+            endif
+
+		    if (snowBumpMicroMelt <= snowBumpMicro3)
+                goto INSN_1807581E2
+            endif
+		    snowBumpMicro3 = snowBumpMicroMelt
+
+		    INSN_1807581D4:
+		    local53 = snowBumpMicro3
+		    snowBumpMicro3 = snowBumpMicroMelt
+
+		    INSN_1807581E2:
+		    this.SnowBumpMicro = snowBumpMicro3
+		    UnityEngine.Color snowSpecGlossMelt = this.SnowSpecGlossMelt
+		    UnityEngine.Color snowSpecGloss3 = this.SnowSpecGloss
+
+		    if (snowSpecGlossMelt > snowSpecGloss3)
+                goto INSN_18075820C
+            endif
+
+		    if (snowSpecGloss3 <= snowSpecGlossMelt)
+                goto INSN_18075821A
+            endif
+
+		    if (snowSpecGlossMelt <= snowSpecGloss3)
+                goto INSN_18075821A
+            endif
+
+		    INSN_18075820C:
+
+		    INSN_18075821A:
+		    this.SnowSpecGloss = snowSpecGlossMelt
+		    System.Single single14 = this.SnowSpecGlossMelt.g
+		    System.Single single15 = this.SnowSpecGloss.g
+
+		    if (single14 > single15)
+                goto INSN_180758244
+            endif
+
+		    if (single15 <= single14)
+                goto INSN_180758252
+            endif
+
+		    if (single14 <= single15)
+                goto INSN_180758252
+            endif
+		    single15 = single14
+
+		    INSN_180758244:
+		    single15 = single14
+
+		    INSN_180758252:
+		    this.SnowSpecGloss.g = single15
+		    System.Single single16 = this.SnowSpecGlossMelt.b
+		    System.Single single17 = this.SnowSpecGloss.b
+
+		    if (single16 > single17)
+                goto INSN_18075827C
+            endif
+
+		    if (single17 <= single16)
+                goto INSN_18075828A
+            endif
+
+		    if (single16 <= single17)
+                goto INSN_18075828A
+            endif
+		    single17 = single16
+
+		    INSN_18075827C:
+		    single15 = single17
+		    single17 = single16
+
+		    INSN_18075828A:
+		    this.SnowSpecGloss.b = single17
+		    System.Single single18 = this.SnowSpecGlossMelt.a
+		    System.Single single19 = this.SnowSpecGloss.a
+
+		    if (single18 > single19)
+                goto INSN_1807582B4
+            endif
+
+		    if (single19 <= single18)
+                goto INSN_1807582C2
+            endif
+
+		    if (single18 <= single19)
+                goto INSN_1807582C2
+            endif
+		    single19 = single18
+
+		    INSN_1807582B4:
+		    single15 = single19
+		    single19 = single18
+
+		    INSN_1807582C2:
+		    this.SnowSpecGloss.a = single19
+		    UnityEngine.Color snowGlitterColorMelt = this.SnowGlitterColorMelt
+		    UnityEngine.Color snowGlitterColor3 = this.SnowGlitterColor
+
+		    if (snowGlitterColorMelt > snowGlitterColor3)
+                goto INSN_1807582EC
+            endif
+
+		    if (snowGlitterColor3 <= snowGlitterColorMelt)
+                goto INSN_1807582FA
+            endif
+
+		    if (snowGlitterColorMelt <= snowGlitterColor3)
+                goto INSN_1807582FA
+            endif
+
+		    INSN_1807582EC:
+
+		    INSN_1807582FA:
+		    this.SnowGlitterColor = snowGlitterColorMelt
+		    System.Single single20 = this.SnowGlitterColorMelt.g
+		    System.Single single21 = this.SnowGlitterColor.g
+
+		    if (single20 > single21)
+                goto INSN_180758324
+            endif
+
+		    if (single21 <= single20)
+                goto INSN_180758332
+            endif
+
+		    if (single20 <= single21)
+                goto INSN_180758332
+            endif
+		    single21 = single20
+
+		    INSN_180758324:
+		    single21 = single20
+
+		    INSN_180758332:
+		    this.SnowGlitterColor.g = single21
+		    System.Single single22 = this.SnowGlitterColorMelt.b
+		    System.Single single23 = this.SnowGlitterColor.b
+
+		    if (single22 > single23)
+                goto INSN_18075835C
+            endif
+
+		    if (single23 <= single22)
+                goto INSN_18075836A
+            endif
+
+		    if (single22 <= single23)
+                goto INSN_18075836A
+            endif
+		    single23 = single22
+
+		    INSN_18075835C:
+		    single21 = single23
+		    single23 = single22
+
+		    INSN_18075836A:
+		    this.SnowGlitterColor.b = single23
+		    System.Single single24 = this.SnowGlitterColorMelt.a
+		    System.Single single25 = this.SnowGlitterColor.a
+
+		    if (single24 > single25)
+                goto INSN_180758394
+            endif
+
+		    if (single25 <= single24)
+                goto INSN_1807583A2
+            endif
+
+		    if (single24 <= single25)
+                goto INSN_1807583A2
+            endif
+		    single25 = single24
+
+		    INSN_180758394:
+		    single21 = single25
+		    single25 = single24
+
+		    INSN_1807583A2:
+		    this.SnowGlitterColor.a = single25
+		    single21 = local50
+		    System.Single frost2 = this.Frost
+		    ulong local77 = 0
+		    System.Single local78 = single21 * 0,3
+		    this.Frost = frost2
+
+		    if (local2 <= frost2)
+                goto INSN_1807583D1
+            endif
+		    this.Frost = local77
+
+		    INSN_1807583D1:
+		    System.Single snowLevel3 = this.SnowLevel
+		    System.Single local80 = local50 * 0,01
+		    this.SnowLevel = snowLevel3
+
+		    if (local2 <= snowLevel3)
+                goto INSN_1807583F2
+            endif
+		    this.SnowLevel = local77
+
+		    INSN_1807583F2:
+		    System.Single temperature3 = this.temperature
+		    System.Single waterLevel2 = this.WaterLevel
+		    frost2 = temperature3
+		    System.Single local84 = frost2 * 0,001
+		    this.WaterLevel = waterLevel2
+
+		    if (local2 <= waterLevel2)
+                goto INSN_180758454
+            endif
+		    this.WaterLevel = local77
+
+		    INSN_180758454:
+		    System.Single local85 = temperature3 * 0,0003
+		    System.Single wetnessAmount2 = this.WetnessAmount
+		    this.WetnessAmount = wetnessAmount2
+
+		    if (local2 <= wetnessAmount2)
+                goto INSN_18075848A
+            endif
+		    this.WetnessAmount = local77
+
+		    INSN_18075848A:
+
+		    this.RefreshParticleSystem()
+
+		    if (rainIntensity > 9.999999974752427E-07)
+                goto INSN_180758852
+            endif
+
+		    if (temperature > 9.999999974752427E-07)
+                goto INSN_180758852
+            endif
+
+		    if (flowTimeScale > 9.999999974752427E-07)
+                goto INSN_180758852
+            endif
+
+		    if (flowBumpStrength > 9.999999974752427E-07)
+                goto INSN_180758852
+            endif
+
+		    if (waterLevel > 9.999999974752427E-07)
+                goto INSN_180758852
+            endif
+
+		    if (wetnessAmount > 9.999999974752427E-07)
+                goto INSN_180758852
+            endif
+
+		    if (snowLevel > 9.999999974752427E-07)
+                goto INSN_180758852
+            endif
+
+		    if (snowDissolve > 9.999999974752427E-07)
+                goto INSN_180758852
+            endif
+
+		    if (snowBumpMicro > 9.999999974752427E-07)
+                goto INSN_180758852
+            endif
+		    UnityEngine.Color snowSpecGloss4 = this.SnowSpecGloss
+
+		    System.Boolean boolean = this.compareDelta(snowSpecGloss, snowSpecGloss4) //(Color propA, Color propB)
+
+		    if (boolean != False)
+                goto INSN_180758852
+            endif
+		    UnityEngine.Color snowGlitterColor4 = this.SnowGlitterColor
+
+		    System.Boolean boolean2 = this.compareDelta(snowGlitterColor, snowGlitterColor4) //(Color propA, Color propB)
+
+		    if (boolean2 == False)
+                goto INSN_18075885C
+            endif
+
+		    INSN_180758852:
+
+		    this.SetupIt()
+		endif
+        
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.MultiplyRegByGlobalAction at (0x180757C2B) is corrupt (Operand we were multiplying by is null or local made was stripped) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: UBER_GlobalParams
+	System.Boolean compareDelta(System.Single propA, System.Single propB)
+		return 
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x180758DD0) is corrupt (Return value is missing) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: UBER_GlobalParams
+	System.Boolean compareDelta(UnityEngine.Color propA, UnityEngine.Color propB)
+		return True
+
+
+Generated IL:
+	IL_0000: ldc.i4.1
+	IL_0001: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: UBER_GlobalParams
+	System.Single TargetValue(System.Single val, System.Single target_val, System.Single delta)
+
+		if (target_val <= val)
+
+		    if (val > target_val)
+
+		        if (target_val > val)
+                    goto INSN_1807588BF
+                endif
+		    endif
+            
+		    return val
+		endif
+        
+
+		INSN_1807588BF:
+		return target_val
+
+
+Generated IL:
+	IL_0000: ldarg.2
+	IL_0001: ldarg.1
+	IL_0002: bgt.s IL_000e
+	IL_0004: ldarg.1
+	IL_0005: ldarg.2
+	IL_0006: ble.s IL_000c
+	IL_0008: ldarg.2
+	IL_0009: ldarg.1
+	IL_000a: bgt.s IL_000e
+	IL_000c: ldarg.1
+	IL_000d: ret
+	IL_000e: ldarg.2
+	IL_000f: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: UBER_GlobalParams
+	System.Void RefreshParticleSystem()
+		System.Boolean useParticleSystem = this.UseParticleSystem
+
+		if (this.paricleSystemActive != useParticleSystem)
+		    UnityEngine.GameObject rainGameObject = this.rainGameObject
+
+		    System.Boolean boolean = UnityEngine.Object.op_Implicit(rainGameObject) //(Object exists)
+
+		    if (boolean != False)
+		        UnityEngine.GameObject rainGameObject2 = this.rainGameObject
+		        System.Boolean useParticleSystem2 = this.UseParticleSystem
+
+		        rainGameObject2.SetActive(useParticleSystem2) //(Boolean value)
+		    endif
+            
+		    UnityEngine.GameObject snowGameObject = this.snowGameObject
+
+		    System.Boolean boolean2 = UnityEngine.Object.op_Implicit(snowGameObject) //(Object exists)
+
+		    if (boolean2 == False)
+                goto INSN_18075754B
+            endif
+		    UnityEngine.GameObject snowGameObject2 = this.snowGameObject
+		    System.Boolean useParticleSystem3 = this.UseParticleSystem
+
+		    snowGameObject2.SetActive(useParticleSystem3) //(Boolean value)
+
+		    INSN_18075754B:
+		    System.Boolean useParticleSystem4 = this.UseParticleSystem
+		    this.paricleSystemActive = useParticleSystem4
+		endif
+        
+
+		if (useParticleSystem == False)
+            goto INSN_180757A11
+        endif
+		UnityEngine.GameObject rainGameObject3 = this.rainGameObject
+		ulong local19 = 0
+
+		System.Boolean boolean3 = UnityEngine.Object.op_Inequality(rainGameObject3, local19) //(Object x, Object y)
+
+		if (boolean3 == False)
+            goto INSN_1807576EA
+        endif
+		UnityEngine.GameObject rainGameObject4 = this.rainGameObject
+
+		UnityEngine.Transform transform = rainGameObject4.transform
+
+		UnityEngine.Transform transform2 = base.transform
+
+		UnityEngine.Vector3 position = this.position
+		ulong local29 = 0
+
+		UnityEngine.Vector3 up = UnityEngine.Vector3.up
+
+		UnityEngine.Vector3 vector3 = UnityEngine.Vector3.op_Multiply()
+
+		UnityEngine.Vector3 vector32 = UnityEngine.Vector3.op_Addition()
+
+		transform.position = local29
+		UnityEngine.ParticleSystem psRain = this.psRain
+		ulong local41 = 0
+
+		System.Boolean boolean4 = UnityEngine.Object.op_Equality(psRain, local41) //(Object x, Object y)
+
+		if (boolean4 == False)
+            goto INSN_1807576EA
+        endif
+		UnityEngine.GameObject rainGameObject5 = this.rainGameObject
+
+		UnityEngine.ParticleSystem component = rainGameObject5.GetComponent<UnityEngine.ParticleSystem>()
+		this.psRain = component
+
+		INSN_1807576EA:
+		UnityEngine.GameObject snowGameObject3 = this.snowGameObject
+		ulong local47 = 0
+
+		System.Boolean boolean5 = UnityEngine.Object.op_Inequality(snowGameObject3, local47) //(Object x, Object y)
+
+		if (boolean5 == False)
+            goto INSN_18075786C
+        endif
+		UnityEngine.GameObject snowGameObject4 = this.snowGameObject
+
+		UnityEngine.Transform transform3 = snowGameObject4.transform
+
+		UnityEngine.Transform transform4 = base.transform
+
+		UnityEngine.Vector3 position2 = this.position
+		ulong local57 = 0
+
+		UnityEngine.Vector3 up2 = UnityEngine.Vector3.up
+
+		UnityEngine.Vector3 vector33 = UnityEngine.Vector3.op_Multiply()
+
+		UnityEngine.Vector3 vector34 = UnityEngine.Vector3.op_Addition()
+
+		transform3.position = local57
+		UnityEngine.ParticleSystem psSnow = this.psSnow
+		ulong local69 = 0
+
+		System.Boolean boolean6 = UnityEngine.Object.op_Equality(psSnow, local69) //(Object x, Object y)
+
+		if (boolean6 == False)
+            goto INSN_18075786C
+        endif
+		UnityEngine.GameObject snowGameObject5 = this.snowGameObject
+
+		UnityEngine.ParticleSystem component2 = snowGameObject5.GetComponent<UnityEngine.ParticleSystem>()
+		this.psSnow = component2
+
+		INSN_18075786C:
+		UnityEngine.ParticleSystem psRain2 = this.psRain
+		ulong local75 = 0
+
+		System.Boolean boolean7 = UnityEngine.Object.op_Inequality(psRain2, local75) //(Object x, Object y)
+
+		if (boolean7 == False)
+            goto INSN_180757943
+        endif
+		UnityEngine.ParticleSystem psRain3 = this.psRain
+
+		UnityEngine.ParticleSystem/MainModule main = psRain3.main
+		System.Single fallIntensity = this.fallIntensity
+		System.Single temperature = this.temperature
+
+		System.Single single = UnityEngine.Mathf.Clamp01(temperature) //(Single value)
+		System.Single local84 = fallIntensity * 3000
+		throw new System.MissingMethodException()
+
+		INSN_180757943:
+		UnityEngine.ParticleSystem psSnow2 = this.psSnow
+		ulong local90 = 0
+
+		System.Boolean boolean8 = UnityEngine.Object.op_Inequality(psSnow2, local90) //(Object x, Object y)
+
+		if (boolean8 == False)
+            goto INSN_180757A11
+        endif
+		UnityEngine.ParticleSystem psSnow3 = this.psSnow
+
+		UnityEngine.ParticleSystem/MainModule main2 = psSnow3.main
+		System.Single fallIntensity2 = this.fallIntensity
+
+		System.Single single2 = UnityEngine.Mathf.Clamp01(1) //(Single value)
+		System.Single local99 = fallIntensity2 * 3000
+		local84 = local99
+		throw new System.MissingMethodException()
+
+		INSN_180757A11:
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1807575D9) is corrupt (Mismatched instance parameter. Expecting an instance of UnityEngine.Transform, actually {'this' (function parameter, type UBER_GlobalParams)}) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: UBER_GlobalParams
+	System.Void .ctor()
+		ulong local1 = 0
+		ulong local2 = 0
+		this.WaterLevel = 1
+		this.WetnessAmount = 1
+		this.flowTimeScale = 1
+		this.FlowBumpStrength = 1
+		this.RainIntensity = 1
+		this.SnowLevel = 1
+		this.Frost = 1
+		this.SnowDissolve = 2
+		this.SnowBumpMicro = 0,08
+		ulong local4 = 0
+		this.SnowSpecGloss = local1
+		this.SnowGlitterColor = local4
+		this.SnowDissolveCover = 2
+		ulong local7 = 0
+		this.SnowBumpMicroCover = 0,08
+		ulong local8 = 0
+		this.SnowSpecGlossCover = local7
+		this.SnowGlitterColorCover = local8
+		this.SnowDissolveMelt = 0,3
+		ulong local10 = 0
+		this.SnowBumpMicroMelt = 0,02
+		ulong local12 = 0
+		this.SnowSpecGlossMelt = local10
+		this.temperature = 20
+		this.weatherTimeScale = 1
+		this.SnowGlitterColorMelt = local12
+		this.FreezeWetWhenSnowPresent = True
+		this.UseParticleSystem = True
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: ldc.i4.0
+	IL_0003: stloc.1
+	IL_0004: ldarg.0
+	IL_0005: ldc.r4 1
+	IL_000a: stfld System.Single UBER_GlobalParams::WaterLevel
+	IL_000f: ldarg.0
+	IL_0010: ldc.r4 1
+	IL_0015: stfld System.Single UBER_GlobalParams::WetnessAmount
+	IL_001a: ldarg.0
+	IL_001b: ldc.r4 1
+	IL_0020: stfld System.Single UBER_GlobalParams::flowTimeScale
+	IL_0025: ldarg.0
+	IL_0026: ldc.r4 1
+	IL_002b: stfld System.Single UBER_GlobalParams::FlowBumpStrength
+	IL_0030: ldarg.0
+	IL_0031: ldc.r4 1
+	IL_0036: stfld System.Single UBER_GlobalParams::RainIntensity
+	IL_003b: ldarg.0
+	IL_003c: ldc.r4 1
+	IL_0041: stfld System.Single UBER_GlobalParams::SnowLevel
+	IL_0046: ldarg.0
+	IL_0047: ldc.r4 1
+	IL_004c: stfld System.Single UBER_GlobalParams::Frost
+	IL_0051: ldarg.0
+	IL_0052: ldc.r4 2
+	IL_0057: stfld System.Single UBER_GlobalParams::SnowDissolve
+	IL_005c: ldarg.0
+	IL_005d: ldc.r4 0,08
+	IL_0062: stfld System.Single UBER_GlobalParams::SnowBumpMicro
+	IL_0067: ldc.i4.0
+	IL_0068: stloc.2
+	IL_0069: ldarg.0
+	IL_006a: ldloc.0
+	IL_006b: stfld UnityEngine.Color UBER_GlobalParams::SnowSpecGloss
+	IL_0070: ldarg.0
+	IL_0071: ldloc.2
+	IL_0072: stfld UnityEngine.Color UBER_GlobalParams::SnowGlitterColor
+	IL_0077: ldarg.0
+	IL_0078: ldc.r4 2
+	IL_007d: stfld System.Single UBER_GlobalParams::SnowDissolveCover
+	IL_0082: ldc.i4.0
+	IL_0083: stloc.3
+	IL_0084: ldarg.0
+	IL_0085: ldc.r4 0,08
+	IL_008a: stfld System.Single UBER_GlobalParams::SnowBumpMicroCover
+	IL_008f: ldc.i4.0
+	IL_0090: stloc.s V_4
+	IL_0092: ldarg.0
+	IL_0093: ldloc.3
+	IL_0094: stfld UnityEngine.Color UBER_GlobalParams::SnowSpecGlossCover
+	IL_0099: ldarg.0
+	IL_009a: ldloc.s V_4
+	IL_009c: stfld UnityEngine.Color UBER_GlobalParams::SnowGlitterColorCover
+	IL_00a1: ldarg.0
+	IL_00a2: ldc.r4 0,3
+	IL_00a7: stfld System.Single UBER_GlobalParams::SnowDissolveMelt
+	IL_00ac: ldc.i4.0
+	IL_00ad: stloc.s V_5
+	IL_00af: ldarg.0
+	IL_00b0: ldc.r4 0,02
+	IL_00b5: stfld System.Single UBER_GlobalParams::SnowBumpMicroMelt
+	IL_00ba: ldc.i4.0
+	IL_00bb: stloc.s V_6
+	IL_00bd: ldarg.0
+	IL_00be: ldloc.s V_5
+	IL_00c0: stfld UnityEngine.Color UBER_GlobalParams::SnowSpecGlossMelt
+	IL_00c5: ldarg.0
+	IL_00c6: ldc.r4 20
+	IL_00cb: stfld System.Single UBER_GlobalParams::temperature
+	IL_00d0: ldarg.0
+	IL_00d1: ldc.r4 1
+	IL_00d6: stfld System.Single UBER_GlobalParams::weatherTimeScale
+	IL_00db: ldarg.0
+	IL_00dc: ldloc.s V_6
+	IL_00de: stfld UnityEngine.Color UBER_GlobalParams::SnowGlitterColorMelt
+	IL_00e3: ldarg.0
+	IL_00e4: ldc.i4.1
+	IL_00e5: stfld System.Boolean UBER_GlobalParams::FreezeWetWhenSnowPresent
+	IL_00ea: ldarg.0
+	IL_00eb: ldc.i4.1
+	IL_00ec: stfld System.Boolean UBER_GlobalParams::UseParticleSystem
+	IL_00f1: ldarg.0
+	IL_00f2: call System.Void UnityEngine.MonoBehaviour::.ctor()
+	IL_00f7: ret
+	
+

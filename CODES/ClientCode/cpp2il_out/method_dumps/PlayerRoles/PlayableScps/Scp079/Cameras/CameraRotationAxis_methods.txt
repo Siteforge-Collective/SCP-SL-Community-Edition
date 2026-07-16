@@ -1,0 +1,227 @@
+Type: CameraRotationAxis
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Cameras.CameraRotationAxis
+	UnityEngine.Transform get_Pivot()
+		UnityEngine.Transform _pivot = this._pivot
+		return _pivot
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld UnityEngine.Transform PlayerRoles.PlayableScps.Scp079.Cameras.CameraRotationAxis::_pivot
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Cameras.CameraRotationAxis
+	System.Single get_MouseInput()
+		System.Boolean _isVertical = this._isVertical
+		string  = _isVertical != False ? "Mouse Y" : ""
+		ulong local2 = 0
+
+		System.Single axisRaw = UnityEngine.Input.GetAxisRaw("Mouse Y") //(String axisName)
+		string  = local2 != 0 ? "Mouse Y" : ""
+
+		System.Single axis = UnityEngine.Input.GetAxis("Mouse Y") //(String axisName)
+		  = axis * .
+		return axis
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ConditionalGlobalStringRefToConstantAction at (0x1803B1295) is corrupt (Local created was null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Cameras.CameraRotationAxis
+	System.Single get_SpectatorLerpMultiplier()
+		return constant1
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x1803B12E8) is corrupt (ConstantDefinition: Don't know how to get IL to load a Cpp2IL.Core.Analysis.ResultModels.UnknownGlobalAddr) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Cameras.CameraRotationAxis
+	System.Void Update(PlayerRoles.PlayableScps.Scp079.Cameras.Scp079Camera cam)
+		ulong local2 = 0
+
+		base.Update(cam) //(Scp079Camera cam)
+
+		if (cam._isActive != False)
+
+		    System.Boolean isUsedByLocalPlayer = cam.IsUsedByLocalPlayer
+
+		    if (isUsedByLocalPlayer != False)
+		        ulong local5 = 0
+
+		        System.Boolean visible = UnityEngine.Cursor.visible
+
+		        if (visible == False)
+                    goto INSN_1803B117F
+                endif
+
+		        if (this._isVertical == False)
+
+		            UnityEngine.Vector3 mousePosition = UnityEngine.Input.mousePosition
+		            ulong local9 = 0
+
+		            System.Int32 width = UnityEngine.Screen.width
+		        else
+		            ulong local11 = 0
+
+		            System.Int32 height = UnityEngine.Screen.height
+
+		            UnityEngine.Vector3 mousePosition2 = UnityEngine.Input.mousePosition
+		        endif
+                
+		        System.Single local15 =  * 0,5
+
+		        if (local15 <= )
+                    goto INSN_1803B1054
+                endif
+
+		        INSN_1803B1054:
+		        ulong local16 = 0
+
+		        System.Single deltaTime = UnityEngine.Time.deltaTime
+		        System.Single local19 = deltaTime * 150
+
+		        System.Single single = UnityEngine.Mathf.InverseLerp(0.9300000071525574, 0.9800000190734863, local2) //(Single a, Single b, Single value)
+
+		        System.Single mouseInput = this.MouseInput
+
+		        if (this._isVertical == False)
+                    goto INSN_1803B110A
+                endif
+		        System.Single local23 = mouseInput * -1
+
+		        INSN_1803B110A:
+		        ulong local25 = 0
+		        mouseInput = local23
+
+		        System.Single single2 = UnityEngine.Mathf.Max(mouseInput, local25) //(Single a, Single b)
+
+		        base.TargetValue = 1
+		    endif
+            
+		    return
+
+		    INSN_1803B117F:
+
+		    System.Single mouseInput2 = .MouseInput
+		    System.Single local30 = mouseInput2 * -1
+		    PlayerRoles.PlayableScps.Scp079.Cameras.CameraZoomAxis zoomAxis = cam.ZoomAxis
+		    UnityEngine.AnimationCurve _magnificationCurve = zoomAxis._magnificationCurve
+		    System.Single CurValue = zoomAxis.<CurValue>k__BackingField
+
+		    System.Single single3 = _magnificationCurve.Evaluate(CurValue) //(Single time)
+		    System.Single adsReductionMultiplier = SensitivitySettings.AdsReductionMultiplier
+		    CurValue = single3
+
+		    System.Single single4 = UnityEngine.Mathf.LerpUnclamped(1, CurValue, adsReductionMultiplier) //(Single a, Single b, Single t)
+		    CurValue = local30
+
+		    .TargetValue = CurValue
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.MultiplyRegByGlobalAction at (0x1803B103A) is corrupt (Operand we were multiplying by is null or local made was stripped) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Cameras.CameraRotationAxis
+	System.Void OnValueChanged(System.Single newValue, PlayerRoles.PlayableScps.Scp079.Cameras.Scp079Camera cam)
+		UnityEngine.Transform _pivot = this._pivot
+
+		if (this._isVertical != False)
+		    newValue = local3
+		else
+		endif
+        
+
+		UnityEngine.Quaternion quaternion = UnityEngine.Quaternion.Euler()
+
+		_pivot.set_localRotation()
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.RegToRegMoveAction at (0x1803B0EA8) is corrupt (Local being overwritten, {'newValue' (function parameter, type System.Single)} has been stripped or is a parameter) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Cameras.CameraRotationAxis
+	System.Void Awake(PlayerRoles.PlayableScps.Scp079.Cameras.Scp079Camera cam)
+		UnityEngine.Transform _pivot = this._pivot
+		this._wasEverSet = False
+
+		UnityEngine.Quaternion localRotation = .localRotation
+
+		if (this._isVertical != False)
+		else
+		endif
+        
+		UnityEngine.Vector2 _constraints = this._constraints
+
+		if (_constraints <= constant5)
+            goto INSN_1803B0D9B
+        endif
+
+		if (_constraints > constant5)
+            goto INSN_1803B0D92
+        endif
+
+		INSN_1803B0D9B:
+		System.Single single = this._constraints.y
+
+		if (constant5 <= single)
+            goto INSN_1803B0DB9
+        endif
+
+		if (constant5 > single)
+            goto INSN_1803B0DB0
+        endif
+
+		INSN_1803B0DB9:
+
+		base.set_TargetValue()
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1803B0D42) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Cameras.CameraRotationAxis
+	System.Void .ctor()
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void System.Object::.ctor()
+	IL_0006: ret
+	
+

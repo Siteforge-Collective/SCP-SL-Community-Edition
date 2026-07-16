@@ -1,0 +1,177 @@
+Type: PlayerRoles.PlayableScps.Scp096.Scp096BecomeTargetShake
+
+Method: System.Boolean GetEffect(ReferenceHub ply, out UnityEngine.Quaternion targetShakeRotation, out UnityEngine.Vector3 positionOffset, out System.Single fovPercent, out System.Single verticalJump, out System.Single horizontalJump)
+
+Disassembly:
+	mov [rsp+8],rbx
+	mov [rsp+10h],rsi
+	push rdi
+	sub rsp,50h
+	cmp byte ptr [1826E993Bh],0
+	mov rsi,r9
+	movaps [rsp+40h],xmm6
+	mov rdi,r8
+	movaps [rsp+30h],xmm7
+	mov rbx,rcx
+	jne short 000000018030315Dh
+	mov ecx,[1822F2CE4h]
+	call 0000000180294190h
+	mov byte ptr [1826E993Bh],1
+	movss xmm7,dword ptr [rbx+10h]
+	xor ecx,ecx
+	call 0000000180FDAC30h
+	mov rcx,[182701818h]
+	movaps xmm6,xmm0
+	test byte ptr [rcx+12Fh],2
+	je short 000000018030318Ah
+	cmp dword ptr [rcx+0E0h],0
+	jne short 000000018030318Ah
+	call 000000018021A070h
+	mulss xmm6,dword ptr [1821786E8h]
+	xor r9d,r9d
+	xorps xmm1,xmm1
+	movaps xmm0,xmm7
+	movaps xmm2,xmm6
+	call 000000018115A8A0h
+	movss dword ptr [rbx+10h],xmm0
+	mov rcx,[182701248h]
+	test byte ptr [rcx+12Fh],2
+	je short 00000001803031C6h
+	cmp dword ptr [rcx+0E0h],0
+	jne short 00000001803031C6h
+	call 000000018021A070h
+	xor edx,edx
+	lea rcx,[rsp+20h]
+	call 000000018116BBA0h
+	movups xmm0,[rax]
+	movups [rdi],xmm0
+	mov rcx,[182701998h]
+	test byte ptr [rcx+12Fh],2
+	je short 00000001803031F6h
+	cmp dword ptr [rcx+0E0h],0
+	jne short 00000001803031F6h
+	call 000000018021A070h
+	xor edx,edx
+	lea rcx,[rsp+20h]
+	call 0000000180FE2C80h
+	movss xmm1,dword ptr [181EA3370h]
+	xor r9d,r9d
+	movsd xmm0,qword ptr [rax]
+	mov ecx,[rax+8]
+	movsd qword ptr [rsi],xmm0
+	movss xmm0,dword ptr [181EA337Ch]
+	mov [rsi+8],ecx
+	movss xmm2,dword ptr [rbx+10h]
+	call 000000018115A8A0h
+	mov rax,[rsp+80h]
+	xor ecx,ecx
+	mov rsi,[rsp+68h]
+	movaps xmm6,[rsp+40h]
+	movaps xmm7,[rsp+30h]
+	movss dword ptr [rax],xmm0
+	mov rax,[rsp+88h]
+	mov [rax],ecx
+	mov rax,[rsp+90h]
+	mov [rax],ecx
+	movss xmm0,dword ptr [rbx+10h]
+	comiss xmm0,dword ptr [181EA3320h]
+	mov rbx,[rsp+60h]
+	seta al
+	add rsp,50h
+	pop rdi
+	ret
+
+ISIL:
+	001 Move stack:0x8, rbx
+	002 Move stack:0x10, rsi
+	003 ShiftStack -8
+	004 Move stack:0x0, rdi
+	005 ShiftStack -80
+	006 Compare [0x1826E993B], 0
+	007 Move rsi, r9
+	008 Move stack:0x40, xmm6
+	009 Move rdi, r8
+	010 Move stack:0x30, xmm7
+	011 Move rbx, rcx
+	012 JumpIfNotEqual {16}
+	013 Move rcx, [0x1822F2CE4]
+	014 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	015 Move [0x1826E993B], 1
+	016 Move xmm7, [rbx+16]
+	017 Move rcx, 0
+	018 Call Time.get_deltaTime, rcx
+	019 Move rcx, typeof(UnityEngine.Mathf)
+	020 Move xmm6, xmm0
+	021 Compare [rcx+303], 2
+	022 JumpIfEqual {26}
+	023 Compare [rcx+224], 0
+	024 JumpIfNotEqual {26}
+	025 Call "il2cpp_runtime_class_init_export", rcx, rdx, r8, r9
+	026 Multiply xmm6, xmm6, [0x1821786E8]
+	027 Move r9, 0
+	028 Move xmm1, 0
+	029 Move xmm0, xmm7
+	030 Move xmm2, xmm6
+	031 Call Mathf.Lerp, xmm0, xmm1, xmm2, r9
+	032 Move [rbx+16], xmm0
+	033 Move rcx, typeof(UnityEngine.Quaternion)
+	034 Compare [rcx+303], 2
+	035 JumpIfEqual {39}
+	036 Compare [rcx+224], 0
+	037 JumpIfNotEqual {39}
+	038 Call "il2cpp_runtime_class_init_export", rcx, rdx, r8, r9
+	039 Move rdx, 0
+	040 LoadAddress rcx, stack:0x20
+	041 Call Quaternion.get_identity, rcx
+	042 Move xmm0, [rax]
+	043 Move [rdi], xmm0
+	044 Move rcx, typeof(UnityEngine.Vector3)
+	045 Compare [rcx+303], 2
+	046 JumpIfEqual {50}
+	047 Compare [rcx+224], 0
+	048 JumpIfNotEqual {50}
+	049 Call "il2cpp_runtime_class_init_export", rcx, rdx, r8, r9
+	050 Move rdx, 0
+	051 LoadAddress rcx, stack:0x20
+	052 Call Vector3.get_zero, rcx
+	053 Move xmm1, [0x181EA3370]
+	054 Move r9, 0
+	055 Move xmm0, [rax]
+	056 Move rcx, [rax+8]
+	057 Move [rsi], xmm0
+	058 Move xmm0, [0x181EA337C]
+	059 Move [rsi+8], rcx
+	060 Move xmm2, [rbx+16]
+	061 Call Mathf.Lerp, xmm0, xmm1, xmm2, r9
+	062 Move rax, stack:0x80
+	063 Move rcx, 0
+	064 Move rsi, stack:0x68
+	065 Move xmm6, stack:0x40
+	066 Move xmm7, stack:0x30
+	067 Move [rax], xmm0
+	068 Move rax, stack:0x88
+	069 Move [rax], rcx
+	070 Move rax, stack:0x90
+	071 Move [rax], rcx
+	072 Move xmm0, [rbx+16]
+	073 Compare xmm0, [0x181EA3320]
+	074 Move rbx, stack:0x60
+	075 NotImplemented "seta al"
+	076 ShiftStack 80
+	077 Move rdi, stack:0x0
+	078 ShiftStack 8
+	079 Return rax
+
+Method: System.Void .ctor()
+
+Disassembly:
+	xor edx,edx
+	mov dword ptr [rcx+10h],3F800000h
+	jmp near ptr 00000001802D5040h
+
+ISIL:
+	001 Move rdx, 0
+	002 Move [rcx+16], 0x3F800000
+	003 Call 0x1802D5040, rcx, rdx, r8, r9, stack:0x0
+	004 Return 
+

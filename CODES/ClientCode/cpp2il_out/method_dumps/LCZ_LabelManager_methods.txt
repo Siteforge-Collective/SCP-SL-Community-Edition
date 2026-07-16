@@ -1,0 +1,337 @@
+Type: LCZ_LabelManager
+
+
+	Generated Pseudocode:
+
+	Declaring Type: LCZ_LabelManager
+	System.Void Start()
+		System.Action action = new System.Action()
+
+		action..ctor(this, {'RefreshLabels' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		MapGeneration.SeedSynchronizer.add_OnMapGenerated(action) //(Action value)
+
+		LCZ_Label[] lCZ_LabelArray = UnityEngine.Object.FindObjectsOfType<LCZ_Label>()
+
+		System.Collections.Generic.List`1<LCZ_Label> list = System.Linq.Enumerable.ToList<LCZ_Label>(lCZ_LabelArray) //(IEnumerable`1 source)
+		this._labels = list
+		ulong local6 = 0
+
+		UnityEngine.Transform transform = base.transform
+
+		System.Int32 childCount = transform.childCount
+
+		if (local6 < childCount)
+
+		    UnityEngine.Transform transform2 = base.transform
+
+		    UnityEngine.Transform child = transform2.GetChild(local6) //(Int32 index)
+
+		    System.String name = child.name
+		    System.Int32 4 = 4
+
+		    System.Boolean boolean = name.StartsWith("Root_", 4) //(String value, StringComparison comparisonType)
+
+		    if (boolean == False)
+
+		        UnityEngine.Transform transform3 = base.transform
+
+		        UnityEngine.Transform child2 = transform3.GetChild(local6) //(Int32 index)
+
+		        System.String name2 = child2.name
+		        System.Int32 4 = 4
+
+		        System.Boolean boolean2 = name2.StartsWith("LCZ_", 4) //(String value, StringComparison comparisonType)
+
+		        if (boolean2 == False)
+                    goto INSN_180536ED4
+                endif
+		    endif
+            
+		    System.Collections.Generic.List`1<UnityEngine.GameObject> _rooms = this._rooms
+
+		    UnityEngine.Transform transform4 = base.transform
+
+		    UnityEngine.Transform child3 = transform4.GetChild(local6) //(Int32 index)
+
+		    UnityEngine.GameObject gameObject = child3.gameObject
+
+		    _rooms.Add(gameObject) //(T item)
+
+		    INSN_180536ED4:
+		    local6 += 1
+
+		    UnityEngine.Transform transform5 = base.transform
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldftn System.Void LCZ_LabelManager::RefreshLabels()
+	IL_0007: newobj System.Void System.Action::.ctor(System.Object,System.IntPtr)
+	IL_000c: call System.Void MapGeneration.SeedSynchronizer::add_OnMapGenerated(System.Action)
+	IL_0011: call T[] UnityEngine.Object::FindObjectsOfType<LCZ_Label>()
+	IL_0016: call System.Collections.Generic.List`1 System.Linq.Enumerable::ToList<LCZ_Label>(System.Collections.Generic.IEnumerable`1)
+	IL_001b: stloc.0
+	IL_001c: ldarg.0
+	IL_001d: ldloc.0
+	IL_001e: stfld System.Collections.Generic.List`1<LCZ_Label> LCZ_LabelManager::_labels
+	IL_0023: ldc.i4.0
+	IL_0024: stloc.1
+	IL_0025: ldarg.0
+	IL_0026: call UnityEngine.Transform UnityEngine.Component::get_transform()
+	IL_002b: call System.Int32 UnityEngine.Transform::get_childCount()
+	IL_0030: stloc.2
+	IL_0031: ldloc.1
+	IL_0032: ldloc.2
+	IL_0033: bge.s IL_00a1
+	IL_0035: ldarg.0
+	IL_0036: call UnityEngine.Transform UnityEngine.Component::get_transform()
+	IL_003b: ldloc.1
+	IL_003c: call UnityEngine.Transform UnityEngine.Transform::GetChild(System.Int32)
+	IL_0041: call System.String UnityEngine.Object::get_name()
+	IL_0046: ldstr "Root_"
+	IL_004b: ldc.i4.4
+	IL_004c: call System.Boolean System.String::StartsWith(System.String,System.StringComparison)
+	IL_0051: ldc.i4.0
+	IL_0052: bne.un.s IL_0073
+	IL_0054: ldarg.0
+	IL_0055: call UnityEngine.Transform UnityEngine.Component::get_transform()
+	IL_005a: ldloc.1
+	IL_005b: call UnityEngine.Transform UnityEngine.Transform::GetChild(System.Int32)
+	IL_0060: call System.String UnityEngine.Object::get_name()
+	IL_0065: ldstr "LCZ_"
+	IL_006a: ldc.i4.4
+	IL_006b: call System.Boolean System.String::StartsWith(System.String,System.StringComparison)
+	IL_0070: ldc.i4.0
+	IL_0071: beq.s IL_0095
+	IL_0073: ldarg.0
+	IL_0074: ldfld System.Collections.Generic.List`1<UnityEngine.GameObject> LCZ_LabelManager::_rooms
+	IL_0079: stloc.3
+	IL_007a: ldarg.0
+	IL_007b: call UnityEngine.Transform UnityEngine.Component::get_transform()
+	IL_0080: ldloc.1
+	IL_0081: call UnityEngine.Transform UnityEngine.Transform::GetChild(System.Int32)
+	IL_0086: call UnityEngine.GameObject UnityEngine.Component::get_gameObject()
+	IL_008b: stloc.s V_4
+	IL_008d: ldloc.3
+	IL_008e: ldloc.s V_4
+	IL_0090: call System.Void System.Collections.Generic.List`1::Add(T)
+	IL_0095: ldloc.1
+	IL_0096: ldc.i4.1
+	IL_0097: add
+	IL_0098: stloc.1
+	IL_0099: ldarg.0
+	IL_009a: call UnityEngine.Transform UnityEngine.Component::get_transform()
+	IL_009f: stloc.s V_5
+	IL_00a1: ret
+	IL_00a2: newobj System.Void System.NullReferenceException::.ctor()
+	IL_00a7: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: LCZ_LabelManager
+	System.Void OnDestroy()
+		System.Action action = new System.Action()
+
+		action..ctor(this, {'RefreshLabels' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		MapGeneration.SeedSynchronizer.remove_OnMapGenerated(action) //(Action value)
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldftn System.Void LCZ_LabelManager::RefreshLabels()
+	IL_0007: newobj System.Void System.Action::.ctor(System.Object,System.IntPtr)
+	IL_000c: call System.Void MapGeneration.SeedSynchronizer::remove_OnMapGenerated(System.Action)
+	IL_0011: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: LCZ_LabelManager
+	System.Void RefreshLabels()
+		System.Collections.Generic.List`1<LCZ_Label> _labels = this._labels
+
+		System.Collections.Generic.List`1/Enumerator<T> enumerator = .GetEnumerator()
+
+		if (enumerator != 0)
+
+		    UnityEngine.Transform transform = .transform
+
+		    UnityEngine.Vector3 position = .position
+
+		    UnityEngine.Vector3 forward = .forward
+
+		    UnityEngine.Vector3 vector3 = UnityEngine.Vector3.op_Multiply()
+
+		    UnityEngine.Vector3 vector32 = UnityEngine.Vector3.op_Addition()
+		    System.Collections.Generic.List`1<UnityEngine.GameObject> _rooms = this._rooms
+
+		    System.Collections.Generic.List`1/Enumerator<T> enumerator2 = .GetEnumerator()
+
+		    if (enumerator2 != 0)
+
+		        UnityEngine.Transform transform2 = .transform
+
+		        UnityEngine.Vector3 position2 = .position
+
+		        System.Single single = UnityEngine.Vector3.Distance()
+		        LCZ_LabelManager/LCZ_Label_Preset[] chars = this.chars
+		        ulong local29 = 0
+
+		        if (local29 < chars.Length)
+		            LCZ_LabelManager/LCZ_Label_Preset lCZ_Label_Preset = chars[local29]
+
+		            System.String name = local29.name
+		            System.String nameToContain = lCZ_Label_Preset.nameToContain
+		            System.Int32 4 = 4
+
+		            System.Boolean boolean = NorthwoodLib.StringUtils.Contains(name, nameToContain, 4) //(String s, String value, StringComparison comparison)
+
+		            if (boolean == False)
+                        goto INSN_180536B0D
+                    endif
+		            ulong local36 = 0
+
+		            System.String name2 = name.name
+		            System.Int32 4 = 4
+
+		            System.Boolean boolean2 = NorthwoodLib.StringUtils.Contains(name2, "(", 4) //(String s, String value, StringComparison comparison)
+
+		            if (boolean2 == False)
+                        goto INSN_180536AB6
+                    endif
+
+		            System.String name3 = name2.name
+
+		            System.String name4 = name2.name
+
+		            System.Int32 int32 = name4.IndexOf({'40' (constant value of type System.Char)}) //(Char value)
+		            System.Int32 local47 = int32 + 1
+		            ulong local49 = 0
+
+		            System.String string = name3.Remove(local49, local47) //(Int32 startIndex, Int32 count)
+
+		            System.Int32 int322 = string.IndexOf({'41' (constant value of type System.Char)}) //(Char value)
+
+		            System.String string2 = string.Remove(int322) //(Int32 startIndex)
+
+		            System.Int32 int323 = System.Int32.Parse(string2) //(String s)
+
+		            INSN_180536AB6:
+		            UnityEngine.Material[] numbers = this.numbers
+		            UnityEngine.Material material = numbers[int323]
+		            UnityEngine.Material material2 = lCZ_Label_Preset.mat
+
+		            name2.Refresh(material2, material) //(Material ch, Material num)
+		            local29 += 1
+
+		            INSN_180536B0D:
+		            local29 += 1
+		        endif
+                
+		         += 1
+		        enumerator2. = 314
+
+		        [instruction error - managed method being called is null]
+
+		        if (Vector3 != 0)
+                    goto INSN_180536C95
+                endif
+
+		        if (True == 0xFFFFFFFFFFFFFFFF)
+                    goto INSN_180536B8F
+                endif
+
+		        if (constant57 != 314)
+                    goto INSN_180536B8F
+                endif
+
+		        INSN_180536B8F:
+		        LCZ_LabelManager/LCZ_Label_Preset[] chars2 = this.chars
+		        LCZ_LabelManager/LCZ_Label_Preset local62 = chars2[0]
+		        UnityEngine.Material material3 = local62.mat
+		        UnityEngine.Material[] numbers2 = this.numbers
+		        UnityEngine.Material local66 = numbers2[0]
+
+		        local62.Refresh(material3, local66) //(Material ch, Material num)
+		    endif
+            
+		    enumerator. = 372
+
+		    [instruction error - managed method being called is null]
+
+		    if (True != 0)
+                goto INSN_180536CD9
+            endif
+		    return
+		    throw new System.IndexOutOfRangeException()
+		    throw new System.IndexOutOfRangeException()
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+
+		    INSN_180536C95:
+		    throw new System.IndexOutOfRangeException()
+		    throw new System.IndexOutOfRangeException()
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+
+		    INSN_180536CD9:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18053672B) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: LCZ_LabelManager
+	System.Void .ctor()
+		System.Collections.Generic.List`1<LCZ_Label> list = new System.Collections.Generic.List`1<LCZ_Label>()
+
+		list..ctor()
+		this._labels = list
+		System.Collections.Generic.List`1<UnityEngine.GameObject> list2 = new System.Collections.Generic.List`1<UnityEngine.GameObject>()
+
+		list2..ctor()
+		this._rooms = list2
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: newobj System.Void System.Collections.Generic.List`1::.ctor()
+	IL_0005: stloc.0
+	IL_0006: ldarg.0
+	IL_0007: ldloc.0
+	IL_0008: stfld System.Collections.Generic.List`1<LCZ_Label> LCZ_LabelManager::_labels
+	IL_000d: newobj System.Void System.Collections.Generic.List`1::.ctor()
+	IL_0012: stloc.1
+	IL_0013: ldarg.0
+	IL_0014: ldloc.1
+	IL_0015: stfld System.Collections.Generic.List`1<UnityEngine.GameObject> LCZ_LabelManager::_rooms
+	IL_001a: ldarg.0
+	IL_001b: call System.Void UnityEngine.MonoBehaviour::.ctor()
+	IL_0020: ret
+	
+

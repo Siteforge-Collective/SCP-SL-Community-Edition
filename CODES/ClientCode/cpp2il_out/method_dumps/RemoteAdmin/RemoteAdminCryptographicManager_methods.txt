@@ -1,0 +1,494 @@
+Type: RemoteAdminCryptographicManager
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.RemoteAdminCryptographicManager
+	System.Void Init()
+
+		Org.BouncyCastle.Crypto.AsymmetricCipherKeyPair asymmetricCipherKeyPair = Cryptography.ECDH.GenerateKeys(384) //(Int32 size)
+		this._ecdhKeys = asymmetricCipherKeyPair
+		Org.BouncyCastle.Crypto.AsymmetricCipherKeyPair _ecdhKeys = this._ecdhKeys
+
+		Org.BouncyCastle.Crypto.Agreement.ECDHBasicAgreement eCDHBasicAgreement = Cryptography.ECDH.Init(_ecdhKeys) //(AsymmetricCipherKeyPair localKey)
+		this._exchange = eCDHBasicAgreement
+		this.ExchangeRequested = True
+		return
+
+
+Generated IL:
+	IL_0000: ldc.i4 384
+	IL_0005: call Org.BouncyCastle.Crypto.AsymmetricCipherKeyPair Cryptography.ECDH::GenerateKeys(System.Int32)
+	IL_000a: stloc.0
+	IL_000b: ldarg.0
+	IL_000c: ldloc.0
+	IL_000d: stfld Org.BouncyCastle.Crypto.AsymmetricCipherKeyPair RemoteAdmin.RemoteAdminCryptographicManager::_ecdhKeys
+	IL_0012: ldarg.0
+	IL_0013: ldfld Org.BouncyCastle.Crypto.AsymmetricCipherKeyPair RemoteAdmin.RemoteAdminCryptographicManager::_ecdhKeys
+	IL_0018: call Org.BouncyCastle.Crypto.Agreement.ECDHBasicAgreement Cryptography.ECDH::Init(Org.BouncyCastle.Crypto.AsymmetricCipherKeyPair)
+	IL_001d: stloc.1
+	IL_001e: ldarg.0
+	IL_001f: ldloc.1
+	IL_0020: stfld Org.BouncyCastle.Crypto.Agreement.ECDHBasicAgreement RemoteAdmin.RemoteAdminCryptographicManager::_exchange
+	IL_0025: ldarg.0
+	IL_0026: ldc.i4.1
+	IL_0027: stfld System.Boolean RemoteAdmin.RemoteAdminCryptographicManager::ExchangeRequested
+	IL_002c: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.RemoteAdminCryptographicManager
+	System.Void StartExchange()
+
+		if (this._exchange != 0)
+		endif
+        
+
+		Org.BouncyCastle.Crypto.AsymmetricCipherKeyPair asymmetricCipherKeyPair = Cryptography.ECDH.GenerateKeys(384) //(Int32 size)
+		this._ecdhKeys = asymmetricCipherKeyPair
+
+		Org.BouncyCastle.Crypto.Agreement.ECDHBasicAgreement eCDHBasicAgreement = Cryptography.ECDH.Init()
+		this._exchange = eCDHBasicAgreement
+		this.ExchangeRequested = True
+
+		Mirror.NetworkConnection connectionToClient = base.connectionToClient
+		System.IntPtr m_CachedPtr = this.m_CachedPtr
+
+		System.String string = Cryptography.ECDSA.KeyToString()
+		ulong local10 = 0
+
+		Mirror.PooledNetworkWriter writer = Mirror.NetworkWriterPool.GetWriter()
+
+		Mirror.NetworkWriterExtensions.WriteString(writer, string) //(NetworkWriter writer, String value)
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'RemoteAdminCryptographicManager' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		ulong local15 = 0
+
+		base.SendTargetRPCInternal(connectionToClient, typeFromHandle, "TargetDiffieHellmanExchange", writer, local15) //(NetworkConnection conn, Type invokeClass, String rpcName, NetworkWriter writer, Int32 channelId)
+
+		Mirror.NetworkWriterPool.Recycle(writer) //(PooledNetworkWriter writer)
+		return
+
+		UnityEngine.Debug.LogWarning("[Server] function 'System.Void RemoteAdmin.RemoteAdminCryptographicManager::StartExchange()' called when server was not active") //(Object message)
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1803505FF) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.RemoteAdminCryptographicManager
+	System.Void TargetDiffieHellmanExchange(Mirror.NetworkConnection conn, System.String publicKey)
+		ulong local3 = 0
+
+		Mirror.PooledNetworkWriter writer = Mirror.NetworkWriterPool.GetWriter()
+
+		Mirror.NetworkWriterExtensions.WriteString(writer, publicKey) //(NetworkWriter writer, String value)
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'RemoteAdminCryptographicManager' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		ulong local8 = 0
+
+		base.SendTargetRPCInternal(conn, typeFromHandle, "TargetDiffieHellmanExchange", writer, local8) //(NetworkConnection conn, Type invokeClass, String rpcName, NetworkWriter writer, Int32 channelId)
+
+		Mirror.NetworkWriterPool.Recycle(writer) //(PooledNetworkWriter writer)
+		return
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: call Mirror.PooledNetworkWriter Mirror.NetworkWriterPool::GetWriter()
+	IL_0007: stloc.1
+	IL_0008: ldloc.1
+	IL_0009: ldarg.2
+	IL_000a: call System.Void Mirror.NetworkWriterExtensions::WriteString(Mirror.NetworkWriter,System.String)
+	IL_000f: ldtoken RemoteAdmin.RemoteAdminCryptographicManager
+	IL_0014: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+	IL_0019: stloc.2
+	IL_001a: ldc.i4.0
+	IL_001b: stloc.3
+	IL_001c: ldarg.0
+	IL_001d: ldarg.1
+	IL_001e: ldloc.2
+	IL_001f: ldstr "TargetDiffieHellmanExchange"
+	IL_0024: ldloc.1
+	IL_0025: ldloc.3
+	IL_0026: call System.Void Mirror.NetworkBehaviour::SendTargetRPCInternal(Mirror.NetworkConnection,System.Type,System.String,Mirror.NetworkWriter,System.Int32)
+	IL_002b: ldloc.1
+	IL_002c: call System.Void Mirror.NetworkWriterPool::Recycle(Mirror.PooledNetworkWriter)
+	IL_0031: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.RemoteAdminCryptographicManager
+	System.Void CmdDiffieHellmanExchange(System.String publicKey, System.Byte[] signature)
+		ulong local3 = 0
+
+		Mirror.PooledNetworkWriter writer = Mirror.NetworkWriterPool.GetWriter()
+
+		Mirror.NetworkWriterExtensions.WriteString(writer, publicKey) //(NetworkWriter writer, String value)
+
+		Mirror.NetworkWriterExtensions.WriteBytesAndSize(writer, signature) //(NetworkWriter writer, Byte[] buffer)
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'RemoteAdminCryptographicManager' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+
+		base.SendCommandInternal(typeFromHandle, "CmdDiffieHellmanExchange", writer, local11, local10) //(Type invokeClass, String cmdName, NetworkWriter writer, Int32 channelId, Boolean requiresAuthority)
+
+		Mirror.NetworkWriterPool.Recycle(writer) //(PooledNetworkWriter writer)
+		return
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: call Mirror.PooledNetworkWriter Mirror.NetworkWriterPool::GetWriter()
+	IL_0007: stloc.1
+	IL_0008: ldloc.1
+	IL_0009: ldarg.1
+	IL_000a: call System.Void Mirror.NetworkWriterExtensions::WriteString(Mirror.NetworkWriter,System.String)
+	IL_000f: ldloc.1
+	IL_0010: ldarg.2
+	IL_0011: call System.Void Mirror.NetworkWriterExtensions::WriteBytesAndSize(Mirror.NetworkWriter,System.Byte[])
+	IL_0016: ldtoken RemoteAdmin.RemoteAdminCryptographicManager
+	IL_001b: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+	IL_0020: stloc.2
+	IL_0021: ldarg.0
+	IL_0022: ldloc.2
+	IL_0023: ldstr "CmdDiffieHellmanExchange"
+	IL_0028: ldloc.1
+	IL_0029: ldloc.s V_5
+	IL_002b: ldloc.s V_4
+	IL_002d: call System.Void Mirror.NetworkBehaviour::SendCommandInternal(System.Type,System.String,Mirror.NetworkWriter,System.Int32,System.Boolean)
+	IL_0032: ldloc.1
+	IL_0033: call System.Void Mirror.NetworkWriterPool::Recycle(Mirror.PooledNetworkWriter)
+	IL_0038: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.RemoteAdminCryptographicManager
+	System.Void .ctor()
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void Mirror.NetworkBehaviour::.ctor()
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.RemoteAdminCryptographicManager
+	System.Void MirrorProcessed()
+
+
+Generated IL:
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.RemoteAdminCryptographicManager
+	System.Void UserCode_TargetDiffieHellmanExchange(Mirror.NetworkConnection conn, System.String publicKey)
+
+		if (this.EncryptionKey == 0)
+
+		    if (publicKey != 0)
+
+		        if (this._exchange != 0)
+		        endif
+                
+
+		        Org.BouncyCastle.Crypto.AsymmetricCipherKeyPair asymmetricCipherKeyPair = Cryptography.ECDH.GenerateKeys(384) //(Int32 size)
+		        this._ecdhKeys = asymmetricCipherKeyPair
+
+		        Org.BouncyCastle.Crypto.Agreement.ECDHBasicAgreement eCDHBasicAgreement = Cryptography.ECDH.Init()
+		        this._exchange = eCDHBasicAgreement
+		        this.ExchangeRequested = True
+
+		        if (this._ecdhPublicKeySignature != 0)
+                    goto INSN_180350B3A
+                endif
+		        ulong local7 = 0
+
+		        System.String string = Cryptography.ECDSA.KeyToString()
+		          = string.
+
+		        System.Byte[] byteArray = Cryptography.ECDSA.SignBytes(string, local7) //(String data, AsymmetricKeyParameter privKey)
+		        this._ecdhPublicKeySignature = byteArray
+
+		        INSN_180350B3A:
+		        Org.BouncyCastle.Crypto.Agreement.ECDHBasicAgreement _exchange = this._exchange
+
+		        Org.BouncyCastle.Crypto.AsymmetricKeyParameter asymmetricKeyParameter = Cryptography.ECDSA.PublicKeyFromString(publicKey) //(String key)
+
+		        System.Byte[] byteArray2 = Cryptography.ECDH.DeriveKey(_exchange, asymmetricKeyParameter) //(ECDHBasicAgreement exchange, AsymmetricKeyParameter remoteKey)
+		        this.EncryptionKey = byteArray2
+
+		        System.String string2 = Cryptography.ECDSA.KeyToString()
+		        System.Byte[] _ecdhPublicKeySignature = this._ecdhPublicKeySignature
+		        ulong local20 = 0
+
+		        Mirror.PooledNetworkWriter writer = Mirror.NetworkWriterPool.GetWriter()
+
+		        Mirror.NetworkWriterExtensions.WriteString(writer, string2) //(NetworkWriter writer, String value)
+
+		        Mirror.NetworkWriterExtensions.WriteBytesAndSize(writer, _ecdhPublicKeySignature) //(NetworkWriter writer, Byte[] buffer)
+
+		        System.Type typeFromHandle = System.Type.GetTypeFromHandle({'RemoteAdminCryptographicManager' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		        ulong local26 = 0
+
+		        base.SendCommandInternal(typeFromHandle, "CmdDiffieHellmanExchange", writer, local28, local27) //(Type invokeClass, String cmdName, NetworkWriter writer, Int32 channelId, Boolean requiresAuthority)
+
+		        Mirror.NetworkWriterPool.Recycle(writer) //(PooledNetworkWriter writer)
+
+		        [instruction error - managed method being called is null]
+
+		        GameCore.Console.AddLog()
+		    endif
+            
+		    return
+		endif
+        
+
+		UnityEngine.Color magenta = UnityEngine.Color.magenta
+		ulong local35 = 0
+		System.Int32 1 = 1
+
+		GameCore.Console.AddLog()
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180350AAB) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.RemoteAdminCryptographicManager
+	static System.Void InvokeUserCode_TargetDiffieHellmanExchange(Mirror.NetworkBehaviour obj, Mirror.NetworkReader reader, Mirror.NetworkConnectionToClient senderConnection)
+		ulong local3 = 0
+
+		System.Boolean active = Mirror.NetworkClient.active
+
+		if (active != False)
+		    ulong local5 = 0
+
+		    Mirror.NetworkConnection readyConnection = Mirror.NetworkClient.readyConnection
+		    ulong local7 = 0
+
+		    System.String string = Mirror.NetworkReaderExtensions.ReadString(reader) //(NetworkReader reader)
+		    //UNKNOWN CLASS OFFSET READ HERE
+
+		    obj.UserCode_TargetDiffieHellmanExchange(readyConnection, string) //(NetworkConnection conn, String publicKey)
+		    return
+		endif
+        
+
+		UnityEngine.Debug.LogError("TargetRPC TargetDiffieHellmanExchange called on server.") //(Object message)
+		return
+		throw new System.InvalidCastException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.UnknownClassOffsetReadAction at (0x1803504A0) is corrupt (Unknown class offset read) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.RemoteAdminCryptographicManager
+	System.Void UserCode_CmdDiffieHellmanExchange(System.String publicKey, System.Byte[] signature)
+
+		if (this.EncryptionKey == 0)
+
+		    if (this._exchange != 0)
+
+		        if (this._ecdhKeys != 0)
+
+		            UnityEngine.GameObject gameObject = base.gameObject
+
+		            ReferenceHub hub = ReferenceHub.GetHub(gameObject) //(GameObject player)
+		            ServerRoles serverRoles = hub.serverRoles
+		            Org.BouncyCastle.Crypto.AsymmetricKeyParameter publicKey = serverRoles.PublicKey
+		            CharacterClassManager characterClassManager = hub.characterClassManager
+		            System.String authToken = characterClassManager.AuthToken
+
+		            if (publicKey == 0)
+                        goto INSN_1803509CB
+                    endif
+
+		            if (authToken == 0)
+                        goto INSN_1803509CB
+                    endif
+
+		            if (publicKey == 0)
+                        goto INSN_1803509EA
+                    endif
+
+		            System.Boolean boolean = Cryptography.ECDSA.VerifyBytes(publicKey, signature, publicKey) //(String data, Byte[] signature, AsymmetricKeyParameter pubKey)
+
+		            if (boolean != False)
+                        goto INSN_1803509EA
+                    endif
+		            GameConsoleTransmission gameConsoleTransmission = hub.gameConsoleTransmission
+
+		            gameConsoleTransmission.SendToClient("Exchange parameters signature is invalid!", "magenta") //(String text, String color)
+		        endif
+                
+		        return
+
+		        INSN_1803509CB:
+
+		        INSN_1803509EA:
+		        Org.BouncyCastle.Crypto.Agreement.ECDHBasicAgreement _exchange = this._exchange
+
+		        Org.BouncyCastle.Crypto.AsymmetricKeyParameter asymmetricKeyParameter = Cryptography.ECDSA.PublicKeyFromString()
+
+		        System.Byte[] byteArray = Cryptography.ECDH.DeriveKey(_exchange, asymmetricKeyParameter) //(ECDHBasicAgreement exchange, AsymmetricKeyParameter remoteKey)
+		        this.EncryptionKey = byteArray
+		        throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1803509F3) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.RemoteAdminCryptographicManager
+	static System.Void InvokeUserCode_CmdDiffieHellmanExchange(Mirror.NetworkBehaviour obj, Mirror.NetworkReader reader, Mirror.NetworkConnectionToClient senderConnection)
+
+		System.String string = Mirror.NetworkReaderExtensions.ReadString(reader) //(NetworkReader reader)
+		ulong local5 = 0
+
+		System.Byte[] byteArray = Mirror.NetworkReaderExtensions.ReadBytesAndSize(reader) //(NetworkReader reader)
+		//UNKNOWN CLASS OFFSET READ HERE
+
+		if ( == 0)
+
+		    if ( != 0)
+
+		        if ( != 0)
+
+		            UnityEngine.GameObject gameObject = obj.gameObject
+
+		            ReferenceHub hub = ReferenceHub.GetHub(gameObject) //(GameObject player)
+		            ServerRoles serverRoles = hub.serverRoles
+		            Org.BouncyCastle.Crypto.AsymmetricKeyParameter publicKey = serverRoles.PublicKey
+		            CharacterClassManager characterClassManager = hub.characterClassManager
+		            System.String authToken = characterClassManager.AuthToken
+
+		            if (string == 0)
+                        goto INSN_180350339
+                    endif
+
+		            if (authToken == 0)
+                        goto INSN_180350339
+                    endif
+
+		            if (publicKey == 0)
+                        goto INSN_180350358
+                    endif
+
+		            System.Boolean boolean = Cryptography.ECDSA.VerifyBytes(string, byteArray, publicKey) //(String data, Byte[] signature, AsymmetricKeyParameter pubKey)
+
+		            if (boolean != False)
+                        goto INSN_180350358
+                    endif
+		            GameConsoleTransmission gameConsoleTransmission = hub.gameConsoleTransmission
+
+		            gameConsoleTransmission.SendToClient("Exchange parameters signature is invalid!", "magenta") //(String text, String color)
+		        endif
+                
+		        return
+
+		        INSN_180350339:
+		          = reader.
+
+		        INSN_180350358:
+		          = obj.
+
+		        Org.BouncyCastle.Crypto.AsymmetricKeyParameter asymmetricKeyParameter = Cryptography.ECDSA.PublicKeyFromString()
+
+		        System.Byte[] byteArray2 = Cryptography.ECDH.DeriveKey()
+
+		        UnityEngine.Debug.LogError("Command CmdDiffieHellmanExchange called on client.") //(Object message)
+		        return
+		        throw new System.InvalidCastException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.UnknownClassOffsetReadAction at (0x1803501DC) is corrupt (Unknown class offset read) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.RemoteAdminCryptographicManager
+	static System.Void .cctor()
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'RemoteAdminCryptographicManager' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		Mirror.RemoteCalls.CmdDelegate cmdDelegate = new Mirror.RemoteCalls.CmdDelegate()
+		ulong local4 = 0
+
+		cmdDelegate..ctor(local4, {'InvokeUserCode_CmdDiffieHellmanExchange' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		Mirror.RemoteCalls.RemoteCallHelper.RegisterCommandDelegate(typeFromHandle, "CmdDiffieHellmanExchange", cmdDelegate, True) //(Type invokeClass, String cmdName, CmdDelegate func, Boolean requiresAuthority)
+
+		System.Type typeFromHandle2 = System.Type.GetTypeFromHandle({'RemoteAdminCryptographicManager' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		Mirror.RemoteCalls.CmdDelegate cmdDelegate2 = new Mirror.RemoteCalls.CmdDelegate()
+		ulong local10 = 0
+
+		cmdDelegate2..ctor(local10, {'InvokeUserCode_TargetDiffieHellmanExchange' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		Mirror.RemoteCalls.RemoteCallHelper.RegisterRpcDelegate(typeFromHandle2, "TargetDiffieHellmanExchange", cmdDelegate2) //(Type invokeClass, String rpcName, CmdDelegate func)
+		return
+
+
+Generated IL:
+	IL_0000: ldtoken RemoteAdmin.RemoteAdminCryptographicManager
+	IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+	IL_000a: stloc.0
+	IL_000b: ldloc.2
+	IL_000c: ldftn System.Void RemoteAdmin.RemoteAdminCryptographicManager::InvokeUserCode_CmdDiffieHellmanExchange(Mirror.NetworkBehaviour,Mirror.NetworkReader,Mirror.NetworkConnectionToClient)
+	IL_0012: newobj System.Void Mirror.RemoteCalls.CmdDelegate::.ctor(System.Object,System.IntPtr)
+	IL_0017: stloc.1
+	IL_0018: ldc.i4.0
+	IL_0019: stloc.2
+	IL_001a: ldloc.0
+	IL_001b: ldstr "CmdDiffieHellmanExchange"
+	IL_0020: ldloc.1
+	IL_0021: ldc.i4.1
+	IL_0022: call System.Void Mirror.RemoteCalls.RemoteCallHelper::RegisterCommandDelegate(System.Type,System.String,Mirror.RemoteCalls.CmdDelegate,System.Boolean)
+	IL_0027: ldtoken RemoteAdmin.RemoteAdminCryptographicManager
+	IL_002c: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+	IL_0031: stloc.s V_4
+	IL_0033: ldloc.s V_6
+	IL_0035: ldftn System.Void RemoteAdmin.RemoteAdminCryptographicManager::InvokeUserCode_TargetDiffieHellmanExchange(Mirror.NetworkBehaviour,Mirror.NetworkReader,Mirror.NetworkConnectionToClient)
+	IL_003b: newobj System.Void Mirror.RemoteCalls.CmdDelegate::.ctor(System.Object,System.IntPtr)
+	IL_0040: stloc.s V_5
+	IL_0042: ldc.i4.0
+	IL_0043: stloc.s V_6
+	IL_0045: ldloc.s V_4
+	IL_0047: ldstr "TargetDiffieHellmanExchange"
+	IL_004c: ldloc.s V_5
+	IL_004e: call System.Void Mirror.RemoteCalls.RemoteCallHelper::RegisterRpcDelegate(System.Type,System.String,Mirror.RemoteCalls.CmdDelegate)
+	IL_0053: ret
+	
+

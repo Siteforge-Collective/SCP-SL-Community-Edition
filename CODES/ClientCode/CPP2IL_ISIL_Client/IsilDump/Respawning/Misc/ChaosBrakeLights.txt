@@ -1,0 +1,107 @@
+Type: Respawning.Misc.ChaosBrakeLights
+
+Method: System.Void Update()
+
+Disassembly:
+	push rbx
+	sub rsp,30h
+	movzx eax,byte ptr [rcx+19h]
+	mov rbx,rcx
+	cmp [rcx+18h],al
+	je short 000000018034365Bh
+	mov [rcx+18h],al
+	mov rcx,[rcx+20h]
+	test al,al
+	je short 00000001803435F3h
+	mov rdx,[rbx+28h]
+	jmp short 00000001803435F7h
+	mov rdx,[rbx+30h]
+	mov [rsp+40h],rdi
+	movaps [rsp+20h],xmm6
+	test rcx,rcx
+	je short 0000000180343661h
+	xor r8d,r8d
+	call 0000000180FD1800h
+	cmp byte ptr [rbx+19h],0
+	mov rdi,[rbx+38h]
+	mov rcx,[rbx+40h]
+	je short 0000000180343626h
+	movss xmm6,dword ptr [181EA336Ch]
+	jmp short 000000018034362Eh
+	movss xmm6,dword ptr [181EA335Ch]
+	test rcx,rcx
+	je short 0000000180343661h
+	xor r8d,r8d
+	movaps xmm1,xmm6
+	call 0000000181049B80h
+	test rdi,rdi
+	je short 0000000180343661h
+	xor r8d,r8d
+	movaps xmm1,xmm6
+	mov rcx,rdi
+	call 0000000181049B80h
+	mov rdi,[rsp+40h]
+	movaps xmm6,[rsp+20h]
+	add rsp,30h
+	pop rbx
+	ret
+	call 0000000180294310h
+
+ISIL:
+	001 ShiftStack -8
+	002 Move stack:0x0, rbx
+	003 ShiftStack -48
+	004 Move rax, [rcx+25]
+	005 Move rbx, rcx
+	006 Compare [rcx+24], rax
+	007 JumpIfEqual {41}
+	008 Move [rcx+24], rax
+	009 Move rcx, [rcx+32]
+	010 Compare rax, 0
+	011 JumpIfEqual {14}
+	012 Move rdx, [rbx+40]
+	013 Goto {15}
+	014 Move rdx, [rbx+48]
+	015 Move stack:0x40, rdi
+	016 Move stack:0x20, xmm6
+	017 Compare rcx, 0
+	018 JumpIfEqual {45}
+	019 Move r8, 0
+	020 Call 0x180FD1800, rcx, rdx
+	021 Compare [rbx+25], 0
+	022 Move rdi, [rbx+56]
+	023 Move rcx, [rbx+64]
+	024 JumpIfEqual {27}
+	025 Move xmm6, [0x181EA336C]
+	026 Goto {28}
+	027 Move xmm6, [0x181EA335C]
+	028 Compare rcx, 0
+	029 JumpIfEqual {45}
+	030 Move r8, 0
+	031 Move xmm1, xmm6
+	032 Call Light.set_intensity, rcx, rdx
+	033 Compare rdi, 0
+	034 JumpIfEqual {45}
+	035 Move r8, 0
+	036 Move xmm1, xmm6
+	037 Move rcx, rdi
+	038 Call Light.set_intensity, rcx, rdx
+	039 Move rdi, stack:0x40
+	040 Move xmm6, stack:0x20
+	041 ShiftStack 48
+	042 Move rbx, stack:0x0
+	043 ShiftStack 8
+	044 Return 
+	045 Call 0x180294310, rcx, rdx, r8, r9
+
+Method: System.Void .ctor()
+
+Disassembly:
+	xor edx,edx
+	jmp near ptr 0000000180FD1850h
+
+ISIL:
+	001 Move rdx, 0
+	002 Call 0x180FD1850, rcx, rdx
+	003 Return 
+

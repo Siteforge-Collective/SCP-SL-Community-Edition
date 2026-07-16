@@ -1,0 +1,266 @@
+Type: PoolObject
+
+
+	Generated Pseudocode:
+
+	Declaring Type: GameObjectPools.PoolObject
+	System.Boolean get_Pooled()
+		System.Boolean Pooled = this.<Pooled>k__BackingField
+		return Pooled
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Boolean GameObjectPools.PoolObject::<Pooled>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: GameObjectPools.PoolObject
+	System.Void set_Pooled(System.Boolean value)
+		this.<Pooled>k__BackingField = value
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: stfld System.Boolean GameObjectPools.PoolObject::<Pooled>k__BackingField
+	IL_0007: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: GameObjectPools.PoolObject
+	GameObjectPools.Pool get__myPool()
+		GameObjectPools.Pool _myPool = this.<_myPool>k__BackingField
+		return _myPool
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld GameObjectPools.Pool GameObjectPools.PoolObject::<_myPool>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: GameObjectPools.PoolObject
+	System.Void set__myPool(GameObjectPools.Pool value)
+		this.<_myPool>k__BackingField = value
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: stfld GameObjectPools.Pool GameObjectPools.PoolObject::<_myPool>k__BackingField
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: GameObjectPools.PoolObject
+	System.Void ReturnToPool(System.Boolean checkChildren)
+
+		if (this.<Pooled>k__BackingField == False)
+		    GameObjectPools.Pool _myPool = this.<_myPool>k__BackingField
+
+		    if (_myPool == 0)
+                goto INSN_181B2FFA9
+            endif
+
+		    if (checkChildren != False)
+                goto INSN_181B2FF48
+            endif
+		    this.<Pooled>k__BackingField = True
+		    ulong local4 = 0
+
+		    System.Boolean boolean = UnityEngine.Object.op_Equality(this, local4) //(Object x, Object y)
+
+		    if (boolean == False)
+
+		        _myPool.ResetObject(this) //(PoolObject poolableObject)
+		        System.Collections.Generic.Stack`1<GameObjectPools.PoolObject> _pool = _myPool._pool
+
+		        _pool.Push(this) //(T item)
+		        System.Int32 _currentCount = _myPool._currentCount
+		        _myPool._currentCount = _currentCount
+
+		        if (_currentCount > _myPool._currentMax)
+		            _myPool._currentMax = _currentCount
+		        endif
+                
+		    endif
+            
+		    return
+
+		    INSN_181B2FF48:
+
+		    GameObjectPools.PoolObject[] componentsInChildren = .GetComponentsInChildren<GameObjectPools.PoolObject>()
+		    System.Int32 length = componentsInChildren.Length
+		    GameObjectPools.PoolObject poolObject = componentsInChildren[length]
+		    ulong local13 = 0
+
+		    poolObject.ReturnToPool(local13) //(Boolean checkChildren)
+		endwhile
+        
+		goto INSN_181B30014
+        
+		return
+
+		INSN_181B2FFA9:
+
+		UnityEngine.GameObject gameObject = .gameObject
+
+		System.String name = gameObject.name
+
+		System.String string = System.String.Concat(name, " does not have an initialized pool.") //(String str0, String str1)
+
+		UnityEngine.Debug.LogError(string) //(Object message)
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181B2FF52) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: GameObjectPools.PoolObject
+	System.Void InitializePoolObject(GameObjectPools.Pool poolOwner)
+		this.<_myPool>k__BackingField = poolOwner
+
+		GameObjectPools.IPoolResettable[] componentsInChildren = base.GetComponentsInChildren<GameObjectPools.IPoolResettable>()
+		this._poolResetables = componentsInChildren
+
+		GameObjectPools.IPoolSpawnable[] componentsInChildren2 = base.GetComponentsInChildren<GameObjectPools.IPoolSpawnable>()
+		this._poolSpawnables = componentsInChildren2
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: stfld GameObjectPools.Pool GameObjectPools.PoolObject::<_myPool>k__BackingField
+	IL_0007: ldarg.0
+	IL_0008: call T[] UnityEngine.Component::GetComponentsInChildren<GameObjectPools.IPoolResettable>()
+	IL_000d: stloc.0
+	IL_000e: ldarg.0
+	IL_000f: ldloc.0
+	IL_0010: stfld GameObjectPools.IPoolResettable[] GameObjectPools.PoolObject::_poolResetables
+	IL_0015: ldarg.0
+	IL_0016: call T[] UnityEngine.Component::GetComponentsInChildren<GameObjectPools.IPoolSpawnable>()
+	IL_001b: stloc.1
+	IL_001c: ldarg.0
+	IL_001d: ldloc.1
+	IL_001e: stfld GameObjectPools.IPoolSpawnable[] GameObjectPools.PoolObject::_poolSpawnables
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: GameObjectPools.PoolObject
+	System.Void ResetPoolObject()
+		GameObjectPools.IPoolResettable[] _poolResetables = this._poolResetables
+		ulong local2 = 0
+		System.Int32 length = _poolResetables.Length
+
+		if (local2 < length)
+		    GameObjectPools.IPoolResettable iPoolResettable = _poolResetables[local2]
+		    //UNKNOWN CLASS OFFSET READ HERE
+
+		    if (local2 < )
+		        local2 += local2
+		        local2 += 1
+		    endif
+            
+		      = local2.
+		    local2 += 1
+		     += IPoolResettable
+		    local2 += 19
+		    local2 += constant6
+		      = local2.
+		    local2 += 1
+		endif
+        
+		return
+		throw new System.IndexOutOfRangeException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.UnknownClassOffsetReadAction at (0x181B2FDB6) is corrupt (Unknown class offset read) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: GameObjectPools.PoolObject
+	System.Void SpawnPoolObject()
+		GameObjectPools.IPoolSpawnable[] _poolSpawnables = this._poolSpawnables
+		ulong local2 = 0
+		this.<Pooled>k__BackingField = False
+		System.Int32 length = _poolSpawnables.Length
+
+		if (local2 < length)
+		    GameObjectPools.IPoolSpawnable iPoolSpawnable = _poolSpawnables[local2]
+		    //UNKNOWN CLASS OFFSET READ HERE
+
+		    if (local2 < )
+		        local2 += local2
+		        local2 += 1
+		    endif
+            
+		      = local2.
+		    local2 += 1
+		     += IPoolSpawnable
+		    local2 += 19
+		    local2 += constant6
+		      = local2.
+		    local2 += 1
+		endif
+        
+		return
+		throw new System.IndexOutOfRangeException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.UnknownClassOffsetReadAction at (0x181B300B1) is corrupt (Unknown class offset read) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: GameObjectPools.PoolObject
+	System.Void .ctor()
+		this.InitialPoolSize = 10
+		this.OverflowMode = 2
+		this.<Pooled>k__BackingField = True
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldc.i4.s 10
+	IL_0003: conv.i8
+	IL_0004: conv.u8
+	IL_0005: stfld System.Int32 GameObjectPools.PoolObject::InitialPoolSize
+	IL_000a: ldarg.0
+	IL_000b: ldc.i4.2
+	IL_000c: conv.i8
+	IL_000d: conv.u8
+	IL_000e: stfld GameObjectPools.Pool/OverflowModes GameObjectPools.PoolObject::OverflowMode
+	IL_0013: ldarg.0
+	IL_0014: ldc.i4.1
+	IL_0015: stfld System.Boolean GameObjectPools.PoolObject::<Pooled>k__BackingField
+	IL_001a: ldarg.0
+	IL_001b: call System.Void UnityEngine.MonoBehaviour::.ctor()
+	IL_0020: ret
+	
+

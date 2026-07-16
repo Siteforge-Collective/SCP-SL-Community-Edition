@@ -1,0 +1,73 @@
+Type: InventorySystem.Items.Firearms.Attachments.Components.ReflexSightReticlePack
+
+Method: UnityEngine.Texture get_Item(System.Int32 index)
+
+Disassembly:
+	sub rsp,28h
+	mov r8,[rcx+18h]
+	test r8,r8
+	je short 0000000180490160h
+	cmp edx,[r8+18h]
+	jae short 0000000180490166h
+	movsxd rax,edx
+	mov rax,[r8+rax*8+20h]
+	add rsp,28h
+	ret
+	call 0000000180294310h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+
+ISIL:
+	001 ShiftStack -40
+	002 Move r8, [rcx+24]
+	003 Compare r8, 0
+	004 JumpIfEqual {11}
+	005 Compare rdx, [r8+24]
+	006 JumpIfGreaterOrEqual {13}
+	007 Move rax, rdx
+	008 Move rax, [r8+32+rax*8]
+	009 ShiftStack 40
+	010 Return rax
+	011 Call 0x180294310, rcx, rdx, r8, r9
+	012 Interrupt 
+	013 Call 0x180294110, rcx, rdx, r8, r9
+	014 Move rcx, rax
+	015 Move rdx, 0
+	016 Call 0x1802942E0, rcx, rdx, r8, r9
+
+Method: System.Int32 get_Length()
+
+Disassembly:
+	sub rsp,28h
+	mov rax,[rcx+18h]
+	test rax,rax
+	je short 0000000180490195h
+	mov eax,[rax+18h]
+	add rsp,28h
+	ret
+	call 0000000180294310h
+
+ISIL:
+	001 ShiftStack -40
+	002 Move rax, [rcx+24]
+	003 Compare rax, 0
+	004 JumpIfEqual {8}
+	005 Move rax, [rax+24]
+	006 ShiftStack 40
+	007 Return rax
+	008 Call 0x180294310, rcx, rdx, r8, r9
+
+Method: System.Void .ctor()
+
+Disassembly:
+	xor edx,edx
+	jmp near ptr 0000000180FCF910h
+
+ISIL:
+	001 Move rdx, 0
+	002 Call 0x180FCF910, rcx, rdx
+	003 Return 
+

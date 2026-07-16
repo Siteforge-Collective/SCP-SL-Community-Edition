@@ -1,0 +1,152 @@
+Type: Concussed
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomPlayerEffects.Concussed
+	System.Boolean get_AllowEnabling()
+		ReferenceHub Hub = this.<Hub>k__BackingField
+		ulong local3 = 0
+
+		System.Boolean boolean = ReferenceHub.op_Inequality(Hub, local3) //(ReferenceHub left, ReferenceHub right)
+
+		if (boolean == False)
+		    return True
+		endif
+        
+		PlayerEffectsController playerEffectsController = Hub.playerEffectsController
+
+		CustomPlayerEffects.Vitality effect = playerEffectsController.GetEffect<CustomPlayerEffects.Vitality>()
+		return effect
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x181AEA5EA) is corrupt (Return value has a type of CustomPlayerEffects.Vitality, expecting an object of type System.Boolean) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomPlayerEffects.Concussed
+	System.Void OnAwake()
+
+		CustomPlayerEffects.DiminishingLerpVisuals component = base.GetComponent<CustomPlayerEffects.DiminishingLerpVisuals>()
+		this._postProcessBehavior = component
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call T UnityEngine.Component::GetComponent<CustomPlayerEffects.DiminishingLerpVisuals>()
+	IL_0006: stloc.0
+	IL_0007: ldarg.0
+	IL_0008: ldloc.0
+	IL_0009: stfld CustomPlayerEffects.DiminishingLerpVisuals CustomPlayerEffects.Concussed::_postProcessBehavior
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomPlayerEffects.Concussed
+	System.Void Enabled()
+
+		UnityEngine.Transform transform = base.transform
+
+		UnityEngine.Quaternion rotation = .rotation
+		this._prevRot = constant3
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181AEBAA0) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomPlayerEffects.Concussed
+	System.Void OnEffectUpdate()
+		ReferenceHub Hub = this.<Hub>k__BackingField
+
+		System.Boolean isLocalPlayer = Hub.isLocalPlayer
+
+		if (isLocalPlayer == False)
+		    ReferenceHub Hub2 = this.<Hub>k__BackingField
+
+		    System.Boolean isLocallySpectated = PlayerRoles.Spectating.SpectatorNetworking.IsLocallySpectated(Hub2) //(ReferenceHub target)
+
+		    if (isLocallySpectated == False)
+                goto INSN_181AEBC6F
+            endif
+		endif
+        
+
+		UnityEngine.Transform transform = base.transform
+
+		UnityEngine.Quaternion rotation = .rotation
+		UnityEngine.Quaternion _prevRot = this._prevRot
+
+		System.Single single = UnityEngine.Quaternion.Angle()
+		ReferenceHub Hub3 = this.<Hub>k__BackingField
+
+		System.Single single2 = CustomPlayerEffects.RainbowTaste.CurrentMultiplier(Hub3) //(ReferenceHub ply)
+		CustomPlayerEffects.DiminishingLerpVisuals _postProcessBehavior = this._postProcessBehavior
+		this._prevRot = constant10
+		System.Single local20 = single / 90
+
+		_postProcessBehavior.Weight = local20
+
+		INSN_181AEBC6F:
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181AEBBB5) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomPlayerEffects.Concussed
+	System.Boolean IsHealable(ItemType it)
+
+		if ( == 0xFFFFFFEF)
+		    return True
+		endif
+        
+		System.Boolean local2 = it == 34
+		return local2
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfNonZeroOrNonNullAction at (0x181AEBAC8) is corrupt (One of the arguments is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomPlayerEffects.Concussed
+	System.Void .ctor()
+		this.intensityIncreasePer90Degree = 0,4
+		this.<MaxIntensity>k__BackingField = 255
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldc.r4 0,4
+	IL_0006: stfld System.Single CustomPlayerEffects.Concussed::intensityIncreasePer90Degree
+	IL_000b: ldarg.0
+	IL_000c: ldc.i4 255
+	IL_0011: conv.i8
+	IL_0012: conv.u8
+	IL_0013: stfld System.Byte CustomPlayerEffects.StatusEffectBase::<MaxIntensity>k__BackingField
+	IL_0018: ldarg.0
+	IL_0019: call System.Void UnityEngine.MonoBehaviour::.ctor()
+	IL_001e: ret
+	
+

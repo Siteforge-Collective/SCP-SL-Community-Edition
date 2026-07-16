@@ -1,0 +1,209 @@
+Type: ConfigBasedTeamSpawnHandler
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Respawning.ConfigBasedTeamSpawnHandler
+	System.Int32 get_MaxWaveSize()
+		System.Int32 _maxWaveSize = this._maxWaveSize
+		return _maxWaveSize
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Int32 Respawning.ConfigBasedTeamSpawnHandler::_maxWaveSize
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Respawning.ConfigBasedTeamSpawnHandler
+	System.Int32 get_StartTokens()
+		System.Int32 _startTokens = this._startTokens
+		return _startTokens
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Int32 Respawning.ConfigBasedTeamSpawnHandler::_startTokens
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Respawning.ConfigBasedTeamSpawnHandler
+	System.Void .ctor(System.String maxWaveSizeConfig, System.Int32 defaultMaxWaveSize, System.String startTokensConfig, System.Int32 defaultStartTokens)
+
+		base..ctor()
+		this._maxWaveSizeConfig = maxWaveSizeConfig
+		this._defaultMaxWaveSize = defaultMaxWaveSize
+		this._startTokensConfig = startTokensConfig
+		this._defaultStartTokens = 0
+		YamlConfig serverConfig = GameCore.ConfigFile.ServerConfig
+		System.Int32 _defaultMaxWaveSize = this._defaultMaxWaveSize
+		System.String _maxWaveSizeConfig = this._maxWaveSizeConfig
+
+		System.Int32 int = serverConfig.GetInt(_maxWaveSizeConfig, _defaultMaxWaveSize) //(String key, Int32 def)
+		this._maxWaveSize = int
+		YamlConfig serverConfig2 = GameCore.ConfigFile.ServerConfig
+		System.Int32 _defaultStartTokens = this._defaultStartTokens
+		System.String _startTokensConfig = this._startTokensConfig
+
+		System.Int32 int2 = serverConfig2.GetInt(_startTokensConfig, _defaultStartTokens) //(String key, Int32 def)
+		this._startTokens = int2
+		System.Action onConfigReloaded = GameCore.ConfigFile.OnConfigReloaded
+		System.Action action = new System.Action()
+
+		action..ctor(this, {'RefreshConfigs' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		System.Delegate delegate = System.Delegate.Combine(onConfigReloaded, action) //(Delegate a, Delegate b)
+		ulong local21 = 0
+
+		if (delegate != 0)
+
+		    if (delegate == 0)
+                goto INSN_180344B11
+            endif
+		endif
+        
+		GameCore.ConfigFile.OnConfigReloaded = local21
+		throw new System.NullReferenceException()
+
+		INSN_180344B11:
+		throw new System.InvalidCastException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void Respawning.SpawnableTeamHandlerBase::.ctor()
+	IL_0006: ldarg.0
+	IL_0007: ldarg.1
+	IL_0008: stfld System.String Respawning.ConfigBasedTeamSpawnHandler::_maxWaveSizeConfig
+	IL_000d: ldarg.0
+	IL_000e: ldarg.2
+	IL_000f: stfld System.Int32 Respawning.ConfigBasedTeamSpawnHandler::_defaultMaxWaveSize
+	IL_0014: ldarg.0
+	IL_0015: ldarg.3
+	IL_0016: stfld System.String Respawning.ConfigBasedTeamSpawnHandler::_startTokensConfig
+	IL_001b: ldarg.0
+	IL_001c: ldc.i4.0
+	IL_001d: stfld System.Int32 Respawning.ConfigBasedTeamSpawnHandler::_defaultStartTokens
+	IL_0022: ldsfld YamlConfig GameCore.ConfigFile::ServerConfig
+	IL_0027: stloc.0
+	IL_0028: ldarg.0
+	IL_0029: ldfld System.Int32 Respawning.ConfigBasedTeamSpawnHandler::_defaultMaxWaveSize
+	IL_002e: stloc.1
+	IL_002f: ldarg.0
+	IL_0030: ldfld System.String Respawning.ConfigBasedTeamSpawnHandler::_maxWaveSizeConfig
+	IL_0035: stloc.2
+	IL_0036: ldloc.0
+	IL_0037: ldloc.2
+	IL_0038: ldloc.1
+	IL_0039: call System.Int32 YamlConfig::GetInt(System.String,System.Int32)
+	IL_003e: stloc.3
+	IL_003f: ldarg.0
+	IL_0040: ldloc.3
+	IL_0041: stfld System.Int32 Respawning.ConfigBasedTeamSpawnHandler::_maxWaveSize
+	IL_0046: ldsfld YamlConfig GameCore.ConfigFile::ServerConfig
+	IL_004b: stloc.s V_4
+	IL_004d: ldarg.0
+	IL_004e: ldfld System.Int32 Respawning.ConfigBasedTeamSpawnHandler::_defaultStartTokens
+	IL_0053: stloc.s V_5
+	IL_0055: ldarg.0
+	IL_0056: ldfld System.String Respawning.ConfigBasedTeamSpawnHandler::_startTokensConfig
+	IL_005b: stloc.s V_6
+	IL_005d: ldloc.s V_4
+	IL_005f: ldloc.s V_6
+	IL_0061: ldloc.s V_5
+	IL_0063: call System.Int32 YamlConfig::GetInt(System.String,System.Int32)
+	IL_0068: stloc.s V_7
+	IL_006a: ldarg.0
+	IL_006b: ldloc.s V_7
+	IL_006d: stfld System.Int32 Respawning.ConfigBasedTeamSpawnHandler::_startTokens
+	IL_0072: ldsfld System.Action GameCore.ConfigFile::OnConfigReloaded
+	IL_0077: stloc.s V_8
+	IL_0079: ldarg.0
+	IL_007a: ldftn System.Void Respawning.ConfigBasedTeamSpawnHandler::RefreshConfigs()
+	IL_0080: newobj System.Void System.Action::.ctor(System.Object,System.IntPtr)
+	IL_0085: stloc.s V_9
+	IL_0087: ldloc.s V_8
+	IL_0089: ldloc.s V_9
+	IL_008b: call System.Delegate System.Delegate::Combine(System.Delegate,System.Delegate)
+	IL_0090: stloc.s V_10
+	IL_0092: ldc.i4.0
+	IL_0093: stloc.s V_11
+	IL_0095: ldloc.s V_10
+	IL_0097: ldc.i4.0
+	IL_0098: beq.s IL_009f
+	IL_009a: ldloc.s V_10
+	IL_009c: ldc.i4.0
+	IL_009d: beq.s IL_00ac
+	IL_009f: ldloc.s V_11
+	IL_00a1: stsfld System.Action GameCore.ConfigFile::OnConfigReloaded
+	IL_00a6: newobj System.Void System.NullReferenceException::.ctor()
+	IL_00ab: throw
+	IL_00ac: newobj System.Void System.InvalidCastException::.ctor()
+	IL_00b1: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Respawning.ConfigBasedTeamSpawnHandler
+	System.Void RefreshConfigs()
+		YamlConfig serverConfig = GameCore.ConfigFile.ServerConfig
+		System.Int32 _defaultMaxWaveSize = this._defaultMaxWaveSize
+		System.String _maxWaveSizeConfig = this._maxWaveSizeConfig
+
+		System.Int32 int = serverConfig.GetInt(_maxWaveSizeConfig, _defaultMaxWaveSize) //(String key, Int32 def)
+		this._maxWaveSize = int
+		YamlConfig serverConfig2 = GameCore.ConfigFile.ServerConfig
+		System.Int32 _defaultStartTokens = this._defaultStartTokens
+		System.String _startTokensConfig = this._startTokensConfig
+
+		System.Int32 int2 = serverConfig2.GetInt(_startTokensConfig, _defaultStartTokens) //(String key, Int32 def)
+		this._startTokens = int2
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldsfld YamlConfig GameCore.ConfigFile::ServerConfig
+	IL_0005: stloc.0
+	IL_0006: ldarg.0
+	IL_0007: ldfld System.Int32 Respawning.ConfigBasedTeamSpawnHandler::_defaultMaxWaveSize
+	IL_000c: stloc.1
+	IL_000d: ldarg.0
+	IL_000e: ldfld System.String Respawning.ConfigBasedTeamSpawnHandler::_maxWaveSizeConfig
+	IL_0013: stloc.2
+	IL_0014: ldloc.0
+	IL_0015: ldloc.2
+	IL_0016: ldloc.1
+	IL_0017: call System.Int32 YamlConfig::GetInt(System.String,System.Int32)
+	IL_001c: stloc.3
+	IL_001d: ldarg.0
+	IL_001e: ldloc.3
+	IL_001f: stfld System.Int32 Respawning.ConfigBasedTeamSpawnHandler::_maxWaveSize
+	IL_0024: ldsfld YamlConfig GameCore.ConfigFile::ServerConfig
+	IL_0029: stloc.s V_4
+	IL_002b: ldarg.0
+	IL_002c: ldfld System.Int32 Respawning.ConfigBasedTeamSpawnHandler::_defaultStartTokens
+	IL_0031: stloc.s V_5
+	IL_0033: ldarg.0
+	IL_0034: ldfld System.String Respawning.ConfigBasedTeamSpawnHandler::_startTokensConfig
+	IL_0039: stloc.s V_6
+	IL_003b: ldloc.s V_4
+	IL_003d: ldloc.s V_6
+	IL_003f: ldloc.s V_5
+	IL_0041: call System.Int32 YamlConfig::GetInt(System.String,System.Int32)
+	IL_0046: stloc.s V_7
+	IL_0048: ldarg.0
+	IL_0049: ldloc.s V_7
+	IL_004b: stfld System.Int32 Respawning.ConfigBasedTeamSpawnHandler::_startTokens
+	IL_0050: ret
+	IL_0051: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0056: throw
+	
+

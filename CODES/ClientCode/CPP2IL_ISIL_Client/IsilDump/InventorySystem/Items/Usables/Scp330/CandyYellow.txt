@@ -1,0 +1,166 @@
+Type: InventorySystem.Items.Usables.Scp330.CandyYellow
+
+Method: InventorySystem.Items.Usables.Scp330.CandyKindID get_Kind()
+
+Disassembly:
+	mov al,2
+	ret
+
+ISIL:
+	001 Move rax, 2
+	002 Return rax
+
+Method: System.Single get_SpawnChanceWeight()
+
+Disassembly:
+	movss xmm0,dword ptr [181EA337Ch]
+	ret
+
+ISIL:
+	001 Move xmm0, [0x181EA337C]
+	002 Return xmm0
+
+Method: System.Void ServerApplyEffects(ReferenceHub hub)
+
+Disassembly:
+	push rbx
+	sub rsp,20h
+	cmp byte ptr [1826EA6C2h],0
+	mov rbx,rdx
+	jne short 000000018042A744h
+	mov ecx,[1822F5374h]
+	call 0000000180294190h
+	mov byte ptr [1826EA6C2h],1
+	test rbx,rbx
+	je near ptr 000000018042A831h
+	mov rcx,[rbx+70h]
+	test rcx,rcx
+	je near ptr 000000018042A831h
+	mov rdx,[1827545B8h]
+	call 00000001807D2B70h
+	test rax,rax
+	je near ptr 000000018042A831h
+	movss xmm1,dword ptr [181EA3354h]
+	xor r8d,r8d
+	mov rcx,rax
+	call 0000000181B4FB40h
+	mov rcx,[rbx+0B0h]
+	test rcx,rcx
+	je near ptr 000000018042A831h
+	mov r9,[182754E78h]
+	mov r8b,1
+	movss xmm1,dword ptr [181EA33A8h]
+	call 00000001807D2A10h
+	mov rcx,[rbx+0B0h]
+	test rcx,rcx
+	je short 000000018042A831h
+	mov rdx,[182754AC0h]
+	call 00000001807D2B30h
+	mov rbx,rax
+	test rax,rax
+	je short 000000018042A831h
+	mov rcx,[182701818h]
+	mov [rsp+30h],rdi
+	movzx edi,byte ptr [rax+28h]
+	test byte ptr [rcx+12Fh],2
+	je short 000000018042A7F0h
+	cmp dword ptr [rcx+0E0h],0
+	jne short 000000018042A7F0h
+	call 000000018021A070h
+	xor r9d,r9d
+	lea ecx,[rdi+0Ah]
+	xor edx,edx
+	mov r8d,0FFh
+	call 000000018115A360h
+	xor r8d,r8d
+	movzx edx,al
+	mov rcx,rbx
+	call 0000000181B00890h
+	movss xmm1,dword ptr [181EA33A8h]
+	xor r9d,r9d
+	mov r8b,1
+	mov rcx,rbx
+	mov rdi,[rsp+30h]
+	add rsp,20h
+	pop rbx
+	jmp near ptr 0000000181AFFDE0h
+	call 0000000180294310h
+
+ISIL:
+	001 ShiftStack -8
+	002 Move stack:0x0, rbx
+	003 ShiftStack -32
+	004 Compare [0x1826EA6C2], 0
+	005 Move rbx, rdx
+	006 JumpIfNotEqual {10}
+	007 Move rcx, [0x1822F5374]
+	008 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	009 Move [0x1826EA6C2], 1
+	010 Compare rbx, 0
+	011 JumpIfEqual {65}
+	012 Move rcx, [rbx+112]
+	013 Compare rcx, 0
+	014 JumpIfEqual {65}
+	015 Move rdx, [0x1827545B8]
+	016 Call 0x1807D2B70, rcx, rdx
+	017 Compare rax, 0
+	018 JumpIfEqual {65}
+	019 Move xmm1, [0x181EA3354]
+	020 Move r8, 0
+	021 Move rcx, rax
+	022 Call StaminaStat.ModifyAmount, rcx, rdx
+	023 Move rcx, [rbx+176]
+	024 Compare rcx, 0
+	025 JumpIfEqual {65}
+	026 Move r9, [0x182754E78]
+	027 Move r8, 1
+	028 Move xmm1, [0x181EA33A8]
+	029 Call 0x1807D2A10, rcx, rdx, r8
+	030 Move rcx, [rbx+176]
+	031 Compare rcx, 0
+	032 JumpIfEqual {65}
+	033 Move rdx, [0x182754AC0]
+	034 Call 0x1807D2B30, rcx, rdx
+	035 Move rbx, rax
+	036 Compare rax, 0
+	037 JumpIfEqual {65}
+	038 Move rcx, typeof(UnityEngine.Mathf)
+	039 Move stack:0x30, rdi
+	040 Move rdi, [rax+40]
+	041 Compare [rcx+303], 2
+	042 JumpIfEqual {46}
+	043 Compare [rcx+224], 0
+	044 JumpIfNotEqual {46}
+	045 Call "il2cpp_runtime_class_init_export", rcx, rdx, r8, r9
+	046 Move r9, 0
+	047 LoadAddress rcx, [rdi+10]
+	048 Move rdx, 0
+	049 Move r8, 255
+	050 Call Mathf.Clamp, rcx, rdx, r8, r9
+	051 Move r8, 0
+	052 Move rdx, rax
+	053 Move rcx, rbx
+	054 Call StatusEffectBase.set_Intensity, rcx, rdx
+	055 Move xmm1, [0x181EA33A8]
+	056 Move r9, 0
+	057 Move r8, 1
+	058 Move rcx, rbx
+	059 Move rdi, stack:0x30
+	060 ShiftStack 32
+	061 Move rbx, stack:0x0
+	062 ShiftStack 8
+	063 Call StatusEffectBase.ServerChangeDuration, rcx, rdx, r8
+	064 Return 
+	065 Call 0x180294310, rcx, rdx, r8, r9
+
+Method: System.Void .ctor()
+
+Disassembly:
+	xor edx,edx
+	jmp near ptr 00000001802D5040h
+
+ISIL:
+	001 Move rdx, 0
+	002 Call 0x1802D5040, rcx, rdx, r8, r9, stack:0x0
+	003 Return 
+

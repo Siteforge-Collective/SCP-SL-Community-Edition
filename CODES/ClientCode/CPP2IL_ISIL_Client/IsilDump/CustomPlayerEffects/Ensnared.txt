@@ -1,0 +1,47 @@
+Type: CustomPlayerEffects.Ensnared
+
+Method: System.Boolean get_MovementModifierActive()
+
+Disassembly:
+	cmp byte ptr [rcx+28h],0
+	seta al
+	ret
+
+ISIL:
+	001 Compare [rcx+40], 0
+	002 NotImplemented "seta al"
+	003 Return rax
+
+Method: System.Single get_MovementSpeedMultiplier()
+
+Disassembly:
+	xorps xmm0,xmm0
+	ret
+
+ISIL:
+	001 Move xmm0, 0
+	002 Return xmm0
+
+Method: System.Single get_MovementSpeedLimit()
+
+Disassembly:
+	xorps xmm0,xmm0
+	ret
+
+ISIL:
+	001 Move xmm0, 0
+	002 Return xmm0
+
+Method: System.Void .ctor()
+
+Disassembly:
+	xor edx,edx
+	mov byte ptr [rcx+18h],0FFh
+	jmp near ptr 0000000180FD1850h
+
+ISIL:
+	001 Move rdx, 0
+	002 Move [rcx+24], 255
+	003 Call 0x180FD1850, rcx, rdx
+	004 Return 
+

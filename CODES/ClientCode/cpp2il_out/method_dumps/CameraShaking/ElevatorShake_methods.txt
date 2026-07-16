@@ -1,0 +1,235 @@
+Type: ElevatorShake
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CameraShaking.ElevatorShake
+	static System.Void Init()
+		System.Action`1<ReferenceHub> onPlayerAdded = ReferenceHub.OnPlayerAdded
+		System.Action`1<ReferenceHub> action = new System.Action`1<ReferenceHub>()
+		ulong local2 = 0
+
+		action..ctor(local2, {'OnPlayerAdded' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		System.Delegate delegate = System.Delegate.Combine(onPlayerAdded, action) //(Delegate a, Delegate b)
+		ulong local5 = 0
+
+		if (delegate != 0)
+
+		    if (delegate == 0)
+                goto INSN_180890721
+            endif
+		endif
+        
+		ReferenceHub.OnPlayerAdded = local5
+		Interactables.Interobjects.ElevatorChamber/ElevatorMoved elevatorMoved = new Interactables.Interobjects.ElevatorChamber/ElevatorMoved()
+		ulong local8 = 0
+
+		elevatorMoved..ctor(local8, {'OnElevatorMoved' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		Interactables.Interobjects.ElevatorChamber.add_OnElevatorMoved(elevatorMoved) //(ElevatorMoved value)
+		return
+
+		INSN_180890721:
+		throw new System.InvalidCastException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1808906EA) is corrupt (Mismatched instance parameter. Expecting an instance of System.Action`1, actually {'elevatorMoved' (type Interactables.Interobjects.ElevatorChamber/ElevatorMoved)}) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CameraShaking.ElevatorShake
+	static System.Void OnPlayerAdded(ReferenceHub hub)
+
+		System.Boolean isLocalPlayer = hub.isLocalPlayer
+
+		if (isLocalPlayer != False)
+		    CameraShaking.ElevatorShake elevatorShake = new CameraShaking.ElevatorShake()
+
+		    elevatorShake..ctor()
+		    CameraShaking.CameraShakeController singleton = CameraShaking.CameraShakeController.Singleton
+		    System.Collections.Generic.List`1<CameraShaking.IShakeEffect> _effects = singleton._effects
+
+		    _effects.Add(elevatorShake) //(T item)
+		    return
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Boolean Mirror.NetworkBehaviour::get_isLocalPlayer()
+	IL_0006: ldc.i4.0
+	IL_0007: beq.s IL_0020
+	IL_0009: newobj System.Void CameraShaking.ElevatorShake::.ctor()
+	IL_000e: stloc.0
+	IL_000f: ldsfld CameraShaking.CameraShakeController CameraShaking.CameraShakeController::Singleton
+	IL_0014: ldfld System.Collections.Generic.List`1<CameraShaking.IShakeEffect> CameraShaking.CameraShakeController::_effects
+	IL_0019: ldloc.0
+	IL_001a: call System.Void System.Collections.Generic.List`1::Add(T)
+	IL_001f: ret
+	IL_0020: ret
+	IL_0021: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0026: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CameraShaking.ElevatorShake
+	static System.Void OnElevatorMoved(UnityEngine.Bounds elevatorBounds, Interactables.Interobjects.ElevatorChamber chamber, UnityEngine.Vector3 deltaPos, UnityEngine.Quaternion deltaRot)
+		UnityEngine.Transform _currentCamera = MainCameraController._currentCamera
+
+		UnityEngine.Vector3 position = .position
+		System.Single single = position.z
+		throw new System.MissingMethodException()
+
+		if (local9 != 0)
+		    System.Diagnostics.Stopwatch lastMovement = CameraShaking.ElevatorShake.LastMovement
+
+		    lastMovement.Restart()
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18089078E) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CameraShaking.ElevatorShake
+	System.Boolean GetEffect(ReferenceHub ply, UnityEngine.Quaternion& targetShakeRotation, UnityEngine.Vector3& pos, System.Single& fovPercent, System.Single& verticalJump, System.Single& horizontalJump)
+
+		UnityEngine.Vector3 zero = UnityEngine.Vector3.zero
+		System.Single single = zero.z
+		pos.z = single
+		System.Diagnostics.Stopwatch lastMovement = CameraShaking.ElevatorShake.LastMovement
+
+		if (lastMovement.is_running != False)
+		    System.Diagnostics.Stopwatch lastMovement2 = CameraShaking.ElevatorShake.LastMovement
+		    UnityEngine.AnimationCurve fadeCurve = CameraShaking.ElevatorShake.FadeCurve
+
+		    System.TimeSpan elapsed = lastMovement2.Elapsed
+		    ulong local17 = 0
+
+		    System.Single single2 = fadeCurve.Evaluate(local17) //(Single time)
+		else
+		    ulong local20 = 0
+		endif
+        
+		ulong local22 = 0
+
+		System.Boolean boolean = UnityEngine.Mathf.Approximately(local20, local22) //(Single a, Single b)
+
+		if (boolean != False)
+            goto INSN_180890581
+        endif
+		System.Diagnostics.Stopwatch realTime = CameraShaking.ElevatorShake.RealTime
+
+		System.TimeSpan elapsed2 = realTime.Elapsed
+		ulong local28 = 0
+		System.Single local29 = local28 * 9
+		System.Single local30 = local28 * 3
+		System.Single local31 = local28 * 75
+		local30 = local31
+		local31 = local30
+		System.Single local32 = local31 * 0,12
+		ulong local33 = 0
+
+		UnityEngine.Vector3 up = UnityEngine.Vector3.up
+		System.Single single3 = up.z
+
+		UnityEngine.Vector3 vector3 = UnityEngine.Vector3.op_Multiply(local30, local33) //(Single d, Vector3 a)
+		System.Single single4 = vector3.z
+
+		UnityEngine.Quaternion quaternion = UnityEngine.Quaternion.Euler()
+
+		INSN_180890581:
+
+		if ( == 2)
+            goto INSN_1808905A2
+        endif
+
+		if ( != 0)
+            goto INSN_1808905A2
+        endif
+
+		INSN_1808905A2:
+		System.Diagnostics.Stopwatch realTime2 = CameraShaking.ElevatorShake.RealTime
+
+		realTime2.Restart()
+
+		UnityEngine.Quaternion identity = UnityEngine.Quaternion.identity
+		targetShakeRotation.x = constant80
+		return True
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.MultiplyRegByGlobalAction at (0x18089048D) is corrupt (Operand we were multiplying by is null or local made was stripped) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CameraShaking.ElevatorShake
+	System.Void .ctor()
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void System.Object::.ctor()
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CameraShaking.ElevatorShake
+	static System.Void .cctor()
+		ulong local0 = 0
+
+		System.Diagnostics.Stopwatch stopwatch = System.Diagnostics.Stopwatch.StartNew()
+		CameraShaking.ElevatorShake.RealTime = stopwatch
+		System.Diagnostics.Stopwatch stopwatch2 = new System.Diagnostics.Stopwatch()
+
+		stopwatch2..ctor()
+		 += 8
+		CameraShaking.ElevatorShake.RealTime = stopwatch2
+		System.Int64 local4 = 2
+		UnityEngine.Keyframe[] local5 = new UnityEngine.Keyframe[2]
+		ulong local6 = 0
+		ulong local7 = 0
+		ulong local8 = 0
+		ulong local9 = 0
+		local5[0] = local7
+		ulong local14 = 0
+		local5[3] = local6
+		ulong local16 = 0
+		local5[3] = local14
+		local5[6] = local16
+		UnityEngine.AnimationCurve animationCurve = new UnityEngine.AnimationCurve()
+
+		animationCurve..ctor(local5) //(Keyframe[] keys)
+		 += 16
+		CameraShaking.ElevatorShake.RealTime = animationCurve
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x18089095A) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+

@@ -1,0 +1,159 @@
+Type: AutosyncRpc
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Autosync.AutosyncRpc
+	System.Void .ctor(InventorySystem.Items.Autosync.AutosyncItem item, System.Boolean toAll, Mirror.NetworkWriter& writer)
+
+		base..ctor(item, writer) //(AutosyncItem item, NetworkWriter& writer)
+
+		if (toAll == False)
+		    this._mode = 0
+		    ReferenceHub Owner = item.<Owner>k__BackingField
+
+		    Mirror.NetworkConnection connectionToClient = Owner.connectionToClient
+		    this._ownerConnection = connectionToClient
+		endif
+        
+		this._mode = 1
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: ldarg.3
+	IL_0003: call System.Void InventorySystem.Items.Autosync.AutosyncWriterBase::.ctor(InventorySystem.Items.Autosync.AutosyncItem,Mirror.NetworkWriter&)
+	IL_0008: ldarg.2
+	IL_0009: ldc.i4.0
+	IL_000a: bne.un.s IL_0028
+	IL_000c: ldarg.0
+	IL_000d: ldc.i4.0
+	IL_000e: conv.i8
+	IL_000f: conv.u8
+	IL_0010: stfld InventorySystem.Items.Autosync.AutosyncRpc/Mode InventorySystem.Items.Autosync.AutosyncRpc::_mode
+	IL_0015: ldarg.1
+	IL_0016: ldfld ReferenceHub InventorySystem.Items.ItemBase::<Owner>k__BackingField
+	IL_001b: call Mirror.NetworkConnection Mirror.NetworkBehaviour::get_connectionToClient()
+	IL_0020: stloc.0
+	IL_0021: ldarg.0
+	IL_0022: ldloc.0
+	IL_0023: stfld Mirror.NetworkConnection InventorySystem.Items.Autosync.AutosyncRpc::_ownerConnection
+	IL_0028: ldarg.0
+	IL_0029: ldc.i4.1
+	IL_002a: conv.i8
+	IL_002b: conv.u8
+	IL_002c: stfld InventorySystem.Items.Autosync.AutosyncRpc/Mode InventorySystem.Items.Autosync.AutosyncRpc::_mode
+	IL_0031: ret
+	IL_0032: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0037: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Autosync.AutosyncRpc
+	System.Void .ctor(InventorySystem.Items.Autosync.AutosyncItem item, System.Func`2<ReferenceHub,System.Boolean> predicate, Mirror.NetworkWriter& writer)
+
+		base..ctor(item, writer) //(AutosyncItem item, NetworkWriter& writer)
+		this._predicate = predicate
+		this._mode = 2
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: ldarg.3
+	IL_0003: call System.Void InventorySystem.Items.Autosync.AutosyncWriterBase::.ctor(InventorySystem.Items.Autosync.AutosyncItem,Mirror.NetworkWriter&)
+	IL_0008: ldarg.0
+	IL_0009: ldarg.2
+	IL_000a: stfld System.Func`2<ReferenceHub,System.Boolean> InventorySystem.Items.Autosync.AutosyncRpc::_predicate
+	IL_000f: ldarg.0
+	IL_0010: ldc.i4.2
+	IL_0011: conv.i8
+	IL_0012: conv.u8
+	IL_0013: stfld InventorySystem.Items.Autosync.AutosyncRpc/Mode InventorySystem.Items.Autosync.AutosyncRpc::_mode
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Autosync.AutosyncRpc
+	System.Void .ctor(InventorySystem.Items.Autosync.AutosyncItem item, System.Boolean toAll)
+
+		base..ctor()
+
+		if (toAll == False)
+		    this._mode = 0
+		    ReferenceHub Owner = item.<Owner>k__BackingField
+
+		    Mirror.NetworkConnection connectionToClient = Owner.connectionToClient
+		    this._ownerConnection = connectionToClient
+		    return
+		endif
+        
+		this._mode = 1
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180486C0A) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Autosync.AutosyncRpc
+	System.Void .ctor(InventorySystem.Items.Autosync.AutosyncItem item, System.Func`2<ReferenceHub,System.Boolean> predicate)
+
+		base..ctor()
+		this._predicate = predicate
+		this._mode = 2
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180486C91) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Autosync.AutosyncRpc
+	System.Void HandleSending(InventorySystem.Items.Autosync.AutosyncMessage msg)
+		InventorySystem.Items.Autosync.AutosyncRpc/Mode _mode = this._mode
+
+		if (_mode != 0)
+
+		    if (_mode != 0)
+
+		        if (_mode == 1)
+		            ItemType _itemType = msg._itemType
+
+		            Utils.Networking.NetworkUtils.SendToHubsConditionally<InventorySystem.Items.Autosync.AutosyncMessage>()
+		        endif
+                
+		        return
+		    endif
+            
+		    ItemType _itemType2 = msg._itemType
+
+		    Mirror.NetworkServer.SendToReady<InventorySystem.Items.Autosync.AutosyncMessage>()
+		    return
+		endif
+        
+		Mirror.NetworkConnection _ownerConnection = this._ownerConnection
+		ItemType _itemType3 = msg._itemType
+
+		_ownerConnection.Send<InventorySystem.Items.Autosync.AutosyncMessage>()
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180486A77) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (3)) and cannot be created as IL. Aborting here.
+
+

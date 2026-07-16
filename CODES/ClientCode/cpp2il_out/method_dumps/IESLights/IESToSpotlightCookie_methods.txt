@@ -1,0 +1,664 @@
+Type: IESToSpotlightCookie
+
+
+	Generated Pseudocode:
+
+	Declaring Type: IESLights.IESToSpotlightCookie
+	System.Void OnDestroy()
+		UnityEngine.Material _spotlightMaterial = this._spotlightMaterial
+		ulong local3 = 0
+
+		System.Boolean boolean = UnityEngine.Object.op_Inequality(_spotlightMaterial, local3) //(Object x, Object y)
+
+		if (boolean != False)
+		    UnityEngine.Material _spotlightMaterial2 = this._spotlightMaterial
+
+		    UnityEngine.Object.Destroy(_spotlightMaterial2) //(Object obj)
+		endif
+        
+		UnityEngine.Material _fadeSpotlightEdgesMaterial = this._fadeSpotlightEdgesMaterial
+		ulong local9 = 0
+
+		System.Boolean boolean2 = UnityEngine.Object.op_Inequality(_fadeSpotlightEdgesMaterial, local9) //(Object x, Object y)
+
+		if (boolean2 == False)
+            goto INSN_181BB0AA6
+        endif
+		UnityEngine.Material _fadeSpotlightEdgesMaterial2 = this._fadeSpotlightEdgesMaterial
+
+		UnityEngine.Object.Destroy(_fadeSpotlightEdgesMaterial2) //(Object obj)
+
+		INSN_181BB0AA6:
+		UnityEngine.Material _verticalFlipMaterial = this._verticalFlipMaterial
+		ulong local15 = 0
+
+		System.Boolean boolean3 = UnityEngine.Object.op_Inequality(_verticalFlipMaterial, local15) //(Object x, Object y)
+
+		if (boolean3 == False)
+            goto INSN_181BB0B05
+        endif
+		UnityEngine.Material _verticalFlipMaterial2 = this._verticalFlipMaterial
+
+		UnityEngine.Object.Destroy(_verticalFlipMaterial2) //(Object obj)
+
+		INSN_181BB0B05:
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld UnityEngine.Material IESLights.IESToSpotlightCookie::_spotlightMaterial
+	IL_0006: stloc.0
+	IL_0007: ldc.i4.0
+	IL_0008: stloc.1
+	IL_0009: ldloc.0
+	IL_000a: ldloc.1
+	IL_000b: call System.Boolean UnityEngine.Object::op_Inequality(UnityEngine.Object,UnityEngine.Object)
+	IL_0010: ldc.i4.0
+	IL_0011: beq.s IL_001e
+	IL_0013: ldarg.0
+	IL_0014: ldfld UnityEngine.Material IESLights.IESToSpotlightCookie::_spotlightMaterial
+	IL_0019: call System.Void UnityEngine.Object::Destroy(UnityEngine.Object)
+	IL_001e: ldarg.0
+	IL_001f: ldfld UnityEngine.Material IESLights.IESToSpotlightCookie::_fadeSpotlightEdgesMaterial
+	IL_0024: stloc.2
+	IL_0025: ldc.i4.0
+	IL_0026: stloc.3
+	IL_0027: ldloc.2
+	IL_0028: ldloc.3
+	IL_0029: call System.Boolean UnityEngine.Object::op_Inequality(UnityEngine.Object,UnityEngine.Object)
+	IL_002e: ldc.i4.0
+	IL_002f: beq.s IL_003c
+	IL_0031: ldarg.0
+	IL_0032: ldfld UnityEngine.Material IESLights.IESToSpotlightCookie::_fadeSpotlightEdgesMaterial
+	IL_0037: call System.Void UnityEngine.Object::Destroy(UnityEngine.Object)
+	IL_003c: ldarg.0
+	IL_003d: ldfld UnityEngine.Material IESLights.IESToSpotlightCookie::_verticalFlipMaterial
+	IL_0042: stloc.s V_4
+	IL_0044: ldc.i4.0
+	IL_0045: stloc.s V_5
+	IL_0047: ldloc.s V_4
+	IL_0049: ldloc.s V_5
+	IL_004b: call System.Boolean UnityEngine.Object::op_Inequality(UnityEngine.Object,UnityEngine.Object)
+	IL_0050: ldc.i4.0
+	IL_0051: beq.s IL_005e
+	IL_0053: ldarg.0
+	IL_0054: ldfld UnityEngine.Material IESLights.IESToSpotlightCookie::_verticalFlipMaterial
+	IL_0059: call System.Void UnityEngine.Object::Destroy(UnityEngine.Object)
+	IL_005e: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: IESLights.IESToSpotlightCookie
+	System.Void CreateSpotlightCookie(UnityEngine.Texture2D iesTexture, IESLights.IESData iesData, System.Int32 resolution, System.Boolean applyVignette, System.Boolean flipVertically, UnityEngine.Texture2D& cookie)
+
+		if (iesData.<PhotometricType>k__BackingField == 3)
+		    UnityEngine.Material _fadeSpotlightEdgesMaterial = this._fadeSpotlightEdgesMaterial
+		    ulong local9 = 0
+
+		    System.Boolean boolean = UnityEngine.Object.op_Equality(_fadeSpotlightEdgesMaterial, local9) //(Object x, Object y)
+
+		    if (boolean != False)
+
+		        UnityEngine.Shader shader = UnityEngine.Shader.Find("Hidden/IES/FadeSpotlightCookieEdges") //(String name)
+		        UnityEngine.Material material = new UnityEngine.Material()
+
+		        material..ctor(shader) //(Shader shader)
+		        this._fadeSpotlightEdgesMaterial = material
+		    endif
+            
+
+		    if (constant15 == 0)
+                goto INSN_181BB04B7
+            endif
+		    System.Collections.Generic.List`1<System.Collections.Generic.List`1<System.Single>> NormalizedValues = iesData.<NormalizedValues>k__BackingField
+
+		    if ( > 0)
+                goto INSN_181BB0412
+            endif
+		    ulong local17 = 0
+
+		    System.ThrowHelper.ThrowArgumentOutOfRangeException()
+
+		    INSN_181BB0412:
+		    T[] _items = NormalizedValues._items
+		    T local19 = _items[0]
+		    System.Collections.Generic.List`1<System.Collections.Generic.List`1<System.Single>> NormalizedValues2 = iesData.<NormalizedValues>k__BackingField
+		      = .
+
+		    if ( > 0)
+                goto INSN_181BB0441
+            endif
+		    ulong local21 = 0
+
+		    System.ThrowHelper.ThrowArgumentOutOfRangeException()
+
+		    INSN_181BB0441:
+		    T[] _items2 = NormalizedValues2._items
+		    T local23 = _items2[0]
+		    System.Collections.Generic.List`1<System.Collections.Generic.List`1<System.Single>> NormalizedValues3 = iesData.<NormalizedValues>k__BackingField
+		      = .
+		    System.Single local25 =  * 0,5
+
+		    UnityEngine.Vector2 vector2 = this.CalculateCookieFadeEllipse(iesData) //(IESData iesData)
+
+		    INSN_181BB04B7:
+		    ulong local28 = 0
+		    ulong local29 = 0
+
+		    UnityEngine.Vector2 zero = UnityEngine.Vector2.zero
+
+		    UnityEngine.Texture2D texture2D = this.BlitToTargetSize()
+		endif
+        
+		UnityEngine.Material _spotlightMaterial = this._spotlightMaterial
+		ulong local38 = 0
+
+		System.Boolean boolean2 = UnityEngine.Object.op_Equality(_spotlightMaterial, local38) //(Object x, Object y)
+
+		if (boolean2 == False)
+            goto INSN_181BB05D6
+        endif
+
+		UnityEngine.Shader shader2 = UnityEngine.Shader.Find("Hidden/IES/IESToSpotlightCookie") //(String name)
+		UnityEngine.Material material2 = new UnityEngine.Material()
+
+		material2..ctor(shader2) //(Shader shader)
+		this._spotlightMaterial = material2
+
+		INSN_181BB05D6:
+		System.Single HalfSpotlightFov = iesData.<HalfSpotlightFov>k__BackingField
+		UnityEngine.Material _spotlightMaterial2 = this._spotlightMaterial
+		System.Single local46 = HalfSpotlightFov * 0,017453292
+
+		_spotlightMaterial2.SetFloat("_SpotHeight", 0.5) //(String name, Single value)
+
+		this.SetShaderKeywords()
+
+		UnityEngine.Texture2D texture2D2 = this.CreateTexture()
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL Generation Skipped due to invalid local _items of type T[]
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: IESLights.IESToSpotlightCookie
+	System.Single CalculateCookieVerticalCenter(IESLights.IESData iesData)
+		System.Collections.Generic.List`1<System.Collections.Generic.List`1<System.Single>> NormalizedValues = iesData.<NormalizedValues>k__BackingField
+
+		if ( <= 0)
+		    ulong local4 = 0
+
+		    System.ThrowHelper.ThrowArgumentOutOfRangeException()
+		endif
+        
+		T[] _items = NormalizedValues._items
+		T local6 = _items[0]
+		System.Collections.Generic.List`1<System.Collections.Generic.List`1<System.Single>> NormalizedValues2 = iesData.<NormalizedValues>k__BackingField
+		  = .
+
+		if ( > 0)
+            goto INSN_181BB0273
+        endif
+		ulong local8 = 0
+
+		System.ThrowHelper.ThrowArgumentOutOfRangeException()
+
+		INSN_181BB0273:
+		T[] _items2 = NormalizedValues2._items
+		T local10 = _items2[0]
+		System.Collections.Generic.List`1<System.Collections.Generic.List`1<System.Single>> NormalizedValues3 = iesData.<NormalizedValues>k__BackingField
+		  = .
+		ulong local14 = 0
+		System.Single local16 = local14 * 0,5
+		return constant15
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL Generation Skipped due to invalid local _items of type T[]
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: IESLights.IESToSpotlightCookie
+	UnityEngine.Vector2 CalculateCookieFadeEllipse(IESLights.IESData iesData)
+		System.Collections.Generic.List`1<System.Single> HorizontalAngles = iesData.<HorizontalAngles>k__BackingField
+		System.Collections.Generic.List`1<System.Single> VerticalAngles = iesData.<VerticalAngles>k__BackingField
+		System.Int32 _size = HorizontalAngles._size
+		return local5
+
+		System.Single single = System.Linq.Enumerable.Max()
+		System.Collections.Generic.List`1<System.Single> HorizontalAngles2 = iesData.<HorizontalAngles>k__BackingField
+
+		System.Single single2 = System.Linq.Enumerable.Min(HorizontalAngles2) //(IEnumerable`1 source)
+		System.Collections.Generic.List`1<System.Single> VerticalAngles2 = iesData.<VerticalAngles>k__BackingField
+
+		System.Single single3 = System.Linq.Enumerable.Max(VerticalAngles2) //(IEnumerable`1 source)
+		System.Collections.Generic.List`1<System.Single> VerticalAngles3 = iesData.<VerticalAngles>k__BackingField
+
+		System.Single single4 = System.Linq.Enumerable.Min(VerticalAngles3) //(IEnumerable`1 source)
+		return local18
+		System.Collections.Generic.List`1<System.Collections.Generic.List`1<System.Single>> NormalizedValues = iesData.<NormalizedValues>k__BackingField
+
+		if ( <= 0)
+		    ulong local21 = 0
+
+		    System.ThrowHelper.ThrowArgumentOutOfRangeException()
+		endif
+        
+		T[] _items = NormalizedValues._items
+		T local23 = _items[0]
+		System.Int32 PadBeforeAmount = iesData.<PadBeforeAmount>k__BackingField
+		System.Int32 PadAfterAmount = iesData.<PadAfterAmount>k__BackingField
+		System.Collections.Generic.List`1<System.Collections.Generic.List`1<System.Single>> NormalizedValues2 = iesData.<NormalizedValues>k__BackingField
+		  = .
+
+		if ( > 0)
+            goto INSN_181BB017C
+        endif
+		ulong local27 = 0
+
+		System.ThrowHelper.ThrowArgumentOutOfRangeException()
+
+		INSN_181BB017C:
+		T[] _items2 = NormalizedValues2._items
+		T local29 = _items2[0]
+		  = .
+		NormalizedValues -= PadAfterAmount
+		NormalizedValues -= PadBeforeAmount
+		return local30
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL Generation Skipped due to invalid local _items of type T[]
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: IESLights.IESToSpotlightCookie
+	UnityEngine.Texture2D CreateTexture(UnityEngine.Texture2D iesTexture, System.Int32 resolution, System.Boolean flipVertically)
+		ulong local4 = 0
+		System.Int32 11 = 11
+
+		UnityEngine.RenderTexture temporary = UnityEngine.RenderTexture.GetTemporary()
+		System.Int32 2 = 2
+
+		temporary.filterMode = 2
+
+		temporary.DiscardContents()
+
+		[instruction error - managed method being called is null]
+		UnityEngine.Material _spotlightMaterial = this._spotlightMaterial
+
+		UnityEngine.Graphics.Blit(iesTexture, _spotlightMaterial) //(Texture source, Material mat)
+
+		if (flipVertically != False)
+
+		    UnityEngine.RenderTexture temporary2 = UnityEngine.RenderTexture.GetTemporary()
+
+		    UnityEngine.Graphics.Blit(temporary, temporary2) //(Texture source, RenderTexture dest)
+
+		    this.FlipVertically(temporary2, temporary) //(Texture iesTexture, RenderTexture renderTarget)
+
+		    UnityEngine.RenderTexture.ReleaseTemporary(temporary2) //(RenderTexture temp)
+		endif
+        
+		UnityEngine.Texture2D texture2D = new UnityEngine.Texture2D()
+
+		texture2D..ctor(resolution, resolution, 20, local4, local20) //(Int32 width, Int32 height, TextureFormat textureFormat, Boolean mipChain, Boolean linear)
+		System.Int32 2 = 2
+
+		texture2D.filterMode = 2
+		System.Int32 1 = 1
+
+		texture2D.wrapMode = 1
+		ulong local23 = 0
+		ulong local26 = 0
+		ulong local27 = 0
+
+		texture2D.ReadPixels(local23, local27, local26) //(Rect source, Int32 destX, Int32 destY)
+
+		texture2D.Apply()
+		ulong local30 = 0
+
+		UnityEngine.RenderTexture.SetActive(local30) //(RenderTexture rt)
+
+		UnityEngine.RenderTexture.ReleaseTemporary(temporary) //(RenderTexture temp)
+		return texture2D
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181BB06EC) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (5)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: IESLights.IESToSpotlightCookie
+	UnityEngine.Texture2D BlitToTargetSize(UnityEngine.Texture2D iesTexture, System.Int32 resolution, System.Single horizontalFadeDistance, System.Single verticalFadeDistance, System.Single verticalCenter, System.Boolean applyVignette, System.Boolean flipVertically)
+
+		if ( != 0)
+		    UnityEngine.Material _fadeSpotlightEdgesMaterial = this._fadeSpotlightEdgesMaterial
+
+		    _fadeSpotlightEdgesMaterial.SetFloat("_HorizontalFadeDistance", horizontalFadeDistance) //(String name, Single value)
+		    UnityEngine.Material _fadeSpotlightEdgesMaterial2 = this._fadeSpotlightEdgesMaterial
+
+		    _fadeSpotlightEdgesMaterial2.SetFloat()
+		    UnityEngine.Material _fadeSpotlightEdgesMaterial3 = this._fadeSpotlightEdgesMaterial
+
+		    _fadeSpotlightEdgesMaterial3.SetFloat()
+		endif
+        
+		ulong local14 = 0
+		System.Int32 11 = 11
+
+		UnityEngine.RenderTexture temporary = UnityEngine.RenderTexture.GetTemporary()
+		System.Int32 2 = 2
+
+		temporary.filterMode = 2
+
+		temporary.DiscardContents()
+
+		if ( != local14)
+            goto INSN_181BAFE28
+        endif
+
+		if ( != local14)
+            goto INSN_181BAFE15
+        endif
+
+		UnityEngine.Graphics.Blit(iesTexture, temporary) //(Texture source, RenderTexture dest)
+
+		INSN_181BAFE15:
+
+		this.FlipVertically(iesTexture, temporary) //(Texture iesTexture, RenderTexture renderTarget)
+
+		INSN_181BAFE28:
+
+		[instruction error - managed method being called is null]
+		UnityEngine.Material _fadeSpotlightEdgesMaterial4 = this._fadeSpotlightEdgesMaterial
+
+		UnityEngine.Graphics.Blit(iesTexture, _fadeSpotlightEdgesMaterial4) //(Texture source, Material mat)
+		UnityEngine.Texture2D texture2D = new UnityEngine.Texture2D()
+
+		texture2D..ctor(resolution, resolution, 20, local14, local26) //(Int32 width, Int32 height, TextureFormat textureFormat, Boolean mipChain, Boolean linear)
+		System.Int32 2 = 2
+
+		texture2D.filterMode = 2
+		System.Int32 1 = 1
+
+		texture2D.wrapMode = 1
+		ulong local29 = 0
+		ulong local32 = 0
+		ulong local33 = 0
+
+		texture2D.ReadPixels(local29, local33, local32) //(Rect source, Int32 destX, Int32 destY)
+
+		texture2D.Apply()
+		ulong local36 = 0
+
+		UnityEngine.RenderTexture.SetActive(local36) //(RenderTexture rt)
+
+		UnityEngine.RenderTexture.ReleaseTemporary(temporary) //(RenderTexture temp)
+		return texture2D
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfZeroOrNullAction at (0x181BAFD23) is corrupt (One of the arguments is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: IESLights.IESToSpotlightCookie
+	System.Void FlipVertically(UnityEngine.Texture iesTexture, UnityEngine.RenderTexture renderTarget)
+		UnityEngine.Material _verticalFlipMaterial = this._verticalFlipMaterial
+		ulong local5 = 0
+
+		System.Boolean boolean = UnityEngine.Object.op_Equality(_verticalFlipMaterial, local5) //(Object x, Object y)
+
+		if (boolean != False)
+
+		    UnityEngine.Shader shader = UnityEngine.Shader.Find("Hidden/IES/VerticalFlip") //(String name)
+		    UnityEngine.Material material = new UnityEngine.Material()
+
+		    material..ctor(shader) //(Shader shader)
+		    this._verticalFlipMaterial = material
+		endif
+        
+		UnityEngine.Material _verticalFlipMaterial2 = this._verticalFlipMaterial
+
+		UnityEngine.Graphics.Blit(iesTexture, renderTarget, _verticalFlipMaterial2) //(Texture source, RenderTexture dest, Material mat)
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld UnityEngine.Material IESLights.IESToSpotlightCookie::_verticalFlipMaterial
+	IL_0006: stloc.0
+	IL_0007: ldc.i4.0
+	IL_0008: stloc.1
+	IL_0009: ldloc.0
+	IL_000a: ldloc.1
+	IL_000b: call System.Boolean UnityEngine.Object::op_Equality(UnityEngine.Object,UnityEngine.Object)
+	IL_0010: ldc.i4.0
+	IL_0011: beq.s IL_002a
+	IL_0013: ldstr "Hidden/IES/VerticalFlip"
+	IL_0018: call UnityEngine.Shader UnityEngine.Shader::Find(System.String)
+	IL_001d: newobj System.Void UnityEngine.Material::.ctor(UnityEngine.Shader)
+	IL_0022: stloc.2
+	IL_0023: ldarg.0
+	IL_0024: ldloc.2
+	IL_0025: stfld UnityEngine.Material IESLights.IESToSpotlightCookie::_verticalFlipMaterial
+	IL_002a: ldarg.0
+	IL_002b: ldfld UnityEngine.Material IESLights.IESToSpotlightCookie::_verticalFlipMaterial
+	IL_0030: stloc.3
+	IL_0031: ldarg.1
+	IL_0032: ldarg.2
+	IL_0033: ldloc.3
+	IL_0034: call System.Void UnityEngine.Graphics::Blit(UnityEngine.Texture,UnityEngine.RenderTexture,UnityEngine.Material)
+	IL_0039: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: IESLights.IESToSpotlightCookie
+	System.Void CalculateAndSetSpotHeight(IESLights.IESData iesData)
+		System.Single HalfSpotlightFov = iesData.<HalfSpotlightFov>k__BackingField
+		UnityEngine.Material _spotlightMaterial = this._spotlightMaterial
+		System.Single local4 = HalfSpotlightFov * 0,017453292
+
+		_spotlightMaterial.SetFloat("_SpotHeight", 0.5) //(String name, Single value)
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.MultiplyRegByGlobalAction at (0x181BAFFC1) is corrupt (Operand we were multiplying by is null or local made was stripped) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: IESLights.IESToSpotlightCookie
+	System.Void SetShaderKeywords(IESLights.IESData iesData, System.Boolean applyVignette)
+		UnityEngine.Material _spotlightMaterial = this._spotlightMaterial
+
+		if (applyVignette == False)
+
+		    _spotlightMaterial.DisableKeyword("VIGNETTE") //(String keyword)
+		else
+
+		    _spotlightMaterial.EnableKeyword("VIGNETTE") //(String keyword)
+		endif
+        
+		UnityEngine.Material _spotlightMaterial2 = this._spotlightMaterial
+
+		if (iesData.<VerticalType>k__BackingField == 2)
+            goto INSN_181BB0BAC
+        endif
+
+		_spotlightMaterial2.DisableKeyword("TOP_VERTICAL") //(String keyword)
+
+		INSN_181BB0BAC:
+
+		_spotlightMaterial2.EnableKeyword("TOP_VERTICAL") //(String keyword)
+		IESLights.HorizontalType HorizontalType = iesData.<HorizontalType>k__BackingField
+
+		if (HorizontalType == 3)
+            goto INSN_181BB0C9A
+        endif
+
+		if (HorizontalType == 2)
+            goto INSN_181BB0C80
+        endif
+
+		if (HorizontalType == 1)
+            goto INSN_181BB0C46
+        endif
+
+		if (HorizontalType != 0)
+            goto INSN_181BB0C36
+        endif
+		UnityEngine.Material _spotlightMaterial3 = this._spotlightMaterial
+
+		_spotlightMaterial3.DisableKeyword("QUAD_HORIZONTAL") //(String keyword)
+		UnityEngine.Material _spotlightMaterial4 = this._spotlightMaterial
+
+		_spotlightMaterial4.DisableKeyword("HALF_HORIZONTAL") //(String keyword)
+		UnityEngine.Material _spotlightMaterial5 = this._spotlightMaterial
+
+		_spotlightMaterial5.EnableKeyword("FULL_HORIZONTAL") //(String keyword)
+
+		INSN_181BB0C36:
+		return
+
+		INSN_181BB0C46:
+
+		_spotlightMaterial5.DisableKeyword("QUAD_HORIZONTAL") //(String keyword)
+
+		_spotlightMaterial5.EnableKeyword("HALF_HORIZONTAL") //(String keyword)
+
+		INSN_181BB0C80:
+
+		_spotlightMaterial5.EnableKeyword("QUAD_HORIZONTAL") //(String keyword)
+
+		INSN_181BB0C9A:
+
+		_spotlightMaterial5.DisableKeyword("QUAD_HORIZONTAL") //(String keyword)
+
+		_spotlightMaterial5.DisableKeyword("HALF_HORIZONTAL") //(String keyword)
+
+		_spotlightMaterial5.DisableKeyword("FULL_HORIZONTAL") //(String keyword)
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld UnityEngine.Material IESLights.IESToSpotlightCookie::_spotlightMaterial
+	IL_0006: stloc.0
+	IL_0007: ldarg.2
+	IL_0008: ldc.i4.0
+	IL_0009: bne.un.s IL_0016
+	IL_000b: ldloc.0
+	IL_000c: ldstr "VIGNETTE"
+	IL_0011: call System.Void UnityEngine.Material::DisableKeyword(System.String)
+	IL_0016: ldloc.0
+	IL_0017: ldstr "VIGNETTE"
+	IL_001c: call System.Void UnityEngine.Material::EnableKeyword(System.String)
+	IL_0021: ldarg.0
+	IL_0022: ldfld UnityEngine.Material IESLights.IESToSpotlightCookie::_spotlightMaterial
+	IL_0027: stloc.1
+	IL_0028: ldarg.1
+	IL_0029: ldfld IESLights.VerticalType IESLights.IESData::<VerticalType>k__BackingField
+	IL_002e: ldc.i4.2
+	IL_002f: beq.s IL_003c
+	IL_0031: ldloc.1
+	IL_0032: ldstr "TOP_VERTICAL"
+	IL_0037: call System.Void UnityEngine.Material::DisableKeyword(System.String)
+	IL_003c: ldloc.1
+	IL_003d: ldstr "TOP_VERTICAL"
+	IL_0042: call System.Void UnityEngine.Material::EnableKeyword(System.String)
+	IL_0047: ldarg.1
+	IL_0048: ldfld IESLights.HorizontalType IESLights.IESData::<HorizontalType>k__BackingField
+	IL_004d: stloc.2
+	IL_004e: ldloc.2
+	IL_004f: ldc.i4.3
+	IL_0050: beq.s IL_00b2
+	IL_0052: ldloc.2
+	IL_0053: ldc.i4.2
+	IL_0054: beq.s IL_00a7
+	IL_0056: ldloc.2
+	IL_0057: ldc.i4.1
+	IL_0058: beq.s IL_0091
+	IL_005a: ldloc.2
+	IL_005b: ldc.i4.0
+	IL_005c: bne.un.s IL_0090
+	IL_005e: ldarg.0
+	IL_005f: ldfld UnityEngine.Material IESLights.IESToSpotlightCookie::_spotlightMaterial
+	IL_0064: ldstr "QUAD_HORIZONTAL"
+	IL_0069: call System.Void UnityEngine.Material::DisableKeyword(System.String)
+	IL_006e: ldarg.0
+	IL_006f: ldfld UnityEngine.Material IESLights.IESToSpotlightCookie::_spotlightMaterial
+	IL_0074: ldstr "HALF_HORIZONTAL"
+	IL_0079: call System.Void UnityEngine.Material::DisableKeyword(System.String)
+	IL_007e: ldarg.0
+	IL_007f: ldfld UnityEngine.Material IESLights.IESToSpotlightCookie::_spotlightMaterial
+	IL_0084: stloc.3
+	IL_0085: ldloc.3
+	IL_0086: ldstr "FULL_HORIZONTAL"
+	IL_008b: call System.Void UnityEngine.Material::EnableKeyword(System.String)
+	IL_0090: ret
+	IL_0091: ldloc.3
+	IL_0092: ldstr "QUAD_HORIZONTAL"
+	IL_0097: call System.Void UnityEngine.Material::DisableKeyword(System.String)
+	IL_009c: ldloc.3
+	IL_009d: ldstr "HALF_HORIZONTAL"
+	IL_00a2: call System.Void UnityEngine.Material::EnableKeyword(System.String)
+	IL_00a7: ldloc.3
+	IL_00a8: ldstr "QUAD_HORIZONTAL"
+	IL_00ad: call System.Void UnityEngine.Material::EnableKeyword(System.String)
+	IL_00b2: ldloc.3
+	IL_00b3: ldstr "QUAD_HORIZONTAL"
+	IL_00b8: call System.Void UnityEngine.Material::DisableKeyword(System.String)
+	IL_00bd: ldloc.3
+	IL_00be: ldstr "HALF_HORIZONTAL"
+	IL_00c3: call System.Void UnityEngine.Material::DisableKeyword(System.String)
+	IL_00c8: ldloc.3
+	IL_00c9: ldstr "FULL_HORIZONTAL"
+	IL_00ce: call System.Void UnityEngine.Material::DisableKeyword(System.String)
+	IL_00d3: ret
+	IL_00d4: newobj System.Void System.NullReferenceException::.ctor()
+	IL_00d9: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: IESLights.IESToSpotlightCookie
+	System.Void .ctor()
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void UnityEngine.MonoBehaviour::.ctor()
+	IL_0006: ret
+	
+

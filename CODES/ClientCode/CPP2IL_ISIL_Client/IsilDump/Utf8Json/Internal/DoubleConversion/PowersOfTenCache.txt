@@ -1,0 +1,2533 @@
+Type: Utf8Json.Internal.DoubleConversion.PowersOfTenCache
+
+Method: System.Void GetCachedPowerForBinaryExponentRange(System.Int32 min_exponent, System.Int32 max_exponent, out Utf8Json.Internal.DoubleConversion.DiyFp power, out System.Int32 decimal_exponent)
+
+Disassembly:
+	mov [rsp+8],rbx
+	mov [rsp+10h],rsi
+	push rdi
+	sub rsp,30h
+	cmp byte ptr [1826F12E1h],0
+	mov rdi,r9
+	mov rsi,r8
+	mov ebx,ecx
+	jne short 0000000180D04F42h
+	mov ecx,[1822D7120h]
+	call 0000000180294190h
+	mov byte ptr [1826F12E1h],1
+	mov rcx,[1827214B0h]
+	test byte ptr [rcx+12Fh],2
+	je short 0000000180D04F60h
+	cmp dword ptr [rcx+0E0h],0
+	jne short 0000000180D04F60h
+	call 000000018021A070h
+	lea eax,[rbx+3Fh]
+	movd xmm0,eax
+	cvtdq2pd xmm0,xmm0
+	mulsd xmm0,qword ptr [182196A98h]
+	call 00000001802A7138h
+	mov rcx,[182719B88h]
+	cvttsd2si eax,xmm0
+	add eax,15Bh
+	cdq
+	and edx,7
+	add eax,edx
+	sar eax,3
+	test byte ptr [rcx+12Fh],2
+	movsxd rbx,eax
+	je short 0000000180D04FB2h
+	cmp dword ptr [rcx+0E0h],0
+	jne short 0000000180D04FB2h
+	call 000000018021A070h
+	mov rcx,[182719B88h]
+	mov rcx,[rcx+0B8h]
+	mov rdx,[rcx]
+	test rdx,rdx
+	je short 0000000180D0501Bh
+	lea rax,[rbx+1]
+	cmp eax,[rdx+18h]
+	jae short 0000000180D05021h
+	mov rbx,[rsp+40h]
+	add rax,2
+	add rax,rax
+	mov dword ptr [rsp+2Ch],0
+	movups xmm1,[rdx+rax*8]
+	movups xmm0,xmm1
+	movq qword ptr [rsp+20h],xmm1
+	psrldq xmm0,8
+	movq rax,xmm0
+	shr rax,10h
+	cwde
+	mov [rdi],eax
+	pextrw eax,xmm1,4
+	movsx ecx,ax
+	mov [rsp+28h],ecx
+	movups xmm0,[rsp+20h]
+	movups [rsi],xmm0
+	mov rsi,[rsp+48h]
+	add rsp,30h
+	pop rdi
+	ret
+	call 0000000180294310h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+
+ISIL:
+	001 Move stack:0x8, rbx
+	002 Move stack:0x10, rsi
+	003 ShiftStack -8
+	004 Move stack:0x0, rdi
+	005 ShiftStack -48
+	006 Compare [0x1826F12E1], 0
+	007 Move rdi, r9
+	008 Move rsi, r8
+	009 Move rbx, rcx
+	010 JumpIfNotEqual {14}
+	011 Move rcx, [0x1822D7120]
+	012 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	013 Move [0x1826F12E1], 1
+	014 Move rcx, typeof(System.Math)
+	015 Compare [rcx+303], 2
+	016 JumpIfEqual {20}
+	017 Compare [rcx+224], 0
+	018 JumpIfNotEqual {20}
+	019 Call "il2cpp_runtime_class_init_export", rcx, rdx, r8, r9
+	020 LoadAddress rax, [rbx+63]
+	021 Move xmm0, rax
+	022 NotImplemented "cvtdq2pd xmm0,xmm0"
+	023 NotImplemented "mulsd xmm0,qword ptr [182196A98h]"
+	024 Call 0x1802A7138, rcx, rdx, r8, r9
+	025 Move rcx, typeof(Utf8Json.Internal.DoubleConversion.PowersOfTenCache)
+	026 Move rax, xmm0
+	027 Add rax, rax, 347
+	028 Move TEMP, rax
+	029 ShiftRight TEMP, 31
+	030 Compare TEMP, 1
+	031 JumpIfNotEqual {34}
+	032 Move rdx, 0xFFFFFFFF
+	033 Goto {35}
+	034 Move rdx, 0
+	035 Nop 
+	036 And rdx, rdx, 7
+	037 Add rax, rax, rdx
+	038 ShiftRight rax, 3
+	039 Compare [rcx+303], 2
+	040 Move rbx, rax
+	041 JumpIfEqual {46}
+	042 Compare [rcx+224], 0
+	043 JumpIfNotEqual {46}
+	044 Call "il2cpp_runtime_class_init_export", rcx, rdx, r8, r9
+	045 Move rcx, typeof(Utf8Json.Internal.DoubleConversion.PowersOfTenCache)
+	046 Move rcx, [rcx+184]
+	047 Move rdx, [rcx]
+	048 Compare rdx, 0
+	049 JumpIfEqual {75}
+	050 LoadAddress rax, [rbx+1]
+	051 Compare rax, [rdx+24]
+	052 JumpIfGreaterOrEqual {77}
+	053 Move rbx, stack:0x40
+	054 Add rax, rax, 2
+	055 Add rax, rax, rax
+	056 Move stack:0x2C, 0
+	057 Move xmm1, [rdx+rax*8]
+	058 Move xmm0, xmm1
+	059 Move stack:0x20, xmm1
+	060 NotImplemented "psrldq xmm0,8"
+	061 Move rax, xmm0
+	062 ShiftRight rax, 16
+	063 Move rax, rax
+	064 Move [rdi], rax
+	065 NotImplemented "pextrw eax,xmm1,4"
+	066 Move rcx, rax
+	067 Move stack:0x28, rcx
+	068 Move xmm0, stack:0x20
+	069 Move [rsi], xmm0
+	070 Move rsi, stack:0x48
+	071 ShiftStack 48
+	072 Move rdi, stack:0x0
+	073 ShiftStack 8
+	074 Return 
+	075 Call 0x180294310, rcx, rdx, r8, r9
+	076 Interrupt 
+	077 Call 0x180294110, rcx, rdx, r8, r9
+	078 Move rcx, rax
+	079 Move rdx, 0
+	080 Call 0x1802942E0, rcx, rdx, r8, r9
+
+Method: System.Void GetCachedPowerForDecimalExponent(System.Int32 requested_exponent, out Utf8Json.Internal.DoubleConversion.DiyFp power, out System.Int32 found_exponent)
+
+Disassembly:
+	mov [rsp+8],rbx
+	mov [rsp+10h],rsi
+	push rdi
+	sub rsp,30h
+	cmp byte ptr [1826F12E2h],0
+	mov rdi,r8
+	mov rsi,rdx
+	mov ebx,ecx
+	jne short 0000000180D05072h
+	mov ecx,[1822D7138h]
+	call 0000000180294190h
+	mov byte ptr [1826F12E2h],1
+	lea eax,[rbx+15Ch]
+	cdq
+	and edx,7
+	add eax,edx
+	sar eax,3
+	movsxd rbx,eax
+	mov rax,[182719B88h]
+	test byte ptr [rax+12Fh],2
+	je short 0000000180D050ACh
+	cmp dword ptr [rax+0E0h],0
+	jne short 0000000180D050ACh
+	mov rcx,rax
+	call 000000018021A070h
+	mov rax,[182719B88h]
+	mov rax,[rax+0B8h]
+	mov rcx,[rax]
+	test rcx,rcx
+	je short 0000000180D0510Eh
+	cmp ebx,[rcx+18h]
+	jae short 0000000180D05114h
+	lea rax,[rbx+2]
+	mov dword ptr [rsp+2Ch],0
+	mov rbx,[rsp+40h]
+	add rax,rax
+	movups xmm1,[rcx+rax*8]
+	pextrw eax,xmm1,4
+	movq qword ptr [rsp+20h],xmm1
+	psrldq xmm1,8
+	movsx ecx,ax
+	movq rax,xmm1
+	mov [rsp+28h],ecx
+	movups xmm0,[rsp+20h]
+	shr rax,10h
+	cwde
+	movups [rsi],xmm0
+	mov rsi,[rsp+48h]
+	mov [rdi],eax
+	add rsp,30h
+	pop rdi
+	ret
+	call 0000000180294310h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+
+ISIL:
+	001 Move stack:0x8, rbx
+	002 Move stack:0x10, rsi
+	003 ShiftStack -8
+	004 Move stack:0x0, rdi
+	005 ShiftStack -48
+	006 Compare [0x1826F12E2], 0
+	007 Move rdi, r8
+	008 Move rsi, rdx
+	009 Move rbx, rcx
+	010 JumpIfNotEqual {14}
+	011 Move rcx, [0x1822D7138]
+	012 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	013 Move [0x1826F12E2], 1
+	014 LoadAddress rax, [rbx+348]
+	015 Move TEMP, rax
+	016 ShiftRight TEMP, 31
+	017 Compare TEMP, 1
+	018 JumpIfNotEqual {21}
+	019 Move rdx, 0xFFFFFFFF
+	020 Goto {22}
+	021 Move rdx, 0
+	022 Nop 
+	023 And rdx, rdx, 7
+	024 Add rax, rax, rdx
+	025 ShiftRight rax, 3
+	026 Move rbx, rax
+	027 Move rax, typeof(Utf8Json.Internal.DoubleConversion.PowersOfTenCache)
+	028 Compare [rax+303], 2
+	029 JumpIfEqual {35}
+	030 Compare [rax+224], 0
+	031 JumpIfNotEqual {35}
+	032 Move rcx, rax
+	033 Call "il2cpp_runtime_class_init_export", rcx, rdx, r8, r9
+	034 Move rax, typeof(Utf8Json.Internal.DoubleConversion.PowersOfTenCache)
+	035 Move rax, [rax+184]
+	036 Move rcx, [rax]
+	037 Compare rcx, 0
+	038 JumpIfEqual {62}
+	039 Compare rbx, [rcx+24]
+	040 JumpIfGreaterOrEqual {64}
+	041 LoadAddress rax, [rbx+2]
+	042 Move stack:0x2C, 0
+	043 Move rbx, stack:0x40
+	044 Add rax, rax, rax
+	045 Move xmm1, [rcx+rax*8]
+	046 NotImplemented "pextrw eax,xmm1,4"
+	047 Move stack:0x20, xmm1
+	048 NotImplemented "psrldq xmm1,8"
+	049 Move rcx, rax
+	050 Move rax, xmm1
+	051 Move stack:0x28, rcx
+	052 Move xmm0, stack:0x20
+	053 ShiftRight rax, 16
+	054 Move rax, rax
+	055 Move [rsi], xmm0
+	056 Move rsi, stack:0x48
+	057 Move [rdi], rax
+	058 ShiftStack 48
+	059 Move rdi, stack:0x0
+	060 ShiftStack 8
+	061 Return 
+	062 Call 0x180294310, rcx, rdx, r8, r9
+	063 Interrupt 
+	064 Call 0x180294110, rcx, rdx, r8, r9
+	065 Move rcx, rax
+	066 Move rdx, 0
+	067 Call 0x1802942E0, rcx, rdx, r8, r9
+
+Method: System.Void .cctor()
+
+Disassembly:
+	push rbp
+	mov rbp,rsp
+	sub rsp,30h
+	cmp byte ptr [1826F12E3h],0
+	jne short 0000000180D05154h
+	mov ecx,[1822D7158h]
+	call 0000000180294190h
+	mov byte ptr [1826F12E3h],1
+	mov rcx,[182719B78h]
+	mov edx,57h
+	call 0000000180293F70h
+	mov rdx,rax
+	mov dword ptr [rbp-8],0FEA4FB3Ch
+	xor r8d,r8d
+	mov rax,0FA8FD5A0081C0288h
+	mov [rbp-10h],rax
+	mov [rbp-4],r8d
+	test rdx,rdx
+	je near ptr 0000000180D0605Bh
+	mov eax,[rdx+18h]
+	test eax,eax
+	je near ptr 0000000180D06061h
+	mov rcx,0BAAEE17FA23EBF76h
+	movups xmm0,[rbp-10h]
+	mov [rbp-4],r8d
+	mov [rbp-10h],rcx
+	mov dword ptr [rbp-8],0FEACFB57h
+	movups [rdx+20h],xmm0
+	cmp eax,1
+	jbe near ptr 0000000180D06071h
+	mov rcx,8B16FB203055AC76h
+	movups xmm0,[rbp-10h]
+	mov [rbp-4],r8d
+	mov [rbp-10h],rcx
+	mov dword ptr [rbp-8],0FEB4FB72h
+	movups [rdx+30h],xmm0
+	cmp eax,2
+	jbe near ptr 0000000180D06081h
+	mov rcx,0CF42894A5DCE35EAh
+	movups xmm0,[rbp-10h]
+	mov [rbp-4],r8d
+	mov [rbp-10h],rcx
+	mov dword ptr [rbp-8],0FEBCFB8Ch
+	movups [rdx+40h],xmm0
+	cmp eax,3
+	jbe near ptr 0000000180D06091h
+	mov rcx,9A6BB0AA55653B2Dh
+	movups xmm0,[rbp-10h]
+	mov [rbp-4],r8d
+	mov [rbp-10h],rcx
+	mov dword ptr [rbp-8],0FEC4FBA7h
+	movups [rdx+50h],xmm0
+	cmp eax,4
+	jbe near ptr 0000000180D060A1h
+	mov rcx,0E61ACF033D1A45DFh
+	movups xmm0,[rbp-10h]
+	mov [rbp-4],r8d
+	mov [rbp-10h],rcx
+	mov dword ptr [rbp-8],0FECCFBC1h
+	movups [rdx+60h],xmm0
+	cmp eax,5
+	jbe near ptr 0000000180D060B1h
+	mov rcx,0AB70FE17C79AC6CAh
+	movups xmm0,[rbp-10h]
+	mov [rbp-4],r8d
+	mov [rbp-10h],rcx
+	mov dword ptr [rbp-8],0FED4FBDCh
+	movups [rdx+70h],xmm0
+	cmp eax,6
+	jbe near ptr 0000000180D060C1h
+	mov rcx,0FF77B1FCBEBCDC4Fh
+	movups xmm0,[rbp-10h]
+	mov [rbp-4],r8d
+	mov [rbp-10h],rcx
+	mov dword ptr [rbp-8],0FEDCFBF6h
+	movups [rdx+80h],xmm0
+	cmp eax,7
+	jbe near ptr 0000000180D060D1h
+	mov rcx,0BE5691EF416BD60Ch
+	movups xmm0,[rbp-10h]
+	mov [rbp-4],r8d
+	mov [rbp-10h],rcx
+	mov dword ptr [rbp-8],0FEE4FC11h
+	movups [rdx+90h],xmm0
+	cmp eax,8
+	jbe near ptr 0000000180D060E1h
+	mov rcx,8DD01FAD907FFC3Ch
+	movups xmm0,[rbp-10h]
+	mov [rbp-4],r8d
+	mov [rbp-10h],rcx
+	mov dword ptr [rbp-8],0FEECFC2Ch
+	movups [rdx+0A0h],xmm0
+	cmp eax,9
+	jbe near ptr 0000000180D060F1h
+	mov rcx,0D3515C2831559A83h
+	movups xmm0,[rbp-10h]
+	mov [rbp-4],r8d
+	mov [rbp-10h],rcx
+	mov dword ptr [rbp-8],0FEF4FC46h
+	movups [rdx+0B0h],xmm0
+	cmp eax,0Ah
+	jbe near ptr 0000000180D06101h
+	mov rcx,9D71AC8FADA6C9B5h
+	movups xmm0,[rbp-10h]
+	mov [rbp-4],r8d
+	mov [rbp-10h],rcx
+	mov dword ptr [rbp-8],0FEFCFC61h
+	movups [rdx+0C0h],xmm0
+	cmp eax,0Bh
+	jbe near ptr 0000000180D06111h
+	mov rcx,0EA9C227723EE8BCBh
+	movups xmm0,[rbp-10h]
+	mov [rbp-4],r8d
+	mov [rbp-10h],rcx
+	mov dword ptr [rbp-8],0FF04FC7Bh
+	movups [rdx+0D0h],xmm0
+	cmp eax,0Ch
+	jbe near ptr 0000000180D06121h
+	movups xmm0,[rbp-10h]
+	mov rax,0AECC49914078536Dh
+	mov [rbp-4],r8d
+	mov [rbp-10h],rax
+	movups [rdx+0E0h],xmm0
+	mov eax,[rdx+18h]
+	mov dword ptr [rbp-8],0FF0CFC96h
+	cmp eax,0Dh
+	jbe near ptr 0000000180D06131h
+	mov rcx,823C12795DB6CE57h
+	movups xmm0,[rbp-10h]
+	mov [rbp-4],r8d
+	mov [rbp-10h],rcx
+	mov dword ptr [rbp-8],0FF14FCB1h
+	movups [rdx+0F0h],xmm0
+	cmp eax,0Eh
+	jbe near ptr 0000000180D06141h
+	mov rcx,0C21094364DFB5637h
+	movups xmm0,[rbp-10h]
+	mov [rbp-4],r8d
+	mov [rbp-10h],rcx
+	mov dword ptr [rbp-8],0FF1CFCCBh
+	movups [rdx+100h],xmm0
+	cmp eax,0Fh
+	jbe near ptr 0000000180D06151h
+	mov rcx,9096EA6F3848984Fh
+	movups xmm0,[rbp-10h]
+	mov [rbp-4],r8d
+	mov [rbp-10h],rcx
+	mov dword ptr [rbp-8],0FF24FCE6h
+	movups [rdx+110h],xmm0
+	cmp eax,10h
+	jbe near ptr 0000000180D06161h
+	mov rcx,0D77485CB25823AC7h
+	movups xmm0,[rbp-10h]
+	mov [rbp-4],r8d
+	mov [rbp-10h],rcx
+	mov dword ptr [rbp-8],0FF2CFD00h
+	movups [rdx+120h],xmm0
+	cmp eax,11h
+	jbe near ptr 0000000180D06171h
+	mov rcx,0A086CFCD97BF97F4h
+	movups xmm0,[rbp-10h]
+	mov [rbp-4],r8d
+	mov [rbp-10h],rcx
+	mov dword ptr [rbp-8],0FF34FD1Bh
+	movups [rdx+130h],xmm0
+	cmp eax,12h
+	jbe near ptr 0000000180D06181h
+	mov rcx,0EF340A98172AACE5h
+	movups xmm0,[rbp-10h]
+	mov [rbp-4],r8d
+	mov [rbp-10h],rcx
+	mov dword ptr [rbp-8],0FF3CFD35h
+	movups [rdx+140h],xmm0
+	cmp eax,13h
+	jbe near ptr 0000000180D06191h
+	mov rcx,0B23867FB2A35B28Eh
+	movups xmm0,[rbp-10h]
+	mov [rbp-4],r8d
+	mov [rbp-10h],rcx
+	mov dword ptr [rbp-8],0FF44FD50h
+	movups [rdx+150h],xmm0
+	cmp eax,14h
+	jbe near ptr 0000000180D061A1h
+	mov rcx,84C8D4DFD2C63F3Bh
+	movups xmm0,[rbp-10h]
+	mov [rbp-4],r8d
+	mov [rbp-10h],rcx
+	mov dword ptr [rbp-8],0FF4CFD6Bh
+	movups [rdx+160h],xmm0
+	cmp eax,15h
+	jbe near ptr 0000000180D061B1h
+	mov rcx,0C5DD44271AD3CDBAh
+	movups xmm0,[rbp-10h]
+	mov [rbp-4],r8d
+	mov [rbp-10h],rcx
+	mov dword ptr [rbp-8],0FF54FD85h
+	movups [rdx+170h],xmm0
+	cmp eax,16h
+	jbe near ptr 0000000180D061C1h
+	mov rcx,936B9FCEBB25C996h
+	movups xmm0,[rbp-10h]
+	mov [rbp-4],r8d
+	mov [rbp-10h],rcx
+	mov dword ptr [rbp-8],0FF5CFDA0h
+	movups [rdx+180h],xmm0
+	cmp eax,17h
+	jbe near ptr 0000000180D061D1h
+	mov rcx,0DBAC6C247D62A584h
+	movups xmm0,[rbp-10h]
+	mov [rbp-4],r8d
+	mov [rbp-10h],rcx
+	mov dword ptr [rbp-8],0FF64FDBAh
+	movups [rdx+190h],xmm0
+	cmp eax,18h
+	jbe near ptr 0000000180D061E1h
+	mov rcx,0A3AB66580D5FDAF6h
+	movups xmm0,[rbp-10h]
+	mov [rbp-4],r8d
+	mov [rbp-10h],rcx
+	mov dword ptr [rbp-8],0FF6CFDD5h
+	movups [rdx+1A0h],xmm0
+	cmp eax,19h
+	jbe near ptr 0000000180D061F1h
+	movups xmm0,[rbp-10h]
+	mov rax,0F3E2F893DEC3F126h
+	mov [rbp-4],r8d
+	mov [rbp-10h],rax
+	movups [rdx+1B0h],xmm0
+	mov eax,[rdx+18h]
+	mov dword ptr [rbp-8],0FF74FDEFh
+	cmp eax,1Ah
+	jbe near ptr 0000000180D06201h
+	mov rcx,0B5B5ADA8AAFF80B8h
+	movups xmm0,[rbp-10h]
+	mov [rbp-4],r8d
+	mov [rbp-10h],rcx
+	mov dword ptr [rbp-8],0FF7CFE0Ah
+	movups [rdx+1C0h],xmm0
+	cmp eax,1Bh
+	jbe near ptr 0000000180D06211h
+	mov rcx,87625F056C7C4A8Bh
+	movups xmm0,[rbp-10h]
+	mov [rbp-4],r8d
+	mov [rbp-10h],rcx
+	mov dword ptr [rbp-8],0FF84FE25h
+	movups [rdx+1D0h],xmm0
+	cmp eax,1Ch
+	jbe near ptr 0000000180D06221h
+	mov rcx,0C9BCFF6034C13053h
+	movups xmm0,[rbp-10h]
+	mov [rbp-4],r8d
+	mov [rbp-10h],rcx
+	mov dword ptr [rbp-8],0FF8CFE3Fh
+	movups [rdx+1E0h],xmm0
+	cmp eax,1Dh
+	jbe near ptr 0000000180D06231h
+	mov rcx,964E858C91BA2655h
+	movups xmm0,[rbp-10h]
+	mov [rbp-4],r8d
+	mov [rbp-10h],rcx
+	mov dword ptr [rbp-8],0FF94FE5Ah
+	movups [rdx+1F0h],xmm0
+	cmp eax,1Eh
+	jbe near ptr 0000000180D06241h
+	mov rcx,0DFF9772470297EBDh
+	movups xmm0,[rbp-10h]
+	mov [rbp-4],r8d
+	mov [rbp-10h],rcx
+	mov dword ptr [rbp-8],0FF9CFE74h
+	movups [rdx+200h],xmm0
+	cmp eax,1Fh
+	jbe near ptr 0000000180D06251h
+	mov rcx,0A6DFBD9FB8E5B88Fh
+	movups xmm0,[rbp-10h]
+	mov [rbp-4],r8d
+	mov [rbp-10h],rcx
+	mov dword ptr [rbp-8],0FFA4FE8Fh
+	movups [rdx+210h],xmm0
+	cmp eax,20h
+	jbe near ptr 0000000180D06261h
+	mov rcx,0F8A95FCF88747D94h
+	movups xmm0,[rbp-10h]
+	mov [rbp-4],r8d
+	mov [rbp-10h],rcx
+	mov dword ptr [rbp-8],0FFACFEA9h
+	movups [rdx+220h],xmm0
+	cmp eax,21h
+	jbe near ptr 0000000180D06271h
+	mov rcx,0B94470938FA89BCFh
+	movups xmm0,[rbp-10h]
+	mov [rbp-4],r8d
+	mov [rbp-10h],rcx
+	mov dword ptr [rbp-8],0FFB4FEC4h
+	movups [rdx+230h],xmm0
+	cmp eax,22h
+	jbe near ptr 0000000180D06281h
+	mov rcx,8A08F0F8BF0F156Bh
+	movups xmm0,[rbp-10h]
+	mov [rbp-4],r8d
+	mov [rbp-10h],rcx
+	mov dword ptr [rbp-8],0FFBCFEDFh
+	movups [rdx+240h],xmm0
+	cmp eax,23h
+	jbe near ptr 0000000180D06291h
+	mov rcx,0CDB02555653131B6h
+	movups xmm0,[rbp-10h]
+	mov [rbp-4],r8d
+	mov [rbp-10h],rcx
+	mov dword ptr [rbp-8],0FFC4FEF9h
+	movups [rdx+250h],xmm0
+	cmp eax,24h
+	jbe near ptr 0000000180D062A1h
+	mov rcx,993FE2C6D07B7FACh
+	movups xmm0,[rbp-10h]
+	mov [rbp-4],r8d
+	mov [rbp-10h],rcx
+	mov dword ptr [rbp-8],0FFCCFF14h
+	movups [rdx+260h],xmm0
+	cmp eax,25h
+	jbe near ptr 0000000180D062B1h
+	mov rcx,0E45C10C42A2B3B06h
+	movups xmm0,[rbp-10h]
+	mov [rbp-4],r8d
+	mov [rbp-10h],rcx
+	mov dword ptr [rbp-8],0FFD4FF2Eh
+	movups [rdx+270h],xmm0
+	cmp eax,26h
+	jbe near ptr 0000000180D062C1h
+	movups xmm0,[rbp-10h]
+	mov rax,0AA242499697392D3h
+	mov [rbp-4],r8d
+	mov [rbp-10h],rax
+	movups [rdx+280h],xmm0
+	mov eax,[rdx+18h]
+	mov dword ptr [rbp-8],0FFDCFF49h
+	cmp eax,27h
+	jbe near ptr 0000000180D062D1h
+	mov rcx,0FD87B5F28300CA0Eh
+	movups xmm0,[rbp-10h]
+	mov [rbp-4],r8d
+	mov [rbp-10h],rcx
+	mov dword ptr [rbp-8],0FFE4FF63h
+	movups [rdx+290h],xmm0
+	cmp eax,28h
+	jbe near ptr 0000000180D062E1h
+	mov rcx,0BCE5086492111AEBh
+	movups xmm0,[rbp-10h]
+	mov [rbp-4],r8d
+	mov [rbp-10h],rcx
+	mov dword ptr [rbp-8],0FFECFF7Eh
+	movups [rdx+2A0h],xmm0
+	cmp eax,29h
+	jbe near ptr 0000000180D062F1h
+	mov rcx,8CBCCC096F5088CCh
+	movups xmm0,[rbp-10h]
+	mov [rbp-4],r8d
+	mov [rbp-10h],rcx
+	mov dword ptr [rbp-8],0FFF4FF99h
+	movups [rdx+2B0h],xmm0
+	cmp eax,2Ah
+	jbe near ptr 0000000180D06301h
+	mov rcx,0D1B71758E219652Ch
+	movups xmm0,[rbp-10h]
+	mov [rbp-4],r8d
+	mov [rbp-10h],rcx
+	mov dword ptr [rbp-8],0FFFCFFB3h
+	movups [rdx+2C0h],xmm0
+	cmp eax,2Bh
+	jbe near ptr 0000000180D06311h
+	mov rcx,9C40000000000000h
+	movups xmm0,[rbp-10h]
+	mov qword ptr [rbp-8],4FFCEh
+	mov [rbp-10h],rcx
+	movups [rdx+2D0h],xmm0
+	cmp eax,2Ch
+	jbe near ptr 0000000180D06321h
+	mov rcx,0E8D4A51000000000h
+	movups xmm0,[rbp-10h]
+	mov qword ptr [rbp-8],0CFFE8h
+	mov [rbp-10h],rcx
+	movups [rdx+2E0h],xmm0
+	cmp eax,2Dh
+	jbe near ptr 0000000180D06331h
+	mov rcx,0AD78EBC5AC620000h
+	movups xmm0,[rbp-10h]
+	mov qword ptr [rbp-8],140003h
+	mov [rbp-10h],rcx
+	movups [rdx+2F0h],xmm0
+	cmp eax,2Eh
+	jbe near ptr 0000000180D06341h
+	mov rcx,813F3978F8940984h
+	movups xmm0,[rbp-10h]
+	mov qword ptr [rbp-8],1C001Eh
+	mov [rbp-10h],rcx
+	movups [rdx+300h],xmm0
+	cmp eax,2Fh
+	jbe near ptr 0000000180D06351h
+	mov rcx,0C097CE7BC90715B3h
+	movups xmm0,[rbp-10h]
+	mov qword ptr [rbp-8],240038h
+	mov [rbp-10h],rcx
+	movups [rdx+310h],xmm0
+	cmp eax,30h
+	jbe near ptr 0000000180D06361h
+	mov rcx,8F7E32CE7BEA5C70h
+	movups xmm0,[rbp-10h]
+	mov qword ptr [rbp-8],2C0053h
+	mov [rbp-10h],rcx
+	movups [rdx+320h],xmm0
+	cmp eax,31h
+	jbe near ptr 0000000180D06371h
+	mov rcx,0D5D238A4ABE98068h
+	movups xmm0,[rbp-10h]
+	mov qword ptr [rbp-8],34006Dh
+	mov [rbp-10h],rcx
+	movups [rdx+330h],xmm0
+	cmp eax,32h
+	jbe near ptr 0000000180D06381h
+	mov rcx,9F4F2726179A2245h
+	movups xmm0,[rbp-10h]
+	mov qword ptr [rbp-8],3C0088h
+	mov [rbp-10h],rcx
+	movups [rdx+340h],xmm0
+	cmp eax,33h
+	jbe near ptr 0000000180D06391h
+	movups xmm0,[rbp-10h]
+	mov rax,0ED63A231D4C4FB27h
+	mov qword ptr [rbp-8],4400A2h
+	mov [rbp-10h],rax
+	movups [rdx+350h],xmm0
+	mov eax,[rdx+18h]
+	cmp eax,34h
+	jbe near ptr 0000000180D063A1h
+	mov rcx,0B0DE65388CC8ADA8h
+	movups xmm0,[rbp-10h]
+	mov qword ptr [rbp-8],4C00BDh
+	mov [rbp-10h],rcx
+	movups [rdx+360h],xmm0
+	cmp eax,35h
+	jbe near ptr 0000000180D063B1h
+	mov rcx,83C7088E1AAB65DBh
+	movups xmm0,[rbp-10h]
+	mov qword ptr [rbp-8],5400D8h
+	mov [rbp-10h],rcx
+	movups [rdx+370h],xmm0
+	cmp eax,36h
+	jbe near ptr 0000000180D063C1h
+	mov rcx,0C45D1DF942711D9Ah
+	movups xmm0,[rbp-10h]
+	mov qword ptr [rbp-8],5C00F2h
+	mov [rbp-10h],rcx
+	movups [rdx+380h],xmm0
+	cmp eax,37h
+	jbe near ptr 0000000180D063D1h
+	mov rcx,924D692CA61BE758h
+	movups xmm0,[rbp-10h]
+	mov qword ptr [rbp-8],64010Dh
+	mov [rbp-10h],rcx
+	movups [rdx+390h],xmm0
+	cmp eax,38h
+	jbe near ptr 0000000180D063E1h
+	mov rcx,0DA01EE641A708DEAh
+	movups xmm0,[rbp-10h]
+	mov qword ptr [rbp-8],6C0127h
+	mov [rbp-10h],rcx
+	movups [rdx+3A0h],xmm0
+	cmp eax,39h
+	jbe near ptr 0000000180D063F1h
+	mov rcx,0A26DA3999AEF774Ah
+	movups xmm0,[rbp-10h]
+	mov qword ptr [rbp-8],740142h
+	mov [rbp-10h],rcx
+	movups [rdx+3B0h],xmm0
+	cmp eax,3Ah
+	jbe near ptr 0000000180D06401h
+	mov rcx,0F209787BB47D6B85h
+	movups xmm0,[rbp-10h]
+	mov qword ptr [rbp-8],7C015Ch
+	mov [rbp-10h],rcx
+	movups [rdx+3C0h],xmm0
+	cmp eax,3Bh
+	jbe near ptr 0000000180D06411h
+	mov rcx,0B454E4A179DD1877h
+	movups xmm0,[rbp-10h]
+	mov qword ptr [rbp-8],840177h
+	mov [rbp-10h],rcx
+	movups [rdx+3D0h],xmm0
+	cmp eax,3Ch
+	jbe near ptr 0000000180D06421h
+	mov rcx,865B86925B9BC5C2h
+	movups xmm0,[rbp-10h]
+	mov qword ptr [rbp-8],8C0192h
+	mov [rbp-10h],rcx
+	movups [rdx+3E0h],xmm0
+	cmp eax,3Dh
+	jbe near ptr 0000000180D06431h
+	mov rcx,0C83553C5C8965D3Dh
+	movups xmm0,[rbp-10h]
+	mov qword ptr [rbp-8],9401ACh
+	mov [rbp-10h],rcx
+	movups [rdx+3F0h],xmm0
+	cmp eax,3Eh
+	jbe near ptr 0000000180D06441h
+	mov rcx,952AB45CFA97A0B3h
+	movups xmm0,[rbp-10h]
+	mov qword ptr [rbp-8],9C01C7h
+	mov [rbp-10h],rcx
+	movups [rdx+400h],xmm0
+	cmp eax,3Fh
+	jbe near ptr 0000000180D06451h
+	mov rcx,0DE469FBD99A05FE3h
+	movups xmm0,[rbp-10h]
+	mov qword ptr [rbp-8],0A401E1h
+	mov [rbp-10h],rcx
+	movups [rdx+410h],xmm0
+	cmp eax,40h
+	jbe near ptr 0000000180D06461h
+	movups xmm0,[rbp-10h]
+	mov rax,0A59BC234DB398C25h
+	mov qword ptr [rbp-8],0AC01FCh
+	mov [rbp-10h],rax
+	movups [rdx+420h],xmm0
+	mov eax,[rdx+18h]
+	cmp eax,41h
+	jbe near ptr 0000000180D06471h
+	mov rcx,0F6C69A72A3989F5Ch
+	movups xmm0,[rbp-10h]
+	mov qword ptr [rbp-8],0B40216h
+	mov [rbp-10h],rcx
+	movups [rdx+430h],xmm0
+	cmp eax,42h
+	jbe near ptr 0000000180D06481h
+	mov rcx,0B7DCBF5354E9BECEh
+	movups xmm0,[rbp-10h]
+	mov qword ptr [rbp-8],0BC0231h
+	mov [rbp-10h],rcx
+	movups [rdx+440h],xmm0
+	cmp eax,43h
+	jbe near ptr 0000000180D06491h
+	mov rcx,88FCF317F22241E2h
+	movups xmm0,[rbp-10h]
+	mov qword ptr [rbp-8],0C4024Ch
+	mov [rbp-10h],rcx
+	movups [rdx+450h],xmm0
+	cmp eax,44h
+	jbe near ptr 0000000180D064A1h
+	mov rcx,0CC20CE9BD35C78A5h
+	movups xmm0,[rbp-10h]
+	mov qword ptr [rbp-8],0CC0266h
+	mov [rbp-10h],rcx
+	movups [rdx+460h],xmm0
+	cmp eax,45h
+	jbe near ptr 0000000180D064B1h
+	mov rcx,98165AF37B2153DFh
+	movups xmm0,[rbp-10h]
+	mov qword ptr [rbp-8],0D40281h
+	mov [rbp-10h],rcx
+	movups [rdx+470h],xmm0
+	cmp eax,46h
+	jbe near ptr 0000000180D064C1h
+	mov rcx,0E2A0B5DC971F303Ah
+	movups xmm0,[rbp-10h]
+	mov qword ptr [rbp-8],0DC029Bh
+	mov [rbp-10h],rcx
+	movups [rdx+480h],xmm0
+	cmp eax,47h
+	jbe near ptr 0000000180D064D1h
+	mov rcx,0A8D9D1535CE3B396h
+	movups xmm0,[rbp-10h]
+	mov qword ptr [rbp-8],0E402B6h
+	mov [rbp-10h],rcx
+	movups [rdx+490h],xmm0
+	cmp eax,48h
+	jbe near ptr 0000000180D064E1h
+	mov rcx,0FB9B7CD9A4A7443Ch
+	movups xmm0,[rbp-10h]
+	mov qword ptr [rbp-8],0EC02D0h
+	mov [rbp-10h],rcx
+	movups [rdx+4A0h],xmm0
+	cmp eax,49h
+	jbe near ptr 0000000180D064F1h
+	mov rcx,0BB764C4CA7A44410h
+	movups xmm0,[rbp-10h]
+	mov qword ptr [rbp-8],0F402EBh
+	mov [rbp-10h],rcx
+	movups [rdx+4B0h],xmm0
+	cmp eax,4Ah
+	jbe near ptr 0000000180D06501h
+	mov rcx,8BAB8EEFB6409C1Ah
+	movups xmm0,[rbp-10h]
+	mov qword ptr [rbp-8],0FC0306h
+	mov [rbp-10h],rcx
+	movups [rdx+4C0h],xmm0
+	cmp eax,4Bh
+	jbe near ptr 0000000180D06511h
+	mov rcx,0D01FEF10A657842Ch
+	movups xmm0,[rbp-10h]
+	mov qword ptr [rbp-8],1040320h
+	mov [rbp-10h],rcx
+	movups [rdx+4D0h],xmm0
+	cmp eax,4Ch
+	jbe near ptr 0000000180D06521h
+	mov rcx,9B10A4E5E9913129h
+	movups xmm0,[rbp-10h]
+	mov qword ptr [rbp-8],10C033Bh
+	mov [rbp-10h],rcx
+	movups [rdx+4E0h],xmm0
+	cmp eax,4Dh
+	jbe near ptr 0000000180D06531h
+	movups xmm0,[rbp-10h]
+	mov rax,0E7109BFBA19C0C9Dh
+	mov qword ptr [rbp-8],1140355h
+	mov [rbp-10h],rax
+	movups [rdx+4F0h],xmm0
+	mov eax,[rdx+18h]
+	cmp eax,4Eh
+	jbe near ptr 0000000180D06541h
+	mov rcx,0AC2820D9623BF429h
+	movups xmm0,[rbp-10h]
+	mov qword ptr [rbp-8],11C0370h
+	mov [rbp-10h],rcx
+	movups [rdx+500h],xmm0
+	cmp eax,4Fh
+	jbe near ptr 0000000180D06551h
+	mov rcx,80444B5E7AA7CF85h
+	movups xmm0,[rbp-10h]
+	mov qword ptr [rbp-8],124038Bh
+	mov [rbp-10h],rcx
+	movups [rdx+510h],xmm0
+	cmp eax,50h
+	jbe near ptr 0000000180D06561h
+	mov rcx,0BF21E44003ACDD2Dh
+	movups xmm0,[rbp-10h]
+	mov qword ptr [rbp-8],12C03A5h
+	mov [rbp-10h],rcx
+	movups [rdx+520h],xmm0
+	cmp eax,51h
+	jbe near ptr 0000000180D06571h
+	mov rcx,8E679C2F5E44FF8Fh
+	movups xmm0,[rbp-10h]
+	mov qword ptr [rbp-8],13403C0h
+	mov [rbp-10h],rcx
+	movups [rdx+530h],xmm0
+	cmp eax,52h
+	jbe near ptr 0000000180D06581h
+	mov rcx,0D433179D9C8CB841h
+	movups xmm0,[rbp-10h]
+	mov qword ptr [rbp-8],13C03DAh
+	mov [rbp-10h],rcx
+	movups [rdx+540h],xmm0
+	cmp eax,53h
+	jbe near ptr 0000000180D06591h
+	mov rcx,9E19DB92B4E31BA9h
+	movups xmm0,[rbp-10h]
+	mov qword ptr [rbp-8],14403F5h
+	mov [rbp-10h],rcx
+	movups [rdx+550h],xmm0
+	cmp eax,54h
+	jbe near ptr 0000000180D065A1h
+	mov rcx,0EB96BF6EBADF77D9h
+	movups xmm0,[rbp-10h]
+	mov qword ptr [rbp-8],14C040Fh
+	mov [rbp-10h],rcx
+	movups [rdx+560h],xmm0
+	cmp eax,55h
+	jbe near ptr 0000000180D065B1h
+	mov rcx,0AF87023B9BF0EE6Bh
+	movups xmm0,[rbp-10h]
+	mov qword ptr [rbp-8],154042Ah
+	mov [rbp-10h],rcx
+	movups [rdx+570h],xmm0
+	cmp eax,56h
+	jbe near ptr 0000000180D065C1h
+	movups xmm0,[rbp-10h]
+	movups [rdx+580h],xmm0
+	mov rax,[182719B88h]
+	mov rcx,[rax+0B8h]
+	mov [rcx],rdx
+	add rsp,30h
+	pop rbp
+	jmp near ptr 0000000180293EF0h
+	call 0000000180294310h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+
+ISIL:
+	001 ShiftStack -8
+	002 Move stack:0x0, rbp
+	003 Move rbp, rsp
+	004 ShiftStack -48
+	005 Compare [0x1826F12E3], 0
+	006 JumpIfNotEqual {10}
+	007 Move rcx, [0x1822D7158]
+	008 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	009 Move [0x1826F12E3], 1
+	010 Move rcx, typeof(Utf8Json.Internal.DoubleConversion.CachedPower[1])
+	011 Move rdx, 87
+	012 Call "SzArrayNew", rcx, rdx, r8, r9
+	013 Move rdx, rax
+	014 Move [rbp-8], 0xFEA4FB3C
+	015 Move r8, 0
+	016 Move rax, 18054884314459144840
+	017 Move [rbp-16], rax
+	018 Move [rbp-4], r8
+	019 Compare rdx, 0
+	020 JumpIfEqual {685}
+	021 Move rax, [rdx+24]
+	022 Compare rax, 0
+	023 JumpIfEqual {687}
+	024 Move rcx, 13451937075301367670
+	025 Move xmm0, [rbp-16]
+	026 Move [rbp-4], r8
+	027 Move [rbp-16], rcx
+	028 Move [rbp-8], 0xFEACFB57
+	029 Move [rdx+32], xmm0
+	030 Compare rax, 1
+	031 JumpIfLessOrEqual {692}
+	032 Move rcx, 10022474136428063862
+	033 Move xmm0, [rbp-16]
+	034 Move [rbp-4], r8
+	035 Move [rbp-16], rcx
+	036 Move [rbp-8], 0xFEB4FB72
+	037 Move [rdx+48], xmm0
+	038 Compare rax, 2
+	039 JumpIfLessOrEqual {697}
+	040 Move rcx, 14934650266808366570
+	041 Move xmm0, [rbp-16]
+	042 Move [rbp-4], r8
+	043 Move [rbp-16], rcx
+	044 Move [rbp-8], 0xFEBCFB8C
+	045 Move [rdx+64], xmm0
+	046 Compare rax, 3
+	047 JumpIfLessOrEqual {702}
+	048 Move rcx, 11127181549972568877
+	049 Move xmm0, [rbp-16]
+	050 Move [rbp-4], r8
+	051 Move [rbp-16], rcx
+	052 Move [rbp-8], 0xFEC4FBA7
+	053 Move [rdx+80], xmm0
+	054 Compare rax, 4
+	055 JumpIfLessOrEqual {707}
+	056 Move rcx, 16580792590934885855
+	057 Move xmm0, [rbp-16]
+	058 Move [rbp-4], r8
+	059 Move [rbp-16], rcx
+	060 Move [rbp-8], 0xFECCFBC1
+	061 Move [rdx+96], xmm0
+	062 Compare rax, 5
+	063 JumpIfLessOrEqual {712}
+	064 Move rcx, 12353653155963782858
+	065 Move xmm0, [rbp-16]
+	066 Move [rbp-4], r8
+	067 Move [rbp-16], rcx
+	068 Move [rbp-8], 0xFED4FBDC
+	069 Move [rdx+112], xmm0
+	070 Compare rax, 6
+	071 JumpIfLessOrEqual {717}
+	072 Move rcx, 18408377700990114895
+	073 Move xmm0, [rbp-16]
+	074 Move [rbp-4], r8
+	075 Move [rbp-16], rcx
+	076 Move [rbp-8], 0xFEDCFBF6
+	077 Move [rdx+128], xmm0
+	078 Compare rax, 7
+	079 JumpIfLessOrEqual {722}
+	080 Move rcx, 13715310171984221708
+	081 Move xmm0, [rbp-16]
+	082 Move [rbp-4], r8
+	083 Move [rbp-16], rcx
+	084 Move [rbp-8], 0xFEE4FC11
+	085 Move [rdx+144], xmm0
+	086 Compare rax, 8
+	087 JumpIfLessOrEqual {727}
+	088 Move rcx, 10218702384817765436
+	089 Move xmm0, [rbp-16]
+	090 Move [rbp-4], r8
+	091 Move [rbp-16], rcx
+	092 Move [rbp-8], 0xFEECFC2C
+	093 Move [rdx+160], xmm0
+	094 Compare rax, 9
+	095 JumpIfLessOrEqual {732}
+	096 Move rcx, 15227053142812498563
+	097 Move xmm0, [rbp-16]
+	098 Move [rbp-4], r8
+	099 Move [rbp-16], rcx
+	100 Move [rbp-8], 0xFEF4FC46
+	101 Move [rdx+176], xmm0
+	102 Compare rax, 10
+	103 JumpIfLessOrEqual {737}
+	104 Move rcx, 11345038669416679861
+	105 Move xmm0, [rbp-16]
+	106 Move [rbp-4], r8
+	107 Move [rbp-16], rcx
+	108 Move [rbp-8], 0xFEFCFC61
+	109 Move [rdx+192], xmm0
+	110 Compare rax, 11
+	111 JumpIfLessOrEqual {742}
+	112 Move rcx, 16905424996341287883
+	113 Move xmm0, [rbp-16]
+	114 Move [rbp-4], r8
+	115 Move [rbp-16], rcx
+	116 Move [rbp-8], 0xFF04FC7B
+	117 Move [rdx+208], xmm0
+	118 Compare rax, 12
+	119 JumpIfLessOrEqual {747}
+	120 Move xmm0, [rbp-16]
+	121 Move rax, 12595523146049147757
+	122 Move [rbp-4], r8
+	123 Move [rbp-16], rax
+	124 Move [rdx+224], xmm0
+	125 Move rax, [rdx+24]
+	126 Move [rbp-8], 0xFF0CFC96
+	127 Compare rax, 13
+	128 JumpIfLessOrEqual {752}
+	129 Move rcx, 9384396036005875287
+	130 Move xmm0, [rbp-16]
+	131 Move [rbp-4], r8
+	132 Move [rbp-16], rcx
+	133 Move [rbp-8], 0xFF14FCB1
+	134 Move [rdx+240], xmm0
+	135 Compare rax, 14
+	136 JumpIfLessOrEqual {757}
+	137 Move rcx, 13983839803942852151
+	138 Move xmm0, [rbp-16]
+	139 Move [rbp-4], r8
+	140 Move [rbp-16], rcx
+	141 Move [rbp-8], 0xFF1CFCCB
+	142 Move [rdx+256], xmm0
+	143 Compare rax, 15
+	144 JumpIfLessOrEqual {762}
+	145 Move rcx, 10418772551374772303
+	146 Move xmm0, [rbp-16]
+	147 Move [rbp-4], r8
+	148 Move [rbp-16], rcx
+	149 Move [rbp-8], 0xFF24FCE6
+	150 Move [rdx+272], xmm0
+	151 Compare rax, 16
+	152 JumpIfLessOrEqual {767}
+	153 Move rcx, 15525180923007089351
+	154 Move xmm0, [rbp-16]
+	155 Move [rbp-4], r8
+	156 Move [rbp-16], rcx
+	157 Move [rbp-8], 0xFF2CFD00
+	158 Move [rdx+288], xmm0
+	159 Compare rax, 17
+	160 JumpIfLessOrEqual {772}
+	161 Move rcx, 11567161174868858868
+	162 Move xmm0, [rbp-16]
+	163 Move [rbp-4], r8
+	164 Move [rbp-16], rcx
+	165 Move [rbp-8], 0xFF34FD1B
+	166 Move [rdx+304], xmm0
+	167 Compare rax, 18
+	168 JumpIfLessOrEqual {777}
+	169 Move rcx, 17236413322193710309
+	170 Move xmm0, [rbp-16]
+	171 Move [rbp-4], r8
+	172 Move [rbp-16], rcx
+	173 Move [rbp-8], 0xFF3CFD35
+	174 Move [rdx+320], xmm0
+	175 Compare rax, 19
+	176 JumpIfLessOrEqual {782}
+	177 Move rcx, 12842128665889583758
+	178 Move xmm0, [rbp-16]
+	179 Move [rbp-4], r8
+	180 Move [rbp-16], rcx
+	181 Move [rbp-8], 0xFF44FD50
+	182 Move [rdx+336], xmm0
+	183 Compare rax, 20
+	184 JumpIfLessOrEqual {787}
+	185 Move rcx, 9568131466127621947
+	186 Move xmm0, [rbp-16]
+	187 Move [rbp-4], r8
+	188 Move [rbp-16], rcx
+	189 Move [rbp-8], 0xFF4CFD6B
+	190 Move [rdx+352], xmm0
+	191 Compare rax, 21
+	192 JumpIfLessOrEqual {792}
+	193 Move rcx, 14257626930069360058
+	194 Move xmm0, [rbp-16]
+	195 Move [rbp-4], r8
+	196 Move [rbp-16], rcx
+	197 Move [rbp-8], 0xFF54FD85
+	198 Move [rdx+368], xmm0
+	199 Compare rax, 22
+	200 JumpIfLessOrEqual {797}
+	201 Move rcx, 10622759856335341974
+	202 Move xmm0, [rbp-16]
+	203 Move [rbp-4], r8
+	204 Move [rbp-16], rcx
+	205 Move [rbp-8], 0xFF5CFDA0
+	206 Move [rdx+384], xmm0
+	207 Compare rax, 23
+	208 JumpIfLessOrEqual {802}
+	209 Move rcx, 15829145694278690180
+	210 Move xmm0, [rbp-16]
+	211 Move [rbp-4], r8
+	212 Move [rbp-16], rcx
+	213 Move [rbp-8], 0xFF64FDBA
+	214 Move [rdx+400], xmm0
+	215 Compare rax, 24
+	216 JumpIfLessOrEqual {807}
+	217 Move rcx, 11793632577567316726
+	218 Move xmm0, [rbp-16]
+	219 Move [rbp-4], r8
+	220 Move [rbp-16], rcx
+	221 Move [rbp-8], 0xFF6CFDD5
+	222 Move [rdx+416], xmm0
+	223 Compare rax, 25
+	224 JumpIfLessOrEqual {812}
+	225 Move xmm0, [rbp-16]
+	226 Move rax, 17573882009934360870
+	227 Move [rbp-4], r8
+	228 Move [rbp-16], rax
+	229 Move [rdx+432], xmm0
+	230 Move rax, [rdx+24]
+	231 Move [rbp-8], 0xFF74FDEF
+	232 Compare rax, 26
+	233 JumpIfLessOrEqual {817}
+	234 Move rcx, 13093562431584567480
+	235 Move xmm0, [rbp-16]
+	236 Move [rbp-4], r8
+	237 Move [rbp-16], rcx
+	238 Move [rbp-8], 0xFF7CFE0A
+	239 Move [rdx+448], xmm0
+	240 Compare rax, 27
+	241 JumpIfLessOrEqual {822}
+	242 Move rcx, 9755464219737475723
+	243 Move xmm0, [rbp-16]
+	244 Move [rbp-4], r8
+	245 Move [rbp-16], rcx
+	246 Move [rbp-8], 0xFF84FE25
+	247 Move [rdx+464], xmm0
+	248 Compare rax, 28
+	249 JumpIfLessOrEqual {827}
+	250 Move rcx, 14536774485912137811
+	251 Move xmm0, [rbp-16]
+	252 Move [rbp-4], r8
+	253 Move [rbp-16], rcx
+	254 Move [rbp-8], 0xFF8CFE3F
+	255 Move [rdx+480], xmm0
+	256 Compare rax, 29
+	257 JumpIfLessOrEqual {832}
+	258 Move rcx, 10830740992659433045
+	259 Move xmm0, [rbp-16]
+	260 Move [rbp-4], r8
+	261 Move [rbp-16], rcx
+	262 Move [rbp-8], 0xFF94FE5A
+	263 Move [rdx+496], xmm0
+	264 Compare rax, 30
+	265 JumpIfLessOrEqual {837}
+	266 Move rcx, 16139061738043178685
+	267 Move xmm0, [rbp-16]
+	268 Move [rbp-4], r8
+	269 Move [rbp-16], rcx
+	270 Move [rbp-8], 0xFF9CFE74
+	271 Move [rdx+512], xmm0
+	272 Compare rax, 31
+	273 JumpIfLessOrEqual {842}
+	274 Move rcx, 12024538023802026127
+	275 Move xmm0, [rbp-16]
+	276 Move [rbp-4], r8
+	277 Move [rbp-16], rcx
+	278 Move [rbp-8], 0xFFA4FE8F
+	279 Move [rdx+528], xmm0
+	280 Compare rax, 32
+	281 JumpIfLessOrEqual {847}
+	282 Move rcx, 17917957937422433684
+	283 Move xmm0, [rbp-16]
+	284 Move [rbp-4], r8
+	285 Move [rbp-16], rcx
+	286 Move [rbp-8], 0xFFACFEA9
+	287 Move [rdx+544], xmm0
+	288 Compare rax, 33
+	289 JumpIfLessOrEqual {852}
+	290 Move rcx, 13349918974505688015
+	291 Move xmm0, [rbp-16]
+	292 Move [rbp-4], r8
+	293 Move [rbp-16], rcx
+	294 Move [rbp-8], 0xFFB4FEC4
+	295 Move [rdx+560], xmm0
+	296 Compare rax, 34
+	297 JumpIfLessOrEqual {857}
+	298 Move rcx, 9946464728195732843
+	299 Move xmm0, [rbp-16]
+	300 Move [rbp-4], r8
+	301 Move [rbp-16], rcx
+	302 Move [rbp-8], 0xFFBCFEDF
+	303 Move [rdx+576], xmm0
+	304 Compare rax, 35
+	305 JumpIfLessOrEqual {862}
+	306 Move rcx, 14821387422376473014
+	307 Move xmm0, [rbp-16]
+	308 Move [rbp-4], r8
+	309 Move [rbp-16], rcx
+	310 Move [rbp-8], 0xFFC4FEF9
+	311 Move [rdx+592], xmm0
+	312 Compare rax, 36
+	313 JumpIfLessOrEqual {867}
+	314 Move rcx, 11042794154864902060
+	315 Move xmm0, [rbp-16]
+	316 Move [rbp-4], r8
+	317 Move [rbp-16], rcx
+	318 Move [rbp-8], 0xFFCCFF14
+	319 Move [rdx+608], xmm0
+	320 Compare rax, 37
+	321 JumpIfLessOrEqual {872}
+	322 Move rcx, 16455045573212060422
+	323 Move xmm0, [rbp-16]
+	324 Move [rbp-4], r8
+	325 Move [rbp-16], rcx
+	326 Move [rbp-8], 0xFFD4FF2E
+	327 Move [rdx+624], xmm0
+	328 Compare rax, 38
+	329 JumpIfLessOrEqual {877}
+	330 Move xmm0, [rbp-16]
+	331 Move rax, 12259964326927110867
+	332 Move [rbp-4], r8
+	333 Move [rbp-16], rax
+	334 Move [rdx+640], xmm0
+	335 Move rax, [rdx+24]
+	336 Move [rbp-8], 0xFFDCFF49
+	337 Compare rax, 39
+	338 JumpIfLessOrEqual {882}
+	339 Move rcx, 18268770466636286478
+	340 Move xmm0, [rbp-16]
+	341 Move [rbp-4], r8
+	342 Move [rbp-16], rcx
+	343 Move [rbp-8], 0xFFE4FF63
+	344 Move [rdx+656], xmm0
+	345 Compare rax, 40
+	346 JumpIfLessOrEqual {887}
+	347 Move rcx, 13611294676837538539
+	348 Move xmm0, [rbp-16]
+	349 Move [rbp-4], r8
+	350 Move [rbp-16], rcx
+	351 Move [rbp-8], 0xFFECFF7E
+	352 Move [rdx+672], xmm0
+	353 Compare rax, 41
+	354 JumpIfLessOrEqual {892}
+	355 Move rcx, 10141204801825835212
+	356 Move xmm0, [rbp-16]
+	357 Move [rbp-4], r8
+	358 Move [rbp-16], rcx
+	359 Move [rbp-8], 0xFFF4FF99
+	360 Move [rdx+688], xmm0
+	361 Compare rax, 42
+	362 JumpIfLessOrEqual {897}
+	363 Move rcx, 15111572745182864684
+	364 Move xmm0, [rbp-16]
+	365 Move [rbp-4], r8
+	366 Move [rbp-16], rcx
+	367 Move [rbp-8], 0xFFFCFFB3
+	368 Move [rdx+704], xmm0
+	369 Compare rax, 43
+	370 JumpIfLessOrEqual {902}
+	371 Move rcx, 11258999068426240000
+	372 Move xmm0, [rbp-16]
+	373 Move [rbp-8], 0x4FFCE
+	374 Move [rbp-16], rcx
+	375 Move [rdx+720], xmm0
+	376 Compare rax, 44
+	377 JumpIfLessOrEqual {907}
+	378 Move rcx, 16777216000000000000
+	379 Move xmm0, [rbp-16]
+	380 Move [rbp-8], 0xCFFE8
+	381 Move [rbp-16], rcx
+	382 Move [rdx+736], xmm0
+	383 Compare rax, 45
+	384 JumpIfLessOrEqual {912}
+	385 Move rcx, 12500000000000000000
+	386 Move xmm0, [rbp-16]
+	387 Move [rbp-8], 0x140003
+	388 Move [rbp-16], rcx
+	389 Move [rdx+752], xmm0
+	390 Compare rax, 46
+	391 JumpIfLessOrEqual {917}
+	392 Move rcx, 9313225746154785156
+	393 Move xmm0, [rbp-16]
+	394 Move [rbp-8], 0x1C001E
+	395 Move [rbp-16], rcx
+	396 Move [rdx+768], xmm0
+	397 Compare rax, 47
+	398 JumpIfLessOrEqual {922}
+	399 Move rcx, 13877787807814456755
+	400 Move xmm0, [rbp-16]
+	401 Move [rbp-8], 0x240038
+	402 Move [rbp-16], rcx
+	403 Move [rdx+784], xmm0
+	404 Compare rax, 48
+	405 JumpIfLessOrEqual {927}
+	406 Move rcx, 10339757656912845936
+	407 Move xmm0, [rbp-16]
+	408 Move [rbp-8], 0x2C0053
+	409 Move [rbp-16], rcx
+	410 Move [rdx+800], xmm0
+	411 Compare rax, 49
+	412 JumpIfLessOrEqual {932}
+	413 Move rcx, 15407439555097886824
+	414 Move xmm0, [rbp-16]
+	415 Move [rbp-8], 0x34006D
+	416 Move [rbp-16], rcx
+	417 Move [rdx+816], xmm0
+	418 Compare rax, 50
+	419 JumpIfLessOrEqual {937}
+	420 Move rcx, 11479437019748901445
+	421 Move xmm0, [rbp-16]
+	422 Move [rbp-8], 0x3C0088
+	423 Move [rbp-16], rcx
+	424 Move [rdx+832], xmm0
+	425 Compare rax, 51
+	426 JumpIfLessOrEqual {942}
+	427 Move xmm0, [rbp-16]
+	428 Move rax, 17105694144590052135
+	429 Move [rbp-8], 0x4400A2
+	430 Move [rbp-16], rax
+	431 Move [rdx+848], xmm0
+	432 Move rax, [rdx+24]
+	433 Compare rax, 52
+	434 JumpIfLessOrEqual {947}
+	435 Move rcx, 12744735289059618216
+	436 Move xmm0, [rbp-16]
+	437 Move [rbp-8], 0x4C00BD
+	438 Move [rbp-16], rcx
+	439 Move [rdx+864], xmm0
+	440 Compare rax, 53
+	441 JumpIfLessOrEqual {952}
+	442 Move rcx, 9495567745759798747
+	443 Move xmm0, [rbp-16]
+	444 Move [rbp-8], 0x5400D8
+	445 Move [rbp-16], rcx
+	446 Move [rdx+880], xmm0
+	447 Compare rax, 54
+	448 JumpIfLessOrEqual {957}
+	449 Move rcx, 14149498560666738074
+	450 Move xmm0, [rbp-16]
+	451 Move [rbp-8], 0x5C00F2
+	452 Move [rbp-16], rcx
+	453 Move [rdx+896], xmm0
+	454 Compare rax, 55
+	455 JumpIfLessOrEqual {962}
+	456 Move rcx, 10542197943230523224
+	457 Move xmm0, [rbp-16]
+	458 Move [rbp-8], 0x64010D
+	459 Move [rbp-16], rcx
+	460 Move [rdx+912], xmm0
+	461 Compare rax, 56
+	462 JumpIfLessOrEqual {967}
+	463 Move rcx, 15709099088952724970
+	464 Move xmm0, [rbp-16]
+	465 Move [rbp-8], 0x6C0127
+	466 Move [rbp-16], rcx
+	467 Move [rdx+928], xmm0
+	468 Compare rax, 57
+	469 JumpIfLessOrEqual {972}
+	470 Move rcx, 11704190886730495818
+	471 Move xmm0, [rbp-16]
+	472 Move [rbp-8], 0x740142
+	473 Move [rbp-16], rcx
+	474 Move [rdx+944], xmm0
+	475 Compare rax, 58
+	476 JumpIfLessOrEqual {977}
+	477 Move rcx, 17440603504673385349
+	478 Move xmm0, [rbp-16]
+	479 Move [rbp-8], 0x7C015C
+	480 Move [rbp-16], rcx
+	481 Move [rdx+960], xmm0
+	482 Compare rax, 59
+	483 JumpIfLessOrEqual {982}
+	484 Move rcx, 12994262207056124023
+	485 Move xmm0, [rbp-16]
+	486 Move [rbp-8], 0x840177
+	487 Move [rbp-16], rcx
+	488 Move [rdx+976], xmm0
+	489 Compare rax, 60
+	490 JumpIfLessOrEqual {987}
+	491 Move rcx, 9681479787123295682
+	492 Move xmm0, [rbp-16]
+	493 Move [rbp-8], 0x8C0192
+	494 Move [rbp-16], rcx
+	495 Move [rdx+992], xmm0
+	496 Compare rax, 61
+	497 JumpIfLessOrEqual {992}
+	498 Move rcx, 14426529090290212157
+	499 Move xmm0, [rbp-16]
+	500 Move [rbp-8], 0x9401AC
+	501 Move [rbp-16], rcx
+	502 Move [rdx+1008], xmm0
+	503 Compare rax, 62
+	504 JumpIfLessOrEqual {997}
+	505 Move rcx, 10748601772107342003
+	506 Move xmm0, [rbp-16]
+	507 Move [rbp-8], 0x9C01C7
+	508 Move [rbp-16], rcx
+	509 Move [rdx+1024], xmm0
+	510 Compare rax, 63
+	511 JumpIfLessOrEqual {1002}
+	512 Move rcx, 16016664761464807395
+	513 Move xmm0, [rbp-16]
+	514 Move [rbp-8], 0xA401E1
+	515 Move [rbp-16], rcx
+	516 Move [rdx+1040], xmm0
+	517 Compare rax, 64
+	518 JumpIfLessOrEqual {1007}
+	519 Move xmm0, [rbp-16]
+	520 Move rax, 11933345169920330789
+	521 Move [rbp-8], 0xAC01FC
+	522 Move [rbp-16], rax
+	523 Move [rdx+1056], xmm0
+	524 Move rax, [rdx+24]
+	525 Compare rax, 65
+	526 JumpIfLessOrEqual {1012}
+	527 Move rcx, 17782069995880619868
+	528 Move xmm0, [rbp-16]
+	529 Move [rbp-8], 0xB40216
+	530 Move [rbp-16], rcx
+	531 Move [rdx+1072], xmm0
+	532 Compare rax, 66
+	533 JumpIfLessOrEqual {1017}
+	534 Move rcx, 13248674568444952270
+	535 Move xmm0, [rbp-16]
+	536 Move [rbp-8], 0xBC0231
+	537 Move [rbp-16], rcx
+	538 Move [rdx+1088], xmm0
+	539 Compare rax, 67
+	540 JumpIfLessOrEqual {1022}
+	541 Move rcx, 9871031767461413346
+	542 Move xmm0, [rbp-16]
+	543 Move [rbp-8], 0xC4024C
+	544 Move [rbp-16], rcx
+	545 Move [rdx+1104], xmm0
+	546 Compare rax, 68
+	547 JumpIfLessOrEqual {1027}
+	548 Move rcx, 14708983551653345445
+	549 Move xmm0, [rbp-16]
+	550 Move [rbp-8], 0xCC0266
+	551 Move [rbp-16], rcx
+	552 Move [rdx+1120], xmm0
+	553 Compare rax, 69
+	554 JumpIfLessOrEqual {1032}
+	555 Move rcx, 10959046745042015199
+	556 Move xmm0, [rbp-16]
+	557 Move [rbp-8], 0xD40281
+	558 Move [rbp-16], rcx
+	559 Move [rdx+1136], xmm0
+	560 Compare rax, 70
+	561 JumpIfLessOrEqual {1037}
+	562 Move rcx, 16330252207878254650
+	563 Move xmm0, [rbp-16]
+	564 Move [rbp-8], 0xDC029B
+	565 Move [rbp-16], rcx
+	566 Move [rdx+1152], xmm0
+	567 Compare rax, 71
+	568 JumpIfLessOrEqual {1042}
+	569 Move rcx, 12166986024289022870
+	570 Move xmm0, [rbp-16]
+	571 Move [rbp-8], 0xE402B6
+	572 Move [rbp-16], rcx
+	573 Move [rdx+1168], xmm0
+	574 Compare rax, 72
+	575 JumpIfLessOrEqual {1047}
+	576 Move rcx, 18130221999122236476
+	577 Move xmm0, [rbp-16]
+	578 Move [rbp-8], 0xEC02D0
+	579 Move [rbp-16], rcx
+	580 Move [rdx+1184], xmm0
+	581 Compare rax, 73
+	582 JumpIfLessOrEqual {1052}
+	583 Move rcx, 13508068024458167312
+	584 Move xmm0, [rbp-16]
+	585 Move [rbp-8], 0xF402EB
+	586 Move [rbp-16], rcx
+	587 Move [rdx+1200], xmm0
+	588 Compare rax, 74
+	589 JumpIfLessOrEqual {1057}
+	590 Move rcx, 10064294952495520794
+	591 Move xmm0, [rbp-16]
+	592 Move [rbp-8], 0xFC0306
+	593 Move [rbp-16], rcx
+	594 Move [rdx+1216], xmm0
+	595 Compare rax, 75
+	596 JumpIfLessOrEqual {1062}
+	597 Move rcx, 14996968138956309548
+	598 Move xmm0, [rbp-16]
+	599 Move [rbp-8], 0x1040320
+	600 Move [rbp-16], rcx
+	601 Move [rdx+1232], xmm0
+	602 Compare rax, 76
+	603 JumpIfLessOrEqual {1067}
+	604 Move rcx, 11173611982879273257
+	605 Move xmm0, [rbp-16]
+	606 Move [rbp-8], 0x10C033B
+	607 Move [rbp-16], rcx
+	608 Move [rdx+1248], xmm0
+	609 Compare rax, 77
+	610 JumpIfLessOrEqual {1072}
+	611 Move xmm0, [rbp-16]
+	612 Move rax, 16649979327439178909
+	613 Move [rbp-8], 0x1140355
+	614 Move [rbp-16], rax
+	615 Move [rdx+1264], xmm0
+	616 Move rax, [rdx+24]
+	617 Compare rax, 78
+	618 JumpIfLessOrEqual {1077}
+	619 Move rcx, 12405201291620119593
+	620 Move xmm0, [rbp-16]
+	621 Move [rbp-8], 0x11C0370
+	622 Move [rbp-16], rcx
+	623 Move [rdx+1280], xmm0
+	624 Compare rax, 79
+	625 JumpIfLessOrEqual {1082}
+	626 Move rcx, 9242595204427927429
+	627 Move xmm0, [rbp-16]
+	628 Move [rbp-8], 0x124038B
+	629 Move [rbp-16], rcx
+	630 Move [rdx+1296], xmm0
+	631 Compare rax, 80
+	632 JumpIfLessOrEqual {1087}
+	633 Move rcx, 13772540099066387757
+	634 Move xmm0, [rbp-16]
+	635 Move [rbp-8], 0x12C03A5
+	636 Move [rbp-16], rcx
+	637 Move [rdx+1312], xmm0
+	638 Compare rax, 81
+	639 JumpIfLessOrEqual {1092}
+	640 Move rcx, 10261342003245940623
+	641 Move xmm0, [rbp-16]
+	642 Move [rbp-8], 0x13403C0
+	643 Move [rbp-16], rcx
+	644 Move [rdx+1328], xmm0
+	645 Compare rax, 82
+	646 JumpIfLessOrEqual {1097}
+	647 Move rcx, 15290591125556738113
+	648 Move xmm0, [rbp-16]
+	649 Move [rbp-8], 0x13C03DA
+	650 Move [rbp-16], rcx
+	651 Move [rdx+1344], xmm0
+	652 Compare rax, 83
+	653 JumpIfLessOrEqual {1102}
+	654 Move rcx, 11392378155556871081
+	655 Move xmm0, [rbp-16]
+	656 Move [rbp-8], 0x14403F5
+	657 Move [rbp-16], rcx
+	658 Move [rdx+1360], xmm0
+	659 Compare rax, 84
+	660 JumpIfLessOrEqual {1107}
+	661 Move rcx, 16975966327722178521
+	662 Move xmm0, [rbp-16]
+	663 Move [rbp-8], 0x14C040F
+	664 Move [rbp-16], rcx
+	665 Move [rdx+1376], xmm0
+	666 Compare rax, 85
+	667 JumpIfLessOrEqual {1112}
+	668 Move rcx, 12648080533535911531
+	669 Move xmm0, [rbp-16]
+	670 Move [rbp-8], 0x154042A
+	671 Move [rbp-16], rcx
+	672 Move [rdx+1392], xmm0
+	673 Compare rax, 86
+	674 JumpIfLessOrEqual {1117}
+	675 Move xmm0, [rbp-16]
+	676 Move [rdx+1408], xmm0
+	677 Move rax, typeof(Utf8Json.Internal.DoubleConversion.PowersOfTenCache)
+	678 Move rcx, [rax+184]
+	679 Move [rcx], rdx
+	680 ShiftStack 48
+	681 Move rbp, stack:0x0
+	682 ShiftStack 8
+	683 Call 0x180293EF0, rcx, rdx, r8, r9
+	684 Return 
+	685 Call 0x180294310, rcx, rdx, r8, r9
+	686 Interrupt 
+	687 Call 0x180294110, rcx, rdx, r8, r9
+	688 Move rcx, rax
+	689 Move rdx, 0
+	690 Call 0x1802942E0, rcx, rdx, r8, r9
+	691 Interrupt 
+	692 Call 0x180294110, rcx, rdx, r8, r9
+	693 Move rcx, rax
+	694 Move rdx, 0
+	695 Call 0x1802942E0, rcx, rdx, r8, r9
+	696 Interrupt 
+	697 Call 0x180294110, rcx, rdx, r8, r9
+	698 Move rcx, rax
+	699 Move rdx, 0
+	700 Call 0x1802942E0, rcx, rdx, r8, r9
+	701 Interrupt 
+	702 Call 0x180294110, rcx, rdx, r8, r9
+	703 Move rcx, rax
+	704 Move rdx, 0
+	705 Call 0x1802942E0, rcx, rdx, r8, r9
+	706 Interrupt 
+	707 Call 0x180294110, rcx, rdx, r8, r9
+	708 Move rcx, rax
+	709 Move rdx, 0
+	710 Call 0x1802942E0, rcx, rdx, r8, r9
+	711 Interrupt 
+	712 Call 0x180294110, rcx, rdx, r8, r9
+	713 Move rcx, rax
+	714 Move rdx, 0
+	715 Call 0x1802942E0, rcx, rdx, r8, r9
+	716 Interrupt 
+	717 Call 0x180294110, rcx, rdx, r8, r9
+	718 Move rcx, rax
+	719 Move rdx, 0
+	720 Call 0x1802942E0, rcx, rdx, r8, r9
+	721 Interrupt 
+	722 Call 0x180294110, rcx, rdx, r8, r9
+	723 Move rcx, rax
+	724 Move rdx, 0
+	725 Call 0x1802942E0, rcx, rdx, r8, r9
+	726 Interrupt 
+	727 Call 0x180294110, rcx, rdx, r8, r9
+	728 Move rcx, rax
+	729 Move rdx, 0
+	730 Call 0x1802942E0, rcx, rdx, r8, r9
+	731 Interrupt 
+	732 Call 0x180294110, rcx, rdx, r8, r9
+	733 Move rcx, rax
+	734 Move rdx, 0
+	735 Call 0x1802942E0, rcx, rdx, r8, r9
+	736 Interrupt 
+	737 Call 0x180294110, rcx, rdx, r8, r9
+	738 Move rcx, rax
+	739 Move rdx, 0
+	740 Call 0x1802942E0, rcx, rdx, r8, r9
+	741 Interrupt 
+	742 Call 0x180294110, rcx, rdx, r8, r9
+	743 Move rcx, rax
+	744 Move rdx, 0
+	745 Call 0x1802942E0, rcx, rdx, r8, r9
+	746 Interrupt 
+	747 Call 0x180294110, rcx, rdx, r8, r9
+	748 Move rcx, rax
+	749 Move rdx, 0
+	750 Call 0x1802942E0, rcx, rdx, r8, r9
+	751 Interrupt 
+	752 Call 0x180294110, rcx, rdx, r8, r9
+	753 Move rcx, rax
+	754 Move rdx, 0
+	755 Call 0x1802942E0, rcx, rdx, r8, r9
+	756 Interrupt 
+	757 Call 0x180294110, rcx, rdx, r8, r9
+	758 Move rcx, rax
+	759 Move rdx, 0
+	760 Call 0x1802942E0, rcx, rdx, r8, r9
+	761 Interrupt 
+	762 Call 0x180294110, rcx, rdx, r8, r9
+	763 Move rcx, rax
+	764 Move rdx, 0
+	765 Call 0x1802942E0, rcx, rdx, r8, r9
+	766 Interrupt 
+	767 Call 0x180294110, rcx, rdx, r8, r9
+	768 Move rcx, rax
+	769 Move rdx, 0
+	770 Call 0x1802942E0, rcx, rdx, r8, r9
+	771 Interrupt 
+	772 Call 0x180294110, rcx, rdx, r8, r9
+	773 Move rcx, rax
+	774 Move rdx, 0
+	775 Call 0x1802942E0, rcx, rdx, r8, r9
+	776 Interrupt 
+	777 Call 0x180294110, rcx, rdx, r8, r9
+	778 Move rcx, rax
+	779 Move rdx, 0
+	780 Call 0x1802942E0, rcx, rdx, r8, r9
+	781 Interrupt 
+	782 Call 0x180294110, rcx, rdx, r8, r9
+	783 Move rcx, rax
+	784 Move rdx, 0
+	785 Call 0x1802942E0, rcx, rdx, r8, r9
+	786 Interrupt 
+	787 Call 0x180294110, rcx, rdx, r8, r9
+	788 Move rcx, rax
+	789 Move rdx, 0
+	790 Call 0x1802942E0, rcx, rdx, r8, r9
+	791 Interrupt 
+	792 Call 0x180294110, rcx, rdx, r8, r9
+	793 Move rcx, rax
+	794 Move rdx, 0
+	795 Call 0x1802942E0, rcx, rdx, r8, r9
+	796 Interrupt 
+	797 Call 0x180294110, rcx, rdx, r8, r9
+	798 Move rcx, rax
+	799 Move rdx, 0
+	800 Call 0x1802942E0, rcx, rdx, r8, r9
+	801 Interrupt 
+	802 Call 0x180294110, rcx, rdx, r8, r9
+	803 Move rcx, rax
+	804 Move rdx, 0
+	805 Call 0x1802942E0, rcx, rdx, r8, r9
+	806 Interrupt 
+	807 Call 0x180294110, rcx, rdx, r8, r9
+	808 Move rcx, rax
+	809 Move rdx, 0
+	810 Call 0x1802942E0, rcx, rdx, r8, r9
+	811 Interrupt 
+	812 Call 0x180294110, rcx, rdx, r8, r9
+	813 Move rcx, rax
+	814 Move rdx, 0
+	815 Call 0x1802942E0, rcx, rdx, r8, r9
+	816 Interrupt 
+	817 Call 0x180294110, rcx, rdx, r8, r9
+	818 Move rcx, rax
+	819 Move rdx, 0
+	820 Call 0x1802942E0, rcx, rdx, r8, r9
+	821 Interrupt 
+	822 Call 0x180294110, rcx, rdx, r8, r9
+	823 Move rcx, rax
+	824 Move rdx, 0
+	825 Call 0x1802942E0, rcx, rdx, r8, r9
+	826 Interrupt 
+	827 Call 0x180294110, rcx, rdx, r8, r9
+	828 Move rcx, rax
+	829 Move rdx, 0
+	830 Call 0x1802942E0, rcx, rdx, r8, r9
+	831 Interrupt 
+	832 Call 0x180294110, rcx, rdx, r8, r9
+	833 Move rcx, rax
+	834 Move rdx, 0
+	835 Call 0x1802942E0, rcx, rdx, r8, r9
+	836 Interrupt 
+	837 Call 0x180294110, rcx, rdx, r8, r9
+	838 Move rcx, rax
+	839 Move rdx, 0
+	840 Call 0x1802942E0, rcx, rdx, r8, r9
+	841 Interrupt 
+	842 Call 0x180294110, rcx, rdx, r8, r9
+	843 Move rcx, rax
+	844 Move rdx, 0
+	845 Call 0x1802942E0, rcx, rdx, r8, r9
+	846 Interrupt 
+	847 Call 0x180294110, rcx, rdx, r8, r9
+	848 Move rcx, rax
+	849 Move rdx, 0
+	850 Call 0x1802942E0, rcx, rdx, r8, r9
+	851 Interrupt 
+	852 Call 0x180294110, rcx, rdx, r8, r9
+	853 Move rcx, rax
+	854 Move rdx, 0
+	855 Call 0x1802942E0, rcx, rdx, r8, r9
+	856 Interrupt 
+	857 Call 0x180294110, rcx, rdx, r8, r9
+	858 Move rcx, rax
+	859 Move rdx, 0
+	860 Call 0x1802942E0, rcx, rdx, r8, r9
+	861 Interrupt 
+	862 Call 0x180294110, rcx, rdx, r8, r9
+	863 Move rcx, rax
+	864 Move rdx, 0
+	865 Call 0x1802942E0, rcx, rdx, r8, r9
+	866 Interrupt 
+	867 Call 0x180294110, rcx, rdx, r8, r9
+	868 Move rcx, rax
+	869 Move rdx, 0
+	870 Call 0x1802942E0, rcx, rdx, r8, r9
+	871 Interrupt 
+	872 Call 0x180294110, rcx, rdx, r8, r9
+	873 Move rcx, rax
+	874 Move rdx, 0
+	875 Call 0x1802942E0, rcx, rdx, r8, r9
+	876 Interrupt 
+	877 Call 0x180294110, rcx, rdx, r8, r9
+	878 Move rcx, rax
+	879 Move rdx, 0
+	880 Call 0x1802942E0, rcx, rdx, r8, r9
+	881 Interrupt 
+	882 Call 0x180294110, rcx, rdx, r8, r9
+	883 Move rcx, rax
+	884 Move rdx, 0
+	885 Call 0x1802942E0, rcx, rdx, r8, r9
+	886 Interrupt 
+	887 Call 0x180294110, rcx, rdx, r8, r9
+	888 Move rcx, rax
+	889 Move rdx, 0
+	890 Call 0x1802942E0, rcx, rdx, r8, r9
+	891 Interrupt 
+	892 Call 0x180294110, rcx, rdx, r8, r9
+	893 Move rcx, rax
+	894 Move rdx, 0
+	895 Call 0x1802942E0, rcx, rdx, r8, r9
+	896 Interrupt 
+	897 Call 0x180294110, rcx, rdx, r8, r9
+	898 Move rcx, rax
+	899 Move rdx, 0
+	900 Call 0x1802942E0, rcx, rdx, r8, r9
+	901 Interrupt 
+	902 Call 0x180294110, rcx, rdx, r8, r9
+	903 Move rcx, rax
+	904 Move rdx, 0
+	905 Call 0x1802942E0, rcx, rdx, r8, r9
+	906 Interrupt 
+	907 Call 0x180294110, rcx, rdx, r8, r9
+	908 Move rcx, rax
+	909 Move rdx, 0
+	910 Call 0x1802942E0, rcx, rdx, r8, r9
+	911 Interrupt 
+	912 Call 0x180294110, rcx, rdx, r8, r9
+	913 Move rcx, rax
+	914 Move rdx, 0
+	915 Call 0x1802942E0, rcx, rdx, r8, r9
+	916 Interrupt 
+	917 Call 0x180294110, rcx, rdx, r8, r9
+	918 Move rcx, rax
+	919 Move rdx, 0
+	920 Call 0x1802942E0, rcx, rdx, r8, r9
+	921 Interrupt 
+	922 Call 0x180294110, rcx, rdx, r8, r9
+	923 Move rcx, rax
+	924 Move rdx, 0
+	925 Call 0x1802942E0, rcx, rdx, r8, r9
+	926 Interrupt 
+	927 Call 0x180294110, rcx, rdx, r8, r9
+	928 Move rcx, rax
+	929 Move rdx, 0
+	930 Call 0x1802942E0, rcx, rdx, r8, r9
+	931 Interrupt 
+	932 Call 0x180294110, rcx, rdx, r8, r9
+	933 Move rcx, rax
+	934 Move rdx, 0
+	935 Call 0x1802942E0, rcx, rdx, r8, r9
+	936 Interrupt 
+	937 Call 0x180294110, rcx, rdx, r8, r9
+	938 Move rcx, rax
+	939 Move rdx, 0
+	940 Call 0x1802942E0, rcx, rdx, r8, r9
+	941 Interrupt 
+	942 Call 0x180294110, rcx, rdx, r8, r9
+	943 Move rcx, rax
+	944 Move rdx, 0
+	945 Call 0x1802942E0, rcx, rdx, r8, r9
+	946 Interrupt 
+	947 Call 0x180294110, rcx, rdx, r8, r9
+	948 Move rcx, rax
+	949 Move rdx, 0
+	950 Call 0x1802942E0, rcx, rdx, r8, r9
+	951 Interrupt 
+	952 Call 0x180294110, rcx, rdx, r8, r9
+	953 Move rcx, rax
+	954 Move rdx, 0
+	955 Call 0x1802942E0, rcx, rdx, r8, r9
+	956 Interrupt 
+	957 Call 0x180294110, rcx, rdx, r8, r9
+	958 Move rcx, rax
+	959 Move rdx, 0
+	960 Call 0x1802942E0, rcx, rdx, r8, r9
+	961 Interrupt 
+	962 Call 0x180294110, rcx, rdx, r8, r9
+	963 Move rcx, rax
+	964 Move rdx, 0
+	965 Call 0x1802942E0, rcx, rdx, r8, r9
+	966 Interrupt 
+	967 Call 0x180294110, rcx, rdx, r8, r9
+	968 Move rcx, rax
+	969 Move rdx, 0
+	970 Call 0x1802942E0, rcx, rdx, r8, r9
+	971 Interrupt 
+	972 Call 0x180294110, rcx, rdx, r8, r9
+	973 Move rcx, rax
+	974 Move rdx, 0
+	975 Call 0x1802942E0, rcx, rdx, r8, r9
+	976 Interrupt 
+	977 Call 0x180294110, rcx, rdx, r8, r9
+	978 Move rcx, rax
+	979 Move rdx, 0
+	980 Call 0x1802942E0, rcx, rdx, r8, r9
+	981 Interrupt 
+	982 Call 0x180294110, rcx, rdx, r8, r9
+	983 Move rcx, rax
+	984 Move rdx, 0
+	985 Call 0x1802942E0, rcx, rdx, r8, r9
+	986 Interrupt 
+	987 Call 0x180294110, rcx, rdx, r8, r9
+	988 Move rcx, rax
+	989 Move rdx, 0
+	990 Call 0x1802942E0, rcx, rdx, r8, r9
+	991 Interrupt 
+	992 Call 0x180294110, rcx, rdx, r8, r9
+	993 Move rcx, rax
+	994 Move rdx, 0
+	995 Call 0x1802942E0, rcx, rdx, r8, r9
+	996 Interrupt 
+	997 Call 0x180294110, rcx, rdx, r8, r9
+	998 Move rcx, rax
+	999 Move rdx, 0
+	1000 Call 0x1802942E0, rcx, rdx, r8, r9
+	1001 Interrupt 
+	1002 Call 0x180294110, rcx, rdx, r8, r9
+	1003 Move rcx, rax
+	1004 Move rdx, 0
+	1005 Call 0x1802942E0, rcx, rdx, r8, r9
+	1006 Interrupt 
+	1007 Call 0x180294110, rcx, rdx, r8, r9
+	1008 Move rcx, rax
+	1009 Move rdx, 0
+	1010 Call 0x1802942E0, rcx, rdx, r8, r9
+	1011 Interrupt 
+	1012 Call 0x180294110, rcx, rdx, r8, r9
+	1013 Move rcx, rax
+	1014 Move rdx, 0
+	1015 Call 0x1802942E0, rcx, rdx, r8, r9
+	1016 Interrupt 
+	1017 Call 0x180294110, rcx, rdx, r8, r9
+	1018 Move rcx, rax
+	1019 Move rdx, 0
+	1020 Call 0x1802942E0, rcx, rdx, r8, r9
+	1021 Interrupt 
+	1022 Call 0x180294110, rcx, rdx, r8, r9
+	1023 Move rcx, rax
+	1024 Move rdx, 0
+	1025 Call 0x1802942E0, rcx, rdx, r8, r9
+	1026 Interrupt 
+	1027 Call 0x180294110, rcx, rdx, r8, r9
+	1028 Move rcx, rax
+	1029 Move rdx, 0
+	1030 Call 0x1802942E0, rcx, rdx, r8, r9
+	1031 Interrupt 
+	1032 Call 0x180294110, rcx, rdx, r8, r9
+	1033 Move rcx, rax
+	1034 Move rdx, 0
+	1035 Call 0x1802942E0, rcx, rdx, r8, r9
+	1036 Interrupt 
+	1037 Call 0x180294110, rcx, rdx, r8, r9
+	1038 Move rcx, rax
+	1039 Move rdx, 0
+	1040 Call 0x1802942E0, rcx, rdx, r8, r9
+	1041 Interrupt 
+	1042 Call 0x180294110, rcx, rdx, r8, r9
+	1043 Move rcx, rax
+	1044 Move rdx, 0
+	1045 Call 0x1802942E0, rcx, rdx, r8, r9
+	1046 Interrupt 
+	1047 Call 0x180294110, rcx, rdx, r8, r9
+	1048 Move rcx, rax
+	1049 Move rdx, 0
+	1050 Call 0x1802942E0, rcx, rdx, r8, r9
+	1051 Interrupt 
+	1052 Call 0x180294110, rcx, rdx, r8, r9
+	1053 Move rcx, rax
+	1054 Move rdx, 0
+	1055 Call 0x1802942E0, rcx, rdx, r8, r9
+	1056 Interrupt 
+	1057 Call 0x180294110, rcx, rdx, r8, r9
+	1058 Move rcx, rax
+	1059 Move rdx, 0
+	1060 Call 0x1802942E0, rcx, rdx, r8, r9
+	1061 Interrupt 
+	1062 Call 0x180294110, rcx, rdx, r8, r9
+	1063 Move rcx, rax
+	1064 Move rdx, 0
+	1065 Call 0x1802942E0, rcx, rdx, r8, r9
+	1066 Interrupt 
+	1067 Call 0x180294110, rcx, rdx, r8, r9
+	1068 Move rcx, rax
+	1069 Move rdx, 0
+	1070 Call 0x1802942E0, rcx, rdx, r8, r9
+	1071 Interrupt 
+	1072 Call 0x180294110, rcx, rdx, r8, r9
+	1073 Move rcx, rax
+	1074 Move rdx, 0
+	1075 Call 0x1802942E0, rcx, rdx, r8, r9
+	1076 Interrupt 
+	1077 Call 0x180294110, rcx, rdx, r8, r9
+	1078 Move rcx, rax
+	1079 Move rdx, 0
+	1080 Call 0x1802942E0, rcx, rdx, r8, r9
+	1081 Interrupt 
+	1082 Call 0x180294110, rcx, rdx, r8, r9
+	1083 Move rcx, rax
+	1084 Move rdx, 0
+	1085 Call 0x1802942E0, rcx, rdx, r8, r9
+	1086 Interrupt 
+	1087 Call 0x180294110, rcx, rdx, r8, r9
+	1088 Move rcx, rax
+	1089 Move rdx, 0
+	1090 Call 0x1802942E0, rcx, rdx, r8, r9
+	1091 Interrupt 
+	1092 Call 0x180294110, rcx, rdx, r8, r9
+	1093 Move rcx, rax
+	1094 Move rdx, 0
+	1095 Call 0x1802942E0, rcx, rdx, r8, r9
+	1096 Interrupt 
+	1097 Call 0x180294110, rcx, rdx, r8, r9
+	1098 Move rcx, rax
+	1099 Move rdx, 0
+	1100 Call 0x1802942E0, rcx, rdx, r8, r9
+	1101 Interrupt 
+	1102 Call 0x180294110, rcx, rdx, r8, r9
+	1103 Move rcx, rax
+	1104 Move rdx, 0
+	1105 Call 0x1802942E0, rcx, rdx, r8, r9
+	1106 Interrupt 
+	1107 Call 0x180294110, rcx, rdx, r8, r9
+	1108 Move rcx, rax
+	1109 Move rdx, 0
+	1110 Call 0x1802942E0, rcx, rdx, r8, r9
+	1111 Interrupt 
+	1112 Call 0x180294110, rcx, rdx, r8, r9
+	1113 Move rcx, rax
+	1114 Move rdx, 0
+	1115 Call 0x1802942E0, rcx, rdx, r8, r9
+	1116 Interrupt 
+	1117 Call 0x180294110, rcx, rdx, r8, r9
+	1118 Move rcx, rax
+	1119 Move rdx, 0
+	1120 Call 0x1802942E0, rcx, rdx, r8, r9
+

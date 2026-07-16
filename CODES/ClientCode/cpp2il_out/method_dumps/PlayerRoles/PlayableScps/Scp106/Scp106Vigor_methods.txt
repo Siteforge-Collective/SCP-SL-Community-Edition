@@ -1,0 +1,400 @@
+Type: Scp106Vigor
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp106.Scp106Vigor
+	System.Single get_VigorAmount()
+		System.Single _vigor = this._vigor
+
+		System.Single single = UnityEngine.Mathf.Clamp01(_vigor) //(Single value)
+		return single
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Single PlayerRoles.PlayableScps.Scp106.Scp106Vigor::_vigor
+	IL_0006: call System.Single UnityEngine.Mathf::Clamp01(System.Single)
+	IL_000b: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp106.Scp106Vigor
+	System.Void set_VigorAmount(System.Single value)
+		this._vigor = value
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: stfld System.Single PlayerRoles.PlayableScps.Scp106.Scp106Vigor::_vigor
+	IL_0007: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp106.Scp106Vigor
+	System.Single get_DisplayedVigor()
+		System.Single DisplayedVigor = this.<DisplayedVigor>k__BackingField
+		return DisplayedVigor
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Single PlayerRoles.PlayableScps.Scp106.Scp106Vigor::<DisplayedVigor>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp106.Scp106Vigor
+	System.Void set_DisplayedVigor(System.Single value)
+		this.<DisplayedVigor>k__BackingField = value
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: stfld System.Single PlayerRoles.PlayableScps.Scp106.Scp106Vigor::<DisplayedVigor>k__BackingField
+	IL_0007: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp106.Scp106Vigor
+	System.Void Update()
+		PlayerRoles.PlayableScps.Scp106.Scp106Vigor/<>c__DisplayClass16_0 enumeratorInstance = new PlayerRoles.PlayableScps.Scp106.Scp106Vigor/<>c__DisplayClass16_0()
+
+		enumeratorInstance..ctor()
+		PlayerRoles.PlayerRoleBase Role = this.<Role>k__BackingField
+
+		System.Boolean boolean = Role.TryGetOwner()
+
+		if (boolean != False)
+		    System.Single _vigor = this._vigor
+
+		    System.Single single = UnityEngine.Mathf.Clamp01(_vigor) //(Single value)
+		    _vigor = single
+		    System.Single local9 = _vigor * 120
+		    single = local9
+
+		    System.Int32 int32 = UnityEngine.Mathf.FloorToInt(single) //(Single f)
+
+		    if (int32 != this._lastSentAmount)
+                goto INSN_18036E6C6
+            endif
+		    this._force = False
+		endif
+        
+
+		if (this._force == False)
+		    System.Single DisplayedVigor = this.<DisplayedVigor>k__BackingField
+		    System.Single _vigor2 = this._vigor
+
+		    System.Single single2 = UnityEngine.Mathf.Clamp01(_vigor2) //(Single value)
+		    ulong local16 = 0
+
+		    System.Single deltaTime = UnityEngine.Time.deltaTime
+		    _vigor2 = deltaTime
+		    System.Single local18 = _vigor2 * 0,03
+		    deltaTime = DisplayedVigor
+
+		    System.Single single3 = UnityEngine.Mathf.MoveTowards(deltaTime, single2, local18) //(Single current, Single target, Single maxDelta)
+		    DisplayedVigor = single3
+		    this.<DisplayedVigor>k__BackingField = DisplayedVigor
+		    single3 = local21
+
+		    System.Single single4 = UnityEngine.Mathf.Clamp01(single3) //(Single value)
+		    ulong local24 = 0
+		    local21 = single4
+
+		    System.Single deltaTime2 = UnityEngine.Time.deltaTime
+		    System.Single local26 = deltaTime2 * 2,7
+		    single2 = local21
+		    local18 = local26
+		    local26 = DisplayedVigor
+
+		    System.Single single5 = UnityEngine.Mathf.Lerp(local26, single2, local18) //(Single a, Single b, Single t)
+
+		    INSN_18036E6C6:
+		    this._lastSentAmount = boolean
+		    System.Func`2<ReferenceHub,System.Boolean> func = new System.Func`2<ReferenceHub,System.Boolean>()
+
+		    func..ctor(enumeratorInstance, {'<UpdateServerside>b__0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		    base.ServerSendRpc(func) //(Func`2 condition)
+		endwhile
+        
+		goto INSN_18036E59B
+        
+		this._force = False
+		single5 = local31
+
+		System.Single single6 = UnityEngine.Mathf.Clamp01(single5) //(Single value)
+		this.<DisplayedVigor>k__BackingField = single6
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18036E4EB) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp106.Scp106Vigor
+	System.Void UpdateClientside()
+
+		if (this._force == False)
+		    System.Single DisplayedVigor = this.<DisplayedVigor>k__BackingField
+		    System.Single _vigor = this._vigor
+
+		    System.Single single = UnityEngine.Mathf.Clamp01(_vigor) //(Single value)
+		    ulong local5 = 0
+
+		    System.Single deltaTime = UnityEngine.Time.deltaTime
+		    _vigor = deltaTime
+		    System.Single local7 = _vigor * 0,03
+		    deltaTime = DisplayedVigor
+
+		    System.Single single2 = UnityEngine.Mathf.MoveTowards(deltaTime, single, local7) //(Single current, Single target, Single maxDelta)
+		    DisplayedVigor = single2
+		    this.<DisplayedVigor>k__BackingField = DisplayedVigor
+		    single2 = local10
+
+		    System.Single single3 = UnityEngine.Mathf.Clamp01(single2) //(Single value)
+		    ulong local13 = 0
+		    local10 = single3
+
+		    System.Single deltaTime2 = UnityEngine.Time.deltaTime
+		    System.Single local15 = deltaTime2 * 2,7
+		    single = local10
+		    local7 = local15
+		    local15 = DisplayedVigor
+
+		    System.Single single4 = UnityEngine.Mathf.Lerp(local15, single, local7) //(Single a, Single b, Single t)
+		    this.<DisplayedVigor>k__BackingField = single4
+		    return
+		endif
+        
+		this._force = False
+		System.Single _vigor2 = this._vigor
+
+		System.Single single5 = UnityEngine.Mathf.Clamp01(_vigor2) //(Single value)
+		this.<DisplayedVigor>k__BackingField = single5
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.RegToRegMoveAction at (0x18036E1EF) is corrupt (Local local10 is a variable but it has been stripped out. Are you missing a call to RegisterUsedLocal?) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp106.Scp106Vigor
+	System.Void UpdateServerside()
+		PlayerRoles.PlayableScps.Scp106.Scp106Vigor/<>c__DisplayClass16_0 enumeratorInstance = new PlayerRoles.PlayableScps.Scp106.Scp106Vigor/<>c__DisplayClass16_0()
+
+		enumeratorInstance..ctor()
+		PlayerRoles.PlayerRoleBase Role = this.<Role>k__BackingField
+
+		System.Boolean boolean = Role.TryGetOwner()
+
+		if (boolean != False)
+		    System.Single _vigor = this._vigor
+
+		    System.Single single = UnityEngine.Mathf.Clamp01(_vigor) //(Single value)
+		    _vigor = single
+		    System.Single local9 = _vigor * 120
+		    single = local9
+
+		    System.Int32 int32 = UnityEngine.Mathf.FloorToInt(single) //(Single f)
+
+		    if (int32 != this._lastSentAmount)
+                goto INSN_18036E394
+            endif
+		    this._force = False
+		endif
+        
+		return
+
+		INSN_18036E394:
+		this._lastSentAmount = boolean
+		System.Func`2<ReferenceHub,System.Boolean> func = new System.Func`2<ReferenceHub,System.Boolean>()
+
+		func..ctor()
+
+		base.ServerSendRpc(func) //(Func`2 condition)
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18036E2EE) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp106.Scp106Vigor
+	System.Void Awake()
+
+		base.Awake()
+		PlayerRoles.PlayerRoleManager/RoleChanged roleChanged = new PlayerRoles.PlayerRoleManager/RoleChanged()
+
+		roleChanged..ctor(this, {'<Awake>b__17_0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		PlayerRoles.PlayerRoleManager.add_OnRoleChanged(roleChanged) //(RoleChanged value)
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void PlayerRoles.PlayableScps.Subroutines.ScpSubroutineBase::Awake()
+	IL_0006: ldarg.0
+	IL_0007: ldftn System.Void PlayerRoles.PlayableScps.Scp106.Scp106Vigor::<Awake>b__17_0(ReferenceHub,PlayerRoles.PlayerRoleBase,PlayerRoles.PlayerRoleBase)
+	IL_000d: newobj System.Void PlayerRoles.PlayerRoleManager/RoleChanged::.ctor(System.Object,System.IntPtr)
+	IL_0012: call System.Void PlayerRoles.PlayerRoleManager::add_OnRoleChanged(PlayerRoles.PlayerRoleManager/RoleChanged)
+	IL_0017: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp106.Scp106Vigor
+	System.Void ServerWriteRpc(Mirror.NetworkWriter writer)
+
+		base.ClientWriteCmd(writer) //(NetworkWriter writer)
+		System.Int32 _lastSentAmount = this._lastSentAmount
+		System.Int32 local4 = _lastSentAmount + 1
+		if (this._force == False) _lastSentAmount = local4
+
+		Mirror.NetworkWriterExtensions.WriteByte(writer, _lastSentAmount) //(NetworkWriter writer, Byte value)
+		this._force = False
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: call System.Void PlayerRoles.PlayableScps.Subroutines.ScpSubroutineBase::ClientWriteCmd(Mirror.NetworkWriter)
+	IL_0007: ldarg.0
+	IL_0008: ldfld System.Int32 PlayerRoles.PlayableScps.Scp106.Scp106Vigor::_lastSentAmount
+	IL_000d: stloc.0
+	IL_000e: ldloc.0
+	IL_000f: ldc.i4.1
+	IL_0010: add
+	IL_0011: stloc.1
+	IL_0012: ldarg.0
+	IL_0013: ldfld System.Boolean PlayerRoles.PlayableScps.Scp106.Scp106Vigor::_force
+	IL_0018: ldc.i4.0
+	IL_0019: bne.un.s IL_001d
+	IL_001b: ldloc.1
+	IL_001c: stloc.0
+	IL_001d: nop
+	IL_001e: ldarg.1
+	IL_001f: ldloc.0
+	IL_0020: call System.Void Mirror.NetworkWriterExtensions::WriteByte(Mirror.NetworkWriter,System.Byte)
+	IL_0025: ldarg.0
+	IL_0026: ldc.i4.0
+	IL_0027: stfld System.Boolean PlayerRoles.PlayableScps.Scp106.Scp106Vigor::_force
+	IL_002c: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp106.Scp106Vigor
+	System.Void ClientProcessRpc(Mirror.NetworkReader reader)
+
+		base.ServerProcessCmd(reader) //(NetworkReader reader)
+
+		System.Byte byte = Mirror.NetworkReaderExtensions.ReadByte(reader) //(NetworkReader reader)
+		this._force = reader
+
+		System.Int32 int32 = UnityEngine.Mathf.Abs()
+		System.Single local7 =  / 120
+		this._vigor = local7
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18036DEF6) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp106.Scp106Vigor
+	System.Void SpawnObject()
+		ulong local1 = 0
+		this._lastSentAmount = 4294967295
+		this._vigor = local1
+		this.<DisplayedVigor>k__BackingField = local1
+		this._force = True
+		return
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: ldarg.0
+	IL_0003: ldc.i8 4294967295
+	IL_000c: conv.u8
+	IL_000d: stfld System.Int32 PlayerRoles.PlayableScps.Scp106.Scp106Vigor::_lastSentAmount
+	IL_0012: ldarg.0
+	IL_0013: ldloc.0
+	IL_0014: stfld System.Single PlayerRoles.PlayableScps.Scp106.Scp106Vigor::_vigor
+	IL_0019: ldarg.0
+	IL_001a: ldloc.0
+	IL_001b: stfld System.Single PlayerRoles.PlayableScps.Scp106.Scp106Vigor::<DisplayedVigor>k__BackingField
+	IL_0020: ldarg.0
+	IL_0021: ldc.i4.1
+	IL_0022: stfld System.Boolean PlayerRoles.PlayableScps.Scp106.Scp106Vigor::_force
+	IL_0027: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp106.Scp106Vigor
+	System.Void .ctor()
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void UnityEngine.EventSystems.UIBehaviour::.ctor()
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp106.Scp106Vigor
+	System.Void <Awake>b__17_0(ReferenceHub hub, PlayerRoles.PlayerRoleBase prev, PlayerRoles.PlayerRoleBase cur)
+
+		if (cur != 0)
+		    //UNKNOWN CLASS OFFSET READ HERE
+
+		    base.ServerSendRpc(hub) //(ReferenceHub target)
+		endif
+        
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.UnknownClassOffsetReadAction at (0x18036E099) is corrupt (Unknown class offset read) and cannot be created as IL. Aborting here.
+
+

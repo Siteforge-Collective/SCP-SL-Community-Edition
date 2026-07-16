@@ -1,0 +1,502 @@
+Type: CameraFilterPack_Blend2Camera_SplitScreen
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CameraFilterPack_Blend2Camera_SplitScreen
+	UnityEngine.Material get_material()
+
+		System.Boolean boolean = UnityEngine.Object.op_Equality()
+
+		if (boolean != False)
+		    UnityEngine.Shader sCShader = this.SCShader
+		    UnityEngine.Material material = new UnityEngine.Material()
+
+		    material..ctor(sCShader) //(Shader shader)
+		    this.SCMaterial = material
+		    System.Int32 61 = 61
+
+		    .hideFlags = 61
+		endif
+        
+		return boolean
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1814FC2DA) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CameraFilterPack_Blend2Camera_SplitScreen
+	System.Void OnValidate()
+		ulong local1 = 0
+
+		System.Int32 width = UnityEngine.Screen.width
+		ulong local3 = 0
+		this.ScreenSize = 
+
+		System.Int32 height = UnityEngine.Screen.height
+		this.ScreenSize.y = 
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.RegToFieldAction at (0x1814EE8A9) is corrupt (Value read is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CameraFilterPack_Blend2Camera_SplitScreen
+	System.Void Start()
+		UnityEngine.Camera camera2 = this.Camera2
+		ulong local2 = 0
+		ulong local3 = 0
+
+		System.Boolean boolean = UnityEngine.Object.op_Inequality(camera2, local3) //(Object x, Object y)
+
+		if (boolean != False)
+		    UnityEngine.RenderTexture renderTexture = new UnityEngine.RenderTexture()
+
+		    renderTexture..ctor(local3, local2, 24) //(Int32 width, Int32 height, Int32 depth)
+		    this.Camera2tex = renderTexture
+		    UnityEngine.Camera camera22 = this.Camera2
+		    UnityEngine.RenderTexture camera2tex = this.Camera2tex
+
+		    camera22.targetTexture = camera2tex
+		endif
+        
+		System.String shaderName = this.ShaderName
+
+		UnityEngine.Shader shader = UnityEngine.Shader.Find(shaderName) //(String name)
+		this.SCShader = shader
+		ulong local15 = 0
+
+		[instruction error - managed method being called is null]
+
+		if (shader != 0)
+            goto INSN_1814FBF14
+        endif
+		ulong local17 = 0
+
+		base.enabled = local17
+
+		INSN_1814FBF14:
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1814FBEFE) is corrupt (Don't know what method is being called) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CameraFilterPack_Blend2Camera_SplitScreen
+	System.Void OnRenderImage(UnityEngine.RenderTexture sourceTexture, UnityEngine.RenderTexture destTexture)
+		UnityEngine.Shader sCShader = this.SCShader
+		ulong local5 = 0
+
+		System.Boolean boolean = UnityEngine.Object.op_Inequality(sCShader, local5) //(Object x, Object y)
+
+		if (boolean == False)
+
+		    UnityEngine.Graphics.Blit(sourceTexture, destTexture) //(Texture source, RenderTexture dest)
+		else
+		    ulong local8 = 0
+
+		    System.Single deltaTime = UnityEngine.Time.deltaTime
+		    ulong local11 = 0
+		    this.TimeX = deltaTime
+
+		    if (deltaTime > 100)
+		        this.TimeX = local11
+		    endif
+            
+		    UnityEngine.Camera camera2 = this.Camera2
+		    ulong local14 = 0
+
+		    System.Boolean boolean2 = UnityEngine.Object.op_Inequality(camera2, local14) //(Object x, Object y)
+
+		    if (boolean2 == False)
+                goto INSN_1814FC05A
+            endif
+
+		    UnityEngine.Material material = this.material
+		    UnityEngine.RenderTexture camera2tex = this.Camera2tex
+
+		    material.SetTexture("_MainTex2", camera2tex) //(String name, Texture value)
+
+		    INSN_1814FC05A:
+
+		    UnityEngine.Material material2 = this.material
+		    System.Single timeX = this.TimeX
+
+		    material2.SetFloat("_TimeX", timeX) //(String name, Single value)
+
+		    UnityEngine.Material material3 = this.material
+		    System.Single blendFX = this.BlendFX
+
+		    material3.SetFloat("_Value", blendFX) //(String name, Single value)
+
+		    UnityEngine.Material material4 = this.material
+		    System.Single switchCameraToCamera2 = this.SwitchCameraToCamera2
+
+		    material4.SetFloat("_Value2", switchCameraToCamera2) //(String name, Single value)
+
+		    UnityEngine.Material material5 = this.material
+		    System.Single splitX = this.SplitX
+
+		    material5.SetFloat("_Value3", splitX) //(String name, Single value)
+
+		    UnityEngine.Material material6 = this.material
+		    System.Single splitY = this.SplitY
+
+		    material6.SetFloat("_Value6", splitY) //(String name, Single value)
+
+		    UnityEngine.Material material7 = this.material
+		    System.Single smooth = this.Smooth
+
+		    material7.SetFloat("_Value4", smooth) //(String name, Single value)
+
+		    UnityEngine.Material material8 = this.material
+		    System.Single rotation = this.Rotation
+
+		    material8.SetFloat("_Value5", rotation) //(String name, Single value)
+
+		    UnityEngine.Material material9 = this.material
+		    System.Boolean local50 = this.ForceYSwap == local11
+
+		    material9.SetInt("_ForceYSwap", local50) //(String name, Int32 value)
+
+		    UnityEngine.Material material10 = this.material
+
+		    UnityEngine.Graphics.Blit(sourceTexture, destTexture, material10) //(Texture source, RenderTexture dest, Material mat)
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld UnityEngine.Shader CameraFilterPack_Blend2Camera_SplitScreen::SCShader
+	IL_0006: stloc.0
+	IL_0007: ldc.i4.0
+	IL_0008: stloc.1
+	IL_0009: ldloc.0
+	IL_000a: ldloc.1
+	IL_000b: call System.Boolean UnityEngine.Object::op_Inequality(UnityEngine.Object,UnityEngine.Object)
+	IL_0010: ldc.i4.0
+	IL_0011: bne.un.s IL_001a
+	IL_0013: ldarg.1
+	IL_0014: ldarg.2
+	IL_0015: call System.Void UnityEngine.Graphics::Blit(UnityEngine.Texture,UnityEngine.RenderTexture)
+	IL_001a: ldc.i4.0
+	IL_001b: stloc.2
+	IL_001c: call System.Single UnityEngine.Time::get_deltaTime()
+	IL_0021: stloc.3
+	IL_0022: ldc.i4.0
+	IL_0023: stloc.s V_4
+	IL_0025: ldarg.0
+	IL_0026: ldloc.3
+	IL_0027: stfld System.Single CameraFilterPack_Blend2Camera_SplitScreen::TimeX
+	IL_002c: ldloc.3
+	IL_002d: ldc.r4 100
+	IL_0032: ble.s IL_003c
+	IL_0034: ldarg.0
+	IL_0035: ldloc.s V_4
+	IL_0037: stfld System.Single CameraFilterPack_Blend2Camera_SplitScreen::TimeX
+	IL_003c: ldarg.0
+	IL_003d: ldfld UnityEngine.Camera CameraFilterPack_Blend2Camera_SplitScreen::Camera2
+	IL_0042: stloc.s V_5
+	IL_0044: ldc.i4.0
+	IL_0045: stloc.s V_6
+	IL_0047: ldloc.s V_5
+	IL_0049: ldloc.s V_6
+	IL_004b: call System.Boolean UnityEngine.Object::op_Inequality(UnityEngine.Object,UnityEngine.Object)
+	IL_0050: ldc.i4.0
+	IL_0051: beq.s IL_0071
+	IL_0053: ldarg.0
+	IL_0054: call UnityEngine.Material CameraFilterPack_Blend2Camera_SplitScreen::get_material()
+	IL_0059: stloc.s V_7
+	IL_005b: ldarg.0
+	IL_005c: ldfld UnityEngine.RenderTexture CameraFilterPack_Blend2Camera_SplitScreen::Camera2tex
+	IL_0061: stloc.s V_8
+	IL_0063: ldloc.s V_7
+	IL_0065: ldstr "_MainTex2"
+	IL_006a: ldloc.s V_8
+	IL_006c: call System.Void UnityEngine.Material::SetTexture(System.String,UnityEngine.Texture)
+	IL_0071: ldarg.0
+	IL_0072: call UnityEngine.Material CameraFilterPack_Blend2Camera_SplitScreen::get_material()
+	IL_0077: stloc.s V_9
+	IL_0079: ldarg.0
+	IL_007a: ldfld System.Single CameraFilterPack_Blend2Camera_SplitScreen::TimeX
+	IL_007f: stloc.s V_10
+	IL_0081: ldloc.s V_9
+	IL_0083: ldstr "_TimeX"
+	IL_0088: ldloc.s V_10
+	IL_008a: call System.Void UnityEngine.Material::SetFloat(System.String,System.Single)
+	IL_008f: ldarg.0
+	IL_0090: call UnityEngine.Material CameraFilterPack_Blend2Camera_SplitScreen::get_material()
+	IL_0095: stloc.s V_11
+	IL_0097: ldarg.0
+	IL_0098: ldfld System.Single CameraFilterPack_Blend2Camera_SplitScreen::BlendFX
+	IL_009d: stloc.s V_12
+	IL_009f: ldloc.s V_11
+	IL_00a1: ldstr "_Value"
+	IL_00a6: ldloc.s V_12
+	IL_00a8: call System.Void UnityEngine.Material::SetFloat(System.String,System.Single)
+	IL_00ad: ldarg.0
+	IL_00ae: call UnityEngine.Material CameraFilterPack_Blend2Camera_SplitScreen::get_material()
+	IL_00b3: stloc.s V_13
+	IL_00b5: ldarg.0
+	IL_00b6: ldfld System.Single CameraFilterPack_Blend2Camera_SplitScreen::SwitchCameraToCamera2
+	IL_00bb: stloc.s V_14
+	IL_00bd: ldloc.s V_13
+	IL_00bf: ldstr "_Value2"
+	IL_00c4: ldloc.s V_14
+	IL_00c6: call System.Void UnityEngine.Material::SetFloat(System.String,System.Single)
+	IL_00cb: ldarg.0
+	IL_00cc: call UnityEngine.Material CameraFilterPack_Blend2Camera_SplitScreen::get_material()
+	IL_00d1: stloc.s V_15
+	IL_00d3: ldarg.0
+	IL_00d4: ldfld System.Single CameraFilterPack_Blend2Camera_SplitScreen::SplitX
+	IL_00d9: stloc.s V_16
+	IL_00db: ldloc.s V_15
+	IL_00dd: ldstr "_Value3"
+	IL_00e2: ldloc.s V_16
+	IL_00e4: call System.Void UnityEngine.Material::SetFloat(System.String,System.Single)
+	IL_00e9: ldarg.0
+	IL_00ea: call UnityEngine.Material CameraFilterPack_Blend2Camera_SplitScreen::get_material()
+	IL_00ef: stloc.s V_17
+	IL_00f1: ldarg.0
+	IL_00f2: ldfld System.Single CameraFilterPack_Blend2Camera_SplitScreen::SplitY
+	IL_00f7: stloc.s V_18
+	IL_00f9: ldloc.s V_17
+	IL_00fb: ldstr "_Value6"
+	IL_0100: ldloc.s V_18
+	IL_0102: call System.Void UnityEngine.Material::SetFloat(System.String,System.Single)
+	IL_0107: ldarg.0
+	IL_0108: call UnityEngine.Material CameraFilterPack_Blend2Camera_SplitScreen::get_material()
+	IL_010d: stloc.s V_19
+	IL_010f: ldarg.0
+	IL_0110: ldfld System.Single CameraFilterPack_Blend2Camera_SplitScreen::Smooth
+	IL_0115: stloc.s V_20
+	IL_0117: ldloc.s V_19
+	IL_0119: ldstr "_Value4"
+	IL_011e: ldloc.s V_20
+	IL_0120: call System.Void UnityEngine.Material::SetFloat(System.String,System.Single)
+	IL_0125: ldarg.0
+	IL_0126: call UnityEngine.Material CameraFilterPack_Blend2Camera_SplitScreen::get_material()
+	IL_012b: stloc.s V_21
+	IL_012d: ldarg.0
+	IL_012e: ldfld System.Single CameraFilterPack_Blend2Camera_SplitScreen::Rotation
+	IL_0133: stloc.s V_22
+	IL_0135: ldloc.s V_21
+	IL_0137: ldstr "_Value5"
+	IL_013c: ldloc.s V_22
+	IL_013e: call System.Void UnityEngine.Material::SetFloat(System.String,System.Single)
+	IL_0143: ldarg.0
+	IL_0144: call UnityEngine.Material CameraFilterPack_Blend2Camera_SplitScreen::get_material()
+	IL_0149: stloc.s V_23
+	IL_014b: ldarg.0
+	IL_014c: ldfld System.Boolean CameraFilterPack_Blend2Camera_SplitScreen::ForceYSwap
+	IL_0151: ldloc.s V_4
+	IL_0153: ceq
+	IL_0155: stloc.s V_24
+	IL_0157: ldloc.s V_23
+	IL_0159: ldstr "_ForceYSwap"
+	IL_015e: ldloc.s V_24
+	IL_0160: call System.Void UnityEngine.Material::SetInt(System.String,System.Int32)
+	IL_0165: ldarg.0
+	IL_0166: call UnityEngine.Material CameraFilterPack_Blend2Camera_SplitScreen::get_material()
+	IL_016b: stloc.s V_25
+	IL_016d: ldarg.1
+	IL_016e: ldarg.2
+	IL_016f: ldloc.s V_25
+	IL_0171: call System.Void UnityEngine.Graphics::Blit(UnityEngine.Texture,UnityEngine.RenderTexture,UnityEngine.Material)
+	IL_0176: ret
+	IL_0177: newobj System.Void System.NullReferenceException::.ctor()
+	IL_017c: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CameraFilterPack_Blend2Camera_SplitScreen
+	System.Void Update()
+		ulong local1 = 0
+
+		System.Int32 width = UnityEngine.Screen.width
+		ulong local3 = 0
+		this.ScreenSize = 
+
+		System.Int32 height = UnityEngine.Screen.height
+		this.ScreenSize.y = 
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.RegToFieldAction at (0x1814EE8A9) is corrupt (Value read is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CameraFilterPack_Blend2Camera_SplitScreen
+	System.Void OnEnable()
+		UnityEngine.Camera camera2 = this.Camera2
+		ulong local2 = 0
+		ulong local3 = 0
+
+		System.Boolean boolean = UnityEngine.Object.op_Inequality(camera2, local3) //(Object x, Object y)
+
+		if (boolean != False)
+		    UnityEngine.RenderTexture renderTexture = new UnityEngine.RenderTexture()
+
+		    renderTexture..ctor(local3, local2, 24) //(Int32 width, Int32 height, Int32 depth)
+		    this.Camera2tex = renderTexture
+		    UnityEngine.Camera camera22 = this.Camera2
+		    UnityEngine.RenderTexture camera2tex = this.Camera2tex
+
+		    camera22.targetTexture = camera2tex
+		endif
+        
+		System.String shaderName = this.ShaderName
+
+		UnityEngine.Shader shader = UnityEngine.Shader.Find(shaderName) //(String name)
+		this.SCShader = shader
+		ulong local15 = 0
+
+		[instruction error - managed method being called is null]
+
+		if (shader != 0)
+            goto INSN_1814FBF14
+        endif
+		ulong local17 = 0
+
+		base.enabled = local17
+
+		INSN_1814FBF14:
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1814FBEFE) is corrupt (Don't know what method is being called) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CameraFilterPack_Blend2Camera_SplitScreen
+	System.Void OnDisable()
+		UnityEngine.Camera camera2 = this.Camera2
+		ulong local3 = 0
+
+		System.Boolean boolean = UnityEngine.Object.op_Inequality(camera2, local3) //(Object x, Object y)
+
+		if (boolean != False)
+		    UnityEngine.Camera camera22 = this.Camera2
+		    ulong local7 = 0
+
+		    camera22.targetTexture = local7
+		endif
+        
+		UnityEngine.Material sCMaterial = this.SCMaterial
+
+		System.Boolean boolean2 = UnityEngine.Object.op_Implicit(sCMaterial) //(Object exists)
+
+		if (boolean2 == False)
+            goto INSN_1814FBDFA
+        endif
+		UnityEngine.Material sCMaterial2 = this.SCMaterial
+
+		UnityEngine.Object.DestroyImmediate(sCMaterial2) //(Object obj)
+
+		INSN_1814FBDFA:
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld UnityEngine.Camera CameraFilterPack_Blend2Camera_SplitScreen::Camera2
+	IL_0006: stloc.0
+	IL_0007: ldc.i4.0
+	IL_0008: stloc.1
+	IL_0009: ldloc.0
+	IL_000a: ldloc.1
+	IL_000b: call System.Boolean UnityEngine.Object::op_Inequality(UnityEngine.Object,UnityEngine.Object)
+	IL_0010: ldc.i4.0
+	IL_0011: beq.s IL_0023
+	IL_0013: ldarg.0
+	IL_0014: ldfld UnityEngine.Camera CameraFilterPack_Blend2Camera_SplitScreen::Camera2
+	IL_0019: stloc.2
+	IL_001a: ldc.i4.0
+	IL_001b: stloc.3
+	IL_001c: ldloc.2
+	IL_001d: ldloc.3
+	IL_001e: call System.Void UnityEngine.Camera::set_targetTexture(UnityEngine.RenderTexture)
+	IL_0023: ldarg.0
+	IL_0024: ldfld UnityEngine.Material CameraFilterPack_Blend2Camera_SplitScreen::SCMaterial
+	IL_0029: call System.Boolean UnityEngine.Object::op_Implicit(UnityEngine.Object)
+	IL_002e: ldc.i4.0
+	IL_002f: beq.s IL_003c
+	IL_0031: ldarg.0
+	IL_0032: ldfld UnityEngine.Material CameraFilterPack_Blend2Camera_SplitScreen::SCMaterial
+	IL_0037: call System.Void UnityEngine.Object::DestroyImmediate(UnityEngine.Object)
+	IL_003c: ret
+	IL_003d: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0042: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CameraFilterPack_Blend2Camera_SplitScreen
+	System.Void .ctor()
+		this.ShaderName = "CameraFilterPack/Blend2Camera_SplitScreen"
+		this.TimeX = 1
+		this.BlendFX = 1
+		this.SplitX = 0,5
+		this.SplitY = 0,5
+		this.Smooth = 0,1
+		this.Rotation = 3,14
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldstr "CameraFilterPack/Blend2Camera_SplitScreen"
+	IL_0006: stfld System.String CameraFilterPack_Blend2Camera_SplitScreen::ShaderName
+	IL_000b: ldarg.0
+	IL_000c: ldc.r4 1
+	IL_0011: stfld System.Single CameraFilterPack_Blend2Camera_SplitScreen::TimeX
+	IL_0016: ldarg.0
+	IL_0017: ldc.r4 1
+	IL_001c: stfld System.Single CameraFilterPack_Blend2Camera_SplitScreen::BlendFX
+	IL_0021: ldarg.0
+	IL_0022: ldc.r4 0,5
+	IL_0027: stfld System.Single CameraFilterPack_Blend2Camera_SplitScreen::SplitX
+	IL_002c: ldarg.0
+	IL_002d: ldc.r4 0,5
+	IL_0032: stfld System.Single CameraFilterPack_Blend2Camera_SplitScreen::SplitY
+	IL_0037: ldarg.0
+	IL_0038: ldc.r4 0,1
+	IL_003d: stfld System.Single CameraFilterPack_Blend2Camera_SplitScreen::Smooth
+	IL_0042: ldarg.0
+	IL_0043: ldc.r4 3,14
+	IL_0048: stfld System.Single CameraFilterPack_Blend2Camera_SplitScreen::Rotation
+	IL_004d: ldarg.0
+	IL_004e: call System.Void UnityEngine.MonoBehaviour::.ctor()
+	IL_0053: ret
+	
+

@@ -1,0 +1,262 @@
+Type: CommandSystem.Commands.RemoteAdmin.ServerEvent.ForceCICommand
+
+Method: System.String get_Command()
+
+Disassembly:
+	mov rax,[rcx+10h]
+	ret
+
+ISIL:
+	001 Move rax, [rcx+16]
+	002 Return rax
+
+Method: System.String[] get_Aliases()
+
+Disassembly:
+	mov rax,[rcx+18h]
+	ret
+
+ISIL:
+	001 Move rax, [rcx+24]
+	002 Return rax
+
+Method: System.String get_Description()
+
+Disassembly:
+	mov rax,[rcx+20h]
+	ret
+
+ISIL:
+	001 Move rax, [rcx+32]
+	002 Return rax
+
+Method: System.Boolean Execute(System.ArraySegment`1<System.String> arguments, CommandSystem.ICommandSender sender, out System.String response)
+
+Disassembly:
+	mov [rsp+8],rbx
+	push rdi
+	sub rsp,30h
+	cmp byte ptr [1826EBE4Eh],0
+	mov rdi,r9
+	mov rbx,r8
+	jne short 000000018061680Bh
+	mov ecx,[1822DEC94h]
+	call 0000000180294190h
+	mov byte ptr [1826EBE4Eh],1
+	mov rcx,[1827445E8h]
+	test byte ptr [rcx+12Fh],2
+	je short 0000000180616829h
+	cmp dword ptr [rcx+0E0h],0
+	jne short 0000000180616829h
+	call 000000018021A070h
+	xor r9d,r9d
+	mov r8,rdi
+	mov edx,100h
+	mov rcx,rbx
+	call 0000000181B541F0h
+	test al,al
+	je near ptr 0000000180616943h
+	mov rax,[182740370h]
+	test byte ptr [rax+12Fh],2
+	je short 000000018061686Ch
+	cmp dword ptr [rax+0E0h],0
+	jne short 000000018061686Ch
+	mov rcx,rax
+	call 000000018021A070h
+	mov rax,[182740370h]
+	mov rax,[rax+0B8h]
+	mov rcx,[rax+10h]
+	test rcx,rcx
+	je near ptr 0000000180616950h
+	mov byte ptr [rcx+18h],1
+	mov rcx,[182744268h]
+	test byte ptr [rcx+12Fh],2
+	je short 00000001806168A2h
+	cmp dword ptr [rcx+0E0h],0
+	jne short 00000001806168A2h
+	call 000000018021A070h
+	movss xmm1,dword ptr [181EA337Ch]
+	xor r8d,r8d
+	mov cl,1
+	call 0000000181AAD730h
+	test rbx,rbx
+	je near ptr 0000000180616950h
+	mov rdx,[1827430C0h]
+	mov r8,rbx
+	mov ecx,1
+	call 00000001800C7A30h
+	mov rdx,[1827320E8h]
+	xor r8d,r8d
+	mov rcx,rax
+	call 00000001811169D0h
+	mov rcx,[1827445A8h]
+	mov rbx,rax
+	test byte ptr [rcx+12Fh],2
+	je short 0000000180616904h
+	cmp dword ptr [rcx+0E0h],0
+	jne short 0000000180616904h
+	call 000000018021A070h
+	xor r9d,r9d
+	mov qword ptr [rsp+20h],0
+	mov r8b,1
+	mov rdx,rbx
+	mov cl,4
+	call 0000000181B71B80h
+	mov rax,[182732090h]
+	mov rcx,rdi
+	mov [rdi],rax
+	mov rdx,[182732090h]
+	call 0000000180293EF0h
+	mov al,1
+	mov rbx,[rsp+40h]
+	add rsp,30h
+	pop rdi
+	ret
+	mov rbx,[rsp+40h]
+	xor al,al
+	add rsp,30h
+	pop rdi
+	ret
+	call 0000000180294310h
+
+ISIL:
+	001 Move stack:0x8, rbx
+	002 ShiftStack -8
+	003 Move stack:0x0, rdi
+	004 ShiftStack -48
+	005 Compare [0x1826EBE4E], 0
+	006 Move rdi, r9
+	007 Move rbx, r8
+	008 JumpIfNotEqual {12}
+	009 Move rcx, [0x1822DEC94]
+	010 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	011 Move [0x1826EBE4E], 1
+	012 Move rcx, typeof(Misc)
+	013 Compare [rcx+303], 2
+	014 JumpIfEqual {18}
+	015 Compare [rcx+224], 0
+	016 JumpIfNotEqual {18}
+	017 Call "il2cpp_runtime_class_init_export", rcx, rdx, r8, r9
+	018 Move r9, 0
+	019 Move r8, rdi
+	020 Move rdx, 256
+	021 Move rcx, rbx
+	022 Call Misc.CheckPermission, rcx, rdx, r8, r9
+	023 Compare rax, 0
+	024 JumpIfEqual {82}
+	025 Move rax, typeof(Respawning.RespawnManager)
+	026 Compare [rax+303], 2
+	027 JumpIfEqual {33}
+	028 Compare [rax+224], 0
+	029 JumpIfNotEqual {33}
+	030 Move rcx, rax
+	031 Call "il2cpp_runtime_class_init_export", rcx, rdx, r8, r9
+	032 Move rax, typeof(Respawning.RespawnManager)
+	033 Move rax, [rax+184]
+	034 Move rcx, [rax+16]
+	035 Compare rcx, 0
+	036 JumpIfEqual {88}
+	037 Move [rcx+24], 1
+	038 Move rcx, typeof(Respawning.RespawnTokensManager)
+	039 Compare [rcx+303], 2
+	040 JumpIfEqual {44}
+	041 Compare [rcx+224], 0
+	042 JumpIfNotEqual {44}
+	043 Call "il2cpp_runtime_class_init_export", rcx, rdx, r8, r9
+	044 Move xmm1, [0x181EA337C]
+	045 Move r8, 0
+	046 Move rcx, 1
+	047 Call RespawnTokensManager.ForceTeamDominance, rcx, xmm1, r8
+	048 Compare rbx, 0
+	049 JumpIfEqual {88}
+	050 Move rdx, typeof(CommandSystem.ICommandSender)
+	051 Move r8, rbx
+	052 Move rcx, 1
+	053 Call 0x1800C7A30, rcx, rdx, r8, r9
+	054 Move rdx, " forced CI respawn next."
+	055 Move r8, 0
+	056 Move rcx, rax
+	057 Call String.Concat, rcx, rdx, r8
+	058 Move rcx, typeof(ServerLogs)
+	059 Move rbx, rax
+	060 Compare [rcx+303], 2
+	061 JumpIfEqual {65}
+	062 Compare [rcx+224], 0
+	063 JumpIfNotEqual {65}
+	064 Call "il2cpp_runtime_class_init_export", rcx, rdx, r8, r9
+	065 Move r9, 0
+	066 Move stack:0x20, 0
+	067 Move r8, 1
+	068 Move rdx, rbx
+	069 Move rcx, 4
+	070 Call ServerLogs.AddLog, rcx, rdx, r8, r9, stack:0x0
+	071 Move rax, "Chaos Insurgency will be respawning next."
+	072 Move rcx, rdi
+	073 Move [rdi], rax
+	074 Move rdx, "Chaos Insurgency will be respawning next."
+	075 Call 0x180293EF0, rcx, rdx, r8, r9
+	076 Move rax, 1
+	077 Move rbx, stack:0x40
+	078 ShiftStack 48
+	079 Move rdi, stack:0x0
+	080 ShiftStack 8
+	081 Return rax
+	082 Move rbx, stack:0x40
+	083 Move rax, 0
+	084 ShiftStack 48
+	085 Move rdi, stack:0x0
+	086 ShiftStack 8
+	087 Return rax
+	088 Call 0x180294310, rcx, rdx, r8, r9
+
+Method: System.Void .ctor()
+
+Disassembly:
+	push rbx
+	sub rsp,20h
+	cmp byte ptr [1826EBE4Fh],0
+	mov rbx,rcx
+	jne short 0000000180616984h
+	mov ecx,[1822DECB4h]
+	call 0000000180294190h
+	mov byte ptr [1826EBE4Fh],1
+	mov rdx,[182732068h]
+	lea rcx,[rbx+10h]
+	mov [rcx],rdx
+	call 0000000180293EF0h
+	mov rdx,[182732030h]
+	lea rcx,[rbx+20h]
+	mov [rcx],rdx
+	call 0000000180293EF0h
+	xor edx,edx
+	mov rcx,rbx
+	add rsp,20h
+	pop rbx
+	jmp near ptr 00000001802D5040h
+
+ISIL:
+	001 ShiftStack -8
+	002 Move stack:0x0, rbx
+	003 ShiftStack -32
+	004 Compare [0x1826EBE4F], 0
+	005 Move rbx, rcx
+	006 JumpIfNotEqual {10}
+	007 Move rcx, [0x1822DECB4]
+	008 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	009 Move [0x1826EBE4F], 1
+	010 Move rdx, "FORCE_CI"
+	011 LoadAddress rcx, [rbx+16]
+	012 Move [rcx], rdx
+	013 Call 0x180293EF0, rcx, rdx, r8, r9
+	014 Move rdx, "Forces the next team to respawn to be Chaos Insurgency."
+	015 LoadAddress rcx, [rbx+32]
+	016 Move [rcx], rdx
+	017 Call 0x180293EF0, rcx, rdx, r8, r9
+	018 Move rdx, 0
+	019 Move rcx, rbx
+	020 ShiftStack 32
+	021 Move rbx, stack:0x0
+	022 ShiftStack 8
+	023 Call 0x1802D5040, rcx, rdx, r8, r9, stack:0x0
+	024 Return 
+

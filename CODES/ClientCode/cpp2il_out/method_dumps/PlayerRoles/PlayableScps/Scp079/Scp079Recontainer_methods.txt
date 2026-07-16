@@ -1,0 +1,871 @@
+Type: Scp079Recontainer
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Scp079Recontainer
+	System.Boolean get_CassieBusy()
+		NineTailedFoxAnnouncer singleton = NineTailedFoxAnnouncer.singleton
+		System.Collections.Generic.List`1<NineTailedFoxAnnouncer/VoiceLine> queue = singleton.queue
+		System.Boolean local3 =  > 0
+		return local3
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.GreaterThanRegisterSetAction at (0x18051CE64) is corrupt (Missing a comparison argument) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Scp079Recontainer
+	System.Void Start()
+		ulong local2 = 0
+
+		this.SetContainmentDoors(local2, True) //(Boolean opened, Boolean locked)
+		PlayerRoles.PlayerRoleManager/ServerRoleSet serverRoleSet = new PlayerRoles.PlayerRoleManager/ServerRoleSet()
+
+		serverRoleSet..ctor(this, {'OnServerRoleChanged' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		PlayerRoles.PlayerRoleManager.add_OnServerRoleSet(serverRoleSet) //(ServerRoleSet value)
+		return
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: ldarg.0
+	IL_0003: ldloc.0
+	IL_0004: ldc.i4.1
+	IL_0005: call System.Void PlayerRoles.PlayableScps.Scp079.Scp079Recontainer::SetContainmentDoors(System.Boolean,System.Boolean)
+	IL_000a: ldarg.0
+	IL_000b: ldftn System.Void PlayerRoles.PlayableScps.Scp079.Scp079Recontainer::OnServerRoleChanged(ReferenceHub,PlayerRoles.RoleTypeId,PlayerRoles.RoleChangeReason)
+	IL_0011: newobj System.Void PlayerRoles.PlayerRoleManager/ServerRoleSet::.ctor(System.Object,System.IntPtr)
+	IL_0016: call System.Void PlayerRoles.PlayerRoleManager::add_OnServerRoleSet(PlayerRoles.PlayerRoleManager/ServerRoleSet)
+	IL_001b: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Scp079Recontainer
+	System.Void OnDestroy()
+		PlayerRoles.PlayerRoleManager/ServerRoleSet serverRoleSet = new PlayerRoles.PlayerRoleManager/ServerRoleSet()
+
+		serverRoleSet..ctor(this, {'OnServerRoleChanged' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		PlayerRoles.PlayerRoleManager.remove_OnServerRoleSet(serverRoleSet) //(ServerRoleSet value)
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldftn System.Void PlayerRoles.PlayableScps.Scp079.Scp079Recontainer::OnServerRoleChanged(ReferenceHub,PlayerRoles.RoleTypeId,PlayerRoles.RoleChangeReason)
+	IL_0007: newobj System.Void PlayerRoles.PlayerRoleManager/ServerRoleSet::.ctor(System.Object,System.IntPtr)
+	IL_000c: call System.Void PlayerRoles.PlayerRoleManager::remove_OnServerRoleSet(PlayerRoles.PlayerRoleManager/ServerRoleSet)
+	IL_0011: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Scp079Recontainer
+	System.Void Update()
+
+		this.RefreshActivator()
+
+		this.RefreshAmount()
+		System.Diagnostics.Stopwatch _unlockStopwatch = this._unlockStopwatch
+
+		if (_unlockStopwatch.is_running != False)
+
+		    System.TimeSpan elapsed = _unlockStopwatch.Elapsed
+
+		    if (_unlockStopwatch.is_running > False)
+
+		        this.EndOvercharge()
+		        System.Diagnostics.Stopwatch _unlockStopwatch2 = this._unlockStopwatch
+
+		        _unlockStopwatch2.Stop()
+		    endif
+            
+		    System.Single _recontainLater = this._recontainLater
+		    ulong local13 = 0
+
+		    if (_recontainLater <= local13)
+                goto INSN_18051CCB7
+            endif
+		    System.Diagnostics.Stopwatch _delayStopwatch = this._delayStopwatch
+
+		    _delayStopwatch.Stop()
+
+		    System.Boolean cassieBusy = this.CassieBusy
+		    System.Single _recontainLater2 = this._recontainLater
+
+		    if (cassieBusy != False)
+                goto INSN_18051CCA3
+            endif
+		    ulong local19 = 0
+
+		    System.Single deltaTime = UnityEngine.Time.deltaTime
+		    this._recontainLater = _recontainLater2
+
+		    INSN_18051CCA3:
+
+		    this.Recontain()
+
+		    INSN_18051CCB7:
+		    return
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void PlayerRoles.PlayableScps.Scp079.Scp079Recontainer::RefreshActivator()
+	IL_0006: ldarg.0
+	IL_0007: call System.Void PlayerRoles.PlayableScps.Scp079.Scp079Recontainer::RefreshAmount()
+	IL_000c: ldarg.0
+	IL_000d: ldfld System.Diagnostics.Stopwatch PlayerRoles.PlayableScps.Scp079.Scp079Recontainer::_unlockStopwatch
+	IL_0012: stloc.1
+	IL_0013: ldloc.1
+	IL_0014: ldfld System.Boolean System.Diagnostics.Stopwatch::is_running
+	IL_0019: ldc.i4.0
+	IL_001a: beq.s IL_003d
+	IL_001c: ldloc.1
+	IL_001d: call System.TimeSpan System.Diagnostics.Stopwatch::get_Elapsed()
+	IL_0022: stloc.2
+	IL_0023: ldloc.1
+	IL_0024: ldfld System.Boolean System.Diagnostics.Stopwatch::is_running
+	IL_0029: ldc.i4.0
+	IL_002a: ble.s IL_003d
+	IL_002c: ldarg.0
+	IL_002d: call System.Void PlayerRoles.PlayableScps.Scp079.Scp079Recontainer::EndOvercharge()
+	IL_0032: ldarg.0
+	IL_0033: ldfld System.Diagnostics.Stopwatch PlayerRoles.PlayableScps.Scp079.Scp079Recontainer::_unlockStopwatch
+	IL_0038: call System.Void System.Diagnostics.Stopwatch::Stop()
+	IL_003d: ldarg.0
+	IL_003e: ldfld System.Single PlayerRoles.PlayableScps.Scp079.Scp079Recontainer::_recontainLater
+	IL_0043: stloc.3
+	IL_0044: ldc.i4.0
+	IL_0045: stloc.s V_4
+	IL_0047: ldloc.3
+	IL_0048: ldloc.s V_4
+	IL_004a: ble.s IL_0084
+	IL_004c: ldarg.0
+	IL_004d: ldfld System.Diagnostics.Stopwatch PlayerRoles.PlayableScps.Scp079.Scp079Recontainer::_delayStopwatch
+	IL_0052: call System.Void System.Diagnostics.Stopwatch::Stop()
+	IL_0057: ldarg.0
+	IL_0058: call System.Boolean PlayerRoles.PlayableScps.Scp079.Scp079Recontainer::get_CassieBusy()
+	IL_005d: stloc.s V_5
+	IL_005f: ldarg.0
+	IL_0060: ldfld System.Single PlayerRoles.PlayableScps.Scp079.Scp079Recontainer::_recontainLater
+	IL_0065: stloc.s V_6
+	IL_0067: ldloc.s V_5
+	IL_0069: ldc.i4.0
+	IL_006a: bne.un.s IL_007e
+	IL_006c: ldc.i4.0
+	IL_006d: stloc.s V_7
+	IL_006f: call System.Single UnityEngine.Time::get_deltaTime()
+	IL_0074: stloc.s V_8
+	IL_0076: ldarg.0
+	IL_0077: ldloc.s V_6
+	IL_0079: stfld System.Single PlayerRoles.PlayableScps.Scp079.Scp079Recontainer::_recontainLater
+	IL_007e: ldarg.0
+	IL_007f: call System.Void PlayerRoles.PlayableScps.Scp079.Scp079Recontainer::Recontain()
+	IL_0084: ret
+	IL_0085: newobj System.Void System.NullReferenceException::.ctor()
+	IL_008a: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Scp079Recontainer
+	System.Void OnServerRoleChanged(ReferenceHub hub, PlayerRoles.RoleTypeId newRole, PlayerRoles.RoleChangeReason reason)
+		PlayerRoles.PlayableScps.Scp079.Scp079Recontainer/<>c__DisplayClass27_0 enumeratorInstance = new PlayerRoles.PlayableScps.Scp079.Scp079Recontainer/<>c__DisplayClass27_0()
+
+		enumeratorInstance..ctor()
+		enumeratorInstance.hub = hub
+		enumeratorInstance.<>4__this = this
+
+		if (newRole == constant11)
+		    ReferenceHub referenceHub = enumeratorInstance.hub
+		    PlayerRoles.PlayerRoleManager roleManager = referenceHub.roleManager
+
+		    PlayerRoles.PlayerRoleBase currentRole = roleManager.CurrentRole
+
+		    PlayerRoles.RoleTypeId roleTypeId = currentRole.RoleTypeId
+
+		    if (roleTypeId == constant17)
+
+		        System.String string = currentRole.ToString()
+
+		        if (string != 7)
+		            System.Collections.Generic.HashSet`1<PlayerRoles.PlayableScps.Scp079.Scp079Role> activeInstances = PlayerRoles.PlayableScps.Scp079.Scp079Role.ActiveInstances
+
+		            if ( != 0)
+		                System.Func`2<ReferenceHub,System.Boolean> func = new System.Func`2<ReferenceHub,System.Boolean>()
+
+		                func..ctor(enumeratorInstance, {'<OnServerRoleChanged>b__0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		                System.Int32 int32 = Utils.NonAllocLINQ.HashsetExtensions.Count<ReferenceHub>()
+
+		                this.SetContainmentDoors(True, True) //(Boolean opened, Boolean locked)
+		                this._alreadyRecontained = True
+		                this._recontainLater = 3
+		                System.Collections.Generic.HashSet`1<MapGeneration.Distributors.Scp079Generator> allGenerators = PlayerRoles.PlayableScps.Scp079.Scp079Recontainer.AllGenerators
+
+		                System.Collections.Generic.HashSet`1/Enumerator<T> enumerator = .GetEnumerator()
+
+		                if (enumerator != 0)
+
+		                    .Engaged = True
+		                endif
+                        
+
+		                [instruction error - managed method being called is null]
+
+		                [instruction error - managed method being called is null]
+
+		                if (Scp079Recontainer != 0)
+                            goto INSN_18051BCCA
+                        endif
+		            endif
+                    
+		            return
+		            throw new System.NullReferenceException()
+
+		            INSN_18051BCCA:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfNonZeroOrNonNullAction at (0x18051BAB7) is corrupt (ConstantDefinition: Don't know how to get IL to load a System.SByte) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Scp079Recontainer
+	System.Boolean IsScpButNot079(PlayerRoles.PlayerRoleBase prb)
+
+		PlayerRoles.RoleTypeId roleTypeId = prb.RoleTypeId
+
+		if (roleTypeId != constant4)
+		    ulong local3 = 0
+		    return local3
+		endif
+        
+
+		System.String string = prb.ToString()
+		System.Boolean local5 = string != 7
+		return local5
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfZeroOrNullAction at (0x18051B983) is corrupt (ConstantDefinition: Don't know how to get IL to load a System.SByte) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Scp079Recontainer
+	System.Void RefreshActivator()
+		System.Diagnostics.Stopwatch _delayStopwatch = this._delayStopwatch
+
+		System.TimeSpan elapsed = _delayStopwatch.Elapsed
+
+		if (_delayStopwatch <= 0)
+		    BreakableWindow _activatorGlass = this._activatorGlass
+
+		    if (_activatorGlass.isBroken != False)
+		        UnityEngine.Transform _activatorButton = this._activatorButton
+
+		        UnityEngine.Transform transform = _activatorButton.transform
+		        UnityEngine.Transform _activatorButton2 = this._activatorButton
+
+		        UnityEngine.Transform transform2 = _activatorButton2.transform
+
+		        UnityEngine.Vector3 localPosition = .localPosition
+		        ulong local15 = 0
+		        System.Single single = this._activatorPos.z
+		        System.Single single2 = localPosition.z
+
+		        System.Single deltaTime = UnityEngine.Time.deltaTime
+
+		        UnityEngine.Vector3 vector3 = UnityEngine.Vector3.Lerp()
+		        System.Single single3 = vector3.z
+
+		        transform.set_localPosition()
+
+		        if (this._alreadyRecontained == False)
+
+		            System.Boolean cassieBusy = this.CassieBusy
+
+		            if (cassieBusy == False)
+
+		                this.Recontain()
+		            endif
+                    
+		            return
+		        endif
+                
+		        System.Diagnostics.Stopwatch _delayStopwatch2 = this._delayStopwatch
+
+		        if (_delayStopwatch2.is_running != False)
+
+		            this.BeginOvercharge()
+		            System.Diagnostics.Stopwatch _delayStopwatch3 = this._delayStopwatch
+
+		            _delayStopwatch3.Stop()
+		            System.Diagnostics.Stopwatch _unlockStopwatch = this._unlockStopwatch
+
+		            _unlockStopwatch.Start()
+		            return
+		            throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18051BF84) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Scp079Recontainer
+	System.Void Recontain()
+		System.Diagnostics.Stopwatch _delayStopwatch = this._delayStopwatch
+
+		_delayStopwatch.Restart()
+		System.String _announcementCountdown = this._announcementCountdown
+		ulong local5 = 0
+
+		this.PlayAnnouncement(_announcementCountdown, local5) //(String annc, Single glitchyMultiplier)
+		Subtitles.SubtitlePart[] local6 = new Subtitles.SubtitlePart[1]
+		ulong local7 = 0
+		local6[0] = local7
+
+		Utils.Networking.NetworkUtils.SendToAuthenticated<Subtitles.SubtitleMessage>()
+		this._alreadyRecontained = True
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18051BE5D) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Scp079Recontainer
+	System.Void RefreshAmount()
+
+		if (this._alreadyRecontained == False)
+		    ulong local1 = 0
+		    System.Collections.Generic.HashSet`1<MapGeneration.Distributors.Scp079Generator> allGenerators = PlayerRoles.PlayableScps.Scp079.Scp079Recontainer.AllGenerators
+
+		    System.Collections.Generic.HashSet`1/Enumerator<T> enumerator = .GetEnumerator()
+
+		    if (enumerator != 0)
+
+		        System.Boolean engaged = .Engaged
+
+		        if (engaged != False)
+		            local1 += 1
+		        endif
+                
+
+		        [instruction error - managed method being called is null]
+
+		        [instruction error - managed method being called is null]
+
+		        if (Scp079Recontainer != 0)
+                    goto INSN_18051C224
+                endif
+
+		        if (local1 <= this._prevEngaged)
+                    goto INSN_18051C20C
+                endif
+
+		        this.UpdateStatus(local1) //(Int32 engagedGenerators)
+		        this._prevEngaged = local1
+		    endif
+            
+		    return
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+
+		    INSN_18051C224:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18051C175) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Scp079Recontainer
+	System.Void SetContainmentDoors(System.Boolean opened, System.Boolean locked)
+		Interactables.Interobjects.DoorUtils.DoorVariant[] _containmentGates = this._containmentGates
+		ulong local4 = 0
+		System.Int32 length = _containmentGates.Length
+
+		if (local4 < length)
+		    Interactables.Interobjects.DoorUtils.DoorVariant doorVariant = _containmentGates[local4]
+
+		    doorVariant.NetworkTargetState = opened
+
+		    doorVariant.ServerChangeLock(64, locked) //(DoorLockReason reason, Boolean newState)
+		    local4 += 1
+		endif
+        
+		return
+		throw new System.IndexOutOfRangeException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld Interactables.Interobjects.DoorUtils.DoorVariant[] PlayerRoles.PlayableScps.Scp079.Scp079Recontainer::_containmentGates
+	IL_0006: stloc.0
+	IL_0007: ldc.i4.0
+	IL_0008: stloc.1
+	IL_0009: ldloc.0
+	IL_000a: call System.Int32 System.Array::get_Length()
+	IL_000f: stloc.2
+	IL_0010: ldloc.1
+	IL_0011: ldloc.2
+	IL_0012: bge.s IL_0031
+	IL_0014: ldloc.0
+	IL_0015: ldloc.1
+	IL_0016: ldelem.any Interactables.Interobjects.DoorUtils.DoorVariant
+	IL_001b: stloc.3
+	IL_001c: ldloc.3
+	IL_001d: ldarg.1
+	IL_001e: call System.Void Interactables.Interobjects.DoorUtils.DoorVariant::set_NetworkTargetState(System.Boolean)
+	IL_0023: ldloc.3
+	IL_0024: ldc.i4.s 64
+	IL_0026: conv.u4
+	IL_0027: ldarg.2
+	IL_0028: call System.Void Interactables.Interobjects.DoorUtils.DoorVariant::ServerChangeLock(Interactables.Interobjects.DoorUtils.DoorLockReason,System.Boolean)
+	IL_002d: ldloc.1
+	IL_002e: ldc.i4.1
+	IL_002f: add
+	IL_0030: stloc.1
+	IL_0031: ret
+	IL_0032: newobj System.Void System.IndexOutOfRangeException::.ctor()
+	IL_0037: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Scp079Recontainer
+	System.Void UpdateStatus(System.Int32 engagedGenerators)
+		System.Collections.Generic.HashSet`1<MapGeneration.Distributors.Scp079Generator> allGenerators = PlayerRoles.PlayableScps.Scp079.Scp079Recontainer.AllGenerators
+		System.Int32 _count = allGenerators._count
+		System.String _announcementProgress = this._announcementProgress
+		engagedGenerators = _count
+
+		System.String string = System.String.Format(_announcementProgress, engagedGenerators, _count) //(String format, Object arg0, Object arg1)
+		System.Collections.Generic.List`1<Subtitles.SubtitlePart> list = new System.Collections.Generic.List`1<Subtitles.SubtitlePart>()
+
+		list..ctor()
+		System.String[] local8 = new System.String[2]
+
+		if (local8 != 0)
+
+		    if (local8 == 0)
+                goto INSN_18051CAF7
+            endif
+		endif
+        
+		local8[0] = local8
+
+		if (local8 == 0)
+            goto INSN_18051C975
+        endif
+
+		if (local8 == 0)
+            goto INSN_18051CB17
+        endif
+
+		INSN_18051C975:
+		local8[1] = local8
+
+		list.Add()
+		System.String _announcementAllActivated = this._announcementAllActivated
+
+		System.String string2 = System.String.Concat(string, _announcementAllActivated) //(String str0, String str1)
+		System.Collections.Generic.HashSet`1<PlayerRoles.PlayableScps.Scp079.Scp079Role> activeInstances = PlayerRoles.PlayableScps.Scp079.Scp079Role.ActiveInstances
+		System.Boolean local17 =  > 0
+
+		this.SetContainmentDoors(True, local17) //(Boolean opened, Boolean locked)
+
+		list.Add()
+
+		Subtitles.SubtitlePart[] subtitlePartArray = list.ToArray()
+
+		Utils.Networking.NetworkUtils.SendToAuthenticated<Subtitles.SubtitleMessage>()
+
+		this.PlayAnnouncement(string2, 1) //(String annc, Single glitchyMultiplier)
+		return
+		throw new System.NullReferenceException()
+
+		INSN_18051CAF7:
+
+		INSN_18051CB17:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.RegToRegMoveAction at (0x18051C8BD) is corrupt (Local being overwritten, {'engagedGenerators' (function parameter, type System.Int32)} has been stripped or is a parameter) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Scp079Recontainer
+	System.Void BeginOvercharge()
+		ulong local1 = 0
+
+		System.Boolean boolean = this.TryKill079()
+		this._success = boolean
+		ulong local6 = 0
+
+		System.Boolean inProgress = AlphaWarheadController.InProgress
+		System.Collections.Generic.Dictionary`2<Interactables.IInteractable,System.Collections.Generic.Dictionary`2<System.Byte,Interactables.InteractableCollider>> allInstances = Interactables.InteractableCollider.AllInstances
+
+		System.Collections.Generic.Dictionary`2/Enumerator<TKey,TValue> enumerator = .GetEnumerator()
+
+		if (enumerator != 0)
+
+		    if (MoveNext != 0)
+		        ulong local10 = 0
+
+		        if (MoveNext != 0)
+
+		            System.Boolean boolean2 = UnityEngine.Object.op_Equality()
+
+		            if (boolean2 == False)
+
+		                if ( == 0)
+		                    System.Collections.Generic.Dictionary`2<UnityEngine.Vector3Int,MapGeneration.RoomIdentifier> roomsByCoordinates = MapGeneration.RoomIdentifier.RoomsByCoordinates
+
+		                    UnityEngine.Transform transform = .transform
+
+		                    UnityEngine.Vector3 position = .position
+
+		                    UnityEngine.Vector3Int vector3Int = MapGeneration.RoomIdUtils.PositionToCoords()
+
+		                    System.Boolean boolean3 = roomsByCoordinates.TryGetValue()
+
+		                    if (boolean3 != False)
+
+		                        if ( == 2)
+
+		                            .NetworkTargetState = local24
+
+		                            .ServerChangeLock(128, True) //(DoorLockReason reason, Boolean newState)
+		                            System.Collections.Generic.HashSet`1<Interactables.Interobjects.DoorUtils.DoorVariant> _lockedDoors = this._lockedDoors
+
+		                            System.Boolean boolean4 = _lockedDoors.Add()
+		                        endif
+                                
+
+		                        [instruction error - managed method being called is null]
+
+		                        [instruction error - managed method being called is null]
+
+		                        if (constant16 != 0)
+                                    goto INSN_18051B763
+                                endif
+
+		                        if (local1 == -1)
+                                    goto INSN_18051B577
+                                endif
+
+		                        INSN_18051B577:
+		                        System.Collections.Generic.List`1<FlickerableLightController> instances = FlickerableLightController.Instances
+
+		                        System.Collections.Generic.List`1/Enumerator<T> enumerator2 = .GetEnumerator()
+
+		                        if (enumerator2 == 0)
+                                    goto INSN_18051B6DF
+                                endif
+		                        System.Collections.Generic.Dictionary`2<UnityEngine.Vector3Int,MapGeneration.RoomIdentifier> roomsByCoordinates2 = MapGeneration.RoomIdentifier.RoomsByCoordinates
+
+		                        UnityEngine.Transform transform2 = .transform
+
+		                        UnityEngine.Vector3 position2 = .position
+
+		                        UnityEngine.Vector3Int vector3Int2 = MapGeneration.RoomIdUtils.PositionToCoords()
+
+		                        System.Boolean boolean5 = roomsByCoordinates2.TryGetValue()
+
+		                        if (boolean5 == False)
+                                    goto INSN_18051B5E0
+                                endif
+
+		                        if ( != 2)
+                                    goto INSN_18051B5E0
+                                endif
+		                        System.Single _lockdownDuration = this._lockdownDuration
+
+		                        roomsByCoordinates2.ServerFlickerLights(_lockdownDuration) //(Single dur)
+
+		                        INSN_18051B6DF:
+		                        . = 286
+
+		                        roomsByCoordinates2.Dispose()
+
+		                        roomsByCoordinates2.Dispose()
+
+		                        if (roomsByCoordinates2 != 0)
+                                    goto INSN_18051B780
+                                endif
+		                        ulong local44 = 0
+
+		                        this.SetContainmentDoors(True, local44) //(Boolean opened, Boolean locked)
+		                        return
+		                        throw new System.NullReferenceException()
+		                        throw new System.NullReferenceException()
+		                        throw new System.NullReferenceException()
+		                        throw new System.NullReferenceException()
+		                        throw new System.NullReferenceException()
+		                        throw new System.NullReferenceException()
+
+		                        INSN_18051B763:
+		                        throw new System.NullReferenceException()
+		                        throw new System.NullReferenceException()
+		                        throw new System.NullReferenceException()
+		                        throw new System.NullReferenceException()
+
+		                        INSN_18051B780:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18051B328) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Scp079Recontainer
+	System.Void EndOvercharge()
+
+		if (this._success == False)
+		    System.String _announcementFailure = this._announcementFailure
+
+		    this.PlayAnnouncement(_announcementFailure, 1) //(String annc, Single glitchyMultiplier)
+		    Subtitles.SubtitlePart[] local3 = new Subtitles.SubtitlePart[1]
+		    ulong local4 = 0
+		    local3[0] = local4
+
+		    Utils.Networking.NetworkUtils.SendToAuthenticated<Subtitles.SubtitleMessage>()
+		endif
+        
+		System.Collections.Generic.HashSet`1<Interactables.Interobjects.DoorUtils.DoorVariant> _lockedDoors = this._lockedDoors
+
+		System.Collections.Generic.HashSet`1/Enumerator<T> enumerator = .GetEnumerator()
+
+		if (enumerator == 0)
+            goto INSN_18051B8EF
+        endif
+		ulong local12 = 0
+
+		.ServerChangeLock(128, local12) //(DoorLockReason reason, Boolean newState)
+
+		INSN_18051B8EF:
+
+		[instruction error - managed method being called is null]
+
+		[instruction error - managed method being called is null]
+
+		if (True != 0)
+            goto INSN_18051B94E
+        endif
+		return
+		throw new System.IndexOutOfRangeException()
+
+		INSN_18051B94E:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18051B881) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Scp079Recontainer
+	System.Boolean TryKill079()
+		System.Collections.Generic.HashSet`1<ReferenceHub> hashSet = new System.Collections.Generic.HashSet`1<ReferenceHub>()
+
+		hashSet..ctor()
+		System.Collections.Generic.HashSet`1<PlayerRoles.PlayableScps.Scp079.Scp079Role> activeInstances = PlayerRoles.PlayableScps.Scp079.Scp079Role.ActiveInstances
+
+		System.Collections.Generic.HashSet`1/Enumerator<T> enumerator = .GetEnumerator()
+
+		if (enumerator != 0)
+
+		    System.Boolean boolean = .TryGetOwner()
+
+		    if (boolean != False)
+
+		        System.Boolean boolean2 = hashSet.Add()
+		    endif
+            
+		    ulong local9 = 0
+
+		    [instruction error - managed method being called is null]
+
+		    [instruction error - managed method being called is null]
+
+		    if (Scp079Role != 0)
+                goto INSN_18051C7D1
+            endif
+
+		    if (local9 == -1)
+                goto INSN_18051C5B7
+            endif
+
+		    INSN_18051C5B7:
+
+		    System.Collections.Generic.HashSet`1/Enumerator<T> enumerator2 = .GetEnumerator()
+
+		    if (enumerator2 == 0)
+                goto INSN_18051C745
+            endif
+		    BreakableWindow _activatorGlass = this._activatorGlass
+
+		    if ( != 0)
+                goto INSN_18051C6BF
+            endif
+		    System.Boolean isSet = _activatorGlass.LastAttacker.IsSet
+		    PlayerStatsSystem.DeathTranslation recontained = PlayerStatsSystem.DeathTranslations.Recontained
+		    PlayerStatsSystem.UniversalDamageHandler universalDamageHandler = new PlayerStatsSystem.UniversalDamageHandler()
+
+		    universalDamageHandler..ctor()
+
+		    System.Boolean boolean3 = isSet.DealDamage(universalDamageHandler) //(DamageHandlerBase handler)
+
+		    INSN_18051C6BF:
+		      = isSet.
+		      = boolean3.
+		      = boolean3.
+		      = boolean3.
+		    PlayerStatsSystem.RecontainmentDamageHandler recontainmentDamageHandler = new PlayerStatsSystem.RecontainmentDamageHandler()
+
+		    recontainmentDamageHandler..ctor()
+
+		    System.Boolean boolean4 = isSet.DealDamage(recontainmentDamageHandler) //(DamageHandlerBase handler)
+
+		    INSN_18051C745:
+		    . = 194
+
+		    isSet.Dispose()
+
+		    isSet.Dispose()
+
+		    if (isSet != False)
+                goto INSN_18051C7F3
+            endif
+		    return local9
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+
+		    INSN_18051C7D1:
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+
+		    INSN_18051C7F3:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18051C4E4) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Scp079Recontainer
+	System.Void PlayAnnouncement(System.String annc, System.Single glitchyMultiplier)
+		NineTailedFoxAnnouncer singleton = NineTailedFoxAnnouncer.singleton
+		System.Single local5 = glitchyMultiplier * 0,035
+		System.Single local6 = glitchyMultiplier * 0,03
+		glitchyMultiplier = local5
+
+		singleton.ServerOnlyAddGlitchyPhrase(annc, glitchyMultiplier, local6) //(String tts, Single glitchChance, Single jamChance)
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.MultiplyRegByGlobalAction at (0x18051BD50) is corrupt (Operand we were multiplying by is null or local made was stripped) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Scp079Recontainer
+	System.Void .ctor()
+		System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch()
+
+		stopwatch..ctor()
+		this._delayStopwatch = stopwatch
+		System.Diagnostics.Stopwatch stopwatch2 = new System.Diagnostics.Stopwatch()
+
+		stopwatch2..ctor()
+		this._unlockStopwatch = stopwatch2
+		System.Collections.Generic.HashSet`1<Interactables.Interobjects.DoorUtils.DoorVariant> hashSet = new System.Collections.Generic.HashSet`1<Interactables.Interobjects.DoorUtils.DoorVariant>()
+
+		hashSet..ctor()
+		this._lockedDoors = hashSet
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: newobj System.Void System.Diagnostics.Stopwatch::.ctor()
+	IL_0005: stloc.0
+	IL_0006: ldarg.0
+	IL_0007: ldloc.0
+	IL_0008: stfld System.Diagnostics.Stopwatch PlayerRoles.PlayableScps.Scp079.Scp079Recontainer::_delayStopwatch
+	IL_000d: newobj System.Void System.Diagnostics.Stopwatch::.ctor()
+	IL_0012: stloc.1
+	IL_0013: ldarg.0
+	IL_0014: ldloc.1
+	IL_0015: stfld System.Diagnostics.Stopwatch PlayerRoles.PlayableScps.Scp079.Scp079Recontainer::_unlockStopwatch
+	IL_001a: newobj System.Void System.Collections.Generic.HashSet`1::.ctor()
+	IL_001f: stloc.2
+	IL_0020: ldarg.0
+	IL_0021: ldloc.2
+	IL_0022: stfld System.Collections.Generic.HashSet`1<Interactables.Interobjects.DoorUtils.DoorVariant> PlayerRoles.PlayableScps.Scp079.Scp079Recontainer::_lockedDoors
+	IL_0027: ldarg.0
+	IL_0028: call System.Void UnityEngine.MonoBehaviour::.ctor()
+	IL_002d: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp079.Scp079Recontainer
+	static System.Void .cctor()
+		System.Collections.Generic.HashSet`1<MapGeneration.Distributors.Scp079Generator> hashSet = new System.Collections.Generic.HashSet`1<MapGeneration.Distributors.Scp079Generator>()
+
+		hashSet..ctor()
+		PlayerRoles.PlayableScps.Scp079.Scp079Recontainer.AllGenerators = hashSet
+
+
+Generated IL:
+	IL_0000: newobj System.Void System.Collections.Generic.HashSet`1::.ctor()
+	IL_0005: stsfld System.Collections.Generic.HashSet`1<MapGeneration.Distributors.Scp079Generator> PlayerRoles.PlayableScps.Scp079.Scp079Recontainer::AllGenerators
+	
+

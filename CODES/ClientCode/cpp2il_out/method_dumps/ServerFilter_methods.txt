@@ -1,0 +1,639 @@
+Type: ServerFilter
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ServerFilter
+	System.Void Awake()
+
+		NewServerBrowser component = base.GetComponent<NewServerBrowser>()
+		this._browser = component
+		ulong local2 = 0
+		System.String empty = System.String.Empty
+		System.Int64 local4 = 3
+		System.Boolean[] local5 = new System.Boolean[3]
+		ServerFilter._curFilters = local7
+		 += 8
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x181B6F3B9) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ServerFilter
+	System.Void ChangeTab(System.Int32 tab)
+
+		if (this.CurrentTab != tab)
+		    this.ScrollStartPoint = 0
+		endif
+        
+		ulong local3 = 0
+		ServerFilter._curFilters = tab
+		this.CurrentTab = tab
+
+		this.ReapplyFilters(local3) //(Boolean forceCleanup)
+
+		if (tab != 4)
+            goto INSN_181B6F4CF
+        endif
+		NewServerBrowser _browser = this._browser
+
+		_browser.Refresh()
+
+		INSN_181B6F4CF:
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld ServerTab ServerFilter::CurrentTab
+	IL_0006: ldarg.1
+	IL_0007: beq.s IL_0012
+	IL_0009: ldarg.0
+	IL_000a: ldc.i4.0
+	IL_000b: conv.i8
+	IL_000c: conv.u8
+	IL_000d: stfld System.Int32 ServerFilter::ScrollStartPoint
+	IL_0012: ldc.i4.0
+	IL_0013: stloc.0
+	IL_0014: ldarg.1
+	IL_0015: stsfld FilterSettings ServerFilter::_curFilters
+	IL_001a: ldarg.0
+	IL_001b: ldarg.1
+	IL_001c: stfld ServerTab ServerFilter::CurrentTab
+	IL_0021: ldarg.0
+	IL_0022: ldloc.0
+	IL_0023: call System.Void ServerFilter::ReapplyFilters(System.Boolean)
+	IL_0028: ldarg.1
+	IL_0029: ldc.i4.4
+	IL_002a: bne.un.s IL_0037
+	IL_002c: ldarg.0
+	IL_002d: ldfld NewServerBrowser ServerFilter::_browser
+	IL_0032: call System.Void NewServerBrowser::Refresh()
+	IL_0037: ret
+	IL_0038: newobj System.Void System.NullReferenceException::.ctor()
+	IL_003d: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ServerFilter
+	System.Void ReapplyFilters(System.Boolean forceCleanup)
+		System.Collections.Generic.List`1<ServerListItem> filteredListItems = this.FilteredListItems
+		ulong local3 = 0
+
+		filteredListItems.Clear()
+		NewServerBrowser _browser = this._browser
+		ulong local6 = 0
+
+		System.Boolean boolean = UnityEngine.Object.op_Equality(_browser, local6) //(Object x, Object y)
+
+		if (boolean == False)
+
+		    if (forceCleanup == False)
+		        ServerListItem[] servers = NewServerBrowser.Servers
+
+		        if (servers != 0)
+		            ServerListItem[] servers2 = NewServerBrowser.Servers
+		            System.Int32 length = servers2.Length
+
+		            if (length > 0)
+		                ServerListItem[] servers3 = NewServerBrowser.Servers
+		                ServerListItem local12 = servers3[local3]
+		                ServerListItem local13 = servers3[local3]
+		                ServerListItem local14 = servers3[local3]
+		                ServerListItem local15 = servers3[local3]
+
+		                System.Boolean boolean2 = GameCore.Version.ListedServerCompatibilityCheck()
+
+		                if (boolean2 != False)
+
+		                    System.Boolean boolean3 = ServerFilter.CheckCheckboxes()
+
+		                    if (boolean3 != False)
+
+		                        ServerFilter.SetNameFilterPoints(local3) //(Int32 id)
+		                        FilterSettings _curFilters = ServerFilter._curFilters
+
+		                        if (boolean3 != False)
+
+		                            if (boolean3 != False)
+
+		                                if (boolean3 != False)
+
+		                                    if (_curFilters == 1)
+		                                        System.Collections.Generic.List`1<System.String> friendsServer = SteamLobby.FriendsServer
+
+		                                        System.String string = System.String.Concat()
+
+		                                        System.Boolean boolean4 = friendsServer.Contains(string) //(T item)
+		                                    else
+		                                    else
+		                                    else
+		                                        System.Int64 local28 = 1
+		                                    endif
+                                            
+
+		                                    System.Boolean isInStorage = FavoriteAndHistory.IsInStorage()
+		                                endif
+                                        
+		                            endif
+                                    
+
+		                            if (isInStorage == False)
+                                        goto INSN_181B70393
+                                    endif
+		                        endif
+                                
+		                        System.Collections.Generic.List`1<ServerListItem> filteredListItems2 = this.FilteredListItems
+		                        ServerListItem[] servers4 = NewServerBrowser.Servers
+		                        ServerListItem local33 = servers4[local3]
+		                        ServerListItem local34 = servers4[local3]
+		                        ServerListItem local35 = servers4[local3]
+		                        ServerListItem local36 = servers4[local3]
+
+		                        filteredListItems2.Add()
+		                    endif
+                            
+		                    local3 += 1
+		                endif
+                        
+		                System.Collections.Generic.List`1<ServerListItem> filteredListItems3 = this.FilteredListItems
+		                System.Func`2<ServerListItem,System.Int32> <>9__11_0 = ServerFilter/<>c.<>9__11_0
+
+		                if (<>9__11_0 != 0)
+                            goto INSN_181B7045A
+                        endif
+		                ServerFilter/<>c <>c = ServerFilter/<>c.<>9
+		                System.Func`2<ServerListItem,System.Int32> func = new System.Func`2<ServerListItem,System.Int32>()
+
+		                func..ctor(<>c, {'<ReapplyFilters>b__11_0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		                 += 8
+		                ServerFilter/<>c.<>9 = func
+
+		                INSN_181B7045A:
+
+		                System.Linq.IOrderedEnumerable`1<ServerListItem> iOrderedEnumerable = System.Linq.Enumerable.OrderByDescending<ServerListItem, System.Int32>(filteredListItems3, func) //(IEnumerable`1 source, Func`2 keySelector)
+
+		                System.Collections.Generic.List`1<ServerListItem> list = System.Linq.Enumerable.ToList<ServerListItem>(iOrderedEnumerable) //(IEnumerable`1 source)
+		                this.FilteredListItems = list
+		                  = .
+
+		                System.Boolean isNullOrWhiteSpace = System.String.IsNullOrWhiteSpace()
+
+		                if (isNullOrWhiteSpace != False)
+                            goto INSN_181B70641
+                        endif
+		                ServerFilter/<>c__DisplayClass11_0 enumeratorInstance = new ServerFilter/<>c__DisplayClass11_0()
+
+		                enumeratorInstance..ctor()
+		                  = .
+		                System.Int32 minDistance = enumeratorInstance.minDistance
+		                System.Int32 local48 = minDistance + 1
+		                System.Single local49 =  * 0,5
+		                enumeratorInstance.minDistance = local48
+		                System.Collections.Generic.List`1<ServerListItem> filteredListItems4 = this.FilteredListItems
+		                System.Func`2<ServerListItem,System.Boolean> func2 = new System.Func`2<ServerListItem,System.Boolean>()
+
+		                func2..ctor(enumeratorInstance, {'<ReapplyFilters>b__1' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		                System.Collections.Generic.IEnumerable`1<ServerListItem> iEnumerable = System.Linq.Enumerable.Where<ServerListItem>(filteredListItems4, func2) //(IEnumerable`1 source, Func`2 predicate)
+		                System.Func`2<ServerListItem,System.Int32> <>9__11_2 = ServerFilter/<>c.<>9__11_2
+
+		                if (<>9__11_2 != 0)
+                            goto INSN_181B70610
+                        endif
+		                ServerFilter/<>c <>c2 = ServerFilter/<>c.<>9
+		                System.Func`2<ServerListItem,System.Int32> func3 = new System.Func`2<ServerListItem,System.Int32>()
+
+		                func3..ctor(<>c2, {'<ReapplyFilters>b__11_2' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		                 += 16
+		                ServerFilter/<>c.<>9 = func3
+
+		                INSN_181B70610:
+
+		                System.Linq.IOrderedEnumerable`1<ServerListItem> iOrderedEnumerable2 = System.Linq.Enumerable.OrderByDescending<ServerListItem, System.Int32>(iEnumerable, func3) //(IEnumerable`1 source, Func`2 keySelector)
+
+		                System.Collections.Generic.List`1<ServerListItem> list2 = System.Linq.Enumerable.ToList<ServerListItem>(iOrderedEnumerable2) //(IEnumerable`1 source)
+		                this.FilteredListItems = list2
+		            endif
+                    
+		            NewServerBrowser _browser2 = this._browser
+		            System.Collections.Generic.List`1<ServerListItem> filteredListItems5 = this.FilteredListItems
+		            UnityEngine.UI.Text loadingText = _browser2.LoadingText
+
+		            if ( != 0)
+                        goto INSN_181B706A2
+                    endif
+		            System.Int32 54 = 54
+
+		            System.String string2 = TranslationReader.Get("MainMenu", 54, "NO_TRANSLATION") //(String keyName, Int32 index, String defaultValue)
+
+		            INSN_181B706A2:
+		            System.String empty = System.String.Empty
+
+		            System.String text = loadingText.text
+
+		            this.DisplayServers()
+		        endif
+                
+		        return
+		        throw new System.NullReferenceException()
+
+
+Generated IL:
+	Don't know how to write IL for Cpp2IL.Core.Analysis.Actions.x86.Important.RegOffsetArrayValueReadRegToRegAction. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ServerFilter
+	System.Void DisplayServers()
+		System.Collections.Generic.List`1<ServerListItem> filteredListItems = this.FilteredListItems
+		ulong local2 = 0
+
+		if ( != local2)
+		    ServerElementButton[] premadeElements = this.PremadeElements
+		    System.Int32 scrollStartPoint = this.ScrollStartPoint
+		    System.Int32 length = premadeElements.Length
+		    System.Int32 scrollStartPoint2 = this.ScrollStartPoint
+		    length += scrollStartPoint2
+
+		    if (scrollStartPoint >= length)
+                goto INSN_181B6FD3B
+            endif
+		    System.Collections.Generic.List`1<ServerListItem> filteredListItems2 = this.FilteredListItems
+
+		    if (scrollStartPoint < )
+		        scrollStartPoint -= scrollStartPoint2
+		        ServerElementButton serverElementButton = premadeElements[scrollStartPoint]
+
+		        UnityEngine.GameObject gameObject = serverElementButton.gameObject
+		        System.Int64 local12 = 1
+
+		        gameObject.SetActive(local12) //(Boolean value)
+		        ServerElementButton[] premadeElements2 = this.PremadeElements
+		        ServerElementButton serverElementButton2 = premadeElements2[scrollStartPoint]
+
+		        PlayButton component = serverElementButton2.GetComponent<PlayButton>()
+		        System.Collections.Generic.List`1<ServerListItem> filteredListItems3 = this.FilteredListItems
+		        ulong local17 = 0
+
+		        System.ThrowHelper.ThrowArgumentOutOfRangeException()
+		        T[] _items = filteredListItems3._items
+		        T t = _items[scrollStartPoint]
+		        component.Ip = 0
+		        System.Collections.Generic.List`1<ServerListItem> filteredListItems4 = this.FilteredListItems
+		        ulong local21 = 0
+
+		        System.ThrowHelper.ThrowArgumentOutOfRangeException()
+		        T[] _items2 = filteredListItems4._items
+		        T t2 = _items2[scrollStartPoint]
+		        System.Collections.Generic.List`1<ServerListItem> filteredListItems5 = this.FilteredListItems
+		        ulong local25 = 0
+
+		        System.ThrowHelper.ThrowArgumentOutOfRangeException()
+		        T[] _items3 = filteredListItems5._items
+		        component.Port = _items3
+		        System.Collections.Generic.List`1<ServerListItem> filteredListItems6 = this.FilteredListItems
+		        UnityEngine.UI.Text motd = component.Motd
+		        ulong local30 = 0
+
+		        System.ThrowHelper.ThrowArgumentOutOfRangeException()
+
+		        System.String string = NorthwoodLib.StringUtils.Base64Decode()
+
+		        System.String text = motd.text
+		        System.Collections.Generic.List`1<ServerListItem> filteredListItems7 = this.FilteredListItems
+		        ulong local36 = 0
+
+		        System.ThrowHelper.ThrowArgumentOutOfRangeException()
+
+		        System.Boolean boolean = Misc.ValidatePastebin()
+
+		        if (boolean != False)
+		            System.Collections.Generic.List`1<ServerListItem> filteredListItems8 = this.FilteredListItems
+		            ulong local41 = 0
+
+		            System.ThrowHelper.ThrowArgumentOutOfRangeException()
+		        else
+		        endif
+                
+		        component.InfoType = "7wV681fT"
+		        System.Collections.Generic.List`1<ServerListItem> filteredListItems9 = this.FilteredListItems
+		        UnityEngine.UI.Text players = component.Players
+		        ulong local45 = 0
+
+		        System.ThrowHelper.ThrowArgumentOutOfRangeException()
+
+		        System.String text2 = players.text
+		        ServerElementButton[] premadeElements3 = this.PremadeElements
+		        ServerElementButton serverElementButton3 = premadeElements3[scrollStartPoint]
+		        UnityEngine.GameObject[] icons = serverElementButton3.icons
+		        System.Collections.Generic.List`1<ServerListItem> filteredListItems10 = this.FilteredListItems
+		        UnityEngine.GameObject local52 = icons[0]
+		        ulong local53 = 0
+
+		        System.ThrowHelper.ThrowArgumentOutOfRangeException()
+
+		        local52.SetActive()
+		        ServerElementButton[] premadeElements4 = this.PremadeElements
+		        ServerElementButton serverElementButton4 = premadeElements4[scrollStartPoint]
+		        UnityEngine.GameObject[] icons2 = serverElementButton4.icons
+		        System.Collections.Generic.List`1<ServerListItem> filteredListItems11 = this.FilteredListItems
+		        UnityEngine.GameObject local60 = icons2[1]
+		        ulong local61 = 0
+
+		        System.ThrowHelper.ThrowArgumentOutOfRangeException()
+
+		        local60.SetActive()
+		        ServerElementButton[] premadeElements5 = this.PremadeElements
+		        ServerElementButton serverElementButton5 = premadeElements5[scrollStartPoint]
+		        UnityEngine.GameObject[] icons3 = serverElementButton5.icons
+		        System.Collections.Generic.List`1<ServerListItem> filteredListItems12 = this.FilteredListItems
+		        UnityEngine.GameObject local68 = icons3[2]
+		        ulong local69 = 0
+
+		        System.ThrowHelper.ThrowArgumentOutOfRangeException()
+
+		        local68.SetActive()
+		        ServerElementButton[] premadeElements6 = this.PremadeElements
+		        ServerElementButton serverElementButton6 = premadeElements6[scrollStartPoint]
+		        UnityEngine.GameObject[] icons4 = serverElementButton6.icons
+		        System.Collections.Generic.List`1<ServerListItem> filteredListItems13 = this.FilteredListItems
+		        UnityEngine.GameObject local76 = icons4[3]
+		        ulong local77 = 0
+
+		        System.ThrowHelper.ThrowArgumentOutOfRangeException()
+
+		        local76.SetActive()
+		        ServerElementButton[] premadeElements7 = this.PremadeElements
+		        ServerElementButton serverElementButton7 = premadeElements7[scrollStartPoint]
+
+		        serverElementButton7.SetValues()
+		    else
+		        scrollStartPoint -= scrollStartPoint2
+		        ServerElementButton serverElementButton8 = premadeElements[scrollStartPoint]
+
+		        UnityEngine.GameObject gameObject2 = serverElementButton8.gameObject
+		        ulong local87 = 0
+
+		        gameObject2.SetActive(local87) //(Boolean value)
+		    endif
+            
+		    ServerElementButton[] premadeElements8 = this.PremadeElements
+		    scrollStartPoint += 1
+		    scrollStartPoint += 64
+		endif
+        
+		ServerElementButton[] premadeElements9 = this.PremadeElements
+		System.Int32 length2 = premadeElements9.Length
+
+		if (local2 >= length2)
+            goto INSN_181B6FD3B
+        endif
+		ServerElementButton serverElementButton9 = premadeElements9[local2]
+
+		UnityEngine.GameObject gameObject3 = serverElementButton9.gameObject
+		ulong local95 = 0
+
+		gameObject3.SetActive(local95) //(Boolean value)
+		local2 += 1
+
+		INSN_181B6FD3B:
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL Generation Skipped due to invalid local _items of type T[]
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ServerFilter
+	System.Void ChangeTab(ServerTab tab)
+
+		if (this.CurrentTab != tab)
+		    this.ScrollStartPoint = 0
+		endif
+        
+		ulong local3 = 0
+		ServerFilter._curFilters = tab
+		this.CurrentTab = tab
+
+		this.ReapplyFilters(local3) //(Boolean forceCleanup)
+
+		if (tab != constant6)
+            goto INSN_181B6F440
+        endif
+		NewServerBrowser _browser = this._browser
+
+		_browser.Refresh()
+
+		INSN_181B6F440:
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfNonZeroOrNonNullAction at (0x181B6F42E) is corrupt (ConstantDefinition: Don't know how to get IL to load a System.Byte) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ServerFilter
+	System.Void ApplyNameFilter()
+		UnityEngine.UI.InputField nameFilterField = this.NameFilterField
+		System.String m_Text = nameFilterField.m_Text
+
+		System.String string = m_Text.ToLowerInvariant()
+		 += 8
+		ServerFilter._curFilters = string
+		ulong local6 = 0
+
+		this.ReapplyFilters(local6) //(Boolean forceCleanup)
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x181B6F2C8) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ServerFilter
+	System.Void ApplyNameFilter(System.String nameFilter)
+
+		System.String string = nameFilter.ToLowerInvariant()
+		 += 8
+		ServerFilter._curFilters = string
+		ulong local5 = 0
+
+		this.ReapplyFilters(local5) //(Boolean forceCleanup)
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x181B6F23B) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ServerFilter
+	System.Void Filters(System.Int32 id)
+		UnityEngine.UI.Image[] filterImages = this.FilterImages
+		UnityEngine.UI.Image image = filterImages[id]
+		  = .
+		UnityEngine.Sprite[] selectBoxes = this.SelectBoxes
+
+		if ( != 0)
+		    UnityEngine.Sprite local5 = selectBoxes[0]
+		else
+		    UnityEngine.Sprite local6 = selectBoxes[1]
+		endif
+        
+
+		image.sprite = local6
+		  = .
+		System.Boolean local8 =  == 0
+		id. = local8
+		ulong local10 = 0
+
+		this.ReapplyFilters(local10) //(Boolean forceCleanup)
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.StaticFieldToRegAction at (0x181B6FE99) is corrupt (Couldn't identify the field being read (or its type).) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ServerFilter
+	static System.Boolean CheckCheckboxes(ServerListItem server)
+		ulong local1 = 0
+		  = .
+		System.UInt16 port = server.port
+
+		if (ServerFilter == 0)
+
+		    System.Boolean boolean = .Contains("/") //(String value)
+
+		    if (boolean != False)
+		        System.UInt16 port2 = server.port
+		        System.Char[] local8 = new System.Char[1]
+		        local8[0] = 47
+
+		        System.String[] stringArray = .Split(local8) //(Char[] separator)
+		        System.String local11 = stringArray[0]
+
+		        System.Boolean boolean2 = System.Int32.TryParse(local11, local1) //(String s, Int32& result)
+
+		        if (boolean2 != False)
+		            System.String local14 = stringArray[1]
+
+		            System.Boolean boolean3 = System.Int32.TryParse(local14, local1) //(String s, Int32& result)
+
+		            if (boolean3 != False)
+		                  = .
+
+		                if (local1 > 0)
+
+		                    if (local1 < )
+		                        return True
+		                    endif
+                            
+		                    ulong local17 = 0
+		                    return local17
+		                    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.StaticFieldToRegAction at (0x181B6F522) is corrupt (Couldn't identify the field being read (or its type).) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ServerFilter
+	static System.Void SetNameFilterPoints(System.Int32 id)
+		  = .
+
+		System.Boolean isNullOrWhiteSpace = System.String.IsNullOrWhiteSpace()
+
+		if (isNullOrWhiteSpace == False)
+		    ServerListItem[] servers = NewServerBrowser.Servers
+		    ServerListItem[] servers2 = NewServerBrowser.Servers
+		    ServerListItem local5 = servers2[id]
+
+		    System.String string = NorthwoodLib.StringUtils.Base64Decode()
+
+		    System.String string2 = string.ToLowerInvariant()
+		    System.Int32 35 = 35
+		    System.Int32 75 = 75
+
+		    System.String string3 = Misc.ProcessSmallText(string2, 35, 75) //(String text, UInt32 minSize, UInt32 minPercentageSize)
+
+		    System.String string4 = NorthwoodLib.StringUtils.StripTags(string3) //(String input)
+		      = .
+
+		    System.String string5 = Misc.LongestCommonSubstring()
+		    System.Int32 m_stringLength = string5.m_stringLength
+		    id. = m_stringLength
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.StaticFieldToRegAction at (0x181B70782) is corrupt (Couldn't identify the field being read (or its type).) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ServerFilter
+	System.Void .ctor()
+		System.Collections.Generic.List`1<ServerListItem> list = new System.Collections.Generic.List`1<ServerListItem>()
+
+		list..ctor()
+		this.FilteredListItems = list
+		this.ScrollStartPoint = 1
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: newobj System.Void System.Collections.Generic.List`1::.ctor()
+	IL_0005: stloc.0
+	IL_0006: ldarg.0
+	IL_0007: ldloc.0
+	IL_0008: stfld System.Collections.Generic.List`1<ServerListItem> ServerFilter::FilteredListItems
+	IL_000d: ldarg.0
+	IL_000e: ldc.i4.1
+	IL_000f: conv.i8
+	IL_0010: conv.u8
+	IL_0011: stfld System.Int32 ServerFilter::ScrollStartPoint
+	IL_0016: ldarg.0
+	IL_0017: call System.Void UnityEngine.MonoBehaviour::.ctor()
+	IL_001c: ret
+	
+

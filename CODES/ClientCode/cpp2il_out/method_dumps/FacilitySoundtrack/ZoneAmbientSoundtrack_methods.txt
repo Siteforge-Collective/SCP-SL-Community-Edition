@@ -1,0 +1,218 @@
+Type: ZoneAmbientSoundtrack
+
+
+	Generated Pseudocode:
+
+	Declaring Type: FacilitySoundtrack.ZoneAmbientSoundtrack
+	System.Boolean get_IsMuted()
+		ulong local1 = 0
+
+		System.Boolean boolean = PlayerRoles.Spectating.SpectatorTargetTracker.TryGetTrackedPlayer(local1) //(ReferenceHub& hub)
+
+		if (boolean == False)
+
+		    System.Boolean boolean2 = ReferenceHub.TryGetLocalHub(local1) //(ReferenceHub& hub)
+
+		    if (boolean2 == False)
+                goto INSN_181B1CB83
+            endif
+		      = local1.
+		      = local1.
+		      = local1.
+
+		    if (local1 >= boolean2)
+                goto INSN_181B1CB83
+            endif
+
+		    if (local1 != 0)
+
+		        if (local1 != 0)
+                    goto INSN_181B1CAF7
+                endif
+		    endif
+            
+		    local1 += 1
+
+		    INSN_181B1CAF7:
+		    return True
+		endif
+        
+		  = local1.
+		  = local1.
+		  = local1.
+
+		if (local1 >= boolean)
+            goto INSN_181B1CB83
+        endif
+
+		if (local1 == 0)
+            goto INSN_181B1CB7D
+        endif
+
+		if (local1 != 0)
+            goto INSN_181B1CAF7
+        endif
+
+		INSN_181B1CB7D:
+		local1 += 1
+
+		INSN_181B1CB83:
+		ulong local8 = 0
+		return local8
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.FieldToLocalAction at (0x181B1CA8F) is corrupt (No further info) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: FacilitySoundtrack.ZoneAmbientSoundtrack
+	System.Boolean get_Additive()
+		return True
+
+
+Generated IL:
+	IL_0000: ldc.i4.1
+	IL_0001: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: FacilitySoundtrack.ZoneAmbientSoundtrack
+	System.Single get_Weight()
+		System.Single _weight = this._weight
+		return _weight
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Single FacilitySoundtrack.ZoneAmbientSoundtrack::_weight
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: FacilitySoundtrack.ZoneAmbientSoundtrack
+	System.Void UpdateVolume(System.Single masterScale)
+		UnityEngine.Transform _currentCamera = MainCameraController._currentCamera
+
+		UnityEngine.Vector3 position = .position
+		System.Single single = position.z
+
+		MapGeneration.RoomIdentifier roomIdentifier = MapGeneration.RoomIdUtils.RoomAtPosition()
+		ulong local9 = 0
+
+		System.Boolean boolean = UnityEngine.Object.op_Inequality(roomIdentifier, local9) //(Object x, Object y)
+
+		if (boolean != False)
+		    MapGeneration.FacilityZone zone = roomIdentifier.Zone
+		    this._lastZone = zone
+		endif
+        
+
+		System.Boolean isMuted = this.IsMuted
+
+		if (isMuted == False)
+            goto INSN_181B1C87F
+        endif
+
+		INSN_181B1C87F:
+		System.Single _fadeInSpeed = this._fadeInSpeed
+		ulong local17 = 0
+
+		System.Single deltaTime = UnityEngine.Time.deltaTime
+
+		System.Single single2 = UnityEngine.Mathf.Clamp01(deltaTime) //(Single value)
+		FacilitySoundtrack.ZoneAmbientSoundtrack/ZoneSoundtrack[] _zoneSoundtracks = this._zoneSoundtracks
+		ulong local22 = 0
+		ulong local23 = 0
+		this._weight = single2
+		System.Int32 length = _zoneSoundtracks.Length
+
+		if (local22 >= length)
+            goto INSN_181B1C98E
+        endif
+		FacilitySoundtrack.ZoneAmbientSoundtrack/ZoneSoundtrack zoneSoundtrack = _zoneSoundtracks[local23]
+		MapGeneration.FacilityZone _lastZone = this._lastZone
+		System.Boolean local30 = zoneSoundtrack.TargetZone == _lastZone
+		ulong local31 = 0
+
+		System.Single deltaTime2 = UnityEngine.Time.deltaTime
+		_fadeInSpeed = deltaTime2
+		masterScale = local16
+		deltaTime2 = local28
+
+		System.Single single3 = UnityEngine.Mathf.MoveTowards(deltaTime2, masterScale, _fadeInSpeed) //(Single current, Single target, Single maxDelta)
+		UnityEngine.AudioSource source = zoneSoundtrack.Source
+		zoneSoundtrack.<CrossfadeVolume>k__BackingField = single3
+		System.Single local36 = single3 * zoneSoundtrack.VolumeScale
+		masterScale = local36
+
+		source.volume = masterScale
+		local23 += 1
+
+		INSN_181B1C98E:
+		return
+		throw new System.IndexOutOfRangeException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181B1C800) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: FacilitySoundtrack.ZoneAmbientSoundtrack
+	System.Boolean IsMutedForPlayer(ReferenceHub hub)
+		PlayerEffectsController playerEffectsController = hub.playerEffectsController
+		CustomPlayerEffects.StatusEffectBase[] AllEffects = playerEffectsController.<AllEffects>k__BackingField
+		ulong local4 = 0
+		System.Int32 length = AllEffects.Length
+
+		if (local4 < length)
+		    CustomPlayerEffects.StatusEffectBase statusEffectBase = AllEffects[local4]
+
+		    if (local4 != 0)
+
+		        if (local4 != 0)
+                    goto INSN_181B1C726
+                endif
+		    endif
+            
+		    local4 += 1
+
+		    INSN_181B1C726:
+		    return True
+		endif
+        
+		ulong local8 = 0
+		return local8
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x181B1C73F) is corrupt (Return value has a type of System.Int32, expecting an object of type System.Boolean) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: FacilitySoundtrack.ZoneAmbientSoundtrack
+	System.Void .ctor()
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void UnityEngine.MonoBehaviour::.ctor()
+	IL_0006: ret
+	
+

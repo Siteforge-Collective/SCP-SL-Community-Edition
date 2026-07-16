@@ -1,0 +1,485 @@
+Type: MapGeneration.Distributors.ItemSpawnpoint
+
+Method: System.Boolean CanSpawn(ItemType[] items)
+
+Disassembly:
+	mov [rsp+8],rbx
+	mov [rsp+10h],rsi
+	push rdi
+	sub rsp,20h
+	xor ebx,ebx
+	mov rdi,rdx
+	mov rsi,rcx
+	mov r8d,ebx
+	test rdx,rdx
+	je short 00000001802DB182h
+	nop
+	mov eax,[rdi+18h]
+	cmp r8d,eax
+	jge short 00000001802DB170h
+	cmp ebx,eax
+	jae short 00000001802DB188h
+	movsxd rax,ebx
+	mov edx,[rdi+rax*4+20h]
+	cmp edx,0FFFFFFFFh
+	je short 00000001802DB157h
+	xor r8d,r8d
+	mov rcx,rsi
+	call 00000001802DB0B0h
+	test al,al
+	je short 00000001802DB15Eh
+	inc ebx
+	mov r8d,ebx
+	jmp short 00000001802DB130h
+	xor al,al
+	mov rbx,[rsp+30h]
+	mov rsi,[rsp+38h]
+	add rsp,20h
+	pop rdi
+	ret
+	mov rbx,[rsp+30h]
+	mov al,1
+	mov rsi,[rsp+38h]
+	add rsp,20h
+	pop rdi
+	ret
+	call 0000000180294310h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+
+ISIL:
+	001 Move stack:0x8, rbx
+	002 Move stack:0x10, rsi
+	003 ShiftStack -8
+	004 Move stack:0x0, rdi
+	005 ShiftStack -32
+	006 Move rbx, 0
+	007 Move rdi, rdx
+	008 Move rsi, rcx
+	009 Move r8, rbx
+	010 Compare rdx, 0
+	011 JumpIfEqual {44}
+	012 Nop 
+	013 Move rax, [rdi+24]
+	014 Compare r8, rax
+	015 JumpIfGreaterOrEqual {37}
+	016 Compare rbx, rax
+	017 JumpIfGreaterOrEqual {46}
+	018 Move rax, rbx
+	019 Move rdx, [rdi+32+rax*4]
+	020 Compare rdx, 18446744073709551615
+	021 JumpIfEqual {27}
+	022 Move r8, 0
+	023 Move rcx, rsi
+	024 Call ItemSpawnpoint.CanSpawn, rcx, rdx
+	025 Compare rax, 0
+	026 JumpIfEqual {30}
+	027 Add rbx, rbx, 1
+	028 Move r8, rbx
+	029 Goto {13}
+	030 Move rax, 0
+	031 Move rbx, stack:0x30
+	032 Move rsi, stack:0x38
+	033 ShiftStack 32
+	034 Move rdi, stack:0x0
+	035 ShiftStack 8
+	036 Return rax
+	037 Move rbx, stack:0x30
+	038 Move rax, 1
+	039 Move rsi, stack:0x38
+	040 ShiftStack 32
+	041 Move rdi, stack:0x0
+	042 ShiftStack 8
+	043 Return rax
+	044 Call 0x180294310, rcx, rdx, r8, r9
+	045 Interrupt 
+	046 Call 0x180294110, rcx, rdx, r8, r9
+	047 Move rcx, rax
+	048 Move rdx, 0
+	049 Call 0x1802942E0, rcx, rdx, r8, r9
+
+Method: System.Boolean CanSpawn(ItemType targetItem)
+
+Disassembly:
+	sub rsp,28h
+	mov eax,[rcx+2Ch]
+	mov r9d,edx
+	cmp [rcx+40h],eax
+	jge short 00000001802DB0EFh
+	mov r8,[rcx+30h]
+	xor eax,eax
+	mov ecx,eax
+	test r8,r8
+	je short 00000001802DB106h
+	mov edx,[r8+18h]
+	cmp ecx,edx
+	jge short 00000001802DB0EFh
+	cmp eax,edx
+	jae short 00000001802DB0F6h
+	movsxd rcx,eax
+	cmp [r8+rcx*4+20h],r9d
+	je short 00000001802DB0E8h
+	inc eax
+	mov ecx,eax
+	jmp short 00000001802DB0D0h
+	mov al,1
+	add rsp,28h
+	ret
+	xor al,al
+	add rsp,28h
+	ret
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+	int 3
+	call 0000000180294310h
+
+ISIL:
+	001 ShiftStack -40
+	002 Move rax, [rcx+44]
+	003 Move r9, rdx
+	004 Compare [rcx+64], rax
+	005 JumpIfGreaterOrEqual {25}
+	006 Move r8, [rcx+48]
+	007 Move rax, 0
+	008 Move rcx, rax
+	009 Compare r8, 0
+	010 JumpIfEqual {33}
+	011 Move rdx, [r8+24]
+	012 Compare rcx, rdx
+	013 JumpIfGreaterOrEqual {25}
+	014 Compare rax, rdx
+	015 JumpIfGreaterOrEqual {28}
+	016 Move rcx, rax
+	017 Compare [r8+32+rcx*4], r9
+	018 JumpIfEqual {22}
+	019 Add rax, rax, 1
+	020 Move rcx, rax
+	021 Goto {12}
+	022 Move rax, 1
+	023 ShiftStack 40
+	024 Return rax
+	025 Move rax, 0
+	026 ShiftStack 40
+	027 Return rax
+	028 Call 0x180294110, rcx, rdx, r8, r9
+	029 Move rcx, rax
+	030 Move rdx, 0
+	031 Call 0x1802942E0, rcx, rdx, r8, r9
+	032 Interrupt 
+	033 Call 0x180294310, rcx, rdx, r8, r9
+
+Method: UnityEngine.Transform Occupy()
+
+Disassembly:
+	push rbx
+	sub rsp,20h
+	inc dword ptr [rcx+40h]
+	mov rbx,[rcx+38h]
+	test rbx,rbx
+	je short 00000001802DB1D1h
+	mov edx,[rbx+18h]
+	xor r8d,r8d
+	xor ecx,ecx
+	call 000000018116C780h
+	cdqe
+	cmp eax,[rbx+18h]
+	jae short 00000001802DB1D7h
+	mov rax,[rbx+rax*8+20h]
+	add rsp,20h
+	pop rbx
+	ret
+	call 0000000180294310h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+
+ISIL:
+	001 ShiftStack -8
+	002 Move stack:0x0, rbx
+	003 ShiftStack -32
+	004 Add [rcx+64], [rcx+64], 1
+	005 Move rbx, [rcx+56]
+	006 Compare rbx, 0
+	007 JumpIfEqual {20}
+	008 Move rdx, [rbx+24]
+	009 Move r8, 0
+	010 Move rcx, 0
+	011 Call 0x18116C780, rcx, rdx, r8
+	012 Move rax, rax
+	013 Compare rax, [rbx+24]
+	014 JumpIfGreaterOrEqual {22}
+	015 Move rax, [rbx+32+rax*8]
+	016 ShiftStack 32
+	017 Move rbx, stack:0x0
+	018 ShiftStack 8
+	019 Return rax
+	020 Call 0x180294310, rcx, rdx, r8, r9
+	021 Interrupt 
+	022 Call 0x180294110, rcx, rdx, r8, r9
+	023 Move rcx, rax
+	024 Move rdx, 0
+	025 Call 0x1802942E0, rcx, rdx, r8, r9
+
+Method: System.Void Start()
+
+Disassembly:
+	push rbx
+	sub rsp,20h
+	cmp byte ptr [1826E95A3h],0
+	mov rbx,rcx
+	jne short 00000001802DB2C4h
+	mov ecx,[1822D2C7Ch]
+	call 0000000180294190h
+	mov byte ptr [1826E95A3h],1
+	cmp dword ptr [rbx+28h],0FFFFFFFFh
+	mov rax,[1827323E0h]
+	je short 00000001802DB2FEh
+	test byte ptr [rax+12Fh],2
+	je short 00000001802DB2F2h
+	cmp dword ptr [rax+0E0h],0
+	jne short 00000001802DB2F2h
+	mov rcx,rax
+	call 000000018021A070h
+	mov rax,[1827323E0h]
+	mov rax,[rax+0B8h]
+	mov rcx,[rax]
+	jmp short 00000001802DB32Ah
+	test byte ptr [rax+12Fh],2
+	je short 00000001802DB31Fh
+	cmp dword ptr [rax+0E0h],0
+	jne short 00000001802DB31Fh
+	mov rcx,rax
+	call 000000018021A070h
+	mov rax,[1827323E0h]
+	mov rax,[rax+0B8h]
+	mov rcx,[rax+8]
+	test rcx,rcx
+	je short 00000001802DB343h
+	mov r8,[182738C68h]
+	mov rdx,rbx
+	add rsp,20h
+	pop rbx
+	jmp near ptr 0000000180D90C20h
+	call 0000000180294310h
+
+ISIL:
+	001 ShiftStack -8
+	002 Move stack:0x0, rbx
+	003 ShiftStack -32
+	004 Compare [0x1826E95A3], 0
+	005 Move rbx, rcx
+	006 JumpIfNotEqual {10}
+	007 Move rcx, [0x1822D2C7C]
+	008 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	009 Move [0x1826E95A3], 1
+	010 Compare [rbx+40], 18446744073709551615
+	011 Move rax, typeof(MapGeneration.Distributors.ItemSpawnpoint)
+	012 JumpIfEqual {23}
+	013 Compare [rax+303], 2
+	014 JumpIfEqual {20}
+	015 Compare [rax+224], 0
+	016 JumpIfNotEqual {20}
+	017 Move rcx, rax
+	018 Call "il2cpp_runtime_class_init_export", rcx, rdx, r8, r9
+	019 Move rax, typeof(MapGeneration.Distributors.ItemSpawnpoint)
+	020 Move rax, [rax+184]
+	021 Move rcx, [rax]
+	022 Goto {32}
+	023 Compare [rax+303], 2
+	024 JumpIfEqual {30}
+	025 Compare [rax+224], 0
+	026 JumpIfNotEqual {30}
+	027 Move rcx, rax
+	028 Call "il2cpp_runtime_class_init_export", rcx, rdx, r8, r9
+	029 Move rax, typeof(MapGeneration.Distributors.ItemSpawnpoint)
+	030 Move rax, [rax+184]
+	031 Move rcx, [rax+8]
+	032 Compare rcx, 0
+	033 JumpIfEqual {41}
+	034 Move r8, [0x182738C68]
+	035 Move rdx, rbx
+	036 ShiftStack 32
+	037 Move rbx, stack:0x0
+	038 ShiftStack 8
+	039 Call 0x180D90C20, rcx, rdx
+	040 Return 
+	041 Call 0x180294310, rcx, rdx, r8, r9
+
+Method: System.Void OnDestroy()
+
+Disassembly:
+	push rbx
+	sub rsp,20h
+	cmp byte ptr [1826E95A4h],0
+	mov rbx,rcx
+	jne short 00000001802DB214h
+	mov ecx,[1822D2C68h]
+	call 0000000180294190h
+	mov byte ptr [1826E95A4h],1
+	cmp dword ptr [rbx+28h],0FFFFFFFFh
+	mov rax,[1827323E0h]
+	je short 00000001802DB24Eh
+	test byte ptr [rax+12Fh],2
+	je short 00000001802DB242h
+	cmp dword ptr [rax+0E0h],0
+	jne short 00000001802DB242h
+	mov rcx,rax
+	call 000000018021A070h
+	mov rax,[1827323E0h]
+	mov rax,[rax+0B8h]
+	mov rcx,[rax]
+	jmp short 00000001802DB27Ah
+	test byte ptr [rax+12Fh],2
+	je short 00000001802DB26Fh
+	cmp dword ptr [rax+0E0h],0
+	jne short 00000001802DB26Fh
+	mov rcx,rax
+	call 000000018021A070h
+	mov rax,[1827323E0h]
+	mov rax,[rax+0B8h]
+	mov rcx,[rax+8]
+	test rcx,rcx
+	je short 00000001802DB293h
+	mov r8,[182738C18h]
+	mov rdx,rbx
+	add rsp,20h
+	pop rbx
+	jmp near ptr 00000001817E5EE0h
+	call 0000000180294310h
+
+ISIL:
+	001 ShiftStack -8
+	002 Move stack:0x0, rbx
+	003 ShiftStack -32
+	004 Compare [0x1826E95A4], 0
+	005 Move rbx, rcx
+	006 JumpIfNotEqual {10}
+	007 Move rcx, [0x1822D2C68]
+	008 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	009 Move [0x1826E95A4], 1
+	010 Compare [rbx+40], 18446744073709551615
+	011 Move rax, typeof(MapGeneration.Distributors.ItemSpawnpoint)
+	012 JumpIfEqual {23}
+	013 Compare [rax+303], 2
+	014 JumpIfEqual {20}
+	015 Compare [rax+224], 0
+	016 JumpIfNotEqual {20}
+	017 Move rcx, rax
+	018 Call "il2cpp_runtime_class_init_export", rcx, rdx, r8, r9
+	019 Move rax, typeof(MapGeneration.Distributors.ItemSpawnpoint)
+	020 Move rax, [rax+184]
+	021 Move rcx, [rax]
+	022 Goto {32}
+	023 Compare [rax+303], 2
+	024 JumpIfEqual {30}
+	025 Compare [rax+224], 0
+	026 JumpIfNotEqual {30}
+	027 Move rcx, rax
+	028 Call "il2cpp_runtime_class_init_export", rcx, rdx, r8, r9
+	029 Move rax, typeof(MapGeneration.Distributors.ItemSpawnpoint)
+	030 Move rax, [rax+184]
+	031 Move rcx, [rax+8]
+	032 Compare rcx, 0
+	033 JumpIfEqual {41}
+	034 Move r8, [0x182738C18]
+	035 Move rdx, rbx
+	036 ShiftStack 32
+	037 Move rbx, stack:0x0
+	038 ShiftStack 8
+	039 Call 0x1817E5EE0, rcx, rdx
+	040 Return 
+	041 Call 0x180294310, rcx, rdx, r8, r9
+
+Method: System.Void .ctor()
+
+Disassembly:
+	xor edx,edx
+	mov dword ptr [rcx+28h],0FFFFFFFFh
+	jmp near ptr 0000000180FD1850h
+
+ISIL:
+	001 Move rdx, 0
+	002 Move [rcx+40], 0xFFFFFFFF
+	003 Call 0x180FD1850, rcx, rdx
+	004 Return 
+
+Method: System.Void .cctor()
+
+Disassembly:
+	push rbx
+	sub rsp,20h
+	cmp byte ptr [1826E95A5h],0
+	jne short 00000001802DB371h
+	mov ecx,[1822D2CA4h]
+	call 0000000180294190h
+	mov byte ptr [1826E95A5h],1
+	mov rcx,[182732280h]
+	call 00000001802942D0h
+	mov rdx,[18272B828h]
+	mov rcx,rax
+	mov rbx,rax
+	call 000000018096A7F0h
+	mov rcx,[1827323E0h]
+	mov rdx,rbx
+	mov rcx,[rcx+0B8h]
+	mov [rcx],rbx
+	call 0000000180293EF0h
+	mov rcx,[182732280h]
+	call 00000001802942D0h
+	mov rdx,[18272B828h]
+	mov rcx,rax
+	mov rbx,rax
+	call 000000018096A7F0h
+	mov rcx,[1827323E0h]
+	mov rdx,rbx
+	mov rcx,[rcx+0B8h]
+	add rcx,8
+	mov [rcx],rbx
+	add rsp,20h
+	pop rbx
+	jmp near ptr 0000000180293EF0h
+
+ISIL:
+	001 ShiftStack -8
+	002 Move stack:0x0, rbx
+	003 ShiftStack -32
+	004 Compare [0x1826E95A5], 0
+	005 JumpIfNotEqual {9}
+	006 Move rcx, [0x1822D2CA4]
+	007 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	008 Move [0x1826E95A5], 1
+	009 Move rcx, typeof(System.Collections.Generic.HashSet`1<ItemSpawnpoint>)
+	010 Call "il2cpp_codegen_object_new", rcx, rdx, r8, r9
+	011 Move rdx, [0x18272B828]
+	012 Move rcx, rax
+	013 Move rbx, rax
+	014 Call 0x18096A7F0, rcx, rdx
+	015 Move rcx, typeof(MapGeneration.Distributors.ItemSpawnpoint)
+	016 Move rdx, rbx
+	017 Move rcx, [rcx+184]
+	018 Move [rcx], rbx
+	019 Call 0x180293EF0, rcx, rdx, r8, r9
+	020 Move rcx, typeof(System.Collections.Generic.HashSet`1<ItemSpawnpoint>)
+	021 Call "il2cpp_codegen_object_new", rcx, rdx, r8, r9
+	022 Move rdx, [0x18272B828]
+	023 Move rcx, rax
+	024 Move rbx, rax
+	025 Call 0x18096A7F0, rcx, rdx
+	026 Move rcx, typeof(MapGeneration.Distributors.ItemSpawnpoint)
+	027 Move rdx, rbx
+	028 Move rcx, [rcx+184]
+	029 Add rcx, rcx, 8
+	030 Move [rcx], rbx
+	031 ShiftStack 32
+	032 Move rbx, stack:0x0
+	033 ShiftStack 8
+	034 Call 0x180293EF0, rcx, rdx, r8, r9
+	035 Return 
+

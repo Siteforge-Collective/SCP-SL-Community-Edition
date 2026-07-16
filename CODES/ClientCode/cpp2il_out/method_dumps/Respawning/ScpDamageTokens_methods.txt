@@ -1,0 +1,204 @@
+Type: ScpDamageTokens
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Respawning.ScpDamageTokens
+	static System.Void Init()
+		System.Action`2<ReferenceHub,PlayerStatsSystem.DamageHandlerBase> action = new System.Action`2<ReferenceHub,PlayerStatsSystem.DamageHandlerBase>()
+		ulong local1 = 0
+
+		action..ctor(local1, {'OnAnyPlayerDied' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		PlayerStatsSystem.PlayerStats.add_OnAnyPlayerDied(action) //(Action`2 value)
+		System.Action`2<ReferenceHub,PlayerStatsSystem.DamageHandlerBase> action2 = new System.Action`2<ReferenceHub,PlayerStatsSystem.DamageHandlerBase>()
+		ulong local4 = 0
+
+		action2..ctor(local4, {'OnAnyPlayerDamaged' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		PlayerStatsSystem.PlayerStats.add_OnAnyPlayerDamaged(action2) //(Action`2 value)
+		  = .
+		System.Action action3 = new System.Action()
+
+		action3..ctor()
+
+		CustomNetworkManager.add_OnClientReady(action3) //(Action value)
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.StaticFieldToRegAction at (0x181AB758B) is corrupt (Couldn't identify the field being read (or its type).) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Respawning.ScpDamageTokens
+	static System.Void OnAnyPlayerDied(ReferenceHub hub, PlayerStatsSystem.DamageHandlerBase dhb)
+		ulong local2 = 0
+		ulong local3 = 0
+
+		System.Boolean local4 = PlayerRoles.PlayerRolesUtils.IsSCP(hub, local3) //(ReferenceHub hub, Boolean includeZombies)
+
+		if (local4 != False)
+
+		    if (dhb != 0)
+		        //UNKNOWN CLASS OFFSET READ HERE
+
+
+Generated IL:
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Respawning.ScpDamageTokens
+	static System.Void OnAnyPlayerDamaged(ReferenceHub hub, PlayerStatsSystem.DamageHandlerBase dhb)
+		ulong local3 = 0
+
+		System.Boolean isSCP = PlayerRoles.PlayerRolesUtils.IsSCP(hub, local3) //(ReferenceHub hub, Boolean includeZombies)
+
+		if (isSCP != False)
+
+		    if (dhb != 0)
+		        //UNKNOWN CLASS OFFSET READ HERE
+		        //UNKNOWN CLASS OFFSET READ HERE
+
+		        if ( == AttackerDamageHandler)
+
+		            Respawning.ScpDamageTokens.HandleDamageTickets()
+		            return
+		        endif
+                
+		        //UNKNOWN CLASS OFFSET READ HERE
+
+		        if ( != StandardDamageHandler)
+                    goto INSN_181AB776A
+                endif
+
+		        Respawning.ScpDamageTokens.RegisterContribution()
+		    endif
+            
+		    return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.UnknownClassOffsetReadAction at (0x181AB76BF) is corrupt (Unknown class offset read) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Respawning.ScpDamageTokens
+	static System.Void RewardFaction(PlayerRoles.Faction faction, System.Single totalTokens)
+
+		if (faction == constant10)
+		else
+
+		    if (faction == constant12)
+		    endif
+            
+
+		    Respawning.RespawnTokensManager.GrantTokens(1, totalTokens) //(SpawnableTeamType team, Single tokens)
+		endif
+        
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfNonZeroOrNonNullAction at (0x181AB7CE4) is corrupt (ConstantDefinition: Don't know how to get IL to load a System.Byte) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Respawning.ScpDamageTokens
+	static System.Void HandleDamageTickets(ReferenceHub scp, PlayerStatsSystem.AttackerDamageHandler adh)
+		PlayerRoles.PlayerRoleManager roleManager = scp.roleManager
+
+		PlayerRoles.PlayerRoleBase currentRole = roleManager.CurrentRole
+
+		if (currentRole != 0)
+
+		    .ProcessDamage()
+		    System.IntPtr m_CachedPtr = currentRole.m_CachedPtr
+
+		    PlayerRoles.Faction faction = PlayerRoles.PlayerRolesUtils.GetFaction()
+		    ulong local8 = 0
+		    System.Single DealtHealthDamage = adh.<DealtHealthDamage>k__BackingField
+		    //UNKNOWN CLASS OFFSET READ HERE
+
+		    if (local8 < )
+		        local8 += local8
+		        local8 += 1
+		    endif
+            
+		      = faction.
+		    System.Single AbsorbedHumeDamage = adh.<AbsorbedHumeDamage>k__BackingField
+		    System.Single local12 = DealtHealthDamage * 4
+		    System.Single local13 = AbsorbedHumeDamage * 0,0005
+
+		    Respawning.ScpDamageTokens.RewardFaction(faction, local12) //(Faction faction, Single totalTokens)
+
+		    Respawning.ScpDamageTokens.RegisterContribution(scp, faction, adh) //(ReferenceHub scp, Faction faction, StandardDamageHandler handler)
+		endif
+        
+		return
+		 += IHealthbarRole
+		currentRole += 
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallVirtualMethodAction at (0x181AB7389) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Respawning.ScpDamageTokens
+	static System.Void RegisterContribution(ReferenceHub scp, PlayerRoles.Faction faction, PlayerStatsSystem.StandardDamageHandler handler)
+		ulong local3 = 0
+		  = .
+
+		System.UInt32 netId = scp.netId
+		System.Func`1<System.Collections.Generic.Dictionary`2<PlayerRoles.Faction,System.Single>> <>9__11_0 = Respawning.ScpDamageTokens/<>c.<>9__11_0
+
+		if (<>9__11_0 == 0)
+		    Respawning.ScpDamageTokens/<>c <>c = Respawning.ScpDamageTokens/<>c.<>9
+		    System.Func`1<System.Collections.Generic.Dictionary`2<PlayerRoles.Faction,System.Single>> func = new System.Func`1<System.Collections.Generic.Dictionary`2<PlayerRoles.Faction,System.Single>>()
+
+		    func..ctor(<>c, {'<RegisterContribution>b__11_0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		     += 8
+		    Respawning.ScpDamageTokens/<>c.<>9 = func
+		endif
+        
+
+		System.UInt32 orAdd = CollectionExtensions.GetOrAdd<System.UInt32, System.Collections.Generic.Dictionary`2<PlayerRoles.Faction,System.Single>>()
+
+		System.Boolean boolean = orAdd.TryGetValue(faction, local3) //(TKey key, TValue& value)
+		throw new System.NullReferenceException()
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.StaticFieldToRegAction at (0x181AB7B49) is corrupt (Couldn't identify the field being read (or its type).) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Respawning.ScpDamageTokens
+	static System.Void .cctor()
+		System.Collections.Generic.Dictionary`2<System.UInt32,System.Collections.Generic.Dictionary`2<PlayerRoles.Faction,System.Single>> dictionary = new System.Collections.Generic.Dictionary`2<System.UInt32,System.Collections.Generic.Dictionary`2<PlayerRoles.Faction,System.Single>>()
+
+		dictionary..ctor()
+		. = dictionary
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.RegToStaticFieldAction at (0x181AB7D80) is corrupt (No further info) and cannot be created as IL. Aborting here.
+
+

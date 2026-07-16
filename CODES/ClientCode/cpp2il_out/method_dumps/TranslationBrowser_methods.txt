@@ -1,0 +1,422 @@
+Type: TranslationBrowser
+
+
+	Generated Pseudocode:
+
+	Declaring Type: TranslationBrowser
+	System.Void OnEnable()
+		System.Collections.Generic.List`1<UnityEngine.GameObject> spawns = this.spawns
+
+		System.Collections.Generic.List`1/Enumerator<T> enumerator = .GetEnumerator()
+
+		if (enumerator != 0)
+
+		    UnityEngine.Object.Destroy()
+		endif
+        
+		ulong local5 = 0
+
+		[instruction error - managed method being called is null]
+
+		[instruction error - managed method being called is null]
+
+		if (True != 0)
+            goto INSN_1803A7015
+        endif
+
+		if (local5 == -1)
+            goto INSN_1803A6E0F
+        endif
+
+		INSN_1803A6E0F:
+		System.Collections.Generic.List`1<UnityEngine.GameObject> spawns2 = this.spawns
+
+		spawns2.Clear()
+		ulong local7 = 0
+
+		System.Int32 translationList = TranslationBrowser.GetTranslationList()
+		System.Collections.Generic.List`1<System.ValueTuple`2<System.String,System.Boolean>> translations = TranslationBrowser.Translations
+
+		System.Collections.Generic.List`1/Enumerator<T> enumerator2 = .GetEnumerator()
+
+		if (enumerator2 == 0)
+            goto INSN_1803A6FC5
+        endif
+		UnityEngine.UI.Text instancePrefab = this.instancePrefab
+		UnityEngine.Transform parent = this.parent
+
+		UnityEngine.UI.Text text = UnityEngine.Object.Instantiate<UnityEngine.UI.Text>(instancePrefab, parent) //(T original, Transform parent)
+
+		UnityEngine.Transform transform = text.transform
+		ulong local16 = 0
+
+		UnityEngine.Vector3 one = UnityEngine.Vector3.one
+
+		transform.localScale = local16
+
+		System.String text2 = text.text
+
+		UnityEngine.Color red = UnityEngine.Color.red
+
+		UnityEngine.Color color = text.color
+		System.Collections.Generic.List`1<UnityEngine.GameObject> spawns3 = this.spawns
+
+		UnityEngine.GameObject gameObject = text.gameObject
+
+		spawns3.Add(gameObject) //(T item)
+
+		INSN_1803A6FC5:
+		. = 196
+
+		spawns3.Dispose()
+
+		spawns3.Dispose()
+
+		if (spawns3 != 0)
+            goto INSN_1803A702E
+        endif
+		return
+
+		INSN_1803A7015:
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+
+		INSN_1803A702E:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1803A6D3D) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: TranslationBrowser
+	System.Void OnDisable()
+		System.Collections.Generic.List`1<UnityEngine.GameObject> spawns = this.spawns
+
+		System.Collections.Generic.List`1/Enumerator<T> enumerator = .GetEnumerator()
+
+		if (enumerator != 0)
+
+		    UnityEngine.Object.Destroy()
+		endif
+        
+
+		[instruction error - managed method being called is null]
+
+		[instruction error - managed method being called is null]
+
+		if (True != 0)
+            goto INSN_1803A6CAE
+        endif
+		System.Collections.Generic.List`1<UnityEngine.GameObject> spawns2 = this.spawns
+
+		spawns2.Clear()
+		return
+		throw new System.NullReferenceException()
+
+		INSN_1803A6CAE:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1803A6BF9) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: TranslationBrowser
+	static System.Int32 GetTranslationList()
+		ulong local0 = 0
+
+		System.String[] directories = System.IO.Directory.GetDirectories("Translations") //(String path)
+		System.String TranslationDirectoryName = TranslationReader.<TranslationDirectoryName>k__BackingField
+		System.Collections.Generic.List`1<System.ValueTuple`2<System.String,System.Boolean>> translations = TranslationBrowser.Translations
+
+		translations.Clear()
+		System.Collections.Generic.Dictionary`2<System.String,System.String> languages = TranslationBrowser.Languages
+
+		languages.Clear()
+		System.Collections.Generic.Dictionary`2<System.String,System.String> names = TranslationBrowser.Names
+
+		names.Clear()
+		System.Int32 length = directories.Length
+
+		if (local0 < length)
+		    System.String string = directories[local0]
+
+		    System.String fileName = System.IO.Path.GetFileName(string) //(String path)
+
+		    System.Boolean boolean = System.String.Equals(TranslationDirectoryName, fileName) //(String a, String b)
+
+		    System.String string2 = System.IO.Path.Combine(string, "manifest.json") //(String path1, String path2)
+
+		    System.Boolean boolean2 = System.IO.File.Exists(string2) //(String path)
+
+		    if (boolean2 != False)
+
+		        System.String string3 = System.IO.File.ReadAllText(string2) //(String path)
+
+		        TranslationManifest translationManifest = JsonSerialize.FromJson<TranslationManifest>()
+
+		        System.Boolean isNullOrWhiteSpace = System.String.IsNullOrWhiteSpace()
+
+		        if (isNullOrWhiteSpace == False)
+
+		            System.String freeName = TranslationBrowser.GetFreeName()
+		            System.Collections.Generic.Dictionary`2<System.String,System.String> names2 = TranslationBrowser.Names
+		        else
+
+		            System.Boolean boolean3 = Misc.CultureInfoTryParse(fileName, local0) //(String name, CultureInfo& info)
+
+		            if (boolean3 == False)
+		            else
+
+		                System.Char char = local0.System.IConvertible.ToChar()
+
+		                System.String string4 = TranslationBrowser.FirstToUpper()
+
+		                System.Boolean boolean4 = local0.Equals(local0) //(Int32 obj)
+
+		                System.String string5 = TranslationBrowser.FirstToUpper()
+
+		                System.String string6 = System.String.Concat(string4, " - ", string5) //(String str0, String str1, String str2)
+
+		                System.String freeName2 = TranslationBrowser.GetFreeName(string6) //(String name)
+		                System.Collections.Generic.Dictionary`2<System.String,System.String> languages2 = TranslationBrowser.Languages
+		            endif
+                    
+		            throw new System.NullReferenceException()
+		        endif
+                
+
+		        System.Collections.Generic.IEnumerable`1<System.String> iEnumerable = System.IO.Directory.EnumerateFiles(string, "*.txt") //(String path, String searchPattern)
+		        System.Func`2<System.String,System.Boolean> <>9__8_0 = TranslationBrowser/<>c.<>9__8_0
+
+		        if (<>9__8_0 != 0)
+                    goto INSN_1803A68E6
+                endif
+		        TranslationBrowser/<>c <>c = TranslationBrowser/<>c.<>9
+		        System.Func`2<System.String,System.Boolean> func = new System.Func`2<System.String,System.Boolean>()
+
+		        func..ctor(<>c, {'<GetTranslationList>b__8_0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		         += 8
+		        TranslationBrowser/<>c.<>9 = func
+
+		        INSN_1803A68E6:
+
+		        System.Boolean boolean5 = System.Linq.Enumerable.Any<System.String>(iEnumerable, func) //(IEnumerable`1 source, Func`2 predicate)
+		        ulong local46 = 0
+		        System.Collections.Generic.List`1<System.ValueTuple`2<System.String,System.Boolean>> translations2 = TranslationBrowser.Translations
+
+		        translations2.Add(local46) //(T item)
+		        local0 += 1
+		    endif
+            
+		    return local0
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1803A668B) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: TranslationBrowser
+	static System.String NameToDirectory(System.String name)
+		ulong local1 = 0
+		System.Collections.Generic.Dictionary`2<System.String,System.String> names = TranslationBrowser.Names
+
+		System.Boolean boolean = names.TryGetValue(name, local1) //(TKey key, TValue& value)
+
+		if (boolean != False)
+		    return local1
+		endif
+        
+		System.Collections.Generic.Dictionary`2<System.String,System.String> languages = TranslationBrowser.Languages
+
+		System.Boolean boolean2 = languages.TryGetValue(name, local1) //(TKey key, TValue& value)
+		return local1
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x1803A6B2E) is corrupt (Return value has a type of System.Int32, expecting an object of type System.String) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: TranslationBrowser
+	static System.String GetFreeName(System.String name)
+		System.Collections.Generic.Dictionary`2<System.String,System.String> languages = TranslationBrowser.Languages
+		throw new System.NullReferenceException()
+
+		if (local3 == 0)
+		    System.Collections.Generic.Dictionary`2<System.String,System.String> names = TranslationBrowser.Names
+		    throw new System.NullReferenceException()
+
+		    if (local5 == 0)
+                goto INSN_1803A6401
+            endif
+		endif
+        
+		System.Int32 1 = 1
+
+		System.String string = System.String.Format("{0} {1}", name, local7) //(String format, Object arg0, Object arg1)
+
+		INSN_1803A6401:
+		return string
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldsfld System.Collections.Generic.Dictionary`2<System.String,System.String> TranslationBrowser::Languages
+	IL_0005: stloc.0
+	IL_0006: newobj System.Void System.NullReferenceException::.ctor()
+	IL_000b: throw
+	IL_000c: ldloc.1
+	IL_000d: ldc.i4.0
+	IL_000e: bne.un.s IL_0020
+	IL_0010: ldsfld System.Collections.Generic.Dictionary`2<System.String,System.String> TranslationBrowser::Names
+	IL_0015: stloc.2
+	IL_0016: newobj System.Void System.NullReferenceException::.ctor()
+	IL_001b: throw
+	IL_001c: ldloc.3
+	IL_001d: ldc.i4.0
+	IL_001e: beq.s IL_0000
+	IL_0020: ldstr "{0} {1}"
+	IL_0025: ldarg.0
+	IL_0026: ldloc.s V_5
+	IL_0028: call System.String System.String::Format(System.String,System.Object,System.Object)
+	IL_002d: ret
+	IL_002e: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0033: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: TranslationBrowser
+	static System.String GetTranslationName(System.Globalization.CultureInfo c)
+
+		System.String name = c.Name
+
+		System.String string = TranslationBrowser.FirstToUpper(name, c) //(String s, CultureInfo c)
+
+		System.String displayName = c.DisplayName
+
+		System.String string2 = TranslationBrowser.FirstToUpper(displayName, c) //(String s, CultureInfo c)
+
+		System.String string3 = System.String.Concat(string, " - ", string2) //(String str0, String str1, String str2)
+		return string3
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: callvirt System.String System.Globalization.CultureInfo::get_Name()
+	IL_0006: ldarg.0
+	IL_0007: call System.String TranslationBrowser::FirstToUpper(System.String,System.Globalization.CultureInfo)
+	IL_000c: stloc.0
+	IL_000d: ldarg.0
+	IL_000e: callvirt System.String System.Globalization.CultureInfo::get_DisplayName()
+	IL_0013: ldarg.0
+	IL_0014: call System.String TranslationBrowser::FirstToUpper(System.String,System.Globalization.CultureInfo)
+	IL_0019: stloc.1
+	IL_001a: ldloc.0
+	IL_001b: ldstr " - "
+	IL_0020: ldloc.1
+	IL_0021: call System.String System.String::Concat(System.String,System.String,System.String)
+	IL_0026: ret
+	IL_0027: newobj System.Void System.NullReferenceException::.ctor()
+	IL_002c: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: TranslationBrowser
+	static System.String FirstToUpper(System.String s, System.Globalization.CultureInfo c)
+		ulong local3 = 0
+
+		System.Boolean isLower = System.Char.IsLower(s, local3) //(String s, Int32 index)
+
+		if (isLower != False)
+		    ulong local6 = 0
+
+		    System.Char chars = s.Chars
+
+		    System.Char char = System.Char.ToUpper(chars, c) //(Char c, CultureInfo culture)
+		    System.Int32 1 = 1
+
+		    System.String string = s.Substring(1) //(Int32 startIndex)
+
+		    System.String string2 = System.String.Concat()
+		    return string2
+		endif
+        
+		return s
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1803A62C4) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: TranslationBrowser
+	System.Void .ctor()
+		System.Collections.Generic.List`1<UnityEngine.GameObject> list = new System.Collections.Generic.List`1<UnityEngine.GameObject>()
+
+		list..ctor()
+		this.spawns = list
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: newobj System.Void System.Collections.Generic.List`1::.ctor()
+	IL_0005: stloc.0
+	IL_0006: ldarg.0
+	IL_0007: ldloc.0
+	IL_0008: stfld System.Collections.Generic.List`1<UnityEngine.GameObject> TranslationBrowser::spawns
+	IL_000d: ldarg.0
+	IL_000e: call System.Void UnityEngine.MonoBehaviour::.ctor()
+	IL_0013: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: TranslationBrowser
+	static System.Void .cctor()
+		System.Collections.Generic.List`1<System.ValueTuple`2<System.String,System.Boolean>> list = new System.Collections.Generic.List`1<System.ValueTuple`2<System.String,System.Boolean>>()
+
+		list..ctor()
+		TranslationBrowser.Translations = list
+		System.StringComparer _ordinalIgnoreCase = System.StringComparer._ordinalIgnoreCase
+		System.Collections.Generic.Dictionary`2<System.String,System.String> dictionary = new System.Collections.Generic.Dictionary`2<System.String,System.String>()
+
+		dictionary..ctor(_ordinalIgnoreCase) //(IEqualityComparer`1 comparer)
+		 += 8
+		TranslationBrowser.Translations = dictionary
+		System.StringComparer _ordinalIgnoreCase2 = System.StringComparer._ordinalIgnoreCase
+		System.Collections.Generic.Dictionary`2<System.String,System.String> dictionary2 = new System.Collections.Generic.Dictionary`2<System.String,System.String>()
+
+		dictionary2..ctor(_ordinalIgnoreCase2) //(IEqualityComparer`1 comparer)
+		 += 16
+		TranslationBrowser.Translations = dictionary2
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x1803A7144) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+

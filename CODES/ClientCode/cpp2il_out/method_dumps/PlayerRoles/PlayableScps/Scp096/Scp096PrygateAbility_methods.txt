@@ -1,0 +1,328 @@
+Type: Scp096PrygateAbility
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp096.Scp096PrygateAbility
+	System.Void ClientTryPry(Interactables.Interobjects.PryableDoor door)
+		this._syncDoor = door
+
+		base.ClientSendCmd()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: stfld Interactables.Interobjects.PryableDoor PlayerRoles.PlayableScps.Scp096.Scp096PrygateAbility::_syncDoor
+	IL_0007: ldarg.0
+	IL_0008: call System.Void PlayerRoles.PlayableScps.Subroutines.ScpSubroutineBase::ClientSendCmd()
+	IL_000d: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp096.Scp096PrygateAbility
+	System.Void SpawnObject()
+
+		base.SpawnObject()
+		  = this.
+		PlayerRoles.PlayableScps.Scp096.Scp096HitHandler scp096HitHandler = new PlayerRoles.PlayableScps.Scp096.Scp096HitHandler()
+		ulong local2 = 0
+
+		scp096HitHandler..ctor()
+		this._hitHandler = scp096HitHandler
+		System.Action`1<Interactables.InteractableCollider> action = new System.Action`1<Interactables.InteractableCollider>()
+
+		action..ctor(this, {'OnInteracted' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		Interactables.InteractionCoordinator.add_OnClientInteracted(action) //(Action`1 value)
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.FieldToLocalAction at (0x1803091E3) is corrupt (No further info) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp096.Scp096PrygateAbility
+	System.Void ResetObject()
+
+		base.ResetObject()
+		System.Action`1<Interactables.InteractableCollider> action = new System.Action`1<Interactables.InteractableCollider>()
+
+		action..ctor(this, {'OnInteracted' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		Interactables.InteractionCoordinator.remove_OnClientInteracted(action) //(Action`1 value)
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void PlayerRoles.PlayableScps.Subroutines.ScpStandardSubroutine`1::ResetObject()
+	IL_0006: ldarg.0
+	IL_0007: ldftn System.Void PlayerRoles.PlayableScps.Scp096.Scp096PrygateAbility::OnInteracted(Interactables.InteractableCollider)
+	IL_000d: newobj System.Void System.Action`1::.ctor(System.Object,System.IntPtr)
+	IL_0012: call System.Void Interactables.InteractionCoordinator::remove_OnClientInteracted(System.Action`1)
+	IL_0017: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp096.Scp096PrygateAbility
+	System.Void ClientWriteCmd(Mirror.NetworkWriter writer)
+
+		base.ClientWriteCmd(writer) //(NetworkWriter writer)
+		Interactables.Interobjects.PryableDoor _syncDoor = this._syncDoor
+
+		Mirror.NetworkWriterExtensions.WriteNetworkBehaviour(writer, _syncDoor) //(NetworkWriter writer, NetworkBehaviour value)
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: call System.Void PlayerRoles.PlayableScps.Subroutines.ScpSubroutineBase::ClientWriteCmd(Mirror.NetworkWriter)
+	IL_0007: ldarg.0
+	IL_0008: ldfld Interactables.Interobjects.PryableDoor PlayerRoles.PlayableScps.Scp096.Scp096PrygateAbility::_syncDoor
+	IL_000d: stloc.0
+	IL_000e: ldarg.1
+	IL_000f: ldloc.0
+	IL_0010: call System.Void Mirror.NetworkWriterExtensions::WriteNetworkBehaviour(Mirror.NetworkWriter,Mirror.NetworkBehaviour)
+	IL_0015: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp096.Scp096PrygateAbility
+	System.Void ServerProcessCmd(Mirror.NetworkReader reader)
+
+		base.ServerProcessCmd(reader) //(NetworkReader reader)
+		  = this.
+
+		if ( == 2)
+
+		    if ( != 4)
+
+		        Interactables.Interobjects.PryableDoor pryableDoor = Mirror.NetworkReaderExtensions.ReadNetworkBehaviour<Interactables.Interobjects.PryableDoor>(reader) //(NetworkReader reader)
+		        this._syncDoor = pryableDoor
+		        Interactables.Interobjects.PryableDoor _syncDoor = this._syncDoor
+		        ulong local6 = 0
+
+		        System.Boolean boolean = UnityEngine.Object.op_Equality(_syncDoor, local6) //(Object x, Object y)
+
+		        if (boolean == False)
+		            Interactables.Interobjects.PryableDoor _syncDoor2 = this._syncDoor
+
+		            if ( == boolean)
+
+		                System.Boolean boolean2 = _syncDoor2.AllowInteracting()
+		                ulong local10 = 0
+
+		                if ( <= local10)
+		                    Interactables.Interobjects.PryableDoor _syncDoor3 = this._syncDoor
+
+		                    UnityEngine.Transform transform = _syncDoor3.transform
+
+		                    UnityEngine.Vector3 position = .position
+		                    System.Single single = position.z
+		                      = this.
+		                      = position.
+		                      = position.
+
+		                    UnityEngine.Vector3 vector3 = UnityEngine.Vector3.op_Subtraction()
+		                    System.Single single2 = vector3.z
+		                    Interactables.Interobjects.PryableDoor _syncDoor4 = this._syncDoor
+		                    ulong local23 = 0
+
+		                    System.Boolean boolean3 = _syncDoor4.TryPryGate(local23) //(ReferenceHub player)
+
+		                    if (boolean3 != False)
+		                        PlayerRoles.PlayableScps.Scp096.Scp096HitHandler _hitHandler = this._hitHandler
+
+		                        _hitHandler.Clear()
+
+		                        base.ServerSendRpc(True) //(Boolean toAll)
+		                    endif
+                            
+		                    return
+		                    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.FieldToLocalAction at (0x180308F11) is corrupt (No further info) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp096.Scp096PrygateAbility
+	System.Void ServerWriteRpc(Mirror.NetworkWriter writer)
+
+		base.ClientWriteCmd(writer) //(NetworkWriter writer)
+		Interactables.Interobjects.PryableDoor _syncDoor = this._syncDoor
+
+		Mirror.NetworkWriterExtensions.WriteNetworkBehaviour(writer, _syncDoor) //(NetworkWriter writer, NetworkBehaviour value)
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: call System.Void PlayerRoles.PlayableScps.Subroutines.ScpSubroutineBase::ClientWriteCmd(Mirror.NetworkWriter)
+	IL_0007: ldarg.0
+	IL_0008: ldfld Interactables.Interobjects.PryableDoor PlayerRoles.PlayableScps.Scp096.Scp096PrygateAbility::_syncDoor
+	IL_000d: stloc.0
+	IL_000e: ldarg.1
+	IL_000f: ldloc.0
+	IL_0010: call System.Void Mirror.NetworkWriterExtensions::WriteNetworkBehaviour(Mirror.NetworkWriter,Mirror.NetworkBehaviour)
+	IL_0015: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp096.Scp096PrygateAbility
+	System.Void ClientProcessRpc(Mirror.NetworkReader reader)
+		ulong local2 = 0
+
+		base.ServerProcessCmd(reader) //(NetworkReader reader)
+
+		Interactables.Interobjects.PryableDoor pryableDoor = Mirror.NetworkReaderExtensions.ReadNetworkBehaviour<Interactables.Interobjects.PryableDoor>(reader) //(NetworkReader reader)
+		this._syncDoor = pryableDoor
+		  = this.
+
+		System.Boolean isLocalPlayer = .isLocalPlayer
+
+		if (isLocalPlayer != False)
+		      = this.
+		      = isLocalPlayer.
+		    //UNKNOWN CLASS OFFSET READ HERE
+		    Interactables.Interobjects.PryableDoor _syncDoor = this._syncDoor
+		    System.Boolean local7 =  == Scp096MovementModule
+
+		    local2.SetTargetGate(_syncDoor) //(PryableDoor door)
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.FieldToLocalAction at (0x180308C4E) is corrupt (No further info) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp096.Scp096PrygateAbility
+	System.Void Awake()
+
+		base.Awake()
+
+		base.GetSubroutine<PlayerRoles.PlayableScps.Scp096.Scp096AudioPlayer>()
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180308B56) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp096.Scp096PrygateAbility
+	System.Void Update()
+		  = this.
+		  = .
+		Interactables.Interobjects.PryableDoor _syncDoor = this._syncDoor
+		ulong local3 = 0
+
+		System.Boolean boolean = UnityEngine.Object.op_Equality(_syncDoor, local3) //(Object x, Object y)
+
+		if (boolean == False)
+		    Interactables.Interobjects.PryableDoor _syncDoor2 = this._syncDoor
+
+		    UnityEngine.Transform transform = _syncDoor2.transform
+
+		    UnityEngine.Vector3 position = .position
+		    System.Single single = position.z
+
+		    UnityEngine.Vector3 up = UnityEngine.Vector3.up
+		    System.Single single2 = up.z
+
+		    UnityEngine.Vector3 vector3 = UnityEngine.Vector3.op_Multiply()
+		    System.Single single3 = vector3.z
+
+		    UnityEngine.Vector3 vector32 = UnityEngine.Vector3.op_Addition()
+		    PlayerRoles.PlayableScps.Scp096.Scp096HitHandler _hitHandler = this._hitHandler
+		    System.Single single4 = vector32.z
+
+		    PlayerRoles.PlayableScps.Scp096.Scp096HitResult scp096HitResult = _hitHandler.DamageSphere()
+
+		    if (scp096HitResult != constant51)
+		        PlayerRoles.PlayableScps.Scp096.Scp096AudioPlayer _audioPlayer = this._audioPlayer
+		        _audioPlayer._syncHitSound = scp096HitResult
+
+		        _audioPlayer.ServerSendRpc(True) //(Boolean toAll)
+		          = this.
+
+		        Hitmarker.SendHitmarker()
+		    endif
+            
+		    return
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.FieldToLocalAction at (0x180309345) is corrupt (No further info) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp096.Scp096PrygateAbility
+	System.Void OnInteracted(Interactables.InteractableCollider col)
+		PlayerRoles.PlayerRoleBase Role = this.<Role>k__BackingField
+
+		System.Boolean isLocalPlayer = Role.IsLocalPlayer
+
+		if (isLocalPlayer != False)
+		    UnityEngine.MonoBehaviour target = col.Target
+
+		    if (target != 0)
+		        //UNKNOWN CLASS OFFSET READ HERE
+		        this._syncDoor = target
+
+		        base.ClientSendCmd()
+		    endif
+            
+		    return
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.UnknownClassOffsetReadAction at (0x180308DE7) is corrupt (Unknown class offset read) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp096.Scp096PrygateAbility
+	System.Void .ctor()
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void PlayerRoles.PlayableScps.Subroutines.ScpStandardSubroutine`1::.ctor()
+	IL_0006: ret
+	
+

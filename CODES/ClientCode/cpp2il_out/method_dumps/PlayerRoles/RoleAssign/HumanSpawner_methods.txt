@@ -1,0 +1,280 @@
+Type: HumanSpawner
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.RoleAssign.HumanSpawner
+	static PlayerRoles.RoleTypeId get_NextHumanRoleToSpawn()
+		ulong local0 = 0
+		System.Int32 _queueClock = PlayerRoles.RoleAssign.HumanSpawner._queueClock
+		PlayerRoles.Team[] _humanQueue = PlayerRoles.RoleAssign.HumanSpawner._humanQueue
+		System.Int32 local3 = _queueClock + 1
+		PlayerRoles.RoleAssign.HumanSpawner._queueClock = local3
+		System.Collections.Generic.Dictionary`2<PlayerRoles.Team,PlayerRoles.RoleAssign.IHumanSpawnHandler> handlers = PlayerRoles.RoleAssign.HumanSpawner.Handlers
+		PlayerRoles.Team local5 = _humanQueue[]
+
+		System.Boolean boolean = handlers.TryGetValue(local5, local0) //(TKey key, TValue& value)
+
+		if (boolean != False)
+		    //UNKNOWN CLASS OFFSET READ HERE
+
+		    if (local0 < local5)
+		        local0 += local0
+		        local0 += 1
+		    endif
+            
+		      = boolean.
+		    return boolean
+		    local0 += local0
+		    boolean += constant24
+		endif
+        
+		System.Int64 local8 = 1
+		return local8
+		System.InvalidOperationException invalidOperationException = new System.InvalidOperationException()
+
+		invalidOperationException..ctor("Failed to get next role to spawn, queue has no human roles.") //(String message)
+
+
+Generated IL:
+	Don't know how to write IL for Cpp2IL.Core.Analysis.Actions.x86.Important.RegOffsetArrayValueReadRegToRegAction. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.RoleAssign.HumanSpawner
+	static System.Void SpawnHumans(PlayerRoles.Team[] queue, System.Int32 queueLength)
+		PlayerRoles.RoleAssign.HumanSpawner._humanQueue = queue
+		ulong local2 = 0
+		PlayerRoles.RoleAssign.HumanSpawner._queueClock = local2
+		PlayerRoles.RoleAssign.HumanSpawner._queueLength = queueLength
+		System.Collections.Generic.HashSet`1<ReferenceHub> AllHubs = ReferenceHub.<AllHubs>k__BackingField
+		System.Func`2<ReferenceHub,System.Boolean> func = new System.Func`2<ReferenceHub,System.Boolean>()
+		ulong local5 = 0
+
+		func..ctor(local5, {'CheckPlayer' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		System.Int32 int32 = Utils.NonAllocLINQ.HashsetExtensions.Count<ReferenceHub>(AllHubs, func) //(HashSet`1 target, Func`2 condition)
+		PlayerRoles.RoleTypeId[] local7 = new PlayerRoles.RoleTypeId[int32]
+
+		if (int32 > 0)
+		    ulong local8 = 0
+
+		    PlayerRoles.RoleTypeId nextHumanRoleToSpawn = PlayerRoles.RoleAssign.HumanSpawner.NextHumanRoleToSpawn
+		    local2 += 1
+		    local2. = nextHumanRoleToSpawn
+
+		    CollectionExtensions.ShuffleList<PlayerRoles.RoleTypeId>()
+		    PlayerRoles.RoleTypeId local10 = local7[local2]
+
+		    PlayerRoles.RoleAssign.HumanSpawner.AssignHumanRoleToRandomPlayer(local10) //(RoleTypeId role)
+		    local2 += 1
+		endwhile
+        
+		goto INSN_1803D0B0D
+        
+		else
+
+		CollectionExtensions.ShuffleList<PlayerRoles.RoleTypeId>()
+		endif
+    
+		return
+		throw new System.IndexOutOfRangeException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.RegToFieldAction at (0x1803D0A6B) is corrupt (Instance or field is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.RoleAssign.HumanSpawner
+	static System.Void SpawnLate(ReferenceHub ply)
+		PlayerRoles.PlayerRoleManager roleManager = ply.roleManager
+		ulong local2 = 0
+
+		PlayerRoles.RoleTypeId nextHumanRoleToSpawn = PlayerRoles.RoleAssign.HumanSpawner.NextHumanRoleToSpawn
+
+		roleManager.ServerSetRole(nextHumanRoleToSpawn, 2, 0xFFFFFFFF) //(RoleTypeId newRole, RoleChangeReason reason, RoleSpawnFlags spawnFlags)
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld PlayerRoles.PlayerRoleManager ReferenceHub::roleManager
+	IL_0006: stloc.0
+	IL_0007: ldc.i4.0
+	IL_0008: stloc.1
+	IL_0009: call PlayerRoles.RoleTypeId PlayerRoles.RoleAssign.HumanSpawner::get_NextHumanRoleToSpawn()
+	IL_000e: stloc.2
+	IL_000f: ldloc.0
+	IL_0010: ldloc.2
+	IL_0011: ldc.i4.2
+	IL_0012: conv.i8
+	IL_0013: conv.u8
+	IL_0014: ldc.i4.m1
+	IL_0015: conv.u4
+	IL_0016: call System.Void PlayerRoles.PlayerRoleManager::ServerSetRole(PlayerRoles.RoleTypeId,PlayerRoles.RoleChangeReason,PlayerRoles.RoleSpawnFlags)
+	IL_001b: ret
+	IL_001c: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0021: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.RoleAssign.HumanSpawner
+	static System.Void AssignHumanRoleToRandomPlayer(PlayerRoles.RoleTypeId role)
+		System.Collections.Generic.List`1<ReferenceHub> candidates = PlayerRoles.RoleAssign.HumanSpawner.Candidates
+
+		candidates.Clear()
+		System.Int64 local2 = 0x7FFFFFFF
+		System.Collections.Generic.HashSet`1<ReferenceHub> AllHubs = ReferenceHub.<AllHubs>k__BackingField
+
+		System.Collections.Generic.HashSet`1/Enumerator<T> enumerator = .GetEnumerator()
+
+		if (enumerator != 0)
+
+		    System.Boolean boolean = PlayerRoles.RoleAssign.RoleAssigner.CheckPlayer()
+
+		    if (boolean != False)
+		        System.Collections.Generic.Dictionary`2<System.String,PlayerRoles.RoleAssign.HumanSpawner/RoleHistory> history = PlayerRoles.RoleAssign.HumanSpawner.History
+
+		        System.String userId = .UserId
+		        System.Func`1<PlayerRoles.RoleAssign.HumanSpawner/RoleHistory> <>9__12_0 = PlayerRoles.RoleAssign.HumanSpawner/<>c.<>9__12_0
+
+		        if (<>9__12_0 != 0)
+                    goto INSN_1803D05EC
+                endif
+		        PlayerRoles.RoleAssign.HumanSpawner/<>c <>c = PlayerRoles.RoleAssign.HumanSpawner/<>c.<>9
+		        System.Func`1<PlayerRoles.RoleAssign.HumanSpawner/RoleHistory> func = new System.Func`1<PlayerRoles.RoleAssign.HumanSpawner/RoleHistory>()
+
+		        func..ctor(<>c, {'<AssignHumanRoleToRandomPlayer>b__12_0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		         += 8
+		        PlayerRoles.RoleAssign.HumanSpawner/<>c.<>9 = func
+
+		        INSN_1803D05EC:
+
+		        System.String orAdd = CollectionExtensions.GetOrAdd<System.String, PlayerRoles.RoleAssign.HumanSpawner/RoleHistory>(history, userId, func) //(Dictionary`2 dictionary, TKey key, Func`1 factory)
+		        ulong local14 = 0
+		        ulong local15 = 0
+
+		        while (local15 < 5)
+
+		            PlayerRoles.RoleTypeId[] history2 = orAdd.History
+		            local15 += 1
+		            System.Int32 1 = 1
+		        endwhile
+                
+
+		        if (local14 >= local2)
+                    goto INSN_1803D069C
+                endif
+		        System.Collections.Generic.List`1<ReferenceHub> candidates2 = PlayerRoles.RoleAssign.HumanSpawner.Candidates
+
+		        candidates2.Clear()
+
+		        INSN_1803D069C:
+		        System.Collections.Generic.List`1<ReferenceHub> candidates3 = PlayerRoles.RoleAssign.HumanSpawner.Candidates
+
+		        candidates3.Add()
+		    endif
+            
+
+		    [instruction error - managed method being called is null]
+
+		    [instruction error - managed method being called is null]
+
+		    if (ReferenceHub != 0)
+                goto INSN_1803D08B1
+            endif
+		    System.Collections.Generic.List`1<ReferenceHub> candidates4 = PlayerRoles.RoleAssign.HumanSpawner.Candidates
+
+		    if ( == 0)
+                goto INSN_1803D0865
+            endif
+		    System.Collections.Generic.List`1<ReferenceHub> candidates5 = PlayerRoles.RoleAssign.HumanSpawner.Candidates
+
+		    ReferenceHub referenceHub = RandomElement.RandomItem<ReferenceHub>(candidates5) //(List`1 )
+		    PlayerRoles.PlayerRoleManager roleManager = referenceHub.roleManager
+
+		    roleManager.ServerSetRole()
+		    System.Collections.Generic.Dictionary`2<System.String,PlayerRoles.RoleAssign.HumanSpawner/RoleHistory> history3 = PlayerRoles.RoleAssign.HumanSpawner.History
+		    CharacterClassManager characterClassManager = referenceHub.characterClassManager
+
+		    System.String userId2 = characterClassManager.UserId
+
+		    PlayerRoles.RoleAssign.HumanSpawner/RoleHistory item = history3.Item
+
+		    PlayerRoles.RoleTypeId[] history4 = item.History
+		    System.Int32 _clock = item._clock
+		    System.Int32 local35 = _clock + 1
+		    item._clock = local35
+		    System.UInt64 local37 = (System.UInt64) _clock / 5
+		    local37 += local37
+		    _clock -= constant120
+		    _clock. = role
+
+		    INSN_1803D0865:
+		    return
+		    throw new System.NullReferenceException()
+		    throw new System.IndexOutOfRangeException()
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+
+		    INSN_1803D08B1:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1803D048B) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.RoleAssign.HumanSpawner
+	static System.Void .cctor()
+		System.Collections.Generic.Dictionary`2<PlayerRoles.Team,PlayerRoles.RoleAssign.IHumanSpawnHandler> dictionary = new System.Collections.Generic.Dictionary`2<PlayerRoles.Team,PlayerRoles.RoleAssign.IHumanSpawnHandler>()
+
+		dictionary..ctor()
+		PlayerRoles.RoleAssign.OneRoleHumanSpawner oneRoleHumanSpawner = new PlayerRoles.RoleAssign.OneRoleHumanSpawner()
+
+		oneRoleHumanSpawner..ctor()
+		oneRoleHumanSpawner.<NextRole>k__BackingField = 1
+		throw new System.NullReferenceException()
+		PlayerRoles.RoleAssign.OneRoleHumanSpawner oneRoleHumanSpawner2 = new PlayerRoles.RoleAssign.OneRoleHumanSpawner()
+
+		oneRoleHumanSpawner2..ctor()
+		oneRoleHumanSpawner2.<NextRole>k__BackingField = 15
+		throw new System.NullReferenceException()
+		PlayerRoles.RoleAssign.OneRoleHumanSpawner oneRoleHumanSpawner3 = new PlayerRoles.RoleAssign.OneRoleHumanSpawner()
+
+		oneRoleHumanSpawner3..ctor()
+		oneRoleHumanSpawner3.<NextRole>k__BackingField = 6
+		throw new System.NullReferenceException()
+		 += 16
+		PlayerRoles.RoleAssign.HumanSpawner._humanQueue = dictionary
+		System.Collections.Generic.Dictionary`2<System.String,PlayerRoles.RoleAssign.HumanSpawner/RoleHistory> dictionary2 = new System.Collections.Generic.Dictionary`2<System.String,PlayerRoles.RoleAssign.HumanSpawner/RoleHistory>()
+
+		dictionary2..ctor()
+		 += 24
+		PlayerRoles.RoleAssign.HumanSpawner._humanQueue = dictionary2
+		System.Collections.Generic.List`1<ReferenceHub> list = new System.Collections.Generic.List`1<ReferenceHub>()
+
+		list..ctor()
+		 += 32
+		PlayerRoles.RoleAssign.HumanSpawner._humanQueue = list
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AllocateInstanceAction at (0x1803D0BEA) is corrupt (Could not resolve a constructor with 0 parameters.) and cannot be created as IL. Aborting here.
+
+

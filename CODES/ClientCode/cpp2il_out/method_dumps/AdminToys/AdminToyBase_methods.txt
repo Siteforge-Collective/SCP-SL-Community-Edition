@@ -1,0 +1,596 @@
+Type: AdminToyBase
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AdminToys.AdminToyBase
+	Footprinting.Footprint get_SpawnerFootprint()
+		this. = 
+		this.m_CachedPtr = 
+		this.syncInterval = 
+		return this
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.RegToFieldAction at (0x1803CFEDB) is corrupt (Instance or field is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AdminToys.AdminToyBase
+	System.Void set_SpawnerFootprint(Footprinting.Footprint value)
+		System.UInt32 netId = value.NetId
+		this.<SpawnerFootprint>k__BackingField = constant1
+		System.String logUserID = value.LogUserID
+		this.<SpawnerFootprint>k__BackingField = netId
+		this.<SpawnerFootprint>k__BackingField = logUserID
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.RegToFieldAction at (0x1803CFFEB) is corrupt (ConstantDefinition: Don't know how to get IL to load a Cpp2IL.Core.Analysis.Il2CppClassIdentifier) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AdminToys.AdminToyBase
+	System.Void LateUpdate()
+		ulong local1 = 0
+
+		this.UpdatePositionClient()
+		return
+
+		UnityEngine.Transform transform = base.transform
+
+		UnityEngine.Vector3 position = .position
+		System.Single single = position.z
+
+		System.Boolean boolean = base.SyncVarEqual<UnityEngine.Vector3>()
+
+		if (boolean == False)
+
+		    base.SetSyncVar<UnityEngine.Vector3>()
+		endif
+        
+
+		UnityEngine.Transform transform2 = base.transform
+
+		UnityEngine.Quaternion rotation = .rotation
+
+		this.set_NetworkRotation()
+
+		UnityEngine.Transform transform3 = base.transform
+
+		UnityEngine.Vector3 localScale = .localScale
+		System.Single single2 = localScale.z
+
+		System.Boolean boolean2 = base.SyncVarEqual<UnityEngine.Vector3>()
+
+		if (boolean2 != False)
+            goto INSN_180595B25
+        endif
+
+		base.SetSyncVar<UnityEngine.Vector3>()
+
+		INSN_180595B25:
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1805959B2) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AdminToys.AdminToyBase
+	System.Void OnSpawned(ReferenceHub admin, System.ArraySegment`1<System.String> arguments)
+		ulong local3 = 0
+		ulong local4 = 0
+		this.<SpawnerFootprint>k__BackingField = local3
+		this.<SpawnerFootprint>k__BackingField = local3
+		this.<SpawnerFootprint>k__BackingField = local3
+
+		UnityEngine.GameObject gameObject = base.gameObject
+		ulong local10 = 0
+
+		Mirror.NetworkServer.Spawn(gameObject, local10) //(GameObject obj, NetworkConnection ownerConnection)
+
+		System.String string = Misc.LoggedNameFromRefHub(admin) //(ReferenceHub me)
+
+		this.OnStopAuthority()
+
+		System.UInt32 netId = base.netId
+		ulong local15 = 0
+
+		System.String string2 = System.String.Format("{0} spawned an admin toy: {1} with NetID {2}.", string, string, netId) //(String format, Object arg0, Object arg1, Object arg2)
+		ulong local17 = 0
+
+		ServerLogs.AddLog(4, string2, 1, local17) //(Modules module, String msg, ServerLogType type, Boolean init)
+		return
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: ldc.i4.0
+	IL_0003: stloc.1
+	IL_0004: ldarg.0
+	IL_0005: ldloc.0
+	IL_0006: stfld Footprinting.Footprint AdminToys.AdminToyBase::<SpawnerFootprint>k__BackingField
+	IL_000b: ldarg.0
+	IL_000c: ldloc.0
+	IL_000d: stfld Footprinting.Footprint AdminToys.AdminToyBase::<SpawnerFootprint>k__BackingField
+	IL_0012: ldarg.0
+	IL_0013: ldloc.0
+	IL_0014: stfld Footprinting.Footprint AdminToys.AdminToyBase::<SpawnerFootprint>k__BackingField
+	IL_0019: ldarg.0
+	IL_001a: call UnityEngine.GameObject UnityEngine.Component::get_gameObject()
+	IL_001f: stloc.2
+	IL_0020: ldc.i4.0
+	IL_0021: stloc.3
+	IL_0022: ldloc.2
+	IL_0023: ldloc.3
+	IL_0024: call System.Void Mirror.NetworkServer::Spawn(UnityEngine.GameObject,Mirror.NetworkConnection)
+	IL_0029: ldarg.1
+	IL_002a: call System.String Misc::LoggedNameFromRefHub(ReferenceHub)
+	IL_002f: stloc.s V_4
+	IL_0031: ldarg.0
+	IL_0032: callvirt System.Void Mirror.NetworkBehaviour::OnStopAuthority()
+	IL_0037: ldarg.0
+	IL_0038: call System.UInt32 Mirror.NetworkBehaviour::get_netId()
+	IL_003d: stloc.s V_5
+	IL_003f: ldc.i4.0
+	IL_0040: stloc.s V_6
+	IL_0042: ldstr "{0} spawned an admin toy: {1} with NetID {2}."
+	IL_0047: ldloc.s V_4
+	IL_0049: ldloc.s V_4
+	IL_004b: ldloc.s V_5
+	IL_004d: call System.String System.String::Format(System.String,System.Object,System.Object,System.Object)
+	IL_0052: stloc.s V_7
+	IL_0054: ldc.i4.0
+	IL_0055: stloc.s V_8
+	IL_0057: ldc.i4.4
+	IL_0058: conv.i8
+	IL_0059: conv.u8
+	IL_005a: ldloc.s V_7
+	IL_005c: ldc.i4.1
+	IL_005d: conv.i8
+	IL_005e: conv.u8
+	IL_005f: ldloc.s V_8
+	IL_0061: call System.Void ServerLogs::AddLog(ServerLogs/Modules,System.String,ServerLogs/ServerLogType,System.Boolean)
+	IL_0066: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AdminToys.AdminToyBase
+	System.Void UpdatePositionServer()
+
+		UnityEngine.Transform transform = base.transform
+
+		UnityEngine.Vector3 position = .position
+		System.Single single = position.z
+
+		System.Boolean boolean = base.SyncVarEqual<UnityEngine.Vector3>()
+
+		if (boolean == False)
+
+		    base.SetSyncVar<UnityEngine.Vector3>()
+		endif
+        
+
+		UnityEngine.Transform transform2 = base.transform
+
+		UnityEngine.Quaternion rotation = .rotation
+
+		this.set_NetworkRotation()
+
+		UnityEngine.Transform transform3 = base.transform
+
+		UnityEngine.Vector3 localScale = .localScale
+		System.Single single2 = localScale.z
+
+		System.Boolean boolean2 = base.SyncVarEqual<UnityEngine.Vector3>()
+
+		if (boolean2 != False)
+            goto INSN_180596385
+        endif
+
+		base.SetSyncVar<UnityEngine.Vector3>()
+
+		INSN_180596385:
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180596212) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AdminToys.AdminToyBase
+	System.Void UpdatePositionClient()
+		ulong local1 = 0
+
+		System.Single deltaTime = UnityEngine.Time.deltaTime
+		System.Single local5 =  * 0,3
+
+		UnityEngine.Transform transform = base.transform
+
+		UnityEngine.Transform transform2 = base.transform
+
+		UnityEngine.Vector3 position = this.position
+		ulong local14 = 0
+
+		UnityEngine.Vector3 vector3 = UnityEngine.Vector3.Lerp()
+
+		transform.set_position()
+
+		UnityEngine.Transform transform3 = base.transform
+
+		UnityEngine.Transform transform4 = base.transform
+
+		UnityEngine.Quaternion rotation = this.rotation
+
+		UnityEngine.Quaternion quaternion = UnityEngine.Quaternion.Lerp()
+
+		transform3.set_rotation()
+
+		UnityEngine.Transform transform5 = base.transform
+
+		UnityEngine.Transform transform6 = base.transform
+		System.Single single = this.Scale.z
+
+		UnityEngine.Vector3 localScale = single.localScale
+
+		UnityEngine.Vector3 vector32 = UnityEngine.Vector3.Lerp()
+		System.Single single2 = vector32.z
+
+		transform5.set_localScale()
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.MultiplyRegByGlobalAction at (0x180595F75) is corrupt (Operand we were multiplying by is null or local made was stripped) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AdminToys.AdminToyBase
+	System.Void .ctor()
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void Mirror.NetworkBehaviour::.ctor()
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AdminToys.AdminToyBase
+	System.Void MirrorProcessed()
+
+
+Generated IL:
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AdminToys.AdminToyBase
+	UnityEngine.Vector3 get_NetworkPosition()
+		this. = 
+		return this
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.RegToFieldAction at (0x1805963C2) is corrupt (Instance or field is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AdminToys.AdminToyBase
+	System.Void set_NetworkPosition(UnityEngine.Vector3 value)
+		System.Single single = value.z
+
+		System.Boolean boolean = base.SyncVarEqual<UnityEngine.Vector3>()
+
+		if (boolean == False)
+		    System.Single single2 = value.z
+
+		    base.SetSyncVar<UnityEngine.Vector3>()
+		endif
+        
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1805964D7) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AdminToys.AdminToyBase
+	LowPrecisionQuaternion get_NetworkRotation()
+		LowPrecisionQuaternion rotation = this.Rotation
+		return rotation
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld LowPrecisionQuaternion AdminToys.AdminToyBase::Rotation
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AdminToys.AdminToyBase
+	System.Void set_NetworkRotation(LowPrecisionQuaternion value)
+		System.SByte local2 = value._x
+
+		System.Boolean boolean = base.SyncVarEqual<LowPrecisionQuaternion>()
+
+		if (boolean == False)
+		    throw new System.NullReferenceException()
+		endif
+        
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.Implicit4ByteFieldReadAction at (0x180596546) is corrupt (Local local2 has been stripped out for being unused, so doesn't have a variable.) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AdminToys.AdminToyBase
+	UnityEngine.Vector3 get_NetworkScale()
+		this. = 
+		return this
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.RegToFieldAction at (0x1805963E2) is corrupt (Instance or field is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AdminToys.AdminToyBase
+	System.Void set_NetworkScale(UnityEngine.Vector3 value)
+		System.Single single = value.z
+
+		System.Boolean boolean = base.SyncVarEqual<UnityEngine.Vector3>()
+
+		if (boolean == False)
+		    System.Single single2 = value.z
+
+		    base.SetSyncVar<UnityEngine.Vector3>()
+		endif
+        
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180596607) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AdminToys.AdminToyBase
+	System.Byte get_NetworkMovementSmoothing()
+		System.Byte movementSmoothing = this.MovementSmoothing
+		return movementSmoothing
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Byte AdminToys.AdminToyBase::MovementSmoothing
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AdminToys.AdminToyBase
+	System.Void set_NetworkMovementSmoothing(System.Byte value)
+
+		System.Boolean boolean = base.SyncVarEqual<System.Byte>()
+
+		if (boolean == False)
+		    throw new System.NullReferenceException()
+		endif
+        
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180596435) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AdminToys.AdminToyBase
+	System.Boolean SerializeSyncVars(Mirror.NetworkWriter writer, System.Boolean forceAll)
+
+		System.Boolean boolean = base.SerializeSyncVars(writer, forceAll) //(NetworkWriter writer, Boolean initialState)
+
+		if (forceAll == False)
+		    System.UInt64 syncVarDirtyBits = this.<syncVarDirtyBits>k__BackingField
+
+		    Mirror.NetworkWriterExtensions.WriteUInt64(writer, syncVarDirtyBits) //(NetworkWriter writer, UInt64 value)
+
+		    if ( != 1)
+		        System.Single single = this.Position.z
+
+		        Mirror.NetworkWriterExtensions.WriteVector3()
+		    endif
+            
+		    System.UInt64 syncVarDirtyBits2 = this.<syncVarDirtyBits>k__BackingField
+
+		    if (syncVarDirtyBits2 == 2)
+                goto INSN_180595DD2
+            endif
+		    LowPrecisionQuaternion rotation = this.Rotation
+
+		    LowPrecisionQuaternionSerializer.WriteLowPrecisionQuaternion(writer, rotation) //(NetworkWriter writer, LowPrecisionQuaternion value)
+		    System.UInt64 syncVarDirtyBits3 = this.<syncVarDirtyBits>k__BackingField
+
+		    INSN_180595DD2:
+
+		    if (syncVarDirtyBits3 == 4)
+                goto INSN_180595E2B
+            endif
+		    System.Single single2 = this.Scale.z
+
+		    Mirror.NetworkWriterExtensions.WriteVector3()
+
+		    INSN_180595E2B:
+
+		    if ( == 8)
+                goto INSN_180595E67
+            endif
+		    System.Byte movementSmoothing = this.MovementSmoothing
+
+		    Mirror.NetworkWriterExtensions.WriteByte(writer, movementSmoothing) //(NetworkWriter writer, Byte value)
+
+		    INSN_180595E67:
+		else
+		    System.Single single3 = this.Position.z
+
+		    Mirror.NetworkWriterExtensions.WriteVector3()
+		    LowPrecisionQuaternion rotation2 = this.Rotation
+
+		    LowPrecisionQuaternionSerializer.WriteLowPrecisionQuaternion(writer, rotation2) //(NetworkWriter writer, LowPrecisionQuaternion value)
+		    System.Single single4 = this.Scale.z
+
+		    Mirror.NetworkWriterExtensions.WriteVector3()
+		    System.Byte movementSmoothing2 = this.MovementSmoothing
+
+		    Mirror.NetworkWriterExtensions.WriteByte(writer, movementSmoothing2) //(NetworkWriter writer, Byte value)
+		endif
+        
+		return True
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfZeroOrNullAction at (0x180595D5B) is corrupt (One of the arguments is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AdminToys.AdminToyBase
+	System.Void DeserializeSyncVars(Mirror.NetworkReader reader, System.Boolean initialState)
+
+		this.MirrorProcessed()
+
+		if (initialState == False)
+
+		    System.UInt64 uInt64 = Mirror.NetworkReaderExtensions.ReadUInt64(reader) //(NetworkReader reader)
+
+		    if (uInt64 != 1)
+
+		        UnityEngine.Vector3 vector3 = Mirror.NetworkReaderExtensions.ReadVector3()
+		        System.Single single = vector3.z
+
+		        this.set_NetworkPosition()
+		    endif
+            
+
+		    if (uInt64 == 2)
+                goto INSN_18059565A
+            endif
+
+		    LowPrecisionQuaternion lowPrecisionQuaternion = LowPrecisionQuaternionSerializer.ReadLowPrecisionQuaternion(reader) //(NetworkReader reader)
+		    System.SByte local13 = lowPrecisionQuaternion._x
+
+		    this.set_NetworkRotation()
+
+		    INSN_18059565A:
+
+		    if (uInt64 == 4)
+                goto INSN_1805956AF
+            endif
+
+		    UnityEngine.Vector3 vector32 = Mirror.NetworkReaderExtensions.ReadVector3()
+		    System.Single single2 = vector32.z
+
+		    this.set_NetworkScale()
+
+		    INSN_1805956AF:
+
+		    if (uInt64 == 8)
+                goto INSN_1805958C3
+            endif
+
+		    System.Byte byte = Mirror.NetworkReaderExtensions.ReadByte(reader) //(NetworkReader reader)
+		else
+
+		    UnityEngine.Vector3 vector33 = Mirror.NetworkReaderExtensions.ReadVector3()
+		    System.Single single3 = vector33.z
+
+		    System.Boolean boolean = base.SyncVarEqual<UnityEngine.Vector3>()
+
+		    if (boolean == False)
+
+		        base.SetSyncVar<UnityEngine.Vector3>()
+		    endif
+            
+
+		    LowPrecisionQuaternion lowPrecisionQuaternion2 = LowPrecisionQuaternionSerializer.ReadLowPrecisionQuaternion(reader) //(NetworkReader reader)
+		    System.SByte local28 = lowPrecisionQuaternion2._x
+
+		    this.set_NetworkRotation()
+
+		    UnityEngine.Vector3 vector34 = Mirror.NetworkReaderExtensions.ReadVector3()
+		    System.Single single4 = vector34.z
+
+		    System.Boolean boolean2 = base.SyncVarEqual<UnityEngine.Vector3>()
+
+		    if (boolean2 != False)
+                goto INSN_180595853
+            endif
+
+		    base.SetSyncVar<UnityEngine.Vector3>()
+
+		    INSN_180595853:
+
+		    [instruction error - managed method being called is null]
+		endif
+        
+
+		System.Boolean boolean3 = base.SyncVarEqual<System.Byte>()
+
+		if (boolean3 != False)
+            goto INSN_1805958C3
+        endif
+		throw new System.NullReferenceException()
+
+		INSN_1805958C3:
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180595617) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+

@@ -1,0 +1,113 @@
+Type: Respawning.NineTailedFoxSpawnHandler
+
+Method: System.Single get_EffectTime()
+
+Disassembly:
+	movss xmm0,dword ptr [1823000E8h]
+	ret
+
+ISIL:
+	001 Move xmm0, [0x1823000E8]
+	002 Return xmm0
+
+Method: System.Void GenerateQueue(System.Collections.Generic.Queue`1<PlayerRoles.RoleTypeId> queueToFill, System.Int32 playersToSpawn)
+
+Disassembly:
+	mov [rsp+10h],rbx
+	push rsi
+	sub rsp,20h
+	cmp byte ptr [1826FD98Ah],0
+	mov esi,r8d
+	mov rbx,rdx
+	jne short 0000000181AA8FABh
+	mov ecx,[1822C7828h]
+	call 0000000180294190h
+	mov byte ptr [1826FD98Ah],1
+	test rbx,rbx
+	je short 0000000181AA9017h
+	mov r8,[1827158D0h]
+	mov dl,0Ch
+	mov rcx,rbx
+	mov [rsp+30h],rdi
+	call 00000001812F1BD0h
+	mov edi,3
+	nop dword ptr [rax+rax]
+	mov r8,[1827158D0h]
+	mov dl,0Bh
+	mov rcx,rbx
+	call 00000001812F1BD0h
+	sub rdi,1
+	jne short 0000000181AA8FD0h
+	lea eax,[rsi-4]
+	test eax,eax
+	jle short 0000000181AA9007h
+	mov edi,eax
+	mov r8,[1827158D0h]
+	mov dl,0Dh
+	mov rcx,rbx
+	call 00000001812F1BD0h
+	sub rdi,1
+	jne short 0000000181AA8FF0h
+	mov rdi,[rsp+30h]
+	mov rbx,[rsp+38h]
+	add rsp,20h
+	pop rsi
+	ret
+	call 0000000180294310h
+
+ISIL:
+	001 Move stack:0x10, rbx
+	002 ShiftStack -8
+	003 Move stack:0x0, rsi
+	004 ShiftStack -32
+	005 Compare [0x1826FD98A], 0
+	006 Move rsi, r8
+	007 Move rbx, rdx
+	008 JumpIfNotEqual {12}
+	009 Move rcx, [0x1822C7828]
+	010 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	011 Move [0x1826FD98A], 1
+	012 Compare rbx, 0
+	013 JumpIfEqual {43}
+	014 Move r8, [0x1827158D0]
+	015 Move rdx, 12
+	016 Move rcx, rbx
+	017 Move stack:0x30, rdi
+	018 Call 0x1812F1BD0, rcx, rdx
+	019 Move rdi, 3
+	020 Nop 
+	021 Move r8, [0x1827158D0]
+	022 Move rdx, 11
+	023 Move rcx, rbx
+	024 Call 0x1812F1BD0, rcx, rdx
+	025 Subtract rdi, rdi, 1
+	026 JumpIfNotEqual {21}
+	027 LoadAddress rax, [rsi-4]
+	028 Compare rax, 0
+	029 JumpIfLessOrEqual {37}
+	030 Move rdi, rax
+	031 Move r8, [0x1827158D0]
+	032 Move rdx, 13
+	033 Move rcx, rbx
+	034 Call 0x1812F1BD0, rcx, rdx
+	035 Subtract rdi, rdi, 1
+	036 JumpIfNotEqual {31}
+	037 Move rdi, stack:0x30
+	038 Move rbx, stack:0x38
+	039 ShiftStack 32
+	040 Move rsi, stack:0x0
+	041 ShiftStack 8
+	042 Return 
+	043 Call 0x180294310, rcx, rdx, r8, r9
+
+Method: System.Void .ctor(System.String maxWaveSizeConfig, System.Int32 defaultMaxWaveSize, System.String startTokensConfig, System.Int32 defaultStartTokens)
+
+Disassembly:
+	mov qword ptr [rsp+30h],0
+	jmp near ptr 0000000180344950h
+
+ISIL:
+	001 Move stack:0x30, 0
+	002 Call ConfigBasedTeamSpawnHandler..ctor, rcx, rdx, r8, r9, stack:0x0
+	003 Return 
+

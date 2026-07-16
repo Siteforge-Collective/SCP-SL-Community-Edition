@@ -1,0 +1,195 @@
+Type: Bleeding
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomPlayerEffects.Bleeding
+	System.Boolean get_AllowEnabling()
+		ReferenceHub Hub = this.<Hub>k__BackingField
+		ulong local3 = 0
+
+		System.Boolean boolean = ReferenceHub.op_Inequality(Hub, local3) //(ReferenceHub left, ReferenceHub right)
+
+		if (boolean == False)
+		    return True
+		endif
+        
+		PlayerEffectsController playerEffectsController = Hub.playerEffectsController
+
+		CustomPlayerEffects.Vitality effect = playerEffectsController.GetEffect<CustomPlayerEffects.Vitality>()
+		return effect
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x181AEA5EA) is corrupt (Return value has a type of CustomPlayerEffects.Vitality, expecting an object of type System.Boolean) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomPlayerEffects.Bleeding
+	System.Void OnAwake()
+
+		CustomPlayerEffects.VignettePulse component = base.GetComponent<CustomPlayerEffects.VignettePulse>()
+		this._vignettePulse = component
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call T UnityEngine.Component::GetComponent<CustomPlayerEffects.VignettePulse>()
+	IL_0006: stloc.0
+	IL_0007: ldarg.0
+	IL_0008: ldloc.0
+	IL_0009: stfld CustomPlayerEffects.VignettePulse CustomPlayerEffects.Bleeding::_vignettePulse
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomPlayerEffects.Bleeding
+	System.Void ExecutePulse()
+		CustomPlayerEffects.VignettePulse _vignettePulse = this._vignettePulse
+
+		_vignettePulse.enabled = True
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld CustomPlayerEffects.VignettePulse CustomPlayerEffects.Bleeding::_vignettePulse
+	IL_0006: ldc.i4.1
+	IL_0007: call System.Void UnityEngine.Behaviour::set_enabled(System.Boolean)
+	IL_000c: ret
+	IL_000d: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0012: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomPlayerEffects.Bleeding
+	System.Void OnTick()
+		ReferenceHub Hub = this.<Hub>k__BackingField
+
+		System.Single single = CustomPlayerEffects.RainbowTaste.CurrentMultiplier(Hub) //(ReferenceHub ply)
+		ReferenceHub Hub2 = this.<Hub>k__BackingField
+		PlayerStatsSystem.PlayerStats playerStats = Hub2.playerStats
+		PlayerStatsSystem.DeathTranslation bleeding = PlayerStatsSystem.DeathTranslations.Bleeding
+		PlayerStatsSystem.UniversalDamageHandler universalDamageHandler = new PlayerStatsSystem.UniversalDamageHandler()
+		ulong local9 = 0
+
+		universalDamageHandler..ctor(single, bleeding, local9) //(Single damage, DeathTranslation deathReason, CassieAnnouncement cassieAnnouncement)
+
+		System.Boolean boolean = playerStats.DealDamage(universalDamageHandler) //(DamageHandlerBase handler)
+		ReferenceHub Hub3 = this.<Hub>k__BackingField
+		PlayerEffectsController playerEffectsController = Hub3.playerEffectsController
+
+		playerEffectsController.ServerSendPulse<CustomPlayerEffects.Bleeding>()
+		System.Single multPerTick = this.multPerTick
+		System.Single local16 = multPerTick * this.damagePerTick
+		System.Single maxDamage = this.maxDamage
+		this.damagePerTick = local16
+		single = local17
+		single = local16
+
+		System.Single single2 = UnityEngine.Mathf.Clamp(single, single, maxDamage) //(Single value, Single min, Single max)
+		this.damagePerTick = single2
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.RegToRegMoveAction at (0x181AEA962) is corrupt (Local local17 is a variable but it has been stripped out. Are you missing a call to RegisterUsedLocal?) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomPlayerEffects.Bleeding
+	System.Void Enabled()
+		System.Single maxDamage = this.maxDamage
+		this.damagePerTick = maxDamage
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Single CustomPlayerEffects.Bleeding::maxDamage
+	IL_0006: stloc.0
+	IL_0007: ldarg.0
+	IL_0008: ldloc.0
+	IL_0009: stfld System.Single CustomPlayerEffects.Bleeding::damagePerTick
+	IL_000e: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomPlayerEffects.Bleeding
+	System.Boolean IsHealable(ItemType it)
+
+		if (it == 17)
+		    System.Single minDamage = this.minDamage
+		    this.damagePerTick = minDamage
+		endif
+        
+		System.Boolean local3 = it == 14
+		return local3
+
+
+Generated IL:
+	IL_0000: ldarg.1
+	IL_0001: ldc.i4.s 17
+	IL_0003: bne.un.s IL_0013
+	IL_0005: ldarg.0
+	IL_0006: ldfld System.Single CustomPlayerEffects.Bleeding::minDamage
+	IL_000b: stloc.0
+	IL_000c: ldarg.0
+	IL_000d: ldloc.0
+	IL_000e: stfld System.Single CustomPlayerEffects.Bleeding::damagePerTick
+	IL_0013: ldarg.1
+	IL_0014: ldc.i4.s 14
+	IL_0016: ceq
+	IL_0018: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomPlayerEffects.Bleeding
+	System.Void .ctor()
+		this.minDamage = 2
+		this.maxDamage = 20
+		this.multPerTick = 0,5
+		this.damagePerTick = 20
+		this.<MaxIntensity>k__BackingField = 255
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldc.r4 2
+	IL_0006: stfld System.Single CustomPlayerEffects.Bleeding::minDamage
+	IL_000b: ldarg.0
+	IL_000c: ldc.r4 20
+	IL_0011: stfld System.Single CustomPlayerEffects.Bleeding::maxDamage
+	IL_0016: ldarg.0
+	IL_0017: ldc.r4 0,5
+	IL_001c: stfld System.Single CustomPlayerEffects.Bleeding::multPerTick
+	IL_0021: ldarg.0
+	IL_0022: ldc.r4 20
+	IL_0027: stfld System.Single CustomPlayerEffects.Bleeding::damagePerTick
+	IL_002c: ldarg.0
+	IL_002d: ldc.i4 255
+	IL_0032: conv.i8
+	IL_0033: conv.u8
+	IL_0034: stfld System.Byte CustomPlayerEffects.StatusEffectBase::<MaxIntensity>k__BackingField
+	IL_0039: ldarg.0
+	IL_003a: call System.Void UnityEngine.MonoBehaviour::.ctor()
+	IL_003f: ret
+	
+

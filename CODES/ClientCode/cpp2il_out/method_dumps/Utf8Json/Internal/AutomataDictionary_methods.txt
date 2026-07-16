@@ -1,0 +1,334 @@
+Type: AutomataDictionary
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Utf8Json.Internal.AutomataDictionary
+	System.Void .ctor()
+
+		base..ctor()
+		Utf8Json.Internal.AutomataDictionary/AutomataNode automataNode = new Utf8Json.Internal.AutomataDictionary/AutomataNode()
+		ulong local4 = 0
+
+		automataNode..ctor(local4) //(UInt64 key)
+		this.root = automataNode
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void System.Object::.ctor()
+	IL_0006: ldloc.1
+	IL_0007: newobj System.Void Utf8Json.Internal.AutomataDictionary/AutomataNode::.ctor(System.UInt64)
+	IL_000c: stloc.0
+	IL_000d: ldc.i4.0
+	IL_000e: stloc.1
+	IL_000f: ldarg.0
+	IL_0010: ldloc.0
+	IL_0011: stfld Utf8Json.Internal.AutomataDictionary/AutomataNode Utf8Json.Internal.AutomataDictionary::root
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Utf8Json.Internal.AutomataDictionary
+	System.Void Add(System.String str, System.Int32 value)
+
+		System.Byte[] encodedPropertyNameWithoutQuotation = Utf8Json.JsonWriter.GetEncodedPropertyNameWithoutQuotation(str) //(String propertyName)
+
+		this.Add(encodedPropertyNameWithoutQuotation, value) //(Byte[] bytes, Int32 value)
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.1
+	IL_0001: call System.Byte[] Utf8Json.JsonWriter::GetEncodedPropertyNameWithoutQuotation(System.String)
+	IL_0006: stloc.0
+	IL_0007: ldarg.0
+	IL_0008: ldloc.0
+	IL_0009: ldarg.2
+	IL_000a: call System.Void Utf8Json.Internal.AutomataDictionary::Add(System.Byte[],System.Int32)
+	IL_000f: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Utf8Json.Internal.AutomataDictionary
+	System.Void Add(System.Byte[] bytes, System.Int32 value)
+		Utf8Json.Internal.AutomataDictionary/AutomataNode root = this.root
+		System.Int32 length = bytes.Length
+
+		if (length != 0)
+
+		    System.UInt64 keySafe = Utf8Json.Internal.AutomataKeyGen.GetKeySafe()
+
+		    if ( != 0)
+
+		        Utf8Json.Internal.AutomataDictionary/AutomataNode automataNode = root.Add(keySafe) //(UInt64 key)
+		    endif
+            
+		    ulong local10 = 0
+
+		    System.Text.Encoding uTF8 = System.Text.Encoding.UTF8
+
+		    System.Int32 maxCharCount = uTF8.GetMaxCharCount()
+
+		    Utf8Json.Internal.AutomataDictionary/AutomataNode automataNode2 = root.Add()
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180CFCE6E) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (3)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Utf8Json.Internal.AutomataDictionary
+	System.Boolean TryGetValueSafe(System.ArraySegment`1<System.Byte> key, System.Int32& value)
+		System.Int32 _offset = key._offset
+		Utf8Json.Internal.AutomataDictionary/AutomataNode root = this.root
+		System.Int32 _count = key._count
+
+		if (_count != 0)
+		    ulong local6 = 0
+
+		    while (root != 0)
+
+		        Utf8Json.Internal.AutomataDictionary/AutomataNode automataNode = root.SearchNextSafe()
+
+		        if ( == local6)
+		        endwhile
+                
+		        goto INSN_180CFD491
+                
+
+		        if (automataNode != 0)
+		            System.Int32 value = automataNode.Value
+		            value.m_value = value
+		            return True
+		        endif
+                
+		        ulong local9 = 0
+		        return local9
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180CFD467) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (3)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Utf8Json.Internal.AutomataDictionary
+	System.String ToString()
+		System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder()
+
+		stringBuilder..ctor()
+		Utf8Json.Internal.AutomataDictionary/AutomataNode root = this.root
+		Utf8Json.Internal.AutomataDictionary/AutomataNode/<YieldChildren>d__17 enumeratorInstance = new Utf8Json.Internal.AutomataDictionary/AutomataNode/<YieldChildren>d__17()
+
+		enumeratorInstance.System.IDisposable.Dispose()
+		ulong local6 = 0
+		enumeratorInstance.<>1__state = 4294967294
+
+		System.Int32 currentManagedThreadId = System.Environment.CurrentManagedThreadId
+		enumeratorInstance.<>4__this = root
+		enumeratorInstance.<>l__initialThreadId = currentManagedThreadId
+		ulong local9 = 0
+
+		Utf8Json.Internal.AutomataDictionary.ToStringCore(enumeratorInstance, stringBuilder, local9) //(IEnumerable`1 nexts, StringBuilder sb, Int32 depth)
+
+		stringBuilder.GetObjectData()
+		return constant13
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AllocateInstanceAction at (0x180CFD385) is corrupt (Managed method being called is System.IDisposable.Dispose, not a ctor.) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Utf8Json.Internal.AutomataDictionary
+	static System.Void ToStringCore(System.Collections.Generic.IEnumerable`1<Utf8Json.Internal.AutomataDictionary/AutomataNode> nexts, System.Text.StringBuilder sb, System.Int32 depth)
+		ulong local3 = 0
+
+		if (constant5 == 0)
+            goto INSN_180CFD299
+        endif
+
+		if (local3 < constant5)
+		    local3 += local3
+
+		    if ("{il2cpp array field il2cppMethodInfo->}" == IEnumerator`1)
+                goto INSN_180CFD281
+            endif
+		    local3 += 1
+		endif
+        
+		ulong local6 = 0
+
+		if (depth == 0)
+            goto INSN_180CFD1B7
+        endif
+		System.Int64 local7 = 32
+
+		System.Text.StringBuilder stringBuilder = sb.Append(local7, local6) //(Char value, Int32 repeatCount)
+
+		INSN_180CFD1B7:
+
+		System.String string = System.String.Concat("[", local10, "]") //(Object arg0, Object arg1, Object arg2)
+
+		System.Text.StringBuilder stringBuilder2 = sb.Append(string) //(String value)
+
+		System.String string2 = System.String.Concat("(", string, ")") //(String str0, String str1, String str2)
+
+		System.Text.StringBuilder stringBuilder3 = sb.Append(string2) //(String value)
+
+		System.Text.StringBuilder stringBuilder4 = sb.Append(" = ") //(String value)
+
+		System.Text.StringBuilder stringBuilder5 = sb.Append()
+
+		System.Text.StringBuilder stringBuilder6 = sb.AppendLine()
+
+		System.Collections.Generic.IEnumerable`1<Utf8Json.Internal.AutomataDictionary/AutomataNode> iEnumerable = .YieldChildren()
+		System.Int32 local27 = depth + 1
+
+		Utf8Json.Internal.AutomataDictionary.ToStringCore(iEnumerable, sb, local27) //(IEnumerable`1 nexts, StringBuilder sb, Int32 depth)
+		endwhile
+    
+		goto INSN_180CFD2EB
+    
+		sb += sb
+		iEnumerable += 
+
+		INSN_180CFD299:
+
+		if (constant5 == 0)
+        goto INSN_180CFD2C1
+    endif
+
+		INSN_180CFD2C1:
+
+		if (local3 != 0)
+        goto INSN_180CFD2F1
+    endif
+		return
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+
+		INSN_180CFD2EB:
+		throw new System.NullReferenceException()
+
+		INSN_180CFD2F1:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfZeroOrNullAction at (0x180CFD12E) is corrupt (ConstantDefinition: Don't know how to get IL to load a Cpp2IL.Core.Analysis.ResultModels.StackPointer) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Utf8Json.Internal.AutomataDictionary
+	System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+		Utf8Json.Internal.AutomataDictionary/AutomataNode root = this.root
+		Utf8Json.Internal.AutomataDictionary/AutomataNode/<YieldChildren>d__17 enumeratorInstance = new Utf8Json.Internal.AutomataDictionary/AutomataNode/<YieldChildren>d__17()
+
+		enumeratorInstance.System.IDisposable.Dispose()
+		ulong local4 = 0
+		enumeratorInstance.<>1__state = 4294967294
+
+		System.Int32 currentManagedThreadId = System.Environment.CurrentManagedThreadId
+		enumeratorInstance.<>4__this = root
+		enumeratorInstance.<>l__initialThreadId = currentManagedThreadId
+		Utf8Json.Internal.AutomataDictionary/<YieldCore>d__9 enumeratorInstance2 = new Utf8Json.Internal.AutomataDictionary/<YieldCore>d__9()
+
+		enumeratorInstance2..ctor()
+		ulong local8 = 0
+		enumeratorInstance2.<>1__state = 4294967294
+
+		System.Int32 currentManagedThreadId2 = System.Environment.CurrentManagedThreadId
+		enumeratorInstance2.<>3__nexts = enumeratorInstance
+		enumeratorInstance2.<>l__initialThreadId = currentManagedThreadId2
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AllocateInstanceAction at (0x180CFCFF8) is corrupt (Managed method being called is System.IDisposable.Dispose, not a ctor.) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Utf8Json.Internal.AutomataDictionary
+	System.Collections.Generic.IEnumerator`1<System.Collections.Generic.KeyValuePair`2<System.String,System.Int32>> GetEnumerator()
+		Utf8Json.Internal.AutomataDictionary/AutomataNode root = this.root
+		Utf8Json.Internal.AutomataDictionary/AutomataNode/<YieldChildren>d__17 enumeratorInstance = new Utf8Json.Internal.AutomataDictionary/AutomataNode/<YieldChildren>d__17()
+
+		enumeratorInstance.System.IDisposable.Dispose()
+		ulong local4 = 0
+		enumeratorInstance.<>1__state = 4294967294
+
+		System.Int32 currentManagedThreadId = System.Environment.CurrentManagedThreadId
+		enumeratorInstance.<>4__this = root
+		enumeratorInstance.<>l__initialThreadId = currentManagedThreadId
+		Utf8Json.Internal.AutomataDictionary/<YieldCore>d__9 enumeratorInstance2 = new Utf8Json.Internal.AutomataDictionary/<YieldCore>d__9()
+
+		enumeratorInstance2..ctor()
+		ulong local8 = 0
+		enumeratorInstance2.<>1__state = 4294967294
+
+		System.Int32 currentManagedThreadId2 = System.Environment.CurrentManagedThreadId
+		enumeratorInstance2.<>3__nexts = enumeratorInstance
+		enumeratorInstance2.<>l__initialThreadId = currentManagedThreadId2
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AllocateInstanceAction at (0x180CFCFF8) is corrupt (Managed method being called is System.IDisposable.Dispose, not a ctor.) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Utf8Json.Internal.AutomataDictionary
+	static System.Collections.Generic.IEnumerable`1<System.Collections.Generic.KeyValuePair`2<System.String,System.Int32>> YieldCore(System.Collections.Generic.IEnumerable`1<Utf8Json.Internal.AutomataDictionary/AutomataNode> nexts)
+		Utf8Json.Internal.AutomataDictionary/<YieldCore>d__9 enumeratorInstance = new Utf8Json.Internal.AutomataDictionary/<YieldCore>d__9()
+
+		enumeratorInstance..ctor()
+		ulong local3 = 0
+		enumeratorInstance.<>1__state = 4294967294
+
+		System.Int32 currentManagedThreadId = System.Environment.CurrentManagedThreadId
+		enumeratorInstance.<>3__nexts = nexts
+		enumeratorInstance.<>l__initialThreadId = currentManagedThreadId
+		return enumeratorInstance
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AllocateInstanceAction at (0x180CFD4DF) is corrupt (Could not resolve a constructor with 0 parameters.) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Utf8Json.Internal.AutomataDictionary
+	System.Void EmitMatch(System.Reflection.Emit.ILGenerator il, System.Reflection.Emit.LocalBuilder p, System.Reflection.Emit.LocalBuilder rest, System.Reflection.Emit.LocalBuilder key, System.Action`1<System.Collections.Generic.KeyValuePair`2<System.String,System.Int32>> onFound, System.Action onNotFound)
+		Utf8Json.Internal.AutomataDictionary/AutomataNode root = this.root
+
+		root.EmitSearchNext()
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180CFCF8D) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (6)) and cannot be created as IL. Aborting here.
+
+

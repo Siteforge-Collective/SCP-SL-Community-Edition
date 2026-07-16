@@ -1,0 +1,300 @@
+Type: PhantomProjectile
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.ThrowableProjectiles.PhantomProjectile
+	System.Single get_CurTime()
+		ulong local1 = 0
+
+		System.Single timeSinceLevelLoad = UnityEngine.Time.timeSinceLevelLoad
+		return timeSinceLevelLoad
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: call System.Single UnityEngine.Time::get_timeSinceLevelLoad()
+	IL_0007: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.ThrowableProjectiles.PhantomProjectile
+	System.Void Init(System.UInt16 serial, UnityEngine.Transform cam, UnityEngine.Vector3 relativePosition, System.Single gravity)
+		System.Action`1<InventorySystem.Items.ThrowableProjectiles.ThrownProjectile> action = new System.Action`1<InventorySystem.Items.ThrowableProjectiles.ThrownProjectile>()
+
+		action..ctor(this, {'OnSpawned' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		System.Action`1<InventorySystem.Items.ThrowableProjectiles.ThrownProjectile> onProjectileSpawned = InventorySystem.Items.ThrowableProjectiles.ThrownProjectile.OnProjectileSpawned
+
+		System.Delegate delegate = System.Delegate.Combine(onProjectileSpawned, action) //(Delegate a, Delegate b)
+
+		if (delegate != 0)
+
+		    if (delegate == 0)
+                goto INSN_1804CD35F
+            endif
+		endif
+        
+
+		if (delegate == onProjectileSpawned)
+		    ulong local10 = 0
+		    this._projectileSerial = serial
+
+		    System.Single timeSinceLevelLoad = UnityEngine.Time.timeSinceLevelLoad
+		    this._scaleFactor = -1
+		    this._transitionFactor = -1
+		    this._replaceTime = timeSinceLevelLoad
+		    this._gravity = 0
+
+		    UnityEngine.GameObject gameObject = base.gameObject
+		    System.Single _transitionTime = this._transitionTime
+
+		    UnityEngine.Object.Destroy(gameObject, _transitionTime) //(Object obj, Single t)
+
+		    UnityEngine.Transform transform = base.transform
+		    ulong local20 = 0
+
+		    transform.parentInternal = local20
+
+		    UnityEngine.Transform transform2 = base.transform
+		    System.Single single = relativePosition.z
+
+		    UnityEngine.Vector3 vector3 = .TransformPoint()
+		    System.Single single2 = vector3.z
+
+		    transform2.set_position()
+
+		    UnityEngine.Transform transform3 = base.transform
+		    System.Single single3 = this._startScale.z
+
+		    transform3.set_localScale()
+		    return
+
+		    INSN_1804CD35F:
+		    throw new System.InvalidCastException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1804CD2E1) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.ThrowableProjectiles.PhantomProjectile
+	System.Void OnDestroy()
+		System.Action`1<InventorySystem.Items.ThrowableProjectiles.ThrownProjectile> action = new System.Action`1<InventorySystem.Items.ThrowableProjectiles.ThrownProjectile>()
+
+		action..ctor(this, {'OnSpawned' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		System.Action`1<InventorySystem.Items.ThrowableProjectiles.ThrownProjectile> onProjectileSpawned = InventorySystem.Items.ThrowableProjectiles.ThrownProjectile.OnProjectileSpawned
+
+		System.Delegate delegate = System.Delegate.Remove(onProjectileSpawned, action) //(Delegate source, Delegate value)
+
+		if (delegate != 0)
+
+		    if (delegate == 0)
+                goto INSN_1804CD4BF
+            endif
+		endif
+        
+
+		if (delegate == onProjectileSpawned)
+		    return
+
+		    INSN_1804CD4BF:
+		    throw new System.InvalidCastException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldftn System.Void InventorySystem.Items.ThrowableProjectiles.PhantomProjectile::OnSpawned(InventorySystem.Items.ThrowableProjectiles.ThrownProjectile)
+	IL_0007: newobj System.Void System.Action`1::.ctor(System.Object,System.IntPtr)
+	IL_000c: stloc.0
+	IL_000d: ldsfld System.Action`1<InventorySystem.Items.ThrowableProjectiles.ThrownProjectile> InventorySystem.Items.ThrowableProjectiles.ThrownProjectile::OnProjectileSpawned
+	IL_0012: stloc.1
+	IL_0013: ldloc.1
+	IL_0014: ldloc.0
+	IL_0015: call System.Delegate System.Delegate::Remove(System.Delegate,System.Delegate)
+	IL_001a: stloc.2
+	IL_001b: ldloc.2
+	IL_001c: ldc.i4.0
+	IL_001d: beq.s IL_0023
+	IL_001f: ldloc.2
+	IL_0020: ldc.i4.0
+	IL_0021: beq.s IL_0028
+	IL_0023: ldloc.2
+	IL_0024: ldloc.1
+	IL_0025: bne.un.s IL_0023
+	IL_0027: ret
+	IL_0028: newobj System.Void System.InvalidCastException::.ctor()
+	IL_002d: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.ThrowableProjectiles.PhantomProjectile
+	System.Void Update()
+		UnityEngine.Rigidbody rigidbody = this.Rigidbody
+
+		UnityEngine.Vector3 down = UnityEngine.Vector3.down
+		System.Single single = down.z
+
+		UnityEngine.Vector3 vector3 = UnityEngine.Vector3.op_Multiply()
+		System.Single single2 = vector3.z
+
+		rigidbody.AddForce()
+		System.Single _scaleFactor = this._scaleFactor
+		ulong local12 = 0
+
+		System.Single deltaTime = UnityEngine.Time.deltaTime
+		local2 = deltaTime
+		deltaTime = local2
+
+		System.Single single3 = UnityEngine.Mathf.Clamp01(deltaTime) //(Single value)
+		this._scaleFactor = single3
+
+		UnityEngine.Transform transform = base.transform
+		System.Single single4 = this._startScale.z
+		System.Single single5 = this._targetScale.z
+
+		UnityEngine.Vector3 vector32 = UnityEngine.Vector3.Lerp()
+		System.Single single6 = vector32.z
+
+		transform.set_localScale()
+
+		if (this._hasPickup != False)
+		    ulong local26 = 0
+
+		    System.Single timeSinceLevelLoad = UnityEngine.Time.timeSinceLevelLoad
+		    System.Single _replaceTime = this._replaceTime
+
+		    if (_replaceTime <= timeSinceLevelLoad)
+
+		        this.Replace()
+		    endif
+            
+		    return
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1804CDA0C) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.ThrowableProjectiles.PhantomProjectile
+	System.Void Replace()
+		ulong local1 = 0
+		InventorySystem.Items.ThrowableProjectiles.ThrownProjectile _pickupToReplace = this._pickupToReplace
+		ulong local4 = 0
+
+		System.Boolean boolean = UnityEngine.Object.op_Inequality(_pickupToReplace, local4) //(Object x, Object y)
+
+		if (boolean != False)
+		    InventorySystem.Items.ThrowableProjectiles.ThrownProjectile _pickupToReplace2 = this._pickupToReplace
+
+		    System.Boolean boolean2 = _pickupToReplace2.TryGetComponent<UnityEngine.Rigidbody>(local4) //(T& component)
+
+		    if (boolean2 != False)
+		        ulong local9 = 0
+
+		        System.Single deltaTime = UnityEngine.Time.deltaTime
+
+		        System.Single single = UnityEngine.Mathf.Clamp01(deltaTime) //(Single value)
+		        UnityEngine.Rigidbody rigidbody = this.Rigidbody
+		        this._transitionFactor = single
+
+		        UnityEngine.Vector3 position = .position
+
+		        UnityEngine.Vector3 position2 = .position
+
+		        UnityEngine.Vector3 vector3 = UnityEngine.Vector3.Lerp()
+
+		        rigidbody.MovePosition()
+		        UnityEngine.Rigidbody rigidbody2 = this.Rigidbody
+
+		        UnityEngine.Vector3 velocity = rigidbody.velocity
+
+		        UnityEngine.Vector3 velocity2 = rigidbody.velocity
+		        local20 = local29
+
+		        UnityEngine.Vector3 vector32 = UnityEngine.Vector3.Lerp()
+
+		        rigidbody2.set_velocity()
+		        UnityEngine.Rigidbody rigidbody3 = this.Rigidbody
+
+		        UnityEngine.Quaternion rotation = rigidbody2.rotation
+
+		        UnityEngine.Quaternion rotation2 = rigidbody2.rotation
+		        local20 = local41
+
+		        UnityEngine.Quaternion quaternion = UnityEngine.Quaternion.Lerp()
+
+		        rigidbody3.set_rotation()
+		    else
+		        InventorySystem.Items.ThrowableProjectiles.ThrownProjectile _pickupToReplace3 = this._pickupToReplace
+
+		        _pickupToReplace3.Update()
+		    endif
+            
+
+		    UnityEngine.GameObject gameObject = base.gameObject
+
+		    UnityEngine.Object.Destroy(gameObject) //(Object obj)
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1804CD708) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.ThrowableProjectiles.PhantomProjectile
+	System.Void OnSpawned(InventorySystem.Items.ThrowableProjectiles.ThrownProjectile projectile)
+		System.UInt16 _projectileSerial = this._projectileSerial
+
+		if ( == _projectileSerial)
+		    this._pickupToReplace = projectile
+		    this._hasPickup = True
+
+		    this.Replace()
+		endif
+        
+		return
+		  = _projectileSerial.
+
+		[instruction error - managed method being called is null]
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfNonZeroOrNonNullAction at (0x1804CD50C) is corrupt (One of the arguments is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.ThrowableProjectiles.PhantomProjectile
+	System.Void .ctor()
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void UnityEngine.MonoBehaviour::.ctor()
+	IL_0006: ret
+	
+

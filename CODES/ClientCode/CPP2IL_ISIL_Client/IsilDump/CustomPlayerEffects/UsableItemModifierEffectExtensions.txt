@@ -1,0 +1,300 @@
+Type: CustomPlayerEffects.UsableItemModifierEffectExtensions
+
+Method: System.Single GetSpeedMultiplier(ItemType type, ReferenceHub player)
+
+Disassembly:
+	mov [rsp+18h],rsi
+	push rdi
+	sub rsp,40h
+	cmp byte ptr [1826FDC76h],0
+	mov rdi,rdx
+	mov esi,ecx
+	jne short 0000000181B03B4Ah
+	mov ecx,[1822CBA50h]
+	call 0000000180294190h
+	mov byte ptr [1826FDC76h],1
+	mov [rsp+58h],rbx
+	xorps xmm0,xmm0
+	movss dword ptr [rsp+50h],xmm0
+	movaps [rsp+30h],xmm6
+	test rdi,rdi
+	je near ptr 0000000181B03C06h
+	mov rdi,[rdi+0B0h]
+	xor ebx,ebx
+	movss xmm6,dword ptr [181EA337Ch]
+	mov eax,ebx
+	test rdi,rdi
+	je near ptr 0000000181B03C06h
+	cmp eax,[rdi+50h]
+	jge short 0000000181B03BEEh
+	mov rcx,[rdi+48h]
+	test rcx,rcx
+	je short 0000000181B03C06h
+	cmp ebx,[rcx+18h]
+	jae short 0000000181B03C0Ch
+	movsxd rax,ebx
+	mov rcx,[rcx+rax*8+20h]
+	test rcx,rcx
+	je short 0000000181B03C06h
+	cmp byte ptr [rcx+28h],0
+	jbe short 0000000181B03BE8h
+	mov rdx,[18273C5F8h]
+	call 0000000180293F00h
+	test rax,rax
+	je short 0000000181B03BE8h
+	mov rdx,[18273C5F8h]
+	lea rcx,[rsp+50h]
+	mov [rsp+20h],rcx
+	mov r9d,esi
+	xor ecx,ecx
+	mov r8,rax
+	call 00000001800CBCF0h
+	test al,al
+	je short 0000000181B03BE8h
+	movss xmm0,dword ptr [rsp+50h]
+	mulss xmm0,xmm6
+	movaps xmm6,xmm0
+	inc ebx
+	mov eax,ebx
+	jmp short 0000000181B03B82h
+	mov rbx,[rsp+58h]
+	movaps xmm0,xmm6
+	movaps xmm6,[rsp+30h]
+	mov rsi,[rsp+60h]
+	add rsp,40h
+	pop rdi
+	ret
+	call 0000000180294310h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+
+ISIL:
+	001 Move stack:0x18, rsi
+	002 ShiftStack -8
+	003 Move stack:0x0, rdi
+	004 ShiftStack -64
+	005 Compare [0x1826FDC76], 0
+	006 Move rdi, rdx
+	007 Move rsi, rcx
+	008 JumpIfNotEqual {12}
+	009 Move rcx, [0x1822CBA50]
+	010 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	011 Move [0x1826FDC76], 1
+	012 Move stack:0x58, rbx
+	013 Move xmm0, 0
+	014 Move stack:0x50, xmm0
+	015 Move stack:0x30, xmm6
+	016 Compare rdi, 0
+	017 JumpIfEqual {64}
+	018 Move rdi, [rdi+176]
+	019 Move rbx, 0
+	020 Move xmm6, [0x181EA337C]
+	021 Move rax, rbx
+	022 Compare rdi, 0
+	023 JumpIfEqual {64}
+	024 Compare rax, [rdi+80]
+	025 JumpIfGreaterOrEqual {56}
+	026 Move rcx, [rdi+72]
+	027 Compare rcx, 0
+	028 JumpIfEqual {64}
+	029 Compare rbx, [rcx+24]
+	030 JumpIfGreaterOrEqual {66}
+	031 Move rax, rbx
+	032 Move rcx, [rcx+32+rax*8]
+	033 Compare rcx, 0
+	034 JumpIfEqual {64}
+	035 Compare [rcx+40], 0
+	036 JumpIfLessOrEqual {53}
+	037 Move rdx, typeof(CustomPlayerEffects.IUsableItemModifierEffect)
+	038 Call 0x180293F00, rcx, rdx, r8, r9
+	039 Compare rax, 0
+	040 JumpIfEqual {53}
+	041 Move rdx, typeof(CustomPlayerEffects.IUsableItemModifierEffect)
+	042 LoadAddress rcx, stack:0x50
+	043 Move stack:0x20, rcx
+	044 Move r9, rsi
+	045 Move rcx, 0
+	046 Move r8, rax
+	047 Call 0x1800CBCF0, rcx, rdx, r8, r9
+	048 Compare rax, 0
+	049 JumpIfEqual {53}
+	050 Move xmm0, stack:0x50
+	051 Multiply xmm0, xmm0, xmm6
+	052 Move xmm6, xmm0
+	053 Add rbx, rbx, 1
+	054 Move rax, rbx
+	055 Goto {24}
+	056 Move rbx, stack:0x58
+	057 Move xmm0, xmm6
+	058 Move xmm6, stack:0x30
+	059 Move rsi, stack:0x60
+	060 ShiftStack 64
+	061 Move rdi, stack:0x0
+	062 ShiftStack 8
+	063 Return xmm0
+	064 Call 0x180294310, rcx, rdx, r8, r9
+	065 Interrupt 
+	066 Call 0x180294110, rcx, rdx, r8, r9
+	067 Move rcx, rax
+	068 Move rdx, 0
+	069 Call 0x1802942E0, rcx, rdx, r8, r9
+
+Method: System.Boolean TryGetSpeedMultiplier(ItemType type, ReferenceHub player, out System.Single multiplier)
+
+Disassembly:
+	push rsi
+	push rdi
+	push r14
+	sub rsp,30h
+	cmp byte ptr [1826FDC76h],0
+	mov rsi,r8
+	mov rdi,rdx
+	mov r14d,ecx
+	jne short 0000000181B03C4Dh
+	mov ecx,[1822CBA50h]
+	call 0000000180294190h
+	mov byte ptr [1826FDC76h],1
+	mov [rsp+50h],rbx
+	xorps xmm0,xmm0
+	movss dword ptr [rsp+58h],xmm0
+	mov [rsp+60h],rbp
+	test rdi,rdi
+	je near ptr 0000000181B03D0Dh
+	mov rdi,[rdi+0B0h]
+	xor ebx,ebx
+	xor bpl,bpl
+	mov dword ptr [rsi],3F800000h
+	mov eax,ebx
+	test rdi,rdi
+	je near ptr 0000000181B03D0Dh
+	cmp eax,[rdi+50h]
+	jge short 0000000181B03CF6h
+	mov rcx,[rdi+48h]
+	test rcx,rcx
+	je short 0000000181B03D0Dh
+	cmp ebx,[rcx+18h]
+	jae short 0000000181B03D13h
+	movsxd rax,ebx
+	mov rcx,[rcx+rax*8+20h]
+	test rcx,rcx
+	je short 0000000181B03D0Dh
+	cmp byte ptr [rcx+28h],0
+	jbe short 0000000181B03CF0h
+	mov rdx,[18273C5F8h]
+	call 0000000180293F00h
+	test rax,rax
+	je short 0000000181B03CF0h
+	mov rdx,[18273C5F8h]
+	lea rcx,[rsp+58h]
+	mov [rsp+20h],rcx
+	mov r9d,r14d
+	xor ecx,ecx
+	mov r8,rax
+	call 00000001800CBCF0h
+	test al,al
+	je short 0000000181B03CF0h
+	movss xmm0,dword ptr [rsp+58h]
+	mov bpl,1
+	mulss xmm0,dword ptr [rsi]
+	movss dword ptr [rsi],xmm0
+	inc ebx
+	mov eax,ebx
+	jmp short 0000000181B03C86h
+	mov rbx,[rsp+50h]
+	movzx eax,bpl
+	mov rbp,[rsp+60h]
+	add rsp,30h
+	pop r14
+	pop rdi
+	pop rsi
+	ret
+	call 0000000180294310h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+
+ISIL:
+	001 ShiftStack -8
+	002 Move stack:0x0, rsi
+	003 ShiftStack -8
+	004 Move stack:0x0, rdi
+	005 ShiftStack -8
+	006 Move stack:0x0, r14
+	007 ShiftStack -48
+	008 Compare [0x1826FDC76], 0
+	009 Move rsi, r8
+	010 Move rdi, rdx
+	011 Move r14, rcx
+	012 JumpIfNotEqual {16}
+	013 Move rcx, [0x1822CBA50]
+	014 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	015 Move [0x1826FDC76], 1
+	016 Move stack:0x50, rbx
+	017 Move xmm0, 0
+	018 Move stack:0x58, xmm0
+	019 Move stack:0x60, rbp
+	020 Compare rdi, 0
+	021 JumpIfEqual {73}
+	022 Move rdi, [rdi+176]
+	023 Move rbx, 0
+	024 Move rbp, 0
+	025 Move [rsi], 0x3F800000
+	026 Move rax, rbx
+	027 Compare rdi, 0
+	028 JumpIfEqual {73}
+	029 Compare rax, [rdi+80]
+	030 JumpIfGreaterOrEqual {62}
+	031 Move rcx, [rdi+72]
+	032 Compare rcx, 0
+	033 JumpIfEqual {73}
+	034 Compare rbx, [rcx+24]
+	035 JumpIfGreaterOrEqual {75}
+	036 Move rax, rbx
+	037 Move rcx, [rcx+32+rax*8]
+	038 Compare rcx, 0
+	039 JumpIfEqual {73}
+	040 Compare [rcx+40], 0
+	041 JumpIfLessOrEqual {59}
+	042 Move rdx, typeof(CustomPlayerEffects.IUsableItemModifierEffect)
+	043 Call 0x180293F00, rcx, rdx, r8, r9
+	044 Compare rax, 0
+	045 JumpIfEqual {59}
+	046 Move rdx, typeof(CustomPlayerEffects.IUsableItemModifierEffect)
+	047 LoadAddress rcx, stack:0x58
+	048 Move stack:0x20, rcx
+	049 Move r9, r14
+	050 Move rcx, 0
+	051 Move r8, rax
+	052 Call 0x1800CBCF0, rcx, rdx, r8, r9
+	053 Compare rax, 0
+	054 JumpIfEqual {59}
+	055 Move xmm0, stack:0x58
+	056 Move rbp, 1
+	057 Multiply xmm0, xmm0, [rsi]
+	058 Move [rsi], xmm0
+	059 Add rbx, rbx, 1
+	060 Move rax, rbx
+	061 Goto {29}
+	062 Move rbx, stack:0x50
+	063 Move rax, rbp
+	064 Move rbp, stack:0x60
+	065 ShiftStack 48
+	066 Move r14, stack:0x0
+	067 ShiftStack 8
+	068 Move rdi, stack:0x0
+	069 ShiftStack 8
+	070 Move rsi, stack:0x0
+	071 ShiftStack 8
+	072 Return rax
+	073 Call 0x180294310, rcx, rdx, r8, r9
+	074 Interrupt 
+	075 Call 0x180294110, rcx, rdx, r8, r9
+	076 Move rcx, rax
+	077 Move rdx, 0
+	078 Call 0x1802942E0, rcx, rdx, r8, r9
+

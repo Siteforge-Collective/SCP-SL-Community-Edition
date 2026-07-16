@@ -1,0 +1,212 @@
+Type: StartScreen
+
+
+	Generated Pseudocode:
+
+	Declaring Type: StartScreen
+	static System.Void Show(PlayerRoles.PlayerRoleBase prb)
+		StartScreen _singleton = StartScreen._singleton
+
+		_singleton.Play(prb) //(PlayerRoleBase prb)
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldsfld StartScreen StartScreen::_singleton
+	IL_0005: ldarg.0
+	IL_0006: call System.Void StartScreen::Play(PlayerRoles.PlayerRoleBase)
+	IL_000b: ret
+	IL_000c: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0011: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: StartScreen
+	System.Void Awake()
+		StartScreen._singleton = this
+		ulong local2 = 0
+
+		System.Boolean boolean = PlayerPrefsSl.Get("ClassIntroFastFade", local2) //(String key, Boolean defaultValue)
+
+		if (boolean != False)
+		else
+		    UnityEngine.AnimationCurve _fadeLimitNormal = this._fadeLimitNormal
+		endif
+        
+		this._limiter = _fadeLimitNormal
+		UnityEngine.AnimationCurve _limiter = this._limiter
+
+		UnityEngine.Keyframe[] keys = _limiter.keys
+		UnityEngine.AnimationCurve _limiter2 = this._limiter
+
+		System.Int32 length = _limiter2.length
+		System.Int64 local13 = length * 28
+		local13 += 32
+		local13 += keys
+		this._length = 
+
+		UnityEngine.GameObject gameObject = base.gameObject
+		ulong local17 = 0
+
+		gameObject.SetActive(local17) //(Boolean value)
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x180396287) is corrupt (ConstantDefinition: Don't know how to get IL to load a System.Int64) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: StartScreen
+	System.Void Play(PlayerRoles.PlayerRoleBase prb)
+		UnityEngine.UI.Text _roleDescText = this._roleDescText
+
+		System.String string = prb.ToString()
+		ulong local4 = 0
+
+		System.String roleName = prb.RoleName
+
+		System.String string2 = TranslationReader.Get("Class_Descriptions", local4, roleName) //(String keyName, Int32 index, String defaultValue)
+
+		System.String text = _roleDescText.text
+		UnityEngine.UI.Text _roleNameText = this._roleNameText
+
+		System.String roleName2 = prb.RoleName
+
+		System.String text2 = _roleNameText.text
+		UnityEngine.UI.Text _roleNameText2 = this._roleNameText
+
+		PlayerRoles.Team team = .Team
+
+		UnityEngine.Color color = _roleNameText2.color
+
+		UnityEngine.Color roleColor = prb.RoleColor
+
+		System.Boolean boolean = UnityEngine.Object.op_Inequality()
+		this._hasHelpMenu = boolean
+
+		UnityEngine.GameObject gameObject = base.gameObject
+
+		gameObject.SetActive(True) //(Boolean value)
+		UnityEngine.AudioSource _bell = this._bell
+
+		System.Boolean isPlaying = _bell.isPlaying
+		UnityEngine.AudioSource _bell2 = this._bell
+
+		if (isPlaying == False)
+
+		    _bell2.Play()
+		else
+		    ulong local30 = 0
+
+		    _bell2.timeSamples = local30
+		endif
+        
+		this._elapsed = 0
+
+		this.Update()
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallVirtualMethodAction at (0x1803963EA) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: StartScreen
+	System.Void Update()
+		UnityEngine.AnimationCurve _scaleAnim = this._scaleAnim
+		UnityEngine.Transform _scaler = this._scaler
+		System.Single _elapsed = this._elapsed
+
+		System.Single single = _scaleAnim.Evaluate(_elapsed) //(Single time)
+		ulong local6 = 0
+
+		UnityEngine.Vector3 one = UnityEngine.Vector3.one
+		_elapsed = single
+		System.Single single2 = one.z
+
+		UnityEngine.Vector3 vector3 = UnityEngine.Vector3.op_Multiply(single, local6) //(Single d, Vector3 a)
+		System.Single single3 = vector3.z
+
+		_scaler.set_localScale()
+		UnityEngine.AnimationCurve _limiter = this._limiter
+		System.Single _elapsed2 = this._elapsed
+
+		System.Single single4 = _limiter.Evaluate(_elapsed2) //(Single time)
+		StartScreen/FadeElement[] _fadeElements = this._fadeElements
+		ulong local18 = 0
+
+		while (local18 < _fadeElements.Length)
+		    local18 += 2
+		    local18 += local18
+		    System.Single _elapsed3 = this._elapsed
+
+		    System.Single single5 = _fadeElements.Evaluate(_elapsed3) //(Single time)
+		    single = single5
+
+		    if (this._hasHelpMenu == False)
+
+		        if (local18 == this._helpScreenIndex)
+		        endif
+                
+		        _elapsed3 = single
+		        single5 = single4
+
+		        System.Single single6 = UnityEngine.Mathf.Min(single5, _elapsed3) //(Single a, Single b)
+		        _elapsed3 = single6
+
+		        .SetAlpha(_elapsed3) //(Single alpha)
+		        StartScreen/FadeElement[] _fadeElements2 = this._fadeElements
+		        local18 += 1
+		    endwhile
+            
+		    System.Single _elapsed4 = this._elapsed
+		    System.Single _length = this._length
+
+		    if (_length > _elapsed4)
+                goto INSN_180396720
+            endif
+
+		    UnityEngine.GameObject gameObject = base.gameObject
+		    ulong local32 = 0
+
+		    gameObject.SetActive(local32) //(Boolean value)
+		    return
+
+		    INSN_180396720:
+		    ulong local33 = 0
+
+		    System.Single deltaTime = UnityEngine.Time.deltaTime
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1803965F8) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: StartScreen
+	System.Void .ctor()
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void UnityEngine.MonoBehaviour::.ctor()
+	IL_0006: ret
+	
+

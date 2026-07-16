@@ -1,0 +1,326 @@
+Type: ItemSearchCompletor
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Searching.ItemSearchCompletor
+	System.SByte get_CategoryCount()
+		ulong local1 = 0
+		ReferenceHub referenceHub = this.Hub
+		InventorySystem.Inventory inventory = referenceHub.inventory
+		InventorySystem.InventoryInfo userInventory = inventory.UserInventory
+		System.Collections.Generic.Dictionary`2<System.UInt16,InventorySystem.Items.ItemBase> items = userInventory.Items
+
+		System.Collections.Generic.Dictionary`2/ValueCollection<System.UInt16,InventorySystem.Items.ItemBase> values = items.Values
+
+		System.Collections.Generic.Dictionary`2/ValueCollection/Enumerator<System.UInt16,InventorySystem.Items.ItemBase> enumerator = items.GetEnumerator()
+
+		if (enumerator != 0)
+		    ItemCategory _category = this._category
+
+		    if ( == _category)
+		        local1 += 1
+		    endif
+            
+
+		    items.Dispose()
+
+		    items.Dispose()
+
+		    if (items != 0)
+                goto INSN_18042DA0D
+            endif
+		    return local1
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+
+		    INSN_18042DA0D:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18042D979) is corrupt (Mismatched instance parameter. Expecting an instance of System.Collections.Generic.Dictionary`2/ValueCollection, actually {'items' (type System.Collections.Generic.Dictionary`2<System.UInt16,InventorySystem.Items.ItemBase>)}) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Searching.ItemSearchCompletor
+	System.Void .ctor(ReferenceHub hub, InventorySystem.Items.Pickups.ItemPickupBase targetPickup, InventorySystem.Items.ItemBase targetItem, System.Double maxDistanceSquared)
+
+		base..ctor()
+		ItemCategory category = targetItem.Category
+		this._category = category
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18042D8B5) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (4)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Searching.ItemSearchCompletor
+	System.Boolean ValidateAny()
+
+		System.Boolean boolean = base.ValidateAny()
+
+		if (boolean != False)
+		    ReferenceHub referenceHub = this.Hub
+		    InventorySystem.Inventory inventory = referenceHub.inventory
+		    InventorySystem.InventoryInfo userInventory = inventory.UserInventory
+		    System.Collections.Generic.Dictionary`2<System.UInt16,InventorySystem.Items.ItemBase> items = userInventory.Items
+
+		    System.Int32 count = items.Count
+
+		    if (count < 8)
+		        ItemCategory _category = this._category
+
+		        if (_category != constant11)
+		            ReferenceHub referenceHub2 = this.Hub
+
+		            System.SByte categoryLimit = InventorySystem.Configs.InventoryLimits.GetCategoryLimit(_category, referenceHub2) //(ItemCategory category, ReferenceHub player)
+		            System.Byte local12 = _category.value__
+
+		            System.Int32 int32 = UnityEngine.Mathf.Abs(local12) //(Int32 value)
+
+		            System.SByte categoryCount = this.CategoryCount
+		            ReferenceHub referenceHub3 = this.Hub
+		            Hints.HintDisplay hints = referenceHub3.hints
+		            Hints.HintParameter[] local19 = new Hints.HintParameter[2]
+		            ItemCategory _category2 = this._category
+		            Hints.ItemCategoryHintParameter itemCategoryHintParameter = new Hints.ItemCategoryHintParameter()
+
+		            itemCategoryHintParameter..ctor(_category2) //(ItemCategory category)
+
+		            if (itemCategoryHintParameter != 0)
+
+		                if (itemCategoryHintParameter == 0)
+                            goto INSN_18042D723
+                        endif
+		            endif
+                    
+		            local19[0] = itemCategoryHintParameter
+		            Hints.ByteHintParameter byteHintParameter = new Hints.ByteHintParameter()
+
+		            byteHintParameter..ctor(int32) //(Byte value)
+
+		            if (byteHintParameter == 0)
+                        goto INSN_18042D4AA
+                    endif
+
+		            if (byteHintParameter == 0)
+                        goto INSN_18042D743
+                    endif
+
+		            INSN_18042D4AA:
+		            local19[1] = byteHintParameter
+		            Hints.HintEffect[] local25 = new Hints.HintEffect[1]
+		            ulong local26 = 0
+
+		            Hints.AlphaCurveHintEffect alphaCurveHintEffect = Hints.HintEffectPresets.TrailingPulseAlpha(0.5, 1, 0.5, 2, local26, local28) //(Single floorValue, Single peakValue, Single startTrailScalar, Single iterationScalar, Single startScalar, Int32 count)
+
+		            if (alphaCurveHintEffect == 0)
+                        goto INSN_18042D53D
+                    endif
+
+		            if (alphaCurveHintEffect == 0)
+                        goto INSN_18042D763
+                    endif
+
+		            INSN_18042D53D:
+		            local25[0] = alphaCurveHintEffect
+		            Hints.TranslationHint translationHint = new Hints.TranslationHint()
+
+		            translationHint..ctor(4, local19, local25, local32) //(HintTranslations translation, HintParameter[] parameters, HintEffect[] effects, Single durationScalar)
+
+		            hints.Show(translationHint) //(Hint hint)
+		            ulong local34 = 0
+		            return local34
+		        endif
+                
+		    endif
+            
+		    ReferenceHub referenceHub4 = this.Hub
+		    Hints.HintDisplay hints2 = referenceHub4.hints
+		    Hints.HintParameter[] local37 = new Hints.HintParameter[1]
+		    Hints.ByteHintParameter byteHintParameter2 = new Hints.ByteHintParameter()
+
+		    byteHintParameter2..ctor({'8' (constant value of type System.Byte)}) //(Byte value)
+
+		    if (byteHintParameter2 == 0)
+                goto INSN_18042D62A
+            endif
+
+		    if (byteHintParameter2 == 0)
+                goto INSN_18042D783
+            endif
+
+		    INSN_18042D62A:
+		    local37[0] = byteHintParameter2
+		    Hints.HintEffect[] local40 = new Hints.HintEffect[1]
+		    ulong local41 = 0
+
+		    Hints.AlphaCurveHintEffect alphaCurveHintEffect2 = Hints.HintEffectPresets.TrailingPulseAlpha(0.5, 1, 0.5, 2, local41, local43) //(Single floorValue, Single peakValue, Single startTrailScalar, Single iterationScalar, Single startScalar, Int32 count)
+
+		    if (alphaCurveHintEffect2 == 0)
+                goto INSN_18042D6BD
+            endif
+
+		    if (alphaCurveHintEffect2 == 0)
+                goto INSN_18042D7A3
+            endif
+
+		    INSN_18042D6BD:
+		    local40[0] = alphaCurveHintEffect2
+		    Hints.TranslationHint translationHint2 = new Hints.TranslationHint()
+
+		    translationHint2..ctor(5, local37, local40, local47) //(HintTranslations translation, HintParameter[] parameters, HintEffect[] effects, Single durationScalar)
+		endif
+        
+		ulong local49 = 0
+		return local49
+
+		INSN_18042D723:
+
+		INSN_18042D743:
+
+		INSN_18042D763:
+
+		INSN_18042D783:
+
+		INSN_18042D7A3:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfZeroOrNullAction at (0x18042D36F) is corrupt (ConstantDefinition: Don't know how to get IL to load a System.Byte) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Searching.ItemSearchCompletor
+	System.Boolean ValidateStart()
+
+		System.Boolean boolean = base.ValidateStart()
+
+		if (boolean != False)
+		    InventorySystem.Items.ItemBase targetItem = this.TargetItem
+
+		    if (targetItem.ItemTypeId == -1)
+                goto INSN_18042D858
+            endif
+
+		    if (targetItem.Category == constant7)
+                goto INSN_18042D827
+            endif
+		    return True
+		endif
+        
+		ulong local4 = 0
+		return local4
+
+		INSN_18042D827:
+		System.InvalidOperationException invalidOperationException = new System.InvalidOperationException()
+
+		invalidOperationException..ctor("Item is not equippable (can be held in inventory).") //(String message)
+
+		INSN_18042D858:
+		System.InvalidOperationException invalidOperationException2 = new System.InvalidOperationException()
+
+		invalidOperationException2..ctor("Item has an invalid ItemType.") //(String message)
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfZeroOrNullAction at (0x18042D815) is corrupt (ConstantDefinition: Don't know how to get IL to load a System.Byte) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Searching.ItemSearchCompletor
+	System.Void Complete()
+		ReferenceHub referenceHub = this.Hub
+		InventorySystem.Items.Pickups.ItemPickupBase targetPickup = this.TargetPickup
+		InventorySystem.Inventory inventory = referenceHub.inventory
+
+		InventorySystem.Items.ItemBase itemBase = InventorySystem.InventoryExtensions.ServerAddItem()
+		InventorySystem.Items.Pickups.ItemPickupBase targetPickup2 = this.TargetPickup
+
+		targetPickup2.DestroySelf()
+
+		this.CheckCategoryLimitHint()
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18042D2A3) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (4)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Searching.ItemSearchCompletor
+	System.Void CheckCategoryLimitHint()
+		ItemCategory _category = this._category
+		ReferenceHub referenceHub = this.Hub
+
+		System.SByte categoryLimit = InventorySystem.Configs.InventoryLimits.GetCategoryLimit(_category, referenceHub) //(ItemCategory category, ReferenceHub player)
+
+		if (this._category != constant9)
+
+		    System.SByte categoryCount = this.CategoryCount
+		    ulong local8 = 0
+
+		    Hints.HintEffect[] hintEffectArray = Hints.HintEffectPresets.FadeInAndOut(0.25, 1, local8) //(Single window, Single durationScalar, Single startScalar)
+		    Hints.HintParameter[] local10 = new Hints.HintParameter[2]
+		    ItemCategory _category2 = this._category
+		    Hints.ItemCategoryHintParameter itemCategoryHintParameter = new Hints.ItemCategoryHintParameter()
+
+		    itemCategoryHintParameter..ctor(_category2) //(ItemCategory category)
+
+		    if (itemCategoryHintParameter != 0)
+
+		        if (itemCategoryHintParameter == 0)
+                    goto INSN_18042D22F
+                endif
+		    endif
+            
+		    local10[0] = itemCategoryHintParameter
+		    Hints.ByteHintParameter byteHintParameter = new Hints.ByteHintParameter()
+
+		    byteHintParameter..ctor(categoryLimit) //(Byte value)
+
+		    if (byteHintParameter == 0)
+                goto INSN_18042D19F
+            endif
+
+		    if (byteHintParameter == 0)
+                goto INSN_18042D24F
+            endif
+
+		    INSN_18042D19F:
+		    local10[1] = byteHintParameter
+		    ReferenceHub referenceHub2 = this.Hub
+		    Hints.HintDisplay hints = referenceHub2.hints
+		    Hints.TranslationHint translationHint = new Hints.TranslationHint()
+
+		    translationHint..ctor()
+
+		    hints.Show(translationHint) //(Hint hint)
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+		INSN_18042D22F:
+
+		INSN_18042D24F:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfZeroOrNullAction at (0x18042D0A7) is corrupt (ConstantDefinition: Don't know how to get IL to load a System.Byte) and cannot be created as IL. Aborting here.
+
+

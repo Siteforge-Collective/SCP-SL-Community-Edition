@@ -1,0 +1,105 @@
+Type: Hints.AmmoHintParameterFunctions
+
+Method: System.Void Serialize(Mirror.NetworkWriter writer, Hints.AmmoHintParameter value)
+
+Disassembly:
+	sub rsp,28h
+	mov r9,rdx
+	test rdx,rdx
+	je short 000000018136B347h
+	mov rax,[rdx]
+	mov rdx,rcx
+	mov rcx,r9
+	mov r8,[rax+198h]
+	add rsp,28h
+	jmp qword ptr [rax+190h]
+	call 0000000180294310h
+
+ISIL:
+	001 ShiftStack -40
+	002 Move r9, rdx
+	003 Compare rdx, 0
+	004 JumpIfEqual {12}
+	005 Move rax, [rdx]
+	006 Move rdx, rcx
+	007 Move rcx, r9
+	008 Move r8, [rax+408]
+	009 ShiftStack 40
+	010 Call 0, rcx, rdx, r8, r9, stack:0x0, stack:0x8, stack:0x10, stack:0x18, stack:0x20, stack:0x28, stack:0x30, stack:0x38, stack:0x40
+	011 Return 
+	012 Call 0x180294310, rcx, rdx, r8, r9
+
+Method: Hints.AmmoHintParameter Deserialize(Mirror.NetworkReader reader)
+
+Disassembly:
+	mov [rsp+8],rbx
+	push rdi
+	sub rsp,20h
+	cmp byte ptr [1826FDED4h],0
+	mov rdi,rcx
+	jne short 0000000181B1D258h
+	mov ecx,[1822E3B58h]
+	call 0000000180294190h
+	mov byte ptr [1826FDED4h],1
+	mov rcx,[18273A8C8h]
+	call 00000001802942D0h
+	cmp byte ptr [1826FDF01h],0
+	mov rbx,rax
+	jne short 0000000181B1D282h
+	mov ecx,[1822C5384h]
+	call 0000000180294190h
+	mov byte ptr [1826FDF01h],1
+	mov rdx,[18273EA38h]
+	mov rcx,rbx
+	call 00000001806A03D0h
+	test rbx,rbx
+	je short 0000000181B1D2BAh
+	mov rax,[rbx]
+	mov rdx,rdi
+	mov rcx,rbx
+	mov r8,[rax+188h]
+	call qword ptr [rax+180h]
+	mov rax,rbx
+	mov rbx,[rsp+30h]
+	add rsp,20h
+	pop rdi
+	ret
+	call 0000000180294310h
+
+ISIL:
+	001 Move stack:0x8, rbx
+	002 ShiftStack -8
+	003 Move stack:0x0, rdi
+	004 ShiftStack -32
+	005 Compare [0x1826FDED4], 0
+	006 Move rdi, rcx
+	007 JumpIfNotEqual {11}
+	008 Move rcx, [0x1822E3B58]
+	009 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	010 Move [0x1826FDED4], 1
+	011 Move rcx, typeof(Hints.AmmoHintParameter)
+	012 Call "il2cpp_codegen_object_new", rcx, rdx, r8, r9
+	013 Compare [0x1826FDF01], 0
+	014 Move rbx, rax
+	015 JumpIfNotEqual {19}
+	016 Move rcx, [0x1822C5384]
+	017 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	018 Move [0x1826FDF01], 1
+	019 Move rdx, [0x18273EA38]
+	020 Move rcx, rbx
+	021 Call 0x1806A03D0, rcx, rdx
+	022 Compare rbx, 0
+	023 JumpIfEqual {35}
+	024 Move rax, [rbx]
+	025 Move rdx, rdi
+	026 Move rcx, rbx
+	027 Move r8, [rax+392]
+	028 Call 0, rcx, rdx, r8, r9, stack:0x0, stack:0x8, stack:0x10, stack:0x18, stack:0x20, stack:0x28, stack:0x30, stack:0x38, stack:0x40
+	029 Move rax, rbx
+	030 Move rbx, stack:0x30
+	031 ShiftStack 32
+	032 Move rdi, stack:0x0
+	033 ShiftStack 8
+	034 Return rax
+	035 Call 0x180294310, rcx, rdx, r8, r9
+

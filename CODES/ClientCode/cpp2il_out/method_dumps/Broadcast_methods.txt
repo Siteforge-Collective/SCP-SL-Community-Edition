@@ -1,0 +1,667 @@
+Type: Broadcast
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Broadcast
+	static Broadcast get_Singleton()
+		. = 1
+		ulong local0 = 0
+
+		ReferenceHub localHub = ReferenceHub.LocalHub
+
+		Broadcast component = localHub.GetComponent<Broadcast>()
+		Broadcast._broadcast = component
+		Broadcast _broadcast = Broadcast._broadcast
+		return _broadcast
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ImmediateToFieldAction at (0x1804ECF6A) is corrupt (Instance or field is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Broadcast
+	System.Void Start()
+
+		System.Boolean isLocalPlayer = base.isLocalPlayer
+
+		if (isLocalPlayer != False)
+		    System.Collections.Generic.Queue`1<BroadcastMessage> messages = Broadcast.Messages
+
+		    messages.Clear()
+		    return
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Boolean Mirror.NetworkBehaviour::get_isLocalPlayer()
+	IL_0006: ldc.i4.0
+	IL_0007: beq.s IL_0014
+	IL_0009: ldsfld System.Collections.Generic.Queue`1<BroadcastMessage> Broadcast::Messages
+	IL_000e: call System.Void System.Collections.Generic.Queue`1::Clear()
+	IL_0013: ret
+	IL_0014: ret
+	IL_0015: newobj System.Void System.NullReferenceException::.ctor()
+	IL_001a: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Broadcast
+	System.Void OnDestroy()
+		Broadcast _broadcast = Broadcast._broadcast
+
+		System.Boolean boolean = UnityEngine.Object.op_Equality(this, _broadcast) //(Object x, Object y)
+
+		if (boolean != False)
+		    . = 0
+		endif
+        
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ImmediateToFieldAction at (0x1804EC689) is corrupt (Instance or field is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Broadcast
+	System.Void TargetAddElement(Mirror.NetworkConnection conn, System.String data, System.UInt16 time, Broadcast/BroadcastFlags flags)
+		ulong local5 = 0
+
+		Mirror.PooledNetworkWriter writer = Mirror.NetworkWriterPool.GetWriter()
+
+		Mirror.NetworkWriterExtensions.WriteString(writer, data) //(NetworkWriter writer, String value)
+
+		Mirror.NetworkWriterExtensions.WriteUInt16(writer, time) //(NetworkWriter writer, UInt16 value)
+
+		Mirror.GeneratedNetworkCode._Write_Broadcast/BroadcastFlags()
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'Broadcast' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		ulong local12 = 0
+
+		base.SendTargetRPCInternal(conn, typeFromHandle, "TargetAddElement", writer, local12) //(NetworkConnection conn, Type invokeClass, String rpcName, NetworkWriter writer, Int32 channelId)
+
+		Mirror.NetworkWriterPool.Recycle(writer) //(PooledNetworkWriter writer)
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1804EC9DF) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Broadcast
+	System.Void RpcAddElement(System.String data, System.UInt16 time, Broadcast/BroadcastFlags flags)
+		ulong local4 = 0
+
+		Mirror.PooledNetworkWriter writer = Mirror.NetworkWriterPool.GetWriter()
+
+		Mirror.NetworkWriterExtensions.WriteString(writer, data) //(NetworkWriter writer, String value)
+
+		Mirror.NetworkWriterExtensions.WriteUInt16(writer, time) //(NetworkWriter writer, UInt16 value)
+
+		Mirror.GeneratedNetworkCode._Write_Broadcast/BroadcastFlags(writer, flags) //(NetworkWriter writer, BroadcastFlags value)
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'Broadcast' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		ulong local11 = 0
+
+		base.SendRPCInternal(typeFromHandle, "RpcAddElement", writer, local11, local12) //(Type invokeClass, String rpcName, NetworkWriter writer, Int32 channelId, Boolean includeOwner)
+
+		Mirror.NetworkWriterPool.Recycle(writer) //(PooledNetworkWriter writer)
+		return
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: call Mirror.PooledNetworkWriter Mirror.NetworkWriterPool::GetWriter()
+	IL_0007: stloc.1
+	IL_0008: ldloc.1
+	IL_0009: ldarg.1
+	IL_000a: call System.Void Mirror.NetworkWriterExtensions::WriteString(Mirror.NetworkWriter,System.String)
+	IL_000f: ldloc.1
+	IL_0010: ldarg.2
+	IL_0011: call System.Void Mirror.NetworkWriterExtensions::WriteUInt16(Mirror.NetworkWriter,System.UInt16)
+	IL_0016: ldloc.1
+	IL_0017: ldarg.3
+	IL_0018: call System.Void Mirror.GeneratedNetworkCode::_Write_Broadcast/BroadcastFlags(Mirror.NetworkWriter,Broadcast/BroadcastFlags)
+	IL_001d: ldtoken Broadcast
+	IL_0022: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+	IL_0027: stloc.2
+	IL_0028: ldc.i4.0
+	IL_0029: stloc.3
+	IL_002a: ldarg.0
+	IL_002b: ldloc.2
+	IL_002c: ldstr "RpcAddElement"
+	IL_0031: ldloc.1
+	IL_0032: ldloc.3
+	IL_0033: ldloc.s V_4
+	IL_0035: call System.Void Mirror.NetworkBehaviour::SendRPCInternal(System.Type,System.String,Mirror.NetworkWriter,System.Int32,System.Boolean)
+	IL_003a: ldloc.1
+	IL_003b: call System.Void Mirror.NetworkWriterPool::Recycle(Mirror.PooledNetworkWriter)
+	IL_0040: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Broadcast
+	System.Void TargetClearElements(Mirror.NetworkConnection conn)
+		ulong local2 = 0
+
+		Mirror.PooledNetworkWriter writer = Mirror.NetworkWriterPool.GetWriter()
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'Broadcast' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		ulong local6 = 0
+
+		base.SendTargetRPCInternal(conn, typeFromHandle, "TargetClearElements", writer, local6) //(NetworkConnection conn, Type invokeClass, String rpcName, NetworkWriter writer, Int32 channelId)
+
+		Mirror.NetworkWriterPool.Recycle(writer) //(PooledNetworkWriter writer)
+		return
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: call Mirror.PooledNetworkWriter Mirror.NetworkWriterPool::GetWriter()
+	IL_0007: stloc.1
+	IL_0008: ldtoken Broadcast
+	IL_000d: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+	IL_0012: stloc.2
+	IL_0013: ldc.i4.0
+	IL_0014: stloc.3
+	IL_0015: ldarg.0
+	IL_0016: ldarg.1
+	IL_0017: ldloc.2
+	IL_0018: ldstr "TargetClearElements"
+	IL_001d: ldloc.1
+	IL_001e: ldloc.3
+	IL_001f: call System.Void Mirror.NetworkBehaviour::SendTargetRPCInternal(Mirror.NetworkConnection,System.Type,System.String,Mirror.NetworkWriter,System.Int32)
+	IL_0024: ldloc.1
+	IL_0025: call System.Void Mirror.NetworkWriterPool::Recycle(Mirror.PooledNetworkWriter)
+	IL_002a: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Broadcast
+	System.Void RpcClearElements()
+		ulong local1 = 0
+
+		Mirror.PooledNetworkWriter writer = Mirror.NetworkWriterPool.GetWriter()
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'Broadcast' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		ulong local5 = 0
+
+		base.SendRPCInternal(typeFromHandle, "RpcClearElements", writer, local5, local6) //(Type invokeClass, String rpcName, NetworkWriter writer, Int32 channelId, Boolean includeOwner)
+
+		Mirror.NetworkWriterPool.Recycle(writer) //(PooledNetworkWriter writer)
+		return
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: call Mirror.PooledNetworkWriter Mirror.NetworkWriterPool::GetWriter()
+	IL_0007: stloc.1
+	IL_0008: ldtoken Broadcast
+	IL_000d: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+	IL_0012: stloc.2
+	IL_0013: ldc.i4.0
+	IL_0014: stloc.3
+	IL_0015: ldarg.0
+	IL_0016: ldloc.2
+	IL_0017: ldstr "RpcClearElements"
+	IL_001c: ldloc.1
+	IL_001d: ldloc.3
+	IL_001e: ldloc.s V_4
+	IL_0020: call System.Void Mirror.NetworkBehaviour::SendRPCInternal(System.Type,System.String,Mirror.NetworkWriter,System.Int32,System.Boolean)
+	IL_0025: ldloc.1
+	IL_0026: call System.Void Mirror.NetworkWriterPool::Recycle(Mirror.PooledNetworkWriter)
+	IL_002b: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Broadcast
+	static System.Void AddElement(System.String data, System.UInt16 time, Broadcast/BroadcastFlags flags)
+		System.Collections.Generic.Queue`1<BroadcastMessage> messages = Broadcast.Messages
+
+		[instruction error - managed method being called is null]
+
+		if (constant11 == 0)
+		    System.Collections.Generic.Queue`1<BroadcastMessage> messages2 = Broadcast.Messages
+		    ulong local6 = 0
+
+		    System.String newLine = System.Environment.NewLine
+		    ulong local8 = 0
+
+		    System.String string = data.Replace("\n", newLine) //(String oldValue, String newValue)
+
+		    if (flags != constant27)
+
+		        System.String string2 = System.String.Concat("<color=#FFA500><b>[Admin Chat]</b></color> <color=green>", string, "</color>") //(String str0, String str1, String str2)
+		    endif
+            
+		    BroadcastMessage broadcastMessage = new BroadcastMessage()
+		    ulong local13 = 0
+
+		    broadcastMessage.FieldGetter(local13, newLine, local8) //(String typeName, String fieldName, Object& val)
+		    broadcastMessage.Text = string
+		    broadcastMessage.Time = time
+		    broadcastMessage.Truncated = flags
+
+		    messages2.Enqueue(broadcastMessage) //(T item)
+		    GameCore.Console singleton = GameCore.Console.<singleton>k__BackingField
+		    ulong local16 = 0
+
+		    System.Boolean boolean = UnityEngine.Object.op_Inequality(singleton, local16) //(Object x, Object y)
+
+		    if (boolean == False)
+                goto INSN_1804EBEF9
+            endif
+		    System.Object[] local18 = new System.Object[6]
+		    string local19 = flags != constant62 ? "<color=#FFA500><b>[Admin Chat]</b></color> " : "[BROADCAST FROM SERVER] "
+
+		    if (local19 == 0)
+                goto INSN_1804EBCE6
+            endif
+
+		    if (local18 == 0)
+                goto INSN_1804EBF16
+            endif
+
+		    INSN_1804EBCE6:
+		    throw new System.IndexOutOfRangeException()
+
+		    System.String string3 = data.Replace("<", "[") //(String oldValue, String newValue)
+
+		    System.String string4 = string3.Replace(">", "]") //(String oldValue, String newValue)
+
+		    if (string4 == 0)
+                goto INSN_1804EBD4E
+            endif
+
+		    if (string4 == 0)
+                goto INSN_1804EBF26
+            endif
+
+		    INSN_1804EBD4E:
+		    local18[1] = string4
+
+		    if (", time: " == 0)
+                goto INSN_1804EBD92
+            endif
+
+		    if (", time: " == 0)
+                goto INSN_1804EBF46
+            endif
+
+		    INSN_1804EBD92:
+		    local18[2] = ", time: "
+
+		    if (", time: " == 0)
+                goto INSN_1804EBDE8
+            endif
+
+		    if (", time: " == 0)
+                goto INSN_1804EBF66
+            endif
+
+		    INSN_1804EBDE8:
+		    local18[3] = ", time: "
+
+		    if (", monospace: " == 0)
+                goto INSN_1804EBE2C
+            endif
+
+		    if (", monospace: " == 0)
+                goto INSN_1804EBF86
+            endif
+
+		    INSN_1804EBE2C:
+		    local18[4] = ", monospace: "
+		    string local26 = flags != constant100 ? "YES" : "NO"
+
+		    if (local26 == 0)
+                goto INSN_1804EBE74
+            endif
+
+		    if (", monospace: " == 0)
+                goto INSN_1804EBFA6
+            endif
+
+		    INSN_1804EBE74:
+		    throw new System.IndexOutOfRangeException()
+
+		    System.String string5 = System.String.Concat(local18) //(Object[] args)
+
+		    if (flags == constant107)
+                goto INSN_1804EBEA9
+            endif
+
+		    UnityEngine.Color green = UnityEngine.Color.green
+
+		    INSN_1804EBEA9:
+
+		    [instruction error - managed method being called is null]
+
+		    GameCore.Console.AddLog()
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+		INSN_1804EBF16:
+
+		INSN_1804EBF26:
+
+		INSN_1804EBF46:
+
+		INSN_1804EBF66:
+
+		INSN_1804EBF86:
+
+		INSN_1804EBFA6:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1804EBADD) is corrupt (Don't know what method is being called) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Broadcast
+	System.Void .ctor()
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void Mirror.NetworkBehaviour::.ctor()
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Broadcast
+	static System.Void .cctor()
+		System.Collections.Generic.Queue`1<BroadcastMessage> queue = new System.Collections.Generic.Queue`1<BroadcastMessage>()
+
+		queue..ctor()
+		 += 16
+		Broadcast._broadcast = queue
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'Broadcast' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		Mirror.RemoteCalls.CmdDelegate cmdDelegate = new Mirror.RemoteCalls.CmdDelegate()
+		ulong local5 = 0
+
+		cmdDelegate..ctor(local5, {'InvokeUserCode_RpcAddElement' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		Mirror.RemoteCalls.RemoteCallHelper.RegisterRpcDelegate(typeFromHandle, "RpcAddElement", cmdDelegate) //(Type invokeClass, String rpcName, CmdDelegate func)
+
+		System.Type typeFromHandle2 = System.Type.GetTypeFromHandle({'Broadcast' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		Mirror.RemoteCalls.CmdDelegate cmdDelegate2 = new Mirror.RemoteCalls.CmdDelegate()
+		ulong local11 = 0
+
+		cmdDelegate2..ctor(local11, {'InvokeUserCode_RpcClearElements' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		Mirror.RemoteCalls.RemoteCallHelper.RegisterRpcDelegate(typeFromHandle2, "RpcClearElements", cmdDelegate2) //(Type invokeClass, String rpcName, CmdDelegate func)
+
+		System.Type typeFromHandle3 = System.Type.GetTypeFromHandle({'Broadcast' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		Mirror.RemoteCalls.CmdDelegate cmdDelegate3 = new Mirror.RemoteCalls.CmdDelegate()
+		ulong local17 = 0
+
+		cmdDelegate3..ctor(local17, {'InvokeUserCode_TargetAddElement' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		Mirror.RemoteCalls.RemoteCallHelper.RegisterRpcDelegate(typeFromHandle3, "TargetAddElement", cmdDelegate3) //(Type invokeClass, String rpcName, CmdDelegate func)
+
+		System.Type typeFromHandle4 = System.Type.GetTypeFromHandle({'Broadcast' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		Mirror.RemoteCalls.CmdDelegate cmdDelegate4 = new Mirror.RemoteCalls.CmdDelegate()
+		ulong local23 = 0
+
+		cmdDelegate4..ctor(local23, {'InvokeUserCode_TargetClearElements' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		Mirror.RemoteCalls.RemoteCallHelper.RegisterRpcDelegate(typeFromHandle4, "TargetClearElements", cmdDelegate4) //(Type invokeClass, String rpcName, CmdDelegate func)
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x1804ECD74) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Broadcast
+	System.Void MirrorProcessed()
+
+
+Generated IL:
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Broadcast
+	System.Void UserCode_TargetAddElement(Mirror.NetworkConnection conn, System.String data, System.UInt16 time, Broadcast/BroadcastFlags flags)
+
+		Broadcast.AddElement()
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1804ECC93) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (3)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Broadcast
+	static System.Void InvokeUserCode_TargetAddElement(Mirror.NetworkBehaviour obj, Mirror.NetworkReader reader, Mirror.NetworkConnectionToClient senderConnection)
+		ulong local3 = 0
+
+		System.Boolean active = Mirror.NetworkClient.active
+
+		if (active != False)
+		    ulong local5 = 0
+
+		    Mirror.NetworkConnection readyConnection = Mirror.NetworkClient.readyConnection
+
+		    System.String string = Mirror.NetworkReaderExtensions.ReadString(reader) //(NetworkReader reader)
+
+		    System.UInt16 uInt16 = Mirror.NetworkReaderExtensions.ReadUInt16(reader) //(NetworkReader reader)
+		    ulong local11 = 0
+
+		    Broadcast/BroadcastFlags broadcastFlags = Mirror.GeneratedNetworkCode._Read_Broadcast/BroadcastFlags(reader) //(NetworkReader reader)
+		    //UNKNOWN CLASS OFFSET READ HERE
+
+		    Broadcast.AddElement(string, uInt16, broadcastFlags) //(String data, UInt16 time, BroadcastFlags flags)
+		    return
+		endif
+        
+
+		UnityEngine.Debug.LogError("TargetRPC TargetAddElement called on server.") //(Object message)
+		return
+		throw new System.InvalidCastException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.UnknownClassOffsetReadAction at (0x1804EC393) is corrupt (Unknown class offset read) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Broadcast
+	System.Void UserCode_RpcAddElement(System.String data, System.UInt16 time, Broadcast/BroadcastFlags flags)
+
+		if (data != 0)
+
+		    Broadcast.AddElement(data, time, flags) //(String data, UInt16 time, BroadcastFlags flags)
+		endif
+        
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.1
+	IL_0001: ldc.i4.0
+	IL_0002: beq.s IL_000c
+	IL_0004: ldarg.1
+	IL_0005: ldarg.2
+	IL_0006: ldarg.3
+	IL_0007: call System.Void Broadcast::AddElement(System.String,System.UInt16,Broadcast/BroadcastFlags)
+	IL_000c: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Broadcast
+	static System.Void InvokeUserCode_RpcAddElement(Mirror.NetworkBehaviour obj, Mirror.NetworkReader reader, Mirror.NetworkConnectionToClient senderConnection)
+		ulong local3 = 0
+
+		System.Boolean active = Mirror.NetworkClient.active
+
+		if (active != False)
+
+		    System.String string = Mirror.NetworkReaderExtensions.ReadString(reader) //(NetworkReader reader)
+
+		    System.UInt16 uInt16 = Mirror.NetworkReaderExtensions.ReadUInt16(reader) //(NetworkReader reader)
+		    ulong local9 = 0
+
+		    Broadcast/BroadcastFlags broadcastFlags = Mirror.GeneratedNetworkCode._Read_Broadcast/BroadcastFlags(reader) //(NetworkReader reader)
+		    //UNKNOWN CLASS OFFSET READ HERE
+
+		    if (string != 0)
+
+		        Broadcast.AddElement(string, uInt16, broadcastFlags) //(String data, UInt16 time, BroadcastFlags flags)
+		    endif
+            
+		    return
+		endif
+        
+
+		UnityEngine.Debug.LogError("RPC RpcAddElement called on server.") //(Object message)
+		return
+		throw new System.InvalidCastException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.UnknownClassOffsetReadAction at (0x1804EC08E) is corrupt (Unknown class offset read) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Broadcast
+	System.Void UserCode_TargetClearElements(Mirror.NetworkConnection conn)
+		System.Collections.Generic.Queue`1<BroadcastMessage> messages = Broadcast.Messages
+
+		messages.Clear()
+		. = 0
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ImmediateToFieldAction at (0x1804ECD11) is corrupt (Instance or field is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Broadcast
+	static System.Void InvokeUserCode_TargetClearElements(Mirror.NetworkBehaviour obj, Mirror.NetworkReader reader, Mirror.NetworkConnectionToClient senderConnection)
+		ulong local3 = 0
+
+		System.Boolean active = Mirror.NetworkClient.active
+
+		if (active != False)
+		    ulong local5 = 0
+
+		    Mirror.NetworkConnection readyConnection = Mirror.NetworkClient.readyConnection
+		    //UNKNOWN CLASS OFFSET READ HERE
+		    System.Collections.Generic.Queue`1<BroadcastMessage> messages = Broadcast.Messages
+
+		    messages.Clear()
+		    . = 0
+		    return
+		endif
+        
+
+		UnityEngine.Debug.LogError("TargetRPC TargetClearElements called on server.") //(Object message)
+		return
+		throw new System.InvalidCastException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.UnknownClassOffsetReadAction at (0x1804EC4FC) is corrupt (Unknown class offset read) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Broadcast
+	System.Void UserCode_RpcClearElements()
+		System.Collections.Generic.Queue`1<BroadcastMessage> messages = Broadcast.Messages
+
+		messages.Clear()
+		. = 0
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ImmediateToFieldAction at (0x1804ECC21) is corrupt (Instance or field is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Broadcast
+	static System.Void InvokeUserCode_RpcClearElements(Mirror.NetworkBehaviour obj, Mirror.NetworkReader reader, Mirror.NetworkConnectionToClient senderConnection)
+		ulong local3 = 0
+
+		System.Boolean active = Mirror.NetworkClient.active
+
+		if (active != False)
+		    //UNKNOWN CLASS OFFSET READ HERE
+		    System.Collections.Generic.Queue`1<BroadcastMessage> messages = Broadcast.Messages
+
+		    messages.Clear()
+		    . = 0
+		    return
+		endif
+        
+
+		UnityEngine.Debug.LogError("RPC RpcClearElements called on server.") //(Object message)
+		return
+		throw new System.InvalidCastException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.UnknownClassOffsetReadAction at (0x1804EC1D7) is corrupt (Unknown class offset read) and cannot be created as IL. Aborting here.
+
+

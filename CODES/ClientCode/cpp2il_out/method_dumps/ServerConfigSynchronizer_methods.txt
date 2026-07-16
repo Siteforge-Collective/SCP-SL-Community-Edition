@@ -1,0 +1,919 @@
+Type: ServerConfigSynchronizer
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ServerConfigSynchronizer
+	System.Void Awake()
+		ServerConfigSynchronizer.Singleton = this
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: stsfld ServerConfigSynchronizer ServerConfigSynchronizer::Singleton
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ServerConfigSynchronizer
+	static System.Void RefreshAllConfigs()
+		ServerConfigSynchronizer singleton = ServerConfigSynchronizer.Singleton
+		ulong local2 = 0
+
+		System.Boolean boolean = UnityEngine.Object.op_Equality(singleton, local2) //(Object x, Object y)
+
+		if (boolean == False)
+		    ServerConfigSynchronizer singleton2 = ServerConfigSynchronizer.Singleton
+		    System.Boolean friendlyFire = ServerConsole.FriendlyFire
+		    ulong local7 = 0
+		    ulong local9 = 0
+		    ulong local11 = 0
+
+		    System.Byte byte = Misc.BoolsToByte(friendlyFire, local11, local9, local7, local13, local12, local10, local8) //(Boolean bool1, Boolean bool2, Boolean bool3, Boolean bool4, Boolean bool5, Boolean bool6, Boolean bool7, Boolean bool8)
+
+		    singleton2.NetworkMainBoolsSync = byte
+
+		    UnityEngine.Debug.LogWarning("[Server] function 'System.Void ServerConfigSynchronizer::RefreshMainBools()' called when server was not active") //(Object message)
+		    ServerConfigSynchronizer singleton3 = ServerConfigSynchronizer.Singleton
+
+		    singleton3.RefreshCategoryLimits()
+		    ServerConfigSynchronizer singleton4 = ServerConfigSynchronizer.Singleton
+
+		    singleton4.RefreshAmmoLimits()
+		    ServerConfigSynchronizer singleton5 = ServerConfigSynchronizer.Singleton
+
+		    singleton5.RefreshRAConfigs()
+		    System.Action onRefreshed = ServerConfigSynchronizer.OnRefreshed
+
+		    if (onRefreshed != 0)
+
+		        onRefreshed.Invoke()
+		        return
+		    endif
+            
+		    return
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldsfld ServerConfigSynchronizer ServerConfigSynchronizer::Singleton
+	IL_0005: stloc.0
+	IL_0006: ldc.i4.0
+	IL_0007: stloc.1
+	IL_0008: ldloc.0
+	IL_0009: ldloc.1
+	IL_000a: call System.Boolean UnityEngine.Object::op_Equality(UnityEngine.Object,UnityEngine.Object)
+	IL_000f: ldc.i4.0
+	IL_0010: bne.un.s IL_0081
+	IL_0012: ldsfld ServerConfigSynchronizer ServerConfigSynchronizer::Singleton
+	IL_0017: stloc.2
+	IL_0018: ldsfld System.Boolean ServerConsole::FriendlyFire
+	IL_001d: stloc.3
+	IL_001e: ldc.i4.0
+	IL_001f: stloc.s V_5
+	IL_0021: ldc.i4.0
+	IL_0022: stloc.s V_7
+	IL_0024: ldc.i4.0
+	IL_0025: stloc.s V_9
+	IL_0027: ldloc.3
+	IL_0028: ldloc.s V_9
+	IL_002a: ldloc.s V_7
+	IL_002c: ldloc.s V_5
+	IL_002e: ldloc.s V_11
+	IL_0030: ldloc.s V_10
+	IL_0032: ldloc.s V_8
+	IL_0034: ldloc.s V_6
+	IL_0036: call System.Byte Misc::BoolsToByte(System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+	IL_003b: stloc.s V_12
+	IL_003d: ldloc.2
+	IL_003e: ldloc.s V_12
+	IL_0040: call System.Void ServerConfigSynchronizer::set_NetworkMainBoolsSync(System.Byte)
+	IL_0045: ldstr "[Server] function 'System.Void ServerConfigSynchronizer::RefreshMainBools()' called when server was not active"
+	IL_004a: call System.Void UnityEngine.Debug::LogWarning(System.Object)
+	IL_004f: ldsfld ServerConfigSynchronizer ServerConfigSynchronizer::Singleton
+	IL_0054: call System.Void ServerConfigSynchronizer::RefreshCategoryLimits()
+	IL_0059: ldsfld ServerConfigSynchronizer ServerConfigSynchronizer::Singleton
+	IL_005e: call System.Void ServerConfigSynchronizer::RefreshAmmoLimits()
+	IL_0063: ldsfld ServerConfigSynchronizer ServerConfigSynchronizer::Singleton
+	IL_0068: call System.Void ServerConfigSynchronizer::RefreshRAConfigs()
+	IL_006d: ldsfld System.Action ServerConfigSynchronizer::OnRefreshed
+	IL_0072: stloc.s V_13
+	IL_0074: ldloc.s V_13
+	IL_0076: ldc.i4.0
+	IL_0077: beq.s IL_0081
+	IL_0079: ldloc.s V_13
+	IL_007b: call System.Void System.Action::Invoke()
+	IL_0080: ret
+	IL_0081: ret
+	IL_0082: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0087: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ServerConfigSynchronizer
+	System.Void RefreshRAConfigs()
+		ulong local1 = 0
+		ulong local2 = 0
+		YamlConfig rolesConfig = ServerStatic.RolesConfig
+		System.Int64 local6 = 1
+
+		System.Boolean bool = rolesConfig.GetBool("enable_predefined_ban_templates", local6) //(String key, Boolean def)
+
+		this.NetworkEnableRemoteAdminPredefinedBanTemplates = bool
+		YamlConfig rolesConfig2 = ServerStatic.RolesConfig
+
+		System.String string = rolesConfig2.GetString("external_player_lookup_mode", "disabled") //(String key, String def)
+
+		System.String string2 = string.Trim()
+
+		System.String string3 = string2.ToLower()
+
+		this.NetworkRemoteAdminExternalPlayerLookupMode = string3
+		YamlConfig rolesConfig3 = ServerStatic.RolesConfig
+
+		System.String string4 = rolesConfig3.GetString("external_player_lookup_url", "") //(String key, String def)
+
+		this.NetworkRemoteAdminExternalPlayerLookupURL = string4
+		YamlConfig rolesConfig4 = ServerStatic.RolesConfig
+
+		System.String string5 = rolesConfig4.GetString("external_player_lookup_token", "") //(String key, String def)
+		this.RemoteAdminExternalPlayerLookupToken = string5
+
+		if (this.EnableRemoteAdminPredefinedBanTemplates != False)
+		    YamlConfig rolesConfig5 = ServerStatic.RolesConfig
+
+		    System.Collections.Generic.List`1<System.String> stringList = rolesConfig5.GetStringList("PredefinedBanTemplates") //(String key)
+
+		    if (stringList != 0)
+
+		        System.Collections.Generic.List`1/Enumerator<T> enumerator = rolesConfig5.GetEnumerator()
+
+		        if (enumerator != 0)
+		            ulong local28 = 0
+
+		            System.String[] stringArray = YamlConfig.ParseCommaSeparatedString()
+
+		            if (stringArray.Length == 2)
+		                System.String local31 = stringArray[0]
+
+		                System.Boolean boolean = System.Int32.TryParse(local31, local28) //(String s, Int32& result)
+
+		                if (boolean != False)
+		                    System.String local33 = stringArray[1]
+
+		                    System.TimeSpan timeSpan = System.TimeSpan.FromSeconds(local2) //(Double value)
+		                    System.Int64 local38 = timeSpan._ticks
+		                     += local38
+		                    System.UInt64 local40 = (System.UInt64) local38 / 365
+		                    local40 += local40
+
+		                    System.String string6 = System.String.Format("{0}d", local48) //(String format, Object arg0)
+
+		                    System.String string7 = System.String.Format("{0}y", string6) //(String format, Object arg0)
+		                    Mirror.SyncList`1<ServerConfigSynchronizer/PredefinedBanTemplate> remoteAdminPredefinedBanTemplates = this.RemoteAdminPredefinedBanTemplates
+
+		                    remoteAdminPredefinedBanTemplates.Add()
+		                endif
+                        
+
+		                System.String string8 = System.String.Concat("Invalid ban template in RA Config file - duration must be a non-negative integer. Ban template name: ", local28) //(String str0, String str1)
+		            else
+
+		                System.String string9 = System.String.Concat("Invalid ban template in RA Config file! Template: ", local28) //(String str0, String str1)
+		            endif
+                    
+		            System.Int32 7 = 7
+
+		            ServerConsole.AddLog(string9, 7) //(String q, ConsoleColor color)
+		        endif
+                
+
+		        rolesConfig5.Dispose()
+
+		        rolesConfig5.Dispose()
+
+		        if (rolesConfig5 != 0)
+                    goto INSN_181ABA6C1
+                endif
+		        Mirror.SyncList`1<ServerConfigSynchronizer/PredefinedBanTemplate> remoteAdminPredefinedBanTemplates2 = this.RemoteAdminPredefinedBanTemplates
+
+		        System.Int32 count = remoteAdminPredefinedBanTemplates2.Count
+
+		        if (count != 0)
+                    goto INSN_181ABA698
+                endif
+		    endif
+            
+		    ulong local61 = 0
+
+		    this.NetworkEnableRemoteAdminPredefinedBanTemplates = local61
+		    return
+
+		    UnityEngine.Debug.LogWarning("[Server] function 'System.Void ServerConfigSynchronizer::RefreshRAConfigs()' called when server was not active") //(Object message)
+		endif
+        
+		return
+		throw new System.IndexOutOfRangeException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+
+		INSN_181ABA6C1:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181ABA327) is corrupt (Mismatched instance parameter. Expecting an instance of System.Collections.Generic.List`1, actually {'rolesConfig5' (type YamlConfig)}) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ServerConfigSynchronizer
+	System.Void RefreshMainBools()
+		System.Boolean friendlyFire = ServerConsole.FriendlyFire
+		ulong local3 = 0
+		ulong local5 = 0
+		ulong local7 = 0
+
+		System.Byte byte = Misc.BoolsToByte(friendlyFire, local7, local5, local3, local9, local8, local6, local4) //(Boolean bool1, Boolean bool2, Boolean bool3, Boolean bool4, Boolean bool5, Boolean bool6, Boolean bool7, Boolean bool8)
+
+		this.NetworkMainBoolsSync = byte
+		return
+
+		UnityEngine.Debug.LogWarning("[Server] function 'System.Void ServerConfigSynchronizer::RefreshMainBools()' called when server was not active") //(Object message)
+		return
+
+
+Generated IL:
+	IL_0000: ldsfld System.Boolean ServerConsole::FriendlyFire
+	IL_0005: stloc.0
+	IL_0006: ldc.i4.0
+	IL_0007: stloc.2
+	IL_0008: ldc.i4.0
+	IL_0009: stloc.s V_4
+	IL_000b: ldc.i4.0
+	IL_000c: stloc.s V_6
+	IL_000e: ldloc.0
+	IL_000f: ldloc.s V_6
+	IL_0011: ldloc.s V_4
+	IL_0013: ldloc.2
+	IL_0014: ldloc.s V_8
+	IL_0016: ldloc.s V_7
+	IL_0018: ldloc.s V_5
+	IL_001a: ldloc.3
+	IL_001b: call System.Byte Misc::BoolsToByte(System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean)
+	IL_0020: stloc.s V_9
+	IL_0022: ldarg.0
+	IL_0023: ldloc.s V_9
+	IL_0025: call System.Void ServerConfigSynchronizer::set_NetworkMainBoolsSync(System.Byte)
+	IL_002a: ret
+	IL_002b: ldstr "[Server] function 'System.Void ServerConfigSynchronizer::RefreshMainBools()' called when server was not active"
+	IL_0030: call System.Void UnityEngine.Debug::LogWarning(System.Object)
+	IL_0035: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ServerConfigSynchronizer
+	System.Void RefreshCategoryLimits()
+		Mirror.SyncList`1<System.SByte> categoryLimits = this.CategoryLimits
+
+		categoryLimits.Clear()
+		ulong local4 = 0
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'ItemCategory' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+
+		System.Boolean isDefined = System.Enum.IsDefined(typeFromHandle, local7) //(Type enumType, Object value)
+
+		if (isDefined != False)
+		    System.Collections.Generic.Dictionary`2<ItemCategory,System.SByte> standardCategoryLimits = InventorySystem.Configs.InventoryLimits.StandardCategoryLimits
+
+		    System.Boolean boolean = standardCategoryLimits.TryGetValue()
+
+		    if (boolean != False)
+		        Mirror.SyncList`1<System.SByte> categoryLimits2 = this.CategoryLimits
+		        YamlConfig serverConfig = GameCore.ConfigFile.ServerConfig
+
+		        System.Int32 hashCode = local14.GetHashCode()
+		        local16 = local14
+
+		        System.String string = hashCode.ToLowerInvariant()
+
+		        System.String string2 = System.String.Concat("limit_category_", string) //(String str0, String str1)
+
+		        System.SByte sByte = serverConfig.GetSByte(string2, local2) //(String key, SByte def)
+
+		        categoryLimits2.Add(sByte) //(T item)
+		    endif
+            
+		    local4 += 1
+
+		    UnityEngine.Debug.LogWarning("[Server] function 'System.Void ServerConfigSynchronizer::RefreshCategoryLimits()' called when server was not active") //(Object message)
+		    return
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181AB9DE4) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ServerConfigSynchronizer
+	System.Void RefreshAmmoLimits()
+		ulong local1 = 0
+		Mirror.SyncList`1<ServerConfigSynchronizer/AmmoLimit> ammoLimitsSync = this.AmmoLimitsSync
+
+		System.Int32 count = ammoLimitsSync.Count
+
+		if (count > 0)
+		    Mirror.SyncList`1<ServerConfigSynchronizer/AmmoLimit> ammoLimitsSync2 = this.AmmoLimitsSync
+
+		    ammoLimitsSync2.Clear()
+		endif
+        
+		System.Collections.Generic.Dictionary`2<ItemType,System.UInt16> standardAmmoLimits = InventorySystem.Configs.InventoryLimits.StandardAmmoLimits
+
+		System.Collections.Generic.Dictionary`2/Enumerator<TKey,TValue> enumerator = .GetEnumerator()
+
+		if (enumerator == 0)
+            goto INSN_181AB9B8E
+        endif
+		YamlConfig serverConfig = GameCore.ConfigFile.ServerConfig
+		System.Action onConfigReloaded = GameCore.ConfigFile.OnConfigReloaded
+		  = onConfigReloaded.
+
+		System.String string = onConfigReloaded.ToLowerInvariant()
+		ulong local11 = 0
+
+		System.String string2 = System.String.Concat("limit_", string) //(String str0, String str1)
+
+		System.UInt16 uShort = serverConfig.GetUShort(string2, local11) //(String key, UInt16 def)
+		Mirror.SyncList`1<ServerConfigSynchronizer/AmmoLimit> ammoLimitsSync3 = this.AmmoLimitsSync
+
+		ammoLimitsSync3.Add()
+
+		INSN_181AB9B8E:
+
+		ammoLimitsSync3.Dispose()
+
+		ammoLimitsSync3.Dispose()
+
+		if (ammoLimitsSync3 != 0)
+            goto INSN_181AB9C1F
+        endif
+
+		UnityEngine.Debug.LogWarning("[Server] function 'System.Void ServerConfigSynchronizer::RefreshAmmoLimits()' called when server was not active") //(Object message)
+		return
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+
+		INSN_181AB9C1F:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181AB9A4C) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ServerConfigSynchronizer
+	System.Void Update()
+
+		if (this._ready == False)
+
+		    System.Boolean boolean = ReferenceHub.TryGetHostHub()
+
+		    if (boolean != False)
+		        this._ready = True
+		        ulong local4 = 0
+
+		        ServerConfigSynchronizer.RefreshAllConfigs()
+		        return
+		        this._ready = True
+		    endif
+            
+		    return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181ABA9D7) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ServerConfigSynchronizer
+	System.Void .ctor()
+		Mirror.SyncList`1<System.SByte> syncList = new Mirror.SyncList`1<System.SByte>()
+
+		syncList..ctor()
+		this.CategoryLimits = syncList
+		Mirror.SyncList`1<ServerConfigSynchronizer/AmmoLimit> syncList2 = new Mirror.SyncList`1<ServerConfigSynchronizer/AmmoLimit>()
+
+		syncList2..ctor()
+		this.AmmoLimitsSync = syncList2
+		this.RemoteAdminExternalPlayerLookupMode = "disabled"
+		this.RemoteAdminExternalPlayerLookupURL = ""
+		System.String empty = System.String.Empty
+		this.RemoteAdminExternalPlayerLookupToken = empty
+		Mirror.SyncList`1<ServerConfigSynchronizer/PredefinedBanTemplate> syncList3 = new Mirror.SyncList`1<ServerConfigSynchronizer/PredefinedBanTemplate>()
+
+		syncList3..ctor()
+		this.RemoteAdminPredefinedBanTemplates = syncList3
+		System.Text.RegularExpressions.Regex regex = new System.Text.RegularExpressions.Regex()
+		System.Int32 8 = 8
+
+		regex..ctor("[^\w\d]+", 8) //(String pattern, RegexOptions options)
+		this._regex = regex
+
+		base..ctor()
+		Mirror.SyncList`1<System.SByte> categoryLimits = this.CategoryLimits
+
+		base.InitSyncObject(categoryLimits) //(SyncObject syncObject)
+		Mirror.SyncList`1<ServerConfigSynchronizer/AmmoLimit> ammoLimitsSync = this.AmmoLimitsSync
+
+		base.InitSyncObject(ammoLimitsSync) //(SyncObject syncObject)
+		Mirror.SyncList`1<ServerConfigSynchronizer/PredefinedBanTemplate> remoteAdminPredefinedBanTemplates = this.RemoteAdminPredefinedBanTemplates
+
+		base.InitSyncObject(remoteAdminPredefinedBanTemplates) //(SyncObject syncObject)
+		return
+
+
+Generated IL:
+	IL_0000: newobj System.Void Mirror.SyncList`1::.ctor()
+	IL_0005: stloc.0
+	IL_0006: ldarg.0
+	IL_0007: ldloc.0
+	IL_0008: stfld Mirror.SyncList`1<System.SByte> ServerConfigSynchronizer::CategoryLimits
+	IL_000d: newobj System.Void Mirror.SyncList`1::.ctor()
+	IL_0012: stloc.1
+	IL_0013: ldarg.0
+	IL_0014: ldloc.1
+	IL_0015: stfld Mirror.SyncList`1<ServerConfigSynchronizer/AmmoLimit> ServerConfigSynchronizer::AmmoLimitsSync
+	IL_001a: ldarg.0
+	IL_001b: ldstr "disabled"
+	IL_0020: stfld System.String ServerConfigSynchronizer::RemoteAdminExternalPlayerLookupMode
+	IL_0025: ldarg.0
+	IL_0026: ldstr ""
+	IL_002b: stfld System.String ServerConfigSynchronizer::RemoteAdminExternalPlayerLookupURL
+	IL_0030: ldsfld System.String System.String::Empty
+	IL_0035: stloc.2
+	IL_0036: ldarg.0
+	IL_0037: ldloc.2
+	IL_0038: stfld System.String ServerConfigSynchronizer::RemoteAdminExternalPlayerLookupToken
+	IL_003d: newobj System.Void Mirror.SyncList`1::.ctor()
+	IL_0042: stloc.3
+	IL_0043: ldarg.0
+	IL_0044: ldloc.3
+	IL_0045: stfld Mirror.SyncList`1<ServerConfigSynchronizer/PredefinedBanTemplate> ServerConfigSynchronizer::RemoteAdminPredefinedBanTemplates
+	IL_004a: ldstr "[^\w\d]+"
+	IL_004f: ldc.i4.8
+	IL_0050: newobj System.Void System.Text.RegularExpressions.Regex::.ctor(System.String,System.Text.RegularExpressions.RegexOptions)
+	IL_0055: stloc.s V_4
+	IL_0057: ldarg.0
+	IL_0058: ldloc.s V_4
+	IL_005a: stfld System.Text.RegularExpressions.Regex ServerConfigSynchronizer::_regex
+	IL_005f: ldarg.0
+	IL_0060: call System.Void Mirror.NetworkBehaviour::.ctor()
+	IL_0065: ldarg.0
+	IL_0066: ldfld Mirror.SyncList`1<System.SByte> ServerConfigSynchronizer::CategoryLimits
+	IL_006b: stloc.s V_5
+	IL_006d: ldarg.0
+	IL_006e: ldloc.s V_5
+	IL_0070: call System.Void Mirror.NetworkBehaviour::InitSyncObject(Mirror.SyncObject)
+	IL_0075: ldarg.0
+	IL_0076: ldfld Mirror.SyncList`1<ServerConfigSynchronizer/AmmoLimit> ServerConfigSynchronizer::AmmoLimitsSync
+	IL_007b: stloc.s V_6
+	IL_007d: ldarg.0
+	IL_007e: ldloc.s V_6
+	IL_0080: call System.Void Mirror.NetworkBehaviour::InitSyncObject(Mirror.SyncObject)
+	IL_0085: ldarg.0
+	IL_0086: ldfld Mirror.SyncList`1<ServerConfigSynchronizer/PredefinedBanTemplate> ServerConfigSynchronizer::RemoteAdminPredefinedBanTemplates
+	IL_008b: stloc.s V_7
+	IL_008d: ldarg.0
+	IL_008e: ldloc.s V_7
+	IL_0090: call System.Void Mirror.NetworkBehaviour::InitSyncObject(Mirror.SyncObject)
+	IL_0095: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ServerConfigSynchronizer
+	System.Void MirrorProcessed()
+
+
+Generated IL:
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ServerConfigSynchronizer
+	System.Byte get_NetworkMainBoolsSync()
+		System.Byte mainBoolsSync = this.MainBoolsSync
+		return mainBoolsSync
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Byte ServerConfigSynchronizer::MainBoolsSync
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ServerConfigSynchronizer
+	System.Void set_NetworkMainBoolsSync(System.Byte value)
+
+		System.Boolean boolean = base.SyncVarEqual<System.Byte>()
+
+		if (boolean == False)
+		    throw new System.NullReferenceException()
+		endif
+        
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181ABAC82) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ServerConfigSynchronizer
+	System.String get_NetworkServerName()
+		System.String serverName = this.ServerName
+		return serverName
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String ServerConfigSynchronizer::ServerName
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ServerConfigSynchronizer
+	System.Void set_NetworkServerName(System.String value)
+
+		System.Boolean boolean = base.SyncVarEqual<System.String>()
+
+		if (boolean == False)
+
+		    base.SetSyncVar<System.String>()
+		endif
+        
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181ABAE01) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ServerConfigSynchronizer
+	System.Boolean get_NetworkEnableRemoteAdminPredefinedBanTemplates()
+		System.Boolean enableRemoteAdminPredefinedBanTemplates = this.EnableRemoteAdminPredefinedBanTemplates
+		return enableRemoteAdminPredefinedBanTemplates
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Boolean ServerConfigSynchronizer::EnableRemoteAdminPredefinedBanTemplates
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ServerConfigSynchronizer
+	System.Void set_NetworkEnableRemoteAdminPredefinedBanTemplates(System.Boolean value)
+
+		System.Boolean boolean = base.SyncVarEqual<System.Boolean>()
+
+		if (boolean == False)
+		    throw new System.NullReferenceException()
+		endif
+        
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181ABAC02) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ServerConfigSynchronizer
+	System.String get_NetworkRemoteAdminExternalPlayerLookupMode()
+		System.String remoteAdminExternalPlayerLookupMode = this.RemoteAdminExternalPlayerLookupMode
+		return remoteAdminExternalPlayerLookupMode
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String ServerConfigSynchronizer::RemoteAdminExternalPlayerLookupMode
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ServerConfigSynchronizer
+	System.Void set_NetworkRemoteAdminExternalPlayerLookupMode(System.String value)
+
+		System.Boolean boolean = base.SyncVarEqual<System.String>()
+
+		if (boolean == False)
+
+		    base.SetSyncVar<System.String>()
+		endif
+        
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181ABAD01) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ServerConfigSynchronizer
+	System.String get_NetworkRemoteAdminExternalPlayerLookupURL()
+		System.String remoteAdminExternalPlayerLookupURL = this.RemoteAdminExternalPlayerLookupURL
+		return remoteAdminExternalPlayerLookupURL
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String ServerConfigSynchronizer::RemoteAdminExternalPlayerLookupURL
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ServerConfigSynchronizer
+	System.Void set_NetworkRemoteAdminExternalPlayerLookupURL(System.String value)
+
+		System.Boolean boolean = base.SyncVarEqual<System.String>()
+
+		if (boolean == False)
+
+		    base.SetSyncVar<System.String>()
+		endif
+        
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181ABAD81) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ServerConfigSynchronizer
+	static System.Void .cctor()
+
+
+Generated IL:
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ServerConfigSynchronizer
+	System.Boolean SerializeSyncVars(Mirror.NetworkWriter writer, System.Boolean forceAll)
+
+		System.Boolean boolean = base.SerializeSyncVars(writer, forceAll) //(NetworkWriter writer, Boolean initialState)
+
+		if (forceAll == False)
+		    System.UInt64 syncVarDirtyBits = this.<syncVarDirtyBits>k__BackingField
+
+		    Mirror.NetworkWriterExtensions.WriteUInt64(writer, syncVarDirtyBits) //(NetworkWriter writer, UInt64 value)
+
+		    if ( != 1)
+		        System.Byte mainBoolsSync = this.MainBoolsSync
+
+		        Mirror.NetworkWriterExtensions.WriteByte(writer, mainBoolsSync) //(NetworkWriter writer, Byte value)
+		    endif
+            
+
+		    if ( == 2)
+                goto INSN_181ABA7CA
+            endif
+		    System.String serverName = this.ServerName
+
+		    Mirror.NetworkWriterExtensions.WriteString(writer, serverName) //(NetworkWriter writer, String value)
+
+		    INSN_181ABA7CA:
+
+		    if ( == 4)
+                goto INSN_181ABA804
+            endif
+		    System.Boolean enableRemoteAdminPredefinedBanTemplates = this.EnableRemoteAdminPredefinedBanTemplates
+
+		    Mirror.NetworkWriterExtensions.WriteByte(writer, enableRemoteAdminPredefinedBanTemplates) //(NetworkWriter writer, Byte value)
+
+		    INSN_181ABA804:
+
+		    if ( == 8)
+                goto INSN_181ABA83D
+            endif
+		    System.String remoteAdminExternalPlayerLookupMode = this.RemoteAdminExternalPlayerLookupMode
+
+		    Mirror.NetworkWriterExtensions.WriteString(writer, remoteAdminExternalPlayerLookupMode) //(NetworkWriter writer, String value)
+
+		    INSN_181ABA83D:
+
+		    if ( == 16)
+                goto INSN_181ABA876
+            endif
+		    System.String remoteAdminExternalPlayerLookupURL = this.RemoteAdminExternalPlayerLookupURL
+
+		    Mirror.NetworkWriterExtensions.WriteString(writer, remoteAdminExternalPlayerLookupURL) //(NetworkWriter writer, String value)
+
+		    INSN_181ABA876:
+		else
+		    System.Byte mainBoolsSync2 = this.MainBoolsSync
+
+		    Mirror.NetworkWriterExtensions.WriteByte(writer, mainBoolsSync2) //(NetworkWriter writer, Byte value)
+		    System.String serverName2 = this.ServerName
+
+		    Mirror.NetworkWriterExtensions.WriteString(writer, serverName2) //(NetworkWriter writer, String value)
+		    System.Boolean enableRemoteAdminPredefinedBanTemplates2 = this.EnableRemoteAdminPredefinedBanTemplates
+
+		    Mirror.NetworkWriterExtensions.WriteByte(writer, enableRemoteAdminPredefinedBanTemplates2) //(NetworkWriter writer, Byte value)
+		    System.String remoteAdminExternalPlayerLookupMode2 = this.RemoteAdminExternalPlayerLookupMode
+
+		    Mirror.NetworkWriterExtensions.WriteString(writer, remoteAdminExternalPlayerLookupMode2) //(NetworkWriter writer, String value)
+		    System.String remoteAdminExternalPlayerLookupURL2 = this.RemoteAdminExternalPlayerLookupURL
+
+		    Mirror.NetworkWriterExtensions.WriteString(writer, remoteAdminExternalPlayerLookupURL2) //(NetworkWriter writer, String value)
+		endif
+        
+		return True
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfZeroOrNullAction at (0x181ABA75B) is corrupt (One of the arguments is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ServerConfigSynchronizer
+	System.Void DeserializeSyncVars(Mirror.NetworkReader reader, System.Boolean initialState)
+
+		this.MirrorProcessed()
+
+		if (initialState == False)
+
+		    System.UInt64 uInt64 = Mirror.NetworkReaderExtensions.ReadUInt64(reader) //(NetworkReader reader)
+
+		    if (uInt64 != 1)
+
+		        [instruction error - managed method being called is null]
+
+		        System.Boolean boolean = base.SyncVarEqual<System.Byte>()
+
+		        if (boolean == False)
+		            throw new System.NullReferenceException()
+		        endif
+                
+
+		        if (uInt64 == 2)
+                    goto INSN_181AB92DA
+                endif
+
+		        System.String string = Mirror.NetworkReaderExtensions.ReadString(reader) //(NetworkReader reader)
+
+		        System.Boolean boolean2 = base.SyncVarEqual<System.String>()
+
+		        if (boolean2 != False)
+                    goto INSN_181AB92DA
+                endif
+
+		        base.SetSyncVar<System.String>()
+
+		        INSN_181AB92DA:
+
+		        if (uInt64 == 4)
+                    goto INSN_181AB9367
+                endif
+
+		        System.Boolean boolean3 = Mirror.NetworkReaderExtensions.ReadBoolean(reader) //(NetworkReader reader)
+
+		        System.Boolean boolean4 = base.SyncVarEqual<System.Boolean>()
+
+		        if (boolean4 != False)
+                    goto INSN_181AB9367
+                endif
+		        throw new System.NullReferenceException()
+
+		        INSN_181AB9367:
+
+		        if (uInt64 == 8)
+                    goto INSN_181AB93F2
+                endif
+
+		        System.String string2 = Mirror.NetworkReaderExtensions.ReadString(reader) //(NetworkReader reader)
+
+		        System.Boolean boolean5 = base.SyncVarEqual<System.String>()
+
+		        if (boolean5 != False)
+                    goto INSN_181AB93F2
+                endif
+
+		        base.SetSyncVar<System.String>()
+
+		        INSN_181AB93F2:
+
+		        if (uInt64 == 16)
+                    goto INSN_181AB9636
+                endif
+		    else
+
+		        [instruction error - managed method being called is null]
+
+		        System.Boolean boolean6 = base.SyncVarEqual<System.Byte>()
+
+		        if (boolean6 == False)
+		            throw new System.NullReferenceException()
+		        endif
+                
+
+		        System.String string3 = Mirror.NetworkReaderExtensions.ReadString(reader) //(NetworkReader reader)
+
+		        System.Boolean boolean7 = base.SyncVarEqual<System.String>()
+
+		        if (boolean7 != False)
+                    goto INSN_181AB950B
+                endif
+
+		        base.SetSyncVar<System.String>()
+
+		        INSN_181AB950B:
+
+		        System.Boolean boolean8 = Mirror.NetworkReaderExtensions.ReadBoolean(reader) //(NetworkReader reader)
+
+		        System.Boolean boolean9 = base.SyncVarEqual<System.Boolean>()
+
+		        if (boolean9 != False)
+                    goto INSN_181AB9570
+                endif
+		        throw new System.NullReferenceException()
+
+		        INSN_181AB9570:
+
+		        System.String string4 = Mirror.NetworkReaderExtensions.ReadString(reader) //(NetworkReader reader)
+
+		        System.Boolean boolean10 = base.SyncVarEqual<System.String>()
+
+		        if (boolean10 != False)
+                    goto INSN_181AB95D3
+                endif
+
+		        base.SetSyncVar<System.String>()
+		    endif
+            
+
+		    System.String string5 = Mirror.NetworkReaderExtensions.ReadString(reader) //(NetworkReader reader)
+
+		    System.Boolean boolean11 = base.SyncVarEqual<System.String>()
+
+		    if (boolean11 != False)
+                goto INSN_181AB9636
+            endif
+
+		    base.SetSyncVar<System.String>()
+
+		    INSN_181AB9636:
+		    return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181AB91EF) is corrupt (Don't know what method is being called) and cannot be created as IL. Aborting here.
+
+

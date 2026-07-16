@@ -1,0 +1,1394 @@
+Type: VolumetricLightRenderer
+
+
+	Generated Pseudocode:
+
+	Declaring Type: VolumetricLightRenderer
+	static System.Void add_PreRenderEvent(System.Action`2<VolumetricLightRenderer,UnityEngine.Matrix4x4> value)
+		System.Action`2<VolumetricLightRenderer,UnityEngine.Matrix4x4> preRenderEvent = VolumetricLightRenderer.PreRenderEvent
+
+		System.Delegate delegate = System.Delegate.Combine(preRenderEvent, value) //(Delegate a, Delegate b)
+
+		if (delegate != 0)
+
+		    if (delegate == 0)
+                goto INSN_181B9C7F9
+            endif
+		endif
+        
+
+		if (VolumetricLightRenderer == preRenderEvent)
+		    return
+
+		    INSN_181B9C7F9:
+		    throw new System.InvalidCastException()
+
+
+Generated IL:
+	IL_0000: ldsfld System.Action`2<VolumetricLightRenderer,UnityEngine.Matrix4x4> VolumetricLightRenderer::PreRenderEvent
+	IL_0005: stloc.0
+	IL_0006: ldloc.0
+	IL_0007: ldarg.0
+	IL_0008: call System.Delegate System.Delegate::Combine(System.Delegate,System.Delegate)
+	IL_000d: stloc.1
+	IL_000e: ldloc.1
+	IL_000f: ldc.i4.0
+	IL_0010: beq.s IL_0016
+	IL_0012: ldloc.1
+	IL_0013: ldc.i4.0
+	IL_0014: beq.s IL_001f
+	IL_0016: ldtoken VolumetricLightRenderer
+	IL_001b: ldloc.0
+	IL_001c: bne.un.s IL_0016
+	IL_001e: ret
+	IL_001f: newobj System.Void System.InvalidCastException::.ctor()
+	IL_0024: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: VolumetricLightRenderer
+	static System.Void remove_PreRenderEvent(System.Action`2<VolumetricLightRenderer,UnityEngine.Matrix4x4> value)
+		System.Action`2<VolumetricLightRenderer,UnityEngine.Matrix4x4> preRenderEvent = VolumetricLightRenderer.PreRenderEvent
+
+		System.Delegate delegate = System.Delegate.Remove(preRenderEvent, value) //(Delegate source, Delegate value)
+
+		if (delegate != 0)
+
+		    if (delegate == 0)
+                goto INSN_181B9C8A9
+            endif
+		endif
+        
+
+		if (VolumetricLightRenderer == preRenderEvent)
+		    return
+
+		    INSN_181B9C8A9:
+		    throw new System.InvalidCastException()
+
+
+Generated IL:
+	IL_0000: ldsfld System.Action`2<VolumetricLightRenderer,UnityEngine.Matrix4x4> VolumetricLightRenderer::PreRenderEvent
+	IL_0005: stloc.0
+	IL_0006: ldloc.0
+	IL_0007: ldarg.0
+	IL_0008: call System.Delegate System.Delegate::Remove(System.Delegate,System.Delegate)
+	IL_000d: stloc.1
+	IL_000e: ldloc.1
+	IL_000f: ldc.i4.0
+	IL_0010: beq.s IL_0016
+	IL_0012: ldloc.1
+	IL_0013: ldc.i4.0
+	IL_0014: beq.s IL_001f
+	IL_0016: ldtoken VolumetricLightRenderer
+	IL_001b: ldloc.0
+	IL_001c: bne.un.s IL_0016
+	IL_001e: ret
+	IL_001f: newobj System.Void System.InvalidCastException::.ctor()
+	IL_0024: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: VolumetricLightRenderer
+	UnityEngine.Rendering.CommandBuffer get_GlobalCommandBuffer()
+		UnityEngine.Rendering.CommandBuffer _preLightPass = this._preLightPass
+		return _preLightPass
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld UnityEngine.Rendering.CommandBuffer VolumetricLightRenderer::_preLightPass
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: VolumetricLightRenderer
+	static UnityEngine.Material GetLightMaterial()
+		UnityEngine.Material _lightMaterial = VolumetricLightRenderer._lightMaterial
+		return _lightMaterial
+
+
+Generated IL:
+	IL_0000: ldsfld UnityEngine.Material VolumetricLightRenderer::_lightMaterial
+	IL_0005: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: VolumetricLightRenderer
+	static UnityEngine.Mesh GetPointLightMesh()
+		UnityEngine.Mesh _pointLightMesh = VolumetricLightRenderer._pointLightMesh
+		return _pointLightMesh
+
+
+Generated IL:
+	IL_0000: ldsfld UnityEngine.Mesh VolumetricLightRenderer::_pointLightMesh
+	IL_0005: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: VolumetricLightRenderer
+	static UnityEngine.Mesh GetSpotLightMesh()
+		UnityEngine.Mesh _spotLightMesh = VolumetricLightRenderer._spotLightMesh
+		return _spotLightMesh
+
+
+Generated IL:
+	IL_0000: ldsfld UnityEngine.Mesh VolumetricLightRenderer::_spotLightMesh
+	IL_0005: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: VolumetricLightRenderer
+	UnityEngine.RenderTexture GetVolumeLightBuffer()
+		VolumetricLightRenderer/VolumtericResolution resolution = this.Resolution
+
+		if (resolution == 1)
+		    UnityEngine.RenderTexture _halfVolumeLightTexture = this._halfVolumeLightTexture
+		    return _halfVolumeLightTexture
+		endif
+        
+
+		if (resolution == 2)
+            goto INSN_181B9B52D
+        endif
+		UnityEngine.RenderTexture _volumeLightTexture = this._volumeLightTexture
+		return _volumeLightTexture
+
+		INSN_181B9B52D:
+		UnityEngine.RenderTexture _quarterVolumeLightTexture = this._quarterVolumeLightTexture
+		return _quarterVolumeLightTexture
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld VolumetricLightRenderer/VolumtericResolution VolumetricLightRenderer::Resolution
+	IL_0006: stloc.0
+	IL_0007: ldloc.0
+	IL_0008: ldc.i4.1
+	IL_0009: bne.un.s IL_0012
+	IL_000b: ldarg.0
+	IL_000c: ldfld UnityEngine.RenderTexture VolumetricLightRenderer::_halfVolumeLightTexture
+	IL_0011: ret
+	IL_0012: ldloc.0
+	IL_0013: ldc.i4.2
+	IL_0014: beq.s IL_001d
+	IL_0016: ldarg.0
+	IL_0017: ldfld UnityEngine.RenderTexture VolumetricLightRenderer::_volumeLightTexture
+	IL_001c: ret
+	IL_001d: ldarg.0
+	IL_001e: ldfld UnityEngine.RenderTexture VolumetricLightRenderer::_quarterVolumeLightTexture
+	IL_0023: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: VolumetricLightRenderer
+	UnityEngine.RenderTexture GetVolumeLightDepthBuffer()
+		VolumetricLightRenderer/VolumtericResolution resolution = this.Resolution
+
+		if (resolution == 1)
+		    UnityEngine.RenderTexture _halfDepthBuffer = this._halfDepthBuffer
+		    return _halfDepthBuffer
+		endif
+        
+
+		if (resolution == 2)
+            goto INSN_181B9B55B
+        endif
+		ulong local3 = 0
+		return local3
+
+		INSN_181B9B55B:
+		UnityEngine.RenderTexture _quarterDepthBuffer = this._quarterDepthBuffer
+		return _quarterDepthBuffer
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x181B9B55A) is corrupt (Return value has a type of System.Int32, expecting an object of type UnityEngine.RenderTexture) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: VolumetricLightRenderer
+	static UnityEngine.Texture GetDefaultSpotCookie()
+		UnityEngine.Texture _defaultSpotCookie = VolumetricLightRenderer._defaultSpotCookie
+		return _defaultSpotCookie
+
+
+Generated IL:
+	IL_0000: ldsfld UnityEngine.Texture VolumetricLightRenderer::_defaultSpotCookie
+	IL_0005: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: VolumetricLightRenderer
+	System.Void Awake()
+
+		UnityEngine.Camera component = base.GetComponent<UnityEngine.Camera>()
+		this._camera = component
+		UnityEngine.Camera _camera = this._camera
+
+		UnityEngine.RenderingPath actualRenderingPath = _camera.actualRenderingPath
+
+		if (actualRenderingPath == 1)
+		    UnityEngine.Camera _camera2 = this._camera
+		    System.Int32 local7 = actualRenderingPath.value__
+
+		    _camera2.set_depthTextureMode()
+		endif
+        
+		VolumetricLightRenderer/VolumtericResolution resolution = this.Resolution
+		this._currentResolution = resolution
+
+		UnityEngine.Shader shader = UnityEngine.Shader.Find("Hidden/BlitAdd") //(String name)
+		ulong local12 = 0
+
+		System.Boolean boolean = UnityEngine.Object.op_Equality(shader, local12) //(Object x, Object y)
+
+		if (boolean != False)
+            goto INSN_181B99228
+        endif
+		UnityEngine.Material material = new UnityEngine.Material()
+
+		material..ctor(shader) //(Shader shader)
+		this._blitAddMaterial = material
+
+		UnityEngine.Shader shader2 = UnityEngine.Shader.Find("Hidden/BilateralBlur") //(String name)
+		ulong local19 = 0
+
+		System.Boolean boolean2 = UnityEngine.Object.op_Equality(shader2, local19) //(Object x, Object y)
+
+		if (boolean2 != False)
+            goto INSN_181B991F7
+        endif
+		UnityEngine.Material material2 = new UnityEngine.Material()
+
+		material2..ctor(shader2) //(Shader shader)
+		this._bilateralBlurMaterial = material2
+		UnityEngine.Rendering.CommandBuffer commandBuffer = new UnityEngine.Rendering.CommandBuffer()
+
+		commandBuffer..ctor()
+		this._preLightPass = commandBuffer
+		UnityEngine.Rendering.CommandBuffer _preLightPass = this._preLightPass
+
+		_preLightPass.name = "PreLight"
+
+		this.ChangeResolution()
+		UnityEngine.Mesh _pointLightMesh = VolumetricLightRenderer._pointLightMesh
+		ulong local30 = 0
+
+		System.Boolean boolean3 = UnityEngine.Object.op_Equality(_pointLightMesh, local30) //(Object x, Object y)
+
+		if (boolean3 == False)
+            goto INSN_181B99014
+        endif
+		ulong local33 = 0
+
+		UnityEngine.GameObject gameObject = UnityEngine.GameObject.CreatePrimitive(local33) //(PrimitiveType type)
+
+		UnityEngine.MeshFilter component2 = gameObject.GetComponent<UnityEngine.MeshFilter>()
+
+		UnityEngine.Mesh sharedMesh = component2.sharedMesh
+		 += 8
+		VolumetricLightRenderer.PreRenderEvent = sharedMesh
+
+		UnityEngine.Object.Destroy(gameObject) //(Object obj)
+
+		INSN_181B99014:
+		UnityEngine.Mesh _spotLightMesh = VolumetricLightRenderer._spotLightMesh
+		ulong local41 = 0
+
+		System.Boolean boolean4 = UnityEngine.Object.op_Equality(_spotLightMesh, local41) //(Object x, Object y)
+
+		if (boolean4 == False)
+            goto INSN_181B9907C
+        endif
+
+		UnityEngine.Mesh mesh = this.CreateSpotLightMesh()
+		 += 16
+		VolumetricLightRenderer.PreRenderEvent = mesh
+
+		INSN_181B9907C:
+		UnityEngine.Material _lightMaterial = VolumetricLightRenderer._lightMaterial
+		ulong local47 = 0
+
+		System.Boolean boolean5 = UnityEngine.Object.op_Equality(_lightMaterial, local47) //(Object x, Object y)
+
+		if (boolean5 == False)
+            goto INSN_181B9913B
+        endif
+
+		UnityEngine.Shader shader3 = UnityEngine.Shader.Find("Sandbox/VolumetricLight") //(String name)
+		ulong local52 = 0
+
+		System.Boolean boolean6 = UnityEngine.Object.op_Equality(shader3, local52) //(Object x, Object y)
+
+		if (boolean6 != False)
+            goto INSN_181B991C6
+        endif
+		UnityEngine.Material material3 = new UnityEngine.Material()
+
+		material3..ctor(shader3) //(Shader shader)
+		 += 24
+		VolumetricLightRenderer.PreRenderEvent = material3
+
+		INSN_181B9913B:
+		UnityEngine.Texture _defaultSpotCookie = VolumetricLightRenderer._defaultSpotCookie
+		ulong local58 = 0
+
+		System.Boolean boolean7 = UnityEngine.Object.op_Equality(_defaultSpotCookie, local58) //(Object x, Object y)
+
+		if (boolean7 == False)
+            goto INSN_181B9919D
+        endif
+		UnityEngine.Texture defaultSpotCookie = this.DefaultSpotCookie
+		 += 32
+		VolumetricLightRenderer.PreRenderEvent = defaultSpotCookie
+
+		INSN_181B9919D:
+
+		this.LoadNoise3dTexture()
+
+		this.GenerateDitherTexture()
+		return
+		throw new System.NullReferenceException()
+
+		INSN_181B991F7:
+		System.Exception exception = new System.Exception()
+
+		exception..ctor("Critical Error: "Hidden/BilateralBlur" shader is missing. Make sure it is included in "Always Included Shaders" in ProjectSettings/Graphics.") //(String message)
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.Implicit4ByteFieldReadAction at (0x181B98E15) is corrupt (Local local7 has been stripped out for being unused, so doesn't have a variable.) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: VolumetricLightRenderer
+	System.Void OnEnable()
+		UnityEngine.Camera _camera = this._camera
+		ulong local3 = 0
+
+		System.Boolean boolean = UnityEngine.Object.op_Inequality(_camera, local3) //(Object x, Object y)
+
+		if (boolean != False)
+		    UnityEngine.Camera _camera2 = this._camera
+
+		    UnityEngine.RenderingPath actualRenderingPath = _camera2.actualRenderingPath
+		    UnityEngine.Rendering.CommandBuffer _preLightPass = this._preLightPass
+
+		    if (actualRenderingPath != 1)
+		    endif
+            
+
+		    _camera2.AddCommandBuffer(1, _preLightPass) //(CameraEvent evt, CommandBuffer buffer)
+		      = actualRenderingPath.
+
+		    UnityEngine.GameObject gameObject = _camera2.gameObject
+
+		    System.String name = gameObject.name
+
+		    System.String string = System.String.Concat(name, " buffer was null!") //(String str0, String str1)
+
+		    UnityEngine.Debug.Log(string) //(Object message)
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.FieldToLocalAction at (0x181B9BC82) is corrupt (No further info) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: VolumetricLightRenderer
+	System.Void OnDisable()
+		UnityEngine.Camera _camera = this._camera
+		ulong local3 = 0
+
+		System.Boolean boolean = UnityEngine.Object.op_Inequality(_camera, local3) //(Object x, Object y)
+
+		if (boolean != False)
+		    UnityEngine.Camera _camera2 = this._camera
+
+		    System.Int32 commandBufferCount = _camera2.commandBufferCount
+
+		    if (commandBufferCount > 0)
+		        UnityEngine.Camera _camera3 = this._camera
+
+		        UnityEngine.RenderingPath actualRenderingPath = _camera3.actualRenderingPath
+		        UnityEngine.Rendering.CommandBuffer _preLightPass = this._preLightPass
+
+		        _camera3.RemoveCommandBuffer(1, _preLightPass) //(CameraEvent evt, CommandBuffer buffer)
+		    endif
+            
+		    return
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld UnityEngine.Camera VolumetricLightRenderer::_camera
+	IL_0006: stloc.0
+	IL_0007: ldc.i4.0
+	IL_0008: stloc.1
+	IL_0009: ldloc.0
+	IL_000a: ldloc.1
+	IL_000b: call System.Boolean UnityEngine.Object::op_Inequality(UnityEngine.Object,UnityEngine.Object)
+	IL_0010: ldc.i4.0
+	IL_0011: beq.s IL_0040
+	IL_0013: ldarg.0
+	IL_0014: ldfld UnityEngine.Camera VolumetricLightRenderer::_camera
+	IL_0019: call System.Int32 UnityEngine.Camera::get_commandBufferCount()
+	IL_001e: ldc.i4.0
+	IL_001f: ble.s IL_0040
+	IL_0021: ldarg.0
+	IL_0022: ldfld UnityEngine.Camera VolumetricLightRenderer::_camera
+	IL_0027: stloc.2
+	IL_0028: ldloc.2
+	IL_0029: call UnityEngine.RenderingPath UnityEngine.Camera::get_actualRenderingPath()
+	IL_002e: stloc.3
+	IL_002f: ldarg.0
+	IL_0030: ldfld UnityEngine.Rendering.CommandBuffer VolumetricLightRenderer::_preLightPass
+	IL_0035: stloc.s V_4
+	IL_0037: ldloc.2
+	IL_0038: ldc.i4.1
+	IL_0039: ldloc.s V_4
+	IL_003b: call System.Void UnityEngine.Camera::RemoveCommandBuffer(UnityEngine.Rendering.CameraEvent,UnityEngine.Rendering.CommandBuffer)
+	IL_0040: ret
+	IL_0041: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0046: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: VolumetricLightRenderer
+	System.Void ChangeResolution()
+		UnityEngine.Camera _camera = this._camera
+
+		System.Int32 pixelWidth = _camera.pixelWidth
+		UnityEngine.Camera _camera2 = this._camera
+
+		System.Int32 pixelHeight = _camera2.pixelHeight
+		UnityEngine.RenderTexture _volumeLightTexture = this._volumeLightTexture
+		ulong local9 = 0
+
+		System.Boolean boolean = UnityEngine.Object.op_Inequality(_volumeLightTexture, local9) //(Object x, Object y)
+
+		if (boolean != False)
+		    UnityEngine.RenderTexture _volumeLightTexture2 = this._volumeLightTexture
+
+		    UnityEngine.Object.Destroy(_volumeLightTexture2) //(Object obj)
+		endif
+        
+		UnityEngine.RenderTexture renderTexture = new UnityEngine.RenderTexture()
+		ulong local14 = 0
+
+		renderTexture..ctor()
+		this._volumeLightTexture = renderTexture
+		UnityEngine.RenderTexture _volumeLightTexture3 = this._volumeLightTexture
+
+		_volumeLightTexture3.name = "VolumeLightBuffer"
+		UnityEngine.RenderTexture _volumeLightTexture4 = this._volumeLightTexture
+		System.Int32 1 = 1
+
+		_volumeLightTexture4.filterMode = 1
+		ulong local22 = 0
+
+		System.Boolean boolean2 = UnityEngine.Object.op_Inequality(renderTexture, local22) //(Object x, Object y)
+
+		if (boolean2 == False)
+            goto INSN_181B9940D
+        endif
+
+		UnityEngine.Object.Destroy(renderTexture) //(Object obj)
+
+		INSN_181B9940D:
+		ulong local26 = 0
+
+		System.Boolean boolean3 = UnityEngine.Object.op_Inequality(renderTexture, local26) //(Object x, Object y)
+
+		if (boolean3 == False)
+            goto INSN_181B99471
+        endif
+		ulong local28 = 0
+
+		UnityEngine.Object.Destroy(renderTexture) //(Object obj)
+
+		INSN_181B99471:
+		VolumetricLightRenderer/VolumtericResolution resolution = this.Resolution
+
+		if (resolution > 1)
+            goto INSN_181B9958E
+        endif
+		UnityEngine.RenderTexture renderTexture2 = new UnityEngine.RenderTexture()
+		pixelHeight -= local28
+		pixelHeight = pixelWidth
+		pixelHeight -= local28
+
+		renderTexture2..ctor()
+		this._halfVolumeLightTexture = renderTexture2
+
+		.name = "VolumeLightBufferHalf"
+		System.Int32 1 = 1
+
+		.filterMode = 1
+		UnityEngine.RenderTexture renderTexture3 = new UnityEngine.RenderTexture()
+
+		renderTexture3..ctor()
+		this._halfDepthBuffer = renderTexture3
+
+		.name = "VolumeLightHalfDepth"
+
+		System.Boolean boolean4 = .Create()
+		ulong local44 = 0
+
+		.filterMode = local44
+		ulong local45 = 0
+
+		INSN_181B9958E:
+		ulong local47 = 0
+
+		System.Boolean boolean5 = UnityEngine.Object.op_Inequality(renderTexture3, local47) //(Object x, Object y)
+
+		if (boolean5 == False)
+            goto INSN_181B995F2
+        endif
+
+		UnityEngine.Object.Destroy(renderTexture3) //(Object obj)
+
+		INSN_181B995F2:
+		ulong local51 = 0
+
+		System.Boolean boolean6 = UnityEngine.Object.op_Inequality(renderTexture3, local51) //(Object x, Object y)
+
+		if (boolean6 == False)
+            goto INSN_181B99656
+        endif
+		ulong local53 = 0
+
+		UnityEngine.Object.Destroy(renderTexture3) //(Object obj)
+
+		INSN_181B99656:
+
+		if (this.Resolution != 2)
+            goto INSN_181B9975D
+        endif
+		UnityEngine.RenderTexture renderTexture4 = new UnityEngine.RenderTexture()
+		System.Int32 0 = 0
+		pixelHeight = pixelWidth
+		pixelHeight += local53
+
+		renderTexture4..ctor()
+		this._quarterVolumeLightTexture = renderTexture4
+
+		.name = "VolumeLightBufferQuarter"
+		System.Int32 1 = 1
+
+		.filterMode = 1
+		UnityEngine.RenderTexture renderTexture5 = new UnityEngine.RenderTexture()
+
+		renderTexture5..ctor()
+		this._quarterDepthBuffer = renderTexture5
+
+		.name = "VolumeLightQuarterDepth"
+
+		System.Boolean boolean7 = .Create()
+		ulong local66 = 0
+
+		.filterMode = local66
+
+		INSN_181B9975D:
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AllocateInstanceAction at (0x181B9933B) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (4)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: VolumetricLightRenderer
+	System.Void OnPreRender()
+		UnityEngine.Camera _camera = this._camera
+
+		System.Single fieldOfView = _camera.fieldOfView
+		UnityEngine.Camera _camera2 = this._camera
+
+		System.Single aspect = _camera2.aspect
+		UnityEngine.Camera _camera3 = this._camera
+
+		System.Single farClipPlane = _camera3.farClipPlane
+		ulong local10 = 0
+
+		UnityEngine.Matrix4x4 matrix4x4 = UnityEngine.Matrix4x4.Perspective(farClipPlane, fieldOfView, aspect, 0.009999999776482582) //(Single fov, Single aspect, Single zNear, Single zFar)
+
+		UnityEngine.Matrix4x4 gPUProjectionMatrix = UnityEngine.GL.GetGPUProjectionMatrix()
+		UnityEngine.Camera _camera4 = this._camera
+		System.Single single = gPUProjectionMatrix.m01
+		System.Single single2 = gPUProjectionMatrix.m02
+		System.Single single3 = gPUProjectionMatrix.m03
+
+		UnityEngine.Matrix4x4 worldToCameraMatrix = .worldToCameraMatrix
+
+		UnityEngine.Matrix4x4 matrix4x42 = UnityEngine.Matrix4x4.op_Multiply()
+		UnityEngine.Rendering.CommandBuffer _preLightPass = this._preLightPass
+		this._viewProj = constant25
+		System.Single single4 = matrix4x42.m01
+		this._viewProj.m01 = single4
+		System.Single single5 = matrix4x42.m02
+		this._viewProj.m02 = single5
+		System.Single single6 = matrix4x42.m03
+		this._viewProj.m03 = single6
+
+		if (_preLightPass != 0)
+
+		    _preLightPass.Clear()
+		    ulong local36 = 0
+
+		    [instruction error - managed method being called is null]
+		    UnityEngine.Rendering.CommandBuffer _preLightPass2 = this._preLightPass
+		    VolumetricLightRenderer/VolumtericResolution resolution = this.Resolution
+		    System.Boolean local39 = matrix4x42 > 40
+
+		    if (resolution == 1)
+
+		        UnityEngine.Rendering.RenderTargetIdentifier renderTargetIdentifier = UnityEngine.Rendering.RenderTargetIdentifier.op_Implicit()
+		        System.IntPtr m_BufferPointer = renderTargetIdentifier.m_BufferPointer
+
+		        _preLightPass2.Blit()
+		    else
+
+		        if (resolution != 2)
+		        else
+
+		            UnityEngine.Rendering.RenderTargetIdentifier renderTargetIdentifier2 = UnityEngine.Rendering.RenderTargetIdentifier.op_Implicit()
+		            System.IntPtr m_BufferPointer2 = renderTargetIdentifier2.m_BufferPointer
+
+		            _preLightPass2.Blit()
+		            UnityEngine.Rendering.CommandBuffer _preLightPass3 = this._preLightPass
+
+		            UnityEngine.Rendering.RenderTargetIdentifier renderTargetIdentifier3 = UnityEngine.Rendering.RenderTargetIdentifier.op_Implicit()
+		            System.IntPtr m_BufferPointer3 = renderTargetIdentifier3.m_BufferPointer
+
+		            _preLightPass3.Blit()
+		        endif
+                
+		        UnityEngine.Rendering.CommandBuffer _preLightPass4 = this._preLightPass
+		    endif
+            
+
+		    UnityEngine.Rendering.RenderTargetIdentifier renderTargetIdentifier4 = UnityEngine.Rendering.RenderTargetIdentifier.op_Implicit()
+		    System.IntPtr m_BufferPointer4 = renderTargetIdentifier4.m_BufferPointer
+
+		    _preLightPass4.SetRenderTarget()
+		    UnityEngine.Rendering.CommandBuffer _preLightPass5 = this._preLightPass
+
+		    _preLightPass5.ClearRenderTarget()
+		endif
+        
+		UnityEngine.Material _bilateralBlurMaterial = this._bilateralBlurMaterial
+		UnityEngine.RenderTexture _halfDepthBuffer = this._halfDepthBuffer
+
+		_bilateralBlurMaterial.SetTexture("_HalfResDepthBuffer", _halfDepthBuffer) //(String name, Texture value)
+		UnityEngine.Material _bilateralBlurMaterial2 = this._bilateralBlurMaterial
+		UnityEngine.RenderTexture _halfVolumeLightTexture = this._halfVolumeLightTexture
+
+		_bilateralBlurMaterial2.SetTexture("_HalfResColor", _halfVolumeLightTexture) //(String name, Texture value)
+		UnityEngine.Material _bilateralBlurMaterial3 = this._bilateralBlurMaterial
+		UnityEngine.RenderTexture _quarterDepthBuffer = this._quarterDepthBuffer
+
+		_bilateralBlurMaterial3.SetTexture("_QuarterResDepthBuffer", _quarterDepthBuffer) //(String name, Texture value)
+		UnityEngine.Material _bilateralBlurMaterial4 = this._bilateralBlurMaterial
+		UnityEngine.RenderTexture _quarterVolumeLightTexture = this._quarterVolumeLightTexture
+
+		_bilateralBlurMaterial4.SetTexture("_QuarterResColor", _quarterVolumeLightTexture) //(String name, Texture value)
+		UnityEngine.Texture2D _ditheringTexture = this._ditheringTexture
+
+		UnityEngine.Shader.SetGlobalTexture("_DitherTexture", _ditheringTexture) //(String name, Texture value)
+		UnityEngine.Texture3D _noiseTexture = this._noiseTexture
+
+		UnityEngine.Shader.SetGlobalTexture("_NoiseTexture", _noiseTexture) //(String name, Texture value)
+		System.Action`2<VolumetricLightRenderer,UnityEngine.Matrix4x4> preRenderEvent = VolumetricLightRenderer.PreRenderEvent
+
+		if (preRenderEvent == 0)
+            goto INSN_181B9C1F9
+        endif
+		UnityEngine.Matrix4x4 _viewProj = this._viewProj
+
+		preRenderEvent.Invoke(this, _viewProj) //(T1 arg1, T2 arg2)
+
+		INSN_181B9C1F9:
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181B9BE25) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: VolumetricLightRenderer
+	System.Void OnRenderImage(UnityEngine.RenderTexture source, UnityEngine.RenderTexture destination)
+		VolumetricLightRenderer/VolumtericResolution resolution = this.Resolution
+
+		if (resolution == 1)
+		    UnityEngine.RenderTexture _halfVolumeLightTexture = this._halfVolumeLightTexture
+
+		    System.String string = _halfVolumeLightTexture.ToString()
+		    UnityEngine.RenderTexture _halfVolumeLightTexture2 = this._halfVolumeLightTexture
+
+		    _halfVolumeLightTexture2.set_width()
+		    ulong local7 = 0
+		    System.Int32 2 = 2
+
+		    UnityEngine.RenderTexture temporary = UnityEngine.RenderTexture.GetTemporary()
+		    System.Int32 1 = 1
+
+		    temporary.filterMode = 1
+		    UnityEngine.RenderTexture _halfVolumeLightTexture3 = this._halfVolumeLightTexture
+		    UnityEngine.Material _bilateralBlurMaterial = this._bilateralBlurMaterial
+
+		    UnityEngine.Graphics.Blit(_halfVolumeLightTexture3, temporary, _bilateralBlurMaterial, 2) //(Texture source, RenderTexture dest, Material mat, Int32 pass)
+		    UnityEngine.Material _bilateralBlurMaterial2 = this._bilateralBlurMaterial
+		    UnityEngine.RenderTexture _halfVolumeLightTexture4 = this._halfVolumeLightTexture
+
+		    UnityEngine.Graphics.Blit(temporary, _halfVolumeLightTexture4, _bilateralBlurMaterial2, 3) //(Texture source, RenderTexture dest, Material mat, Int32 pass)
+		else
+
+		    if (resolution != 2)
+		        UnityEngine.RenderTexture _volumeLightTexture = this._volumeLightTexture
+
+		        System.String string2 = _volumeLightTexture.ToString()
+		        UnityEngine.RenderTexture _volumeLightTexture2 = this._volumeLightTexture
+
+		        _volumeLightTexture2.set_width()
+		        ulong local19 = 0
+		        System.Int32 2 = 2
+
+		        UnityEngine.RenderTexture temporary2 = UnityEngine.RenderTexture.GetTemporary()
+
+		        temporary2.filterMode = 1
+		        UnityEngine.RenderTexture _volumeLightTexture3 = this._volumeLightTexture
+		        UnityEngine.Material _bilateralBlurMaterial3 = this._bilateralBlurMaterial
+		        ulong local25 = 0
+
+		        UnityEngine.Graphics.Blit(_volumeLightTexture3, temporary2, _bilateralBlurMaterial3, local25) //(Texture source, RenderTexture dest, Material mat, Int32 pass)
+		    else
+		        UnityEngine.RenderTexture _quarterDepthBuffer = this._quarterDepthBuffer
+
+		        System.String string3 = _quarterDepthBuffer.ToString()
+		        UnityEngine.RenderTexture _quarterDepthBuffer2 = this._quarterDepthBuffer
+
+		        _quarterDepthBuffer2.set_width()
+		        ulong local29 = 0
+		        System.Int32 2 = 2
+
+		        UnityEngine.RenderTexture temporary3 = UnityEngine.RenderTexture.GetTemporary()
+		        System.Int32 1 = 1
+
+		        temporary3.filterMode = 1
+		        UnityEngine.RenderTexture _quarterVolumeLightTexture = this._quarterVolumeLightTexture
+		        UnityEngine.Material _bilateralBlurMaterial4 = this._bilateralBlurMaterial
+
+		        UnityEngine.Graphics.Blit(_quarterVolumeLightTexture, temporary3, _bilateralBlurMaterial4, 8) //(Texture source, RenderTexture dest, Material mat, Int32 pass)
+		        UnityEngine.Material _bilateralBlurMaterial5 = this._bilateralBlurMaterial
+		        UnityEngine.RenderTexture _quarterVolumeLightTexture2 = this._quarterVolumeLightTexture
+
+		        UnityEngine.Graphics.Blit(temporary3, _quarterVolumeLightTexture2, _bilateralBlurMaterial5, 9) //(Texture source, RenderTexture dest, Material mat, Int32 pass)
+		        UnityEngine.RenderTexture _quarterVolumeLightTexture3 = this._quarterVolumeLightTexture
+		    endif
+            
+		    UnityEngine.Material _bilateralBlurMaterial6 = this._bilateralBlurMaterial
+		    UnityEngine.RenderTexture _volumeLightTexture4 = this._volumeLightTexture
+
+		    UnityEngine.Graphics.Blit(_quarterVolumeLightTexture3, _volumeLightTexture4, _bilateralBlurMaterial6, 7) //(Texture source, RenderTexture dest, Material mat, Int32 pass)
+
+		    UnityEngine.RenderTexture.ReleaseTemporary(temporary3) //(RenderTexture temp)
+		    UnityEngine.Material _blitAddMaterial = this._blitAddMaterial
+
+		    _blitAddMaterial.SetTexture("_Source", source) //(String name, Texture value)
+		    UnityEngine.RenderTexture _volumeLightTexture5 = this._volumeLightTexture
+		    UnityEngine.Material _blitAddMaterial2 = this._blitAddMaterial
+		    ulong local45 = 0
+
+		    UnityEngine.Graphics.Blit(_volumeLightTexture5, destination, _blitAddMaterial2, local45) //(Texture source, RenderTexture dest, Material mat, Int32 pass)
+		    return
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallVirtualMethodAction at (0x181B9C2DD) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: VolumetricLightRenderer
+	System.Void UpdateMaterialParameters()
+		UnityEngine.Material _bilateralBlurMaterial = this._bilateralBlurMaterial
+		UnityEngine.RenderTexture _halfDepthBuffer = this._halfDepthBuffer
+
+		_bilateralBlurMaterial.SetTexture("_HalfResDepthBuffer", _halfDepthBuffer) //(String name, Texture value)
+		UnityEngine.Material _bilateralBlurMaterial2 = this._bilateralBlurMaterial
+		UnityEngine.RenderTexture _halfVolumeLightTexture = this._halfVolumeLightTexture
+
+		_bilateralBlurMaterial2.SetTexture("_HalfResColor", _halfVolumeLightTexture) //(String name, Texture value)
+		UnityEngine.Material _bilateralBlurMaterial3 = this._bilateralBlurMaterial
+		UnityEngine.RenderTexture _quarterDepthBuffer = this._quarterDepthBuffer
+
+		_bilateralBlurMaterial3.SetTexture("_QuarterResDepthBuffer", _quarterDepthBuffer) //(String name, Texture value)
+		UnityEngine.Material _bilateralBlurMaterial4 = this._bilateralBlurMaterial
+		UnityEngine.RenderTexture _quarterVolumeLightTexture = this._quarterVolumeLightTexture
+
+		_bilateralBlurMaterial4.SetTexture("_QuarterResColor", _quarterVolumeLightTexture) //(String name, Texture value)
+		UnityEngine.Texture2D _ditheringTexture = this._ditheringTexture
+
+		UnityEngine.Shader.SetGlobalTexture("_DitherTexture", _ditheringTexture) //(String name, Texture value)
+		UnityEngine.Texture3D _noiseTexture = this._noiseTexture
+
+		UnityEngine.Shader.SetGlobalTexture("_NoiseTexture", _noiseTexture) //(String name, Texture value)
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld UnityEngine.Material VolumetricLightRenderer::_bilateralBlurMaterial
+	IL_0006: stloc.0
+	IL_0007: ldarg.0
+	IL_0008: ldfld UnityEngine.RenderTexture VolumetricLightRenderer::_halfDepthBuffer
+	IL_000d: stloc.1
+	IL_000e: ldloc.0
+	IL_000f: ldstr "_HalfResDepthBuffer"
+	IL_0014: ldloc.1
+	IL_0015: call System.Void UnityEngine.Material::SetTexture(System.String,UnityEngine.Texture)
+	IL_001a: ldarg.0
+	IL_001b: ldfld UnityEngine.Material VolumetricLightRenderer::_bilateralBlurMaterial
+	IL_0020: stloc.2
+	IL_0021: ldarg.0
+	IL_0022: ldfld UnityEngine.RenderTexture VolumetricLightRenderer::_halfVolumeLightTexture
+	IL_0027: stloc.3
+	IL_0028: ldloc.2
+	IL_0029: ldstr "_HalfResColor"
+	IL_002e: ldloc.3
+	IL_002f: call System.Void UnityEngine.Material::SetTexture(System.String,UnityEngine.Texture)
+	IL_0034: ldarg.0
+	IL_0035: ldfld UnityEngine.Material VolumetricLightRenderer::_bilateralBlurMaterial
+	IL_003a: stloc.s V_4
+	IL_003c: ldarg.0
+	IL_003d: ldfld UnityEngine.RenderTexture VolumetricLightRenderer::_quarterDepthBuffer
+	IL_0042: stloc.s V_5
+	IL_0044: ldloc.s V_4
+	IL_0046: ldstr "_QuarterResDepthBuffer"
+	IL_004b: ldloc.s V_5
+	IL_004d: call System.Void UnityEngine.Material::SetTexture(System.String,UnityEngine.Texture)
+	IL_0052: ldarg.0
+	IL_0053: ldfld UnityEngine.Material VolumetricLightRenderer::_bilateralBlurMaterial
+	IL_0058: stloc.s V_6
+	IL_005a: ldarg.0
+	IL_005b: ldfld UnityEngine.RenderTexture VolumetricLightRenderer::_quarterVolumeLightTexture
+	IL_0060: stloc.s V_7
+	IL_0062: ldloc.s V_6
+	IL_0064: ldstr "_QuarterResColor"
+	IL_0069: ldloc.s V_7
+	IL_006b: call System.Void UnityEngine.Material::SetTexture(System.String,UnityEngine.Texture)
+	IL_0070: ldarg.0
+	IL_0071: ldfld UnityEngine.Texture2D VolumetricLightRenderer::_ditheringTexture
+	IL_0076: stloc.s V_8
+	IL_0078: ldstr "_DitherTexture"
+	IL_007d: ldloc.s V_8
+	IL_007f: call System.Void UnityEngine.Shader::SetGlobalTexture(System.String,UnityEngine.Texture)
+	IL_0084: ldarg.0
+	IL_0085: ldfld UnityEngine.Texture3D VolumetricLightRenderer::_noiseTexture
+	IL_008a: stloc.s V_9
+	IL_008c: ldstr "_NoiseTexture"
+	IL_0091: ldloc.s V_9
+	IL_0093: call System.Void UnityEngine.Shader::SetGlobalTexture(System.String,UnityEngine.Texture)
+	IL_0098: ret
+	IL_0099: newobj System.Void System.NullReferenceException::.ctor()
+	IL_009e: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: VolumetricLightRenderer
+	System.Void Update()
+		VolumetricLightRenderer/VolumtericResolution resolution = this.Resolution
+
+		if (this._currentResolution != resolution)
+		    this._currentResolution = resolution
+
+		    this.ChangeResolution()
+		endif
+        
+		UnityEngine.RenderTexture _volumeLightTexture = this._volumeLightTexture
+
+		System.String string = _volumeLightTexture.ToString()
+		UnityEngine.Camera _camera = this._camera
+
+		System.Int32 pixelWidth = _camera.pixelWidth
+
+		if (string != pixelWidth)
+            goto INSN_181B9C737
+        endif
+		UnityEngine.RenderTexture _volumeLightTexture2 = this._volumeLightTexture
+
+		_volumeLightTexture2.set_width()
+		UnityEngine.Camera _camera2 = this._camera
+
+		System.Int32 pixelHeight = _camera2.pixelHeight
+
+		if (constant6 == pixelHeight)
+            goto INSN_181B9C741
+        endif
+
+		INSN_181B9C737:
+
+		this.ChangeResolution()
+
+		INSN_181B9C741:
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallVirtualMethodAction at (0x181B9C71B) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: VolumetricLightRenderer
+	System.Void LoadNoise3dTexture()
+		ulong local1 = 0
+
+		UnityEngine.Object object = UnityEngine.Resources.Load("NoiseVolume") //(String path)
+		//UNKNOWN CLASS OFFSET READ HERE
+
+		System.Byte[] bytes = object.bytes
+
+		System.Byte[] bytes2 = object.bytes
+		System.Int32 12 = 12
+
+		System.UInt32 uInt32 = System.BitConverter.ToUInt32(bytes2, 12) //(Byte[] value, Int32 startIndex)
+
+		System.Byte[] bytes3 = object.bytes
+		System.Int32 16 = 16
+
+		System.UInt32 uInt322 = System.BitConverter.ToUInt32(bytes3, 16) //(Byte[] value, Int32 startIndex)
+
+		System.Byte[] bytes4 = object.bytes
+		System.Int32 20 = 20
+
+		System.UInt32 uInt323 = System.BitConverter.ToUInt32(bytes4, 20) //(Byte[] value, Int32 startIndex)
+
+		System.Byte[] bytes5 = object.bytes
+		System.Int32 24 = 24
+
+		System.UInt32 uInt324 = System.BitConverter.ToUInt32(bytes5, 24) //(Byte[] value, Int32 startIndex)
+
+		System.Byte[] bytes6 = object.bytes
+		System.Int32 80 = 80
+
+		System.UInt32 uInt325 = System.BitConverter.ToUInt32(bytes6, 80) //(Byte[] value, Int32 startIndex)
+
+		System.Byte[] bytes7 = object.bytes
+		System.Int32 88 = 88
+
+		System.UInt32 uInt326 = System.BitConverter.ToUInt32(bytes7, 88) //(Byte[] value, Int32 startIndex)
+
+		if (uInt326 == 0)
+		    uInt326 = uInt323
+		endif
+        
+		UnityEngine.Texture3D texture3D = new UnityEngine.Texture3D()
+
+		texture3D..ctor()
+		this._noiseTexture = texture3D
+
+		.name = "3D Noise"
+		System.UInt32 local36 = uInt324 * uInt32
+		UnityEngine.Color[] local37 = new UnityEngine.Color[local36]
+		System.Int64 local38 = 128
+
+		System.Byte[] bytes8 = object.bytes
+
+		if ("{il2cpp array field local40->}" != 68)
+            goto INSN_181B9B8BE
+        endif
+
+		System.Byte[] bytes9 = object.bytes
+
+		if ("{il2cpp array field local42->}" != 88)
+            goto INSN_181B9B8BE
+        endif
+
+		System.Byte[] bytes10 = object.bytes
+
+		if ("{il2cpp array field local44->}" != 49)
+            goto INSN_181B9B8BE
+        endif
+
+		System.Byte[] bytes11 = object.bytes
+
+		if ("{il2cpp array field local46->}" != 48)
+            goto INSN_181B9B8BE
+        endif
+
+		if (uInt325 == 4)
+            goto INSN_181B9B8BE
+        endif
+
+		System.Byte[] bytes12 = object.bytes
+
+		System.UInt32 uInt327 = System.BitConverter.ToUInt32(bytes12, local38) //(Byte[] value, Int32 startIndex)
+
+		if (bytes12 > 5)
+            goto INSN_181B9B893
+        endif
+
+		INSN_181B9B893:
+		uInt327 += 18446744073709551568
+
+		if (uInt327 > 4)
+            goto INSN_181B9B8A3
+        endif
+
+		INSN_181B9B8A3:
+		System.Int64 local53 = 32
+		System.Int64 local54 = 148
+
+		INSN_181B9B8BE:
+		System.UInt32 local55 = local53 * uInt322
+		ulong local56 = 0
+		local55 += 7
+
+		if (uInt324 == 0)
+            goto INSN_181B9BA2D
+        endif
+		uInt324 = uInt32
+
+		if (uInt324 == 0)
+            goto INSN_181B9BA16
+        endif
+		local55 = uInt322
+
+		if (local55 == 0)
+            goto INSN_181B9B9E8
+        endif
+		System.Int32 local57 = local56 * local53
+		local57 += local54
+		System.Byte local58 = bytes[local57]
+		ulong local59 = 0
+		System.Int32 local60 = local56 * uInt324
+		local60 += local56
+		System.Int32 local61 = local60 * local55
+		local61 += local56
+		local56 += 1
+		local56 += local56
+		local37.r = local59
+		endwhile
+    
+		goto INSN_181B9BB02
+    
+
+		INSN_181B9B9E8:
+		local56 += 1
+
+		INSN_181B9BA16:
+		local56 += 1
+
+		if (local56 >= uInt324)
+        goto INSN_181B9BA2D
+    endif
+
+		INSN_181B9BA2D:
+
+		.SetPixels(local37) //(Color[] colors)
+
+		.Apply()
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.UnknownClassOffsetReadAction at (0x181B9B60C) is corrupt (Unknown class offset read) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: VolumetricLightRenderer
+	System.Void GenerateDitherTexture()
+		ulong local2 = 0
+
+		System.Boolean boolean = UnityEngine.Object.op_Inequality(this, local2) //(Object x, Object y)
+
+		if (boolean == False)
+		    UnityEngine.Texture2D texture2D = new UnityEngine.Texture2D()
+		    ulong local5 = 0
+		    System.Int32 1 = 1
+
+		    texture2D..ctor(8, 8, 1, local5, local6) //(Int32 width, Int32 height, TextureFormat textureFormat, Boolean mipChain, Boolean linear)
+		    this._ditheringTexture = texture2D
+		    ulong local8 = 0
+
+		    .filterMode = local8
+		    System.Int32 64 = 64
+		    UnityEngine.Color32[] local9 = new UnityEngine.Color32[0]
+		    local9[0] = local9
+		    local9[0] = local9
+		    local9[1] = local9
+		    local9[1] = local5
+		    local9[2] = local5
+		    local9[2] = local5
+		    local9[3] = local5
+		    local9[3] = local5
+		    local9[4] = local5
+		    local9[4] = local5
+		    local9[5] = local5
+		    local9[5] = local5
+		    local9[6] = local5
+		    local9[6] = local5
+		    local9[7] = local5
+		    local9[7] = local5
+		    local9[8] = local5
+		    local9[8] = local5
+		    local9[9] = local5
+		    local9[9] = local5
+		    local9[10] = local5
+		    local9[10] = local5
+		    local9[11] = local5
+		    local9[11] = local5
+		    local9[12] = local5
+		    local9[12] = local5
+		    local9[13] = local5
+		    local9[13] = local5
+		    local9[14] = local5
+		    local9[14] = local5
+		    local9[15] = local5
+		    local9[15] = local5
+		    local9[16] = local5
+		    local9[16] = local5
+		    local9[17] = local5
+		    local9[17] = local5
+		    local9[18] = local5
+		    local9[18] = local5
+		    local9[19] = local5
+		    local9[19] = local5
+		    local9[20] = local5
+		    local9[20] = local5
+		    local9[21] = local5
+		    local9[21] = local5
+		    local9[22] = local5
+		    local9[22] = local5
+		    local9[23] = local5
+		    local9[23] = local5
+		    local9[24] = local5
+		    local9[24] = local5
+		    local9[25] = local5
+		    local9[25] = local5
+		    local9[26] = local5
+		    local9[26] = local5
+		    local9[27] = local5
+		    local9[27] = local5
+		    local9[28] = local5
+		    local9[28] = local5
+		    local9[29] = local5
+		    local9[29] = local5
+		    local9[30] = local5
+		    local9[30] = local5
+		    local9[31] = local5
+		    local9[31] = local5
+
+		    .SetPixels32(local9) //(Color32[] colors)
+
+		    .Apply()
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181B9A2C6) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: VolumetricLightRenderer
+	UnityEngine.Mesh CreateSpotLightMesh()
+		UnityEngine.Mesh mesh = new UnityEngine.Mesh()
+
+		mesh..ctor()
+		System.Int64 local3 = 50
+		UnityEngine.Vector3[] local4 = new UnityEngine.Vector3[50]
+		System.Int64 local5 = 50
+		UnityEngine.Color32[] local6 = new UnityEngine.Color32[50]
+		ulong local7 = 0
+		ulong local8 = 0
+		local4[1] = local7
+		ulong local15 = 0
+		local4[2] = local15
+		ulong local16 = 0
+		System.Int32 2 = 2
+		local4[1] = local16
+		local6[0] = local16
+		ulong local19 = 0
+		System.Int32 18 = 18
+		local4[1] = local19
+		local6[0] = local19
+		ulong local21 = 0
+		System.Int32 34 = 34
+		local4[1] = local21
+		local8 += 1
+		local6[0] = local8
+
+		mesh.vertices = local4
+
+		mesh.colors32 = local6
+		System.Int64 local26 = 288
+		System.Int32[] local27 = new System.Int32[288]
+		System.Int64 local28 = 2
+		local27[0] = local8
+		local8 += 1
+		local27[0] = local28
+		System.Int32 2 = 2
+		local28 += 1
+		local27[0] = local28
+		endwhile
+    
+		goto INSN_181B9A18B
+    
+		local27[0] = local8
+		local8 += 1
+		local8 += 2
+		local27[0] = 17
+		System.Int32 1 = 1
+		System.Int64 local29 = 18
+		local27[0] = 2
+		local27[0] = local8
+		 += 1
+		 += 2
+		local27[0] = local29
+		local27[0] = 1
+		 += 1
+		 += 2
+		local27[0] = 1
+		local27[0] = local29
+		local29 += 1
+		local27[0] = local29
+		endwhile
+
+		goto INSN_181B9A14B
+
+		local27[0] = 2
+		 += 1
+		 += 2
+		local27[0] = 17
+		local27[0] = 18
+		 += 1
+		 += 2
+		local27[0] = 18
+		local27[0] = 17
+		System.Int64 local30 = 34
+		local27[0] = 33
+		local27[0] = 1
+		 += 1
+		 += 2
+		local27[0] = local30
+		local27[0] = 1
+		 += 1
+		 += 2
+		local27[0] = 1
+		local27[0] = local30
+		local30 += 1
+		local27[0] = local30
+		endwhile
+
+		goto INSN_181B9A0EB
+
+		local27[0] = 18
+		 += 1
+		 += 2
+		local27[0] = 33
+		local27[0] = 34
+		 += 1
+		 += 2
+		local27[0] = 34
+		 += 1
+		local27[0] = 33
+		System.Int64 local31 = 34
+		local27[0] = 49
+		local27[0] = 1
+		 += 1
+		System.UInt32 local32 = local31 + 1
+		local27[0] = local32
+		local27[0] = local31
+		endwhile
+
+		goto INSN_181B9A08B
+
+		local27[0] = 1
+		 += 1
+		 += 2
+		local27[0] = 34
+		local27[0] = 49
+
+		mesh.triangles = local27
+
+		mesh.RecalculateBounds()
+		return mesh
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x181B99BE8) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: VolumetricLightRenderer
+	System.Void .ctor()
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void UnityEngine.MonoBehaviour::.ctor()
+	IL_0006: ret
+	
+

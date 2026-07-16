@@ -1,0 +1,173 @@
+Type: ILStreamReader
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Utf8Json.Internal.ILStreamReader
+	System.Int32 get_CurrentPosition()
+
+		this.Dispose()
+		//UNKNOWN CLASS OFFSET READ HERE
+
+		[instruction error - managed method being called is null]
+		return constant1
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.UnknownClassOffsetReadAction at (0x1809FD029) is corrupt (Unknown class offset read) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Utf8Json.Internal.ILStreamReader
+	System.Boolean get_EndOfStream()
+
+		this.Dispose()
+		//UNKNOWN CLASS OFFSET READ HERE
+		System.Boolean local1 = constant1 <= this.endPosition
+		return local1
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.UnknownClassOffsetReadAction at (0x1809FD06E) is corrupt (Unknown class offset read) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Utf8Json.Internal.ILStreamReader
+	static System.Void .cctor()
+		System.Int64 local0 = 256
+		ulong local1 = 0
+		System.Reflection.Emit.OpCode[] local2 = new System.Reflection.Emit.OpCode[256]
+		Utf8Json.Internal.ILStreamReader.oneByteOpCodes = local2
+		System.Reflection.Emit.OpCode[] local3 = new System.Reflection.Emit.OpCode[256]
+		 += 8
+		Utf8Json.Internal.ILStreamReader.oneByteOpCodes = local3
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'OpCodes' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+
+		System.Reflection.FieldInfo[] fields = typeFromHandle.GetFields()
+		System.Int64 local9 = 0xFE00
+		System.Int32 length = fields.Length
+
+		if (local1 < length)
+		    System.Reflection.FieldInfo fieldInfo = fields[local1]
+
+		    System.Type fieldType = fieldInfo.FieldType
+		    local15 = fieldType
+
+		    if (constant26 == local9)
+		        System.Reflection.Emit.OpCode[] twoByteOpCodes = Utf8Json.Internal.ILStreamReader.twoByteOpCodes
+		        local1 += 1
+		        twoByteOpCodes[0] = local15
+		        System.Reflection.Emit.OpCode[] oneByteOpCodes = Utf8Json.Internal.ILStreamReader.oneByteOpCodes
+		        oneByteOpCodes[0] = local15
+		    endif
+            
+		    local1 += 1
+		endif
+        
+		return
+		throw new System.IndexOutOfRangeException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x1809FCDB9) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Utf8Json.Internal.ILStreamReader
+	System.Void .ctor(System.Byte[] ilByteArray)
+		System.IO.MemoryStream memoryStream = new System.IO.MemoryStream()
+
+		memoryStream..ctor(ilByteArray) //(Byte[] buffer)
+
+		base..ctor(memoryStream) //(Stream input)
+		System.Int32 length = ilByteArray.Length
+		this.endPosition = length
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.1
+	IL_0001: newobj System.Void System.IO.MemoryStream::.ctor(System.Byte[])
+	IL_0006: stloc.0
+	IL_0007: ldarg.0
+	IL_0008: ldloc.0
+	IL_0009: call System.Void System.IO.BinaryReader::.ctor(System.IO.Stream)
+	IL_000e: ldarg.1
+	IL_000f: call System.Int32 System.Array::get_Length()
+	IL_0014: stloc.1
+	IL_0015: ldarg.0
+	IL_0016: ldloc.1
+	IL_0017: stfld System.Int32 Utf8Json.Internal.ILStreamReader::endPosition
+	IL_001c: ret
+	IL_001d: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0022: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Utf8Json.Internal.ILStreamReader
+	System.Reflection.Emit.OpCode ReadOpCode()
+
+		System.Boolean boolean = this.ReadBoolean()
+
+		if (boolean == True)
+
+		    System.Boolean boolean2 = this.ReadBoolean()
+		    System.Reflection.Emit.OpCode[] twoByteOpCodes = Utf8Json.Internal.ILStreamReader.twoByteOpCodes
+		    System.Reflection.Emit.OpCode opCode = twoByteOpCodes[boolean2]
+		    return opCode
+		endif
+        
+		System.Reflection.Emit.OpCode[] oneByteOpCodes = Utf8Json.Internal.ILStreamReader.oneByteOpCodes
+		System.Reflection.Emit.OpCode opCode2 = oneByteOpCodes[boolean]
+		return opCode2
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: callvirt System.Boolean System.IO.BinaryReader::ReadBoolean()
+	IL_0006: stloc.0
+	IL_0007: ldloc.0
+	IL_0008: ldc.i4.1
+	IL_0009: bne.un.s IL_001e
+	IL_000b: ldarg.0
+	IL_000c: callvirt System.Boolean System.IO.BinaryReader::ReadBoolean()
+	IL_0011: stloc.1
+	IL_0012: ldsfld System.Reflection.Emit.OpCode[] Utf8Json.Internal.ILStreamReader::twoByteOpCodes
+	IL_0017: ldloc.1
+	IL_0018: ldelem.any System.Reflection.Emit.OpCode
+	IL_001d: ret
+	IL_001e: ldsfld System.Reflection.Emit.OpCode[] Utf8Json.Internal.ILStreamReader::oneByteOpCodes
+	IL_0023: ldloc.0
+	IL_0024: ldelem.any System.Reflection.Emit.OpCode
+	IL_0029: ret
+	IL_002a: newobj System.Void System.NullReferenceException::.ctor()
+	IL_002f: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Utf8Json.Internal.ILStreamReader
+	System.Int32 ReadMetadataToken()
+
+		base.Dispose()
+		return constant1
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x1809FCC0A) is corrupt (ConstantDefinition: Don't know how to get IL to load a Cpp2IL.Core.Analysis.Il2CppClassIdentifier) and cannot be created as IL. Aborting here.
+
+

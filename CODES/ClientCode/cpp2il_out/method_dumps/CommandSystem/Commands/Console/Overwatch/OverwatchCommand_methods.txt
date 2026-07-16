@@ -1,0 +1,278 @@
+Type: OverwatchCommand
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.Console.Overwatch.OverwatchCommand
+	System.String get_Command()
+		System.String Command = this.<Command>k__BackingField
+		return Command
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String CommandSystem.Commands.Console.Overwatch.OverwatchCommand::<Command>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.Console.Overwatch.OverwatchCommand
+	System.String[] get_Aliases()
+		System.String[] Aliases = this.<Aliases>k__BackingField
+		return Aliases
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String[] CommandSystem.Commands.Console.Overwatch.OverwatchCommand::<Aliases>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.Console.Overwatch.OverwatchCommand
+	System.String get_Description()
+		System.String Description = this.<Description>k__BackingField
+		return Description
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String CommandSystem.Commands.Console.Overwatch.OverwatchCommand::<Description>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.Console.Overwatch.OverwatchCommand
+	static CommandSystem.Commands.Console.Overwatch.OverwatchCommand Create()
+		CommandSystem.Commands.Console.Overwatch.OverwatchCommand overwatchCommand = new CommandSystem.Commands.Console.Overwatch.OverwatchCommand()
+		overwatchCommand.<Command>k__BackingField = "overwatch"
+		System.String[] local1 = new System.String[2]
+
+		if ("ovr" != 0)
+
+		    if ("ovr" == 0)
+                goto INSN_180475A7A
+            endif
+		endif
+        
+		local1[0] = "ovr"
+
+		if ("ow" == 0)
+            goto INSN_180475A0E
+        endif
+
+		if ("ow" == 0)
+            goto INSN_180475A9A
+        endif
+
+		INSN_180475A0E:
+		local1[1] = "ow"
+		overwatchCommand.<Aliases>k__BackingField = local1
+		overwatchCommand.<Description>k__BackingField = "Toggle overwatch mode."
+
+		overwatchCommand..ctor()
+
+		overwatchCommand.ClearCommands()
+		return overwatchCommand
+		throw new System.NullReferenceException()
+
+		INSN_180475A7A:
+
+		INSN_180475A9A:
+
+
+Generated IL:
+	IL_0000: newobj System.Void CommandSystem.Commands.Console.Overwatch.OverwatchCommand::.ctor()
+	IL_0005: stloc.0
+	IL_0006: ldloc.0
+	IL_0007: ldstr "overwatch"
+	IL_000c: stfld System.String CommandSystem.Commands.Console.Overwatch.OverwatchCommand::<Command>k__BackingField
+	IL_0011: ldc.i4.2
+	IL_0012: newarr System.String
+	IL_0017: stloc.1
+	IL_0018: ldstr "ovr"
+	IL_001d: ldc.i4.0
+	IL_001e: beq.s IL_0028
+	IL_0020: ldstr "ovr"
+	IL_0025: ldc.i4.0
+	IL_0026: beq.s IL_0000
+	IL_0028: ldloc.1
+	IL_0029: ldc.i4.0
+	IL_002a: ldstr "ovr"
+	IL_002f: stelem.any System.String
+	IL_0034: ldstr "ow"
+	IL_0039: ldc.i4.0
+	IL_003a: beq.s IL_0044
+	IL_003c: ldstr "ow"
+	IL_0041: ldc.i4.0
+	IL_0042: beq.s IL_0000
+	IL_0044: ldloc.1
+	IL_0045: ldc.i4.1
+	IL_0046: ldstr "ow"
+	IL_004b: stelem.any System.String
+	IL_0050: ldloc.0
+	IL_0051: ldloc.1
+	IL_0052: stfld System.String[] CommandSystem.Commands.Console.Overwatch.OverwatchCommand::<Aliases>k__BackingField
+	IL_0057: ldloc.0
+	IL_0058: ldstr "Toggle overwatch mode."
+	IL_005d: stfld System.String CommandSystem.Commands.Console.Overwatch.OverwatchCommand::<Description>k__BackingField
+	IL_0062: ldloc.0
+	IL_0063: callvirt System.Void CommandSystem.CommandHandler::ClearCommands()
+	IL_0068: ldloc.0
+	IL_0069: ret
+	IL_006a: newobj System.Void System.NullReferenceException::.ctor()
+	IL_006f: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.Console.Overwatch.OverwatchCommand
+	System.Boolean ExecuteParent(System.ArraySegment`1<System.String> arguments, CommandSystem.ICommandSender sender, System.String& response)
+
+		System.Boolean boolean = Misc.CheckPermission(sender, 0x1000, response) //(ICommandSender sender, PlayerPermissions perm, String& response)
+
+		if (boolean != False)
+		    ulong local6 = 0
+
+		    ReferenceHub localHub = ReferenceHub.LocalHub
+		    ulong local9 = 0
+
+		    System.Boolean boolean2 = ReferenceHub.op_Equality(localHub, local9) //(ReferenceHub left, ReferenceHub right)
+
+		    if (boolean2 == False)
+		        response. = ""
+
+		        if ( != 0)
+		            response. = "SYNTAX: overwatch enable/disable"
+		        else
+		            ServerRoles serverRoles = localHub.serverRoles
+
+		            System.Boolean isInOverwatch = serverRoles.IsInOverwatch
+		            System.Boolean local14 = isInOverwatch == False
+
+		            serverRoles.CmdSetOverwatchStatus(local14) //(Byte status)
+		            return True
+		        endif
+                
+		        response. = "You must join a server to execute this command."
+		    endif
+            
+		endif
+        
+		ulong local16 = 0
+		return local16
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.RegToFieldAction at (0x180475B6C) is corrupt (Instance or field is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.Console.Overwatch.OverwatchCommand
+	System.Void LoadGeneratedCommands()
+		CommandSystem.Commands.Console.Overwatch.DisableCommand disableCommand = new CommandSystem.Commands.Console.Overwatch.DisableCommand()
+
+		disableCommand..ctor()
+
+		System.Boolean boolean = this.TryGetCommand()
+		CommandSystem.Commands.Console.Overwatch.EnableCommand enableCommand = new CommandSystem.Commands.Console.Overwatch.EnableCommand()
+
+		enableCommand..ctor()
+
+		System.String description = base.Description
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallVirtualMethodAction at (0x180475C61) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.Console.Overwatch.OverwatchCommand
+	System.Void .ctor()
+		this.<Command>k__BackingField = "overwatch"
+		System.String[] local1 = new System.String[2]
+
+		if ("ovr" != 0)
+
+		    if ("ovr" == 0)
+                goto INSN_180475DC4
+            endif
+		endif
+        
+		local1[0] = "ovr"
+
+		if ("ow" == 0)
+            goto INSN_180475D73
+        endif
+
+		if ("ow" == 0)
+            goto INSN_180475DE4
+        endif
+
+		INSN_180475D73:
+		local1[1] = "ow"
+		this.<Aliases>k__BackingField = local1
+		this.<Description>k__BackingField = "Toggle overwatch mode."
+
+		base..ctor()
+		return
+		throw new System.NullReferenceException()
+
+		INSN_180475DC4:
+
+		INSN_180475DE4:
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldstr "overwatch"
+	IL_0006: stfld System.String CommandSystem.Commands.Console.Overwatch.OverwatchCommand::<Command>k__BackingField
+	IL_000b: ldc.i4.2
+	IL_000c: newarr System.String
+	IL_0011: stloc.0
+	IL_0012: ldstr "ovr"
+	IL_0017: ldc.i4.0
+	IL_0018: beq.s IL_0022
+	IL_001a: ldstr "ovr"
+	IL_001f: ldc.i4.0
+	IL_0020: beq.s IL_0000
+	IL_0022: ldloc.0
+	IL_0023: ldc.i4.0
+	IL_0024: ldstr "ovr"
+	IL_0029: stelem.any System.String
+	IL_002e: ldstr "ow"
+	IL_0033: ldc.i4.0
+	IL_0034: beq.s IL_003e
+	IL_0036: ldstr "ow"
+	IL_003b: ldc.i4.0
+	IL_003c: beq.s IL_0000
+	IL_003e: ldloc.0
+	IL_003f: ldc.i4.1
+	IL_0040: ldstr "ow"
+	IL_0045: stelem.any System.String
+	IL_004a: ldarg.0
+	IL_004b: ldloc.0
+	IL_004c: stfld System.String[] CommandSystem.Commands.Console.Overwatch.OverwatchCommand::<Aliases>k__BackingField
+	IL_0051: ldarg.0
+	IL_0052: ldstr "Toggle overwatch mode."
+	IL_0057: stfld System.String CommandSystem.Commands.Console.Overwatch.OverwatchCommand::<Description>k__BackingField
+	IL_005c: ldarg.0
+	IL_005d: call System.Void ParentCommand::.ctor()
+	IL_0062: ret
+	IL_0063: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0068: throw
+	
+

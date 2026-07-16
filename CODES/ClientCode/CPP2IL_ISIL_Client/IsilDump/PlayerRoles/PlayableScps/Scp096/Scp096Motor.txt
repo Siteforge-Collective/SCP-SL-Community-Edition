@@ -1,0 +1,190 @@
+Type: PlayerRoles.PlayableScps.Scp096.Scp096Motor
+
+Method: UnityEngine.Vector3 get_DesiredMove()
+
+Disassembly:
+	mov [rsp+8],rbx
+	push rdi
+	sub rsp,30h
+	mov rdi,rcx
+	mov rbx,rdx
+	mov rcx,[rdx+88h]
+	test rcx,rcx
+	je short 0000000180307786h
+	xor edx,edx
+	call 0000000180443AC0h
+	test al,al
+	je short 000000018030775Ah
+	cmp byte ptr [rbx+90h],0
+	je short 000000018030775Ah
+	mov eax,[rbx+9Ch]
+	movsd xmm0,qword ptr [rbx+94h]
+	movsd qword ptr [rdi],xmm0
+	mov [rdi+8],eax
+	mov rax,rdi
+	mov byte ptr [rbx+90h],0
+	mov rbx,[rsp+40h]
+	add rsp,30h
+	pop rdi
+	ret
+	xor r8d,r8d
+	lea rcx,[rsp+20h]
+	mov rdx,rbx
+	call 000000018037D040h
+	mov rbx,[rsp+40h]
+	movsd xmm0,qword ptr [rax]
+	mov eax,[rax+8]
+	movsd qword ptr [rdi],xmm0
+	mov [rdi+8],eax
+	mov rax,rdi
+	add rsp,30h
+	pop rdi
+	ret
+	call 0000000180294310h
+
+ISIL:
+	001 Move stack:0x8, rbx
+	002 ShiftStack -8
+	003 Move stack:0x0, rdi
+	004 ShiftStack -48
+	005 Move rdi, rcx
+	006 Move rbx, rdx
+	007 Move rcx, [rdx+136]
+	008 Compare rcx, 0
+	009 JumpIfEqual {41}
+	010 Move rdx, 0
+	011 Call PlayerRoleBase.get_IsLocalPlayer, rcx, rdx
+	012 Compare rax, 0
+	013 JumpIfEqual {27}
+	014 Compare [rbx+144], 0
+	015 JumpIfEqual {27}
+	016 Move rax, [rbx+156]
+	017 Move xmm0, [rbx+148]
+	018 Move [rdi], xmm0
+	019 Move [rdi+8], rax
+	020 Move rax, rdi
+	021 Move [rbx+144], 0
+	022 Move rbx, stack:0x40
+	023 ShiftStack 48
+	024 Move rdi, stack:0x0
+	025 ShiftStack 8
+	026 Return rax
+	027 Move r8, 0
+	028 LoadAddress rcx, stack:0x20
+	029 Move rdx, rbx
+	030 Call FpcMotor.get_DesiredMove, rcx, rdx
+	031 Move rbx, stack:0x40
+	032 Move xmm0, [rax]
+	033 Move rax, [rax+8]
+	034 Move [rdi], xmm0
+	035 Move [rdi+8], rax
+	036 Move rax, rdi
+	037 ShiftStack 48
+	038 Move rdi, stack:0x0
+	039 ShiftStack 8
+	040 Return rax
+	041 Call 0x180294310, rcx, rdx, r8, r9
+
+Method: System.Void SetOverride(UnityEngine.Vector3 desiredMove)
+
+Disassembly:
+	movsd xmm0,qword ptr [rdx]
+	mov eax,[rdx+8]
+	movsd qword ptr [rcx+94h],xmm0
+	mov [rcx+9Ch],eax
+	mov byte ptr [rcx+90h],1
+	ret
+
+ISIL:
+	001 Move xmm0, [rdx]
+	002 Move rax, [rdx+8]
+	003 Move [rcx+148], xmm0
+	004 Move [rcx+156], rax
+	005 Move [rcx+144], 1
+	006 Return 
+
+Method: System.Void .ctor(ReferenceHub hub, PlayerRoles.PlayableScps.Scp096.Scp096Role role)
+
+Disassembly:
+	mov [rsp+10h],rbx
+	mov [rsp+18h],rbp
+	push rdi
+	sub rsp,30h
+	cmp byte ptr [1826E996Bh],0
+	mov rbx,r8
+	mov rbp,rdx
+	mov rdi,rcx
+	jne short 0000000180307683h
+	mov ecx,[1822F32B8h]
+	call 0000000180294190h
+	mov byte ptr [1826E996Bh],1
+	test rbx,rbx
+	je short 00000001803076EFh
+	mov rcx,[182728908h]
+	mov [rsp+40h],rsi
+	mov rsi,[rbx+68h]
+	test byte ptr [rcx+12Fh],2
+	je short 00000001803076AFh
+	cmp dword ptr [rcx+0E0h],0
+	jne short 00000001803076AFh
+	call 000000018021A070h
+	xor r9d,r9d
+	mov qword ptr [rsp+20h],0
+	mov r8,rsi
+	mov rdx,rbp
+	mov rcx,rdi
+	call 000000018037CC60h
+	lea rcx,[rdi+88h]
+	mov rdx,rbx
+	mov [rcx],rbx
+	mov rsi,[rsp+40h]
+	mov rbx,[rsp+48h]
+	mov rbp,[rsp+50h]
+	add rsp,30h
+	pop rdi
+	jmp near ptr 0000000180293EF0h
+	call 0000000180294310h
+
+ISIL:
+	001 Move stack:0x10, rbx
+	002 Move stack:0x18, rbp
+	003 ShiftStack -8
+	004 Move stack:0x0, rdi
+	005 ShiftStack -48
+	006 Compare [0x1826E996B], 0
+	007 Move rbx, r8
+	008 Move rbp, rdx
+	009 Move rdi, rcx
+	010 JumpIfNotEqual {14}
+	011 Move rcx, [0x1822F32B8]
+	012 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	013 Move [0x1826E996B], 1
+	014 Compare rbx, 0
+	015 JumpIfEqual {41}
+	016 Move rcx, typeof(PlayerRoles.FirstPersonControl.FpcMotor)
+	017 Move stack:0x40, rsi
+	018 Move rsi, [rbx+104]
+	019 Compare [rcx+303], 2
+	020 JumpIfEqual {24}
+	021 Compare [rcx+224], 0
+	022 JumpIfNotEqual {24}
+	023 Call "il2cpp_runtime_class_init_export", rcx, rdx, r8, r9
+	024 Move r9, 0
+	025 Move stack:0x20, 0
+	026 Move r8, rsi
+	027 Move rdx, rbp
+	028 Move rcx, rdi
+	029 Call FpcMotor..ctor, rcx, rdx, r8, r9
+	030 LoadAddress rcx, [rdi+136]
+	031 Move rdx, rbx
+	032 Move [rcx], rbx
+	033 Move rsi, stack:0x40
+	034 Move rbx, stack:0x48
+	035 Move rbp, stack:0x50
+	036 ShiftStack 48
+	037 Move rdi, stack:0x0
+	038 ShiftStack 8
+	039 Call 0x180293EF0, rcx, rdx, r8, r9
+	040 Return 
+	041 Call 0x180294310, rcx, rdx, r8, r9
+

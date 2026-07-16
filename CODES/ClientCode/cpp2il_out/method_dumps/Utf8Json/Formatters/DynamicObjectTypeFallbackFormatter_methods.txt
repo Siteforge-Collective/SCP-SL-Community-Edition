@@ -1,0 +1,280 @@
+Type: DynamicObjectTypeFallbackFormatter
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Utf8Json.Formatters.DynamicObjectTypeFallbackFormatter
+	System.Void .ctor(Utf8Json.IJsonFormatterResolver[] innerResolvers)
+		Utf8Json.Internal.ThreadsafeTypeKeyHashTable`1<System.Collections.Generic.KeyValuePair`2<System.Object,Utf8Json.Formatters.DynamicObjectTypeFallbackFormatter/SerializeMethod>> threadsafeTypeKeyHashTable = new Utf8Json.Internal.ThreadsafeTypeKeyHashTable`1<System.Collections.Generic.KeyValuePair`2<System.Object,Utf8Json.Formatters.DynamicObjectTypeFallbackFormatter/SerializeMethod>>()
+
+		threadsafeTypeKeyHashTable..ctor(4, 0.75) //(Int32 capacity, Single loadFactor)
+		this.serializers = threadsafeTypeKeyHashTable
+
+		base..ctor()
+		this.innerResolvers = innerResolvers
+
+
+Generated IL:
+	IL_0000: ldc.i4.4
+	IL_0001: ldc.r4 0,75
+	IL_0006: newobj System.Void Utf8Json.Internal.ThreadsafeTypeKeyHashTable`1::.ctor(System.Int32,System.Single)
+	IL_000b: stloc.0
+	IL_000c: ldarg.0
+	IL_000d: ldloc.0
+	IL_000e: stfld Utf8Json.Internal.ThreadsafeTypeKeyHashTable`1<System.Collections.Generic.KeyValuePair`2<System.Object,Utf8Json.Formatters.DynamicObjectTypeFallbackFormatter/SerializeMethod>> Utf8Json.Formatters.DynamicObjectTypeFallbackFormatter::serializers
+	IL_0013: ldarg.0
+	IL_0014: call System.Void System.Object::.ctor()
+	IL_0019: ldarg.0
+	IL_001a: ldarg.1
+	IL_001b: stfld Utf8Json.IJsonFormatterResolver[] Utf8Json.Formatters.DynamicObjectTypeFallbackFormatter::innerResolvers
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Utf8Json.Formatters.DynamicObjectTypeFallbackFormatter
+	System.Void Serialize(Utf8Json.JsonWriter& writer, System.Object value, Utf8Json.IJsonFormatterResolver formatterResolver)
+		ulong local5 = 0
+
+		if (value != 0)
+
+		    System.Type type = value.GetType()
+
+		    System.Type typeFromHandle = System.Type.GetTypeFromHandle({'Object' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		    ulong local10 = 0
+
+		    System.Boolean boolean = type.Equals(typeFromHandle) //(Object obj)
+
+		    if (boolean == False)
+		        Utf8Json.Internal.ThreadsafeTypeKeyHashTable`1<System.Collections.Generic.KeyValuePair`2<System.Object,Utf8Json.Formatters.DynamicObjectTypeFallbackFormatter/SerializeMethod>> serializers = this.serializers
+
+		        System.Boolean boolean2 = serializers.TryGetValue(type, local10) //(Type key, TValue& value)
+
+		        if (boolean2 == False)
+		            Utf8Json.Internal.ThreadsafeTypeKeyHashTable`1<System.Collections.Generic.KeyValuePair`2<System.Object,Utf8Json.Formatters.DynamicObjectTypeFallbackFormatter/SerializeMethod>> serializers2 = this.serializers
+		            ulong local15 = 0
+
+		            System.Threading.Monitor.Enter()
+		            Utf8Json.Internal.ThreadsafeTypeKeyHashTable`1<System.Collections.Generic.KeyValuePair`2<System.Object,Utf8Json.Formatters.DynamicObjectTypeFallbackFormatter/SerializeMethod>> serializers3 = this.serializers
+
+		            System.Boolean boolean3 = serializers3.TryGetValue(type, local15) //(Type key, TValue& value)
+
+		            if (boolean3 == False)
+		                Utf8Json.IJsonFormatterResolver[] innerResolvers = this.innerResolvers
+		                ulong local19 = 0
+
+		                if (local19 >= innerResolvers.Length)
+                            goto INSN_18074CDFA
+                        endif
+		                Utf8Json.IJsonFormatterResolver iJsonFormatterResolver = innerResolvers[local19]
+
+		                System.Object formatterDynamic = Utf8Json.JsonFormatterResolverExtensions.GetFormatterDynamic(iJsonFormatterResolver, type) //(IJsonFormatterResolver resolver, Type type)
+
+		                if (formatterDynamic == 0)
+		                    local19 += 1
+		                endwhile
+                        
+		                goto INSN_18074CF50
+                        
+		                System.Type[] local23 = new System.Type[4]
+
+		                System.Type typeFromHandle2 = System.Type.GetTypeFromHandle({'Object' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+
+		                if (typeFromHandle2 == 0)
+                            goto INSN_18074C8F3
+                        endif
+
+		                if (typeFromHandle2 == 0)
+                            goto INSN_18074CD2F
+                        endif
+
+		                INSN_18074C8F3:
+		                local23[0] = typeFromHandle2
+
+		                System.Type typeFromHandle3 = System.Type.GetTypeFromHandle({'JsonWriter' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+
+		                System.Type type2 = typeFromHandle3.MakePointerType()
+
+		                if (type2 == 0)
+                            goto INSN_18074C956
+                        endif
+
+		                if (type2 == 0)
+                            goto INSN_18074CD4D
+                        endif
+
+		                INSN_18074C956:
+		                local23[1] = type2
+
+		                System.Type typeFromHandle4 = System.Type.GetTypeFromHandle({'Object' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+
+		                if (typeFromHandle4 == 0)
+                            goto INSN_18074C99D
+                        endif
+
+		                if (typeFromHandle4 == 0)
+                            goto INSN_18074CD6B
+                        endif
+
+		                INSN_18074C99D:
+		                local23[2] = typeFromHandle4
+
+		                System.Type typeFromHandle5 = System.Type.GetTypeFromHandle({'IJsonFormatterResolver' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+
+		                if (typeFromHandle5 == 0)
+                            goto INSN_18074C9E4
+                        endif
+
+		                if (typeFromHandle5 == 0)
+                            goto INSN_18074CD89
+                        endif
+
+		                INSN_18074C9E4:
+		                local23[3] = typeFromHandle5
+
+		                System.Int32 metadataToken = type.MetadataToken
+		                System.Reflection.Emit.DynamicMethod dynamicMethod = new System.Reflection.Emit.DynamicMethod()
+
+		                dynamicMethod..ctor()
+
+		                System.Reflection.Emit.ILGenerator iLGenerator = dynamicMethod.GetILGenerator()
+		                ulong local41 = 0
+
+		                Utf8Json.Internal.Emit.ILGeneratorExtensions.EmitLdarg(iLGenerator, local41) //(ILGenerator il, Int32 index)
+		                System.Reflection.Emit.OpCode castclass = System.Reflection.Emit.OpCodes.Castclass
+
+		                System.Type typeFromHandle6 = System.Type.GetTypeFromHandle({'IJsonFormatter`1' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		                System.Type[] local45 = new System.Type[1]
+
+		                if (local45 == 0)
+                            goto INSN_18074CDA7
+                        endif
+		                local45[0] = type
+
+		                System.Boolean isCOMObjectImpl = typeFromHandle6.IsCOMObjectImpl()
+
+		                iLGenerator.Emit()
+		                System.Int32 1 = 1
+
+		                Utf8Json.Internal.Emit.ILGeneratorExtensions.EmitLdarg(iLGenerator, 1) //(ILGenerator il, Int32 index)
+		                System.Int32 2 = 2
+
+		                Utf8Json.Internal.Emit.ILGeneratorExtensions.EmitLdarg(iLGenerator, 2) //(ILGenerator il, Int32 index)
+
+		                Utf8Json.Internal.Emit.ILGeneratorExtensions.EmitUnboxOrCast(iLGenerator, type) //(ILGenerator il, Type type)
+		                System.Int32 3 = 3
+
+		                Utf8Json.Internal.Emit.ILGeneratorExtensions.EmitLdarg(iLGenerator, 3) //(ILGenerator il, Int32 index)
+
+		                System.Reflection.MethodInfo methodInfo = Utf8Json.Resolvers.Internal.DynamicObjectTypeBuilder/EmitInfo.Serialize(type) //(Type type)
+
+		                Utf8Json.Internal.Emit.ILGeneratorExtensions.EmitCall(iLGenerator, methodInfo) //(ILGenerator il, MethodInfo methodInfo)
+		                System.Reflection.Emit.OpCode opCode = System.Reflection.Emit.OpCodes.Ret
+
+		                System.Reflection.Emit.Label label = iLGenerator.DefineLabel()
+
+		                System.Type typeFromHandle7 = System.Type.GetTypeFromHandle({'SerializeMethod' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+
+		                System.Reflection.MethodInfo methodInfo2 = dynamicMethod.MakeGenericMethod()
+
+		                if (methodInfo2 == 0)
+                            goto INSN_18074CC33
+                        endif
+
+		                if (methodInfo2 == 0)
+                            goto INSN_18074CDCF
+                        endif
+
+		                INSN_18074CC33:
+		                  = dynamicMethod.
+
+		                System.Boolean boolean4 = dynamicMethod.TryAdd(type, methodInfo2) //(Type key, TValue value)
+		            endif
+                    
+
+		            System.Threading.Monitor.Exit(serializers2) //(Object obj)
+
+		            if (local5 != 0)
+                        goto INSN_18074CF56
+                    endif
+		        endif
+                
+
+		        serializers.Invoke(type, writer, value, formatterResolver) //(Object dynamicFormatter, JsonWriter& writer, Object value, IJsonFormatterResolver formatterResolver)
+		    else
+		    else
+		    endif
+            
+		    return
+		    throw new System.IndexOutOfRangeException()
+
+		    INSN_18074CD2F:
+		    throw new System.IndexOutOfRangeException()
+
+		    INSN_18074CD4D:
+		    throw new System.IndexOutOfRangeException()
+
+		    INSN_18074CD6B:
+		    throw new System.IndexOutOfRangeException()
+
+		    INSN_18074CD89:
+		    throw new System.IndexOutOfRangeException()
+
+		    INSN_18074CDA7:
+		    throw new System.IndexOutOfRangeException()
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+
+		    INSN_18074CDCF:
+		    throw new System.InvalidCastException()
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+
+		    INSN_18074CDFA:
+		    throw new System.NullReferenceException()
+
+		    [instruction error - managed method being called is null]
+
+		    if (local94 != 0)
+                goto INSN_18074CEE1
+            endif
+		    System.Func`2<Utf8Json.IJsonFormatterResolver,System.String> func = new System.Func`2<Utf8Json.IJsonFormatterResolver,System.String>()
+
+		    INSN_18074CEE1:
+
+		    System.String string = System.String.Join()
+
+		    System.String string2 = System.String.Concat()
+		    Utf8Json.FormatterNotRegisteredException formatterNotRegisteredException = new Utf8Json.FormatterNotRegisteredException()
+
+		    formatterNotRegisteredException..ctor(string2) //(String message)
+
+		    INSN_18074CF50:
+		    throw new System.NullReferenceException()
+
+		    INSN_18074CF56:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18074C818) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Utf8Json.Formatters.DynamicObjectTypeFallbackFormatter
+	System.Object Deserialize(Utf8Json.JsonReader& reader, Utf8Json.IJsonFormatterResolver formatterResolver)
+		Utf8Json.IJsonFormatter`1<System.Object> default = Utf8Json.Formatters.PrimitiveObjectFormatter.Default
+		return constant10
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x18074C705) is corrupt (ConstantDefinition: Don't know how to get IL to load a Cpp2IL.Core.Analysis.ResultModels.StaticFieldsPtr) and cannot be created as IL. Aborting here.
+
+

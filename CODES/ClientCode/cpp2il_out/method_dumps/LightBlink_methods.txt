@@ -1,0 +1,349 @@
+Type: LightBlink
+
+
+	Generated Pseudocode:
+
+	Declaring Type: LightBlink
+	System.Void Awake()
+
+		MapGeneration.RoomIdentifier componentInParent = base.GetComponentInParent<MapGeneration.RoomIdentifier>()
+		ulong local2 = 0
+
+		if (componentInParent != 0)
+
+		    FlickerableLightController componentInChildren = componentInParent.GetComponentInChildren<FlickerableLightController>()
+		else
+		endif
+        
+		this._controller = local2
+		FlickerableLightController _controller = this._controller
+		ulong local6 = 0
+
+		System.Boolean boolean = UnityEngine.Object.op_Inequality(_controller, local6) //(Object x, Object y)
+		this._hasParentController = boolean
+		UnityEngine.Light[] lightGroup = this.lightGroup
+
+		if (lightGroup.Length != local2)
+            goto INSN_180537C85
+        endif
+		UnityEngine.Light[] local9 = new UnityEngine.Light[1]
+
+		UnityEngine.Light component = base.GetComponent<UnityEngine.Light>()
+
+		if (component == 0)
+            goto INSN_180537C50
+        endif
+
+		if (component == 0)
+            goto INSN_180537D5E
+        endif
+
+		INSN_180537C50:
+		local9[0] = component
+		this.lightGroup = local9
+		UnityEngine.Light[] lightGroup2 = this.lightGroup
+
+		INSN_180537C85:
+		System.Int32 length = lightGroup2.Length
+		System.Single[] local13 = new System.Single[length]
+		this._startLightIntensity = local13
+		UnityEngine.Light[] lightGroup3 = this.lightGroup
+
+		while (local2 < lightGroup3.Length)
+		    UnityEngine.Light light = lightGroup3[local2]
+		    System.Single[] _startLightIntensity = this._startLightIntensity
+
+		    System.Single intensity = light.intensity
+		    local2 += 1
+		    _startLightIntensity[0] = intensity
+		    UnityEngine.Light[] lightGroup4 = this.lightGroup
+		endwhile
+        
+		System.Int32 length2 = lightGroup4.Length
+
+		if (length2 == 0)
+            goto INSN_180537D4F
+        endif
+		UnityEngine.Light local21 = lightGroup4[0]
+		this._defaultLight = local21
+		return
+
+		INSN_180537D4F:
+		ulong local23 = 0
+
+		base.enabled = local23
+
+		INSN_180537D5E:
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call T UnityEngine.Component::GetComponentInParent<MapGeneration.RoomIdentifier>()
+	IL_0006: stloc.0
+	IL_0007: ldc.i4.0
+	IL_0008: stloc.1
+	IL_0009: ldloc.0
+	IL_000a: ldc.i4.0
+	IL_000b: beq.s IL_0014
+	IL_000d: ldloc.0
+	IL_000e: call T UnityEngine.Component::GetComponentInChildren<FlickerableLightController>()
+	IL_0013: stloc.2
+	IL_0014: ldarg.0
+	IL_0015: ldloc.1
+	IL_0016: stfld FlickerableLightController LightBlink::_controller
+	IL_001b: ldarg.0
+	IL_001c: ldfld FlickerableLightController LightBlink::_controller
+	IL_0021: stloc.3
+	IL_0022: ldc.i4.0
+	IL_0023: stloc.s V_4
+	IL_0025: ldloc.3
+	IL_0026: ldloc.s V_4
+	IL_0028: call System.Boolean UnityEngine.Object::op_Inequality(UnityEngine.Object,UnityEngine.Object)
+	IL_002d: stloc.s V_5
+	IL_002f: ldarg.0
+	IL_0030: ldloc.s V_5
+	IL_0032: stfld System.Boolean LightBlink::_hasParentController
+	IL_0037: ldarg.0
+	IL_0038: ldfld UnityEngine.Light[] LightBlink::lightGroup
+	IL_003d: call System.Int32 System.Array::get_Length()
+	IL_0042: ldloc.1
+	IL_0043: bne.un.s IL_0000
+	IL_0045: ldc.i4.1
+	IL_0046: newarr UnityEngine.Light
+	IL_004b: stloc.s V_6
+	IL_004d: ldarg.0
+	IL_004e: call T UnityEngine.Component::GetComponent<UnityEngine.Light>()
+	IL_0053: stloc.s V_7
+	IL_0055: ldloc.s V_7
+	IL_0057: ldc.i4.0
+	IL_0058: beq.s IL_005f
+	IL_005a: ldloc.s V_7
+	IL_005c: ldc.i4.0
+	IL_005d: beq.s IL_0000
+	IL_005f: ldloc.s V_6
+	IL_0061: ldc.i4.0
+	IL_0062: ldloc.s V_7
+	IL_0064: stelem.any UnityEngine.Light
+	IL_0069: ldarg.0
+	IL_006a: ldloc.s V_6
+	IL_006c: stfld UnityEngine.Light[] LightBlink::lightGroup
+	IL_0071: ldarg.0
+	IL_0072: ldfld UnityEngine.Light[] LightBlink::lightGroup
+	IL_0077: call System.Int32 System.Array::get_Length()
+	IL_007c: newarr System.Single
+	IL_0081: stloc.s V_8
+	IL_0083: ldarg.0
+	IL_0084: ldloc.s V_8
+	IL_0086: stfld System.Single[] LightBlink::_startLightIntensity
+	IL_008b: ldarg.0
+	IL_008c: ldfld UnityEngine.Light[] LightBlink::lightGroup
+	IL_0091: stloc.s V_9
+	IL_0093: ldloc.1
+	IL_0094: ldloc.s V_9
+	IL_0096: call System.Int32 System.Array::get_Length()
+	IL_009b: bge.s IL_00ce
+	IL_009d: ldloc.s V_9
+	IL_009f: ldloc.1
+	IL_00a0: ldelem.any UnityEngine.Light
+	IL_00a5: stloc.s V_10
+	IL_00a7: ldarg.0
+	IL_00a8: ldfld System.Single[] LightBlink::_startLightIntensity
+	IL_00ad: stloc.s V_11
+	IL_00af: ldloc.s V_10
+	IL_00b1: call System.Single UnityEngine.Light::get_intensity()
+	IL_00b6: stloc.s V_12
+	IL_00b8: ldloc.1
+	IL_00b9: ldc.i4.1
+	IL_00ba: add
+	IL_00bb: stloc.1
+	IL_00bc: ldloc.s V_11
+	IL_00be: ldc.i4.0
+	IL_00bf: ldloc.s V_12
+	IL_00c1: stelem.any System.Single
+	IL_00c6: ldarg.0
+	IL_00c7: ldfld UnityEngine.Light[] LightBlink::lightGroup
+	IL_00cc: stloc.s V_13
+	IL_00ce: ldloc.s V_13
+	IL_00d0: call System.Int32 System.Array::get_Length()
+	IL_00d5: ldc.i4.0
+	IL_00d6: beq.s IL_00eb
+	IL_00d8: ldloc.s V_13
+	IL_00da: ldc.i4.0
+	IL_00db: ldelem.any UnityEngine.Light
+	IL_00e0: stloc.s V_14
+	IL_00e2: ldarg.0
+	IL_00e3: ldloc.s V_14
+	IL_00e5: stfld UnityEngine.Light LightBlink::_defaultLight
+	IL_00ea: ret
+	IL_00eb: ldc.i4.0
+	IL_00ec: stloc.s V_15
+	IL_00ee: ldarg.0
+	IL_00ef: ldloc.s V_15
+	IL_00f1: call System.Void UnityEngine.Behaviour::set_enabled(System.Boolean)
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: LightBlink
+	System.Void Start()
+		ulong local1 = 0
+
+		UnityEngine.ShadowQuality shadows = UnityEngine.QualitySettings.shadows
+
+		if (shadows != 0)
+		    this.noshadowIntensMultiplier = 1
+		endif
+        
+		return
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: call UnityEngine.ShadowQuality UnityEngine.QualitySettings::get_shadows()
+	IL_0007: ldc.i4.0
+	IL_0008: beq.s IL_0015
+	IL_000a: ldarg.0
+	IL_000b: ldc.r4 1
+	IL_0010: stfld System.Single LightBlink::noshadowIntensMultiplier
+	IL_0015: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: LightBlink
+	System.Void Update()
+		UnityEngine.Light _defaultLight = this._defaultLight
+
+		System.Boolean enabled = _defaultLight.enabled
+
+		if (enabled != False)
+		    System.Single _frequency = this._frequency
+		    ulong local5 = 0
+
+		    System.Single deltaTime = UnityEngine.Time.deltaTime
+		    ulong local7 = 0
+		    ulong local8 = 0
+		    this._frequency = _frequency
+		    System.Single maxFlickerTimeRange = this.maxFlickerTimeRange
+		    System.Single minFlickerTimeRange = this.minFlickerTimeRange
+
+		    System.Single single = UnityEngine.Random.Range(minFlickerTimeRange, maxFlickerTimeRange) //(Single min, Single max)
+		    UnityEngine.Light[] lightGroup = this.lightGroup
+		    this._frequency = single
+
+		    while (local8 < lightGroup.Length)
+		        UnityEngine.Light light = lightGroup[local8]
+		        System.Single[] _startLightIntensity = this._startLightIntensity
+		        System.Single single2 = _startLightIntensity[local8]
+
+		        if (this._hasParentController != local8)
+		            FlickerableLightController _controller = this._controller
+		        else
+		        endif
+                
+
+		        System.Single intensity = light.intensity
+		        System.Single local22 = single2 * this.maxIntensityDecreaseMultiplier
+		        maxFlickerTimeRange = local22
+
+		        System.Single single3 = UnityEngine.Random.Range(local7, maxFlickerTimeRange) //(Single min, Single max)
+		        single3 = intensity
+
+		        System.Single single4 = UnityEngine.Mathf.Max(single3, local7) //(Single a, Single b)
+
+		        light.intensity = single4
+		        UnityEngine.Light[] lightGroup2 = this.lightGroup
+		        local8 += 1
+		    endwhile
+            
+		    UnityEngine.Light[] lightGroup3 = this.lightGroup
+
+		    while (local8 < lightGroup3.Length)
+		        UnityEngine.Light light2 = lightGroup3[local8]
+		        ulong local31 = 0
+
+		        System.Boolean boolean = UnityEngine.Object.op_Equality(light2, local31) //(Object x, Object y)
+
+		        if (boolean != False)
+                    goto INSN_1805380C7
+                endif
+		        System.Single[] _startLightIntensity2 = this._startLightIntensity
+		        System.Single single5 = _startLightIntensity2[local8]
+
+		        if (this._hasParentController != False)
+		            FlickerableLightController _controller2 = this._controller
+		        else
+		        endif
+                
+
+		        System.Single intensity2 = light2.intensity
+		        intensity = intensity2
+		        System.Single turnOnSpeed = this.turnOnSpeed
+		        single4 = single5
+		        intensity2 = intensity
+
+		        System.Single single6 = UnityEngine.Mathf.Lerp(intensity2, single4, turnOnSpeed) //(Single a, Single b, Single t)
+		        single4 = single6
+
+		        light2.intensity = single4
+		        UnityEngine.Light[] lightGroup4 = this.lightGroup
+		        local8 += 1
+
+		        if (lightGroup4 == 0)
+		        endwhile
+                
+		        goto INSN_1805380EF
+                
+
+		        INSN_1805380C7:
+
+		        UnityEngine.Object.Destroy(this) //(Object obj)
+		    endif
+            
+		    return
+		    throw new System.IndexOutOfRangeException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.MultiplyRegByFieldAction at (0x180537F42) is corrupt (Operand we were multiplying by is null or local made was stripped) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: LightBlink
+	System.Void .ctor()
+		this.noshadowIntensMultiplier = 1
+		this.minFlickerTimeRange = 0,1
+		this.maxFlickerTimeRange = 1,5
+		this.turnOnSpeed = 0,3
+		this.maxIntensityDecreaseMultiplier = 0,5
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldc.r4 1
+	IL_0006: stfld System.Single LightBlink::noshadowIntensMultiplier
+	IL_000b: ldarg.0
+	IL_000c: ldc.r4 0,1
+	IL_0011: stfld System.Single LightBlink::minFlickerTimeRange
+	IL_0016: ldarg.0
+	IL_0017: ldc.r4 1,5
+	IL_001c: stfld System.Single LightBlink::maxFlickerTimeRange
+	IL_0021: ldarg.0
+	IL_0022: ldc.r4 0,3
+	IL_0027: stfld System.Single LightBlink::turnOnSpeed
+	IL_002c: ldarg.0
+	IL_002d: ldc.r4 0,5
+	IL_0032: stfld System.Single LightBlink::maxIntensityDecreaseMultiplier
+	IL_0037: ldarg.0
+	IL_0038: call System.Void UnityEngine.MonoBehaviour::.ctor()
+	IL_003d: ret
+	
+

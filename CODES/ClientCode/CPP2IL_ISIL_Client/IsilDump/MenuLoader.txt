@@ -1,0 +1,50 @@
+Type: MenuLoader
+
+Method: System.Void Start()
+
+Disassembly:
+	sub rsp,28h
+	cmp byte ptr [1826E962Fh],0
+	jne short 00000001802E33DFh
+	mov ecx,[1822ED23Ch]
+	call 0000000180294190h
+	mov byte ptr [1826E962Fh],1
+	mov rcx,[182731990h]
+	test byte ptr [rcx+12Fh],2
+	je short 00000001802E33FDh
+	cmp dword ptr [rcx+0E0h],0
+	jne short 00000001802E33FDh
+	call 000000018021A070h
+	xor ecx,ecx
+	add rsp,28h
+	jmp near ptr 0000000180394A60h
+
+ISIL:
+	001 ShiftStack -40
+	002 Compare [0x1826E962F], 0
+	003 JumpIfNotEqual {7}
+	004 Move rcx, [0x1822ED23C]
+	005 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	006 Move [0x1826E962F], 1
+	007 Move rcx, typeof(SimpleMenu)
+	008 Compare [rcx+303], 2
+	009 JumpIfEqual {13}
+	010 Compare [rcx+224], 0
+	011 JumpIfNotEqual {13}
+	012 Call "il2cpp_runtime_class_init_export", rcx, rdx, r8, r9
+	013 Move rcx, 0
+	014 ShiftStack 40
+	015 Call SimpleMenu.LoadCorrectScene, rcx
+	016 Return 
+
+Method: System.Void .ctor()
+
+Disassembly:
+	xor edx,edx
+	jmp near ptr 0000000180FD1850h
+
+ISIL:
+	001 Move rdx, 0
+	002 Call 0x180FD1850, rcx, rdx
+	003 Return 
+

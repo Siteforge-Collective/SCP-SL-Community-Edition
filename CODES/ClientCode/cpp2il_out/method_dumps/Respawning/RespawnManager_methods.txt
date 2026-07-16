@@ -1,0 +1,876 @@
+Type: RespawnManager
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Respawning.RespawnManager
+	static System.Void add_ServerOnRespawned(System.Action`2<Respawning.SpawnableTeamType,System.Collections.Generic.List`1<ReferenceHub>> value)
+		System.Action`2<Respawning.SpawnableTeamType,System.Collections.Generic.List`1<ReferenceHub>> serverOnRespawned = Respawning.RespawnManager.ServerOnRespawned
+
+		System.Delegate delegate = System.Delegate.Combine(serverOnRespawned, value) //(Delegate a, Delegate b)
+
+		if (delegate != 0)
+
+		    if (delegate == 0)
+                goto INSN_181AAD466
+            endif
+		endif
+        
+		 += 8
+
+		if (RespawnManager == serverOnRespawned)
+		    return
+
+		    INSN_181AAD466:
+		    throw new System.InvalidCastException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x181AAD43D) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Respawning.RespawnManager
+	static System.Void remove_ServerOnRespawned(System.Action`2<Respawning.SpawnableTeamType,System.Collections.Generic.List`1<ReferenceHub>> value)
+		System.Action`2<Respawning.SpawnableTeamType,System.Collections.Generic.List`1<ReferenceHub>> serverOnRespawned = Respawning.RespawnManager.ServerOnRespawned
+
+		System.Delegate delegate = System.Delegate.Remove(serverOnRespawned, value) //(Delegate source, Delegate value)
+
+		if (delegate != 0)
+
+		    if (delegate == 0)
+                goto INSN_181AAD646
+            endif
+		endif
+        
+		 += 8
+
+		if (RespawnManager == serverOnRespawned)
+		    return
+
+		    INSN_181AAD646:
+		    throw new System.InvalidCastException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x181AAD61D) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Respawning.RespawnManager
+	System.Void Awake()
+		 += 16
+		Respawning.RespawnManager.SpawnableTeams = this
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x181AAB8C6) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Respawning.RespawnManager
+	System.Int32 get_TimeTillRespawn()
+		Respawning.RespawnManager singleton = Respawning.RespawnManager.Singleton
+		System.Single _timeForNextSequence = singleton._timeForNextSequence
+		System.Diagnostics.Stopwatch _stopwatch = singleton._stopwatch
+
+		System.TimeSpan elapsed = _stopwatch.Elapsed
+
+		System.Int32 int32 = UnityEngine.Mathf.RoundToInt(_timeForNextSequence) //(Single f)
+		return int32
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldsfld Respawning.RespawnManager Respawning.RespawnManager::Singleton
+	IL_0005: stloc.0
+	IL_0006: ldloc.0
+	IL_0007: ldfld System.Single Respawning.RespawnManager::_timeForNextSequence
+	IL_000c: stloc.1
+	IL_000d: ldloc.0
+	IL_000e: ldfld System.Diagnostics.Stopwatch Respawning.RespawnManager::_stopwatch
+	IL_0013: call System.TimeSpan System.Diagnostics.Stopwatch::get_Elapsed()
+	IL_0018: stloc.2
+	IL_0019: ldloc.1
+	IL_001a: call System.Int32 UnityEngine.Mathf::RoundToInt(System.Single)
+	IL_001f: ret
+	IL_0020: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0025: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Respawning.RespawnManager
+	System.Void Start()
+		YamlConfig serverConfig = GameCore.ConfigFile.ServerConfig
+
+		System.Boolean bool = serverConfig.GetBool("priority_mtf_respawn", True) //(String key, Boolean def)
+		this._prioritySpawn = bool
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldsfld YamlConfig GameCore.ConfigFile::ServerConfig
+	IL_0005: ldstr "priority_mtf_respawn"
+	IL_000a: ldc.i4.1
+	IL_000b: call System.Boolean YamlConfig::GetBool(System.String,System.Boolean)
+	IL_0010: stloc.0
+	IL_0011: ldarg.0
+	IL_0012: ldloc.0
+	IL_0013: stfld System.Boolean Respawning.RespawnManager::_prioritySpawn
+	IL_0018: ret
+	IL_0019: newobj System.Void System.NullReferenceException::.ctor()
+	IL_001e: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Respawning.RespawnManager
+	static Respawning.RespawnManager/RespawnSequencePhase CurrentSequence()
+		Respawning.RespawnManager singleton = Respawning.RespawnManager.Singleton
+		Respawning.RespawnManager/RespawnSequencePhase _curSequence = singleton._curSequence
+		return _curSequence
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldsfld Respawning.RespawnManager Respawning.RespawnManager::Singleton
+	IL_0005: ldfld Respawning.RespawnManager/RespawnSequencePhase Respawning.RespawnManager::_curSequence
+	IL_000a: ret
+	IL_000b: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0010: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Respawning.RespawnManager
+	System.Boolean ReadyToCommence()
+
+		if (this._started == False)
+		    GameCore.RoundStart singleton = GameCore.RoundStart.singleton
+
+		    if (singleton.Timer != 65535)
+                goto INSN_181AABEA5
+            endif
+
+		    this.RestartSequence()
+		    this._started = True
+		endif
+        
+		return True
+
+		INSN_181AABEA5:
+		System.Boolean _started = this._started
+		return _started
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfNonZeroOrNonNullAction at (0x181AABE8D) is corrupt (ConstantDefinition: Don't know how to get IL to load a System.Int16) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Respawning.RespawnManager
+	static System.String GetRemoteAdminInfoString()
+		NorthwoodLib.Pools.StringBuilderPool shared = NorthwoodLib.Pools.StringBuilderPool.Shared
+		System.Int32 64 = 64
+
+		System.Text.StringBuilder stringBuilder = shared.Rent(64) //(Int32 capacity)
+		Respawning.RespawnManager singleton = Respawning.RespawnManager.Singleton
+
+		if (singleton._started != False)
+		    Respawning.RespawnManager singleton2 = Respawning.RespawnManager.Singleton
+		    System.Single _timeForNextSequence = singleton2._timeForNextSequence
+		    System.Diagnostics.Stopwatch _stopwatch = singleton2._stopwatch
+
+		    System.TimeSpan elapsed = _stopwatch.Elapsed
+		    ulong local11 = 0
+
+		    System.Int32 int32 = UnityEngine.Mathf.RoundToInt(_timeForNextSequence) //(Single f)
+		    System.Int64 local15 = local11 * 0xFFFFFFC4
+		    int32 += local15
+		    Respawning.RespawnManager singleton3 = Respawning.RespawnManager.Singleton
+		    Respawning.RespawnManager/RespawnSequencePhase _curSequence = singleton3._curSequence
+
+		    if (_curSequence == constant59)
+		    else
+
+		        if (_curSequence == constant62)
+
+		            System.Text.StringBuilder stringBuilder2 = stringBuilder.Append("The selected team (") //(String value)
+		            Respawning.RespawnManager singleton4 = Respawning.RespawnManager.Singleton
+		            Respawning.SpawnableTeamType nextKnownTeam = singleton4.NextKnownTeam
+
+		            System.Text.StringBuilder stringBuilder3 = stringBuilder.Append(nextKnownTeam) //(Object value)
+		        else
+
+		            System.Text.StringBuilder stringBuilder4 = stringBuilder.Append("Respawn Manager reports the code ") //(String value)
+		            Respawning.RespawnManager singleton5 = Respawning.RespawnManager.Singleton
+
+		            System.Text.StringBuilder stringBuilder5 = stringBuilder.Append()
+		        endif
+                
+
+		        System.Text.StringBuilder stringBuilder6 = stringBuilder.Append(" status. Try again in ") //(String value)
+
+		        System.Text.StringBuilder stringBuilder7 = stringBuilder.Append(local11) //(Int32 value)
+
+		        System.Text.StringBuilder stringBuilder8 = stringBuilder.Append("m ") //(String value)
+
+		        System.Text.StringBuilder stringBuilder9 = stringBuilder.Append(int32) //(Int32 value)
+		    else
+		    endif
+            
+
+		    System.Text.StringBuilder stringBuilder10 = stringBuilder.Append("The respawn system is off (or waiting for the round to start).") //(String value)
+
+		    System.Int32 hashCode = stringBuilder.GetHashCode()
+		    NorthwoodLib.Pools.StringBuilderPool shared2 = NorthwoodLib.Pools.StringBuilderPool.Shared
+
+		    shared2.Return(stringBuilder) //(StringBuilder stringBuilder)
+		    return hashCode
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfNonZeroOrNonNullAction at (0x181AABC23) is corrupt (ConstantDefinition: Don't know how to get IL to load a System.Byte) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Respawning.RespawnManager
+	System.Void RestartSequence()
+		YamlConfig serverConfig = GameCore.ConfigFile.ServerConfig
+
+		System.Single float = serverConfig.GetFloat("minimum_MTF_time_to_spawn", 280) //(String key, Single def)
+		YamlConfig serverConfig2 = GameCore.ConfigFile.ServerConfig
+
+		System.Single float2 = serverConfig2.GetFloat("maximum_MTF_time_to_spawn", 350) //(String key, Single def)
+		float2 = float
+
+		System.Single single = UnityEngine.Random.Range(float2, float2) //(Single min, Single max)
+		System.Diagnostics.Stopwatch _stopwatch = this._stopwatch
+		this._timeForNextSequence = single
+		this._curSequence = 0
+		ulong local10 = 0
+
+		if (_stopwatch.is_running == local10)
+
+		    _stopwatch.Start()
+		    return
+		endif
+        
+
+		_stopwatch.Restart()
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldsfld YamlConfig GameCore.ConfigFile::ServerConfig
+	IL_0005: ldstr "minimum_MTF_time_to_spawn"
+	IL_000a: ldc.r4 280
+	IL_000f: call System.Single YamlConfig::GetFloat(System.String,System.Single)
+	IL_0014: stloc.0
+	IL_0015: ldsfld YamlConfig GameCore.ConfigFile::ServerConfig
+	IL_001a: ldstr "maximum_MTF_time_to_spawn"
+	IL_001f: ldc.r4 350
+	IL_0024: call System.Single YamlConfig::GetFloat(System.String,System.Single)
+	IL_0029: stloc.1
+	IL_002a: ldloc.0
+	IL_002b: stloc.1
+	IL_002c: ldloc.1
+	IL_002d: ldloc.1
+	IL_002e: call System.Single UnityEngine.Random::Range(System.Single,System.Single)
+	IL_0033: stloc.2
+	IL_0034: ldarg.0
+	IL_0035: ldfld System.Diagnostics.Stopwatch Respawning.RespawnManager::_stopwatch
+	IL_003a: stloc.3
+	IL_003b: ldarg.0
+	IL_003c: ldloc.2
+	IL_003d: stfld System.Single Respawning.RespawnManager::_timeForNextSequence
+	IL_0042: ldarg.0
+	IL_0043: ldc.i4.0
+	IL_0044: conv.i8
+	IL_0045: conv.u8
+	IL_0046: stfld Respawning.RespawnManager/RespawnSequencePhase Respawning.RespawnManager::_curSequence
+	IL_004b: ldc.i4.0
+	IL_004c: stloc.s V_4
+	IL_004e: ldloc.3
+	IL_004f: ldfld System.Boolean System.Diagnostics.Stopwatch::is_running
+	IL_0054: ldloc.s V_4
+	IL_0056: bne.un.s IL_005f
+	IL_0058: ldloc.3
+	IL_0059: call System.Void System.Diagnostics.Stopwatch::Start()
+	IL_005e: ret
+	IL_005f: ldloc.3
+	IL_0060: call System.Void System.Diagnostics.Stopwatch::Restart()
+	IL_0065: ret
+	IL_0066: newobj System.Void System.NullReferenceException::.ctor()
+	IL_006b: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Respawning.RespawnManager
+	System.Boolean CheckSpawnable(ReferenceHub ply)
+		PlayerRoles.PlayerRoleManager local2 = ply.roleManager
+		ulong local3 = 0
+
+		PlayerRoles.PlayerRoleBase local4 = local2.CurrentRole
+
+		if (local4 != 0)
+		    //UNKNOWN CLASS OFFSET READ HERE
+
+
+Generated IL:
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Respawning.RespawnManager
+	System.Void Update()
+		ulong local1 = 0
+
+		if (this._started == local1)
+		    GameCore.RoundStart singleton = GameCore.RoundStart.singleton
+
+		    if (singleton.Timer == 65535)
+
+		        this.RestartSequence()
+		        this._started = True
+		    else
+
+		        if (this._started != local1)
+		        endif
+                
+		        System.Diagnostics.Stopwatch _stopwatch = this._stopwatch
+
+		        System.TimeSpan elapsed = _stopwatch.Elapsed
+
+		        if (_stopwatch > 0)
+		        endif
+                
+		        Respawning.RespawnManager/RespawnSequencePhase _curSequence = this._curSequence
+
+		        if (_curSequence != constant30)
+                    goto INSN_181AAD14C
+                endif
+		        System.Func`2<ReferenceHub,System.Boolean> func = new System.Func`2<ReferenceHub,System.Boolean>()
+
+		        func..ctor(this, {'CheckSpawnable' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		        System.Boolean boolean = Utils.NonAllocLINQ.HashsetExtensions.Any<ReferenceHub>()
+
+		        if (boolean == False)
+                    goto INSN_181AAD15A
+                endif
+		        ulong local13 = 0
+		        System.Collections.Generic.List`1<Respawning.RespawnTokensManager/TokenCounter> counters = Respawning.RespawnTokensManager.Counters
+
+		        System.Single amount = .Amount
+
+		        if (local13 < amount)
+		        endif
+                
+		        local1 += 1
+		    endwhile
+            
+		    goto INSN_181AACFBE
+            
+		    System.Collections.Generic.List`1<Respawning.RespawnTokensManager/TokenCounter> counters2 = Respawning.RespawnTokensManager.Counters
+		    ulong local18 = 0
+
+		    System.ThrowHelper.ThrowArgumentOutOfRangeException()
+		    T[] _items = counters2._items
+		    T t = _items[local1]
+		      = .
+		    System.Collections.Generic.Dictionary`2<Respawning.SpawnableTeamType,Respawning.SpawnableTeamHandlerBase> spawnableTeams = Respawning.RespawnManager.SpawnableTeams
+
+		    System.Boolean boolean2 = spawnableTeams.TryGetValue()
+
+		    if (boolean2 == False)
+                goto INSN_181AAD180
+            endif
+		    System.Diagnostics.Stopwatch _stopwatch2 = this._stopwatch
+		    this.NextKnownTeam = counters2
+		    this._curSequence = 2
+
+		    _stopwatch2.Restart()
+
+		    System.String string = local1.ToString()
+		    this._timeForNextSequence = amount
+		    ulong local27 = 0
+
+		    Respawning.RespawnEffectsController.ExecuteAllEffects()
+		    Respawning.RespawnManager/RespawnSequencePhase _curSequence2 = this._curSequence
+
+		    INSN_181AAD14C:
+
+		    if (_curSequence2 != constant93)
+                goto INSN_181AAD164
+            endif
+
+		    this.Spawn()
+
+		    INSN_181AAD15A:
+
+		    this.RestartSequence()
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+		INSN_181AAD180:
+
+		System.String string2 = System.String.Format("{0} was returned as dominating team despite not being implemented.", local31) //(String format, Object arg0)
+		System.NotImplementedException notImplementedException = new System.NotImplementedException()
+
+		notImplementedException..ctor(string2) //(String message)
+
+
+Generated IL:
+	IL Generation Skipped due to invalid local _items of type T[]
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Respawning.RespawnManager
+	System.Void ForceSpawnTeam(Respawning.SpawnableTeamType teamToSpawn)
+		this.NextKnownTeam = teamToSpawn
+
+		this.Spawn()
+
+		this.RestartSequence()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: stfld Respawning.SpawnableTeamType Respawning.RespawnManager::NextKnownTeam
+	IL_0007: ldarg.0
+	IL_0008: call System.Void Respawning.RespawnManager::Spawn()
+	IL_000d: ldarg.0
+	IL_000e: call System.Void Respawning.RespawnManager::RestartSequence()
+	IL_0013: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Respawning.RespawnManager
+	System.Void Spawn()
+		ulong local1 = 0
+		System.Collections.Generic.Dictionary`2<Respawning.SpawnableTeamType,Respawning.SpawnableTeamHandlerBase> spawnableTeams = Respawning.RespawnManager.SpawnableTeams
+		Respawning.SpawnableTeamType nextKnownTeam = this.NextKnownTeam
+
+		System.Boolean boolean = spawnableTeams.TryGetValue(nextKnownTeam, null) //(TKey key, TValue& value)
+
+		if (boolean != False)
+
+		    if (this.NextKnownTeam != local1)
+		        System.Func`2<ReferenceHub,System.Boolean> func = new System.Func`2<ReferenceHub,System.Boolean>()
+
+		        func..ctor(this, {'CheckSpawnable' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		        System.Collections.Generic.IEnumerable`1<ReferenceHub> iEnumerable = System.Linq.Enumerable.Where<ReferenceHub>()
+
+		        System.Collections.Generic.List`1<ReferenceHub> list = System.Linq.Enumerable.ToList<ReferenceHub>(iEnumerable) //(IEnumerable`1 source)
+
+		        if (this._prioritySpawn == local1)
+
+		            CollectionExtensions.ShuffleList<ReferenceHub>(list) //(IList`1 list)
+		        else
+		            System.Func`2<ReferenceHub,System.Single> <>9__23_0 = Respawning.RespawnManager/<>c.<>9__23_0
+
+		            if (<>9__23_0 == 0)
+		                Respawning.RespawnManager/<>c <>c = Respawning.RespawnManager/<>c.<>9
+		                System.Func`2<ReferenceHub,System.Single> func2 = new System.Func`2<ReferenceHub,System.Single>()
+
+		                func2..ctor(<>c, {'<Spawn>b__23_0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		                 += 8
+		                Respawning.RespawnManager/<>c.<>9 = func2
+		            endif
+                    
+
+		            System.Linq.IOrderedEnumerable`1<ReferenceHub> iOrderedEnumerable = System.Linq.Enumerable.OrderByDescending<ReferenceHub, System.Single>(list, <>9__23_0) //(IEnumerable`1 source, Func`2 keySelector)
+
+		            System.Collections.Generic.List`1<ReferenceHub> list2 = System.Linq.Enumerable.ToList<ReferenceHub>(iOrderedEnumerable) //(IEnumerable`1 source)
+		        endif
+                
+
+		        [instruction error - managed method being called is null]
+		        System.Int32 _size = list2._size
+
+		        if (_size <= constant46)
+                    goto INSN_181AAC22E
+                endif
+		        _size -= constant46
+
+		        list2.RemoveRange()
+
+		        INSN_181AAC22E:
+
+		        if (constant46 <= 0)
+                    goto INSN_181AAC307
+                endif
+		          = .
+
+		        System.Boolean boolean2 = .TryGetValue()
+
+		        if (boolean2 == False)
+                    goto INSN_181AAC307
+                endif
+		        Respawning.SpawnableTeamType nextKnownTeam2 = this.NextKnownTeam
+
+		        Respawning.NamingRules.UnitNameMessageHandler.SendNew()
+
+		        INSN_181AAC307:
+
+		        CollectionExtensions.ShuffleList<ReferenceHub>(list2) //(IList`1 list)
+		        NorthwoodLib.Pools.ListPool`1<T> shared = NorthwoodLib.Pools.ListPool`1.Shared
+
+		        System.Collections.Generic.List`1<T> list3 = shared.Rent()
+		        System.Collections.Generic.Queue`1<PlayerRoles.RoleTypeId> queue = new System.Collections.Generic.Queue`1<PlayerRoles.RoleTypeId>()
+
+		        queue..ctor()
+
+		        queue.System.Collections.ICollection.CopyTo()
+
+		        System.Collections.Generic.List`1/Enumerator<PlayerRoles.RoleTypeId> enumerator = queue.GetEnumerator()
+
+		        if (enumerator == 0)
+                    goto INSN_181AAC785
+                endif
+
+		        PlayerRoles.RoleTypeId roleTypeId = queue.Dequeue()
+		          = list2.
+
+		        queue.ServerSetRole()
+
+		        list3.Add()
+		        System.Int64 local27 = 5
+		        System.String[] local28 = new System.String[5]
+
+		        if ("Player " == 0)
+                    goto INSN_181AAC4AD
+                endif
+
+		        if ("Player " == 0)
+                    goto INSN_181AACB83
+                endif
+
+		        INSN_181AAC4AD:
+		        local28[0] = "Player "
+
+		        System.String string = Misc.LoggedNameFromRefHub()
+
+		        if (string == 0)
+                    goto INSN_181AAC50E
+                endif
+
+		        if (string == 0)
+                    goto INSN_181AACBA2
+                endif
+
+		        INSN_181AAC50E:
+		        local28[1] = string
+
+		        if (" respawned as " == 0)
+                    goto INSN_181AAC552
+                endif
+
+		        if (" respawned as " == 0)
+                    goto INSN_181AACBC0
+                endif
+
+		        INSN_181AAC552:
+		        local28[2] = " respawned as "
+
+		        if (" respawned as " == 0)
+                    goto INSN_181AAC5CE
+                endif
+
+		        if (" respawned as " == 0)
+                    goto INSN_181AACBDE
+                endif
+
+		        INSN_181AAC5CE:
+		        local28[3] = " respawned as "
+
+		        if ("." == 0)
+                    goto INSN_181AAC612
+                endif
+
+		        if ("." == 0)
+                    goto INSN_181AACBFC
+                endif
+
+		        INSN_181AAC612:
+		        local28[4] = "."
+
+		        System.String string2 = System.String.Concat(local28) //(String[] values)
+		        System.Int64 local35 = 2
+
+		        ServerLogs.AddLog()
+
+		        System.Boolean boolean3 = ReferenceHub.op_Inequality()
+
+		        if (boolean3 != False)
+                    goto INSN_181AAC6D1
+                endif
+
+		        INSN_181AAC6D1:
+
+		        System.String string3 = Misc.LoggedNameFromRefHub()
+
+		        System.Int32 int32 = string2.CompareTo()
+		        ulong local43 = 0
+
+		        System.String string4 = System.String.Concat()
+		        System.Int64 local47 = 2
+
+		        ServerLogs.AddLog()
+
+		        INSN_181AAC785:
+
+		        local47.Dispose()
+
+		        local47.Dispose()
+
+		        if (local47 != 0)
+                    goto INSN_181AACC3F
+                endif
+		        ulong local48 = 0
+
+		        if ( <= 0)
+                    goto INSN_181AACA0A
+                endif
+		        System.Int64 local49 = 5
+		        System.Object[] local50 = new System.Object[5]
+
+		        if ("RespawnManager has successfully spawned " == 0)
+                    goto INSN_181AAC828
+                endif
+
+		        if ("RespawnManager has successfully spawned " == 0)
+                    goto INSN_181AACC47
+                endif
+
+		        INSN_181AAC828:
+		        local50[0] = "RespawnManager has successfully spawned "
+		        System.Int32 _size2 = list3._size
+
+		        if (_size2 == 0)
+                    goto INSN_181AAC87E
+                endif
+
+		        if (_size2 == 0)
+                    goto INSN_181AACC67
+                endif
+
+		        INSN_181AAC87E:
+		        local50[1] = _size2
+
+		        if (" players as " == 0)
+                    goto INSN_181AAC8C2
+                endif
+
+		        if (" players as " == 0)
+                    goto INSN_181AACC87
+                endif
+
+		        INSN_181AAC8C2:
+		        local50[2] = " players as "
+		        local52 = NextKnownTeam
+
+		        System.Int32 hashCode = local52.GetHashCode()
+		        _size2 = hashCode
+		        local54 = local52
+		        this.NextKnownTeam = local54
+
+		        if (_size2 == 0)
+                    goto INSN_181AAC93C
+                endif
+
+		        if (constant196 == 0)
+                    goto INSN_181AACCA7
+                endif
+
+		        INSN_181AAC93C:
+		        local50[3] = _size2
+
+		        if ("!" == 0)
+                    goto INSN_181AAC980
+                endif
+
+		        if ("!" == 0)
+                    goto INSN_181AACCC7
+                endif
+
+		        INSN_181AAC980:
+		        local50[4] = "!"
+
+		        System.String string5 = System.String.Concat(local50) //(Object[] args)
+		        System.Int64 local59 = 2
+
+		        ServerLogs.AddLog()
+		        System.Int64 local62 = 1
+
+		        Respawning.RespawnEffectsController.ExecuteAllEffects()
+
+		        INSN_181AACA0A:
+		        System.Action`2<Respawning.SpawnableTeamType,System.Collections.Generic.List`1<ReferenceHub>> serverOnRespawned = Respawning.RespawnManager.ServerOnRespawned
+
+		        if (serverOnRespawned == 0)
+                    goto INSN_181AACA57
+                endif
+		        Respawning.SpawnableTeamType nextKnownTeam3 = this.NextKnownTeam
+
+		        serverOnRespawned.Invoke(nextKnownTeam3, list3) //(T1 arg1, T2 arg2)
+
+		        INSN_181AACA57:
+		        NorthwoodLib.Pools.ListPool`1<T> shared2 = NorthwoodLib.Pools.ListPool`1.Shared
+
+		        shared2.Return(list3) //(List`1 list)
+		        this.NextKnownTeam = 0
+		        return
+		    endif
+            
+		    Respawning.SpawnableTeamType nextKnownTeam4 = this.NextKnownTeam
+
+		    System.String string6 = System.String.Concat("Fatal error. Team '", nextKnownTeam4, "' is undefined.") //(Object arg0, Object arg1, Object arg2)
+		    System.Int32 12 = 12
+
+		    ServerConsole.PrintOnOutputs(string6, 12) //(String text, ConsoleColor color)
+		    System.Int32 12 = 12
+
+		    ServerConsole.PrintFormattedString(string6, 12) //(String text, ConsoleColor defaultColor)
+		    throw new System.NullReferenceException()
+
+		    INSN_181AACB83:
+		    throw new System.IndexOutOfRangeException()
+
+		    INSN_181AACBA2:
+		    throw new System.IndexOutOfRangeException()
+
+		    INSN_181AACBC0:
+		    throw new System.IndexOutOfRangeException()
+
+		    INSN_181AACBDE:
+		    throw new System.IndexOutOfRangeException()
+
+		    INSN_181AACBFC:
+		    throw new System.IndexOutOfRangeException()
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+
+		    INSN_181AACC3F:
+
+		    INSN_181AACC47:
+
+		    INSN_181AACC67:
+
+		    INSN_181AACC87:
+
+		    INSN_181AACCA7:
+
+		    INSN_181AACCC7:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181AAC077) is corrupt (Found null operand in Arguments: [{'nextKnownTeam' (type Respawning.SpawnableTeamType)}, ]) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Respawning.RespawnManager
+	System.Void .ctor()
+		System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch()
+
+		stopwatch..ctor()
+		this._stopwatch = stopwatch
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: newobj System.Void System.Diagnostics.Stopwatch::.ctor()
+	IL_0005: stloc.0
+	IL_0006: ldarg.0
+	IL_0007: ldloc.0
+	IL_0008: stfld System.Diagnostics.Stopwatch Respawning.RespawnManager::_stopwatch
+	IL_000d: ldarg.0
+	IL_000e: call System.Void UnityEngine.MonoBehaviour::.ctor()
+	IL_0013: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Respawning.RespawnManager
+	static System.Void .cctor()
+		System.Collections.Generic.Dictionary`2<Respawning.SpawnableTeamType,Respawning.SpawnableTeamHandlerBase> dictionary = new System.Collections.Generic.Dictionary`2<Respawning.SpawnableTeamType,Respawning.SpawnableTeamHandlerBase>()
+
+		dictionary..ctor()
+		Respawning.ChaosInsurgencySpawnHandler chaosInsurgencySpawnHandler = new Respawning.ChaosInsurgencySpawnHandler()
+
+		chaosInsurgencySpawnHandler..ctor("maximum_CI_respawn_amount", 15, "respawn_tickets_ci_initial_count", local3) //(String maxWaveSizeConfig, Int32 defaultMaxWaveSize, String startTokensConfig, Int32 defaultStartTokens)
+		throw new System.NullReferenceException()
+		Respawning.NineTailedFoxSpawnHandler nineTailedFoxSpawnHandler = new Respawning.NineTailedFoxSpawnHandler()
+
+		nineTailedFoxSpawnHandler..ctor("maximum_MTF_respawn_amount", 15, "respawn_tickets_mtf_initial_count", local7) //(String maxWaveSizeConfig, Int32 defaultMaxWaveSize, String startTokensConfig, Int32 defaultStartTokens)
+		throw new System.NullReferenceException()
+		Respawning.RespawnManager.SpawnableTeams = dictionary
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: newobj System.Void System.Collections.Generic.Dictionary`2::.ctor()
+	IL_0005: stloc.0
+	IL_0006: ldstr "maximum_CI_respawn_amount"
+	IL_000b: ldc.i4.s 15
+	IL_000d: ldstr "respawn_tickets_ci_initial_count"
+	IL_0012: ldloc.3
+	IL_0013: newobj System.Void Respawning.ChaosInsurgencySpawnHandler::.ctor(System.String,System.Int32,System.String,System.Int32)
+	IL_0018: stloc.1
+	IL_0019: newobj System.Void System.NullReferenceException::.ctor()
+	IL_001e: throw
+	IL_001f: ldstr "maximum_MTF_respawn_amount"
+	IL_0024: ldc.i4.s 15
+	IL_0026: ldstr "respawn_tickets_mtf_initial_count"
+	IL_002b: ldloc.s V_6
+	IL_002d: newobj System.Void Respawning.NineTailedFoxSpawnHandler::.ctor(System.String,System.Int32,System.String,System.Int32)
+	IL_0032: stloc.s V_4
+	IL_0034: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0039: throw
+	IL_003a: ldloc.0
+	IL_003b: stsfld System.Collections.Generic.Dictionary`2<Respawning.SpawnableTeamType,Respawning.SpawnableTeamHandlerBase> Respawning.RespawnManager::SpawnableTeams
+	IL_0040: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0045: throw
+	
+

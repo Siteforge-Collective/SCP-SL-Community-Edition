@@ -1,0 +1,816 @@
+Type: SteamManager
+
+
+	Generated Pseudocode:
+
+	Declaring Type: SteamManager
+	static System.Boolean get_Running()
+		System.Boolean Running = SteamManager.<Running>k__BackingField
+		return Running
+
+
+Generated IL:
+	IL_0000: ldsfld System.Boolean SteamManager::<Running>k__BackingField
+	IL_0005: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: SteamManager
+	static System.Void set_Running(System.Boolean value)
+		SteamManager.<Running>k__BackingField = value
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: stsfld System.Boolean SteamManager::<Running>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: SteamManager
+	static System.UInt64 get_SteamId64()
+		System.UInt64 SteamId64 = SteamManager.<SteamId64>k__BackingField
+		return SteamId64
+
+
+Generated IL:
+	IL_0000: ldsfld System.UInt64 SteamManager::<SteamId64>k__BackingField
+	IL_0005: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: SteamManager
+	static System.Void set_SteamId64(System.UInt64 value)
+		SteamManager.<SteamId64>k__BackingField = value
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: stsfld System.UInt64 SteamManager::<SteamId64>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: SteamManager
+	static System.Void SetAchievement(System.String key)
+		return
+
+
+Generated IL:
+	IL_0000: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: SteamManager
+	static System.Void ResetAchievement(System.String key)
+		throw new System.NullReferenceException()
+		return
+
+
+Generated IL:
+	IL_0000: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0005: throw
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: SteamManager
+	static System.Boolean CheckAchievement(System.String key)
+		ulong local1 = 0
+		return local1
+		return local3
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x180399B43) is corrupt (Return value has a type of System.Int32, expecting an object of type System.Boolean) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: SteamManager
+	static System.Void ChangePreset(System.Int32 classId)
+
+		System.Boolean boolean = PlayerPrefsSl.Get("RichPresence", True) //(String key, Boolean defaultValue)
+
+		if (boolean != False)
+
+		    System.Int32 hashCode = boolean.GetHashCode()
+		    classId = hashCode
+		    local6 = boolean
+
+		    System.Boolean boolean2 = Steamworks.SteamFriends.SetRichPresence()
+		    string local8 = classId == -1 ? "#Status_WaitingForPlayers" : "#Status_MainMenu"
+
+		    System.Boolean boolean3 = Steamworks.SteamFriends.SetRichPresence("steam_display", local8) //(String key, String value)
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.RegToRegMoveAction at (0x180399A43) is corrupt (Local being overwritten, {'classId' (function parameter, type System.Int32)} has been stripped or is a parameter) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: SteamManager
+	static System.Void ChangeLobbyStatus(System.Int32 cur, System.Int32 max)
+
+		System.Boolean boolean = PlayerPrefsSl.Get("RichPresence", True) //(String key, Boolean defaultValue)
+
+		if (boolean != False)
+
+		    System.String string = System.String.Concat(boolean, "/", boolean) //(Object arg0, Object arg1, Object arg2)
+
+		    System.Boolean boolean2 = Steamworks.SteamFriends.SetRichPresence("lobbystatus", string) //(String key, String value)
+		endif
+        
+		return
+
+
+Generated IL:
+	IL_0000: ldstr "RichPresence"
+	IL_0005: ldc.i4.1
+	IL_0006: call System.Boolean PlayerPrefsSl::Get(System.String,System.Boolean)
+	IL_000b: stloc.0
+	IL_000c: ldloc.0
+	IL_000d: ldc.i4.0
+	IL_000e: beq.s IL_0029
+	IL_0010: ldloc.0
+	IL_0011: ldstr "/"
+	IL_0016: ldloc.0
+	IL_0017: call System.String System.String::Concat(System.Object,System.Object,System.Object)
+	IL_001c: stloc.1
+	IL_001d: ldstr "lobbystatus"
+	IL_0022: ldloc.1
+	IL_0023: call System.Boolean Steamworks.SteamFriends::SetRichPresence(System.String,System.String)
+	IL_0028: stloc.2
+	IL_0029: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: SteamManager
+	static System.Void ClearRichPresence()
+		ulong local0 = 0
+
+		Steamworks.SteamFriends.ClearRichPresence()
+		return
+		return
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: call System.Void Steamworks.SteamFriends::ClearRichPresence()
+	IL_0007: ret
+	IL_0008: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: SteamManager
+	static System.Boolean IndicateAchievementProgress(System.String name, System.Int32 curProgress, System.Int32 maxProgress)
+
+		System.Boolean boolean = Steamworks.SteamUserStats.IndicateAchievementProgress(name, curProgress, maxProgress) //(String achName, Int32 curProg, Int32 maxProg)
+		return boolean
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: ldarg.2
+	IL_0003: call System.Boolean Steamworks.SteamUserStats::IndicateAchievementProgress(System.String,System.Int32,System.Int32)
+	IL_0008: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: SteamManager
+	static System.Void SetStat(System.String key, System.Int32 value)
+
+		System.Boolean boolean = Steamworks.SteamUserStats.SetStat(key, value) //(String name, Int32 value)
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: call System.Boolean Steamworks.SteamUserStats::SetStat(System.String,System.Int32)
+	IL_0007: stloc.0
+	IL_0008: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: SteamManager
+	static System.Int32 GetStat(System.String key)
+
+		System.Int32 statInt = Steamworks.SteamUserStats.GetStatInt(key) //(String name)
+		return statInt
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Int32 Steamworks.SteamUserStats::GetStatInt(System.String)
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: SteamManager
+	static System.String GetPersonaName(System.UInt64 steamid)
+
+		System.Int64 int64 = System.IntPtr.op_Explicit(steamid) //(IntPtr value)
+		return local4
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x18039A04E) is corrupt (Return value has a type of System.UInt64, expecting an object of type System.String) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: SteamManager
+	static Steamworks.AuthTicket GetAuthSessionTicket()
+		ulong local0 = 0
+
+		Steamworks.AuthTicket authSessionTicket = Steamworks.SteamUser.GetAuthSessionTicket()
+		SteamManager._ticket = authSessionTicket
+		Steamworks.AuthTicket _ticket = SteamManager._ticket
+		return _ticket
+		ulong local3 = 0
+		return local3
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x18039A003) is corrupt (Return value has a type of System.Int32, expecting an object of type Steamworks.AuthTicket) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: SteamManager
+	static System.Void CancelTicket()
+		Steamworks.AuthTicket _ticket = SteamManager._ticket
+
+		_ticket.Cancel()
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldsfld Steamworks.AuthTicket SteamManager::_ticket
+	IL_0005: call System.Void Steamworks.AuthTicket::Cancel()
+	IL_000a: ret
+	IL_000b: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0010: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: SteamManager
+	static System.Void OpenProfile(System.UInt64 steamid)
+
+		if (steamid == 0)
+		    System.UInt64 SteamId64 = SteamManager.<SteamId64>k__BackingField
+		endif
+        
+
+		System.Int64 int64 = System.IntPtr.op_Explicit(steamid) //(IntPtr value)
+
+		Steamworks.SteamFriends.OpenUserOverlay()
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18039A3FA) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: SteamManager
+	static System.Void StartClient()
+		ulong local1 = 0
+
+		System.Boolean boolean = PlayerPrefsSl.Get("steam_debug", local1) //(String key, Boolean defaultValue)
+
+		if (boolean != False)
+		    System.Action`3<Steamworks.CallbackType,System.String,System.Boolean> action = new System.Action`3<Steamworks.CallbackType,System.String,System.Boolean>()
+		    ulong local4 = 0
+
+		    action..ctor(local4, {'OnDebugCallback' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		    Steamworks.Dispatch.OnDebugCallback = action
+		endif
+        
+		System.Action`1<System.Exception> action2 = new System.Action`1<System.Exception>()
+		ulong local6 = 0
+
+		action2..ctor(local6, {'OnSteamException' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		 += 8
+		Steamworks.Dispatch.OnDebugCallback = action2
+		ulong local8 = 0
+		System.Int64 local9 = 0xAAFAA
+
+		Steamworks.SteamClient.Init(local9, local8) //(UInt32 appid, Boolean asyncCallbacks)
+		ulong local10 = 0
+
+		System.Boolean isLoggedOn = Steamworks.SteamClient.IsLoggedOn
+
+		if (isLoggedOn == False)
+            goto INSN_18039AD32
+        endif
+		System.Int64 local12 = 5
+		System.Object[] local13 = new System.Object[5]
+
+		if ("Started Steam Client (" == 0)
+            goto INSN_18039AAC0
+        endif
+
+		if ("Started Steam Client (" == 0)
+            goto INSN_18039AF6B
+        endif
+
+		INSN_18039AAC0:
+		local13[0] = "Started Steam Client ("
+		ulong local14 = 0
+
+		System.String name = Steamworks.SteamClient.Name
+
+		if (name == 0)
+            goto INSN_18039AB1E
+        endif
+
+		if (name == 0)
+            goto INSN_18039AF8B
+        endif
+
+		INSN_18039AB1E:
+		local13[1] = name
+
+		if (" - " == 0)
+            goto INSN_18039AB62
+        endif
+
+		if (" - " == 0)
+            goto INSN_18039AFAB
+        endif
+
+		INSN_18039AB62:
+		local13[2] = " - "
+		ulong local16 = 0
+
+		Steamworks.SteamId steamId = Steamworks.SteamClient.SteamId
+
+		if (steamId == 0)
+            goto INSN_18039ABB6
+        endif
+
+		if (steamId == 0)
+            goto INSN_18039AFCB
+        endif
+
+		INSN_18039ABB6:
+		local13[3] = steamId
+
+		if (")" == 0)
+            goto INSN_18039ABFA
+        endif
+
+		if (")" == 0)
+            goto INSN_18039AFEB
+        endif
+
+		INSN_18039ABFA:
+		local13[4] = ")"
+
+		System.String string = System.String.Concat(local13) //(Object[] args)
+
+		UnityEngine.Debug.Log(string) //(Object message)
+		ulong local21 = 0
+
+		Steamworks.SteamId steamId2 = Steamworks.SteamClient.SteamId
+
+		[instruction error - managed method being called is null]
+		SteamManager.<SteamId64>k__BackingField = steamId2
+		. = 1
+		return
+
+		INSN_18039AD32:
+		System.String _state = SteamManager._state
+
+		UnityEngine.Debug.LogWarning(_state) //(Object message)
+		 += 8
+		SteamManager._ticket = "Client is invalid."
+		ulong local26 = 0
+
+		SteamManager.StopClient()
+		return
+
+		System.Int32 int32 = _state.CompareTo()
+
+		System.String string2 = System.String.Concat()
+
+		UnityEngine.Debug.LogError(string2) //(Object message)
+		 += 8
+		SteamManager._ticket = "Client isn't running"
+
+		System.String string3 = System.String.Concat("Steam client failed to initialize. Please ensure that Steam is running. Message: ", _state) //(Object arg0, Object arg1)
+		ulong local33 = 0
+
+		UnityEngine.Color color = UnityEngine.Color32.op_Implicit()
+
+		GameCore.Console.AddLog()
+		return
+
+		UnityEngine.Debug.Log("Only one Steam Client can be initalized at the same time!") //(Object message)
+		return
+
+		INSN_18039AF6B:
+
+		INSN_18039AF8B:
+
+		INSN_18039AFAB:
+
+		INSN_18039AFCB:
+
+		INSN_18039AFEB:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x18039A99F) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: SteamManager
+	static System.Void OnDebugCallback(Steamworks.CallbackType arg1, System.String arg2, System.Boolean arg3)
+		System.Int32 local3 = arg1.value__
+
+		System.String string = System.String.Format()
+
+		UnityEngine.Debug.Log(string) //(Object message)
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18039A13A) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (4)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: SteamManager
+	static System.Void OnSteamException(System.Exception ex)
+
+		System.String string = System.String.Concat("Steam Error: ", ex) //(Object arg0, Object arg1)
+
+		UnityEngine.Color red = UnityEngine.Color.red
+
+		GameCore.Console.AddLog()
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18039A32B) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (4)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: SteamManager
+	static System.Void StopClient()
+		ulong local0 = 0
+
+		Steamworks.SteamClient.Shutdown()
+		 += 8
+		. = 0
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x18039B37E) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: SteamManager
+	static System.String GetApiState()
+		return "Loaded"
+		System.String _state = SteamManager._state
+
+		System.Boolean isNullOrEmpty = System.String.IsNullOrEmpty(_state) //(String value)
+
+		if (isNullOrEmpty != False)
+		    return "Not Loaded"
+		endif
+        
+		System.String _state2 = SteamManager._state
+		return _state2
+
+
+Generated IL:
+	IL_0000: ldstr "Loaded"
+	IL_0005: ret
+	IL_0006: ldsfld System.String SteamManager::_state
+	IL_000b: call System.Boolean System.String::IsNullOrEmpty(System.String)
+	IL_0010: ldc.i4.0
+	IL_0011: beq.s IL_0019
+	IL_0013: ldstr "Not Loaded"
+	IL_0018: ret
+	IL_0019: ldsfld System.String SteamManager::_state
+	IL_001e: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: SteamManager
+	static System.Void RestartSteam()
+		ulong local0 = 0
+
+		SteamManager.StopClient()
+		ulong local1 = 0
+
+		SteamManager.StartClient()
+		return
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: call System.Void SteamManager::StopClient()
+	IL_0007: ldc.i4.0
+	IL_0008: stloc.1
+	IL_0009: call System.Void SteamManager::StartClient()
+	IL_000e: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: SteamManager
+	static System.Void RefreshToken()
+		ulong local0 = 0
+
+		Steamworks.AuthTicket authSessionTicket = Steamworks.SteamUser.GetAuthSessionTicket()
+		SteamManager._ticket = authSessionTicket
+		ulong local2 = 0
+
+		SteamManager.CancelTicket()
+
+		UnityEngine.Debug.Log("Refreshed auth token!") //(Object message)
+		return
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: call Steamworks.AuthTicket Steamworks.SteamUser::GetAuthSessionTicket()
+	IL_0007: stsfld Steamworks.AuthTicket SteamManager::_ticket
+	IL_000c: ldc.i4.0
+	IL_000d: stloc.1
+	IL_000e: call System.Void SteamManager::CancelTicket()
+	IL_0013: ldstr "Refreshed auth token!"
+	IL_0018: call System.Void UnityEngine.Debug::Log(System.Object)
+	IL_001d: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: SteamManager
+	System.Void Awake()
+		ulong local1 = 0
+
+		System.String[] commandLineArgs = System.Environment.GetCommandLineArgs()
+
+		System.Boolean boolean = CollectionExtensions.Contains<System.String>()
+
+		if (boolean == False)
+
+		    ServerStatic component = base.GetComponent<ServerStatic>()
+
+		    if (component.Simulate == False)
+
+		        UnityEngine.Object.DontDestroyOnLoad(this) //(Object target)
+		        return
+		    endif
+            
+		    return
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1803995E0) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: SteamManager
+	System.Void Start()
+		UnityEngine.Events.UnityAction`2<UnityEngine.SceneManagement.Scene,UnityEngine.SceneManagement.LoadSceneMode> unityAction = new UnityEngine.Events.UnityAction`2<UnityEngine.SceneManagement.Scene,UnityEngine.SceneManagement.LoadSceneMode>()
+		ulong local2 = 0
+
+		unityAction..ctor(local2, {'OnLevelFinishedLoading' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		UnityEngine.SceneManagement.SceneManager.add_sceneLoaded(unityAction) //(UnityAction`2 value)
+
+		System.Boolean boolean = PlayerPrefsSl.Get("RichPresence", True) //(String key, Boolean defaultValue)
+
+		if (boolean != False)
+
+		    System.String string = System.String.Concat(local7, "/", local9) //(Object arg0, Object arg1, Object arg2)
+
+		    System.Boolean boolean2 = Steamworks.SteamFriends.SetRichPresence("lobbystatus", string) //(String key, String value)
+		endif
+        
+		return
+
+
+Generated IL:
+	IL_0000: ldloc.1
+	IL_0001: ldftn System.Void SteamManager::OnLevelFinishedLoading(UnityEngine.SceneManagement.Scene,UnityEngine.SceneManagement.LoadSceneMode)
+	IL_0007: newobj System.Void UnityEngine.Events.UnityAction`2::.ctor(System.Object,System.IntPtr)
+	IL_000c: stloc.0
+	IL_000d: ldc.i4.0
+	IL_000e: stloc.1
+	IL_000f: ldloc.0
+	IL_0010: call System.Void UnityEngine.SceneManagement.SceneManager::add_sceneLoaded(UnityEngine.Events.UnityAction`2)
+	IL_0015: ldstr "RichPresence"
+	IL_001a: ldc.i4.1
+	IL_001b: call System.Boolean PlayerPrefsSl::Get(System.String,System.Boolean)
+	IL_0020: ldc.i4.0
+	IL_0021: beq.s IL_0040
+	IL_0023: ldloc.3
+	IL_0024: ldstr "/"
+	IL_0029: ldloc.s V_5
+	IL_002b: call System.String System.String::Concat(System.Object,System.Object,System.Object)
+	IL_0030: stloc.s V_6
+	IL_0032: ldstr "lobbystatus"
+	IL_0037: ldloc.s V_6
+	IL_0039: call System.Boolean Steamworks.SteamFriends::SetRichPresence(System.String,System.String)
+	IL_003e: stloc.s V_7
+	IL_0040: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: SteamManager
+	System.Void FixedUpdate()
+		ulong local1 = 0
+
+		Steamworks.SteamClient.RunCallbacks()
+		return
+		return
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: call System.Void Steamworks.SteamClient::RunCallbacks()
+	IL_0007: ret
+	IL_0008: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: SteamManager
+	System.Void OnApplicationQuit()
+		ulong local1 = 0
+
+		SteamManager.CancelTicket()
+		ulong local2 = 0
+
+		SteamManager.StopClient()
+		return
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: call System.Void SteamManager::CancelTicket()
+	IL_0007: ldc.i4.0
+	IL_0008: stloc.1
+	IL_0009: call System.Void SteamManager::StopClient()
+	IL_000e: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: SteamManager
+	System.Void OnDestroy()
+		ulong local1 = 0
+
+		SteamManager.CancelTicket()
+		ulong local2 = 0
+
+		SteamManager.StopClient()
+		return
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: call System.Void SteamManager::CancelTicket()
+	IL_0007: ldc.i4.0
+	IL_0008: stloc.1
+	IL_0009: call System.Void SteamManager::StopClient()
+	IL_000e: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: SteamManager
+	static System.Void OnLevelFinishedLoading(UnityEngine.SceneManagement.Scene scene, UnityEngine.SceneManagement.LoadSceneMode mode)
+		throw new System.MissingMethodException()
+
+		System.Boolean boolean = local3.Contains("Menu") //(String value)
+
+		if (boolean != False)
+		    System.Int32 -2 = 4294967294
+
+		    SteamManager.ChangePreset(-2) //(Int32 classId)
+		endif
+        
+		throw new System.MissingMethodException()
+
+		[instruction error - managed method being called is null]
+
+		if (local8 == 0)
+            goto INSN_18039A290
+        endif
+		System.Int32 -1 = 4294967295
+
+		SteamManager.ChangePreset(-1) //(Int32 classId)
+
+		INSN_18039A290:
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18039A215) is corrupt (Mismatched instance parameter. Expecting an instance of System.String, actually {'local3' (type System.MissingMethodException)}) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: SteamManager
+	System.Void .ctor()
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void UnityEngine.MonoBehaviour::.ctor()
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: SteamManager
+	static System.Void .cctor()
+		 += 8
+		SteamManager._ticket = ""
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x18039B444) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+

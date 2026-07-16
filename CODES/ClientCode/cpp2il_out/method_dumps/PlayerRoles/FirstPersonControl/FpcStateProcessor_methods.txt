@@ -1,0 +1,1071 @@
+Type: FpcStateProcessor
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.FirstPersonControl.FpcStateProcessor
+	System.Void .ctor(ReferenceHub hub, PlayerRoles.FirstPersonControl.FirstPersonMovementModule module)
+		ulong local3 = 0
+		ulong local4 = 0
+		ulong local5 = 0
+
+		this..ctor(hub, module, local5, local4, local3) //(ReferenceHub hub, FirstPersonMovementModule module, Single useRate, Single respawnImmunity, AnimationCurve regenCurve)
+
+		System.Boolean isSCP = PlayerRoles.PlayerRolesUtils.IsSCP(hub, True) //(ReferenceHub hub, Boolean includeZombies)
+
+		if (isSCP != False)
+		else
+		    YamlConfig serverConfig = GameCore.ConfigFile.ServerConfig
+
+		    System.Single float = serverConfig.GetFloat("stamina_balance_use", 0.05000000074505806) //(String key, Single def)
+		endif
+        
+		this._useRate = float
+		YamlConfig serverConfig2 = GameCore.ConfigFile.ServerConfig
+
+		System.Single float2 = serverConfig2.GetFloat("stamina_balance_immunity", 3) //(String key, Single def)
+		this._respawnImmunity = float2
+		YamlConfig serverConfig3 = GameCore.ConfigFile.ServerConfig
+
+		System.Single float3 = serverConfig3.GetFloat("stamina_balance_regen_cd", 1) //(String key, Single def)
+		YamlConfig serverConfig4 = GameCore.ConfigFile.ServerConfig
+
+		System.Single float4 = serverConfig4.GetFloat("stamina_balance_regen_speed", 1) //(String key, Single def)
+		UnityEngine.Keyframe[] local21 = new UnityEngine.Keyframe[3]
+		ulong local22 = 0
+		ulong local23 = 0
+		local21[0] = local23
+		ulong local27 = 0
+		local21[3] = local22
+		ulong local29 = 0
+		System.Single local30 = float4 * 0,126
+		local21[3] = local27
+		ulong local31 = 0
+		local21[6] = local29
+		ulong local32 = 0
+		local21[7] = local31
+		local21[10] = local32
+		UnityEngine.AnimationCurve animationCurve = new UnityEngine.AnimationCurve()
+
+		animationCurve..ctor(local21) //(Keyframe[] keys)
+		this._regenerationOverTime = animationCurve
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.MultiplyRegByGlobalAction at (0x18049A5F3) is corrupt (Operand we were multiplying by is null or local made was stripped) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.FirstPersonControl.FpcStateProcessor
+	System.Void .ctor(ReferenceHub hub, PlayerRoles.FirstPersonControl.FirstPersonMovementModule module, System.Single useRate, System.Single respawnImmunity, UnityEngine.AnimationCurve regenCurve)
+
+		base..ctor()
+		this._hub = hub
+		this._mod = module
+		ReferenceHub _hub = this._hub
+		UnityEngine.Transform playerCameraReference = _hub.PlayerCameraReference
+
+		UnityEngine.Transform parent = playerCameraReference.parent
+		this._camPivot = parent
+		ReferenceHub _hub2 = this._hub
+		PlayerStatsSystem.PlayerStats playerStats = _hub2.playerStats
+
+		PlayerStatsSystem.StaminaStat module = playerStats.GetModule<PlayerStatsSystem.StaminaStat>()
+		this._stat = module
+		ulong local15 = 0
+
+		System.Boolean boolean = PlayerPrefsSl.Get("ToggleSprint", local15) //(String key, Boolean defaultValue)
+		this._toggleSprint = boolean
+		ReferenceHub _hub3 = this._hub
+
+		System.Boolean isLocalPlayer = _hub3.isLocalPlayer
+		ulong local20 = 0
+		this._firstUpdate = isLocalPlayer
+		this.<CrouchPercent>k__BackingField = local20
+
+		System.Boolean isLocalPlayer2 = hub.isLocalPlayer
+
+		if (isLocalPlayer2 != False)
+		    ulong local23 = 0
+		    System.Int32 6 = 6
+
+		    UnityEngine.KeyCode key = NewInput.GetKey(6, local23) //(ActionName actionName, KeyCode fallbackKeycode)
+		    PlayerRoles.FirstPersonControl.FpcStateProcessor._keySprint = key
+		    ulong local27 = 0
+		    System.Int32 8 = 8
+
+		    UnityEngine.KeyCode key2 = NewInput.GetKey(8, local27) //(ActionName actionName, KeyCode fallbackKeycode)
+		    PlayerRoles.FirstPersonControl.FpcStateProcessor._keySneak = key2
+		    PlayerRoles.FirstPersonControl.FpcStateProcessor._keyCrouch = local20
+		endif
+        
+		this._respawnImmunity = 0
+		this._regenerationOverTime = 0
+		this._useRate = useRate
+		ulong local29 = 0
+
+		System.Diagnostics.Stopwatch stopwatch = System.Diagnostics.Stopwatch.StartNew()
+		this._regenStopwatch = stopwatch
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void System.Object::.ctor()
+	IL_0006: ldarg.0
+	IL_0007: ldarg.1
+	IL_0008: stfld ReferenceHub PlayerRoles.FirstPersonControl.FpcStateProcessor::_hub
+	IL_000d: ldarg.0
+	IL_000e: ldarg.2
+	IL_000f: stfld PlayerRoles.FirstPersonControl.FirstPersonMovementModule PlayerRoles.FirstPersonControl.FpcStateProcessor::_mod
+	IL_0014: ldarg.0
+	IL_0015: ldfld ReferenceHub PlayerRoles.FirstPersonControl.FpcStateProcessor::_hub
+	IL_001a: ldfld UnityEngine.Transform ReferenceHub::PlayerCameraReference
+	IL_001f: call UnityEngine.Transform UnityEngine.Transform::get_parent()
+	IL_0024: stloc.0
+	IL_0025: ldarg.0
+	IL_0026: ldloc.0
+	IL_0027: stfld UnityEngine.Transform PlayerRoles.FirstPersonControl.FpcStateProcessor::_camPivot
+	IL_002c: ldarg.0
+	IL_002d: ldfld ReferenceHub PlayerRoles.FirstPersonControl.FpcStateProcessor::_hub
+	IL_0032: ldfld PlayerStatsSystem.PlayerStats ReferenceHub::playerStats
+	IL_0037: call T PlayerStatsSystem.PlayerStats::GetModule<PlayerStatsSystem.StaminaStat>()
+	IL_003c: stloc.1
+	IL_003d: ldarg.0
+	IL_003e: ldloc.1
+	IL_003f: stfld PlayerStatsSystem.StaminaStat PlayerRoles.FirstPersonControl.FpcStateProcessor::_stat
+	IL_0044: ldc.i4.0
+	IL_0045: stloc.2
+	IL_0046: ldstr "ToggleSprint"
+	IL_004b: ldloc.2
+	IL_004c: call System.Boolean PlayerPrefsSl::Get(System.String,System.Boolean)
+	IL_0051: stloc.3
+	IL_0052: ldarg.0
+	IL_0053: ldloc.3
+	IL_0054: stfld System.Boolean PlayerRoles.FirstPersonControl.FpcStateProcessor::_toggleSprint
+	IL_0059: ldarg.0
+	IL_005a: ldfld ReferenceHub PlayerRoles.FirstPersonControl.FpcStateProcessor::_hub
+	IL_005f: call System.Boolean Mirror.NetworkBehaviour::get_isLocalPlayer()
+	IL_0064: stloc.s V_4
+	IL_0066: ldc.i4.0
+	IL_0067: stloc.s V_5
+	IL_0069: ldarg.0
+	IL_006a: ldloc.s V_4
+	IL_006c: stfld System.Boolean PlayerRoles.FirstPersonControl.FpcStateProcessor::_firstUpdate
+	IL_0071: ldarg.0
+	IL_0072: ldloc.s V_5
+	IL_0074: stfld System.Single PlayerRoles.FirstPersonControl.FpcStateProcessor::<CrouchPercent>k__BackingField
+	IL_0079: ldarg.1
+	IL_007a: call System.Boolean Mirror.NetworkBehaviour::get_isLocalPlayer()
+	IL_007f: ldc.i4.0
+	IL_0080: beq.s IL_00a9
+	IL_0082: ldc.i4.0
+	IL_0083: stloc.s V_6
+	IL_0085: ldc.i4.6
+	IL_0086: ldloc.s V_6
+	IL_0088: call UnityEngine.KeyCode NewInput::GetKey(ActionName,UnityEngine.KeyCode)
+	IL_008d: stsfld UnityEngine.KeyCode PlayerRoles.FirstPersonControl.FpcStateProcessor::_keySprint
+	IL_0092: ldc.i4.0
+	IL_0093: stloc.s V_7
+	IL_0095: ldc.i4.8
+	IL_0096: ldloc.s V_7
+	IL_0098: call UnityEngine.KeyCode NewInput::GetKey(ActionName,UnityEngine.KeyCode)
+	IL_009d: stsfld UnityEngine.KeyCode PlayerRoles.FirstPersonControl.FpcStateProcessor::_keySneak
+	IL_00a2: ldloc.s V_5
+	IL_00a4: stsfld UnityEngine.KeyCode PlayerRoles.FirstPersonControl.FpcStateProcessor::_keyCrouch
+	IL_00a9: ldarg.0
+	IL_00aa: ldc.i4.0
+	IL_00ab: stfld System.Single PlayerRoles.FirstPersonControl.FpcStateProcessor::_respawnImmunity
+	IL_00b0: ldarg.0
+	IL_00b1: ldc.i4.0
+	IL_00b2: stfld UnityEngine.AnimationCurve PlayerRoles.FirstPersonControl.FpcStateProcessor::_regenerationOverTime
+	IL_00b7: ldarg.0
+	IL_00b8: ldarg.3
+	IL_00b9: stfld System.Single PlayerRoles.FirstPersonControl.FpcStateProcessor::_useRate
+	IL_00be: ldc.i4.0
+	IL_00bf: stloc.s V_8
+	IL_00c1: call System.Diagnostics.Stopwatch System.Diagnostics.Stopwatch::StartNew()
+	IL_00c6: stloc.s V_9
+	IL_00c8: ldarg.0
+	IL_00c9: ldloc.s V_9
+	IL_00cb: stfld System.Diagnostics.Stopwatch PlayerRoles.FirstPersonControl.FpcStateProcessor::_regenStopwatch
+	IL_00d0: ret
+	IL_00d1: newobj System.Void System.NullReferenceException::.ctor()
+	IL_00d6: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.FirstPersonControl.FpcStateProcessor
+	System.Single get_CrouchPercent()
+		System.Single CrouchPercent = this.<CrouchPercent>k__BackingField
+		return CrouchPercent
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Single PlayerRoles.FirstPersonControl.FpcStateProcessor::<CrouchPercent>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.FirstPersonControl.FpcStateProcessor
+	System.Void set_CrouchPercent(System.Single value)
+		this.<CrouchPercent>k__BackingField = value
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: stfld System.Single PlayerRoles.FirstPersonControl.FpcStateProcessor::<CrouchPercent>k__BackingField
+	IL_0007: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.FirstPersonControl.FpcStateProcessor
+	static UnityEngine.LayerMask get_Mask()
+
+		System.Int32 int32 = UnityEngine.LayerMask.NameToLayer("Player") //(String layerName)
+		ulong local2 = 0
+
+		System.Boolean ignoreLayerCollision = UnityEngine.Physics.GetIgnoreLayerCollision(int32, local2) //(Int32 layer1, Int32 layer2)
+
+		if (ignoreLayerCollision == False)
+		    System.Int32 _layerMask = PlayerRoles.FirstPersonControl.FpcStateProcessor._layerMask
+		    PlayerRoles.FirstPersonControl.FpcStateProcessor._layerMask = _layerMask
+		endif
+        
+		local2 += 1
+		System.Int32 _layerMask2 = PlayerRoles.FirstPersonControl.FpcStateProcessor._layerMask
+
+		UnityEngine.LayerMask layerMask = UnityEngine.LayerMask.op_Implicit(_layerMask2) //(Int32 intVal)
+		return layerMask
+
+
+Generated IL:
+	IL_0000: ldstr "Player"
+	IL_0005: call System.Int32 UnityEngine.LayerMask::NameToLayer(System.String)
+	IL_000a: stloc.0
+	IL_000b: ldc.i4.0
+	IL_000c: stloc.1
+	IL_000d: ldloc.0
+	IL_000e: ldloc.1
+	IL_000f: call System.Boolean UnityEngine.Physics::GetIgnoreLayerCollision(System.Int32,System.Int32)
+	IL_0014: ldc.i4.0
+	IL_0015: bne.un.s IL_0021
+	IL_0017: ldsfld System.Int32 PlayerRoles.FirstPersonControl.FpcStateProcessor::_layerMask
+	IL_001c: stsfld System.Int32 PlayerRoles.FirstPersonControl.FpcStateProcessor::_layerMask
+	IL_0021: ldloc.1
+	IL_0022: ldc.i4.1
+	IL_0023: add
+	IL_0024: stloc.1
+	IL_0025: ldsfld System.Int32 PlayerRoles.FirstPersonControl.FpcStateProcessor::_layerMask
+	IL_002a: call UnityEngine.LayerMask UnityEngine.LayerMask::op_Implicit(System.Int32)
+	IL_002f: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.FirstPersonControl.FpcStateProcessor
+	System.Single get_ServerUseRate()
+		ReferenceHub _hub = this._hub
+		PlayerRoles.PlayerRoleManager roleManager = _hub.roleManager
+
+		PlayerRoles.PlayerRoleBase currentRole = roleManager.CurrentRole
+
+		System.Single activeTime = currentRole.ActiveTime
+		System.Single _respawnImmunity = this._respawnImmunity
+
+		if (_respawnImmunity < activeTime)
+		    ReferenceHub _hub2 = this._hub
+		    InventorySystem.Inventory inventory = _hub2.inventory
+
+		    System.Single staminaUsageMultiplier = inventory.StaminaUsageMultiplier
+		    ReferenceHub _hub3 = this._hub
+		    ulong local14 = 0
+		    PlayerEffectsController playerEffectsController = _hub3.playerEffectsController
+
+		    if (local14 < playerEffectsController.<EffectsLength>k__BackingField)
+		        PlayerEffectsController playerEffectsController2 = _hub3.playerEffectsController
+		        CustomPlayerEffects.StatusEffectBase[] AllEffects = playerEffectsController2.<AllEffects>k__BackingField
+		        CustomPlayerEffects.StatusEffectBase statusEffectBase = AllEffects[local14]
+
+		        if (local14 != 0)
+
+		            if (local14 != 0)
+		            endif
+                    
+		            ReferenceHub _hub4 = this._hub
+		            local14 += 1
+		        endif
+                
+		        return staminaUsageMultiplier
+		    endif
+            
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld ReferenceHub PlayerRoles.FirstPersonControl.FpcStateProcessor::_hub
+	IL_0006: ldfld PlayerRoles.PlayerRoleManager ReferenceHub::roleManager
+	IL_000b: call PlayerRoles.PlayerRoleBase PlayerRoles.PlayerRoleManager::get_CurrentRole()
+	IL_0010: call System.Single PlayerRoles.PlayerRoleBase::get_ActiveTime()
+	IL_0015: stloc.0
+	IL_0016: ldarg.0
+	IL_0017: ldfld System.Single PlayerRoles.FirstPersonControl.FpcStateProcessor::_respawnImmunity
+	IL_001c: ldloc.0
+	IL_001d: bge.s IL_006e
+	IL_001f: ldarg.0
+	IL_0020: ldfld ReferenceHub PlayerRoles.FirstPersonControl.FpcStateProcessor::_hub
+	IL_0025: ldfld InventorySystem.Inventory ReferenceHub::inventory
+	IL_002a: call System.Single InventorySystem.Inventory::get_StaminaUsageMultiplier()
+	IL_002f: stloc.1
+	IL_0030: ldarg.0
+	IL_0031: ldfld ReferenceHub PlayerRoles.FirstPersonControl.FpcStateProcessor::_hub
+	IL_0036: stloc.2
+	IL_0037: ldc.i4.0
+	IL_0038: stloc.3
+	IL_0039: ldloc.2
+	IL_003a: ldfld PlayerEffectsController ReferenceHub::playerEffectsController
+	IL_003f: stloc.s V_4
+	IL_0041: ldloc.3
+	IL_0042: ldloc.s V_4
+	IL_0044: ldfld System.Int32 PlayerEffectsController::<EffectsLength>k__BackingField
+	IL_0049: bge.s IL_006c
+	IL_004b: ldloc.2
+	IL_004c: ldfld PlayerEffectsController ReferenceHub::playerEffectsController
+	IL_0051: ldfld CustomPlayerEffects.StatusEffectBase[] PlayerEffectsController::<AllEffects>k__BackingField
+	IL_0056: stloc.s V_5
+	IL_0058: ldloc.3
+	IL_0059: ldc.i4.0
+	IL_005a: beq.s IL_0060
+	IL_005c: ldloc.3
+	IL_005d: ldc.i4.0
+	IL_005e: beq.s IL_0060
+	IL_0060: ldarg.0
+	IL_0061: ldfld ReferenceHub PlayerRoles.FirstPersonControl.FpcStateProcessor::_hub
+	IL_0066: stloc.s V_6
+	IL_0068: ldloc.3
+	IL_0069: ldc.i4.1
+	IL_006a: add
+	IL_006b: stloc.3
+	IL_006c: ldloc.1
+	IL_006d: ret
+	IL_006e: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0073: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.FirstPersonControl.FpcStateProcessor
+	System.Single get_ServerRegenRate()
+		System.Diagnostics.Stopwatch _regenStopwatch = this._regenStopwatch
+		UnityEngine.AnimationCurve _regenerationOverTime = this._regenerationOverTime
+
+		System.TimeSpan elapsed = _regenStopwatch.Elapsed
+		ulong local6 = 0
+
+		System.Single single = _regenerationOverTime.Evaluate(local6) //(Single time)
+		ReferenceHub _hub = this._hub
+		ulong local10 = 0
+		PlayerEffectsController playerEffectsController = _hub.playerEffectsController
+
+		if (local10 < playerEffectsController.<EffectsLength>k__BackingField)
+		    PlayerEffectsController playerEffectsController2 = _hub.playerEffectsController
+		    CustomPlayerEffects.StatusEffectBase[] AllEffects = playerEffectsController2.<AllEffects>k__BackingField
+		    CustomPlayerEffects.StatusEffectBase statusEffectBase = AllEffects[local10]
+
+		    if (local10 != 0)
+
+		        if (local10 != 0)
+		        endif
+                
+		        ReferenceHub _hub2 = this._hub
+		        local10 += 1
+		    endif
+            
+		    return single
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Diagnostics.Stopwatch PlayerRoles.FirstPersonControl.FpcStateProcessor::_regenStopwatch
+	IL_0006: stloc.0
+	IL_0007: ldarg.0
+	IL_0008: ldfld UnityEngine.AnimationCurve PlayerRoles.FirstPersonControl.FpcStateProcessor::_regenerationOverTime
+	IL_000d: stloc.1
+	IL_000e: ldloc.0
+	IL_000f: call System.TimeSpan System.Diagnostics.Stopwatch::get_Elapsed()
+	IL_0014: stloc.2
+	IL_0015: ldc.i4.0
+	IL_0016: stloc.3
+	IL_0017: ldloc.1
+	IL_0018: ldloc.3
+	IL_0019: call System.Single UnityEngine.AnimationCurve::Evaluate(System.Single)
+	IL_001e: stloc.s V_4
+	IL_0020: ldarg.0
+	IL_0021: ldfld ReferenceHub PlayerRoles.FirstPersonControl.FpcStateProcessor::_hub
+	IL_0026: stloc.s V_5
+	IL_0028: ldc.i4.0
+	IL_0029: stloc.s V_6
+	IL_002b: ldloc.s V_5
+	IL_002d: ldfld PlayerEffectsController ReferenceHub::playerEffectsController
+	IL_0032: stloc.s V_7
+	IL_0034: ldloc.s V_6
+	IL_0036: ldloc.s V_7
+	IL_0038: ldfld System.Int32 PlayerEffectsController::<EffectsLength>k__BackingField
+	IL_003d: bge.s IL_0065
+	IL_003f: ldloc.s V_5
+	IL_0041: ldfld PlayerEffectsController ReferenceHub::playerEffectsController
+	IL_0046: ldfld CustomPlayerEffects.StatusEffectBase[] PlayerEffectsController::<AllEffects>k__BackingField
+	IL_004b: stloc.s V_8
+	IL_004d: ldloc.s V_6
+	IL_004f: ldc.i4.0
+	IL_0050: beq.s IL_0057
+	IL_0052: ldloc.s V_6
+	IL_0054: ldc.i4.0
+	IL_0055: beq.s IL_0057
+	IL_0057: ldarg.0
+	IL_0058: ldfld ReferenceHub PlayerRoles.FirstPersonControl.FpcStateProcessor::_hub
+	IL_005d: stloc.s V_9
+	IL_005f: ldloc.s V_6
+	IL_0061: ldc.i4.1
+	IL_0062: add
+	IL_0063: stloc.s V_6
+	IL_0065: ldloc.s V_4
+	IL_0067: ret
+	IL_0068: newobj System.Void System.NullReferenceException::.ctor()
+	IL_006d: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.FirstPersonControl.FpcStateProcessor
+	System.Boolean get_SprintingDisabled()
+		ReferenceHub _hub = this._hub
+		ulong local2 = 0
+		PlayerEffectsController playerEffectsController = _hub.playerEffectsController
+
+		if (local2 < playerEffectsController.<EffectsLength>k__BackingField)
+		    PlayerEffectsController playerEffectsController2 = _hub.playerEffectsController
+		    CustomPlayerEffects.StatusEffectBase[] AllEffects = playerEffectsController2.<AllEffects>k__BackingField
+		    CustomPlayerEffects.StatusEffectBase statusEffectBase = AllEffects[local2]
+
+		    if (local2 != 0)
+
+		        if (local2 != 0)
+
+		            if (local2 != 0)
+                        goto INSN_18049ABD8
+                    endif
+		        endif
+                
+		        ReferenceHub _hub2 = this._hub
+		        local2 += 1
+
+		        INSN_18049ABD8:
+		        return True
+		    endif
+            
+		    InventorySystem.Inventory inventory = _hub.inventory
+
+		    System.Boolean sprintingDisabled = inventory.SprintingDisabled
+		    return sprintingDisabled
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld ReferenceHub PlayerRoles.FirstPersonControl.FpcStateProcessor::_hub
+	IL_0006: stloc.0
+	IL_0007: ldc.i4.0
+	IL_0008: stloc.1
+	IL_0009: ldloc.0
+	IL_000a: ldfld PlayerEffectsController ReferenceHub::playerEffectsController
+	IL_000f: stloc.2
+	IL_0010: ldloc.1
+	IL_0011: ldloc.2
+	IL_0012: ldfld System.Int32 PlayerEffectsController::<EffectsLength>k__BackingField
+	IL_0017: bge.s IL_003f
+	IL_0019: ldloc.0
+	IL_001a: ldfld PlayerEffectsController ReferenceHub::playerEffectsController
+	IL_001f: ldfld CustomPlayerEffects.StatusEffectBase[] PlayerEffectsController::<AllEffects>k__BackingField
+	IL_0024: stloc.3
+	IL_0025: ldloc.1
+	IL_0026: ldc.i4.0
+	IL_0027: beq.s IL_0031
+	IL_0029: ldloc.1
+	IL_002a: ldc.i4.0
+	IL_002b: beq.s IL_0031
+	IL_002d: ldloc.1
+	IL_002e: ldc.i4.0
+	IL_002f: bne.un.s IL_003d
+	IL_0031: ldarg.0
+	IL_0032: ldfld ReferenceHub PlayerRoles.FirstPersonControl.FpcStateProcessor::_hub
+	IL_0037: stloc.s V_4
+	IL_0039: ldloc.1
+	IL_003a: ldc.i4.1
+	IL_003b: add
+	IL_003c: stloc.1
+	IL_003d: ldc.i4.1
+	IL_003e: ret
+	IL_003f: ldloc.0
+	IL_0040: ldfld InventorySystem.Inventory ReferenceHub::inventory
+	IL_0045: call System.Boolean InventorySystem.Inventory::get_SprintingDisabled()
+	IL_004a: ret
+	IL_004b: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0050: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.FirstPersonControl.FpcStateProcessor
+	System.Void ClientUpdateInput(PlayerRoles.FirstPersonControl.FirstPersonMovementModule moduleRef, System.Single walkSpeed, PlayerRoles.FirstPersonControl.PlayerMovementState& valueToSend)
+
+		PlayerRoles.FirstPersonControl.PlayerMovementState currentMovementState = moduleRef.CurrentMovementState
+		System.Boolean local6 = currentMovementState == constant5
+		UnityEngine.KeyCode _keyCrouch = PlayerRoles.FirstPersonControl.FpcStateProcessor._keyCrouch
+
+		[instruction error - managed method being called is null]
+		UnityEngine.KeyCode _keySneak = PlayerRoles.FirstPersonControl.FpcStateProcessor._keySneak
+
+		[instruction error - managed method being called is null]
+
+		if (currentMovementState == constant5)
+
+		    if (this._toggleSprint != FpcStateProcessor)
+		        UnityEngine.KeyCode _keySprint = PlayerRoles.FirstPersonControl.FpcStateProcessor._keySprint
+
+		        [instruction error - managed method being called is null]
+
+		        if (FpcStateProcessor != 0)
+		            System.Boolean local13 = this._sprintToggled == False
+		            this._sprintToggled = local13
+		        endif
+                
+		        UnityEngine.KeyCode _keySprint2 = PlayerRoles.FirstPersonControl.FpcStateProcessor._keySprint
+
+		        [instruction error - managed method being called is null]
+
+		        if (FpcStateProcessor != 0)
+                    goto INSN_180498F28
+                endif
+
+		        if (this._sprintToggled == FpcStateProcessor)
+                    goto INSN_180499027
+                endif
+
+		        INSN_180498F28:
+		        PlayerStatsSystem.StaminaStat _stat = this._stat
+
+		        System.String string = _stat.ToString()
+		        ulong local18 = 0
+
+		        if ( <= local18)
+                    goto INSN_180499023
+                endif
+
+		        System.Boolean sprintingDisabled = this.SprintingDisabled
+
+		        if (sprintingDisabled != False)
+                    goto INSN_180499023
+                endif
+
+		        if (local6 != False)
+                    goto INSN_180498F92
+                endif
+		        PlayerStatsSystem.StaminaStat _stat2 = this._stat
+
+		        System.String string2 = _stat2.ToString()
+
+		        INSN_180498F92:
+		        PlayerRoles.FirstPersonControl.FirstPersonMovementModule _mod = this._mod
+		        PlayerRoles.FirstPersonControl.FpcMotor Motor = _mod.<Motor>k__BackingField
+
+		        System.String string3 = .ToString()
+		          = string3.
+
+		        System.Single single = Misc.SqrMagnitudeIgnoreY()
+		        valueToSend.value__ = string3
+
+		        moduleRef.set_SyncMovementState()
+
+		        INSN_180499023:
+		        this._sprintToggled = False
+
+		        INSN_180499027:
+
+		        moduleRef.set_SyncMovementState()
+		        return
+		    endif
+            
+		    this._sprintToggled = False
+		    System.Boolean local32 = FpcStateProcessor == 0
+		    valueToSend.value__ = local32
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.EqualRegisterSetAction at (0x180498EA1) is corrupt (ConstantDefinition: Don't know how to get IL to load a System.Byte) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.FirstPersonControl.FpcStateProcessor
+	PlayerRoles.FirstPersonControl.PlayerMovementState UpdateMovementState(PlayerRoles.FirstPersonControl.PlayerMovementState state)
+		PlayerRoles.FirstPersonControl.FirstPersonMovementModule _mod = this._mod
+		PlayerRoles.FirstPersonControl.CharacterControllerSettingsPreset characterControllerSettings = _mod.CharacterControllerSettings
+		System.Single height = characterControllerSettings.Height
+		System.Single local5 = height * _mod.CrouchHeightRatio
+		System.Boolean local6 = state == constant6
+		ulong local7 = 0
+
+		System.Boolean boolean = this.UpdateCrouching(local6, local5, height) //(Boolean isCrouching, Single cH, Single nH)
+		ulong local9 = 0
+
+		if (boolean == False)
+
+		    if (this._firstUpdate != local7)
+		    endif
+            
+		    this._firstUpdate = local7
+		    local5 = local10
+		    ulong local12 = 0
+		    System.Single local13 = height * 0,5
+
+		    System.Single single = UnityEngine.Mathf.Lerp(local12, local13, local5) //(Single a, Single b, Single t)
+		    System.Single CrouchPercent = this.<CrouchPercent>k__BackingField
+		    local10 = single
+		    single = height
+		    local13 = local5
+
+		    System.Single single2 = UnityEngine.Mathf.Lerp(single, local13, CrouchPercent) //(Single a, Single b, Single t)
+		    PlayerRoles.FirstPersonControl.FirstPersonMovementModule _mod2 = this._mod
+		    local5 = single2
+		    UnityEngine.CharacterController CharController = _mod2.<CharController>k__BackingField
+
+		    System.Single radius = CharController.radius
+		    PlayerRoles.FirstPersonControl.FirstPersonMovementModule _mod3 = this._mod
+		    height = radius
+		    UnityEngine.CharacterController CharController2 = _mod3.<CharController>k__BackingField
+		    local13 = local5
+
+		    CharController2.height = local13
+		    PlayerRoles.FirstPersonControl.FirstPersonMovementModule _mod4 = this._mod
+		    UnityEngine.CharacterController CharController3 = _mod4.<CharController>k__BackingField
+
+		    UnityEngine.Vector3 down = UnityEngine.Vector3.down
+		    CrouchPercent = local10
+		    System.Single single3 = down.z
+
+		    UnityEngine.Vector3 vector3 = UnityEngine.Vector3.op_Multiply()
+		    System.Single single4 = vector3.z
+
+		    CharController3.set_center()
+		    UnityEngine.Transform _camPivot = this._camPivot
+
+		    UnityEngine.Vector3 up = UnityEngine.Vector3.up
+		    System.Single local37 = local5 * 0,5
+		    System.Single single5 = up.z
+		    CrouchPercent = local37
+
+		    UnityEngine.Vector3 vector32 = UnityEngine.Vector3.op_Multiply()
+		    System.Single single6 = vector32.z
+
+		    _camPivot.set_localPosition()
+		endif
+        
+		System.Single _useRate = this._useRate
+
+		if (state != constant45)
+            goto INSN_180499DD0
+        endif
+		PlayerStatsSystem.StaminaStat _stat = this._stat
+
+		System.String string = _stat.ToString()
+
+		if (_useRate <= local9)
+            goto INSN_180499DCD
+        endif
+
+		System.Boolean sprintingDisabled = this.SprintingDisabled
+
+		if (sprintingDisabled != False)
+            goto INSN_180499DCD
+        endif
+		PlayerStatsSystem.StaminaStat _stat2 = this._stat
+
+		System.String string2 = _stat2.ToString()
+		ulong local50 = 0
+		height = _useRate
+
+		System.Single deltaTime = UnityEngine.Time.deltaTime
+		ReferenceHub _hub = this._hub
+		PlayerRoles.PlayerRoleManager roleManager = _hub.roleManager
+
+		PlayerRoles.PlayerRoleBase currentRole = roleManager.CurrentRole
+
+		System.Single activeTime = currentRole.ActiveTime
+		System.Single _respawnImmunity = this._respawnImmunity
+
+		if (_respawnImmunity >= activeTime)
+            goto INSN_180499D5C
+        endif
+		ReferenceHub _hub2 = this._hub
+		InventorySystem.Inventory inventory = _hub2.inventory
+
+		System.Single staminaUsageMultiplier = inventory.StaminaUsageMultiplier
+		ReferenceHub _hub3 = this._hub
+		PlayerEffectsController playerEffectsController = _hub3.playerEffectsController
+
+		if (local7 >= playerEffectsController.<EffectsLength>k__BackingField)
+            goto INSN_180499D5C
+        endif
+		PlayerEffectsController playerEffectsController2 = _hub3.playerEffectsController
+		CustomPlayerEffects.StatusEffectBase[] AllEffects = playerEffectsController2.<AllEffects>k__BackingField
+		CustomPlayerEffects.StatusEffectBase statusEffectBase = AllEffects[local7]
+
+		if (local7 == 0)
+            goto INSN_180499D42
+        endif
+
+		if (local7 == 0)
+            goto INSN_180499D42
+        endif
+
+		INSN_180499D42:
+		ReferenceHub _hub4 = this._hub
+		local7 += 1
+
+		INSN_180499D5C:
+		PlayerStatsSystem.StaminaStat _stat3 = this._stat
+		staminaUsageMultiplier = height
+
+		System.Single single7 = UnityEngine.Mathf.Clamp01(staminaUsageMultiplier) //(Single value)
+		_respawnImmunity = single7
+
+		System.Single curValue = _stat3.CurValue
+		System.Diagnostics.Stopwatch _regenStopwatch = this._regenStopwatch
+
+		_regenStopwatch.Restart()
+
+		INSN_180499DCD:
+
+		INSN_180499DD0:
+		PlayerStatsSystem.StaminaStat _stat4 = this._stat
+
+		System.String string3 = _stat4.ToString()
+
+		if (curValue >= 1)
+            goto INSN_180499FFE
+        endif
+		PlayerStatsSystem.StaminaStat _stat5 = this._stat
+
+		System.String string4 = _stat5.ToString()
+		height = curValue
+		System.Diagnostics.Stopwatch _regenStopwatch2 = this._regenStopwatch
+		UnityEngine.AnimationCurve _regenerationOverTime = this._regenerationOverTime
+
+		System.TimeSpan elapsed = _regenStopwatch2.Elapsed
+		ulong local86 = 0
+
+		System.Single single8 = _regenerationOverTime.Evaluate(local86) //(Single time)
+		ReferenceHub _hub5 = this._hub
+		local60 = single8
+		PlayerEffectsController playerEffectsController3 = _hub5.playerEffectsController
+
+		if (_stat3 >= playerEffectsController3.<EffectsLength>k__BackingField)
+            goto INSN_180499F5C
+        endif
+		PlayerEffectsController playerEffectsController4 = _hub5.playerEffectsController
+		CustomPlayerEffects.StatusEffectBase[] AllEffects2 = playerEffectsController4.<AllEffects>k__BackingField
+		CustomPlayerEffects.StatusEffectBase statusEffectBase2 = AllEffects2[_stat3]
+
+		if (_stat3 == 0)
+            goto INSN_180499F42
+        endif
+
+		if (_stat3 == 0)
+            goto INSN_180499F42
+        endif
+
+		INSN_180499F42:
+		ReferenceHub _hub6 = this._hub
+		_stat3 += 1
+
+		INSN_180499F5C:
+		ulong local96 = 0
+
+		System.Single deltaTime2 = UnityEngine.Time.deltaTime
+		staminaUsageMultiplier = deltaTime2
+		staminaUsageMultiplier = local60
+		deltaTime2 = staminaUsageMultiplier
+
+		System.Single single9 = UnityEngine.Mathf.Clamp01(deltaTime2) //(Single value)
+
+		System.Single curValue2 = _stat5.CurValue
+		return 2
+
+		INSN_180499FFE:
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.EqualRegisterSetAction at (0x18049993E) is corrupt (ConstantDefinition: Don't know how to get IL to load a System.Byte) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.FirstPersonControl.FpcStateProcessor
+	System.Boolean UpdateCrouching(System.Boolean isCrouching, System.Single cH, System.Single nH)
+		System.Single CrouchPercent = this.<CrouchPercent>k__BackingField
+		ulong local5 = 0
+
+		if (isCrouching == False)
+		    ulong local6 = 0
+		    return local6
+
+		    if (isCrouching == False)
+                goto INSN_18049958D
+            endif
+		endif
+        
+
+		if (nH <= cH)
+            goto INSN_18049958D
+        endif
+		PlayerRoles.FirstPersonControl.FirstPersonMovementModule _mod = this._mod
+
+		if (_mod == 0)
+            goto INSN_18049958D
+        endif
+		cH = local9
+
+		System.Single single = UnityEngine.Mathf.SmoothStep(4.5, 0.800000011920929, cH) //(Single from, Single to, Single t)
+		ulong local13 = 0
+		local9 = single
+
+		System.Single deltaTime = UnityEngine.Time.deltaTime
+
+		System.Single single2 = UnityEngine.Mathf.Min(1, deltaTime) //(Single a, Single b)
+
+		INSN_18049958D:
+		ReferenceHub _hub = this._hub
+
+		UnityEngine.Transform transform = _hub.transform
+
+		UnityEngine.Vector3 position = .position
+		System.Single single3 = position.z
+		ulong local23 = 0
+		ulong local24 = 0
+		PlayerRoles.FirstPersonControl.FirstPersonMovementModule _mod2 = this._mod
+		PlayerRoles.FirstPersonControl.CharacterControllerSettingsPreset characterControllerSettings = _mod2.CharacterControllerSettings
+		deltaTime = nH
+
+		UnityEngine.Vector3 up = UnityEngine.Vector3.up
+		ulong local31 = 0
+		System.Single single4 = up.z
+
+		UnityEngine.LayerMask mask = PlayerRoles.FirstPersonControl.FpcStateProcessor.Mask
+		System.Int32 local35 = mask.m_Mask
+
+		UnityEngine.LayerMask layerMask = UnityEngine.LayerMask.op_Implicit(local35) //(Int32 intVal)
+		deltaTime = local27
+
+		System.Boolean boolean = UnityEngine.Physics.SphereCast()
+
+		if (boolean == False)
+            goto INSN_1804996FA
+        endif
+
+		INSN_1804996FA:
+		cH = local40
+
+		System.Single single5 = UnityEngine.Mathf.Lerp(5, 0.4000000059604645, cH) //(Single a, Single b, Single t)
+		System.Single CrouchPercent2 = this.<CrouchPercent>k__BackingField
+		ulong local44 = 0
+
+		System.Single deltaTime2 = UnityEngine.Time.deltaTime
+		local27 = deltaTime2
+		ulong local47 = 0
+
+		System.Single single6 = System.Math.Max(local47, CrouchPercent2) //(Single val1, Single val2)
+		CrouchPercent2 = single6
+		cH = nH
+		CrouchPercent2 = cH
+		single6 = nH
+
+		System.Single single7 = UnityEngine.Mathf.InverseLerp(single6, CrouchPercent2, cH) //(Single a, Single b, Single value)
+		CrouchPercent2 = single7
+		single7 = CrouchPercent2
+
+		System.Single single8 = UnityEngine.Mathf.Max(single7, CrouchPercent2) //(Single a, Single b)
+		this.<CrouchPercent>k__BackingField = single8
+		ReferenceHub _hub2 = this._hub
+
+		System.Boolean isLocalPlayer = _hub2.isLocalPlayer
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x1804994D4) is corrupt (Return value has a type of System.Int32, expecting an object of type System.Boolean) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.FirstPersonControl.FpcStateProcessor
+	System.Single DecreasedCrouch()
+		System.Single CrouchPercent = this.<CrouchPercent>k__BackingField
+
+		System.Single single = UnityEngine.Mathf.Lerp(5, 0.4000000059604645, CrouchPercent) //(Single a, Single b, Single t)
+		System.Single CrouchPercent2 = this.<CrouchPercent>k__BackingField
+		ulong local5 = 0
+
+		System.Single deltaTime = UnityEngine.Time.deltaTime
+		ulong local8 = 0
+
+		System.Single single2 = System.Math.Max(local8, CrouchPercent2) //(Single val1, Single val2)
+		return single2
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Single PlayerRoles.FirstPersonControl.FpcStateProcessor::<CrouchPercent>k__BackingField
+	IL_0006: stloc.0
+	IL_0007: ldc.r4 5
+	IL_000c: ldc.r4 0,4
+	IL_0011: ldloc.0
+	IL_0012: call System.Single UnityEngine.Mathf::Lerp(System.Single,System.Single,System.Single)
+	IL_0017: stloc.1
+	IL_0018: ldarg.0
+	IL_0019: ldfld System.Single PlayerRoles.FirstPersonControl.FpcStateProcessor::<CrouchPercent>k__BackingField
+	IL_001e: stloc.2
+	IL_001f: ldc.i4.0
+	IL_0020: stloc.3
+	IL_0021: call System.Single UnityEngine.Time::get_deltaTime()
+	IL_0026: stloc.s V_4
+	IL_0028: ldc.i4.0
+	IL_0029: ldloc.2
+	IL_002a: call System.Single System.Math::Max(System.Single,System.Single)
+	IL_002f: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.FirstPersonControl.FpcStateProcessor
+	System.Single IncreasedCrouch()
+		System.Single CrouchPercent = this.<CrouchPercent>k__BackingField
+
+		System.Single single = UnityEngine.Mathf.SmoothStep(4.5, 0.800000011920929, CrouchPercent) //(Single from, Single to, Single t)
+		ulong local5 = 0
+		CrouchPercent = single
+
+		System.Single deltaTime = UnityEngine.Time.deltaTime
+
+		System.Single single2 = UnityEngine.Mathf.Min(1, deltaTime) //(Single a, Single b)
+		return single2
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Single PlayerRoles.FirstPersonControl.FpcStateProcessor::<CrouchPercent>k__BackingField
+	IL_0006: stloc.0
+	IL_0007: ldc.r4 4,5
+	IL_000c: ldc.r4 0,8
+	IL_0011: ldloc.0
+	IL_0012: call System.Single UnityEngine.Mathf::SmoothStep(System.Single,System.Single,System.Single)
+	IL_0017: stloc.1
+	IL_0018: ldc.i4.0
+	IL_0019: stloc.2
+	IL_001a: ldloc.1
+	IL_001b: stloc.0
+	IL_001c: call System.Single UnityEngine.Time::get_deltaTime()
+	IL_0021: stloc.3
+	IL_0022: ldc.r4 1
+	IL_0027: ldloc.3
+	IL_0028: call System.Single UnityEngine.Mathf::Min(System.Single,System.Single)
+	IL_002d: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.FirstPersonControl.FpcStateProcessor
+	System.Single GetMaxHeight(UnityEngine.Vector3 pos, System.Single cH, System.Single nH)
+		ulong local4 = 0
+		ulong local5 = 0
+		PlayerRoles.FirstPersonControl.FirstPersonMovementModule _mod = this._mod
+		PlayerRoles.FirstPersonControl.CharacterControllerSettingsPreset characterControllerSettings = _mod.CharacterControllerSettings
+		System.Single single = pos.y
+		System.Single local9 = nH * 0,5
+		pos.y = single
+
+		UnityEngine.Vector3 up = UnityEngine.Vector3.up
+		ulong local13 = 0
+		System.Single single2 = up.z
+
+		UnityEngine.LayerMask mask = PlayerRoles.FirstPersonControl.FpcStateProcessor.Mask
+		System.Int32 local17 = mask.m_Mask
+
+		UnityEngine.LayerMask layerMask = UnityEngine.LayerMask.op_Implicit(local17) //(Int32 intVal)
+		System.Single single3 = pos.z
+		local9 = local10
+
+		System.Boolean boolean = UnityEngine.Physics.SphereCast()
+
+		if (boolean != False)
+		    return single
+		endif
+        
+		single = nH
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.MultiplyRegByGlobalAction at (0x1804991D9) is corrupt (Operand we were multiplying by is null or local made was stripped) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.FirstPersonControl.FpcStateProcessor
+	static System.Void ReloadInputConfigs()
+		ulong local0 = 0
+		System.Int32 6 = 6
+
+		UnityEngine.KeyCode key = NewInput.GetKey(6, local0) //(ActionName actionName, KeyCode fallbackKeycode)
+		PlayerRoles.FirstPersonControl.FpcStateProcessor._keySprint = key
+		ulong local4 = 0
+		System.Int32 8 = 8
+
+		UnityEngine.KeyCode key2 = NewInput.GetKey(8, local4) //(ActionName actionName, KeyCode fallbackKeycode)
+		PlayerRoles.FirstPersonControl.FpcStateProcessor._keySneak = key2
+		. = 0
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ImmediateToFieldAction at (0x180499416) is corrupt (Instance or field is null) and cannot be created as IL. Aborting here.
+
+

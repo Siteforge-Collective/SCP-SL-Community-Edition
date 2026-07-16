@@ -1,0 +1,224 @@
+Type: FlashbangGrenade
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.ThrowableProjectiles.FlashbangGrenade
+	System.Void PlayExplosionEffects()
+
+		System.Boolean boolean = ReferenceHub.TryGetLocalHub()
+
+		if (boolean != False)
+		    ExplosionCameraShake singleton = ExplosionCameraShake.singleton
+		    UnityEngine.AnimationCurve _shakeOverDistance = this._shakeOverDistance
+
+		    UnityEngine.Transform transform = .transform
+
+		    UnityEngine.Vector3 position = .position
+
+		    UnityEngine.Transform transform2 = base.transform
+
+		    UnityEngine.Vector3 position2 = this.position
+
+		    System.Single single = UnityEngine.Vector3.Distance()
+
+		    System.Single single2 = _shakeOverDistance.Evaluate(single) //(Single time)
+		    single = single2
+
+		    singleton.Shake(single) //(Single explosionForce)
+		endif
+        
+		UnityEngine.AnimationCurve _blindingOverDistance = this._blindingOverDistance
+
+		UnityEngine.Keyframe[] keys = _blindingOverDistance.keys
+		UnityEngine.AnimationCurve _blindingOverDistance2 = this._blindingOverDistance
+
+		System.Int32 length = _blindingOverDistance2.length
+		System.Int32 local27 = length - 1
+		length = local27
+		System.Int64 local28 = length * 28
+		local28 += 32
+		local28 += keys
+		System.Collections.Generic.HashSet`1<ReferenceHub> AllHubs = ReferenceHub.<AllHubs>k__BackingField
+
+		System.Collections.Generic.HashSet`1/Enumerator<T> enumerator = .GetEnumerator()
+
+		if (enumerator == 0)
+            goto INSN_1804C641B
+        endif
+
+		UnityEngine.Transform transform3 = base.transform
+
+		UnityEngine.Vector3 position3 = this.position
+
+		UnityEngine.Transform transform4 = keys.transform
+
+		UnityEngine.Vector3 position4 = keys.position
+
+		UnityEngine.Vector3 vector3 = UnityEngine.Vector3.op_Subtraction()
+
+		if ( > )
+            goto INSN_1804C62A0
+        endif
+
+		System.Boolean boolean2 = ReferenceHub.op_Equality()
+
+		if (boolean2 != False)
+            goto INSN_1804C62A0
+        endif
+		PlayerRoles.RoleTypeId role = this.PreviousOwner.Role
+
+		PlayerRoles.RoleTypeId roleId = PlayerRoles.PlayerRolesUtils.GetRoleId()
+		ulong local53 = 0
+
+		System.Boolean boolean3 = HitboxIdentity.CheckFriendlyFire(role, roleId, local53) //(RoleTypeId attacker, RoleTypeId victim, Boolean ignoreConfig)
+
+		if (boolean3 == False)
+            goto INSN_1804C62A0
+        endif
+
+		this.ProcessPlayer()
+
+		INSN_1804C641B:
+
+		this.Dispose()
+
+		this.Dispose()
+
+		if (this != 0)
+            goto INSN_1804C64A6
+        endif
+		return
+		throw new System.IndexOutOfRangeException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+
+		INSN_1804C64A6:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1804C6022) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.ThrowableProjectiles.FlashbangGrenade
+	System.Void ProcessPlayer(ReferenceHub hub)
+
+		UnityEngine.Transform transform = base.transform
+
+		UnityEngine.Vector3 position = this.position
+		UnityEngine.Transform playerCameraReference = hub.PlayerCameraReference
+
+		UnityEngine.Vector3 position2 = this.position
+		UnityEngine.LayerMask _blindingMask = this._blindingMask
+
+		System.Int32 int32 = UnityEngine.LayerMask.op_Implicit(_blindingMask) //(LayerMask mask)
+
+		System.Boolean boolean = UnityEngine.Physics.Linecast()
+
+		if (boolean == False)
+
+		    UnityEngine.Transform transform2 = base.transform
+
+		    UnityEngine.Vector3 position3 = this.position
+		    UnityEngine.Transform playerCameraReference2 = hub.PlayerCameraReference
+
+		    UnityEngine.Vector3 position4 = this.position
+
+		    UnityEngine.Vector3 vector3 = UnityEngine.Vector3.op_Subtraction()
+
+		    UnityEngine.Transform transform3 = hub.transform
+
+		    UnityEngine.Vector3 position5 = hub.position
+		    UnityEngine.Transform playerCameraReference3 = hub.PlayerCameraReference
+
+		    UnityEngine.Vector3 forward = hub.forward
+
+		    System.Single single = UnityEngine.Vector3.Dot()
+		    ulong local42 = 0
+
+		    if (local42 != 0)
+		        UnityEngine.AnimationCurve _blindingOverDistance = this._blindingOverDistance
+
+		        System.Single single2 = _blindingOverDistance.Evaluate()
+		        UnityEngine.AnimationCurve _deafenDurationOverDistance = this._deafenDurationOverDistance
+
+		        System.Single single3 = _deafenDurationOverDistance.Evaluate()
+		    else
+		        UnityEngine.AnimationCurve _turnedAwayBlindingDistance = this._turnedAwayBlindingDistance
+
+		        System.Single single4 = _turnedAwayBlindingDistance.Evaluate()
+		        UnityEngine.AnimationCurve _turnedAwayDeafenDurationOverDistance = this._turnedAwayDeafenDurationOverDistance
+
+		        System.Single single5 = _turnedAwayDeafenDurationOverDistance.Evaluate()
+		        System.Single local55 = single5 * this._blindTime
+		    endif
+            
+		    System.Single _minimalEffectDuration = this._minimalEffectDuration
+
+		    if (local55 <= _minimalEffectDuration)
+                goto INSN_1804C67DE
+            endif
+		    PlayerEffectsController playerEffectsController = hub.playerEffectsController
+		    _minimalEffectDuration = local55
+
+		    CustomPlayerEffects.Deafened deafened = playerEffectsController.EnableEffect<CustomPlayerEffects.Deafened>(_minimalEffectDuration, True) //(Single , Boolean )
+		    System.Single _minimalEffectDuration2 = this._minimalEffectDuration
+
+		    INSN_1804C67DE:
+
+		    if (single4 <= _minimalEffectDuration2)
+                goto INSN_1804C6810
+            endif
+		    PlayerEffectsController playerEffectsController2 = hub.playerEffectsController
+		    System.Single local61 = single4 * this._blindTime
+		    _minimalEffectDuration2 = local61
+
+		    CustomPlayerEffects.Flashed flashed = playerEffectsController2.EnableEffect<CustomPlayerEffects.Flashed>(_minimalEffectDuration2, True) //(Single , Boolean )
+
+		    INSN_1804C6810:
+		    PlayerEffectsController playerEffectsController3 = hub.playerEffectsController
+		    _minimalEffectDuration2 = single5
+		    System.Single local64 = _minimalEffectDuration2 * this._blindTime
+		    System.Single local65 = single5 * this._additionalBlurDuration
+
+		    CustomPlayerEffects.Blinded blinded = playerEffectsController3.EnableEffect<CustomPlayerEffects.Blinded>(local64, True) //(Single , Boolean )
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1804C6538) is corrupt (Mismatched instance parameter. Expecting an instance of UnityEngine.Transform, actually {'this' (function parameter, type InventorySystem.Items.ThrowableProjectiles.FlashbangGrenade)}) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.ThrowableProjectiles.FlashbangGrenade
+	System.Void .ctor()
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void InventorySystem.Items.ThrowableProjectiles.EffectGrenade::.ctor()
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.ThrowableProjectiles.FlashbangGrenade
+	System.Void MirrorProcessed()
+
+
+Generated IL:
+	
+

@@ -1,0 +1,85 @@
+Type: CachedLayerMask
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CachedLayerMask
+	UnityEngine.LayerMask get_Mask()
+		System.Int32 _cachedMask = this._cachedMask
+
+		if (_cachedMask == 0)
+		    System.String[] _layers = this._layers
+
+		    System.Int32 mask = UnityEngine.LayerMask.GetMask(_layers) //(String[] layerNames)
+		    this._cachedMask = mask
+		endif
+        
+
+		UnityEngine.LayerMask layerMask = UnityEngine.LayerMask.op_Implicit(_cachedMask) //(Int32 intVal)
+		return layerMask
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Int32 CachedLayerMask::_cachedMask
+	IL_0006: stloc.0
+	IL_0007: ldloc.0
+	IL_0008: ldc.i4.0
+	IL_0009: bne.un.s IL_001e
+	IL_000b: ldarg.0
+	IL_000c: ldfld System.String[] CachedLayerMask::_layers
+	IL_0011: call System.Int32 UnityEngine.LayerMask::GetMask(System.String[])
+	IL_0016: stloc.1
+	IL_0017: ldarg.0
+	IL_0018: ldloc.1
+	IL_0019: stfld System.Int32 CachedLayerMask::_cachedMask
+	IL_001e: ldloc.0
+	IL_001f: call UnityEngine.LayerMask UnityEngine.LayerMask::op_Implicit(System.Int32)
+	IL_0024: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CachedLayerMask
+	System.Void .ctor(System.String[] layers)
+
+		base..ctor()
+		this._layers = layers
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void System.Object::.ctor()
+	IL_0006: ldarg.0
+	IL_0007: ldarg.1
+	IL_0008: stfld System.String[] CachedLayerMask::_layers
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CachedLayerMask
+	static System.Int32 op_Implicit(CachedLayerMask mask)
+		System.Int32 _cachedMask = mask._cachedMask
+
+		if (_cachedMask == 0)
+		    System.String[] _layers = mask._layers
+
+		    System.Int32 mask = UnityEngine.LayerMask.GetMask(_layers) //(String[] layerNames)
+		    mask._cachedMask = mask
+		endif
+        
+
+		UnityEngine.LayerMask layerMask = UnityEngine.LayerMask.op_Implicit(_cachedMask) //(Int32 intVal)
+		System.Int32 local8 = layerMask.m_Mask
+
+		UnityEngine.LayerMask layerMask2 = UnityEngine.LayerMask.op_Implicit(local8) //(Int32 intVal)
+		return layerMask2
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x1804ED815) is corrupt (Return value has a type of UnityEngine.LayerMask, expecting an object of type System.Int32) and cannot be created as IL. Aborting here.
+
+

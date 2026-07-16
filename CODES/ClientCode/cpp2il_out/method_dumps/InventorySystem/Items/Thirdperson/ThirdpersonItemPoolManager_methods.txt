@@ -1,0 +1,169 @@
+Type: ThirdpersonItemPoolManager
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Thirdperson.ThirdpersonItemPoolManager
+	static System.Void Init()
+		System.Action action = new System.Action()
+		ulong local2 = 0
+
+		action..ctor(local2, {'SetupPools' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		CustomNetworkManager.add_OnClientStarted(action) //(Action value)
+		return
+
+
+Generated IL:
+	IL_0000: ldloc.1
+	IL_0001: ldftn System.Void InventorySystem.Items.Thirdperson.ThirdpersonItemPoolManager::SetupPools()
+	IL_0007: newobj System.Void System.Action::.ctor(System.Object,System.IntPtr)
+	IL_000c: stloc.0
+	IL_000d: ldc.i4.0
+	IL_000e: stloc.1
+	IL_000f: ldloc.0
+	IL_0010: call System.Void CustomNetworkManager::add_OnClientStarted(System.Action)
+	IL_0015: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Thirdperson.ThirdpersonItemPoolManager
+	static System.Void SetupPools()
+		ulong local0 = 0
+
+		System.Collections.Generic.Dictionary`2<ItemType,InventorySystem.Items.ItemBase> availableItems = InventorySystem.InventoryItemLoader.AvailableItems
+
+		System.Collections.Generic.Dictionary`2/Enumerator<TKey,TValue> enumerator = local0.GetEnumerator()
+
+		if (enumerator != 0)
+		    System.Int32 getEnumeratorRetType = enumerator.getEnumeratorRetType
+
+		    System.Boolean boolean = UnityEngine.Object.op_Inequality()
+
+		    if (boolean != False)
+		        GameObjectPools.PoolManager singleton = GameObjectPools.PoolManager.Singleton
+
+		        singleton.TryAddPool()
+		    endif
+            
+
+		    local0.Dispose()
+
+		    local0.Dispose()
+
+		    if (local0 != 0)
+                goto INSN_1804D8C1C
+            endif
+		    return
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+
+		    INSN_1804D8C1C:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1804D8B15) is corrupt (Mismatched instance parameter. Expecting an instance of System.Collections.Generic.Dictionary`2, actually {'local0' (type System.Int32)}) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Thirdperson.ThirdpersonItemPoolManager
+	static System.Boolean TryGet(PlayerRoles.FirstPersonControl.Thirdperson.HumanCharacterModel model, InventorySystem.Items.ItemIdentifier item, InventorySystem.Items.Thirdperson.ThirdpersonItemBase& result, System.Boolean restrictPoolingToItem)
+		ulong local4 = 0
+
+		if (restrictPoolingToItem == False)
+		    ulong local5 = 0
+
+		    InventorySystem.Items.Thirdperson.ThirdpersonItemPoolManager.SetupPools()
+		else
+		    ItemType local6 = item.TypeId
+
+		    System.Boolean boolean = InventorySystem.InventoryItemLoader.TryGetItem<InventorySystem.Items.ItemBase>(local6, local4) //(ItemType , T& result)
+
+		    if (boolean == False)
+                goto INSN_1804D8F32
+            endif
+		      = local4.
+
+		    System.Boolean boolean2 = UnityEngine.Object.op_Equality()
+
+		    if (boolean2 != False)
+                goto INSN_1804D8F32
+            endif
+		    GameObjectPools.PoolManager singleton = GameObjectPools.PoolManager.Singleton
+		      = local4.
+
+		    singleton.TryAddPool(local4) //(PoolObject prefab)
+		endif
+        
+		result. = local4
+		UnityEngine.Transform itemSpawnpoint = model.ItemSpawnpoint
+		ulong local16 = 0
+
+		System.Boolean boolean3 = UnityEngine.Object.op_Equality(itemSpawnpoint, local16) //(Object x, Object y)
+
+		if (boolean3 != False)
+            goto INSN_1804D8F3F
+        endif
+		ulong local18 = 0
+
+		System.Collections.Generic.Dictionary`2<ItemType,InventorySystem.Items.ItemBase> availableItems = InventorySystem.InventoryItemLoader.AvailableItems
+		ItemType local20 = item.TypeId
+
+		System.Boolean boolean4 = availableItems.TryGetValue(local20, local4) //(TKey key, TValue& value)
+
+		if (boolean4 == False)
+            goto INSN_1804D8F3F
+        endif
+		  = local4.
+		ulong local23 = 0
+
+		System.Boolean boolean5 = UnityEngine.Object.op_Equality(itemSpawnpoint, local23) //(Object x, Object y)
+
+		if (boolean5 != False)
+            goto INSN_1804D8F3F
+        endif
+		GameObjectPools.PoolManager singleton2 = GameObjectPools.PoolManager.Singleton
+		  = local4.
+
+		UnityEngine.GameObject gameObject = .gameObject
+
+		System.Boolean boolean6 = singleton2.TryGetPoolObject(gameObject, local4) //(GameObject prefab, PoolObject& poolObject)
+
+		if (boolean6 == False)
+            goto INSN_1804D8F3F
+        endif
+
+		if (local4 != 0)
+            goto INSN_1804D8E88
+        endif
+		result. = local4
+
+		INSN_1804D8E88:
+		//UNKNOWN CLASS OFFSET READ HERE
+		ulong local30 = 0
+		result. = local4
+		//UNKNOWN CLASS OFFSET READ HERE
+		ulong local31 = 0
+		//UNKNOWN CLASS OFFSET READ HERE
+		  = local31.
+
+		.SpawnPoolObject()
+
+		INSN_1804D8F32:
+		result. = local4
+
+		INSN_1804D8F3F:
+		ulong local34 = 0
+		return local34
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.FieldToLocalAction at (0x1804D8CE1) is corrupt (No further info) and cannot be created as IL. Aborting here.
+
+

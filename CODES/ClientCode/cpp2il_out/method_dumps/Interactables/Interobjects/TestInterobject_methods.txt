@@ -1,0 +1,423 @@
+Type: TestInterobject
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Interobjects.TestInterobject
+	Interactables.Verification.IVerificationRule get_VerificationRule()
+		Interactables.Verification.StandardDistanceVerification default = Interactables.Verification.StandardDistanceVerification.Default
+		return default
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x1803FF135) is corrupt (Return value has a type of Interactables.Verification.StandardDistanceVerification, expecting an object of type Interactables.Verification.IVerificationRule) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Interobjects.TestInterobject
+	System.Void ClientInteract(Interactables.InteractableCollider collider)
+		ulong local2 = 0
+
+		System.Boolean active = Mirror.NetworkClient.active
+
+		if (active != False)
+		    TMPro.TextMeshProUGUI clientText = this.ClientText
+		    System.Object[] local5 = new System.Object[5]
+
+		    if ("Local player collider ID: " != 0)
+
+		        if ("Local player collider ID: " == 0)
+                    goto INSN_1803FE94C
+                endif
+		    endif
+            
+		    local5[0] = "Local player collider ID: "
+		    System.Byte colliderId = collider.ColliderId
+
+		    if (colliderId == constant23)
+                goto INSN_1803FE7E4
+            endif
+
+		    if (colliderId == constant25)
+                goto INSN_1803FE96C
+            endif
+
+		    INSN_1803FE7E4:
+		    local5[1] = colliderId
+
+		    if (" (rand " == 0)
+                goto INSN_1803FE828
+            endif
+
+		    if (" (rand " == 0)
+                goto INSN_1803FE98C
+            endif
+
+		    INSN_1803FE828:
+		    local5[2] = " (rand "
+		    ulong local7 = 0
+
+		    System.Single value = UnityEngine.Random.value
+
+		    if (" (rand " == 0)
+                goto INSN_1803FE87F
+            endif
+
+		    if (" (rand " == 0)
+                goto INSN_1803FE9AC
+            endif
+
+		    INSN_1803FE87F:
+		    local5[3] = " (rand "
+
+		    if (")" == 0)
+                goto INSN_1803FE8C3
+            endif
+
+		    if (")" == 0)
+                goto INSN_1803FE9CC
+            endif
+
+		    INSN_1803FE8C3:
+		    local5[4] = ")"
+
+		    System.String string = System.String.Concat(local5) //(Object[] args)
+
+		    System.String text = clientText.text
+		    return
+		endif
+        
+
+		UnityEngine.Debug.LogWarning("[Client] function 'System.Void Interactables.Interobjects.TestInterobject::ClientInteract(Interactables.InteractableCollider)' called when client was not active") //(Object message)
+		return
+
+		INSN_1803FE94C:
+
+		INSN_1803FE96C:
+
+		INSN_1803FE98C:
+
+		INSN_1803FE9AC:
+
+		INSN_1803FE9CC:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfZeroOrNullAction at (0x1803FE7CA) is corrupt (ConstantDefinition: Don't know how to get IL to load a System.Byte) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Interobjects.TestInterobject
+	System.Void ServerInteract(ReferenceHub ply, System.Byte colliderId)
+		System.Object[] local3 = new System.Object[4]
+
+		if ("Player " != 0)
+
+		    if ("Player " == 0)
+                goto INSN_1803FEF64
+            endif
+		endif
+        
+		local3[0] = "Player "
+
+		System.String string = Misc.LoggedNameFromRefHub(ply) //(ReferenceHub me)
+
+		if (string == 0)
+            goto INSN_1803FED8E
+        endif
+
+		if (string == 0)
+            goto INSN_1803FEF84
+        endif
+
+		INSN_1803FED8E:
+		local3[1] = string
+
+		if (" interacted using collider " == 0)
+            goto INSN_1803FEDD2
+        endif
+
+		if (" interacted using collider " == 0)
+            goto INSN_1803FEFA4
+        endif
+
+		INSN_1803FEDD2:
+		local3[2] = " interacted using collider "
+
+		if (" interacted using collider " == 0)
+            goto INSN_1803FEE21
+        endif
+
+		if (" interacted using collider " == 0)
+            goto INSN_1803FEFC4
+        endif
+
+		INSN_1803FEE21:
+		local3[3] = " interacted using collider "
+
+		System.String string2 = System.String.Concat(local3) //(Object[] args)
+		ulong local8 = 0
+
+		Mirror.PooledNetworkWriter writer = Mirror.NetworkWriterPool.GetWriter()
+
+		Mirror.NetworkWriterExtensions.WriteString(writer, string2) //(NetworkWriter writer, String value)
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'TestInterobject' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		ulong local13 = 0
+
+		base.SendRPCInternal(typeFromHandle, "RpcSendText", writer, local13, local14) //(Type invokeClass, String rpcName, NetworkWriter writer, Int32 channelId, Boolean includeOwner)
+
+		Mirror.NetworkWriterPool.Recycle(writer) //(PooledNetworkWriter writer)
+		return
+
+		UnityEngine.Debug.LogWarning("[Server] function 'System.Void Interactables.Interobjects.TestInterobject::ServerInteract(ReferenceHub,System.Byte)' called when server was not active") //(Object message)
+		return
+
+		INSN_1803FEF64:
+
+		INSN_1803FEF84:
+
+		INSN_1803FEFA4:
+
+		INSN_1803FEFC4:
+
+
+Generated IL:
+	IL_0000: ldc.i4.4
+	IL_0001: newarr System.Object
+	IL_0006: stloc.0
+	IL_0007: ldstr "Player "
+	IL_000c: ldc.i4.0
+	IL_000d: beq.s IL_0017
+	IL_000f: ldstr "Player "
+	IL_0014: ldc.i4.0
+	IL_0015: beq.s IL_0000
+	IL_0017: ldloc.0
+	IL_0018: ldc.i4.0
+	IL_0019: ldstr "Player "
+	IL_001e: stelem.any System.Object
+	IL_0023: ldarg.1
+	IL_0024: call System.String Misc::LoggedNameFromRefHub(ReferenceHub)
+	IL_0029: stloc.1
+	IL_002a: ldloc.1
+	IL_002b: ldc.i4.0
+	IL_002c: beq.s IL_0032
+	IL_002e: ldloc.1
+	IL_002f: ldc.i4.0
+	IL_0030: beq.s IL_0000
+	IL_0032: ldloc.0
+	IL_0033: ldc.i4.1
+	IL_0034: ldloc.1
+	IL_0035: stelem.any System.Object
+	IL_003a: ldstr " interacted using collider "
+	IL_003f: ldc.i4.0
+	IL_0040: beq.s IL_004a
+	IL_0042: ldstr " interacted using collider "
+	IL_0047: ldc.i4.0
+	IL_0048: beq.s IL_0000
+	IL_004a: ldloc.0
+	IL_004b: ldc.i4.2
+	IL_004c: ldstr " interacted using collider "
+	IL_0051: stelem.any System.Object
+	IL_0056: ldstr " interacted using collider "
+	IL_005b: ldc.i4.0
+	IL_005c: beq.s IL_0066
+	IL_005e: ldstr " interacted using collider "
+	IL_0063: ldc.i4.0
+	IL_0064: beq.s IL_0000
+	IL_0066: ldloc.0
+	IL_0067: ldc.i4.3
+	IL_0068: ldstr " interacted using collider "
+	IL_006d: stelem.any System.Object
+	IL_0072: ldloc.0
+	IL_0073: call System.String System.String::Concat(System.Object[])
+	IL_0078: stloc.2
+	IL_0079: ldc.i4.0
+	IL_007a: stloc.3
+	IL_007b: call Mirror.PooledNetworkWriter Mirror.NetworkWriterPool::GetWriter()
+	IL_0080: stloc.s V_4
+	IL_0082: ldloc.s V_4
+	IL_0084: ldloc.2
+	IL_0085: call System.Void Mirror.NetworkWriterExtensions::WriteString(Mirror.NetworkWriter,System.String)
+	IL_008a: ldtoken Interactables.Interobjects.TestInterobject
+	IL_008f: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+	IL_0094: stloc.s V_5
+	IL_0096: ldc.i4.0
+	IL_0097: stloc.s V_6
+	IL_0099: ldarg.0
+	IL_009a: ldloc.s V_5
+	IL_009c: ldstr "RpcSendText"
+	IL_00a1: ldloc.s V_4
+	IL_00a3: ldloc.s V_6
+	IL_00a5: ldloc.s V_7
+	IL_00a7: call System.Void Mirror.NetworkBehaviour::SendRPCInternal(System.Type,System.String,Mirror.NetworkWriter,System.Int32,System.Boolean)
+	IL_00ac: ldloc.s V_4
+	IL_00ae: call System.Void Mirror.NetworkWriterPool::Recycle(Mirror.PooledNetworkWriter)
+	IL_00b3: ret
+	IL_00b4: ldstr "[Server] function 'System.Void Interactables.Interobjects.TestInterobject::ServerInteract(ReferenceHub,System.Byte)' called when server was not active"
+	IL_00b9: call System.Void UnityEngine.Debug::LogWarning(System.Object)
+	IL_00be: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Interobjects.TestInterobject
+	System.Void RpcSendText(System.String s)
+		ulong local2 = 0
+
+		Mirror.PooledNetworkWriter writer = Mirror.NetworkWriterPool.GetWriter()
+
+		Mirror.NetworkWriterExtensions.WriteString(writer, s) //(NetworkWriter writer, String value)
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'TestInterobject' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		ulong local7 = 0
+
+		base.SendRPCInternal(typeFromHandle, "RpcSendText", writer, local7, local8) //(Type invokeClass, String rpcName, NetworkWriter writer, Int32 channelId, Boolean includeOwner)
+
+		Mirror.NetworkWriterPool.Recycle(writer) //(PooledNetworkWriter writer)
+		return
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: call Mirror.PooledNetworkWriter Mirror.NetworkWriterPool::GetWriter()
+	IL_0007: stloc.1
+	IL_0008: ldloc.1
+	IL_0009: ldarg.1
+	IL_000a: call System.Void Mirror.NetworkWriterExtensions::WriteString(Mirror.NetworkWriter,System.String)
+	IL_000f: ldtoken Interactables.Interobjects.TestInterobject
+	IL_0014: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+	IL_0019: stloc.2
+	IL_001a: ldc.i4.0
+	IL_001b: stloc.3
+	IL_001c: ldarg.0
+	IL_001d: ldloc.2
+	IL_001e: ldstr "RpcSendText"
+	IL_0023: ldloc.1
+	IL_0024: ldloc.3
+	IL_0025: ldloc.s V_4
+	IL_0027: call System.Void Mirror.NetworkBehaviour::SendRPCInternal(System.Type,System.String,Mirror.NetworkWriter,System.Int32,System.Boolean)
+	IL_002c: ldloc.1
+	IL_002d: call System.Void Mirror.NetworkWriterPool::Recycle(Mirror.PooledNetworkWriter)
+	IL_0032: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Interobjects.TestInterobject
+	System.Void .ctor()
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void Mirror.NetworkBehaviour::.ctor()
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Interobjects.TestInterobject
+	System.Void MirrorProcessed()
+
+
+Generated IL:
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Interobjects.TestInterobject
+	System.Void UserCode_RpcSendText(System.String s)
+		TMPro.TextMeshProUGUI globalText = this.GlobalText
+
+		System.Boolean isDestroyed = globalText.IsDestroyed()
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld TMPro.TextMeshProUGUI Interactables.Interobjects.TestInterobject::GlobalText
+	IL_0006: call System.Boolean UnityEngine.UI.ICanvasElement::IsDestroyed()
+	IL_000b: stloc.0
+	IL_000c: ret
+	IL_000d: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0012: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Interobjects.TestInterobject
+	static System.Void InvokeUserCode_RpcSendText(Mirror.NetworkBehaviour obj, Mirror.NetworkReader reader, Mirror.NetworkConnectionToClient senderConnection)
+		ulong local3 = 0
+
+		System.Boolean active = Mirror.NetworkClient.active
+
+		if (active != False)
+		    ulong local5 = 0
+
+		    System.String string = Mirror.NetworkReaderExtensions.ReadString(reader) //(NetworkReader reader)
+		    //UNKNOWN CLASS OFFSET READ HERE
+		      = obj.
+		    //UNKNOWN CLASS OFFSET READ HERE
+		      = string.
+
+		    [instruction error - managed method being called is null]
+		    return
+		endif
+        
+
+		UnityEngine.Debug.LogError("RPC RpcSendText called on server.") //(Object message)
+		return
+		throw new System.InvalidCastException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.UnknownClassOffsetReadAction at (0x1803FEAA6) is corrupt (Unknown class offset read) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Interobjects.TestInterobject
+	static System.Void .cctor()
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'TestInterobject' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		Mirror.RemoteCalls.CmdDelegate cmdDelegate = new Mirror.RemoteCalls.CmdDelegate()
+		ulong local4 = 0
+
+		cmdDelegate..ctor(local4, {'InvokeUserCode_RpcSendText' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		Mirror.RemoteCalls.RemoteCallHelper.RegisterRpcDelegate(typeFromHandle, "RpcSendText", cmdDelegate) //(Type invokeClass, String rpcName, CmdDelegate func)
+		return
+
+
+Generated IL:
+	IL_0000: ldtoken Interactables.Interobjects.TestInterobject
+	IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+	IL_000a: stloc.0
+	IL_000b: ldloc.2
+	IL_000c: ldftn System.Void Interactables.Interobjects.TestInterobject::InvokeUserCode_RpcSendText(Mirror.NetworkBehaviour,Mirror.NetworkReader,Mirror.NetworkConnectionToClient)
+	IL_0012: newobj System.Void Mirror.RemoteCalls.CmdDelegate::.ctor(System.Object,System.IntPtr)
+	IL_0017: stloc.1
+	IL_0018: ldc.i4.0
+	IL_0019: stloc.2
+	IL_001a: ldloc.0
+	IL_001b: ldstr "RpcSendText"
+	IL_0020: ldloc.1
+	IL_0021: call System.Void Mirror.RemoteCalls.RemoteCallHelper::RegisterRpcDelegate(System.Type,System.String,Mirror.RemoteCalls.CmdDelegate)
+	IL_0026: ret
+	
+

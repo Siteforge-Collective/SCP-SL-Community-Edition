@@ -1,0 +1,383 @@
+Type: VersionCheck
+
+
+	Generated Pseudocode:
+
+	Declaring Type: VersionCheck
+	System.Void Start()
+		ulong local1 = 0
+
+		System.Boolean extendedVersionCheckNeeded = GameCore.Version.ExtendedVersionCheckNeeded
+
+		Mirror.NetworkConnection connectionToClient = base.connectionToClient
+		System.Byte major = GameCore.Version.Major
+		System.Byte minor = GameCore.Version.Minor
+		System.Byte revision = GameCore.Version.Revision
+		ulong local8 = 0
+
+		Mirror.PooledNetworkWriter writer = Mirror.NetworkWriterPool.GetWriter()
+
+		Mirror.NetworkWriterExtensions.WriteByte(writer, major) //(NetworkWriter writer, Byte value)
+		major = minor
+
+		Mirror.NetworkWriterExtensions.WriteByte(writer, major) //(NetworkWriter writer, Byte value)
+		major = revision
+
+		Mirror.NetworkWriterExtensions.WriteByte(writer, major) //(NetworkWriter writer, Byte value)
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'VersionCheck' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		ulong local15 = 0
+
+		base.SendTargetRPCInternal(connectionToClient, typeFromHandle, "TargetCheckVersion", writer, local15) //(NetworkConnection conn, Type invokeClass, String rpcName, NetworkWriter writer, Int32 channelId)
+
+		Mirror.NetworkWriterPool.Recycle(writer) //(PooledNetworkWriter writer)
+
+		Mirror.NetworkConnection connectionToClient2 = writer.connectionToClient
+		System.String versionString = GameCore.Version.VersionString
+		ulong local19 = 0
+
+		Mirror.PooledNetworkWriter writer2 = Mirror.NetworkWriterPool.GetWriter()
+
+		Mirror.NetworkWriterExtensions.WriteString(writer2, versionString) //(NetworkWriter writer, String value)
+
+		System.Type typeFromHandle2 = System.Type.GetTypeFromHandle({'VersionCheck' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		ulong local24 = 0
+
+		base.SendTargetRPCInternal(connectionToClient2, typeFromHandle2, "TargetCheckExactVersion", writer2, local24) //(NetworkConnection conn, Type invokeClass, String rpcName, NetworkWriter writer, Int32 channelId)
+
+		Mirror.NetworkWriterPool.Recycle(writer2) //(PooledNetworkWriter writer)
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.RegToRegMoveAction at (0x181B91977) is corrupt (Local minor is a variable but it has been stripped out. Are you missing a call to RegisterUsedLocal?) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: VersionCheck
+	System.Void TargetCheckVersion(Mirror.NetworkConnection conn, System.Byte major, System.Byte minor, System.Byte revision)
+		ulong local5 = 0
+
+		Mirror.PooledNetworkWriter writer = Mirror.NetworkWriterPool.GetWriter()
+
+		[instruction error - managed method being called is null]
+		major = minor
+
+		[instruction error - managed method being called is null]
+
+		[instruction error - managed method being called is null]
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'VersionCheck' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		ulong local12 = 0
+
+		base.SendTargetRPCInternal(conn, typeFromHandle, "TargetCheckVersion", writer, local12) //(NetworkConnection conn, Type invokeClass, String rpcName, NetworkWriter writer, Int32 channelId)
+
+		Mirror.NetworkWriterPool.Recycle(writer) //(PooledNetworkWriter writer)
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181B91CB3) is corrupt (Don't know what method is being called) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: VersionCheck
+	System.Void TargetCheckExactVersion(Mirror.NetworkConnection conn, System.String version)
+		ulong local3 = 0
+
+		Mirror.PooledNetworkWriter writer = Mirror.NetworkWriterPool.GetWriter()
+
+		Mirror.NetworkWriterExtensions.WriteString(writer, version) //(NetworkWriter writer, String value)
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'VersionCheck' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		ulong local8 = 0
+
+		base.SendTargetRPCInternal(conn, typeFromHandle, "TargetCheckExactVersion", writer, local8) //(NetworkConnection conn, Type invokeClass, String rpcName, NetworkWriter writer, Int32 channelId)
+
+		Mirror.NetworkWriterPool.Recycle(writer) //(PooledNetworkWriter writer)
+		return
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: call Mirror.PooledNetworkWriter Mirror.NetworkWriterPool::GetWriter()
+	IL_0007: stloc.1
+	IL_0008: ldloc.1
+	IL_0009: ldarg.2
+	IL_000a: call System.Void Mirror.NetworkWriterExtensions::WriteString(Mirror.NetworkWriter,System.String)
+	IL_000f: ldtoken VersionCheck
+	IL_0014: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+	IL_0019: stloc.2
+	IL_001a: ldc.i4.0
+	IL_001b: stloc.3
+	IL_001c: ldarg.0
+	IL_001d: ldarg.1
+	IL_001e: ldloc.2
+	IL_001f: ldstr "TargetCheckExactVersion"
+	IL_0024: ldloc.1
+	IL_0025: ldloc.3
+	IL_0026: call System.Void Mirror.NetworkBehaviour::SendTargetRPCInternal(Mirror.NetworkConnection,System.Type,System.String,Mirror.NetworkWriter,System.Int32)
+	IL_002b: ldloc.1
+	IL_002c: call System.Void Mirror.NetworkWriterPool::Recycle(Mirror.PooledNetworkWriter)
+	IL_0031: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: VersionCheck
+	System.Void .ctor()
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void Mirror.NetworkBehaviour::.ctor()
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: VersionCheck
+	System.Void MirrorProcessed()
+
+
+Generated IL:
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: VersionCheck
+	System.Void UserCode_TargetCheckVersion(Mirror.NetworkConnection conn, System.Byte major, System.Byte minor, System.Byte revision)
+		ulong local5 = 0
+
+		System.Boolean extendedVersionCheckNeeded = GameCore.Version.ExtendedVersionCheckNeeded
+		ulong local7 = 0
+
+		if (extendedVersionCheckNeeded == False)
+		    System.Byte minor = GameCore.Version.Minor
+		    System.Byte revision = GameCore.Version.Revision
+		    System.Boolean backwardCompatibility = GameCore.Version.BackwardCompatibility
+		    System.Byte major = GameCore.Version.Major
+		    System.Byte backwardRevision = GameCore.Version.BackwardRevision
+		    revision = minor
+
+		    System.Boolean boolean = GameCore.Version.CompatibilityCheck()
+
+		    if (boolean != False)
+                goto INSN_181B92105
+            endif
+		endif
+        
+
+		CustomNetworkManager customNetworkManager = UnityEngine.Object.FindObjectOfType<CustomNetworkManager>()
+
+		customNetworkManager.StopClient()
+		System.String versionString = GameCore.Version.VersionString
+
+		System.String string = System.String.Format()
+
+		customNetworkManager.ShowLog(16, versionString, string, local19, local7) //(Int32 id, String obj1, String obj2, String obj3, String textOverride)
+
+		INSN_181B92105:
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181B91FDB) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (8)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: VersionCheck
+	static System.Void InvokeUserCode_TargetCheckVersion(Mirror.NetworkBehaviour obj, Mirror.NetworkReader reader, Mirror.NetworkConnectionToClient senderConnection)
+		ulong local3 = 0
+
+		System.Boolean active = Mirror.NetworkClient.active
+
+		if (active != False)
+		    ulong local5 = 0
+
+		    Mirror.NetworkConnection readyConnection = Mirror.NetworkClient.readyConnection
+
+		    [instruction error - managed method being called is null]
+
+		    [instruction error - managed method being called is null]
+		    ulong local9 = 0
+
+		    [instruction error - managed method being called is null]
+		    //UNKNOWN CLASS OFFSET READ HERE
+
+		    obj.UserCode_TargetCheckVersion()
+		    return
+		endif
+        
+
+		UnityEngine.Debug.LogError("TargetRPC TargetCheckVersion called on server.") //(Object message)
+		return
+		throw new System.InvalidCastException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181B916A2) is corrupt (Don't know what method is being called) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: VersionCheck
+	System.Void UserCode_TargetCheckExactVersion(Mirror.NetworkConnection conn, System.String version)
+
+		System.Boolean boolean = GameCore.Version.ListedServerCompatibilityCheck(version) //(String version)
+
+		if (boolean == False)
+
+		    CustomNetworkManager customNetworkManager = UnityEngine.Object.FindObjectOfType<CustomNetworkManager>()
+
+		    customNetworkManager.StopClient()
+		    ulong local7 = 0
+		    System.String versionString = GameCore.Version.VersionString
+
+		    customNetworkManager.ShowLog(16, versionString, version, local9, local7) //(Int32 id, String obj1, String obj2, String obj3, String textOverride)
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.2
+	IL_0001: call System.Boolean GameCore.Version::ListedServerCompatibilityCheck(System.String)
+	IL_0006: ldc.i4.0
+	IL_0007: bne.un.s IL_0029
+	IL_0009: call T UnityEngine.Object::FindObjectOfType<CustomNetworkManager>()
+	IL_000e: stloc.0
+	IL_000f: ldloc.0
+	IL_0010: call System.Void Mirror.NetworkManager::StopClient()
+	IL_0015: ldc.i4.0
+	IL_0016: stloc.1
+	IL_0017: ldsfld System.String GameCore.Version::VersionString
+	IL_001c: stloc.2
+	IL_001d: ldloc.0
+	IL_001e: ldc.i4.s 16
+	IL_0020: ldloc.2
+	IL_0021: ldarg.2
+	IL_0022: ldloc.3
+	IL_0023: ldloc.1
+	IL_0024: call System.Void CustomNetworkManager::ShowLog(System.Int32,System.String,System.String,System.String,System.String)
+	IL_0029: ret
+	IL_002a: newobj System.Void System.NullReferenceException::.ctor()
+	IL_002f: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: VersionCheck
+	static System.Void InvokeUserCode_TargetCheckExactVersion(Mirror.NetworkBehaviour obj, Mirror.NetworkReader reader, Mirror.NetworkConnectionToClient senderConnection)
+		ulong local3 = 0
+
+		System.Boolean active = Mirror.NetworkClient.active
+
+		if (active != False)
+		    ulong local5 = 0
+
+		    Mirror.NetworkConnection readyConnection = Mirror.NetworkClient.readyConnection
+		    ulong local7 = 0
+
+		    System.String string = Mirror.NetworkReaderExtensions.ReadString(reader) //(NetworkReader reader)
+		    //UNKNOWN CLASS OFFSET READ HERE
+
+		    System.Boolean boolean = GameCore.Version.ListedServerCompatibilityCheck(string) //(String version)
+
+		    if (boolean != False)
+                goto INSN_181B915CA
+            endif
+
+		    CustomNetworkManager customNetworkManager = UnityEngine.Object.FindObjectOfType<CustomNetworkManager>()
+
+		    customNetworkManager.StopClient()
+		    ulong local13 = 0
+		    System.String versionString = GameCore.Version.VersionString
+
+		    customNetworkManager.ShowLog(16, versionString, string, local15, local13) //(Int32 id, String obj1, String obj2, String obj3, String textOverride)
+		    return
+		endif
+        
+
+		UnityEngine.Debug.LogError("TargetRPC TargetCheckExactVersion called on server.") //(Object message)
+
+		INSN_181B915CA:
+		return
+		throw new System.InvalidCastException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.UnknownClassOffsetReadAction at (0x181B9143F) is corrupt (Unknown class offset read) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: VersionCheck
+	static System.Void .cctor()
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'VersionCheck' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		Mirror.RemoteCalls.CmdDelegate cmdDelegate = new Mirror.RemoteCalls.CmdDelegate()
+		ulong local4 = 0
+
+		cmdDelegate..ctor(local4, {'InvokeUserCode_TargetCheckVersion' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		Mirror.RemoteCalls.RemoteCallHelper.RegisterRpcDelegate(typeFromHandle, "TargetCheckVersion", cmdDelegate) //(Type invokeClass, String rpcName, CmdDelegate func)
+
+		System.Type typeFromHandle2 = System.Type.GetTypeFromHandle({'VersionCheck' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		Mirror.RemoteCalls.CmdDelegate cmdDelegate2 = new Mirror.RemoteCalls.CmdDelegate()
+		ulong local10 = 0
+
+		cmdDelegate2..ctor(local10, {'InvokeUserCode_TargetCheckExactVersion' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		Mirror.RemoteCalls.RemoteCallHelper.RegisterRpcDelegate(typeFromHandle2, "TargetCheckExactVersion", cmdDelegate2) //(Type invokeClass, String rpcName, CmdDelegate func)
+		return
+
+
+Generated IL:
+	IL_0000: ldtoken VersionCheck
+	IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+	IL_000a: stloc.0
+	IL_000b: ldloc.2
+	IL_000c: ldftn System.Void VersionCheck::InvokeUserCode_TargetCheckVersion(Mirror.NetworkBehaviour,Mirror.NetworkReader,Mirror.NetworkConnectionToClient)
+	IL_0012: newobj System.Void Mirror.RemoteCalls.CmdDelegate::.ctor(System.Object,System.IntPtr)
+	IL_0017: stloc.1
+	IL_0018: ldc.i4.0
+	IL_0019: stloc.2
+	IL_001a: ldloc.0
+	IL_001b: ldstr "TargetCheckVersion"
+	IL_0020: ldloc.1
+	IL_0021: call System.Void Mirror.RemoteCalls.RemoteCallHelper::RegisterRpcDelegate(System.Type,System.String,Mirror.RemoteCalls.CmdDelegate)
+	IL_0026: ldtoken VersionCheck
+	IL_002b: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+	IL_0030: stloc.3
+	IL_0031: ldloc.s V_5
+	IL_0033: ldftn System.Void VersionCheck::InvokeUserCode_TargetCheckExactVersion(Mirror.NetworkBehaviour,Mirror.NetworkReader,Mirror.NetworkConnectionToClient)
+	IL_0039: newobj System.Void Mirror.RemoteCalls.CmdDelegate::.ctor(System.Object,System.IntPtr)
+	IL_003e: stloc.s V_4
+	IL_0040: ldc.i4.0
+	IL_0041: stloc.s V_5
+	IL_0043: ldloc.3
+	IL_0044: ldstr "TargetCheckExactVersion"
+	IL_0049: ldloc.s V_4
+	IL_004b: call System.Void Mirror.RemoteCalls.RemoteCallHelper::RegisterRpcDelegate(System.Type,System.String,Mirror.RemoteCalls.CmdDelegate)
+	IL_0050: ret
+	
+

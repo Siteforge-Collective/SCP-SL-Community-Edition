@@ -1,0 +1,358 @@
+Type: AttachmentsServerHandler
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Firearms.Attachments.AttachmentsServerHandler
+	static System.Void Init()
+		System.Action action = new System.Action()
+		ulong local2 = 0
+
+		action..ctor(local2, {'RegisterNetworkHandlers' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		InventorySystem.Inventory.add_OnServerStarted(action) //(Action value)
+		UnityEngine.Events.UnityAction`2<UnityEngine.SceneManagement.Scene,UnityEngine.SceneManagement.Scene> unityAction = new UnityEngine.Events.UnityAction`2<UnityEngine.SceneManagement.Scene,UnityEngine.SceneManagement.Scene>()
+		ulong local5 = 0
+
+		unityAction..ctor(local5, {'ResetOnSceneChange' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		UnityEngine.SceneManagement.SceneManager.add_activeSceneChanged(unityAction) //(UnityAction`2 value)
+		System.Action`2<ReferenceHub,InventorySystem.Items.ItemBase> onItemProvided = InventorySystem.InventoryItemProvider.OnItemProvided
+		System.Action`2<ReferenceHub,InventorySystem.Items.ItemBase> action2 = new System.Action`2<ReferenceHub,InventorySystem.Items.ItemBase>()
+		ulong local9 = 0
+
+		action2..ctor(local9, {'SetupProvidedWeapon' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		System.Delegate delegate = System.Delegate.Combine(onItemProvided, action2) //(Delegate a, Delegate b)
+		ulong local12 = 0
+
+		if (delegate != 0)
+
+		    if (delegate == 0)
+                goto INSN_180483B70
+            endif
+		endif
+        
+		InventorySystem.InventoryItemProvider.OnItemProvided = local12
+
+		INSN_180483B70:
+		throw new System.InvalidCastException()
+
+
+Generated IL:
+	IL_0000: ldloc.1
+	IL_0001: ldftn System.Void InventorySystem.Items.Firearms.Attachments.AttachmentsServerHandler::RegisterNetworkHandlers()
+	IL_0007: newobj System.Void System.Action::.ctor(System.Object,System.IntPtr)
+	IL_000c: stloc.0
+	IL_000d: ldc.i4.0
+	IL_000e: stloc.1
+	IL_000f: ldloc.0
+	IL_0010: call System.Void InventorySystem.Inventory::add_OnServerStarted(System.Action)
+	IL_0015: ldloc.3
+	IL_0016: ldftn System.Void InventorySystem.Items.Firearms.Attachments.AttachmentsServerHandler::ResetOnSceneChange(UnityEngine.SceneManagement.Scene,UnityEngine.SceneManagement.Scene)
+	IL_001c: newobj System.Void UnityEngine.Events.UnityAction`2::.ctor(System.Object,System.IntPtr)
+	IL_0021: stloc.2
+	IL_0022: ldc.i4.0
+	IL_0023: stloc.3
+	IL_0024: ldloc.2
+	IL_0025: call System.Void UnityEngine.SceneManagement.SceneManager::add_activeSceneChanged(UnityEngine.Events.UnityAction`2)
+	IL_002a: ldsfld System.Action`2<ReferenceHub,InventorySystem.Items.ItemBase> InventorySystem.InventoryItemProvider::OnItemProvided
+	IL_002f: stloc.s V_4
+	IL_0031: ldloc.s V_6
+	IL_0033: ldftn System.Void InventorySystem.Items.Firearms.Attachments.AttachmentsServerHandler::SetupProvidedWeapon(ReferenceHub,InventorySystem.Items.ItemBase)
+	IL_0039: newobj System.Void System.Action`2::.ctor(System.Object,System.IntPtr)
+	IL_003e: stloc.s V_5
+	IL_0040: ldc.i4.0
+	IL_0041: stloc.s V_6
+	IL_0043: ldloc.s V_4
+	IL_0045: ldloc.s V_5
+	IL_0047: call System.Delegate System.Delegate::Combine(System.Delegate,System.Delegate)
+	IL_004c: stloc.s V_7
+	IL_004e: ldc.i4.0
+	IL_004f: stloc.s V_8
+	IL_0051: ldloc.s V_7
+	IL_0053: ldc.i4.0
+	IL_0054: beq.s IL_005b
+	IL_0056: ldloc.s V_7
+	IL_0058: ldc.i4.0
+	IL_0059: beq.s IL_0062
+	IL_005b: ldloc.s V_8
+	IL_005d: stsfld System.Action`2<ReferenceHub,InventorySystem.Items.ItemBase> InventorySystem.InventoryItemProvider::OnItemProvided
+	IL_0062: newobj System.Void System.InvalidCastException::.ctor()
+	IL_0067: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Firearms.Attachments.AttachmentsServerHandler
+	static System.Void RegisterNetworkHandlers()
+		System.Action`2<Mirror.NetworkConnection,InventorySystem.Items.Firearms.Attachments.AttachmentsSetupPreference> action = new System.Action`2<Mirror.NetworkConnection,InventorySystem.Items.Firearms.Attachments.AttachmentsSetupPreference>()
+		ulong local1 = 0
+
+		action..ctor(local1, {'ServerReceivePreference' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		Mirror.NetworkServer.ReplaceHandler<InventorySystem.Items.Firearms.Attachments.AttachmentsSetupPreference>(action, True) //(Action`2 handler, Boolean requireAuthentication)
+		System.Action`2<Mirror.NetworkConnection,InventorySystem.Items.Firearms.Attachments.AttachmentsChangeRequest> action2 = new System.Action`2<Mirror.NetworkConnection,InventorySystem.Items.Firearms.Attachments.AttachmentsChangeRequest>()
+		ulong local3 = 0
+
+		action2..ctor(local3, {'ServerReceiveChangeRequest' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		Mirror.NetworkServer.ReplaceHandler<InventorySystem.Items.Firearms.Attachments.AttachmentsChangeRequest>(action2, True) //(Action`2 handler, Boolean requireAuthentication)
+		return
+
+
+Generated IL:
+	IL_0000: ldloc.1
+	IL_0001: ldftn System.Void InventorySystem.Items.Firearms.Attachments.AttachmentsServerHandler::ServerReceivePreference(Mirror.NetworkConnection,InventorySystem.Items.Firearms.Attachments.AttachmentsSetupPreference)
+	IL_0007: newobj System.Void System.Action`2::.ctor(System.Object,System.IntPtr)
+	IL_000c: stloc.0
+	IL_000d: ldc.i4.0
+	IL_000e: stloc.1
+	IL_000f: ldloc.0
+	IL_0010: ldc.i4.1
+	IL_0011: call System.Void Mirror.NetworkServer::ReplaceHandler<InventorySystem.Items.Firearms.Attachments.AttachmentsSetupPreference>(System.Action`2,System.Boolean)
+	IL_0016: ldloc.3
+	IL_0017: ldftn System.Void InventorySystem.Items.Firearms.Attachments.AttachmentsServerHandler::ServerReceiveChangeRequest(Mirror.NetworkConnection,InventorySystem.Items.Firearms.Attachments.AttachmentsChangeRequest)
+	IL_001d: newobj System.Void System.Action`2::.ctor(System.Object,System.IntPtr)
+	IL_0022: stloc.2
+	IL_0023: ldc.i4.0
+	IL_0024: stloc.3
+	IL_0025: ldloc.2
+	IL_0026: ldc.i4.1
+	IL_0027: call System.Void Mirror.NetworkServer::ReplaceHandler<InventorySystem.Items.Firearms.Attachments.AttachmentsChangeRequest>(System.Action`2,System.Boolean)
+	IL_002c: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Firearms.Attachments.AttachmentsServerHandler
+	static System.Void ServerReceiveChangeRequest(Mirror.NetworkConnection conn, InventorySystem.Items.Firearms.Attachments.AttachmentsChangeRequest msg)
+		Mirror.NetworkIdentity identity = conn.<identity>k__BackingField
+		ulong local5 = 0
+
+		UnityEngine.GameObject gameObject = identity.gameObject
+		ulong local7 = 0
+
+		System.Boolean boolean = ReferenceHub.TryGetHub(gameObject, local5) //(GameObject player, ReferenceHub& hub)
+
+		if (boolean != False)
+		      = local5.
+		      = local7.
+
+		    if ( != 0)
+		          = boolean.
+
+		        if ( == Firearm)
+
+		            if ( == msg)
+		                  = local5.
+
+		                PlayerRoles.PlayerRoleBase currentRole = gameObject.CurrentRole
+
+		                if (currentRole == 0)
+		                else
+		                    //UNKNOWN CLASS OFFSET READ HERE
+		                    ulong local13 = 0
+		                    System.Boolean local15 = currentRole != 0
+
+		                    if (currentRole != 0)
+                                goto INSN_180483FF2
+                            endif
+		                endif
+                        
+		                System.Collections.Generic.HashSet`1<InventorySystem.Items.Firearms.Attachments.WorkstationController> allWorkstations = InventorySystem.Items.Firearms.Attachments.WorkstationController.AllWorkstations
+
+		                System.Collections.Generic.HashSet`1/Enumerator<T> enumerator = .GetEnumerator()
+
+		                if (enumerator == 0)
+                            goto INSN_180483FA9
+                        endif
+		                ulong local19 = 0
+
+		                System.Boolean boolean2 = UnityEngine.Object.op_Equality(gameObject, local19) //(Object x, Object y)
+
+		                if (boolean2 != False)
+                            goto INSN_180483F20
+                        endif
+
+		                if ( != 3)
+                            goto INSN_180483F20
+                        endif
+
+		                System.Boolean isInRange = gameObject.IsInRange(local19) //(ReferenceHub hub)
+
+		                if (isInRange == False)
+                            goto INSN_180483F20
+                        endif
+
+		                gameObject.Dispose()
+
+		                INSN_180483FA9:
+
+		                gameObject.Dispose()
+
+		                gameObject.Dispose()
+
+		                if (gameObject != 0)
+                            goto INSN_1804841DA
+                        endif
+
+		                INSN_180483FF2:
+
+		                if (local15 == False)
+                            goto INSN_1804841BB
+                        endif
+		                System.UInt16 local25 = msg.WeaponSerial
+
+		                InventorySystem.Items.Firearms.Attachments.AttachmentsUtils.ApplyAttachmentsCode()
+		                  = isInRange.
+		                  = isInRange.
+
+		                if (isInRange <= isInRange)
+                            goto INSN_1804840E8
+                        endif
+		                  = isInRange.
+		                  = isInRange.
+		                  = isInRange.
+		                  = isInRange.
+		                isInRange -= isInRange
+
+		                InventorySystem.InventoryExtensions.ServerAddAmmo()
+
+		                INSN_1804840E8:
+		                  = isInRange.
+		                  = isInRange.
+		                local15 = isInRange
+		                ulong local30 = 0
+
+		                System.Int32 int32 = UnityEngine.Mathf.Min(isInRange, local15) //(Int32 a, Int32 b)
+		                  = local30.
+		                System.UInt16 local33 = msg.WeaponSerial
+		                  = int32.
+		            endif
+                    
+		            return
+		            throw new System.NullReferenceException()
+		            throw new System.NullReferenceException()
+
+		            INSN_1804841DA:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.FieldToLocalAction at (0x180483DF2) is corrupt (No further info) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Firearms.Attachments.AttachmentsServerHandler
+	static System.Void ServerReceivePreference(Mirror.NetworkConnection conn, InventorySystem.Items.Firearms.Attachments.AttachmentsSetupPreference msg)
+		ulong local2 = 0
+		Mirror.NetworkIdentity identity = conn.<identity>k__BackingField
+
+		UnityEngine.GameObject gameObject = identity.gameObject
+
+		System.Boolean boolean = ReferenceHub.TryGetHub(gameObject, local2) //(GameObject player, ReferenceHub& hub)
+
+		if (boolean != False)
+		      = .
+
+		    System.Boolean boolean2 = .TryGetValue(local2, local2) //(TKey key, TValue& value)
+
+		    if (boolean2 == False)
+                goto INSN_180484388
+            endif
+
+		    if (local2 == 0)
+                goto INSN_180484388
+            endif
+		    ItemType local9 = msg.Weapon
+		    throw new System.NullReferenceException()
+		endif
+        
+		return
+
+		INSN_180484388:
+		  = .
+		System.Collections.Generic.Dictionary`2<ItemType,System.UInt32> dictionary = new System.Collections.Generic.Dictionary`2<ItemType,System.UInt32>()
+
+		dictionary..ctor()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.StaticFieldToRegAction at (0x18048432E) is corrupt (Couldn't identify the field being read (or its type).) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Firearms.Attachments.AttachmentsServerHandler
+	static System.Void SetupProvidedWeapon(ReferenceHub ply, InventorySystem.Items.ItemBase item)
+		ulong local2 = 0
+
+		if (item != 0)
+		    //UNKNOWN CLASS OFFSET READ HERE
+		      = .
+
+		    System.Boolean local3 = .TryGetValue(ply, local2) //(TKey key, TValue& value)
+
+		    if (local3 != False)
+		        ItemType local4 = item.ItemTypeId
+
+		        System.Boolean local5 = local2.TryGetValue(local4, local2) //(TKey key, TValue& value)
+
+		        if (local5 != False)
+		        else
+		        endif
+                
+		        ulong local6 = 0
+
+		        System.UInt32 local7 = InventorySystem.Items.Firearms.Attachments.AttachmentsUtils.ValidateAttachmentsCode()
+		        ulong local8 = 0
+		        ulong local9 = 0
+
+		        InventorySystem.Items.Firearms.Attachments.AttachmentsUtils.ApplyAttachmentsCode()
+		        InventorySystem.Inventory local10 = ply.inventory
+		        InventorySystem.InventoryInfo local11 = local10.UserInventory
+		        System.Collections.Generic.Dictionary`2<ItemType,System.UInt16> local12 = local11.ReserveAmmo
+
+
+Generated IL:
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Firearms.Attachments.AttachmentsServerHandler
+	static System.Void ResetOnSceneChange(UnityEngine.SceneManagement.Scene arg1, UnityEngine.SceneManagement.Scene arg2)
+		  = .
+
+		.Clear()
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.StaticFieldToRegAction at (0x180483C8E) is corrupt (Couldn't identify the field being read (or its type).) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Firearms.Attachments.AttachmentsServerHandler
+	static System.Void .cctor()
+		System.Collections.Generic.Dictionary`2<ReferenceHub,System.Collections.Generic.Dictionary`2<ItemType,System.UInt32>> dictionary = new System.Collections.Generic.Dictionary`2<ReferenceHub,System.Collections.Generic.Dictionary`2<ItemType,System.UInt32>>()
+
+		dictionary..ctor()
+		. = dictionary
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.RegToStaticFieldAction at (0x180484840) is corrupt (No further info) and cannot be created as IL. Aborting here.
+
+

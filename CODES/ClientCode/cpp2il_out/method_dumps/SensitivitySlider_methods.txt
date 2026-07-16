@@ -1,0 +1,165 @@
+Type: SensitivitySlider
+
+
+	Generated Pseudocode:
+
+	Declaring Type: SensitivitySlider
+	System.Void Start()
+
+		System.Single single = PlayerPrefsSl.Get("Sens", 1) //(String key, Single defaultValue)
+
+		System.Single single2 = PlayerPrefsSl.Get("SensAds", 1) //(String key, Single defaultValue)
+
+		this.SetSliderValues(single, single2) //(Single main, Single ads)
+		return
+
+
+Generated IL:
+	IL_0000: ldstr "Sens"
+	IL_0005: ldc.r4 1
+	IL_000a: call System.Single PlayerPrefsSl::Get(System.String,System.Single)
+	IL_000f: stloc.0
+	IL_0010: ldstr "SensAds"
+	IL_0015: ldc.r4 1
+	IL_001a: call System.Single PlayerPrefsSl::Get(System.String,System.Single)
+	IL_001f: stloc.1
+	IL_0020: ldarg.0
+	IL_0021: ldloc.0
+	IL_0022: ldloc.1
+	IL_0023: call System.Void SensitivitySlider::SetSliderValues(System.Single,System.Single)
+	IL_0028: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: SensitivitySlider
+	System.Void SaveSliderValues()
+		UnityEngine.UI.Slider _mainSlider = this._mainSlider
+
+		System.Boolean isDestroyed = _mainSlider.IsDestroyed()
+
+		PlayerPrefsSl.Set("Sens", 0) //(String key, Single value)
+		UnityEngine.UI.Slider _adsSlider = this._adsSlider
+
+		System.Boolean isDestroyed2 = _adsSlider.IsDestroyed()
+		System.Single local7 =  / 10
+
+		PlayerPrefsSl.Set("SensAds", local7) //(String key, Single value)
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Don't know how to write IL for Cpp2IL.Core.Analysis.Actions.x86.Important.DivideRegByGlobalAction. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: SensitivitySlider
+	System.Void OnMainValueChanged(System.Single val)
+		SensitivitySettings.SensMultiplier = val
+
+		this.SaveSliderValues()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.1
+	IL_0001: stsfld System.Single SensitivitySettings::SensMultiplier
+	IL_0006: ldarg.0
+	IL_0007: call System.Void SensitivitySlider::SaveSliderValues()
+	IL_000c: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: SensitivitySlider
+	System.Void OnAdsValueChanged(System.Single val)
+		System.Single local2 = val / 10
+		SensitivitySettings.AdsReductionMultiplier = local2
+		UnityEngine.UI.Text _adsPercent = this._adsPercent
+		System.Single local4 = local2 * 10
+
+		System.Int32 int32 = UnityEngine.Mathf.RoundToInt(local4) //(Single f)
+		System.Single local8 = local4 / 10
+
+		System.String string = System.String.Concat()
+
+		System.String text = _adsPercent.text
+
+		this.SaveSliderValues()
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Don't know how to write IL for Cpp2IL.Core.Analysis.Actions.x86.Important.DivideRegByGlobalAction. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: SensitivitySlider
+	System.Void SetSliderValues(System.Single main, System.Single ads)
+		UnityEngine.UI.Slider _adsSlider = this._adsSlider
+		main = ads
+
+		System.Single value = _adsSlider.value
+		UnityEngine.UI.Slider _mainSlider = this._mainSlider
+		value = local6
+
+		System.Single single = UnityEngine.Mathf.Min(value, main) //(Single a, Single b)
+		main = single
+
+		_mainSlider.minValue = main
+		UnityEngine.UI.Slider _mainSlider2 = this._mainSlider
+		System.Single m_MaxValue = _mainSlider2.m_MaxValue
+
+		System.Single single2 = UnityEngine.Mathf.Max(m_MaxValue, main) //(Single a, Single b)
+		main = single2
+
+		_mainSlider2.maxValue = main
+		UnityEngine.UI.Slider _mainSlider3 = this._mainSlider
+
+		System.Single value2 = _mainSlider3.value
+		SensitivitySettings.AdsReductionMultiplier = ads
+		UnityEngine.UI.Text _adsPercent = this._adsPercent
+		value2 = ads
+
+		System.Int32 int32 = UnityEngine.Mathf.RoundToInt(value2) //(Single f)
+
+		System.String string = System.String.Concat()
+
+		System.String text = _adsPercent.text
+
+		this.SaveSliderValues()
+		SensitivitySettings.SensMultiplier = main
+
+		this.SaveSliderValues()
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.RegToRegMoveAction at (0x181AB8E5D) is corrupt (Local being overwritten, {'main' (function parameter, type System.Single)} has been stripped or is a parameter) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: SensitivitySlider
+	System.Void .ctor()
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void UnityEngine.MonoBehaviour::.ctor()
+	IL_0006: ret
+	
+

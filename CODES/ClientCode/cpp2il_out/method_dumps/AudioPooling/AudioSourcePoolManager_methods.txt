@@ -1,0 +1,336 @@
+Type: AudioSourcePoolManager
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AudioPooling.AudioSourcePoolManager
+	System.Void Awake()
+		 += 8
+		AudioPooling.AudioSourcePoolManager._initialized = this
+		System.Collections.Generic.HashSet`1<UnityEngine.AudioSource> instances = AudioPooling.AudioSourcePoolManager.Instances
+
+		instances.Clear()
+		System.Collections.Generic.Dictionary`2<FalloffType,UnityEngine.AnimationCurve> curves = AudioPooling.AudioSourcePoolManager.Curves
+
+		System.Int32 count = curves.Count
+
+		if (count == 0)
+		    CurvePreset[] _curves = this._curves
+		    ulong local5 = 0
+		    System.Int32 length = _curves.Length
+
+		    if (local5 < length)
+		        CurvePreset curvePreset = _curves[local5]
+		        System.Collections.Generic.Dictionary`2<FalloffType,UnityEngine.AnimationCurve> curves2 = AudioPooling.AudioSourcePoolManager.Curves
+		        throw new System.NullReferenceException()
+		        local5 += 1
+		    endif
+            
+		    AudioPooling.ChannelPreset[] _channels = this._channels
+		    System.Int32 length2 = _channels.Length
+
+		    if (local5 >= length2)
+                goto INSN_1804E0768
+            endif
+		    local5 += 2
+		    local5 += local5
+		    System.Collections.Generic.Dictionary`2<AudioPooling.AudioMixerChannelType,UnityEngine.Audio.AudioMixerGroup> channels = AudioPooling.AudioSourcePoolManager.Channels
+		    throw new System.NullReferenceException()
+		    local5 += 1
+		endif
+        
+		return
+		throw new System.IndexOutOfRangeException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x1804E05DB) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AudioPooling.AudioSourcePoolManager
+	System.Void OnDestroy()
+		return
+
+
+Generated IL:
+	IL_0000: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AudioPooling.AudioSourcePoolManager
+	static UnityEngine.AudioSource PlaySound(UnityEngine.AudioClip sound, UnityEngine.Vector3 position, System.Single maxDistance, System.Single volume, FalloffType falloffType, AudioPooling.AudioMixerChannelType channel, System.Single spatial, System.Boolean reserved)
+
+		UnityEngine.AudioSource audioSource = AudioPooling.AudioSourcePoolManager.PreSetupSource()
+
+		UnityEngine.Transform transform = audioSource.transform
+		AudioPooling.AudioSourcePoolManager _singleton = AudioPooling.AudioSourcePoolManager._singleton
+
+		UnityEngine.Transform transform2 = _singleton.transform
+
+		transform.parentInternal = transform2
+
+		UnityEngine.Transform transform3 = audioSource.transform
+		System.Single single = position.z
+
+		transform3.set_position()
+
+		audioSource.Play()
+		return audioSource
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1804E0C91) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (7)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AudioPooling.AudioSourcePoolManager
+	static UnityEngine.AudioSource PlaySound(UnityEngine.AudioClip sound, RelativePositioning.RelativePosition relativePosition, System.Single maxDistance, System.Single volume, FalloffType falloffType, AudioPooling.AudioMixerChannelType channel, System.Single spatial, System.Boolean reserved)
+		ulong local8 = 0
+
+		UnityEngine.AudioSource audioSource = AudioPooling.AudioSourcePoolManager.PreSetupSource()
+
+		UnityEngine.Transform transform = audioSource.transform
+		AudioPooling.AudioSourcePoolManager _singleton = AudioPooling.AudioSourcePoolManager._singleton
+
+		UnityEngine.Transform transform2 = _singleton.transform
+
+		transform.parentInternal = transform2
+
+		UnityEngine.Transform transform3 = audioSource.transform
+
+		transform3.set_position()
+
+		audioSource.Play()
+
+		System.Boolean boolean = RelativePositioning.WaypointBase.TryGetWaypoint()
+
+		if (boolean != False)
+
+		    UnityEngine.Transform transform4 = audioSource.transform
+
+		    UnityEngine.Transform transform5 = local8.transform
+
+		    transform4.parentInternal = transform5
+		endif
+        
+		return audioSource
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1804E0E5A) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (7)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AudioPooling.AudioSourcePoolManager
+	static UnityEngine.AudioSource PlaySound(UnityEngine.AudioClip sound, UnityEngine.Transform trackedObject, System.Single maxDistance, System.Single volume, FalloffType falloffType, AudioPooling.AudioMixerChannelType channel, System.Single spatial, System.Boolean reserved)
+
+		UnityEngine.AudioSource audioSource = AudioPooling.AudioSourcePoolManager.PreSetupSource()
+
+		UnityEngine.Transform transform = audioSource.transform
+
+		transform.parentInternal = trackedObject
+
+		UnityEngine.Transform transform2 = audioSource.transform
+
+		UnityEngine.Vector3 zero = UnityEngine.Vector3.zero
+		System.Single single = zero.z
+
+		transform2.set_localPosition()
+
+		audioSource.Play()
+		return audioSource
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1804E0B2C) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (7)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AudioPooling.AudioSourcePoolManager
+	static UnityEngine.AudioSource GetFree(System.Boolean reserved)
+		ulong local3 = 0
+
+		if (reserved == False)
+		    System.Collections.Generic.HashSet`1<UnityEngine.AudioSource> instances = AudioPooling.AudioSourcePoolManager.Instances
+
+		    System.Collections.Generic.HashSet`1/Enumerator<T> enumerator = .GetEnumerator()
+
+		    if (enumerator != 0)
+
+		        System.Boolean boolean = UnityEngine.Object.op_Inequality()
+
+		        if (boolean != False)
+
+		            System.Boolean isPlaying = .isPlaying
+
+		            if (isPlaying == False)
+
+		                [instruction error - managed method being called is null]
+		            else
+
+		                [instruction error - managed method being called is null]
+
+		                [instruction error - managed method being called is null]
+
+		                if (AudioSourcePoolManager != 0)
+                            goto INSN_1804E0A20
+                        endif
+
+		                if (local3 == -1)
+                            goto INSN_1804E0990
+                        endif
+		            endif
+                    
+		            return local3
+		        endif
+                
+		        UnityEngine.GameObject gameObject = new UnityEngine.GameObject()
+
+		        gameObject..ctor()
+
+		        UnityEngine.AudioSource audioSource = gameObject.AddComponent<UnityEngine.AudioSource>()
+
+		        if (reserved != False)
+                    goto INSN_1804E0A0C
+                endif
+		        System.Collections.Generic.HashSet`1<UnityEngine.AudioSource> instances2 = AudioPooling.AudioSourcePoolManager.Instances
+
+		        System.Boolean boolean2 = instances2.Add(audioSource) //(T item)
+
+		        INSN_1804E0A0C:
+		        throw new System.NullReferenceException()
+		        throw new System.NullReferenceException()
+
+		        INSN_1804E0A20:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1804E086E) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AudioPooling.AudioSourcePoolManager
+	static UnityEngine.AudioSource PreSetupSource(UnityEngine.AudioClip sound, System.Single maxDistance, FalloffType falloffType, AudioPooling.AudioMixerChannelType channel, System.Single volume, System.Single spatial, System.Boolean reserved)
+		ulong local7 = 0
+
+		UnityEngine.AudioSource free = AudioPooling.AudioSourcePoolManager.GetFree()
+		System.Collections.Generic.Dictionary`2<FalloffType,UnityEngine.AnimationCurve> curves = AudioPooling.AudioSourcePoolManager.Curves
+
+		System.Boolean boolean = curves.TryGetValue()
+
+		if (boolean != False)
+		    System.Collections.Generic.Dictionary`2<AudioPooling.AudioMixerChannelType,UnityEngine.Audio.AudioMixerGroup> channels = AudioPooling.AudioSourcePoolManager.Channels
+
+		    System.Boolean boolean2 = channels.TryGetValue()
+
+		    if (boolean2 != False)
+
+		        free.enabled = True
+		        ulong local16 = 0
+
+		        free.playOnAwake = local16
+		        ulong local18 = 0
+
+		        free.loop = local18
+		        ulong local20 = 0
+
+		        free.dopplerLevel = local20
+
+		        free.set_volume()
+
+		        free.set_spatialBlend()
+		        System.Int32 2 = 2
+
+		        free.rolloffMode = 2
+		        ulong local25 = 0
+
+		        free.SetCustomCurve(local25, local7) //(AudioSourceCurveType type, AnimationCurve curve)
+
+		        free.maxDistance = maxDistance
+
+		        free.outputAudioMixerGroup = local7
+
+		        free.clip = sound
+
+		        free.reverbZoneMix = 1
+
+		        free.pitch = 1
+		        return free
+		        ulong local32 = 0
+
+		        .enabled = local32
+		        return constant42
+		        throw new System.NullReferenceException()
+		    endif
+            
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+
+		    System.String string = System.String.Concat()
+		    System.Exception exception = new System.Exception()
+
+		    exception..ctor(string) //(String message)
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1804E0FFD) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AudioPooling.AudioSourcePoolManager
+	System.Void .ctor()
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void UnityEngine.MonoBehaviour::.ctor()
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AudioPooling.AudioSourcePoolManager
+	static System.Void .cctor()
+		System.Collections.Generic.HashSet`1<UnityEngine.AudioSource> hashSet = new System.Collections.Generic.HashSet`1<UnityEngine.AudioSource>()
+
+		hashSet..ctor()
+		 += 16
+		AudioPooling.AudioSourcePoolManager._initialized = hashSet
+		System.Collections.Generic.Dictionary`2<FalloffType,UnityEngine.AnimationCurve> dictionary = new System.Collections.Generic.Dictionary`2<FalloffType,UnityEngine.AnimationCurve>()
+
+		dictionary..ctor()
+		 += 24
+		AudioPooling.AudioSourcePoolManager._initialized = dictionary
+		System.Collections.Generic.Dictionary`2<AudioPooling.AudioMixerChannelType,UnityEngine.Audio.AudioMixerGroup> dictionary2 = new System.Collections.Generic.Dictionary`2<AudioPooling.AudioMixerChannelType,UnityEngine.Audio.AudioMixerGroup>()
+
+		dictionary2..ctor()
+		 += 32
+		AudioPooling.AudioSourcePoolManager._initialized = dictionary2
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x1804E1330) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+

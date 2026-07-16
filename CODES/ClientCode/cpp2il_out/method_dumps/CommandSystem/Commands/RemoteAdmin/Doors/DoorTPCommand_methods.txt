@@ -1,0 +1,470 @@
+Type: DoorTPCommand
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.Doors.DoorTPCommand
+	System.String get_Command()
+		System.String Command = this.<Command>k__BackingField
+		return Command
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String CommandSystem.Commands.RemoteAdmin.Doors.DoorTPCommand::<Command>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.Doors.DoorTPCommand
+	System.String[] get_Aliases()
+		System.String[] Aliases = this.<Aliases>k__BackingField
+		return Aliases
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String[] CommandSystem.Commands.RemoteAdmin.Doors.DoorTPCommand::<Aliases>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.Doors.DoorTPCommand
+	System.String get_Description()
+		System.String Description = this.<Description>k__BackingField
+		return Description
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String CommandSystem.Commands.RemoteAdmin.Doors.DoorTPCommand::<Description>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.Doors.DoorTPCommand
+	System.String[] get_Usage()
+		System.String[] Usage = this.<Usage>k__BackingField
+		return Usage
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String[] CommandSystem.Commands.RemoteAdmin.Doors.DoorTPCommand::<Usage>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.Doors.DoorTPCommand
+	System.Boolean Execute(System.ArraySegment`1<System.String> arguments, CommandSystem.ICommandSender sender, System.String& response)
+
+		System.Boolean boolean = Misc.CheckPermission(sender, 0x4000, response) //(ICommandSender sender, PlayerPermissions perm, String& response)
+
+		if (boolean != False)
+
+		    System.Collections.Generic.List`1<ReferenceHub> list = Utils.RAUtils.ProcessPlayerIdOrNamesList()
+
+		    if (RAUtils == 0)
+                goto INSN_180548159
+            endif
+
+		    [instruction error - managed method being called is null]
+
+		    if (list != 0)
+                goto INSN_180548159
+            endif
+		    System.Object _syncRoot = list._syncRoot
+		    System.Char[] local14 = new System.Char[1]
+		    local14[0] = 46
+		    ulong local15 = 0
+
+		    System.String[] stringArray = _syncRoot.Split(local14) //(Char[] separator)
+		    System.String local17 = stringArray[0]
+
+		    System.String string = local17.ToUpper()
+		    System.Collections.Generic.Dictionary`2<System.String,Interactables.Interobjects.DoorUtils.DoorNametagExtension> namedDoors = Interactables.Interobjects.DoorUtils.DoorNametagExtension.NamedDoors
+
+		    System.Boolean boolean2 = namedDoors.TryGetValue(string, local15) //(TKey key, TValue& value)
+
+		    if (boolean2 != False)
+
+		        UnityEngine.Transform transform = namedDoors.transform
+
+		        UnityEngine.Vector3 position = namedDoors.position
+
+		        UnityEngine.Vector3 up = UnityEngine.Vector3.up
+
+		        UnityEngine.Vector3 vector3 = UnityEngine.Vector3.op_Addition()
+		        ulong local33 = 0
+
+		        UnityEngine.LayerMask mask = PlayerRoles.FirstPersonControl.FpcStateProcessor.Mask
+		        System.Int32 local36 = mask.m_Mask
+
+		        UnityEngine.LayerMask layerMask = UnityEngine.LayerMask.op_Implicit(local36) //(Int32 intVal)
+		        System.Int32 local39 = layerMask.m_Mask
+
+		        System.Boolean boolean3 = UnityEngine.Physics.CheckSphere()
+
+		        if (boolean3 != False)
+
+		            UnityEngine.Transform transform2 = local36.transform
+
+		            UnityEngine.Vector3 forward = local36.forward
+
+		            UnityEngine.Vector3 vector32 = UnityEngine.Vector3.op_Multiply()
+
+		            UnityEngine.Vector3 vector33 = UnityEngine.Vector3.op_Addition()
+		            ulong local52 = 0
+
+		            UnityEngine.LayerMask mask2 = PlayerRoles.FirstPersonControl.FpcStateProcessor.Mask
+		            System.Int32 local55 = mask2.m_Mask
+
+		            UnityEngine.LayerMask layerMask2 = UnityEngine.LayerMask.op_Implicit(local55) //(Int32 intVal)
+		            System.Int32 local58 = layerMask2.m_Mask
+
+		            System.Boolean boolean4 = UnityEngine.Physics.CheckSphere()
+
+		            if (boolean4 == False)
+		            endif
+                    
+		            NorthwoodLib.Pools.StringBuilderPool shared = NorthwoodLib.Pools.StringBuilderPool.Shared
+
+		            System.Text.StringBuilder stringBuilder = shared.Rent()
+		            ulong local63 = 0
+
+		            System.Collections.Generic.List`1/Enumerator<T> enumerator = shared.GetEnumerator()
+
+		            if (enumerator == 0)
+                        goto INSN_180547E83
+                    endif
+
+		            UnityEngine.Vector3 zero = UnityEngine.Vector3.zero
+
+		            System.Boolean boolean5 = PlayerRoles.FirstPersonControl.FpcExtensionMethods.TryOverridePosition()
+
+		            if (boolean5 == False)
+                        goto INSN_180547DA0
+                    endif
+
+		            if (local63 == 0)
+                        goto INSN_180547E37
+                    endif
+
+		            System.Text.StringBuilder stringBuilder2 = stringBuilder.Append(", ") //(String value)
+
+		            INSN_180547E37:
+
+		            System.String string2 = Misc.LoggedNameFromRefHub()
+
+		            System.Text.StringBuilder stringBuilder3 = stringBuilder.Append(string2) //(String value)
+		            local63 += 1
+
+		            INSN_180547E83:
+
+		            stringBuilder.Dispose()
+
+		            stringBuilder.Dispose()
+
+		            if (stringBuilder != 0)
+                        goto INSN_180548349
+                    endif
+
+		            if (local63 <= 0)
+                        goto INSN_180548066
+                    endif
+		            System.Object[] local76 = new System.Object[4]
+
+		            if (local76 == 0)
+                        goto INSN_180547F36
+                    endif
+
+		            if (local76 == 0)
+                        goto INSN_180548351
+                    endif
+
+		            INSN_180547F36:
+		            local76[0] = local76
+
+		            if (local63 == 1)
+                        goto INSN_180547F69
+                    endif
+
+		            INSN_180547F69:
+
+		            if ("s " == 0)
+                        goto INSN_180547F86
+                    endif
+
+		            if (local76 == 0)
+                        goto INSN_180548371
+                    endif
+
+		            INSN_180547F86:
+		            throw new System.IndexOutOfRangeException()
+
+		            if (stringBuilder == 0)
+                        goto INSN_180547FB3
+                    endif
+
+		            if (local77 == 0)
+                        goto INSN_180548381
+                    endif
+
+		            INSN_180547FB3:
+		            local76[2] = stringBuilder
+
+		            if ("s " == 0)
+                        goto INSN_180548005
+                    endif
+
+		            if (local77 == 0)
+                        goto INSN_1805483B1
+                    endif
+
+		            INSN_180548005:
+		            local76[3] = "s "
+
+		            System.String string3 = System.String.Format("{0} teleported player{1}{2} to door {3}.", local76) //(String format, Object[] args)
+		            ulong local81 = 0
+
+		            ServerLogs.AddLog(4, string3, 1, local81) //(Modules module, String msg, ServerLogType type, Boolean init)
+
+		            INSN_180548066:
+		            NorthwoodLib.Pools.StringBuilderPool shared2 = NorthwoodLib.Pools.StringBuilderPool.Shared
+
+		            shared2.Return(stringBuilder) //(StringBuilder stringBuilder)
+
+		            if (local63 == 1)
+                        goto INSN_1805480DF
+                    endif
+
+		            INSN_1805480DF:
+
+		            System.String string4 = System.String.Format()
+		            response. = string4
+		        else
+
+		            System.String string5 = System.String.Concat("Can't find door ", string, ".") //(String str0, String str1, String str2)
+		            response. = string5
+		        endif
+                
+		        ulong local88 = 0
+		    endif
+            
+		    return local88
+
+		    INSN_180548159:
+		    response. = "Invalid door name provided."
+		    System.String[] local89 = new System.String[5]
+
+		    if ("To execute this command provide at least 2 arguments!
+            Usage: " == 0)
+                goto INSN_1805481B4
+            endif
+
+		    if ("To execute this command provide at least 2 arguments!
+            Usage: " == 0)
+                goto INSN_1805483D7
+            endif
+
+		    INSN_1805481B4:
+		    local89[0] = "To execute this command provide at least 2 arguments!
+            Usage: "
+		    //UNKNOWN CLASS OFFSET READ HERE
+
+		    if (constant161 == 0)
+                goto INSN_180548204
+            endif
+
+		    if ("To execute this command provide at least 2 arguments!
+            Usage: " == 0)
+                goto INSN_180548407
+            endif
+
+		    INSN_180548204:
+		    local89[1] = constant161
+
+		    if (" " == 0)
+                goto INSN_180548248
+            endif
+
+		    if (" " == 0)
+                goto INSN_180548427
+            endif
+
+		    INSN_180548248:
+		    local89[2] = " "
+
+		    System.String string6 = CommandSystem.HelpProviderExtensions.DisplayCommandUsage(this) //(IUsageProvider provider)
+
+		    if (string6 == 0)
+                goto INSN_18054828B
+            endif
+
+		    if (string6 == 0)
+                goto INSN_180548447
+            endif
+
+		    INSN_18054828B:
+		    local89[3] = string6
+
+		    if (" [Door name]" == 0)
+                goto INSN_1805482CF
+            endif
+
+		    if (" [Door name]" == 0)
+                goto INSN_180548467
+            endif
+
+		    INSN_1805482CF:
+		    local89[4] = " [Door name]"
+
+		    System.String string7 = System.String.Concat(local89) //(String[] values)
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180547A4E) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (4)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.Doors.DoorTPCommand
+	System.Void .ctor()
+		this.<Command>k__BackingField = "doortp"
+		System.String[] local1 = new System.String[2]
+
+		if ("dtp" != 0)
+
+		    if ("dtp" == 0)
+                goto INSN_180548660
+            endif
+		endif
+        
+		local1[0] = "dtp"
+
+		if ("doorteleport" == 0)
+            goto INSN_180548557
+        endif
+
+		if ("doorteleport" == 0)
+            goto INSN_180548680
+        endif
+
+		INSN_180548557:
+		local1[1] = "doorteleport"
+		this.<Aliases>k__BackingField = local1
+		this.<Description>k__BackingField = "Teleports player(s) to the specified door."
+		System.String[] local2 = new System.String[2]
+
+		if ("%player%" == 0)
+            goto INSN_1805485DA
+        endif
+
+		if ("%player%" == 0)
+            goto INSN_1805486A0
+        endif
+
+		INSN_1805485DA:
+		local2[0] = "%player%"
+
+		if ("%door%" == 0)
+            goto INSN_18054861E
+        endif
+
+		if ("%door%" == 0)
+            goto INSN_1805486C0
+        endif
+
+		INSN_18054861E:
+		local2[1] = "%door%"
+		this.<Usage>k__BackingField = local2
+
+		base..ctor()
+		return
+		throw new System.NullReferenceException()
+
+		INSN_180548660:
+
+		INSN_180548680:
+
+		INSN_1805486A0:
+
+		INSN_1805486C0:
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldstr "doortp"
+	IL_0006: stfld System.String CommandSystem.Commands.RemoteAdmin.Doors.DoorTPCommand::<Command>k__BackingField
+	IL_000b: ldc.i4.2
+	IL_000c: newarr System.String
+	IL_0011: stloc.0
+	IL_0012: ldstr "dtp"
+	IL_0017: ldc.i4.0
+	IL_0018: beq.s IL_0022
+	IL_001a: ldstr "dtp"
+	IL_001f: ldc.i4.0
+	IL_0020: beq.s IL_0000
+	IL_0022: ldloc.0
+	IL_0023: ldc.i4.0
+	IL_0024: ldstr "dtp"
+	IL_0029: stelem.any System.String
+	IL_002e: ldstr "doorteleport"
+	IL_0033: ldc.i4.0
+	IL_0034: beq.s IL_003e
+	IL_0036: ldstr "doorteleport"
+	IL_003b: ldc.i4.0
+	IL_003c: beq.s IL_0000
+	IL_003e: ldloc.0
+	IL_003f: ldc.i4.1
+	IL_0040: ldstr "doorteleport"
+	IL_0045: stelem.any System.String
+	IL_004a: ldarg.0
+	IL_004b: ldloc.0
+	IL_004c: stfld System.String[] CommandSystem.Commands.RemoteAdmin.Doors.DoorTPCommand::<Aliases>k__BackingField
+	IL_0051: ldarg.0
+	IL_0052: ldstr "Teleports player(s) to the specified door."
+	IL_0057: stfld System.String CommandSystem.Commands.RemoteAdmin.Doors.DoorTPCommand::<Description>k__BackingField
+	IL_005c: ldc.i4.2
+	IL_005d: newarr System.String
+	IL_0062: stloc.1
+	IL_0063: ldstr "%player%"
+	IL_0068: ldc.i4.0
+	IL_0069: beq.s IL_0073
+	IL_006b: ldstr "%player%"
+	IL_0070: ldc.i4.0
+	IL_0071: beq.s IL_0000
+	IL_0073: ldloc.1
+	IL_0074: ldc.i4.0
+	IL_0075: ldstr "%player%"
+	IL_007a: stelem.any System.String
+	IL_007f: ldstr "%door%"
+	IL_0084: ldc.i4.0
+	IL_0085: beq.s IL_0092
+	IL_0087: ldstr "%door%"
+	IL_008c: ldc.i4.0
+	IL_008d: beq IL_0000
+	IL_0092: ldloc.1
+	IL_0093: ldc.i4.1
+	IL_0094: ldstr "%door%"
+	IL_0099: stelem.any System.String
+	IL_009e: ldarg.0
+	IL_009f: ldloc.1
+	IL_00a0: stfld System.String[] CommandSystem.Commands.RemoteAdmin.Doors.DoorTPCommand::<Usage>k__BackingField
+	IL_00a5: ldarg.0
+	IL_00a6: call System.Void System.Object::.ctor()
+	IL_00ab: ret
+	IL_00ac: newobj System.Void System.NullReferenceException::.ctor()
+	IL_00b1: throw
+	
+

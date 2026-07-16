@@ -1,0 +1,328 @@
+Type: LockdownCommand
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.Doors.LockdownCommand
+	System.String get_Command()
+		System.String Command = this.<Command>k__BackingField
+		return Command
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String CommandSystem.Commands.RemoteAdmin.Doors.LockdownCommand::<Command>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.Doors.LockdownCommand
+	System.String[] get_Aliases()
+		System.String[] Aliases = this.<Aliases>k__BackingField
+		return Aliases
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String[] CommandSystem.Commands.RemoteAdmin.Doors.LockdownCommand::<Aliases>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.Doors.LockdownCommand
+	System.String get_Description()
+		System.String Description = this.<Description>k__BackingField
+		return Description
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String CommandSystem.Commands.RemoteAdmin.Doors.LockdownCommand::<Description>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.Doors.LockdownCommand
+	System.String[] get_Usage()
+		System.String[] Usage = this.<Usage>k__BackingField
+		return Usage
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String[] CommandSystem.Commands.RemoteAdmin.Doors.LockdownCommand::<Usage>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.Doors.LockdownCommand
+	System.Boolean Execute(System.ArraySegment`1<System.String> arguments, CommandSystem.ICommandSender sender, System.String& response)
+
+		System.Boolean boolean = Misc.CheckPermission(sender, 0x2000, response) //(ICommandSender sender, PlayerPermissions perm, String& response)
+
+		if (boolean != False)
+		    System.Int32 _count = arguments._count
+		    ulong local7 = 0
+
+		    if (_count != 0)
+
+		        System.Boolean boolean2 = System.Enum.TryParse<MapGeneration.FacilityZone>()
+
+		        if (boolean2 != False)
+
+		            if (_count > 1)
+		                 += 1
+
+		                System.Boolean boolean3 = System.Single.TryParse()
+
+		                if (boolean3 == False)
+		                    response. = "Specified duration is invalid."
+		                    ulong local14 = 0
+		                    return local14
+		                endif
+                        
+		                response. = "Specified zone is invalid."
+		            endif
+                    
+
+		            if (sender != 0)
+                        goto INSN_1805525A1
+                    endif
+		            System.String empty = System.String.Empty
+
+		            INSN_1805525A1:
+
+		            System.String string = System.String.Format("for {0} seconds.", local17) //(String format, Object arg0)
+
+		            System.String string2 = System.String.Format("{0} has locked down the facility (Filter: {1}){2}", boolean, local15, string) //(String format, Object arg0, Object arg1, Object arg2)
+		            ulong local21 = 0
+
+		            ServerLogs.AddLog(4, string2, 1, local21) //(Modules module, String msg, ServerLogType type, Boolean init)
+
+		            this.Lockdown(local7, local7, True, response) //(FacilityZone zoneToAffect, Single duration, Boolean doLock, String& commandResponse)
+		        endif
+                
+		        ulong local23 = 0
+		        return local23
+		        throw new System.IndexOutOfRangeException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180552490) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (3)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.Doors.LockdownCommand
+	System.Void Lockdown(MapGeneration.FacilityZone zoneToAffect, System.Single duration, System.Boolean doLock, System.String& commandResponse)
+		System.Int32 local5 = zoneToAffect.value__
+		CommandSystem.Commands.RemoteAdmin.Doors.LockdownCommand/<>c__DisplayClass14_0 enumeratorInstance = new CommandSystem.Commands.RemoteAdmin.Doors.LockdownCommand/<>c__DisplayClass14_0()
+		ulong local7 = 0
+
+		enumeratorInstance.FieldGetter(local7, null, doLock) //(String typeName, String fieldName, Object& val)
+		enumeratorInstance.<>4__this = this
+		enumeratorInstance.zoneToAffect = local5
+		ulong local8 = 0
+
+		System.Boolean summaryActive = RoundSummary.SummaryActive
+
+		if (summaryActive == False)
+		    MapGeneration.FacilityZone zoneToAffect = enumeratorInstance.zoneToAffect
+		    System.Collections.Generic.HashSet`1<Interactables.Interobjects.DoorUtils.DoorVariant> allDoors = Interactables.Interobjects.DoorUtils.DoorVariant.AllDoors
+
+		    System.Collections.Generic.HashSet`1/Enumerator<T> enumerator = .GetEnumerator()
+
+		    if (enumerator != 0)
+
+		        if (zoneToAffect != 0)
+
+		            System.Boolean isInZone = Interactables.Interobjects.DoorUtils.DoorVariantUtils.IsInZone()
+
+		            if (isInZone != False)
+		            endif
+                    
+
+		            local5.ServerChangeLock(8, doLock) //(DoorLockReason reason, Boolean newState)
+		        endif
+                
+
+		        [instruction error - managed method being called is null]
+
+		        [instruction error - managed method being called is null]
+
+		        if (DoorVariant != 0)
+                    goto INSN_180552A3A
+                endif
+		        MEC.CoroutineHandle[] local17 = new MEC.CoroutineHandle[1]
+		        MEC.CoroutineHandle _lockdownHandle = this._lockdownHandle
+		        local17[0] = _lockdownHandle
+
+		        System.Int32 int32 = MEC.Timing.KillCoroutines(local17) //(CoroutineHandle[] handles)
+		        System.Action action = new System.Action()
+
+		        action..ctor(enumeratorInstance, {'<Lockdown>b__0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		        MEC.CoroutineHandle coroutineHandle = MEC.Timing.CallDelayed(duration, action) //(Single delay, Action action)
+		        this._lockdownHandle = coroutineHandle
+		        MapGeneration.FacilityZone zoneToAffect2 = enumeratorInstance.zoneToAffect
+
+		        if (zoneToAffect2 != 0)
+                    goto INSN_180552986
+                endif
+
+		        if (zoneToAffect2 != 0)
+                    goto INSN_18055294F
+                endif
+
+		        System.String string = System.String.Concat("Locked down the facility", ".") //(String str0, String str1)
+
+		        INSN_18055294F:
+
+		        System.String string2 = System.String.Format(" for {0} seconds.", string) //(String format, Object arg0)
+
+		        System.String string3 = System.String.Concat("Locked down the facility", string2) //(String str0, String str1)
+
+		        INSN_180552986:
+
+		        if (zoneToAffect2 != 0)
+                    goto INSN_1805529B3
+                endif
+
+		        INSN_1805529B3:
+
+		        System.String string4 = System.String.Format(" for {0} seconds.", ".") //(String format, Object arg0)
+
+		        System.String string5 = System.String.Format("Locked down {0}{1}", string3, string4) //(String format, Object arg0, Object arg1)
+		        return
+		    endif
+            
+		    System.String empty = System.String.Empty
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+
+		    INSN_180552A3A:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AllocateInstanceAction at (0x18055270A) is corrupt (Managed method being called is FieldGetter, not a ctor.) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.Doors.LockdownCommand
+	System.Void .ctor()
+		this.<Command>k__BackingField = "lockdown"
+		System.String[] local1 = new System.String[1]
+
+		if ("ld" != 0)
+
+		    if (local1 == 0)
+                goto INSN_180552BEC
+            endif
+		endif
+        
+		local1[0] = "ld"
+		this.<Aliases>k__BackingField = local1
+		this.<Description>k__BackingField = "Locks all the doors in the facility."
+		System.String[] local2 = new System.String[2]
+
+		if ("ZoneID Filter" == 0)
+            goto INSN_180552B66
+        endif
+
+		if ("ZoneID Filter" == 0)
+            goto INSN_180552C0C
+        endif
+
+		INSN_180552B66:
+		local2[0] = "ZoneID Filter"
+
+		if ("Duration (Optional)" == 0)
+            goto INSN_180552BAA
+        endif
+
+		if ("Duration (Optional)" == 0)
+            goto INSN_180552C2C
+        endif
+
+		INSN_180552BAA:
+		local2[1] = "Duration (Optional)"
+		this.<Usage>k__BackingField = local2
+
+		base..ctor()
+		return
+		throw new System.NullReferenceException()
+
+		INSN_180552BEC:
+
+		INSN_180552C0C:
+
+		INSN_180552C2C:
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldstr "lockdown"
+	IL_0006: stfld System.String CommandSystem.Commands.RemoteAdmin.Doors.LockdownCommand::<Command>k__BackingField
+	IL_000b: ldc.i4.1
+	IL_000c: newarr System.String
+	IL_0011: stloc.0
+	IL_0012: ldstr "ld"
+	IL_0017: ldc.i4.0
+	IL_0018: beq.s IL_001e
+	IL_001a: ldloc.0
+	IL_001b: ldc.i4.0
+	IL_001c: beq.s IL_0000
+	IL_001e: ldloc.0
+	IL_001f: ldc.i4.0
+	IL_0020: ldstr "ld"
+	IL_0025: stelem.any System.String
+	IL_002a: ldarg.0
+	IL_002b: ldloc.0
+	IL_002c: stfld System.String[] CommandSystem.Commands.RemoteAdmin.Doors.LockdownCommand::<Aliases>k__BackingField
+	IL_0031: ldarg.0
+	IL_0032: ldstr "Locks all the doors in the facility."
+	IL_0037: stfld System.String CommandSystem.Commands.RemoteAdmin.Doors.LockdownCommand::<Description>k__BackingField
+	IL_003c: ldc.i4.2
+	IL_003d: newarr System.String
+	IL_0042: stloc.1
+	IL_0043: ldstr "ZoneID Filter"
+	IL_0048: ldc.i4.0
+	IL_0049: beq.s IL_0053
+	IL_004b: ldstr "ZoneID Filter"
+	IL_0050: ldc.i4.0
+	IL_0051: beq.s IL_0000
+	IL_0053: ldloc.1
+	IL_0054: ldc.i4.0
+	IL_0055: ldstr "ZoneID Filter"
+	IL_005a: stelem.any System.String
+	IL_005f: ldstr "Duration (Optional)"
+	IL_0064: ldc.i4.0
+	IL_0065: beq.s IL_006f
+	IL_0067: ldstr "Duration (Optional)"
+	IL_006c: ldc.i4.0
+	IL_006d: beq.s IL_0000
+	IL_006f: ldloc.1
+	IL_0070: ldc.i4.1
+	IL_0071: ldstr "Duration (Optional)"
+	IL_0076: stelem.any System.String
+	IL_007b: ldarg.0
+	IL_007c: ldloc.1
+	IL_007d: stfld System.String[] CommandSystem.Commands.RemoteAdmin.Doors.LockdownCommand::<Usage>k__BackingField
+	IL_0082: ldarg.0
+	IL_0083: call System.Void System.Object::.ctor()
+	IL_0088: ret
+	IL_0089: newobj System.Void System.NullReferenceException::.ctor()
+	IL_008e: throw
+	
+

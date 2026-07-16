@@ -1,0 +1,240 @@
+Type: PostProcessSubEffect
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Usables.Scp244.Hypothermia.PostProcessSubEffect
+	System.Boolean get_IsActive()
+		InventorySystem.Items.Usables.Scp244.Hypothermia.TemperatureSubEffect _temp = this._temp
+
+		FMOD.RESULT rESULT = _temp.setUserData(InventorySystem.Items.Usables.Scp244.Hypothermia.TemperatureSubEffect.get_IsActive) //(IntPtr userdata)
+		return rESULT
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18042E1DB) is corrupt (ConstantDefinition: Don't know how to get IL to load a Mono.Cecil.MethodDefinition) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Usables.Scp244.Hypothermia.PostProcessSubEffect
+	System.Void UpdateEffect(System.Single curExposure)
+
+		ReferenceHub hub = base.Hub
+
+		System.Boolean isLocalPlayer = hub.isLocalPlayer
+
+		if (isLocalPlayer == False)
+		    CustomPlayerEffects.StatusEffectBase MainEffect = this.<MainEffect>k__BackingField
+
+		    System.Boolean isSpectated = MainEffect.IsSpectated
+
+		    if (isSpectated == False)
+                goto INSN_18042E19B
+            endif
+		endif
+        
+
+		ReferenceHub hub2 = base.Hub
+
+		System.Boolean isAlive = PlayerRoles.PlayerRolesUtils.IsAlive(hub2) //(ReferenceHub hub)
+		this._isAlive = isAlive
+
+		ReferenceHub hub3 = base.Hub
+
+		System.Boolean isSCP = PlayerRoles.PlayerRolesUtils.IsSCP(hub3, True) //(ReferenceHub hub, Boolean includeZombies)
+		this._isSCP = isSCP
+		InventorySystem.Items.Usables.Scp244.Hypothermia.TemperatureSubEffect _temp = this._temp
+		System.Single CurTemperature = _temp.<CurTemperature>k__BackingField
+		UnityEngine.Rendering.PostProcessing.PostProcessVolume _ppv = this._ppv
+		this._temperature = CurTemperature
+
+		if (this._isAlive == False)
+            goto INSN_18042E0B3
+        endif
+		InventorySystem.Items.Usables.Scp244.Hypothermia.PostProcessSubEffect/IntensityOverTemp _weightCurve = this._weightCurve
+
+		System.Single single = _weightCurve.Evaluate(CurTemperature) //(Single time)
+
+		if (this._isSCP == False)
+            goto INSN_18042E0B6
+        endif
+		System.Single local24 = single * this._weightCurve._scpIntensityMultiplier
+
+		INSN_18042E0B3:
+		ulong local25 = 0
+
+		INSN_18042E0B6:
+		_ppv.weight = local25
+		PostProcessing.VignetteRefraction _refraction = this._refraction
+		UnityEngine.Rendering.PostProcessing.FloatParameter refractionPower = _refraction.RefractionPower
+
+		if (this._isAlive == False)
+            goto INSN_18042E102
+        endif
+		InventorySystem.Items.Usables.Scp244.Hypothermia.PostProcessSubEffect/IntensityOverTemp _refCurve = this._refCurve
+		System.Single _temperature = this._temperature
+
+		System.Single single2 = _refCurve.Evaluate(_temperature) //(Single time)
+
+		if (this._isSCP == False)
+            goto INSN_18042E105
+        endif
+		System.Single local32 = single2 * this._refCurve._scpIntensityMultiplier
+
+		INSN_18042E102:
+		ulong local33 = 0
+
+		INSN_18042E105:
+		refractionPower. = local33
+		PostProcessing.VignetteRefraction _refraction2 = this._refraction
+		UnityEngine.Rendering.PostProcessing.FloatParameter intensity = _refraction2.Intensity
+
+		if (this._isAlive == False)
+            goto INSN_18042E14D
+        endif
+		InventorySystem.Items.Usables.Scp244.Hypothermia.PostProcessSubEffect/IntensityOverTemp _intenCurve = this._intenCurve
+		System.Single _temperature2 = this._temperature
+
+		System.Single single3 = _intenCurve.Evaluate(_temperature2) //(Single time)
+
+		if (this._isSCP == False)
+            goto INSN_18042E150
+        endif
+		System.Single local40 = single3 * this._intenCurve._scpIntensityMultiplier
+
+		INSN_18042E14D:
+		ulong local41 = 0
+
+		INSN_18042E150:
+		intensity. = local41
+		PostProcessing.VignetteRefraction _refraction3 = this._refraction
+		UnityEngine.Rendering.PostProcessing.FloatParameter frosting = _refraction3.Frosting
+
+		if (this._isAlive == False)
+            goto INSN_18042E191
+        endif
+		InventorySystem.Items.Usables.Scp244.Hypothermia.PostProcessSubEffect/IntensityOverTemp _frostCurve = this._frostCurve
+		System.Single _temperature3 = this._temperature
+
+		System.Single single4 = _frostCurve.Evaluate(_temperature3) //(Single time)
+
+		if (this._isSCP == False)
+            goto INSN_18042E191
+        endif
+		System.Single local48 = single4 * this._frostCurve._scpIntensityMultiplier
+
+		INSN_18042E191:
+		frosting. = local48
+
+		INSN_18042E19B:
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18042E0A1) is corrupt (Mismatched instance parameter. Expecting an instance of UnityEngine.AnimationCurve, actually {'_weightCurve' (type InventorySystem.Items.Usables.Scp244.Hypothermia.PostProcessSubEffect/IntensityOverTemp)}) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Usables.Scp244.Hypothermia.PostProcessSubEffect
+	System.Void DisableEffect()
+
+		base..ctor()
+		UnityEngine.Rendering.PostProcessing.PostProcessVolume _ppv = this._ppv
+		ulong local4 = 0
+
+		System.Boolean boolean = UnityEngine.Object.op_Inequality(_ppv, local4) //(Object x, Object y)
+
+		if (boolean != False)
+		    UnityEngine.Rendering.PostProcessing.PostProcessVolume _ppv2 = this._ppv
+		    _ppv2.weight = 0
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void System.Object::.ctor()
+	IL_0006: ldarg.0
+	IL_0007: ldfld UnityEngine.Rendering.PostProcessing.PostProcessVolume InventorySystem.Items.Usables.Scp244.Hypothermia.PostProcessSubEffect::_ppv
+	IL_000c: stloc.0
+	IL_000d: ldc.i4.0
+	IL_000e: stloc.1
+	IL_000f: ldloc.0
+	IL_0010: ldloc.1
+	IL_0011: call System.Boolean UnityEngine.Object::op_Inequality(UnityEngine.Object,UnityEngine.Object)
+	IL_0016: ldc.i4.0
+	IL_0017: beq.s IL_0029
+	IL_0019: ldarg.0
+	IL_001a: ldfld UnityEngine.Rendering.PostProcessing.PostProcessVolume InventorySystem.Items.Usables.Scp244.Hypothermia.PostProcessSubEffect::_ppv
+	IL_001f: ldc.r4 0
+	IL_0024: stfld System.Single UnityEngine.Rendering.PostProcessing.PostProcessVolume::weight
+	IL_0029: ret
+	IL_002a: newobj System.Void System.NullReferenceException::.ctor()
+	IL_002f: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Usables.Scp244.Hypothermia.PostProcessSubEffect
+	System.Void Init(CustomPlayerEffects.StatusEffectBase mainEffect)
+
+		base.MainEffect = mainEffect
+
+		UnityEngine.Rendering.PostProcessing.PostProcessVolume component = base.GetComponent<UnityEngine.Rendering.PostProcessing.PostProcessVolume>()
+		this._ppv = component
+		UnityEngine.Rendering.PostProcessing.PostProcessVolume _ppv = this._ppv
+
+		UnityEngine.Rendering.PostProcessing.PostProcessProfile profile = _ppv.profile
+
+		PostProcessing.VignetteRefraction setting = profile.GetSetting<PostProcessing.VignetteRefraction>()
+		this._refraction = setting
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: call System.Void CustomPlayerEffects.SubEffectBase::set_MainEffect(CustomPlayerEffects.StatusEffectBase)
+	IL_0007: ldarg.0
+	IL_0008: call T UnityEngine.Component::GetComponent<UnityEngine.Rendering.PostProcessing.PostProcessVolume>()
+	IL_000d: stloc.0
+	IL_000e: ldarg.0
+	IL_000f: ldloc.0
+	IL_0010: stfld UnityEngine.Rendering.PostProcessing.PostProcessVolume InventorySystem.Items.Usables.Scp244.Hypothermia.PostProcessSubEffect::_ppv
+	IL_0015: ldarg.0
+	IL_0016: ldfld UnityEngine.Rendering.PostProcessing.PostProcessVolume InventorySystem.Items.Usables.Scp244.Hypothermia.PostProcessSubEffect::_ppv
+	IL_001b: call UnityEngine.Rendering.PostProcessing.PostProcessProfile UnityEngine.Rendering.PostProcessing.PostProcessVolume::get_profile()
+	IL_0020: call T UnityEngine.Rendering.PostProcessing.PostProcessProfile::GetSetting<PostProcessing.VignetteRefraction>()
+	IL_0025: stloc.1
+	IL_0026: ldarg.0
+	IL_0027: ldloc.1
+	IL_0028: stfld PostProcessing.VignetteRefraction InventorySystem.Items.Usables.Scp244.Hypothermia.PostProcessSubEffect::_refraction
+	IL_002d: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0032: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Usables.Scp244.Hypothermia.PostProcessSubEffect
+	System.Void .ctor()
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void UnityEngine.EventSystems.UIBehaviour::.ctor()
+	IL_0006: ret
+	
+

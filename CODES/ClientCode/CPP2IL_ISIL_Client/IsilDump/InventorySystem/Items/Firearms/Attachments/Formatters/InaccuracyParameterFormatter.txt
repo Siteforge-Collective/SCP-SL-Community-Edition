@@ -1,0 +1,127 @@
+Type: InventorySystem.Items.Firearms.Attachments.Formatters.InaccuracyParameterFormatter
+
+Method: System.Single get_DefaultValue()
+
+Disassembly:
+	movss xmm0,dword ptr [181EA337Ch]
+	ret
+
+ISIL:
+	001 Move xmm0, [0x181EA337C]
+	002 Return xmm0
+
+Method: System.Boolean FormatParameter(InventorySystem.Items.Firearms.Attachments.AttachmentParam param, InventorySystem.Items.Firearms.Firearm firearm, System.Int32 attId, System.Single val, out System.String formattedText, out System.Boolean isGood)
+
+Disassembly:
+	push rbx
+	sub rsp,30h
+	cmp byte ptr [1826EA9FAh],0
+	movaps [rsp+20h],xmm6
+	jne short 0000000180489CF6h
+	mov ecx,[1822C9534h]
+	call 0000000180294190h
+	mov byte ptr [1826EA9FAh],1
+	movss xmm6,dword ptr [181EA337Ch]
+	comiss xmm6,dword ptr [rsp+60h]
+	mov rax,[rsp+70h]
+	seta cl
+	mov [rax],cl
+	test cl,cl
+	mov rbx,[1827026A8h]
+	cmovne rbx,[18276AC98h]
+	mov rcx,[182701818h]
+	test byte ptr [rcx+12Fh],2
+	je short 0000000180489D3Ch
+	cmp dword ptr [rcx+0E0h],0
+	jne short 0000000180489D3Ch
+	call 000000018021A070h
+	movaps xmm1,xmm6
+	divss xmm1,dword ptr [rsp+60h]
+	subss xmm6,xmm1
+	mulss xmm6,dword ptr [181EA33F4h]
+	movaps xmm0,xmm6
+	call 00000001800C82F0h
+	andps xmm0,[18216FD20h]
+	lea rdx,[rsp+70h]
+	mov rcx,[18271F128h]
+	movss dword ptr [rsp+70h],xmm0
+	call 000000018021A7F0h
+	mov r8,[18276AB70h]
+	xor r9d,r9d
+	mov rdx,rax
+	mov rcx,rbx
+	call 0000000181116880h
+	mov rcx,[rsp+68h]
+	mov rdx,rax
+	mov [rcx],rax
+	call 0000000180293EF0h
+	movaps xmm6,[rsp+20h]
+	mov al,1
+	add rsp,30h
+	pop rbx
+	ret
+
+ISIL:
+	001 ShiftStack -8
+	002 Move stack:0x0, rbx
+	003 ShiftStack -48
+	004 Compare [0x1826EA9FA], 0
+	005 Move stack:0x20, xmm6
+	006 JumpIfNotEqual {10}
+	007 Move rcx, [0x1822C9534]
+	008 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	009 Move [0x1826EA9FA], 1
+	010 Move xmm6, [0x181EA337C]
+	011 Compare xmm6, stack:0x60
+	012 Move rax, stack:0x70
+	013 NotImplemented "seta cl"
+	014 Move [rax], rcx
+	015 Compare rcx, 0
+	016 Move rbx, "-"
+	017 JumpIfEqual {19}
+	018 Move rbx, "+"
+	019 Nop 
+	020 Move rcx, typeof(UnityEngine.Mathf)
+	021 Compare [rcx+303], 2
+	022 JumpIfEqual {26}
+	023 Compare [rcx+224], 0
+	024 JumpIfNotEqual {26}
+	025 Call "il2cpp_runtime_class_init_export", rcx, rdx, r8, r9
+	026 Move xmm1, xmm6
+	027 Divide xmm1, xmm1, stack:0x60
+	028 Subtract xmm6, xmm6, xmm1
+	029 Multiply xmm6, xmm6, [0x181EA33F4]
+	030 Move xmm0, xmm6
+	031 Call 0x1800C82F0, rcx, rdx, r8, r9
+	032 And xmm0, xmm0, [0x18216FD20]
+	033 LoadAddress rdx, stack:0x70
+	034 Move rcx, typeof(System.Single)
+	035 Move stack:0x70, xmm0
+	036 Call "il2cpp_value_box", rcx, rdx, r8, r9
+	037 Move r8, "%"
+	038 Move r9, 0
+	039 Move rdx, rax
+	040 Move rcx, rbx
+	041 Call String.Concat, rcx, rdx, r8, r9
+	042 Move rcx, stack:0x68
+	043 Move rdx, rax
+	044 Move [rcx], rax
+	045 Call 0x180293EF0, rcx, rdx, r8, r9
+	046 Move xmm6, stack:0x20
+	047 Move rax, 1
+	048 ShiftStack 48
+	049 Move rbx, stack:0x0
+	050 ShiftStack 8
+	051 Return rax
+
+Method: System.Void .ctor()
+
+Disassembly:
+	xor edx,edx
+	jmp near ptr 00000001802D5040h
+
+ISIL:
+	001 Move rdx, 0
+	002 Call 0x1802D5040, rcx, rdx, r8, r9, stack:0x0
+	003 Return 
+

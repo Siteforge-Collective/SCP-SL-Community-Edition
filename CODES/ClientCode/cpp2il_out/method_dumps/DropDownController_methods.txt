@@ -1,0 +1,195 @@
+Type: DropDownController
+
+
+	Generated Pseudocode:
+
+	Declaring Type: DropDownController
+	System.Void Awake()
+
+		TMPro.TMP_Dropdown component = base.GetComponent<TMPro.TMP_Dropdown>()
+		this._dropdown = component
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call T UnityEngine.Component::GetComponent<TMPro.TMP_Dropdown>()
+	IL_0006: stloc.0
+	IL_0007: ldarg.0
+	IL_0008: ldloc.0
+	IL_0009: stfld TMPro.TMP_Dropdown DropDownController::_dropdown
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: DropDownController
+	System.Void OnPointerClick(UnityEngine.EventSystems.PointerEventData eventData)
+
+		UnityEngine.Canvas componentInChildren = base.GetComponentInChildren<UnityEngine.Canvas>()
+
+		System.Boolean boolean = UnityEngine.Object.op_Implicit(componentInChildren) //(Object exists)
+
+		if (boolean != False)
+
+		    UnityEngine.UI.Toggle[] componentsInChildren = componentInChildren.GetComponentsInChildren<UnityEngine.UI.Toggle>(0x1000000) //(Boolean includeInactive)
+		    System.Int32 length = componentsInChildren.Length
+
+		    if (1 < length)
+		        System.Collections.Generic.List`1<System.Int32> indexesToDisable = this.indexesToDisable
+		        UnityEngine.UI.Toggle toggle = componentsInChildren[]
+
+		        System.Boolean boolean2 = indexesToDisable.Contains(0x1000000) //(T item)
+		        System.Boolean local10 = boolean2 == False
+
+		        toggle.interactable = local10
+		         += 1
+		    endif
+            
+		endif
+        
+		return
+		throw new System.IndexOutOfRangeException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ArrayElementReadToRegAction at (0x181B0B132) is corrupt (Array, offset, or destination is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: DropDownController
+	System.Void EnableOption(System.Int32 index, System.Boolean enable)
+		TMPro.TMP_Dropdown _dropdown = this._dropdown
+
+		System.Collections.Generic.List`1<TMPro.TMP_Dropdown/OptionData> options = _dropdown.options
+
+		if (index < )
+		    System.Collections.Generic.List`1<System.Int32> indexesToDisable = this.indexesToDisable
+
+		    if (enable == False)
+
+		        System.Boolean boolean = indexesToDisable.Contains(index) //(T item)
+
+		        if (boolean != False)
+                    goto INSN_181B0AF9A
+                endif
+		        System.Collections.Generic.List`1<System.Int32> indexesToDisable2 = this.indexesToDisable
+
+		        indexesToDisable2.Add(index) //(T item)
+		    else
+
+		        System.Boolean boolean2 = indexesToDisable.Contains(index) //(T item)
+
+		        if (boolean2 != False)
+		            System.Collections.Generic.List`1<System.Int32> indexesToDisable3 = this.indexesToDisable
+
+		            System.Boolean boolean3 = indexesToDisable3.Remove(index) //(T item)
+		        endif
+                
+
+		        UnityEngine.Canvas componentInChildren = base.GetComponentInChildren<UnityEngine.Canvas>()
+
+		        System.Boolean boolean4 = UnityEngine.Object.op_Implicit(componentInChildren) //(Object exists)
+
+		        if (boolean4 == False)
+                    goto INSN_181B0B051
+                endif
+
+		        UnityEngine.UI.Toggle[] componentsInChildren = componentInChildren.GetComponentsInChildren<UnityEngine.UI.Toggle>(True) //(Boolean includeInactive)
+		        UnityEngine.UI.Toggle toggle = componentsInChildren[index]
+
+		        toggle.interactable = enable
+		        return
+		    endif
+            
+
+		    UnityEngine.Debug.LogWarning("Index out of range -> ignored!", this) //(Object message, Object context)
+
+		    INSN_181B0B051:
+		    return
+		    throw new System.IndexOutOfRangeException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfGreaterThanOrEqualToAction at (0x181B0AF1D) is corrupt (One of the arguments is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: DropDownController
+	System.Void EnableOption(System.String label, System.Boolean enable)
+		DropDownController/<>c__DisplayClass5_0 enumeratorInstance = new DropDownController/<>c__DisplayClass5_0()
+
+		enumeratorInstance..ctor()
+		enumeratorInstance.label = label
+		TMPro.TMP_Dropdown _dropdown = this._dropdown
+
+		System.Collections.Generic.List`1<TMPro.TMP_Dropdown/OptionData> options = _dropdown.options
+		System.Predicate`1<TMPro.TMP_Dropdown/OptionData> predicate = new System.Predicate`1<TMPro.TMP_Dropdown/OptionData>()
+
+		predicate..ctor(enumeratorInstance, {'<EnableOption>b__0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		System.Int32 int32 = options.FindIndex(predicate) //(Predicate`1 match)
+		System.Int32 local11 = int32 + 1
+
+		this.EnableOption(local11, enable) //(Int32 index, Boolean enable)
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: newobj System.Void DropDownController/<>c__DisplayClass5_0::.ctor()
+	IL_0005: stloc.0
+	IL_0006: ldloc.0
+	IL_0007: ldarg.1
+	IL_0008: stfld System.String DropDownController/<>c__DisplayClass5_0::label
+	IL_000d: ldarg.0
+	IL_000e: ldfld TMPro.TMP_Dropdown DropDownController::_dropdown
+	IL_0013: call System.Collections.Generic.List`1 TMPro.TMP_Dropdown::get_options()
+	IL_0018: stloc.1
+	IL_0019: ldloc.0
+	IL_001a: ldftn System.Boolean DropDownController/<>c__DisplayClass5_0::<EnableOption>b__0(TMPro.TMP_Dropdown/OptionData)
+	IL_0020: newobj System.Void System.Predicate`1::.ctor(System.Object,System.IntPtr)
+	IL_0025: stloc.2
+	IL_0026: ldloc.1
+	IL_0027: ldloc.2
+	IL_0028: call System.Int32 System.Collections.Generic.List`1::FindIndex(System.Predicate`1)
+	IL_002d: ldc.i4.1
+	IL_002e: add
+	IL_002f: stloc.3
+	IL_0030: ldarg.0
+	IL_0031: ldloc.3
+	IL_0032: ldarg.2
+	IL_0033: call System.Void DropDownController::EnableOption(System.Int32,System.Boolean)
+	IL_0038: ret
+	IL_0039: newobj System.Void System.NullReferenceException::.ctor()
+	IL_003e: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: DropDownController
+	System.Void .ctor()
+		System.Collections.Generic.List`1<System.Int32> list = new System.Collections.Generic.List`1<System.Int32>()
+
+		list..ctor()
+		this.indexesToDisable = list
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: newobj System.Void System.Collections.Generic.List`1::.ctor()
+	IL_0005: stloc.0
+	IL_0006: ldarg.0
+	IL_0007: ldloc.0
+	IL_0008: stfld System.Collections.Generic.List`1<System.Int32> DropDownController::indexesToDisable
+	IL_000d: ldarg.0
+	IL_000e: call System.Void UnityEngine.MonoBehaviour::.ctor()
+	IL_0013: ret
+	
+

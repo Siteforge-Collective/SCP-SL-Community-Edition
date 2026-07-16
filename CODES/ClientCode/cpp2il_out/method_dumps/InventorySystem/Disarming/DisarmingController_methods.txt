@@ -1,0 +1,448 @@
+Type: DisarmingController
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Disarming.DisarmingController
+	static System.Void Init()
+		System.Action action = new System.Action()
+		ulong local2 = 0
+
+		action..ctor(local2, {'Start' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		InventorySystem.Inventory.add_OnLocalClientStarted(action) //(Action value)
+		System.Action action2 = new System.Action()
+		ulong local6 = 0
+
+		action2..ctor(local6, {'Update' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		StaticUnityMethods.add_OnUpdate(action2) //(Action value)
+		return
+
+
+Generated IL:
+	IL_0000: ldloc.1
+	IL_0001: ldftn System.Void InventorySystem.Disarming.DisarmingController::Start()
+	IL_0007: newobj System.Void System.Action::.ctor(System.Object,System.IntPtr)
+	IL_000c: stloc.0
+	IL_000d: ldc.i4.0
+	IL_000e: stloc.1
+	IL_000f: ldloc.0
+	IL_0010: call System.Void InventorySystem.Inventory::add_OnLocalClientStarted(System.Action)
+	IL_0015: ldloc.3
+	IL_0016: ldftn System.Void InventorySystem.Disarming.DisarmingController::Update()
+	IL_001c: newobj System.Void System.Action::.ctor(System.Object,System.IntPtr)
+	IL_0021: stloc.2
+	IL_0022: ldc.i4.0
+	IL_0023: stloc.3
+	IL_0024: ldloc.2
+	IL_0025: call System.Void StaticUnityMethods::add_OnUpdate(System.Action)
+	IL_002a: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Disarming.DisarmingController
+	static System.Void Start()
+		ulong local0 = 0
+		System.Int32 3 = 3
+
+		UnityEngine.KeyCode key = NewInput.GetKey(3, local0) //(ActionName actionName, KeyCode fallbackKeycode)
+		System.Int32 local3 = key.value__
+		InventorySystem.Disarming.DisarmingController._disarmKey = local3
+		return
+		  = .
+		InventorySystem.Disarming.DisarmingController._disarmKey = local3
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.StaticFieldToRegAction at (0x1803E7725) is corrupt (Couldn't identify the field being read (or its type).) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Disarming.DisarmingController
+	static System.Void Update()
+		ulong local0 = 0
+
+		System.Boolean isPlaying = StaticUnityMethods.IsPlaying
+
+		if (isPlaying != False)
+		    UnityEngine.KeyCode _disarmKey = InventorySystem.Disarming.DisarmingController._disarmKey
+
+		    System.Boolean keyDownInt = UnityEngine.Input.GetKeyDownInt(_disarmKey) //(KeyCode key)
+
+		    if (keyDownInt != False)
+		        ulong local6 = 0
+
+		        InventorySystem.Disarming.DisarmingController.GetNewTarget()
+		    endif
+            
+		    System.Diagnostics.Stopwatch progress = InventorySystem.Disarming.DisarmingController.Progress
+
+		    System.TimeSpan elapsed = progress.Elapsed
+		    System.Single local13 = local11 / 1,1
+
+		    System.Single single = UnityEngine.Mathf.Clamp01(local13) //(Single value)
+		    ulong local15 = 0
+
+		    InventorySystem.Disarming.DisarmingController.ConfirmTarget()
+		    UnityEngine.KeyCode _disarmKey2 = InventorySystem.Disarming.DisarmingController._disarmKey
+
+		    System.Boolean keyInt = UnityEngine.Input.GetKeyInt(_disarmKey2) //(KeyCode key)
+
+		    if (keyInt == False)
+                goto INSN_1803E7951
+            endif
+		    ReferenceHub _newTarget = InventorySystem.Disarming.DisarmingController._newTarget
+
+		    System.Boolean boolean = InventorySystem.Disarming.DisarmingController.ValidateAll(_newTarget) //(ReferenceHub hub)
+
+		    if (boolean != False)
+                goto INSN_1803E7976
+            endif
+
+		    INSN_1803E7951:
+		    ulong local22 = 0
+
+		    InventorySystem.Disarming.DisarmingController.CancelTarget()
+
+		    INSN_1803E7976:
+		    InventorySystem.Disarming.DisarmingGUI singleton = InventorySystem.Disarming.DisarmingGUI.Singleton
+		    UnityEngine.UI.Image circle = singleton.Circle
+
+		    circle.fillAmount = single
+		    InventorySystem.Disarming.DisarmingGUI singleton2 = InventorySystem.Disarming.DisarmingGUI.Singleton
+		    UnityEngine.UI.Image circle2 = singleton2.Circle
+		    System.Boolean _hasTarget = InventorySystem.Disarming.DisarmingController._hasTarget
+
+		    circle2.enabled = _hasTarget
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Don't know how to write IL for Cpp2IL.Core.Analysis.Actions.x86.Important.DivideRegByGlobalAction. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Disarming.DisarmingController
+	static System.Void GetNewTarget()
+		 += 16
+
+		System.Boolean boolean = UnityEngine.Object.op_Equality()
+
+		if (boolean == False)
+
+		    [instruction error - managed method being called is null]
+
+		    UnityEngine.GameObject gameObject = boolean.gameObject
+
+		    System.Boolean boolean2 = ReferenceHub.TryGetHub()
+
+		    if (boolean2 != False)
+
+		        System.Boolean boolean3 = InventorySystem.Disarming.DisarmingController.ValidateAll()
+
+		        if (boolean3 != False)
+		              = local0.
+
+		            System.Boolean isDisarmed = InventorySystem.Disarming.DisarmedPlayers.IsDisarmed()
+
+		            if (isDisarmed != False)
+		                ulong local14 = 0
+
+		                ReferenceHub localHub = ReferenceHub.LocalHub
+		                  = local0.
+
+		                System.Boolean isDisarmed2 = InventorySystem.Disarming.DisarmedPlayers.IsDisarmed()
+
+		                if (isDisarmed2 != False)
+
+		                    System.Boolean isHuman = PlayerRoles.PlayerRolesUtils.IsHuman(localHub) //(ReferenceHub hub)
+
+		                    if (isHuman != False)
+
+		                        System.Boolean isHuman2 = PlayerRoles.PlayerRolesUtils.IsHuman()
+
+		                        if (isHuman2 != False)
+                                    goto INSN_1803E7557
+                                endif
+		                    endif
+                            
+		                    ulong local22 = 0
+
+		                    ReferenceHub localHub2 = ReferenceHub.LocalHub
+
+		                    PlayerRoles.Faction faction = PlayerRoles.PlayerRolesUtils.GetFaction(localHub2) //(ReferenceHub hub)
+
+		                    PlayerRoles.Faction faction2 = PlayerRoles.PlayerRolesUtils.GetFaction()
+
+		                    if (faction == faction2)
+                                goto INSN_1803E75E1
+                            endif
+
+		                    System.Boolean isHuman3 = PlayerRoles.PlayerRolesUtils.IsHuman(localHub2) //(ReferenceHub hub)
+
+		                    if (isHuman3 == False)
+                                goto INSN_1803E75E1
+                            endif
+
+		                    System.Boolean isHuman4 = PlayerRoles.PlayerRolesUtils.IsHuman()
+
+		                    if (isHuman4 == False)
+                                goto INSN_1803E75E1
+                            endif
+		                      = local0.
+
+		                    System.Boolean boolean4 = local0.AnyBlocker()
+
+		                    if (boolean4 != False)
+                                goto INSN_1803E75E1
+                            endif
+		                    InventorySystem.Inventory inventory = localHub2.inventory
+		                    InventorySystem.Items.ItemBase _curInstance = inventory._curInstance
+		                    ulong local38 = 0
+
+		                    System.Boolean boolean5 = UnityEngine.Object.op_Inequality(_curInstance, local38) //(Object x, Object y)
+
+		                    if (boolean5 == False)
+                                goto INSN_1803E75E1
+                            endif
+
+		                    if (boolean5 == False)
+                                goto INSN_1803E75E1
+                            endif
+
+		                    if (boolean5 == False)
+                                goto INSN_1803E75E1
+                            endif
+
+		                    INSN_1803E7557:
+		                     += 8
+		                    InventorySystem.Disarming.DisarmingController._disarmKey = local0
+		                    System.Boolean local41 = isDisarmed == False
+		                    . = 1
+		                    InventorySystem.Disarming.DisarmingController._targetState = local41
+		                    System.Diagnostics.Stopwatch progress = InventorySystem.Disarming.DisarmingController.Progress
+
+		                    progress.Restart()
+		                endif
+                        
+		            endif
+                    
+		            return
+		            throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x1803E7218) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Disarming.DisarmingController
+	static System.Void CancelTarget()
+		 += 8
+		. = 0
+		System.Diagnostics.Stopwatch progress = InventorySystem.Disarming.DisarmingController.Progress
+
+		progress.Stop()
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x1803E6F70) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Disarming.DisarmingController
+	static System.Void ConfirmTarget()
+		System.Diagnostics.Stopwatch progress = InventorySystem.Disarming.DisarmingController.Progress
+
+		progress.Stop()
+		ReferenceHub _newTarget = InventorySystem.Disarming.DisarmingController._newTarget
+		ulong local4 = 0
+
+		System.Boolean boolean = ReferenceHub.op_Equality(_newTarget, local4) //(ReferenceHub left, ReferenceHub right)
+
+		if (boolean == False)
+		    ReferenceHub _newTarget2 = InventorySystem.Disarming.DisarmingController._newTarget
+		    System.Boolean _targetState = InventorySystem.Disarming.DisarmingController._targetState
+		    InventorySystem.Inventory inventory = _newTarget2.inventory
+
+		    System.Boolean isDisarmed = InventorySystem.Disarming.DisarmedPlayers.IsDisarmed(inventory) //(Inventory inv)
+
+		    if (_targetState != isDisarmed)
+		        ReferenceHub _newTarget3 = InventorySystem.Disarming.DisarmingController._newTarget
+		        System.Boolean _targetState2 = InventorySystem.Disarming.DisarmingController._targetState
+
+		        Mirror.NetworkClient.Send<InventorySystem.Disarming.DisarmMessage>()
+		    endif
+            
+		    ulong local16 = 0
+
+		    InventorySystem.Disarming.DisarmingController.CancelTarget()
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1803E7179) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Disarming.DisarmingController
+	static System.Boolean ValidateAll(ReferenceHub hub)
+		ulong local2 = 0
+
+		System.Boolean boolean = ReferenceHub.op_Inequality(hub, local2) //(ReferenceHub left, ReferenceHub right)
+
+		if (boolean != False)
+
+		    UnityEngine.Transform transform = hub.transform
+
+		    UnityEngine.Vector3 position = .position
+		    System.Single single = position.z
+		    ulong local9 = 0
+
+		    ReferenceHub localHub = ReferenceHub.LocalHub
+
+		    UnityEngine.Transform transform2 = localHub.transform
+
+		    UnityEngine.Vector3 position2 = .position
+		    System.Single single2 = position2.z
+
+		    UnityEngine.Vector3 vector3 = UnityEngine.Vector3.op_Subtraction()
+		    System.Single single3 = vector3.z
+
+		    if (single3 != 0)
+		        InventorySystem.Inventory inventory = hub.inventory
+
+		        if (inventory.CurItem != 0xFFFFFFFFFFFFFFFF)
+		            ulong local22 = 0
+
+		            System.Collections.Generic.Dictionary`2<ItemType,InventorySystem.Items.ItemBase> availableItems = InventorySystem.InventoryItemLoader.AvailableItems
+
+		            System.Boolean boolean2 = availableItems.TryGetValue()
+
+		            if (boolean2 != False)
+
+		                if ( != 0)
+                            goto INSN_1803E7CF9
+                        endif
+		            endif
+                    
+		            ulong local26 = 0
+
+		            ReferenceHub localHub2 = ReferenceHub.LocalHub
+		            InventorySystem.Inventory inventory2 = localHub2.inventory
+
+		            System.Boolean isDisarmed = InventorySystem.Disarming.DisarmedPlayers.IsDisarmed(inventory2) //(Inventory inv)
+		            System.Boolean local31 = isDisarmed == False
+		        else
+		            ulong local32 = 0
+		        endif
+                
+		        return local32
+		        throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1803E7AE7) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Disarming.DisarmingController
+	static System.Boolean ValidateDistance(ReferenceHub hub)
+		ulong local2 = 0
+
+		System.Boolean boolean = ReferenceHub.op_Inequality(hub, local2) //(ReferenceHub left, ReferenceHub right)
+
+		if (boolean == False)
+		    return boolean
+		endif
+        
+
+		UnityEngine.Transform transform = hub.transform
+
+		UnityEngine.Vector3 position = .position
+		System.Single single = position.z
+		ulong local9 = 0
+
+		ReferenceHub localHub = ReferenceHub.LocalHub
+
+		UnityEngine.Transform transform2 = localHub.transform
+
+		UnityEngine.Vector3 position2 = .position
+		System.Single single2 = position2.z
+
+		UnityEngine.Vector3 vector3 = UnityEngine.Vector3.op_Subtraction()
+		System.Single single3 = vector3.z
+		return single3
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1803E7DC3) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Disarming.DisarmingController
+	static System.Boolean ValidateHeldItem(InventorySystem.Inventory inv)
+
+		if (inv.CurItem != 0xFFFFFFFFFFFFFFFF)
+		    ulong local2 = 0
+
+		    System.Collections.Generic.Dictionary`2<ItemType,InventorySystem.Items.ItemBase> availableItems = InventorySystem.InventoryItemLoader.AvailableItems
+
+		    System.Boolean boolean = availableItems.TryGetValue()
+
+		    if (boolean != False)
+		        System.Boolean local6 =  == 0
+		        return local6
+		    endif
+            
+		    return True
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1803E7F44) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Disarming.DisarmingController
+	static System.Void .cctor()
+		System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch()
+
+		stopwatch..ctor()
+		 += 16
+		InventorySystem.Disarming.DisarmingController._disarmKey = stopwatch
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x1803E7FCB) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+

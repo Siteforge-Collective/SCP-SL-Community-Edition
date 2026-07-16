@@ -1,0 +1,68 @@
+Type: FloatHintParameterFunctions
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Hints.FloatHintParameterFunctions
+	static System.Void Serialize(Mirror.NetworkWriter writer, Hints.FloatHintParameter value)
+
+		value.Dispose()
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.1
+	IL_0001: call System.Void System.IDisposable::Dispose()
+	IL_0006: ret
+	IL_0007: newobj System.Void System.NullReferenceException::.ctor()
+	IL_000c: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Hints.FloatHintParameterFunctions
+	static Hints.FloatHintParameter Deserialize(Mirror.NetworkReader reader)
+		Hints.FloatHintParameter floatHintParameter = new Hints.FloatHintParameter()
+		System.Func`2<Mirror.NetworkReader,System.Single> func = new System.Func`2<Mirror.NetworkReader,System.Single>()
+		ulong local3 = 0
+
+		func..ctor(local3, {'ReadSingle' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		System.Action`2<Mirror.NetworkWriter,System.Single> action = new System.Action`2<Mirror.NetworkWriter,System.Single>()
+		ulong local5 = 0
+
+		action..ctor(local5, {'WriteSingle' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		floatHintParameter..ctor(func, action) //(Func`2 deserializer, Action`2 serializer)
+
+		floatHintParameter.Dispose()
+		return floatHintParameter
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldloc.2
+	IL_0001: ldftn System.Single Mirror.NetworkReaderExtensions::ReadSingle(Mirror.NetworkReader)
+	IL_0007: newobj System.Void Hints.FloatHintParameter::.ctor(System.Single,System.String)
+	IL_000c: stloc.0
+	IL_000d: ldloc.2
+	IL_000e: ldftn System.Single Mirror.NetworkReaderExtensions::ReadSingle(Mirror.NetworkReader)
+	IL_0014: newobj System.Void System.Func`2::.ctor(System.Object,System.IntPtr)
+	IL_0019: stloc.1
+	IL_001a: ldc.i4.0
+	IL_001b: stloc.2
+	IL_001c: ldloc.s V_4
+	IL_001e: ldftn System.Void Mirror.NetworkWriterExtensions::WriteSingle(Mirror.NetworkWriter,System.Single)
+	IL_0024: newobj System.Void System.Action`2::.ctor(System.Object,System.IntPtr)
+	IL_0029: stloc.3
+	IL_002a: ldc.i4.0
+	IL_002b: stloc.s V_4
+	IL_002d: ldloc.0
+	IL_002e: callvirt System.Void Hints.NetworkObject`1::Dispose()
+	IL_0033: ldloc.0
+	IL_0034: ret
+	IL_0035: newobj System.Void System.NullReferenceException::.ctor()
+	IL_003a: throw
+	
+

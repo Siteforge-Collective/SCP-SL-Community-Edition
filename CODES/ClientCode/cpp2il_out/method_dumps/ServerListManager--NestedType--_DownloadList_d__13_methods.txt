@@ -1,0 +1,418 @@
+Type: <DownloadList>d__13
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ServerListManager/<DownloadList>d__13
+	System.Void .ctor(System.Int32 <>1__state)
+
+		base..ctor()
+		this.<>1__state = <>1__state
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void System.Object::.ctor()
+	IL_0006: ldarg.0
+	IL_0007: ldarg.1
+	IL_0008: stfld System.Int32 ServerListManager/<DownloadList>d__13::<>1__state
+	IL_000d: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ServerListManager/<DownloadList>d__13
+	System.Void System.IDisposable.Dispose()
+		ulong local1 = 0
+		System.Int32 <>1__state = this.<>1__state
+
+		if (<>1__state != -3)
+
+		    if (<>1__state == 1)
+		    endif
+            
+		    this.<>1__state = 4294967295
+		    UnityEngine.Networking.UnityWebRequest <www>5__3 = this.<www>5__3
+
+		    if (<www>5__3 != 0)
+		    endif
+            
+
+		    if (local1 != 0)
+                goto INSN_181B83C43
+            endif
+		endif
+        
+		return
+
+		INSN_181B83C43:
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: ldarg.0
+	IL_0003: ldfld System.Int32 ServerListManager/<DownloadList>d__13::<>1__state
+	IL_0008: stloc.1
+	IL_0009: ldloc.1
+	IL_000a: ldc.i4.s -3
+	IL_000c: beq.s IL_0012
+	IL_000e: ldloc.1
+	IL_000f: ldc.i4.1
+	IL_0010: bne.un.s IL_002f
+	IL_0012: ldarg.0
+	IL_0013: ldc.i8 4294967295
+	IL_001c: conv.u8
+	IL_001d: stfld System.Int32 ServerListManager/<DownloadList>d__13::<>1__state
+	IL_0022: ldarg.0
+	IL_0023: ldfld UnityEngine.Networking.UnityWebRequest ServerListManager/<DownloadList>d__13::<www>5__3
+	IL_0028: ldc.i4.0
+	IL_0029: beq.s IL_002b
+	IL_002b: ldloc.0
+	IL_002c: ldc.i4.0
+	IL_002d: bne.un.s IL_0000
+	IL_002f: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ServerListManager/<DownloadList>d__13
+	System.Boolean MoveNext()
+		ulong local3 = 0
+		System.Int32 <>1__state = this.<>1__state
+		ServerListManager <>4__this = this.<>4__this
+
+		if (<>1__state != 0)
+
+		    if (<>1__state != 0)
+
+		        if (<>1__state != 1)
+		        else
+		            this.<>1__state = 4294967295
+
+		            System.Collections.Generic.IEnumerator`1<System.Single> iEnumerator = <>4__this.DisplayList()
+		            System.Int32 1 = 1
+
+		            MEC.CoroutineHandle coroutineHandle = MEC.Timing.RunCoroutine(iEnumerator, 1) //(IEnumerator`1 coroutine, Segment segment)
+		        else
+		            this.<>1__state = 4294967293
+		            UnityEngine.UI.Text loadingText = <>4__this.loadingText
+		            System.Int32 54 = 54
+
+		            System.String string = TranslationReader.Get("MainMenu", 54, "NO_TRANSLATION") //(String keyName, Int32 index, String defaultValue)
+
+		            System.String text = loadingText.text
+		            UnityEngine.Networking.UnityWebRequest <www>5__3 = this.<www>5__3
+
+		            System.String error = <www>5__3.error
+
+		            System.Boolean isNullOrEmpty = System.String.IsNullOrEmpty(error) //(String value)
+
+		            if (isNullOrEmpty == False)
+		                System.Int64 local22 = 1
+
+		                System.Boolean boolean = CentralServer.ChangeCentralServer(local22) //(Boolean remove)
+		                UnityEngine.UI.Text loadingText2 = <>4__this.loadingText
+		                UnityEngine.Networking.UnityWebRequest <www>5__32 = this.<www>5__3
+
+		                if (boolean == False)
+
+		                    System.String error2 = <www>5__32.error
+
+		                    System.String string2 = System.String.Concat("Error: ", error2, "
+                            Checked all servers.") //(String str0, String str1, String str2)
+
+		                    System.String text2 = loadingText2.text
+
+		                    this.<>m__Finally1()
+		                    this.<www>5__3 = local3
+		                else
+
+		                    System.String error3 = <www>5__32.error
+
+		                    System.String string3 = System.String.Concat("Error: ", error3, "
+                            Checking other servers...") //(String str0, String str1, String str2)
+
+		                    System.String text3 = loadingText2.text
+		                else
+		                    UnityEngine.Networking.UnityWebRequest <www>5__33 = this.<www>5__3
+
+		                    UnityEngine.Networking.DownloadHandler downloadHandler = <www>5__33.downloadHandler
+
+		                    System.String text4 = downloadHandler.text
+
+		                    ServerListSigned serverListSigned = JsonSerialize.FromJson<ServerListSigned>()
+
+		                    System.String string4 = System.String.Concat(local3, "##", serverListSigned) //(Object arg0, Object arg1, Object arg2)
+		                    Org.BouncyCastle.Crypto.AsymmetricKeyParameter publicKey = ServerConsole.PublicKey
+
+		                    System.Boolean boolean2 = Cryptography.ECDSA.Verify(string4, "##", publicKey) //(String data, String signature, AsymmetricKeyParameter pubKey)
+
+		                    if (boolean2 != False)
+		                        ulong local49 = 0
+
+		                        System.Int64 currentUnixTimestamp = TimeBehaviour.CurrentUnixTimestamp
+		                        currentUnixTimestamp -= constant6
+		                        currentUnixTimestamp -= "##"
+
+		                        System.String string5 = NorthwoodLib.StringUtils.Base64Decode(local3) //(String base64EncodedData)
+
+		                        ServerList serverList = JsonSerialize.FromJson<ServerList>(string5) //(String cpp2il__autoParamName__idx_0)
+		                        <>4__this._servers = serverList
+
+		                        this.<>m__Finally1()
+		                        System.Int32 7 = 7
+
+		                        ServerConsole.AddLog("Server list response has expired! Make sure that time and timezone set on your PC is correct. We recommend synchronizing the time.", 7) //(String q, ConsoleColor color)
+		                        UnityEngine.UI.Text loadingText3 = <>4__this.loadingText
+
+		                        System.String text5 = loadingText3.text
+		                        <>4__this._servers = local3
+		                    else
+
+		                        UnityEngine.Color red = UnityEngine.Color.red
+
+		                        GameCore.Console.AddLog()
+		                        UnityEngine.UI.Text loadingText4 = <>4__this.loadingText
+
+		                        System.String text6 = loadingText4.text
+		                        <>4__this._servers = local3
+		                    endif
+                            
+		                endif
+                        
+		                this.<>1__state = 4294967295
+		                UnityEngine.Networking.UnityWebRequest <www>5__34 = this.<www>5__3
+
+		                if (<www>5__34 == 0)
+                            goto INSN_181B834D7
+                        endif
+		                ulong local67 = 0
+
+		                INSN_181B834D7:
+		                System.Byte <i>5__2 = this.<i>5__2
+		                <i>5__2 += 1
+		                this.<i>5__2 = <i>5__2
+		            endif
+                    
+		            ulong local69 = 0
+
+		            if (<>4__this._servers == local69)
+                        goto INSN_181B83552
+                    endif
+
+		            [instruction error - managed method being called is null]
+
+		            GameCore.Console.AddLog()
+		            this.<>1__state = 2
+
+		            INSN_181B83552:
+
+		            UnityEngine.Color yellow = UnityEngine.Color.yellow
+
+		            GameCore.Console.AddLog()
+		            ulong local76 = 0
+
+		            System.Int32 int32 = local76.CompareTo()
+
+		            System.String string6 = System.String.Concat()
+		            ulong local80 = 0
+
+		            UnityEngine.Color red2 = UnityEngine.Color.red
+		            ulong local82 = 0
+		            System.Int32 1 = 1
+		            ulong local83 = 0
+
+		            GameCore.Console.AddLog(string6, local80, local83, 1) //(String text, Color c, Boolean nospace, ConsoleLogType type)
+
+		            System.Boolean boolean3 = local76.System.IConvertible.ToBoolean()
+
+		            UnityEngine.Color red3 = UnityEngine.Color.red
+		            System.Int32 1 = 1
+
+		            GameCore.Console.AddLog()
+		              = red3.
+
+		            [instruction error - managed method being called is null]
+		              = string6.
+
+		            [instruction error - managed method being called is null]
+
+		            [instruction error - managed method being called is null]
+
+		            UnityEngine.Debug.LogError()
+
+		            string6.<>m__Finally1()
+		        else
+		            this.<>1__state = 4294967295
+
+		            [instruction error - managed method being called is null]
+
+		            GameCore.Console.AddLog()
+		            this.<i>5__2 = 0
+		            UnityEngine.UI.Text loadingText5 = <>4__this.loadingText
+		            System.Int32 53 = 53
+
+		            System.String string7 = TranslationReader.Get("MainMenu", 53, "NO_TRANSLATION") //(String keyName, Int32 index, String defaultValue)
+
+		            System.String text7 = loadingText5.text
+		            System.Collections.Generic.List`1<UnityEngine.GameObject> spawns = <>4__this.spawns
+
+		            System.Collections.Generic.List`1/Enumerator<T> enumerator = loadingText5.GetEnumerator()
+
+		            if (enumerator != 0)
+
+		                UnityEngine.Object.Destroy(loadingText5) //(Object obj)
+		            endif
+                    
+		            ulong local103 = 0
+
+		            loadingText5.Dispose()
+
+		            if (local3 != 0)
+                        goto INSN_181B83ACB
+                    endif
+		            System.Collections.Generic.List`1<UnityEngine.GameObject> spawns2 = <>4__this.spawns
+
+		            spawns2.Clear()
+
+		            System.String string8 = System.String.Concat()
+		            System.String apiToken = CentralAuthManager.ApiToken
+		            System.String nonce = CentralAuthManager.Nonce
+
+		            System.String string9 = System.String.Concat("token=", apiToken, "&nonce=", nonce) //(String str0, String str1, String str2, String str3)
+
+		            UnityEngine.Networking.UnityWebRequest unityWebRequest = UnityEngine.Networking.UnityWebRequest.Post(string8, string9) //(String uri, String postData)
+		            this.<www>5__3 = unityWebRequest
+		            this.<>1__state = 4294967293
+		            UnityEngine.Networking.UnityWebRequest <www>5__35 = this.<www>5__3
+
+		            <www>5__35.SetRequestHeader("User-Agent", "SCP SL") //(String name, String value)
+		            UnityEngine.Networking.UnityWebRequest <www>5__36 = this.<www>5__3
+		            System.String versionString = GameCore.Version.VersionString
+
+		            <www>5__36.SetRequestHeader("Game-Version", versionString) //(String name, String value)
+		            UnityEngine.Networking.UnityWebRequest <www>5__37 = this.<www>5__3
+
+		            UnityEngine.Networking.UnityWebRequestAsyncOperation unityWebRequestAsyncOperation = <www>5__37.SendWebRequest()
+
+		            System.Single single = MEC.Timing.WaitUntilDone(unityWebRequestAsyncOperation) //(AsyncOperation operation)
+		            this.<>2__current = single
+		            this.<>1__state = 1
+		            System.Int64 local123 = 1
+
+		            unityWebRequestAsyncOperation.System.IDisposable.Dispose()
+
+		            if (unityWebRequestAsyncOperation != 0)
+                        goto INSN_181B83AF9
+                    endif
+		        endif
+                
+		        return local123
+		        throw new System.NullReferenceException()
+		        throw new System.NullReferenceException()
+		        throw new System.NullReferenceException()
+		        throw new System.NullReferenceException()
+		        throw new System.NullReferenceException()
+		        throw new System.NullReferenceException()
+		        throw new System.NullReferenceException()
+		        throw new System.NullReferenceException()
+		        throw new System.NullReferenceException()
+		        throw new System.NullReferenceException()
+		        throw new System.NullReferenceException()
+		        throw new System.NullReferenceException()
+		        throw new System.NullReferenceException()
+		        throw new System.NullReferenceException()
+		        throw new System.NullReferenceException()
+		        throw new System.NullReferenceException()
+
+		        INSN_181B83ACB:
+		        throw new System.NullReferenceException()
+		        throw new System.NullReferenceException()
+		        throw new System.NullReferenceException()
+		        throw new System.NullReferenceException()
+		        throw new System.NullReferenceException()
+		        throw new System.NullReferenceException()
+		        throw new System.NullReferenceException()
+
+		        INSN_181B83AF9:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181B83274) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ServerListManager/<DownloadList>d__13
+	System.Void <>m__Finally1()
+		UnityEngine.Networking.UnityWebRequest <www>5__3 = this.<www>5__3
+		this.<>1__state = 4294967295
+
+		if (<www>5__3 != 0)
+		endif
+        
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld UnityEngine.Networking.UnityWebRequest ServerListManager/<DownloadList>d__13::<www>5__3
+	IL_0006: stloc.0
+	IL_0007: ldarg.0
+	IL_0008: ldc.i8 4294967295
+	IL_0011: conv.u8
+	IL_0012: stfld System.Int32 ServerListManager/<DownloadList>d__13::<>1__state
+	IL_0017: ldloc.0
+	IL_0018: ldc.i4.0
+	IL_0019: beq.s IL_001b
+	IL_001b: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ServerListManager/<DownloadList>d__13
+	System.Single System.Collections.Generic.IEnumerator<System.Single>.get_Current()
+		System.Single <>2__current = this.<>2__current
+		return <>2__current
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Single ServerListManager/<DownloadList>d__13::<>2__current
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ServerListManager/<DownloadList>d__13
+	System.Void System.Collections.IEnumerator.Reset()
+		System.NotSupportedException notSupportedException = new System.NotSupportedException()
+
+		notSupportedException..ctor()
+
+
+Generated IL:
+	IL_0000: newobj System.Void System.NotSupportedException::.ctor()
+	IL_0005: stloc.0
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: ServerListManager/<DownloadList>d__13
+	System.Object System.Collections.IEnumerator.get_Current()
+		System.Single <>2__current = this.<>2__current
+		return 
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x181B83BA5) is corrupt (Return value is missing) and cannot be created as IL. Aborting here.
+
+

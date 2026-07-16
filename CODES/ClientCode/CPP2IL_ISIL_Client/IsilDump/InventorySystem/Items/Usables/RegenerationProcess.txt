@@ -1,0 +1,224 @@
+Type: InventorySystem.Items.Usables.RegenerationProcess
+
+Method: System.Void .ctor(UnityEngine.AnimationCurve regenCurve, System.Single speedMultiplier, System.Single healthPointsMultiplier)
+
+Disassembly:
+	mov [rsp+8],rbx
+	mov [rsp+10h],rsi
+	push rdi
+	sub rsp,40h
+	movaps [rsp+30h],xmm6
+	mov rdi,rdx
+	movaps [rsp+20h],xmm7
+	xor edx,edx
+	movaps xmm7,xmm3
+	movaps xmm6,xmm2
+	mov rbx,rcx
+	call 00000001802D5040h
+	lea rcx,[rbx+10h]
+	mov rdx,rdi
+	mov [rcx],rdi
+	call 0000000180293EF0h
+	test rdi,rdi
+	je short 000000018042E35Ch
+	xor edx,edx
+	mov rcx,rdi
+	call 0000000181039FB0h
+	xor edx,edx
+	mov rcx,rdi
+	mov rsi,rax
+	call 000000018103A460h
+	test rsi,rsi
+	je short 000000018042E35Ch
+	lea ecx,[rax-1]
+	cmp ecx,[rsi+18h]
+	jae short 000000018042E362h
+	movsxd rax,ecx
+	xor edx,edx
+	imul rcx,rax,1Ch
+	add rcx,20h
+	add rcx,rsi
+	call 0000000181049310h
+	mov rsi,[rsp+58h]
+	xor eax,eax
+	movss dword ptr [rbx+1Ch],xmm6
+	mulss xmm6,xmm7
+	mov [rbx+24h],rax
+	movaps xmm7,[rsp+20h]
+	movss dword ptr [rbx+18h],xmm0
+	movss dword ptr [rbx+20h],xmm6
+	mov rbx,[rsp+50h]
+	movaps xmm6,[rsp+30h]
+	add rsp,40h
+	pop rdi
+	ret
+	call 0000000180294310h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+
+ISIL:
+	001 Move stack:0x8, rbx
+	002 Move stack:0x10, rsi
+	003 ShiftStack -8
+	004 Move stack:0x0, rdi
+	005 ShiftStack -64
+	006 Move stack:0x30, xmm6
+	007 Move rdi, rdx
+	008 Move stack:0x20, xmm7
+	009 Move rdx, 0
+	010 Move xmm7, xmm3
+	011 Move xmm6, xmm2
+	012 Move rbx, rcx
+	013 Call 0x1802D5040, rcx, rdx, r8, r9, stack:0x0
+	014 LoadAddress rcx, [rbx+16]
+	015 Move rdx, rdi
+	016 Move [rcx], rdi
+	017 Call 0x180293EF0, rcx, rdx, r8, r9
+	018 Compare rdi, 0
+	019 JumpIfEqual {52}
+	020 Move rdx, 0
+	021 Move rcx, rdi
+	022 Call 0x181039FB0, rcx, rdx
+	023 Move rdx, 0
+	024 Move rcx, rdi
+	025 Move rsi, rax
+	026 Call AnimationCurve.get_length, rcx, rdx
+	027 Compare rsi, 0
+	028 JumpIfEqual {52}
+	029 LoadAddress rcx, [rax-1]
+	030 Compare rcx, [rsi+24]
+	031 JumpIfGreaterOrEqual {54}
+	032 Move rax, rcx
+	033 Move rdx, 0
+	034 Multiply rcx, rax, 28
+	035 Add rcx, rcx, 32
+	036 Add rcx, rcx, rsi
+	037 Call 0x181049310, rcx, rdx, r8, r9
+	038 Move rsi, stack:0x58
+	039 Move rax, 0
+	040 Move [rbx+28], xmm6
+	041 Multiply xmm6, xmm6, xmm7
+	042 Move [rbx+36], rax
+	043 Move xmm7, stack:0x20
+	044 Move [rbx+24], xmm0
+	045 Move [rbx+32], xmm6
+	046 Move rbx, stack:0x50
+	047 Move xmm6, stack:0x30
+	048 ShiftStack 64
+	049 Move rdi, stack:0x0
+	050 ShiftStack 8
+	051 Return 
+	052 Call 0x180294310, rcx, rdx, r8, r9
+	053 Interrupt 
+	054 Call 0x180294110, rcx, rdx, r8, r9
+	055 Move rcx, rax
+	056 Move rdx, 0
+	057 Call 0x1802942E0, rcx, rdx, r8, r9
+
+Method: System.Void GetValue(out System.Boolean isDone, out System.Int32 value)
+
+Disassembly:
+	mov [rsp+8],rbx
+	mov [rsp+10h],rsi
+	push rdi
+	sub rsp,40h
+	movaps [rsp+30h],xmm6
+	mov rbx,rcx
+	movss xmm6,dword ptr [rcx+28h]
+	mov rdi,r8
+	xor ecx,ecx
+	movaps [rsp+20h],xmm7
+	mov rsi,rdx
+	call 0000000180FDAC30h
+	mulss xmm0,dword ptr [rbx+1Ch]
+	mov rcx,[rbx+10h]
+	movss xmm7,dword ptr [rbx+24h]
+	addss xmm0,xmm6
+	movss dword ptr [rbx+28h],xmm0
+	test rcx,rcx
+	je short 000000018042E2A4h
+	xor r8d,r8d
+	movaps xmm1,xmm0
+	call 0000000181039E00h
+	xor ecx,ecx
+	movaps xmm6,xmm0
+	call 0000000180FDAC30h
+	mulss xmm0,xmm6
+	movaps xmm6,[rsp+30h]
+	mulss xmm0,dword ptr [rbx+20h]
+	addss xmm0,xmm7
+	movaps xmm7,[rsp+20h]
+	movss dword ptr [rbx+24h],xmm0
+	cvttss2si eax,xmm0
+	mov [rdi],eax
+	movss xmm1,dword ptr [rbx+24h]
+	movd xmm0,eax
+	cvtdq2ps xmm0,xmm0
+	subss xmm1,xmm0
+	movss xmm0,dword ptr [rbx+28h]
+	comiss xmm0,dword ptr [rbx+18h]
+	movss dword ptr [rbx+24h],xmm1
+	mov rbx,[rsp+50h]
+	setae al
+	mov [rsi],al
+	mov rsi,[rsp+58h]
+	add rsp,40h
+	pop rdi
+	ret
+	call 0000000180294310h
+
+ISIL:
+	001 Move stack:0x8, rbx
+	002 Move stack:0x10, rsi
+	003 ShiftStack -8
+	004 Move stack:0x0, rdi
+	005 ShiftStack -64
+	006 Move stack:0x30, xmm6
+	007 Move rbx, rcx
+	008 Move xmm6, [rcx+40]
+	009 Move rdi, r8
+	010 Move rcx, 0
+	011 Move stack:0x20, xmm7
+	012 Move rsi, rdx
+	013 Call Time.get_deltaTime, rcx
+	014 Multiply xmm0, xmm0, [rbx+28]
+	015 Move rcx, [rbx+16]
+	016 Move xmm7, [rbx+36]
+	017 Add xmm0, xmm0, xmm6
+	018 Move [rbx+40], xmm0
+	019 Compare rcx, 0
+	020 JumpIfEqual {50}
+	021 Move r8, 0
+	022 Move xmm1, xmm0
+	023 Call AnimationCurve.Evaluate, rcx, rdx
+	024 Move rcx, 0
+	025 Move xmm6, xmm0
+	026 Call Time.get_deltaTime, rcx
+	027 Multiply xmm0, xmm0, xmm6
+	028 Move xmm6, stack:0x30
+	029 Multiply xmm0, xmm0, [rbx+32]
+	030 Add xmm0, xmm0, xmm7
+	031 Move xmm7, stack:0x20
+	032 Move [rbx+36], xmm0
+	033 NotImplemented "cvttss2si eax,xmm0"
+	034 Move [rdi], rax
+	035 Move xmm1, [rbx+36]
+	036 Move xmm0, rax
+	037 Move xmm0, xmm0
+	038 Subtract xmm1, xmm1, xmm0
+	039 Move xmm0, [rbx+40]
+	040 Compare xmm0, [rbx+24]
+	041 Move [rbx+36], xmm1
+	042 Move rbx, stack:0x50
+	043 NotImplemented "setae al"
+	044 Move [rsi], rax
+	045 Move rsi, stack:0x58
+	046 ShiftStack 64
+	047 Move rdi, stack:0x0
+	048 ShiftStack 8
+	049 Return 
+	050 Call 0x180294310, rcx, rdx, r8, r9
+

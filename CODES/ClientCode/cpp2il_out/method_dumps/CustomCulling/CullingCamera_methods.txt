@@ -1,0 +1,669 @@
+Type: CullingCamera
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomCulling.CullingCamera
+	System.Void Awake()
+
+		UnityEngine.Transform component = base.GetComponent<UnityEngine.Transform>()
+		this._transform = component
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call T UnityEngine.Component::GetComponent<UnityEngine.Transform>()
+	IL_0006: stloc.0
+	IL_0007: ldarg.0
+	IL_0008: ldloc.0
+	IL_0009: stfld UnityEngine.Transform CustomCulling.CullingCamera::_transform
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomCulling.CullingCamera
+	System.Void OnPreCull()
+		ulong local1 = 0
+		ulong local2 = 0
+		UnityEngine.Transform _transform = this._transform
+
+		UnityEngine.Vector3 position = .position
+		System.Single single = position.z
+		. = single
+		UnityEngine.Vector3 _cachedPosition = CustomCulling.CullingCamera._cachedPosition
+		  = .
+		CustomCulling.CullingCamera._cached2DPos = _cachedPosition
+		. = local2
+		UnityEngine.Transform _transform2 = this._transform
+
+		UnityEngine.Vector3 forward = .forward
+		UnityEngine.Transform _transform3 = this._transform
+
+		UnityEngine.Vector3 forward2 = .forward
+		CustomCulling.CullingCamera._cached2DLookDir = constant24
+		. = local2
+		AspectRatioSync aspectSyncer = CustomCulling.CullingCamera.AspectSyncer
+		System.Single XScreenEdge = aspectSyncer.<XScreenEdge>k__BackingField
+		System.Single local20 = XScreenEdge * 1,5
+		CustomCulling.CullingCamera._fullVisionAngle = local20
+		AspectRatioSync aspectSyncer2 = CustomCulling.CullingCamera.AspectSyncer
+		System.Single XScreenEdge2 = aspectSyncer2.<XScreenEdge>k__BackingField
+		System.Single local23 = XScreenEdge2 * 1,2
+		CustomCulling.CullingCamera._farVisionAngle = local23
+		AspectRatioSync aspectSyncer3 = CustomCulling.CullingCamera.AspectSyncer
+		System.Single AspectRatio = aspectSyncer3.<AspectRatio>k__BackingField
+		System.Single local26 = AspectRatio * 1,1
+		CustomCulling.CullingCamera._closeToDoorDistance = local26
+
+		this.ResetCullableBases()
+		Outside singleton = Outside.Singleton
+
+		System.Boolean localHostIsOutside = singleton.LocalHostIsOutside
+
+		if (localHostIsOutside == False)
+
+		    System.Boolean boolean = ReferenceHub.TryGetLocalHub()
+
+		    if (boolean != False)
+		          = boolean.
+
+		        PlayerStatsSystem.AdminFlagsStat module = .GetModule<PlayerStatsSystem.AdminFlagsStat>()
+		        System.Int32 1 = 1
+
+		        System.Boolean boolean2 = module.HasFlag(1) //(AdminFlags flag)
+
+		        if (boolean2 != False)
+
+		            this.DistanceBasedCulling(75) //(Single distanceToCheck)
+		        else
+		              = .
+
+		            MapGeneration.RoomIdentifier roomIdentifier = MapGeneration.RoomIdUtils.RoomAtPositionRaycasts()
+		            ulong local41 = 0
+
+		            System.Boolean boolean3 = UnityEngine.Object.op_Equality(roomIdentifier, local41) //(Object x, Object y)
+
+		            if (boolean3 != False)
+		            else
+
+		                CustomCulling.CullableRoom component = roomIdentifier.GetComponent<CustomCulling.CullableRoom>()
+		            endif
+                    
+		             += 48
+		            CustomCulling.CullingCamera.EnabledCullableRooms = component
+		            CustomCulling.CullableRoom _myCachedRoom = CustomCulling.CullingCamera._myCachedRoom
+		            ulong local46 = 0
+
+		            System.Boolean boolean4 = UnityEngine.Object.op_Inequality(_myCachedRoom, local46) //(Object x, Object y)
+
+		            if (boolean4 == False)
+                        goto INSN_181AD3765
+                    endif
+		            CustomCulling.CullableRoom _myCachedRoom2 = CustomCulling.CullingCamera._myCachedRoom
+
+		            this.EnableCullableRoom()
+		            CustomCulling.CullableRoom _myCachedRoom3 = CustomCulling.CullingCamera._myCachedRoom
+		            System.Collections.Generic.List`1<CustomCulling.DoorLinkingRooms> doors = _myCachedRoom3.Doors
+
+		            System.Collections.Generic.List`1/Enumerator<T> enumerator = .GetEnumerator()
+
+		            if (enumerator == 0)
+                        goto INSN_181AD36E5
+                    endif
+
+		            this.TestFirstDoor()
+
+		            INSN_181AD36E5:
+
+		            base.Dispose()
+
+		            base.Dispose()
+
+		            if (this != 0)
+                        goto INSN_181AD3890
+                    endif
+		        else
+		            CustomCulling.CullableRoom outsideRoom = CustomCulling.CullingCamera.OutsideRoom
+
+		            this.EnableCullableRoom()
+		        endif
+                
+		        System.Collections.Generic.List`1<CustomCulling.CullableRoom> enabledCullableRooms = CustomCulling.CullingCamera.EnabledCullableRooms
+		        System.Int32 _size = enabledCullableRooms._size
+		        System.Collections.Generic.List`1<CustomCulling.CullableRoom> enabledCullableRooms2 = CustomCulling.CullingCamera.EnabledCullableRooms
+		        System.Collections.Generic.List`1<CustomCulling.CullableRoom> enabledCullableRooms3 = CustomCulling.CullingCamera.EnabledCullableRooms
+
+		        enabledCullableRooms3.RemoveAt(_size) //(Int32 index)
+
+		        .UpdateCulling()
+		    endwhile
+            
+		    goto INSN_181AD37E2
+            
+		    return
+
+		    INSN_181AD3890:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181AD3289) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomCulling.CullingCamera
+	System.Void DistanceBasedCulling(System.Single distanceToCheck)
+		ulong local2 = 0
+		ulong local3 = 0
+		CustomCulling.CullableRoom[] allRooms = CustomCulling.CullingCamera.AllRooms
+		System.Int32 length = allRooms.Length
+
+		if (local3 < length)
+		    CustomCulling.CullableRoom cullableRoom = allRooms[local3]
+
+		    UnityEngine.Transform transform = cullableRoom.transform
+
+		    UnityEngine.Vector3 position = cullableRoom.position
+		      = .
+
+		    UnityEngine.Vector3 vector3 = UnityEngine.Vector3.op_Subtraction()
+
+		    if (distanceToCheck > )
+		        ulong local16 = 0
+
+		        this.EnableCullableRoom(cullableRoom, 1, local16) //(CullableRoom cullableRoom, RoomState roomState, DoorLinkingRooms crossoverDoor)
+		    endif
+            
+		    local3 += 1
+		endif
+        
+		CustomCulling.NoClipCamExtraPoint[] noClipCamPoints = CustomCulling.CullingCamera.NoClipCamPoints
+		System.Int32 length2 = noClipCamPoints.Length
+
+		if (local3 >= length2)
+            goto INSN_181AD3073
+        endif
+		CustomCulling.NoClipCamExtraPoint noClipCamExtraPoint = noClipCamPoints[local3]
+
+		UnityEngine.Transform transform2 = noClipCamExtraPoint.transform
+
+		UnityEngine.Vector3 position2 = noClipCamExtraPoint.position
+		  = .
+
+		UnityEngine.Vector3 vector32 = UnityEngine.Vector3.op_Subtraction()
+
+		if (distanceToCheck <= )
+            goto INSN_181AD306A
+        endif
+
+		CustomCulling.CullableRoom cullableRoom2 = noClipCamExtraPoint.CullableRoom
+		ulong local31 = 0
+
+		this.EnableCullableRoom(cullableRoom2, 1, local31) //(CullableRoom cullableRoom, RoomState roomState, DoorLinkingRooms crossoverDoor)
+
+		INSN_181AD306A:
+		local3 += 1
+
+		INSN_181AD3073:
+		return
+		throw new System.IndexOutOfRangeException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181AD2E52) is corrupt (Mismatched instance parameter. Expecting an instance of UnityEngine.Transform, actually {'cullableRoom' (type CustomCulling.CullableRoom)}) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomCulling.CullingCamera
+	System.Void ResetCullableBases()
+		System.Collections.Generic.List`1<CustomCulling.CullableRoom> enabledCullableRooms = CustomCulling.CullingCamera.EnabledCullableRooms
+
+		System.Collections.Generic.List`1/Enumerator<T> enumerator = .GetEnumerator()
+
+		if (enumerator != 0)
+		     += 96
+		endif
+        
+
+		[instruction error - managed method being called is null]
+
+		[instruction error - managed method being called is null]
+
+		if (CullingCamera != 0)
+            goto INSN_181AD39C6
+        endif
+		return
+		throw new System.NullReferenceException()
+
+		INSN_181AD39C6:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181AD3932) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomCulling.CullingCamera
+	System.Void TestFirstDoor(CustomCulling.DoorLinkingRooms door)
+		ulong local2 = 0
+		ulong local4 = 0
+
+		System.Boolean boolean = UnityEngine.Object.op_Equality(door, local4) //(Object x, Object y)
+
+		if (boolean == False)
+		    CustomCulling.CullableRoom _myCachedRoom = CustomCulling.CullingCamera._myCachedRoom
+
+		    UnityEngine.GameObject gameObject = _myCachedRoom.gameObject
+		    CustomCulling.CullableRoom forwardRoom = door.ForwardRoom
+
+		    UnityEngine.GameObject gameObject2 = forwardRoom.gameObject
+
+		    System.Boolean boolean2 = UnityEngine.Object.op_Equality(gameObject, gameObject2) //(Object x, Object y)
+
+		    if (boolean2 != False)
+		    else
+		        CustomCulling.CullableRoom forwardRoom2 = door.ForwardRoom
+		    endif
+            
+
+		    UnityEngine.Transform transform = door.transform
+
+		    UnityEngine.Vector3 position = door.position
+		    System.Single single = position.z
+
+		    UnityEngine.Transform transform2 = door.transform
+
+		    if (boolean2 == False)
+                goto INSN_181AD4493
+            endif
+
+		    UnityEngine.Vector3 forward = door.forward
+
+		    UnityEngine.Vector3 vector3 = UnityEngine.Vector3.op_UnaryNegation()
+
+		    INSN_181AD4493:
+
+		    UnityEngine.Vector3 forward2 = .forward
+
+		    UnityEngine.Vector3 vector32 = UnityEngine.Vector3.op_Addition()
+		    UnityEngine.Vector2 _cached2DPos = CustomCulling.CullingCamera._cached2DPos
+		      = .
+
+		    UnityEngine.Vector2 vector2 = UnityEngine.Vector2.op_Subtraction()
+		      = .
+		    UnityEngine.Vector2 _cached2DLookDir = CustomCulling.CullingCamera._cached2DLookDir
+
+		    System.Single single2 = UnityEngine.Vector2.Angle()
+		    System.Single _fullVisionAngle = CustomCulling.CullingCamera._fullVisionAngle
+
+		    UnityEngine.Transform transform3 = door.transform
+
+		    UnityEngine.Vector3 position2 = door.position
+		      = .
+		    UnityEngine.Vector2 _cached2DPos2 = CustomCulling.CullingCamera._cached2DPos
+
+		    System.Single single3 = UnityEngine.Vector2.Distance()
+
+		    System.Boolean canNotSeeThrough = door.CanNotSeeThrough
+
+		    if (canNotSeeThrough == False)
+                goto INSN_181AD4781
+            endif
+
+		    if (single3 > 1)
+                goto INSN_181AD46F0
+            endif
+
+		    System.Boolean boolean3 = ReferenceHub.TryGetLocalHub()
+
+		    if (boolean3 == False)
+                goto INSN_181AD4781
+            endif
+		      = boolean3.
+
+		    PlayerRoles.PlayerRoleBase currentRole = .CurrentRole
+
+		    System.String string = currentRole.ToString()
+
+		    if (string == 3)
+                goto INSN_181AD4781
+            endif
+
+		    INSN_181AD46F0:
+
+		    if (single != 0)
+                goto INSN_181AD472E
+            endif
+		    System.Single _closeToDoorDistance = CustomCulling.CullingCamera._closeToDoorDistance
+
+		    if (_closeToDoorDistance <= single3)
+                goto INSN_181AD4744
+            endif
+
+		    INSN_181AD472E:
+
+		    this.EnableCullableRoom(forwardRoom2, 4, door) //(CullableRoom cullableRoom, RoomState roomState, DoorLinkingRooms crossoverDoor)
+
+		    INSN_181AD4744:
+		endif
+        
+		return
+
+		INSN_181AD4781:
+
+		if ( == 0)
+            goto INSN_181AD4811
+        endif
+		CustomCulling.CullingCamera._cachedCloseToDoor_FarCheck = CullingCamera
+
+		this.EnableCullableRoom(local4, 1, door) //(CullableRoom cullableRoom, RoomState roomState, DoorLinkingRooms crossoverDoor)
+		. = 1
+		System.Int32 roomDepth = this.RoomDepth
+
+		this.TestFarDoor(local4, door, roomDepth) //(CullableRoom targetRoom, DoorLinkingRooms myDoor, Int32 renderDepth)
+
+		INSN_181AD4811:
+
+		if ( == 0)
+            goto INSN_181AD4826
+        endif
+
+		INSN_181AD4826:
+		System.Single forwardRoomLightRange = door.ForwardRoomLightRange
+		System.Single _closeToDoorDistance2 = CustomCulling.CullingCamera._closeToDoorDistance
+
+		System.Single single4 = UnityEngine.Mathf.Max(forwardRoomLightRange, _closeToDoorDistance2) //(Single a, Single b)
+
+		if (single4 <= )
+            goto INSN_181AD4744
+        endif
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181AD441E) is corrupt (Mismatched instance parameter. Expecting an instance of UnityEngine.Transform, actually {'door' (function parameter, type CustomCulling.DoorLinkingRooms)}) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomCulling.CullingCamera
+	System.Void TestFarDoor(CustomCulling.CullableRoom targetRoom, CustomCulling.DoorLinkingRooms myDoor, System.Int32 renderDepth)
+		 += 88
+		ulong local4 = 0
+		CustomCulling.CullingCamera.EnabledCullableRooms = local4
+		System.Collections.Generic.List`1<CustomCulling.DoorLinkingRooms> doors = targetRoom.Doors
+
+		System.Collections.Generic.List`1/Enumerator<T> enumerator = .GetEnumerator()
+
+		if (enumerator != 0)
+
+		    UnityEngine.GameObject gameObject = targetRoom.gameObject
+
+		    UnityEngine.GameObject gameObject2 = myDoor.gameObject
+
+		    System.Boolean boolean = UnityEngine.Object.op_Equality(gameObject, gameObject2) //(Object x, Object y)
+
+		    if (boolean == False)
+
+		        UnityEngine.Transform transform = myDoor.transform
+
+		        UnityEngine.Vector3 position = myDoor.position
+
+		        this.TestFarDoor()
+		    endif
+            
+
+		    [instruction error - managed method being called is null]
+
+		    [instruction error - managed method being called is null]
+
+		    if (constant13 != 0)
+                goto INSN_181AD42B5
+            endif
+		    ulong local19 = 0
+		    . = 0
+		    CustomCulling.CullableRoom _cachedNextRoom = CustomCulling.CullingCamera._cachedNextRoom
+		    ulong local22 = 0
+
+		    System.Boolean boolean2 = UnityEngine.Object.op_Inequality(_cachedNextRoom, local22) //(Object x, Object y)
+
+		    if (boolean2 == False)
+                goto INSN_181AD4287
+            endif
+		    System.Int32 local24 = renderDepth - 1
+		    CustomCulling.DoorLinkingRooms _cachedNextDoor = CustomCulling.CullingCamera._cachedNextDoor
+		    CustomCulling.CullableRoom _cachedNextRoom2 = CustomCulling.CullingCamera._cachedNextRoom
+
+		    this.TestFarDoor(_cachedNextRoom2, _cachedNextDoor, local24) //(CullableRoom targetRoom, DoorLinkingRooms myDoor, Int32 renderDepth)
+
+		    INSN_181AD4287:
+		    return
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+
+		    INSN_181AD42B5:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x181AD4065) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomCulling.CullingCamera
+	System.Void TestFarDoor(UnityEngine.Vector3 currentDoorPos, CustomCulling.DoorLinkingRooms door, CustomCulling.CullableRoom currentRoom, System.Int32 renderDepth)
+		ulong local5 = 0
+		CustomCulling.CullableRoom forwardRoom = door.ForwardRoom
+
+		UnityEngine.GameObject gameObject = forwardRoom.gameObject
+
+		UnityEngine.GameObject gameObject2 = currentRoom.gameObject
+
+		System.Boolean boolean = UnityEngine.Object.op_Inequality(gameObject, gameObject2) //(Object x, Object y)
+
+		if (boolean != False)
+		else
+		    CustomCulling.CullableRoom backwardRoom = door.BackwardRoom
+		endif
+        
+
+		UnityEngine.Transform transform = door.transform
+
+		UnityEngine.Vector3 position = door.position
+		UnityEngine.Vector2 _cached2DPos = CustomCulling.CullingCamera._cached2DPos
+		  = .
+
+		UnityEngine.Vector2 vector2 = UnityEngine.Vector2.op_Subtraction()
+		  = .
+		UnityEngine.Vector2 _cached2DLookDir = CustomCulling.CullingCamera._cached2DLookDir
+
+		System.Single single = UnityEngine.Vector2.Angle()
+		System.Single _farVisionAngle = CustomCulling.CullingCamera._farVisionAngle
+
+		System.Boolean canNotSeeThrough = door.CanNotSeeThrough
+
+		if (canNotSeeThrough != False)
+            goto INSN_181AD3FA4
+        endif
+
+		if ( == 0)
+            goto INSN_181AD3DB6
+        endif
+
+		System.Single single2 = UnityEngine.Vector2.Distance()
+
+		if (local5 == 0)
+            goto INSN_181AD3D13
+        endif
+
+		this.EnableCullableRoom()
+		 += 88
+		CustomCulling.CullingCamera.EnabledCullableRooms = backwardRoom
+		 += 96
+		CustomCulling.CullingCamera.EnabledCullableRooms = door
+
+		INSN_181AD3D13:
+
+		this.EnableCullableRoom()
+		return
+
+		INSN_181AD3DB6:
+
+		UnityEngine.Transform transform2 = .transform
+
+		if (constant65 == 0)
+            goto INSN_181AD3E23
+        endif
+
+		UnityEngine.Vector3 forward = .forward
+
+		UnityEngine.Vector3 vector3 = UnityEngine.Vector3.op_UnaryNegation()
+
+		INSN_181AD3E23:
+
+		UnityEngine.Vector3 forward2 = .forward
+
+		UnityEngine.Vector2 vector22 = UnityEngine.Vector2.op_Multiply()
+
+		UnityEngine.Vector2 vector23 = UnityEngine.Vector2.op_Addition()
+		  = .
+		UnityEngine.Vector2 _cached2DPos2 = CustomCulling.CullingCamera._cached2DPos
+
+		UnityEngine.Vector2 vector24 = UnityEngine.Vector2.op_Subtraction()
+		  = .
+		UnityEngine.Vector2 _cached2DLookDir2 = CustomCulling.CullingCamera._cached2DLookDir
+
+		System.Single single3 = UnityEngine.Vector2.Angle()
+		System.Single _farVisionAngle2 = CustomCulling.CullingCamera._farVisionAngle
+
+		if (_farVisionAngle2 <= single3)
+            goto INSN_181AD3D8A
+        endif
+
+		INSN_181AD3FA4:
+
+		if (constant66 == 0)
+            goto INSN_181AD3D8A
+        endif
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181AD3ACA) is corrupt (Mismatched instance parameter. Expecting an instance of UnityEngine.Transform, actually {'door' (function parameter, type CustomCulling.DoorLinkingRooms)}) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomCulling.CullingCamera
+	System.Void UpdateCullableBases()
+		System.Collections.Generic.List`1<CustomCulling.CullableRoom> enabledCullableRooms = CustomCulling.CullingCamera.EnabledCullableRooms
+		System.Int32 _size = enabledCullableRooms._size
+		System.Collections.Generic.List`1<CustomCulling.CullableRoom> enabledCullableRooms2 = CustomCulling.CullingCamera.EnabledCullableRooms
+		System.Collections.Generic.List`1<CustomCulling.CullableRoom> enabledCullableRooms3 = CustomCulling.CullingCamera.EnabledCullableRooms
+
+		enabledCullableRooms3.RemoveAt(_size) //(Int32 index)
+
+		.UpdateCulling()
+		endwhile
+    
+		goto INSN_181AD4961
+    
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181AD49DA) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomCulling.CullingCamera
+	System.Void EnableCullableRoom(CustomCulling.CullableRoom cullableRoom, CustomCulling.CullableRoom/RoomState roomState, CustomCulling.DoorLinkingRooms crossoverDoor)
+		cullableRoom.CrossoverDoor = crossoverDoor
+		cullableRoom.<CurrentRoomState>k__BackingField = roomState
+		System.Collections.Generic.List`1<CustomCulling.CullableRoom> enabledCullableRooms = CustomCulling.CullingCamera.EnabledCullableRooms
+
+		System.Boolean boolean = enabledCullableRooms.Contains(cullableRoom) //(T item)
+
+		if (boolean == False)
+		    System.Collections.Generic.List`1<CustomCulling.CullableRoom> enabledCullableRooms2 = CustomCulling.CullingCamera.EnabledCullableRooms
+
+		    enabledCullableRooms2.Add(cullableRoom) //(T item)
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.1
+	IL_0001: ldarg.3
+	IL_0002: stfld CustomCulling.DoorLinkingRooms CustomCulling.CullableRoom::CrossoverDoor
+	IL_0007: ldarg.1
+	IL_0008: ldarg.2
+	IL_0009: stfld CustomCulling.CullableRoom/RoomState CustomCulling.CullableRoom::<CurrentRoomState>k__BackingField
+	IL_000e: ldsfld System.Collections.Generic.List`1<CustomCulling.CullableRoom> CustomCulling.CullingCamera::EnabledCullableRooms
+	IL_0013: ldarg.1
+	IL_0014: call System.Boolean System.Collections.Generic.List`1::Contains(T)
+	IL_0019: ldc.i4.0
+	IL_001a: bne.un.s IL_0027
+	IL_001c: ldsfld System.Collections.Generic.List`1<CustomCulling.CullableRoom> CustomCulling.CullingCamera::EnabledCullableRooms
+	IL_0021: ldarg.1
+	IL_0022: call System.Void System.Collections.Generic.List`1::Add(T)
+	IL_0027: ret
+	IL_0028: newobj System.Void System.NullReferenceException::.ctor()
+	IL_002d: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomCulling.CullingCamera
+	System.Void .ctor()
+		this.RoomDepth = 2
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldc.i4.2
+	IL_0002: conv.i8
+	IL_0003: conv.u8
+	IL_0004: stfld System.Int32 CustomCulling.CullingCamera::RoomDepth
+	IL_0009: ldarg.0
+	IL_000a: call System.Void UnityEngine.MonoBehaviour::.ctor()
+	IL_000f: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomCulling.CullingCamera
+	static System.Void .cctor()
+		System.Collections.Generic.List`1<CustomCulling.CullableRoom> list = new System.Collections.Generic.List`1<CustomCulling.CullableRoom>()
+
+		list..ctor(8) //(Int32 capacity)
+		CustomCulling.CullingCamera.EnabledCullableRooms = list
+
+
+Generated IL:
+	IL_0000: ldc.i4.8
+	IL_0001: newobj System.Void System.Collections.Generic.List`1::.ctor(System.Int32)
+	IL_0006: stsfld System.Collections.Generic.List`1<CustomCulling.CullableRoom> CustomCulling.CullingCamera::EnabledCullableRooms
+	
+

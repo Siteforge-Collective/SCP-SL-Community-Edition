@@ -1,0 +1,41 @@
+Type: UBER_Global
+
+Method: System.Void .ctor()
+
+Disassembly:
+	xor edx,edx
+	jmp near ptr 00000001802D5040h
+
+ISIL:
+	001 Move rdx, 0
+	002 Call 0x1802D5040, rcx, rdx, r8, r9, stack:0x0
+	003 Return 
+
+Method: System.Void .cctor()
+
+Disassembly:
+	sub rsp,28h
+	cmp byte ptr [1826ECB80h],0
+	jne short 0000000180758DFFh
+	mov ecx,[1822C6CE0h]
+	call 0000000180294190h
+	mov byte ptr [1826ECB80h],1
+	mov rax,[18271B7F8h]
+	mov rcx,[rax+0B8h]
+	mov byte ptr [rcx],1
+	add rsp,28h
+	ret
+
+ISIL:
+	001 ShiftStack -40
+	002 Compare [0x1826ECB80], 0
+	003 JumpIfNotEqual {7}
+	004 Move rcx, [0x1822C6CE0]
+	005 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	006 Move [0x1826ECB80], 1
+	007 Move rax, typeof(UBER_Global)
+	008 Move rcx, [rax+184]
+	009 Move [rcx], 1
+	010 ShiftStack 40
+	011 Return 
+

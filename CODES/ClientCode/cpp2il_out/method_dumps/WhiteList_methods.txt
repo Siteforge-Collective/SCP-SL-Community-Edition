@@ -1,0 +1,148 @@
+Type: WhiteList
+
+
+	Generated Pseudocode:
+
+	Declaring Type: WhiteList
+	static System.Void .cctor()
+		System.Collections.Generic.HashSet`1<System.String> hashSet = new System.Collections.Generic.HashSet`1<System.String>()
+
+		hashSet..ctor()
+		. = hashSet
+		ulong local1 = 0
+
+		WhiteList.Reload()
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.RegToStaticFieldAction at (0x181BBC6B0) is corrupt (No further info) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: WhiteList
+	static System.Void Reload()
+		ulong local0 = 0
+		System.String[] paths = GameCore.ConfigSharing.Paths
+		System.String local3 = paths[2]
+
+		System.String string = System.String.Concat(local3, "UserIDWhitelist.txt") //(String str0, String str1)
+		  = .
+
+		.Clear()
+
+		System.Boolean boolean = System.IO.File.Exists(string) //(String path)
+
+		if (boolean != False)
+		    System.IO.StreamReader streamReader = new System.IO.StreamReader()
+
+		    streamReader..ctor(string) //(String path)
+
+		    System.Int32 int32 = streamReader.ReadBlock()
+
+		    if (int32 == 0)
+                goto INSN_181BBC57A
+            endif
+
+		    System.Boolean isNullOrWhiteSpace = System.String.IsNullOrWhiteSpace()
+
+		    if (isNullOrWhiteSpace == False)
+		    endwhile
+            
+		    goto INSN_181BBC64C
+            
+
+		    System.String string2 = int32.TrimStart()
+
+		    System.Boolean boolean2 = string2.StartsWith("#") //(String value)
+
+		    if (boolean2 == False)
+
+		        System.Boolean boolean3 = int32.Contains("@") //(String value)
+
+		        if (boolean3 != False)
+		              = .
+
+		            System.String string3 = int32.Trim()
+
+		            System.Boolean boolean4 = int32.Add(string3) //(T item)
+
+		            INSN_181BBC57A:
+
+		            if (streamReader == 0)
+                        goto INSN_181BBC5A1
+                    endif
+
+		            INSN_181BBC5A1:
+
+		            if (local0 != 0)
+                        goto INSN_181BBC652
+                    endif
+		            System.Int32 7 = 7
+
+		            ServerConsole.AddLog("Whitelist has been loaded.", 7) //(String q, ConsoleColor color)
+		            return
+		        endif
+                
+
+		        FileManager.WriteStringToFile("#Put one UserID (eg. 76561198071934271@steam or 274613382353518592@discord) per line. Lines prefixed with "#" are ignored.", string) //(String data, String path)
+		        return
+		        throw new System.NullReferenceException()
+
+		        INSN_181BBC652:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.StaticFieldToRegAction at (0x181BBC44A) is corrupt (Couldn't identify the field being read (or its type).) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: WhiteList
+	static System.Boolean IsOnWhitelist(System.String userId)
+		  = .
+
+		System.String string = userId.Trim()
+
+		System.Boolean boolean = userId.Contains(string) //(T item)
+		return boolean
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.StaticFieldToRegAction at (0x181BBC207) is corrupt (Couldn't identify the field being read (or its type).) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: WhiteList
+	static System.Boolean IsWhitelisted(System.String userId)
+		  = .
+
+		System.String string = userId.Trim()
+
+		System.Boolean boolean = userId.Contains(string) //(T item)
+
+		if (boolean == False)
+		    YamlConfig serverConfig = GameCore.ConfigFile.ServerConfig
+		    ulong local6 = 0
+
+		    System.Boolean bool = serverConfig.GetBool("enable_whitelist", local6) //(String key, Boolean def)
+
+		    if (bool != False)
+		        System.Boolean local8 = "{il2cpp field on {'constant31' (constant value of type Cpp2IL.Core.Analysis.ResultModels.StaticFieldsPtr)}, offset 0x0}" == 0
+		        return local8
+		    endif
+            
+		    return True
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.StaticFieldToRegAction at (0x181BBC297) is corrupt (Couldn't identify the field being read (or its type).) and cannot be created as IL. Aborting here.
+
+

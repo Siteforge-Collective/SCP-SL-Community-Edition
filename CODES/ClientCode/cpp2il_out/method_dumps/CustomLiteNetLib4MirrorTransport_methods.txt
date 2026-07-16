@@ -1,0 +1,1927 @@
+Type: CustomLiteNetLib4MirrorTransport
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomLiteNetLib4MirrorTransport
+	static System.Boolean get_DelayConnections()
+		System.Boolean _delayConnections = CustomLiteNetLib4MirrorTransport._delayConnections
+		return _delayConnections
+
+
+Generated IL:
+	IL_0000: ldsfld System.Boolean CustomLiteNetLib4MirrorTransport::_delayConnections
+	IL_0005: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomLiteNetLib4MirrorTransport
+	static System.Void set_DelayConnections(System.Boolean value)
+
+		if (value == False)
+		    System.Collections.Generic.Dictionary`2<System.Net.IPEndPoint,PreauthItem> userIds = CustomLiteNetLib4MirrorTransport.UserIds
+
+		    userIds.Clear()
+		endif
+        
+		CustomLiteNetLib4MirrorTransport._delayConnections = value
+
+		if (value == False)
+            goto INSN_181ADCF5D
+        endif
+		System.Byte delayTime = CustomLiteNetLib4MirrorTransport.DelayTime
+
+		System.String string = System.String.Format()
+
+		INSN_181ADCF5D:
+		System.Int32 7 = 7
+
+		ServerConsole.AddLog("Incoming connections will be no longer delayed.", 7) //(String q, ConsoleColor color)
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181ADCF53) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomLiteNetLib4MirrorTransport
+	static System.Void .cctor()
+		LiteNetLib.Utils.NetDataWriter netDataWriter = new LiteNetLib.Utils.NetDataWriter()
+
+		netDataWriter..ctor()
+		CustomLiteNetLib4MirrorTransport.RequestWriter = netDataWriter
+		. = 0
+		. = 0
+		System.Collections.Generic.Dictionary`2<System.Net.IPEndPoint,PreauthItem> dictionary = new System.Collections.Generic.Dictionary`2<System.Net.IPEndPoint,PreauthItem>()
+
+		dictionary..ctor()
+		 += 16
+		CustomLiteNetLib4MirrorTransport.RequestWriter = dictionary
+		System.Collections.Generic.HashSet`1<System.String> hashSet = new System.Collections.Generic.HashSet`1<System.String>()
+
+		hashSet..ctor()
+		 += 24
+		CustomLiteNetLib4MirrorTransport.RequestWriter = hashSet
+		System.Collections.Generic.Dictionary`2<System.String,PreauthChallengeItem> dictionary2 = new System.Collections.Generic.Dictionary`2<System.String,PreauthChallengeItem>()
+
+		dictionary2..ctor()
+		 += 32
+		CustomLiteNetLib4MirrorTransport.RequestWriter = dictionary2
+		. = 1
+		. = 3
+		System.Collections.Generic.HashSet`1<System.String> hashSet2 = new System.Collections.Generic.HashSet`1<System.String>()
+
+		hashSet2..ctor()
+		 += 64
+		CustomLiteNetLib4MirrorTransport.RequestWriter = hashSet2
+		System.Collections.Generic.HashSet`1<System.Net.IPAddress> hashSet3 = new System.Collections.Generic.HashSet`1<System.Net.IPAddress>()
+
+		hashSet3..ctor()
+		 += 72
+		CustomLiteNetLib4MirrorTransport.RequestWriter = hashSet3
+		System.Collections.Generic.HashSet`1<System.String> hashSet4 = new System.Collections.Generic.HashSet`1<System.String>()
+
+		hashSet4..ctor()
+		 += 80
+		CustomLiteNetLib4MirrorTransport.RequestWriter = hashSet4
+		ulong local8 = 0
+		. = 60
+		. = 50
+		System.Byte[] local9 = new System.Byte[local8]
+		 += 160
+		CustomLiteNetLib4MirrorTransport.RequestWriter = local9
+		. = 0
+		System.Threading.ThreadStart threadStart = new System.Threading.ThreadStart()
+		ulong local12 = 0
+
+		threadStart..ctor(local12, {'ProcessChallenge' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		System.Threading.Thread thread = new System.Threading.Thread()
+
+		thread..ctor(threadStart) //(ThreadStart start)
+
+		thread.Name = "Challenge thread"
+		System.Int32 3 = 3
+
+		thread.Priority = 3
+		System.Int64 local18 = 1
+
+		thread.IsBackground = local18
+		 += 208
+		CustomLiteNetLib4MirrorTransport.RequestWriter = thread
+		System.Byte[] emptyByte = CustomLiteNetLib4MirrorTransport.EmptyByte
+		 += 192
+		CustomLiteNetLib4MirrorTransport.RequestWriter = emptyByte
+		System.Threading.Thread challengeThread = CustomLiteNetLib4MirrorTransport.ChallengeThread
+
+		challengeThread.Start()
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ImmediateToFieldAction at (0x181ADCA75) is corrupt (Instance or field is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomLiteNetLib4MirrorTransport
+	static System.Void SetReconnectionParameters(System.Boolean roundRestart)
+		Mirror.LiteNetLib4Mirror.LiteNetLib4MirrorTransport singleton = Mirror.LiteNetLib4Mirror.LiteNetLib4MirrorTransport.Singleton
+		singleton.reconnectDelay = 600
+		Mirror.LiteNetLib4Mirror.LiteNetLib4MirrorTransport singleton2 = Mirror.LiteNetLib4Mirror.LiteNetLib4MirrorTransport.Singleton
+		singleton2.maxConnectAttempts = 3
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldsfld Mirror.LiteNetLib4Mirror.LiteNetLib4MirrorTransport Mirror.LiteNetLib4Mirror.LiteNetLib4MirrorTransport::Singleton
+	IL_0005: ldc.i4 600
+	IL_000a: conv.u4
+	IL_000b: stfld System.Int32 Mirror.LiteNetLib4Mirror.LiteNetLib4MirrorTransport::reconnectDelay
+	IL_0010: ldsfld Mirror.LiteNetLib4Mirror.LiteNetLib4MirrorTransport Mirror.LiteNetLib4Mirror.LiteNetLib4MirrorTransport::Singleton
+	IL_0015: ldc.i4.3
+	IL_0016: conv.u4
+	IL_0017: stfld System.Int32 Mirror.LiteNetLib4Mirror.LiteNetLib4MirrorTransport::maxConnectAttempts
+	IL_001c: ret
+	IL_001d: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0022: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomLiteNetLib4MirrorTransport
+	System.Void ProcessConnectionRequest(LiteNetLib.ConnectionRequest request)
+		ulong local2 = 0
+		LiteNetLib.Utils.NetDataReader data = request.Data
+
+		System.Boolean boolean = data.TryGetSByte()
+
+		if (boolean != False)
+
+		    if (boolean < True)
+
+		        if (boolean != True)
+		            LiteNetLib.Utils.NetDataReader data2 = request.Data
+
+		            System.Boolean boolean2 = data2.TryGetSByte()
+
+		            if (boolean2 != False)
+		                LiteNetLib.Utils.NetDataReader data3 = request.Data
+
+		                System.Boolean boolean3 = data3.TryGetSByte()
+
+		                if (boolean3 != False)
+		                    LiteNetLib.Utils.NetDataReader data4 = request.Data
+
+		                    System.Boolean boolean4 = data4.TryGetSByte()
+
+		                    if (boolean4 != False)
+		                        LiteNetLib.Utils.NetDataReader data5 = request.Data
+
+		                        System.Boolean boolean5 = data5.TryGetBool()
+
+		                        if (boolean5 != False)
+		                            LiteNetLib.Utils.NetDataReader data6 = request.Data
+
+		                            System.Boolean boolean6 = data6.TryGetSByte()
+
+		                            if (boolean6 != False)
+		                                System.Byte major = GameCore.Version.Major
+		                                System.Byte minor = GameCore.Version.Minor
+		                                System.Byte revision = GameCore.Version.Revision
+
+		                                System.Boolean boolean7 = GameCore.Version.CompatibilityCheck()
+
+		                                if (boolean7 != False)
+		                                    LiteNetLib.Utils.NetDataReader data7 = request.Data
+
+		                                    System.Boolean boolean8 = data7.TryGetInt()
+		                                    LiteNetLib.Utils.NetDataReader data8 = request.Data
+
+		                                    System.Boolean boolean9 = data8.TryGetBytesWithLength(minor) //(Byte[]& result)
+
+		                                    if (boolean9 != False)
+
+		                                        if (boolean8 != False)
+		                                            ulong local36 = 0
+
+		                                            System.Boolean boolean10 = CustomLiteNetLib4MirrorTransport.CheckIpRateLimit(request) //(ConnectionRequest request)
+
+		                                            if (boolean10 == False)
+
+		                                                if (local36 == 0)
+                                                            goto INSN_181ADACF2
+                                                        endif
+
+		                                                if (boolean10 == False)
+                                                            goto INSN_181ADACF2
+                                                        endif
+
+		                                                if ( == 0)
+                                                            goto INSN_181ADACF2
+                                                        endif
+		                                                System.Net.IPEndPoint remoteEndPoint = request.RemoteEndPoint
+		                                                System.Net.IPAddress m_Address = remoteEndPoint.m_Address
+
+		                                                System.String string = System.String.Concat(m_Address, "-", local40) //(Object arg0, Object arg1, Object arg2)
+		                                                System.Collections.Generic.Dictionary`2<System.String,PreauthChallengeItem> challenges = CustomLiteNetLib4MirrorTransport.Challenges
+		                                                throw new System.NullReferenceException()
+
+		                                                if (local44 == 0)
+                                                            goto INSN_181ADAB60
+                                                        endif
+		                                                System.Collections.Generic.Dictionary`2<System.String,PreauthChallengeItem> challenges2 = CustomLiteNetLib4MirrorTransport.Challenges
+
+		                                                TValue item = .Item
+
+		                                                System.Boolean boolean11 = System.Linq.Enumerable.SequenceEqual<System.Byte>()
+
+		                                                if (boolean11 == False)
+                                                            goto INSN_181ADA9CE
+                                                        endif
+		                                                System.Collections.Generic.Dictionary`2<System.String,PreauthChallengeItem> challenges3 = CustomLiteNetLib4MirrorTransport.Challenges
+
+		                                                System.Boolean boolean12 = challenges3.Remove(string) //(TKey key)
+		                                                ulong local50 = 0
+
+		                                                CustomLiteNetLib4MirrorTransport.PreauthDisableIdleMode()
+		                                                System.Net.IPEndPoint remoteEndPoint2 = request.RemoteEndPoint
+
+		                                                System.String string2 = System.String.Format("Security challenge response of incoming connection from endpoint {0} has been accepted.", remoteEndPoint2) //(String format, Object arg0)
+		                                                System.Int32 7 = 7
+
+		                                                ServerConsole.AddLog(string2, 7) //(String q, ConsoleColor color)
+		                                            endif
+                                                    
+		                                            LiteNetLib.Utils.NetDataReader data9 = request.Data
+
+		                                            System.Boolean boolean13 = data9.TryGetString(local36) //(String& result)
+
+		                                            if (boolean13 == False)
+                                                        goto INSN_181ADA741
+                                                    endif
+		                                            System.String empty = System.String.Empty
+
+		                                            [instruction error - managed method being called is null]
+
+		                                            if (String != 0)
+                                                        goto INSN_181ADA741
+                                                    endif
+		                                            LiteNetLib.Utils.NetDataReader data10 = request.Data
+
+		                                            System.Boolean boolean14 = data10.TryGetLong()
+
+		                                            if (boolean14 == False)
+                                                        goto INSN_181ADA6B9
+                                                    endif
+		                                            LiteNetLib.Utils.NetDataReader data11 = request.Data
+
+		                                            System.Boolean boolean15 = data11.TryGetSByte()
+
+		                                            if (boolean15 == False)
+                                                        goto INSN_181ADA6B9
+                                                    endif
+		                                            LiteNetLib.Utils.NetDataReader data12 = request.Data
+
+		                                            System.Boolean boolean16 = data12.TryGetString(empty) //(String& result)
+
+		                                            if (boolean16 == False)
+                                                        goto INSN_181ADA6B9
+                                                    endif
+		                                            LiteNetLib.Utils.NetDataReader data13 = request.Data
+
+		                                            System.Boolean boolean17 = data13.TryGetBytesWithLength()
+
+		                                            if (boolean17 == False)
+                                                        goto INSN_181ADA6B9
+                                                    endif
+		                                            System.Collections.Generic.HashSet`1<System.Net.IPAddress> trustedProxies = CustomLiteNetLib4MirrorTransport.TrustedProxies
+		                                            System.Net.IPEndPoint remoteEndPoint3 = request.RemoteEndPoint
+		                                            System.Net.IPAddress m_Address2 = remoteEndPoint3.m_Address
+
+		                                            System.Boolean boolean18 = trustedProxies.Contains(m_Address2) //(T item)
+
+		                                            if (boolean18 == False)
+                                                        goto INSN_181AD800B
+                                                    endif
+		                                            LiteNetLib.Utils.NetDataReader data14 = request.Data
+
+		                                            System.Boolean boolean19 = data14.TryGetString()
+
+		                                            if (boolean19 == False)
+                                                        goto INSN_181AD800B
+                                                    endif
+		                                            System.Net.IPEndPoint remoteEndPoint4 = request.RemoteEndPoint
+
+		                                            System.String string3 = System.String.Format("{0} [routed via {1}]", m_Address2, remoteEndPoint4) //(String format, Object arg0, Object arg1)
+
+		                                            INSN_181AD800B:
+		                                            System.Net.IPEndPoint remoteEndPoint5 = request.RemoteEndPoint
+
+		                                            System.Int32 hashCode = remoteEndPoint5.GetHashCode()
+		                                            System.Object[] local84 = new System.Object[4]
+
+		                                            if ( == 0)
+                                                        goto INSN_181AD8072
+                                                    endif
+
+		                                            if (local84 == 0)
+                                                        goto INSN_181ADBEC7
+                                                    endif
+
+		                                            INSN_181AD8072:
+		                                            local84[0] = 
+
+		                                            if (local84 == 0)
+                                                        goto INSN_181AD80C2
+                                                    endif
+
+		                                            if (local84 == 0)
+                                                        goto INSN_181ADBEE5
+                                                    endif
+
+		                                            INSN_181AD80C2:
+		                                            local84[1] = local84
+
+		                                            if (local84 == 0)
+                                                        goto INSN_181AD80FC
+                                                    endif
+
+		                                            if (local84 == 0)
+                                                        goto INSN_181ADBF03
+                                                    endif
+
+		                                            INSN_181AD80FC:
+		                                            local84[2] = local84
+
+		                                            if (local84 == 0)
+                                                        goto INSN_181AD8150
+                                                    endif
+
+		                                            if (local84 == 0)
+                                                        goto INSN_181ADBF21
+                                                    endif
+
+		                                            INSN_181AD8150:
+		                                            local84[3] = local84
+
+		                                            System.String string4 = System.String.Format("{0};{1};{2};{3}", local84) //(String format, Object[] args)
+		                                            Org.BouncyCastle.Crypto.AsymmetricKeyParameter publicKey = ServerConsole.PublicKey
+
+		                                            System.Boolean boolean20 = Cryptography.ECDSA.VerifyBytes()
+
+		                                            if (boolean20 == False)
+                                                        goto INSN_181ADA33E
+                                                    endif
+		                                            ulong local90 = 0
+
+		                                            System.Int64 currentUnixTimestamp = TimeBehaviour.CurrentUnixTimestamp
+		                                            System.Collections.Generic.HashSet`1<System.String> userRateLimit = CustomLiteNetLib4MirrorTransport.UserRateLimit
+
+		                                            System.Boolean boolean21 = userRateLimit.Contains()
+
+		                                            if (boolean21 != False)
+                                                        goto INSN_181AD847C
+                                                    endif
+		                                            System.Collections.Generic.HashSet`1<System.String> userRateLimit2 = CustomLiteNetLib4MirrorTransport.UserRateLimit
+
+		                                            System.Boolean boolean22 = userRateLimit2.Add()
+
+		                                            [instruction error - managed method being called is null]
+
+		                                            if (boolean22 == False)
+                                                        goto INSN_181AD82F4
+                                                    endif
+
+		                                            if ( != 0)
+                                                        goto INSN_181AD835F
+                                                    endif
+
+		                                            INSN_181AD82F4:
+
+		                                            if (boolean22 != False)
+                                                        goto INSN_181AD832B
+                                                    endif
+		                                            System.Net.IPEndPoint remoteEndPoint6 = request.RemoteEndPoint
+		                                            System.Net.IPAddress m_Address3 = remoteEndPoint6.m_Address
+
+		                                            System.Int32 hashCode2 = m_Address3.GetHashCode()
+
+		                                            INSN_181AD832B:
+
+		                                            System.Collections.Generic.KeyValuePair`2<BanDetails,BanDetails> keyValuePair = BanHandler.QueryBan()
+
+		                                            if (local2 != 0)
+                                                        goto INSN_181AD9AAF
+                                                    endif
+
+		                                            if ( != 0)
+                                                        goto INSN_181AD9AAF
+                                                    endif
+
+		                                            INSN_181AD835F:
+
+		                                            [instruction error - managed method being called is null]
+
+		                                            if (keyValuePair != 0)
+                                                        goto INSN_181AD9893
+                                                    endif
+
+		                                            [instruction error - managed method being called is null]
+
+		                                            if (keyValuePair == 0)
+                                                        goto INSN_181AD8912
+                                                    endif
+		                                            PermissionsHandler permissionsHandler = ServerStatic.PermissionsHandler
+
+		                                            if (permissionsHandler.<IsVerified>k__BackingField != False)
+                                                        goto INSN_181AD8403
+                                                    endif
+
+		                                            INSN_181AD8403:
+		                                            System.String[] local106 = new System.String[5]
+
+		                                            if ("Player " == 0)
+                                                        goto INSN_181AD8774
+                                                    endif
+
+		                                            if (local106 == 0)
+                                                        goto INSN_181ADBF3F
+                                                    endif
+
+		                                            INSN_181AD847C:
+
+		                                            if ("{il2cpp array field local106->}" == 2)
+                                                        goto INSN_181AD849D
+                                                    endif
+
+		                                            if ("{il2cpp array field local106->}" != 0)
+                                                        goto INSN_181AD849D
+                                                    endif
+
+		                                            INSN_181AD849D:
+		                                            System.UInt32 rejectionThreshold = CustomLiteNetLib4MirrorTransport.RejectionThreshold
+		                                            . = 1
+		                                            System.String[] local108 = new System.String[5]
+
+		                                            if ("Incoming connection from " == 0)
+                                                        goto INSN_181AD8596
+                                                    endif
+
+		                                            if ("Incoming connection from " == 0)
+                                                        goto INSN_181ADBF53
+                                                    endif
+
+		                                            INSN_181AD8596:
+		                                            local108[0] = "Incoming connection from "
+
+		                                            if (string4 == 0)
+                                                        goto INSN_181AD85D0
+                                                    endif
+
+		                                            if ("Incoming connection from " == 0)
+                                                        goto INSN_181ADBF71
+                                                    endif
+
+		                                            INSN_181AD85D0:
+		                                            local108[1] = string4
+
+		                                            if (" (" == 0)
+                                                        goto INSN_181AD8614
+                                                    endif
+
+		                                            if (" (" == 0)
+                                                        goto INSN_181ADBF8F
+                                                    endif
+
+		                                            INSN_181AD8614:
+		                                            local108[2] = " ("
+
+		                                            if (hashCode == 0)
+                                                        goto INSN_181AD864A
+                                                    endif
+
+		                                            if (" (" == 0)
+                                                        goto INSN_181ADBFAD
+                                                    endif
+
+		                                            INSN_181AD864A:
+		                                            local108[3] = hashCode
+
+		                                            if (") rejected due to exceeding the rate limit." == 0)
+                                                        goto INSN_181AD868E
+                                                    endif
+
+		                                            if (") rejected due to exceeding the rate limit." == 0)
+                                                        goto INSN_181ADBFCB
+                                                    endif
+
+		                                            INSN_181AD868E:
+		                                            local108[4] = ") rejected due to exceeding the rate limit."
+
+		                                            System.String string5 = System.String.Concat(local108) //(String[] values)
+		                                            System.Int32 7 = 7
+
+		                                            ServerConsole.AddLog(string5, 7) //(String q, ConsoleColor color)
+		                                            LiteNetLib.Utils.NetDataWriter requestWriter = CustomLiteNetLib4MirrorTransport.RequestWriter
+
+		                                            requestWriter.Reset()
+		                                            LiteNetLib.Utils.NetDataWriter requestWriter2 = CustomLiteNetLib4MirrorTransport.RequestWriter
+
+		                                            requestWriter2.Put({'12' (constant value of type System.SByte)}) //(SByte value)
+		                                            LiteNetLib.Utils.NetDataWriter requestWriter3 = CustomLiteNetLib4MirrorTransport.RequestWriter
+
+		                                            request.RejectForce(requestWriter3) //(NetDataWriter rejectData)
+		                                            ulong local118 = 0
+
+		                                            CustomLiteNetLib4MirrorTransport.ResetIdleMode()
+
+		                                            INSN_181AD8774:
+		                                            throw new System.IndexOutOfRangeException()
+
+		                                            if (string4 == 0)
+                                                        goto INSN_181AD879F
+                                                    endif
+
+		                                            if (local120 == 0)
+                                                        goto INSN_181ADC002
+                                                    endif
+
+		                                            INSN_181AD879F:
+		                                            throw new System.IndexOutOfRangeException()
+
+		                                            if (" (" == 0)
+                                                        goto INSN_181AD87DA
+                                                    endif
+
+		                                            if (local121 == 0)
+                                                        goto INSN_181ADC011
+                                                    endif
+
+		                                            INSN_181AD87DA:
+		                                            throw new System.IndexOutOfRangeException()
+
+		                                            if (hashCode == 0)
+                                                        goto INSN_181AD8804
+                                                    endif
+
+		                                            if (local122 == 0)
+                                                        goto INSN_181ADC020
+                                                    endif
+
+		                                            INSN_181AD8804:
+		                                            throw new System.IndexOutOfRangeException()
+
+		                                            if (") kicked due to an active global ban." == 0)
+                                                        goto INSN_181AD883F
+                                                    endif
+
+		                                            if (local123 == 0)
+                                                        goto INSN_181ADC02F
+                                                    endif
+
+		                                            INSN_181AD883F:
+		                                            throw new System.IndexOutOfRangeException()
+
+		                                            System.String string6 = System.String.Concat()
+		                                            System.Int32 7 = 7
+
+		                                            ServerConsole.AddLog(string6, 7) //(String q, ConsoleColor color)
+		                                            LiteNetLib.Utils.NetDataWriter requestWriter4 = CustomLiteNetLib4MirrorTransport.RequestWriter
+
+		                                            requestWriter4.Reset()
+		                                            LiteNetLib.Utils.NetDataWriter requestWriter5 = CustomLiteNetLib4MirrorTransport.RequestWriter
+
+		                                            requestWriter5.Put({'8' (constant value of type System.SByte)}) //(SByte value)
+		                                            LiteNetLib.Utils.NetDataWriter requestWriter6 = CustomLiteNetLib4MirrorTransport.RequestWriter
+
+		                                            request.Reject(requestWriter6) //(NetDataWriter rejectData)
+		                                            ulong local134 = 0
+
+		                                            CustomLiteNetLib4MirrorTransport.ResetIdleMode()
+
+		                                            INSN_181AD8912:
+
+		                                            System.Boolean boolean23 = CentralAuthPreauthUtils.HasFlagFast(local134, 4) //(CentralAuthPreauthFlags flags, CentralAuthPreauthFlags flag)
+
+		                                            if (boolean23 == False)
+                                                        goto INSN_181AD8958
+                                                    endif
+
+		                                            if ( != 0)
+                                                        goto INSN_181AD898C
+                                                    endif
+
+		                                            INSN_181AD8958:
+
+		                                            System.Boolean isWhitelisted = WhiteList.IsWhitelisted(string6) //(String userId)
+
+		                                            if (isWhitelisted == False)
+                                                        goto INSN_181AD9677
+                                                    endif
+
+		                                            INSN_181AD898C:
+
+		                                            [instruction error - managed method being called is null]
+
+		                                            if (constant425 == 0)
+                                                        goto INSN_181AD8A1F
+                                                    endif
+		                                            PermissionsHandler permissionsHandler2 = ServerStatic.PermissionsHandler
+
+		                                            System.Boolean banTeamBypassGeo = permissionsHandler2.BanTeamBypassGeo
+
+		                                            if (banTeamBypassGeo != False)
+                                                        goto INSN_181AD8EE8
+                                                    endif
+
+		                                            INSN_181AD8A1F:
+
+		                                            System.Boolean isOnWhitelist = WhiteList.IsOnWhitelist(string6) //(String userId)
+
+		                                            if (isOnWhitelist != False)
+                                                        goto INSN_181AD8EE8
+                                                    endif
+		                                            System.Collections.Generic.HashSet`1<System.String> geoblockingList = CustomLiteNetLib4MirrorTransport.GeoblockingList
+
+		                                            System.String string7 = .ToUpper()
+
+		                                            System.Boolean boolean24 = geoblockingList.Contains(string7) //(T item)
+
+		                                            if (boolean24 == False)
+                                                        goto INSN_181AD8BAD
+                                                    endif
+		                                            System.Collections.Generic.HashSet`1<System.String> geoblockingList2 = CustomLiteNetLib4MirrorTransport.GeoblockingList
+
+		                                            System.String string8 = .ToUpper()
+
+		                                            System.Boolean boolean25 = geoblockingList2.Contains(string8) //(T item)
+
+		                                            if (boolean25 == False)
+                                                        goto INSN_181AD8EE8
+                                                    endif
+
+		                                            INSN_181AD8BAD:
+		                                            System.UInt32 rejectionThreshold2 = CustomLiteNetLib4MirrorTransport.RejectionThreshold
+		                                            . = 1
+		                                            System.String[] local155 = new System.String[7]
+
+		                                            if ("Player " == 0)
+                                                        goto INSN_181AD8CCE
+                                                    endif
+
+		                                            INSN_181AD8CCE:
+		                                            throw new System.IndexOutOfRangeException()
+
+		                                            if (string4 == 0)
+                                                        goto INSN_181AD8CF9
+                                                    endif
+
+		                                            if (local157 == 0)
+                                                        goto INSN_181ADC075
+                                                    endif
+
+		                                            INSN_181AD8CF9:
+		                                            throw new System.IndexOutOfRangeException()
+
+		                                            if (" (" == 0)
+                                                        goto INSN_181AD8D34
+                                                    endif
+
+		                                            if (local159 == 0)
+                                                        goto INSN_181ADC084
+                                                    endif
+
+		                                            INSN_181AD8D34:
+		                                            throw new System.IndexOutOfRangeException()
+
+		                                            if (hashCode == 0)
+                                                        goto INSN_181AD8D5E
+                                                    endif
+
+		                                            if (local161 == 0)
+                                                        goto INSN_181ADC093
+                                                    endif
+
+		                                            INSN_181AD8D5E:
+		                                            throw new System.IndexOutOfRangeException()
+
+		                                            if (") tried joined from blocked country " == 0)
+                                                        goto INSN_181AD8D99
+                                                    endif
+
+		                                            if (local163 == 0)
+                                                        goto INSN_181ADC0A2
+                                                    endif
+
+		                                            INSN_181AD8D99:
+		                                            throw new System.IndexOutOfRangeException()
+
+		                                            System.String string9 = local155.ToUpper()
+
+		                                            if (string9 == 0)
+                                                        goto INSN_181AD8DDA
+                                                    endif
+
+		                                            if (string9 == 0)
+                                                        goto INSN_181ADC0B1
+                                                    endif
+
+		                                            INSN_181AD8DDA:
+		                                            throw new System.IndexOutOfRangeException()
+
+		                                            if ("." == 0)
+                                                        goto INSN_181AD8E15
+                                                    endif
+
+		                                            if (local169 == 0)
+                                                        goto INSN_181ADC0C0
+                                                    endif
+
+		                                            INSN_181AD8E15:
+		                                            throw new System.IndexOutOfRangeException()
+
+		                                            System.String string10 = System.String.Concat(local155) //(String[] values)
+		                                            System.Int32 7 = 7
+
+		                                            ServerConsole.AddLog(string10, 7) //(String q, ConsoleColor color)
+		                                            LiteNetLib.Utils.NetDataWriter requestWriter7 = CustomLiteNetLib4MirrorTransport.RequestWriter
+
+		                                            requestWriter7.Reset()
+		                                            LiteNetLib.Utils.NetDataWriter requestWriter8 = CustomLiteNetLib4MirrorTransport.RequestWriter
+		                                            System.Int64 local179 = 9
+
+		                                            requestWriter8.Put(local179) //(SByte value)
+		                                            LiteNetLib.Utils.NetDataWriter requestWriter9 = CustomLiteNetLib4MirrorTransport.RequestWriter
+
+		                                            request.RejectForce(requestWriter9) //(NetDataWriter rejectData)
+		                                            ulong local182 = 0
+
+		                                            CustomLiteNetLib4MirrorTransport.ResetIdleMode()
+
+		                                            INSN_181AD8EE8:
+		                                            System.Collections.Generic.HashSet`1<System.String> userIdFastReload = CustomLiteNetLib4MirrorTransport.UserIdFastReload
+
+		                                            System.Boolean boolean26 = userIdFastReload.Contains()
+
+		                                            if (boolean26 == False)
+                                                        goto INSN_181AD8F81
+                                                    endif
+		                                            System.Collections.Generic.HashSet`1<System.String> userIdFastReload2 = CustomLiteNetLib4MirrorTransport.UserIdFastReload
+
+		                                            System.Boolean boolean27 = userIdFastReload2.Remove()
+
+		                                            INSN_181AD8F81:
+
+		                                            System.Int32 connectedPeersCount = boolean27.ConnectedPeersCount
+
+		                                            System.Int32 connectedPeersCount2 = .ConnectedPeersCount
+		                                              = .
+
+		                                            [instruction error - managed method being called is null]
+
+		                                            if (connectedPeersCount2 == 0)
+                                                        goto INSN_181AD90AB
+                                                    endif
+		                                            PermissionsHandler permissionsHandler3 = ServerStatic.PermissionsHandler
+
+		                                            System.Boolean banTeamSlots = permissionsHandler3.BanTeamSlots
+
+		                                            if (banTeamSlots != False)
+                                                        goto INSN_181AD9249
+                                                    endif
+
+		                                            INSN_181AD90AB:
+		                                            YamlConfig serverConfig = GameCore.ConfigFile.ServerConfig
+		                                            System.Int64 local200 = 1
+
+		                                            System.Boolean bool = serverConfig.GetBool("use_reserved_slots", local200) //(String key, Boolean def)
+
+		                                            if (bool == False)
+                                                        goto INSN_181AD91BB
+                                                    endif
+
+		                                            System.Boolean boolean28 = ReservedSlot.HasReservedSlot()
+
+		                                            if (boolean28 == False)
+                                                        goto INSN_181AD91BB
+                                                    endif
+
+		                                            System.Int32 connectedPeersCount3 = boolean28.ConnectedPeersCount
+		                                            connectedPeersCount = connectedPeersCount3
+		                                            System.Int32 reservedSlots = CustomNetworkManager.reservedSlots
+
+		                                            INSN_181AD91BB:
+		                                            LiteNetLib.Utils.NetDataWriter requestWriter10 = CustomLiteNetLib4MirrorTransport.RequestWriter
+
+		                                            requestWriter10.Reset()
+		                                            LiteNetLib.Utils.NetDataWriter requestWriter11 = CustomLiteNetLib4MirrorTransport.RequestWriter
+		                                            System.Int64 local212 = 1
+
+		                                            requestWriter11.Put(local212) //(SByte value)
+		                                            LiteNetLib.Utils.NetDataWriter requestWriter12 = CustomLiteNetLib4MirrorTransport.RequestWriter
+
+		                                            request.Reject(requestWriter12) //(NetDataWriter rejectData)
+		                                            ulong local215 = 0
+
+		                                            CustomLiteNetLib4MirrorTransport.ResetIdleMode()
+
+		                                            INSN_181AD9249:
+		                                            System.Collections.Generic.Dictionary`2<System.Net.IPEndPoint,PreauthItem> userIds = CustomLiteNetLib4MirrorTransport.UserIds
+		                                            throw new System.NullReferenceException()
+
+		                                            if (local218 != 0)
+                                                        goto INSN_181AD9311
+                                                    endif
+		                                            System.Collections.Generic.Dictionary`2<System.Net.IPEndPoint,PreauthItem> userIds2 = CustomLiteNetLib4MirrorTransport.UserIds
+		                                            System.Net.IPEndPoint remoteEndPoint7 = request.RemoteEndPoint
+		                                            ulong local222 = 0
+
+		                                            userIds2.Add(remoteEndPoint7, local222) //(TKey key, TValue value)
+
+		                                            INSN_181AD9311:
+		                                            System.Collections.Generic.Dictionary`2<System.Net.IPEndPoint,PreauthItem> userIds3 = CustomLiteNetLib4MirrorTransport.UserIds
+
+		                                            TValue item2 = .Item
+
+		                                            LiteNetLib.NetPeer netPeer = request.Accept()
+		                                            System.Collections.Generic.Dictionary`2<System.Int32,System.String> realIpAddresses = CustomLiteNetLib4MirrorTransport.RealIpAddresses
+		                                            throw new System.NullReferenceException()
+
+		                                            if (local231 != 0)
+                                                        goto INSN_181AD948B
+                                                    endif
+		                                            System.Collections.Generic.Dictionary`2<System.Int32,System.String> realIpAddresses2 = CustomLiteNetLib4MirrorTransport.RealIpAddresses
+		                                            throw new System.NullReferenceException()
+		                                            System.Int64 local235 = 5
+		                                            System.String[] local236 = new System.String[5]
+
+		                                            if ("Player " == 0)
+                                                        goto INSN_181AD94E5
+                                                    endif
+
+		                                            if (local236 == 0)
+                                                        goto INSN_181ADC11A
+                                                    endif
+
+		                                            INSN_181AD948B:
+
+		                                            if ("{il2cpp array field local236->}" == 2)
+                                                        goto INSN_181AD94AC
+                                                    endif
+
+		                                            if ("{il2cpp array field local236->}" != 0)
+                                                        goto INSN_181AD94AC
+                                                    endif
+
+		                                            INSN_181AD94AC:
+		                                            System.Collections.Generic.Dictionary`2<System.Int32,System.String> realIpAddresses3 = CustomLiteNetLib4MirrorTransport.RealIpAddresses
+		                                            System.String local238 = local236[32]
+		                                            throw new System.NullReferenceException()
+
+		                                            INSN_181AD94E5:
+		                                            throw new System.IndexOutOfRangeException()
+
+		                                            if (remoteEndPoint7 == 0)
+                                                        goto INSN_181AD9510
+                                                    endif
+
+		                                            if (local241 == 0)
+                                                        goto INSN_181ADC13D
+                                                    endif
+
+		                                            INSN_181AD9510:
+		                                            throw new System.IndexOutOfRangeException()
+
+		                                            if (" preauthenticated from endpoint " == 0)
+                                                        goto INSN_181AD954B
+                                                    endif
+
+		                                            if (local243 == 0)
+                                                        goto INSN_181ADC14C
+                                                    endif
+
+		                                            INSN_181AD954B:
+		                                            throw new System.IndexOutOfRangeException()
+
+		                                            if (hashCode == 0)
+                                                        goto INSN_181AD9575
+                                                    endif
+
+		                                            if (local245 == 0)
+                                                        goto INSN_181ADC15B
+                                                    endif
+
+		                                            INSN_181AD9575:
+		                                            throw new System.IndexOutOfRangeException()
+
+		                                            if ("." == 0)
+                                                        goto INSN_181AD95B0
+                                                    endif
+
+		                                            if (local247 == 0)
+                                                        goto INSN_181ADC16A
+                                                    endif
+
+		                                            INSN_181AD95B0:
+		                                            throw new System.IndexOutOfRangeException()
+
+		                                            System.String string11 = System.String.Concat(local236) //(String[] values)
+		                                            System.Int32 7 = 7
+
+		                                            ServerConsole.AddLog(string11, 7) //(String q, ConsoleColor color)
+
+		                                            System.String string12 = System.String.Concat()
+		                                            System.Int64 local256 = 1
+
+		                                            ServerLogs.AddLog()
+		                                            ulong local257 = 0
+
+		                                            CustomLiteNetLib4MirrorTransport.PreauthDisableIdleMode()
+
+		                                            INSN_181AD9677:
+		                                            System.Int64 local258 = 5
+		                                            System.String[] local259 = new System.String[5]
+
+		                                            if ("Player " == 0)
+                                                        goto INSN_181AD96F5
+                                                    endif
+
+		                                            if (local259 == 0)
+                                                        goto INSN_181ADC192
+                                                    endif
+
+		                                            INSN_181AD96F5:
+		                                            throw new System.IndexOutOfRangeException()
+
+		                                            if (remoteEndPoint7 == 0)
+                                                        goto INSN_181AD9720
+                                                    endif
+
+		                                            if (local261 == 0)
+                                                        goto INSN_181ADC1A1
+                                                    endif
+
+		                                            INSN_181AD9720:
+		                                            throw new System.IndexOutOfRangeException()
+
+		                                            if (" tried joined from endpoint " == 0)
+                                                        goto INSN_181AD975B
+                                                    endif
+
+		                                            if (local263 == 0)
+                                                        goto INSN_181ADC1B0
+                                                    endif
+
+		                                            INSN_181AD975B:
+		                                            throw new System.IndexOutOfRangeException()
+
+		                                            if (hashCode == 0)
+                                                        goto INSN_181AD9785
+                                                    endif
+
+		                                            if (local265 == 0)
+                                                        goto INSN_181ADC1BF
+                                                    endif
+
+		                                            INSN_181AD9785:
+		                                            throw new System.IndexOutOfRangeException()
+
+		                                            if (", but is not whitelisted." == 0)
+                                                        goto INSN_181AD97C0
+                                                    endif
+
+		                                            if (local267 == 0)
+                                                        goto INSN_181ADC1CE
+                                                    endif
+
+		                                            INSN_181AD97C0:
+		                                            throw new System.IndexOutOfRangeException()
+
+		                                            System.String string13 = System.String.Concat(local259) //(String[] values)
+		                                            System.Int32 7 = 7
+
+		                                            ServerConsole.AddLog(string13, 7) //(String q, ConsoleColor color)
+		                                            LiteNetLib.Utils.NetDataWriter requestWriter13 = CustomLiteNetLib4MirrorTransport.RequestWriter
+
+		                                            requestWriter13.Reset()
+		                                            LiteNetLib.Utils.NetDataWriter requestWriter14 = CustomLiteNetLib4MirrorTransport.RequestWriter
+		                                            System.Int64 local277 = 7
+
+		                                            requestWriter14.Put(local277) //(SByte value)
+		                                            LiteNetLib.Utils.NetDataWriter requestWriter15 = CustomLiteNetLib4MirrorTransport.RequestWriter
+
+		                                            request.Reject(requestWriter15) //(NetDataWriter rejectData)
+		                                            ulong local280 = 0
+
+		                                            CustomLiteNetLib4MirrorTransport.ResetIdleMode()
+
+		                                            INSN_181AD9893:
+		                                            System.Int64 local281 = 5
+		                                            System.String[] local282 = new System.String[5]
+
+		                                            if ("Player " == 0)
+                                                        goto INSN_181AD9911
+                                                    endif
+
+		                                            if (local282 == 0)
+                                                        goto INSN_181ADC1EC
+                                                    endif
+
+		                                            INSN_181AD9911:
+		                                            throw new System.IndexOutOfRangeException()
+
+		                                            if (remoteEndPoint7 == 0)
+                                                        goto INSN_181AD993C
+                                                    endif
+
+		                                            if (local284 == 0)
+                                                        goto INSN_181ADC1FB
+                                                    endif
+
+		                                            INSN_181AD993C:
+		                                            throw new System.IndexOutOfRangeException()
+
+		                                            if (" (" == 0)
+                                                        goto INSN_181AD9977
+                                                    endif
+
+		                                            if (local286 == 0)
+                                                        goto INSN_181ADC20A
+                                                    endif
+
+		                                            INSN_181AD9977:
+		                                            throw new System.IndexOutOfRangeException()
+
+		                                            if (hashCode == 0)
+                                                        goto INSN_181AD99A1
+                                                    endif
+
+		                                            if (local288 == 0)
+                                                        goto INSN_181ADC219
+                                                    endif
+
+		                                            INSN_181AD99A1:
+		                                            throw new System.IndexOutOfRangeException()
+
+		                                            if (") kicked due to auth rejection by central server." == 0)
+                                                        goto INSN_181AD99DC
+                                                    endif
+
+		                                            if (local290 == 0)
+                                                        goto INSN_181ADC228
+                                                    endif
+
+		                                            INSN_181AD99DC:
+		                                            throw new System.IndexOutOfRangeException()
+
+		                                            System.String string14 = System.String.Concat(local282) //(String[] values)
+		                                            System.Int32 7 = 7
+
+		                                            ServerConsole.AddLog(string14, 7) //(String q, ConsoleColor color)
+		                                            LiteNetLib.Utils.NetDataWriter requestWriter16 = CustomLiteNetLib4MirrorTransport.RequestWriter
+
+		                                            requestWriter16.Reset()
+		                                            LiteNetLib.Utils.NetDataWriter requestWriter17 = CustomLiteNetLib4MirrorTransport.RequestWriter
+		                                            System.Int64 local300 = 20
+
+		                                            requestWriter17.Put(local300) //(SByte value)
+		                                            LiteNetLib.Utils.NetDataWriter requestWriter18 = CustomLiteNetLib4MirrorTransport.RequestWriter
+
+		                                            request.Reject(requestWriter18) //(NetDataWriter rejectData)
+		                                            ulong local303 = 0
+
+		                                            CustomLiteNetLib4MirrorTransport.ResetIdleMode()
+
+		                                            INSN_181AD9AAF:
+		                                            System.UInt32 rejectionThreshold3 = CustomLiteNetLib4MirrorTransport.RejectionThreshold
+		                                            . = 1
+		                                            System.Int64 local305 = 8
+		                                            System.String[] local306 = new System.String[8]
+		                                            string local307 = local2 == 0 ? "Player" : "Banned player"
+
+		                                            if (local307 == 0)
+                                                        goto INSN_181AD9BD4
+                                                    endif
+
+		                                            if (local306 == 0)
+                                                        goto INSN_181ADC246
+                                                    endif
+
+		                                            INSN_181AD9BD4:
+		                                            throw new System.IndexOutOfRangeException()
+
+		                                            if (" " == 0)
+                                                        goto INSN_181AD9C0C
+                                                    endif
+
+		                                            if (" " == 0)
+                                                        goto INSN_181ADC255
+                                                    endif
+
+		                                            INSN_181AD9C0C:
+		                                            local306[1] = " "
+
+		                                            if (local307 == 0)
+                                                        goto INSN_181AD9C46
+                                                    endif
+
+		                                            if (" " == 0)
+                                                        goto INSN_181ADC273
+                                                    endif
+
+		                                            INSN_181AD9C46:
+		                                            local306[2] = local307
+
+		                                            if (" tried to connect from " == 0)
+                                                        goto INSN_181AD9C8A
+                                                    endif
+
+		                                            if (" tried to connect from " == 0)
+                                                        goto INSN_181ADC291
+                                                    endif
+
+		                                            INSN_181AD9C8A:
+		                                            local306[3] = " tried to connect from "
+		                                            string local307 =  == 0 ? "" : "banned "
+
+		                                            if (local307 == 0)
+                                                        goto INSN_181AD9CD2
+                                                    endif
+
+		                                            if (" tried to connect from " == 0)
+                                                        goto INSN_181ADC2AF
+                                                    endif
+
+		                                            INSN_181AD9CD2:
+		                                            throw new System.IndexOutOfRangeException()
+
+		                                            if (" endpoint " == 0)
+                                                        goto INSN_181AD9D0D
+                                                    endif
+
+		                                            if (" endpoint " == 0)
+                                                        goto INSN_181ADC2BE
+                                                    endif
+
+		                                            INSN_181AD9D0D:
+		                                            local306[5] = " endpoint "
+
+		                                            if (hashCode == 0)
+                                                        goto INSN_181AD9D43
+                                                    endif
+
+		                                            if (" endpoint " == 0)
+                                                        goto INSN_181ADC2DC
+                                                    endif
+
+		                                            INSN_181AD9D43:
+		                                            local306[6] = hashCode
+
+		                                            if ("." == 0)
+                                                        goto INSN_181AD9D87
+                                                    endif
+
+		                                            if ("." == 0)
+                                                        goto INSN_181ADC2FA
+                                                    endif
+
+		                                            INSN_181AD9D87:
+		                                            local306[7] = "."
+
+		                                            System.String string15 = System.String.Concat(local306) //(String[] values)
+		                                            System.Int32 7 = 7
+
+		                                            ServerConsole.AddLog(string15, 7) //(String q, ConsoleColor color)
+		                                            System.Int64 local315 = 8
+		                                            System.String[] local316 = new System.String[8]
+		                                            string local307 = local2 == 0 ? "Player" : "Banned player"
+
+		                                            if (local307 == 0)
+                                                        goto INSN_181AD9E26
+                                                    endif
+
+		                                            if (local316 == 0)
+                                                        goto INSN_181ADC318
+                                                    endif
+
+		                                            INSN_181AD9E26:
+		                                            throw new System.IndexOutOfRangeException()
+
+		                                            if (" " == 0)
+                                                        goto INSN_181AD9E5E
+                                                    endif
+
+		                                            if (" " == 0)
+                                                        goto INSN_181ADC327
+                                                    endif
+
+		                                            INSN_181AD9E5E:
+		                                            local316[1] = " "
+
+		                                            if (local307 == 0)
+                                                        goto INSN_181AD9E98
+                                                    endif
+
+		                                            if (" " == 0)
+                                                        goto INSN_181ADC345
+                                                    endif
+
+		                                            INSN_181AD9E98:
+		                                            local316[2] = local307
+
+		                                            if (" tried to connect from " == 0)
+                                                        goto INSN_181AD9EDC
+                                                    endif
+
+		                                            if (" tried to connect from " == 0)
+                                                        goto INSN_181ADC363
+                                                    endif
+
+		                                            INSN_181AD9EDC:
+		                                            local316[3] = " tried to connect from "
+		                                            string local307 =  == 0 ? "" : "banned "
+
+		                                            if (local307 == 0)
+                                                        goto INSN_181AD9F24
+                                                    endif
+
+		                                            if (" tried to connect from " == 0)
+                                                        goto INSN_181ADC381
+                                                    endif
+
+		                                            INSN_181AD9F24:
+		                                            throw new System.IndexOutOfRangeException()
+
+		                                            if (" endpoint " == 0)
+                                                        goto INSN_181AD9F5F
+                                                    endif
+
+		                                            if (" endpoint " == 0)
+                                                        goto INSN_181ADC390
+                                                    endif
+
+		                                            INSN_181AD9F5F:
+		                                            local316[5] = " endpoint "
+
+		                                            if (hashCode == 0)
+                                                        goto INSN_181AD9F95
+                                                    endif
+
+		                                            if (" endpoint " == 0)
+                                                        goto INSN_181ADC3AE
+                                                    endif
+
+		                                            INSN_181AD9F95:
+		                                            local316[6] = hashCode
+
+		                                            if ("." == 0)
+                                                        goto INSN_181AD9FD9
+                                                    endif
+
+		                                            if (" endpoint " == 0)
+                                                        goto INSN_181ADC3CC
+                                                    endif
+
+		                                            INSN_181AD9FD9:
+		                                            throw new System.IndexOutOfRangeException()
+
+		                                            System.String string16 = System.String.Concat(local316) //(String[] values)
+		                                            System.Int64 local328 = 1
+
+		                                            ServerLogs.AddLog()
+
+
+Generated IL:
+	IL Generation Skipped due to invalid local item of type TValue
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomLiteNetLib4MirrorTransport
+	static System.Boolean CheckIpRateLimit(LiteNetLib.ConnectionRequest request)
+		System.Collections.Generic.HashSet`1<System.Net.IPAddress> ipRateLimit = CustomLiteNetLib4MirrorTransport.IpRateLimit
+		System.Net.IPEndPoint remoteEndPoint = request.RemoteEndPoint
+		System.Net.IPAddress m_Address = remoteEndPoint.m_Address
+
+		System.Boolean boolean = ipRateLimit.Contains(m_Address) //(T item)
+
+		if (boolean == False)
+		    System.Net.IPEndPoint remoteEndPoint2 = request.RemoteEndPoint
+		    System.Collections.Generic.HashSet`1<System.Net.IPAddress> ipRateLimit2 = CustomLiteNetLib4MirrorTransport.IpRateLimit
+		    System.Net.IPAddress m_Address2 = remoteEndPoint2.m_Address
+
+		    System.Boolean boolean2 = ipRateLimit2.Add(m_Address2) //(T item)
+		    return True
+		endif
+        
+		System.UInt32 rejectionThreshold = CustomLiteNetLib4MirrorTransport.RejectionThreshold
+		. = 1
+		System.Net.IPEndPoint remoteEndPoint3 = request.RemoteEndPoint
+
+		System.String string = System.String.Format("Incoming connection from endpoint {0} rejected due to exceeding the rate limit.", remoteEndPoint3) //(String format, Object arg0)
+		System.Int32 7 = 7
+
+		ServerConsole.AddLog(string, 7) //(String q, ConsoleColor color)
+		System.Net.IPEndPoint remoteEndPoint4 = request.RemoteEndPoint
+
+		System.String string2 = System.String.Format("Incoming connection from endpoint {0} rejected due to exceeding the rate limit.", remoteEndPoint4) //(String format, Object arg0)
+		ulong local17 = 0
+
+		ServerLogs.AddLog(1, string2, 6, local17) //(Modules module, String msg, ServerLogType type, Boolean init)
+		LiteNetLib.Utils.NetDataWriter requestWriter = CustomLiteNetLib4MirrorTransport.RequestWriter
+
+		requestWriter.Reset()
+		LiteNetLib.Utils.NetDataWriter requestWriter2 = CustomLiteNetLib4MirrorTransport.RequestWriter
+
+		requestWriter2.Put({'12' (constant value of type System.SByte)}) //(SByte value)
+		LiteNetLib.Utils.NetDataWriter requestWriter3 = CustomLiteNetLib4MirrorTransport.RequestWriter
+
+		request.RejectForce(requestWriter3) //(NetDataWriter rejectData)
+		ulong local25 = 0
+		return local25
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ImmediateToFieldAction at (0x181AD5F40) is corrupt (Instance or field is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomLiteNetLib4MirrorTransport
+	System.Void GetConnectData(LiteNetLib.Utils.NetDataWriter writer)
+		ulong local4 = 0
+
+		writer.Put(local4) //(SByte value)
+		System.Byte major = GameCore.Version.Major
+
+		writer.Put(major) //(SByte value)
+		System.Byte minor = GameCore.Version.Minor
+
+		writer.Put(minor) //(SByte value)
+		System.Byte revision = GameCore.Version.Revision
+
+		writer.Put(revision) //(SByte value)
+		System.Boolean backwardCompatibility = GameCore.Version.BackwardCompatibility
+
+		writer.Put(backwardCompatibility) //(Boolean value)
+		System.Byte backwardRevision = GameCore.Version.BackwardRevision
+
+		writer.Put(backwardRevision) //(SByte value)
+		ulong local16 = 0
+
+		writer.Put(local16) //(Int32 value)
+		System.Byte[] emptyByte = CustomLiteNetLib4MirrorTransport.EmptyByte
+
+		writer.Put(emptyByte) //(Byte[] data)
+
+		if ( != 2)
+
+		    if ( == 0)
+		    endif
+            
+		      = writer.
+		    . = 0
+		    System.Object[] local19 = new System.Object[4]
+
+		    if ("Response sent. ID: " == 0)
+                goto INSN_181AD62D0
+            endif
+
+		    if ("Response sent. ID: " == 0)
+                goto INSN_181AD6803
+            endif
+
+		    INSN_181AD62D0:
+		    local19[0] = "Response sent. ID: "
+		    System.Int32 clientChallengeId = CustomLiteNetLib4MirrorTransport.clientChallengeId
+
+		    if (clientChallengeId == 0)
+                goto INSN_181AD6338
+            endif
+
+		    if (clientChallengeId == 0)
+                goto INSN_181AD6823
+            endif
+
+		    INSN_181AD6338:
+		    local19[1] = clientChallengeId
+
+		    if (", Response length: " == 0)
+                goto INSN_181AD637C
+            endif
+
+		    if (", Response length: " == 0)
+                goto INSN_181AD6843
+            endif
+
+		    INSN_181AD637C:
+		    local19[2] = ", Response length: "
+		    System.Byte[] clientChallengeResponse = CustomLiteNetLib4MirrorTransport.clientChallengeResponse
+		    System.Int32 length = clientChallengeResponse.Length
+
+		    if (length == 0)
+                goto INSN_181AD6424
+            endif
+
+		    if (length == 0)
+                goto INSN_181AD6863
+            endif
+
+		    INSN_181AD6424:
+		    local19[3] = length
+
+		    System.String string = System.String.Concat(local19) //(Object[] args)
+
+		    UnityEngine.Color green = UnityEngine.Color.green
+
+		    GameCore.Console.AddLog()
+		    System.Int32 clientChallengeId2 = CustomLiteNetLib4MirrorTransport.clientChallengeId
+
+		    writer.Put(clientChallengeId2) //(Int32 value)
+		    System.Byte[] clientChallengeResponse2 = CustomLiteNetLib4MirrorTransport.clientChallengeResponse
+
+		    writer.PutBytesWithLength(clientChallengeResponse2) //(Byte[] data)
+		    System.String empty = System.String.Empty
+
+		    writer.Put(empty) //(String value)
+		    return
+
+		    if ( == 2)
+                goto INSN_181AD65CB
+            endif
+
+		    if ( != 0)
+                goto INSN_181AD65CB
+            endif
+
+		    INSN_181AD65CB:
+		    CentralAuthPreauthToken PreauthToken = CentralAuthManager.<PreauthToken>k__BackingField
+
+		    writer.Put()
+		      = .
+
+		    writer.Put()
+		    CentralAuthPreauthToken PreauthToken2 = CentralAuthManager.<PreauthToken>k__BackingField
+
+		    writer.Put()
+		      = .
+
+		    writer.Put()
+
+		    System.Byte[] byteArray = System.Convert.FromBase64String()
+
+		    writer.PutBytesWithLength(byteArray) //(Byte[] data)
+		    throw new System.NullReferenceException()
+
+		    INSN_181AD6803:
+
+		    INSN_181AD6823:
+
+		    INSN_181AD6843:
+
+		    INSN_181AD6863:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfZeroOrNullAction at (0x181AD6263) is corrupt (One of the arguments is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomLiteNetLib4MirrorTransport
+	System.Void OnConncetionRefused(LiteNetLib.DisconnectInfo disconnectinfo)
+
+		[instruction error - managed method being called is null]
+
+		if ( == 0)
+		    . = 0
+		    . = 0
+		    return
+		endif
+        
+		CustomLiteNetLib4MirrorTransport.LastRejectionReason = 
+
+		if (constant24 != 6)
+            goto INSN_181AD6ADD
+        endif
+		. = 0
+		 += 120
+
+		System.Boolean boolean = .TryGetLong()
+
+		if (boolean != False)
+            goto INSN_181AD6A32
+        endif
+		ulong local5 = 0
+		CustomLiteNetLib4MirrorTransport.LastBanExpiration = local5
+
+		INSN_181AD6A32:
+		 += 96
+
+		System.Boolean boolean2 = .TryGetString()
+
+		if (boolean2 == False)
+		    System.String empty = System.String.Empty
+		     += 96
+		    CustomLiteNetLib4MirrorTransport.RequestWriter = empty
+
+		    INSN_181AD6ADD:
+
+		    if (CustomLiteNetLib4MirrorTransport != 10)
+                goto INSN_181AD6B40
+            endif
+		    . = 0
+
+		    INSN_181AD6B40:
+
+		    if (CustomLiteNetLib4MirrorTransport == 0)
+                goto INSN_181AD70A6
+            endif
+
+		    if (CustomLiteNetLib4MirrorTransport == 0)
+                goto INSN_181AD706B
+            endif
+
+		    if (CustomLiteNetLib4MirrorTransport == 0)
+                goto INSN_181AD706B
+            endif
+
+		    if (CustomLiteNetLib4MirrorTransport == 0)
+                goto INSN_181AD6D31
+            endif
+
+		    if (CustomLiteNetLib4MirrorTransport != 1)
+                goto INSN_181AD706B
+            endif
+		    . = 0
+
+		    [instruction error - managed method being called is null]
+
+		    if (constant84 != 0)
+
+		        if ( > 0)
+		            . = 1
+
+		            System.String string = System.String.Concat()
+		            ulong local12 = 0
+
+		            UnityEngine.Color cyan = UnityEngine.Color.cyan
+		            ulong local14 = 0
+		            ulong local15 = 0
+		            System.Int32 1 = 1
+
+		            GameCore.Console.AddLog(string, local12, local15, 1) //(String text, Color c, Boolean nospace, ConsoleLogType type)
+
+		            if (string <= 25)
+                        goto INSN_181AD6CE9
+                    endif
+
+		            UnityEngine.Color magenta = UnityEngine.Color.magenta
+
+		            GameCore.Console.AddLog()
+
+		            INSN_181AD6CE9:
+		            System.Int64 local21 = 1
+		            CustomNetworkManager.triggerReconnectTime = constant83
+
+		            RoundRestarting.RoundRestart.ChangeLevel(local21) //(Boolean noShutdownMessage)
+
+		            INSN_181AD6D31:
+		            Mirror.LiteNetLib4Mirror.LiteNetLib4MirrorTransport singleton = Mirror.LiteNetLib4Mirror.LiteNetLib4MirrorTransport.Singleton
+
+		            System.Boolean boolean3 = .TryGetUShort()
+
+		            if (boolean3 != False)
+		                Mirror.LiteNetLib4Mirror.LiteNetLib4MirrorTransport singleton2 = Mirror.LiteNetLib4Mirror.LiteNetLib4MirrorTransport.Singleton
+		                singleton2.reconnectDelay = 600
+		                Mirror.LiteNetLib4Mirror.LiteNetLib4MirrorTransport singleton3 = Mirror.LiteNetLib4Mirror.LiteNetLib4MirrorTransport.Singleton
+		                singleton3.maxConnectAttempts = 3
+		                . = 1
+		                . = 1036831949
+		                Mirror.LiteNetLib4Mirror.LiteNetLib4MirrorTransport singleton4 = Mirror.LiteNetLib4Mirror.LiteNetLib4MirrorTransport.Singleton
+		                local29 = port
+
+		                System.String string2 = System.String.Concat("Connection has been redirected to port (Redirect handshake code) ", local29) //(Object arg0, Object arg1)
+		                ulong local32 = 0
+
+		                UnityEngine.Color cyan2 = UnityEngine.Color.cyan
+		                ulong local34 = 0
+		                ulong local35 = 0
+		                System.Int32 1 = 1
+
+		                GameCore.Console.AddLog(string2, local32, local35, 1) //(String text, Color c, Boolean nospace, ConsoleLogType type)
+		                ulong local36 = 0
+		                . = 0
+
+		                UnityEngine.Color magenta2 = UnityEngine.Color.magenta
+		                ulong local38 = 0
+		                ulong local39 = 0
+		                System.Int32 1 = 1
+
+		                GameCore.Console.AddLog("Limit of redirections has been exceeded.", local36, local39, 1) //(String text, Color c, Boolean nospace, ConsoleLogType type)
+		                CustomLiteNetLib4MirrorTransport._redirectCounter = local38
+		                . = 4
+
+		                INSN_181AD706B:
+		                . = 0
+
+		                INSN_181AD70A6:
+		                . = 0
+
+		                [instruction error - managed method being called is null]
+
+		                if (constant227 == 0)
+                            goto INSN_181AD7393
+                        endif
+		                 += 168
+
+		                System.Boolean boolean4 = .TryGetInt()
+
+		                if (boolean4 == False)
+                            goto INSN_181AD7393
+                        endif
+		                CustomLiteNetLib4MirrorTransport.clientChallengeType = local38
+		                ChallengeType clientChallengeType = CustomLiteNetLib4MirrorTransport.clientChallengeType
+
+		                if (clientChallengeType != constant249)
+                            goto INSN_181AD7245
+                        endif
+		                 += 192
+
+		                System.Boolean boolean5 = .TryGetBytesWithLength()
+
+		                if (boolean5 != False)
+		                    . = 2
+
+		                    INSN_181AD7245:
+
+		                    if (constant265 <= 1)
+		                         += 184
+
+		                        System.Boolean boolean6 = .TryGetBytesWithLength()
+
+		                        if (boolean6 != False)
+		                             += 174
+
+		                            System.Boolean boolean7 = .TryGetUShort()
+
+		                            if (boolean7 != False)
+		                                 += 176
+
+		                                System.Boolean boolean8 = .TryGetBytesWithLength()
+
+		                                if (boolean8 != False)
+		                                    . = 1
+
+		                                    INSN_181AD7393:
+		                                    . = 4
+		                                    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181AD68EE) is corrupt (Don't know what method is being called) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomLiteNetLib4MirrorTransport
+	static System.Void ResetRedirectCounter()
+		. = 0
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ImmediateToFieldAction at (0x181ADC92E) is corrupt (Instance or field is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomLiteNetLib4MirrorTransport
+	static System.Void ProcessChallenge()
+		ulong local0 = 0
+		System.Int64 local2 = 250
+
+		System.Threading.Thread.Sleep(local2) //(Int32 millisecondsTimeout)
+		System.Byte[] clientChallengeBase = CustomLiteNetLib4MirrorTransport.clientChallengeBase
+		System.Int32 length = clientChallengeBase.Length
+		System.UInt16 clientChallengeSecretLen = CustomLiteNetLib4MirrorTransport.clientChallengeSecretLen
+		clientChallengeSecretLen += length
+		System.Byte[] local6 = new System.Byte[clientChallengeSecretLen]
+		System.Byte[] clientChallengeBase2 = CustomLiteNetLib4MirrorTransport.clientChallengeBase
+
+		System.Array.Copy(clientChallengeBase2, local6, length) //(Array sourceArray, Array destinationArray, Int32 length)
+
+		UnityEngine.Debug.Log("Processing server challenge...") //(Object message)
+		System.Byte local11 = local6[length]
+
+		if (local11 != constant35)
+		    local11 += 1
+		    length. = local11
+		else
+		    System.Int32 local12 = length + 1
+		    length. = local0
+
+		    if (local12 >= clientChallengeSecretLen)
+                goto INSN_181AD76CE
+            endif
+		    System.Byte local13 = local6[local12]
+
+		    if (local13 == constant36)
+		        local12 += 1
+		        local12. = local0
+		    else
+		        local13 += 1
+		        local12. = local13
+		    endif
+            
+		    ulong local14 = 0
+		endif
+        
+
+		System.String string = System.BitConverter.ToString(local6) //(Byte[] value)
+
+		System.String string2 = string.Replace("-", "") //(String oldValue, String newValue)
+
+		System.String string3 = System.String.Concat("PROC: ", string2) //(String str0, String str1)
+
+		UnityEngine.Debug.Log(string3) //(Object message)
+
+		if (local14 != 0)
+            goto INSN_181AD77F6
+        endif
+
+		System.Byte[] byteArray = Cryptography.Sha.Sha1(local6) //(Byte[] message)
+		System.Byte[] clientChallenge = CustomLiteNetLib4MirrorTransport.clientChallenge
+
+		System.Boolean boolean = System.Linq.Enumerable.SequenceEqual<System.Byte>(byteArray, clientChallenge) //(IEnumerable`1 first, IEnumerable`1 second)
+
+		if (boolean != False)
+
+		    System.Byte[] byteArray2 = Cryptography.Md.Md5(byteArray) //(Byte[] message)
+
+		    INSN_181AD77F6:
+
+		    UnityEngine.Debug.Log("Failed to process server challenge - allChecked.") //(Object message)
+
+		    UnityEngine.Debug.Log("Server challenge processed.") //(Object message)
+		    System.UInt16 clientChallengeSecretLen2 = CustomLiteNetLib4MirrorTransport.clientChallengeSecretLen
+		    System.Byte[] local30 = new System.Byte[clientChallengeSecretLen2]
+		     += 192
+		    CustomLiteNetLib4MirrorTransport.RequestWriter = local30
+		    System.Byte[] clientChallengeBase3 = CustomLiteNetLib4MirrorTransport.clientChallengeBase
+		    System.UInt16 clientChallengeSecretLen3 = CustomLiteNetLib4MirrorTransport.clientChallengeSecretLen
+		    ulong local33 = 0
+		    System.Int32 length2 = clientChallengeBase3.Length
+		    System.Byte[] clientChallengeResponse = CustomLiteNetLib4MirrorTransport.clientChallengeResponse
+
+		    System.Array.Copy(local6, length2, clientChallengeResponse, local33, clientChallengeSecretLen3) //(Array sourceArray, Int32 sourceIndex, Array destinationArray, Int32 destinationIndex, Int32 length)
+		    . = 2
+		    throw new System.IndexOutOfRangeException()
+
+
+Generated IL:
+	Don't know how to write IL for Cpp2IL.Core.Analysis.Actions.x86.Important.RegOffsetArrayValueReadRegToRegAction. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomLiteNetLib4MirrorTransport
+	static System.Void ResetIdleMode()
+		LiteNetLib.NetManager Host = Mirror.LiteNetLib4Mirror.LiteNetLib4MirrorCore.<Host>k__BackingField
+
+		System.Int32 connectedPeersCount = Host.ConnectedPeersCount
+
+		if (connectedPeersCount == 0)
+
+		    IdleMode.SetIdleMode(True) //(Boolean state)
+		    return
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldsfld LiteNetLib.NetManager Mirror.LiteNetLib4Mirror.LiteNetLib4MirrorCore::<Host>k__BackingField
+	IL_0005: call System.Int32 LiteNetLib.NetManager::get_ConnectedPeersCount()
+	IL_000a: ldc.i4.0
+	IL_000b: bne.un.s IL_0014
+	IL_000d: ldc.i4.1
+	IL_000e: call System.Void IdleMode::SetIdleMode(System.Boolean)
+	IL_0013: ret
+	IL_0014: ret
+	IL_0015: newobj System.Void System.NullReferenceException::.ctor()
+	IL_001a: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomLiteNetLib4MirrorTransport
+	static System.Void PreauthDisableIdleMode()
+		System.Diagnostics.Stopwatch preauthStopwatch = IdleMode.PreauthStopwatch
+
+		preauthStopwatch.Restart()
+		ulong local3 = 0
+
+		IdleMode.SetIdleMode(local3) //(Boolean state)
+		return
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldsfld System.Diagnostics.Stopwatch IdleMode::PreauthStopwatch
+	IL_0005: call System.Void System.Diagnostics.Stopwatch::Restart()
+	IL_000a: ldc.i4.0
+	IL_000b: call System.Void IdleMode::SetIdleMode(System.Boolean)
+	IL_0010: ret
+	IL_0011: ret
+	IL_0012: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0017: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomLiteNetLib4MirrorTransport
+	static System.Void ReloadChallengeOptions()
+		YamlConfig serverConfig = GameCore.ConfigFile.ServerConfig
+
+		System.Boolean bool = serverConfig.GetBool("preauth_challenge", True) //(String key, Boolean def)
+		CustomLiteNetLib4MirrorTransport.UseChallenge = bool
+		YamlConfig serverConfig2 = GameCore.ConfigFile.ServerConfig
+
+		System.UInt16 uShort = serverConfig2.GetUShort("preauth_challenge_base_length", {'16' (constant value of type System.UInt16)}) //(String key, UInt16 def)
+		CustomLiteNetLib4MirrorTransport.ChallengeInitLen = uShort
+		YamlConfig serverConfig3 = GameCore.ConfigFile.ServerConfig
+
+		System.UInt16 uShort2 = serverConfig3.GetUShort("preauth_challenge_secret_length", {'5' (constant value of type System.UInt16)}) //(String key, UInt16 def)
+		CustomLiteNetLib4MirrorTransport.ChallengeSecretLen = uShort2
+		YamlConfig serverConfig4 = GameCore.ConfigFile.ServerConfig
+
+		System.String string = serverConfig4.GetString("preauth_challenge_mode", "reply") //(String key, String def)
+
+		System.String string2 = string.ToLower()
+
+		System.Boolean boolean = System.String.Equals(string2, "md5") //(String a, String b)
+
+		if (boolean != False)
+		    . = 1
+		    return
+		endif
+        
+
+		System.Boolean boolean2 = System.String.Equals(string2, "sha1") //(String a, String b)
+
+		if (boolean2 == False)
+            goto INSN_181ADC7A5
+        endif
+		. = 2
+		return
+
+		INSN_181ADC7A5:
+		. = 0
+		ulong local18 = 0
+		CustomLiteNetLib4MirrorTransport.ChallengeSecretLen = local18
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181ADC65F) is corrupt (ConstantDefinition: Don't know how to get IL to load a System.UInt16) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomLiteNetLib4MirrorTransport
+	System.Void .ctor()
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void Mirror.LiteNetLib4Mirror.LiteNetLib4MirrorTransport::.ctor()
+	IL_0006: ret
+	
+

@@ -1,0 +1,170 @@
+Type: Invisible
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomPlayerEffects.Invisible
+	CustomPlayerEffects.StatusEffectBase/EffectClassification get_Classification()
+		return 2
+
+
+Generated IL:
+	IL_0000: ldc.i4.2
+	IL_0001: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomPlayerEffects.Invisible
+	System.String get_DisplayName()
+		return "Invisibility"
+
+
+Generated IL:
+	IL_0000: ldstr "Invisibility"
+	IL_0005: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomPlayerEffects.Invisible
+	System.Boolean get_CanBeDisplayed()
+		return True
+
+
+Generated IL:
+	IL_0000: ldc.i4.1
+	IL_0001: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomPlayerEffects.Invisible
+	System.Boolean GetSpectatorText(System.String& s)
+		s. = "SCP-268"
+		return True
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.RegToFieldAction at (0x181AFAB7E) is corrupt (Instance or field is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomPlayerEffects.Invisible
+	System.Void Enabled()
+
+		this.PlaySound(True) //(Boolean isEnabled)
+		this._wasEverActive = True
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldc.i4.1
+	IL_0002: call System.Void CustomPlayerEffects.Invisible::PlaySound(System.Boolean)
+	IL_0007: ldarg.0
+	IL_0008: ldc.i4.1
+	IL_0009: stfld System.Boolean CustomPlayerEffects.Invisible::_wasEverActive
+	IL_000e: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomPlayerEffects.Invisible
+	System.Void Disabled()
+
+		if (this._wasEverActive != False)
+		    ulong local2 = 0
+
+		    this.PlaySound(local2) //(Boolean isEnabled)
+		    return
+		endif
+        
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Boolean CustomPlayerEffects.Invisible::_wasEverActive
+	IL_0006: ldc.i4.0
+	IL_0007: beq.s IL_0013
+	IL_0009: ldc.i4.0
+	IL_000a: stloc.0
+	IL_000b: ldarg.0
+	IL_000c: ldloc.0
+	IL_000d: call System.Void CustomPlayerEffects.Invisible::PlaySound(System.Boolean)
+	IL_0012: ret
+	IL_0013: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomPlayerEffects.Invisible
+	System.Void PlaySound(System.Boolean isEnabled)
+		ReferenceHub Hub = this.<Hub>k__BackingField
+
+		System.Boolean isLocalPlayer = Hub.isLocalPlayer
+
+		if (isLocalPlayer == False)
+		    ReferenceHub Hub2 = this.<Hub>k__BackingField
+
+		    System.Boolean isLocallySpectated = PlayerRoles.Spectating.SpectatorNetworking.IsLocallySpectated(Hub2) //(ReferenceHub target)
+
+		    if (isLocallySpectated == False)
+                goto INSN_181AFAC6D
+            endif
+		endif
+        
+
+		if (isEnabled == False)
+            goto INSN_181AFABFD
+        endif
+
+		INSN_181AFABFD:
+		UnityEngine.AudioClip _sfxDisable = this._sfxDisable
+		ReferenceHub Hub3 = this.<Hub>k__BackingField
+
+		UnityEngine.Transform transform = Hub3.transform
+		ulong local13 = 0
+		ulong local14 = 0
+
+		UnityEngine.AudioSource audioSource = AudioPooling.AudioSourcePoolManager.PlaySound()
+
+		INSN_181AFAC6D:
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181AFAC68) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (8)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomPlayerEffects.Invisible
+	System.Void .ctor()
+		this.<MaxIntensity>k__BackingField = 255
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldc.i4 255
+	IL_0006: conv.i8
+	IL_0007: conv.u8
+	IL_0008: stfld System.Byte CustomPlayerEffects.StatusEffectBase::<MaxIntensity>k__BackingField
+	IL_000d: ldarg.0
+	IL_000e: call System.Void UnityEngine.MonoBehaviour::.ctor()
+	IL_0013: ret
+	
+

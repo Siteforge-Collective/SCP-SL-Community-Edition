@@ -1,0 +1,162 @@
+Type: CrosshairController
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Crosshairs.CrosshairController
+	System.Void Start()
+		System.Action`3<ReferenceHub,InventorySystem.Items.ItemIdentifier,InventorySystem.Items.ItemIdentifier> action = new System.Action`3<ReferenceHub,InventorySystem.Items.ItemIdentifier,InventorySystem.Items.ItemIdentifier>()
+		ulong local2 = 0
+
+		action..ctor(local2, {'OnItemChanged' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		InventorySystem.Inventory.add_OnCurrentItemChanged(action) //(Action`3 value)
+		InventorySystem.Crosshairs.CrosshairController._singleton = this
+
+
+Generated IL:
+	IL_0000: ldloc.1
+	IL_0001: ldftn System.Void InventorySystem.Crosshairs.CrosshairController::OnItemChanged(ReferenceHub,InventorySystem.Items.ItemIdentifier,InventorySystem.Items.ItemIdentifier)
+	IL_0007: newobj System.Void System.Action`3::.ctor(System.Object,System.IntPtr)
+	IL_000c: stloc.0
+	IL_000d: ldc.i4.0
+	IL_000e: stloc.1
+	IL_000f: ldloc.0
+	IL_0010: call System.Void InventorySystem.Inventory::add_OnCurrentItemChanged(System.Action`3)
+	IL_0015: ldarg.0
+	IL_0016: stsfld InventorySystem.Crosshairs.CrosshairController InventorySystem.Crosshairs.CrosshairController::_singleton
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Crosshairs.CrosshairController
+	System.Void OnDestroy()
+		System.Action`3<ReferenceHub,InventorySystem.Items.ItemIdentifier,InventorySystem.Items.ItemIdentifier> action = new System.Action`3<ReferenceHub,InventorySystem.Items.ItemIdentifier,InventorySystem.Items.ItemIdentifier>()
+		ulong local2 = 0
+
+		action..ctor(local2, {'OnItemChanged' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		InventorySystem.Inventory.remove_OnCurrentItemChanged(action) //(Action`3 value)
+		return
+
+
+Generated IL:
+	IL_0000: ldloc.1
+	IL_0001: ldftn System.Void InventorySystem.Crosshairs.CrosshairController::OnItemChanged(ReferenceHub,InventorySystem.Items.ItemIdentifier,InventorySystem.Items.ItemIdentifier)
+	IL_0007: newobj System.Void System.Action`3::.ctor(System.Object,System.IntPtr)
+	IL_000c: stloc.0
+	IL_000d: ldc.i4.0
+	IL_000e: stloc.1
+	IL_000f: ldloc.0
+	IL_0010: call System.Void InventorySystem.Inventory::remove_OnCurrentItemChanged(System.Action`3)
+	IL_0015: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Crosshairs.CrosshairController
+	System.Void Update()
+		ulong local1 = 0
+		UnityEngine.GameObject _rootObject = this._rootObject
+
+		System.Boolean boolean = ReferenceHub.TryGetLocalHub(local1) //(ReferenceHub& hub)
+
+		if (boolean != False)
+		      = local1.
+
+		    PlayerRoles.PlayerRoleBase currentRole = .CurrentRole
+
+		    if (currentRole != 0)
+
+		        System.Boolean isAlive = PlayerRoles.PlayerRolesUtils.IsAlive(local1) //(ReferenceHub hub)
+
+		        if (isAlive != False)
+		            ulong local9 = 0
+
+		            System.Boolean visible = UnityEngine.Cursor.visible
+		            System.Boolean local11 = visible == False
+		        endif
+                
+
+		        _rootObject.SetActive(local1) //(Boolean value)
+		        return
+		        throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.FieldToLocalAction at (0x1803E5EEA) is corrupt (No further info) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Crosshairs.CrosshairController
+	static System.Void OnItemChanged(ReferenceHub ply, InventorySystem.Items.ItemIdentifier prevItem, InventorySystem.Items.ItemIdentifier newItem)
+		ulong local3 = 0
+
+		System.Boolean isLocalPlayer = ply.isLocalPlayer
+
+		if (isLocalPlayer != False)
+		    InventorySystem.Inventory inventory = ply.inventory
+		    InventorySystem.InventoryInfo userInventory = inventory.UserInventory
+		    System.Collections.Generic.Dictionary`2<System.UInt16,InventorySystem.Items.ItemBase> items = userInventory.Items
+
+		    System.Boolean boolean = items.TryGetValue()
+		    System.Boolean local10 = boolean == False
+		    InventorySystem.Crosshairs.CrosshairController _singleton = InventorySystem.Crosshairs.CrosshairController._singleton
+		    UnityEngine.MonoBehaviour[] _customCrosshairs = _singleton._customCrosshairs
+		    System.Int32 length = _customCrosshairs.Length
+		    UnityEngine.MonoBehaviour monoBehaviour = _customCrosshairs[local3]
+
+		    System.Type type = monoBehaviour.GetType()
+
+		    System.Boolean boolean2 = type.Equals(type) //(Object obj)
+
+		    if (boolean2 != False)
+
+		        UnityEngine.GameObject gameObject = monoBehaviour.gameObject
+
+		        gameObject.SetActive(True) //(Boolean value)
+		        local3 += 1
+		    endif
+            
+
+		    UnityEngine.GameObject gameObject2 = monoBehaviour.gameObject
+		    ulong local24 = 0
+
+		    gameObject2.SetActive(local24) //(Boolean value)
+		    local3 += 1
+		    InventorySystem.Crosshairs.CrosshairController _singleton2 = InventorySystem.Crosshairs.CrosshairController._singleton
+		    UnityEngine.MonoBehaviour _defaultCrosshair = _singleton2._defaultCrosshair
+
+		    UnityEngine.GameObject gameObject3 = _defaultCrosshair.gameObject
+
+		    gameObject3.SetActive(local10) //(Boolean value)
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1803E5C2E) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Crosshairs.CrosshairController
+	System.Void .ctor()
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void UnityEngine.MonoBehaviour::.ctor()
+	IL_0006: ret
+	
+

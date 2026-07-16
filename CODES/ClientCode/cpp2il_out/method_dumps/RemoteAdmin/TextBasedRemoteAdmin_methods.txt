@@ -1,0 +1,2053 @@
+Type: TextBasedRemoteAdmin
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.TextBasedRemoteAdmin
+	System.Void Start()
+
+		RemoteAdmin.UIController component = base.GetComponent<RemoteAdmin.UIController>()
+		this._ui = component
+		System.Collections.Generic.List`1<System.String> _logs = this._logs
+		ulong local3 = 0
+
+		System.DateTime now = System.DateTime.Now
+
+		System.String string = System.String.Concat()
+
+		_logs.Add(string) //(T item)
+
+		this.RefreshConsole()
+		TMPro.TMP_InputField commandField = this.commandField
+		TMPro.TMP_InputField/OnChangeEvent m_OnValueChanged = commandField.m_OnValueChanged
+		UnityEngine.Events.UnityAction`1<System.String> unityAction = new UnityEngine.Events.UnityAction`1<System.String>()
+
+		unityAction..ctor(this, {'<Start>b__18_0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		m_OnValueChanged.AddListener(unityAction) //(UnityAction`1 call)
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180359FEB) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.TextBasedRemoteAdmin
+	System.Void Awake()
+		System.Collections.Generic.List`1<RemoteAdmin.QueryProcessor/CommandData> commands = RemoteAdmin.TextBasedRemoteAdmin.Commands
+
+		commands.Clear()
+		RemoteAdmin.TextBasedRemoteAdmin.singleton = this
+		TMPro.TextMeshProUGUI commandSuggestion = this.commandSuggestion
+
+		UnityEngine.GameObject gameObject = commandSuggestion.gameObject
+		ulong local6 = 0
+
+		gameObject.SetActive(local6) //(Boolean value)
+		return
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldsfld System.Collections.Generic.List`1<RemoteAdmin.QueryProcessor/CommandData> RemoteAdmin.TextBasedRemoteAdmin::Commands
+	IL_0005: call System.Void System.Collections.Generic.List`1::Clear()
+	IL_000a: ldarg.0
+	IL_000b: stsfld RemoteAdmin.TextBasedRemoteAdmin RemoteAdmin.TextBasedRemoteAdmin::singleton
+	IL_0010: ldarg.0
+	IL_0011: ldfld TMPro.TextMeshProUGUI RemoteAdmin.TextBasedRemoteAdmin::commandSuggestion
+	IL_0016: call UnityEngine.GameObject UnityEngine.Component::get_gameObject()
+	IL_001b: stloc.0
+	IL_001c: ldc.i4.0
+	IL_001d: stloc.1
+	IL_001e: ldloc.0
+	IL_001f: ldloc.1
+	IL_0020: call System.Void UnityEngine.GameObject::SetActive(System.Boolean)
+	IL_0025: ret
+	IL_0026: ret
+	IL_0027: newobj System.Void System.NullReferenceException::.ctor()
+	IL_002c: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.TextBasedRemoteAdmin
+	static System.Void AddLog(System.String log)
+		RemoteAdmin.TextBasedRemoteAdmin singleton = RemoteAdmin.TextBasedRemoteAdmin.singleton
+		System.Collections.Generic.List`1<System.String> _logs = singleton._logs
+		RemoteAdmin.Menus.RaSettings Singleton = RemoteAdmin.Menus.RaSettings.<Singleton>k__BackingField
+		RemoteAdmin.Settings.ToggleTimestampsSetting ToggleTimestamps = Singleton.<ToggleTimestamps>k__BackingField
+
+		System.String string = ToggleTimestamps.ToString()
+
+		if (string != 0)
+		    ulong local6 = 0
+
+		    System.DateTime now = System.DateTime.Now
+
+		    System.String string2 = System.String.Format("[{0:HH:mm:ss}] {1}", now, log) //(String format, Object arg0, Object arg1)
+		endif
+        
+
+		_logs.Add(log) //(T item)
+		RemoteAdmin.TextBasedRemoteAdmin singleton2 = RemoteAdmin.TextBasedRemoteAdmin.singleton
+
+		singleton2.RefreshConsole()
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldsfld RemoteAdmin.TextBasedRemoteAdmin RemoteAdmin.TextBasedRemoteAdmin::singleton
+	IL_0005: ldfld System.Collections.Generic.List`1<System.String> RemoteAdmin.TextBasedRemoteAdmin::_logs
+	IL_000a: stloc.0
+	IL_000b: ldsfld RemoteAdmin.Menus.RaSettings RemoteAdmin.Menus.RaSettings::<Singleton>k__BackingField
+	IL_0010: ldfld RemoteAdmin.Settings.ToggleTimestampsSetting RemoteAdmin.Menus.RaSettings::<ToggleTimestamps>k__BackingField
+	IL_0015: callvirt System.String System.Object::ToString()
+	IL_001a: ldc.i4.0
+	IL_001b: beq.s IL_0032
+	IL_001d: ldc.i4.0
+	IL_001e: stloc.1
+	IL_001f: call System.DateTime System.DateTime::get_Now()
+	IL_0024: stloc.2
+	IL_0025: ldstr "[{0:HH:mm:ss}] {1}"
+	IL_002a: ldloc.2
+	IL_002b: ldarg.0
+	IL_002c: call System.String System.String::Format(System.String,System.Object,System.Object)
+	IL_0031: stloc.3
+	IL_0032: ldloc.0
+	IL_0033: ldarg.0
+	IL_0034: call System.Void System.Collections.Generic.List`1::Add(T)
+	IL_0039: ldsfld RemoteAdmin.TextBasedRemoteAdmin RemoteAdmin.TextBasedRemoteAdmin::singleton
+	IL_003e: call System.Void RemoteAdmin.TextBasedRemoteAdmin::RefreshConsole()
+	IL_0043: ret
+	IL_0044: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0049: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.TextBasedRemoteAdmin
+	System.Void RefreshConsole()
+		NorthwoodLib.Pools.StringBuilderPool shared = NorthwoodLib.Pools.StringBuilderPool.Shared
+
+		System.Text.StringBuilder stringBuilder = shared.Rent()
+		System.Collections.Generic.List`1<System.String> _logs = this._logs
+
+		System.Collections.Generic.List`1/Enumerator<T> enumerator = shared.GetEnumerator()
+
+		if (enumerator != 0)
+
+		    System.Text.StringBuilder stringBuilder2 = stringBuilder.AppendLine()
+		endif
+        
+
+		shared.Dispose()
+
+		shared.Dispose()
+
+		if (shared != 0)
+            goto INSN_1803595AD
+        endif
+		TMPro.TextMeshProUGUI consoleWindow = this.consoleWindow
+
+		System.Int32 hashCode = stringBuilder.GetHashCode()
+
+		System.String text = consoleWindow.text
+		NorthwoodLib.Pools.StringBuilderPool shared2 = NorthwoodLib.Pools.StringBuilderPool.Shared
+
+		shared2.Return(stringBuilder) //(StringBuilder stringBuilder)
+		return
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+
+		INSN_1803595AD:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18035948A) is corrupt (Mismatched instance parameter. Expecting an instance of System.Collections.Generic.List`1, actually {'shared' (type NorthwoodLib.Pools.StringBuilderPool)}) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.TextBasedRemoteAdmin
+	System.Void Update()
+		RemoteAdmin.UIController uIController = this._ui
+
+		if (uIController.LoggedIn != False)
+
+		    System.Boolean lockMovement = uIController.LockMovement
+
+		    if (lockMovement == False)
+                goto INSN_18035ABE8
+            endif
+		    RemoteAdmin.UIController uIController2 = this._ui
+		    UnityEngine.GameObject root_tbra = uIController2.root_tbra
+
+		    System.Boolean activeSelf = root_tbra.activeSelf
+
+		    if (activeSelf != False)
+		        TMPro.TextMeshProUGUI consoleWindow = this.consoleWindow
+		        ulong local10 = 0
+
+		        UnityEngine.Vector3 mousePosition = UnityEngine.Input.mousePosition
+		        ulong local14 = 0
+
+		        System.Int32 int32 = TMPro.TMP_TextUtilities.FindIntersectingLink(consoleWindow, local10, local14) //(TMP_Text text, Vector3 position, Camera camera)
+
+		        if (int32 != -1)
+		            TMPro.TextMeshProUGUI consoleWindow2 = this.consoleWindow
+		            TMPro.TMP_TextInfo m_textInfo = consoleWindow2.m_textInfo
+		            TMPro.TMP_LinkInfo[] linkInfo = m_textInfo.linkInfo
+		            TMPro.TMP_LinkInfo tMP_LinkInfo = linkInfo[int32]
+
+		            [instruction error - managed method being called is null]
+
+		            if (int32 != 0)
+		                RemoteAdmin.UIController singleton = RemoteAdmin.UIController.Singleton
+		                ulong local23 = 0
+		                ulong local24 = 0
+
+		                singleton.SetToolTip("The command failed to execute! Check the error message for details.", 0.10000000149011612, local24) //(String tip, Single blockseconds, Boolean delayedDisplay)
+		            else
+
+		                [instruction error - managed method being called is null]
+
+		                if (int32 != 0)
+		                    RemoteAdmin.UIController singleton2 = RemoteAdmin.UIController.Singleton
+		                    ulong local27 = 0
+		                    ulong local28 = 0
+
+		                    singleton2.SetToolTip("The command executed successfully.", 0.10000000149011612, local28) //(String tip, Single blockseconds, Boolean delayedDisplay)
+		                else
+
+		                    [instruction error - managed method being called is null]
+
+		                    if (int32 != 0)
+		                        RemoteAdmin.UIController singleton3 = RemoteAdmin.UIController.Singleton
+		                        ulong local31 = 0
+		                        ulong local32 = 0
+
+		                        singleton3.SetToolTip("This response was not encrypted and cannot be verified as a legitimate message.", 0.10000000149011612, local32) //(String tip, Single blockseconds, Boolean delayedDisplay)
+		                    else
+
+		                        [instruction error - managed method being called is null]
+
+		                        if (int32 != 0)
+		                            RemoteAdmin.UIController singleton4 = RemoteAdmin.UIController.Singleton
+		                            ulong local35 = 0
+		                            ulong local36 = 0
+
+		                            singleton4.SetToolTip("Internal system error within RA. This is usually a security violation/check.", 0.10000000149011612, local36) //(String tip, Single blockseconds, Boolean delayedDisplay)
+		                        else
+
+		                            [instruction error - managed method being called is null]
+
+		                            if (int32 != 0)
+		                                RemoteAdmin.UIController singleton5 = RemoteAdmin.UIController.Singleton
+		                                ulong local39 = 0
+		                                ulong local40 = 0
+
+		                                singleton5.SetToolTip("Click to copy.", 0.10000000149011612, local40) //(String tip, Single blockseconds, Boolean delayedDisplay)
+		                            else
+		                            endif
+                                    
+		                            System.Int64 local43 = 273
+
+		                            [instruction error - managed method being called is null]
+
+		                            if (int32 == 0)
+                                        goto INSN_18035A419
+                                    endif
+		                            System.Collections.Generic.List`1<System.String> _clientCommandLogs = this._clientCommandLogs
+		                            System.Int32 _clientCommandPosition = this._clientCommandPosition
+
+		                            if ( <= _clientCommandPosition)
+                                        goto INSN_18035A419
+                                    endif
+		                            _clientCommandPosition += 1
+		                            this._clientCommandPosition = _clientCommandPosition
+		                            System.Int32 _size = _clientCommandLogs._size
+		                            _size -= _clientCommandPosition
+
+		                            INSN_18035A419:
+		                            System.Int64 local49 = 274
+
+		                            [instruction error - managed method being called is null]
+
+		                            if (_clientCommandPosition == 0)
+                                        goto INSN_18035A470
+                                    endif
+		                            System.Int32 _clientCommandPosition2 = this._clientCommandPosition
+
+		                            if (_clientCommandPosition2 <= 0)
+                                        goto INSN_18035A470
+                                    endif
+		                            this._clientCommandPosition = _clientCommandPosition2
+		                            TMPro.TMP_InputField commandField = this.commandField
+		                            System.Collections.Generic.List`1<System.String> _clientCommandLogs2 = this._clientCommandLogs
+		                            System.Int32 _size2 = _clientCommandLogs2._size
+		                            _size2 -= _clientCommandPosition2
+		                            _size2 = _clientCommandPosition2
+
+		                            commandField.set_text()
+
+		                            INSN_18035A470:
+		                            System.Int32 9 = 9
+
+		                            System.Boolean keyDownInt = UnityEngine.Input.GetKeyDownInt(9) //(KeyCode key)
+
+		                            if (keyDownInt == False)
+                                        goto INSN_18035AB98
+                                    endif
+		                            TMPro.TextMeshProUGUI commandSuggestion = this.commandSuggestion
+
+		                            System.String text = commandSuggestion.text
+		                            TMPro.TMP_InputField commandField2 = this.commandField
+		                            System.String m_Text = commandField2.m_Text
+
+		                            [instruction error - managed method being called is null]
+
+		                            if (text != 0)
+                                        goto INSN_18035AB98
+                                    endif
+		                            TMPro.TMP_InputField commandField3 = this.commandField
+		                            System.String m_Text2 = commandField3.m_Text
+		                            System.Int64 local64 = 32
+
+		                            System.Int32 int322 = m_Text2.LastIndexOf(local64) //(Char value)
+		                            System.Int32 local67 = int322 + 1
+
+		                            System.String string = m_Text2.Substring(local67) //(Int32 startIndex)
+		                            UnityEngine.GameObject commandSuggest = this.commandSuggest
+
+		                            System.Boolean activeSelf2 = commandSuggest.activeSelf
+
+		                            if (activeSelf2 == False)
+                                        goto INSN_18035A687
+                                    endif
+		                            System.Collections.Generic.List`1<System.Collections.Generic.KeyValuePair`2<System.String,RemoteAdmin.TextBasedRemoteAdmin/CommandDictionaryEntry>> _clientLastCommandSearchResults = this._clientLastCommandSearchResults
+
+		                            if ( <= 1)
+                                        goto INSN_18035A687
+                                    endif
+		                            System.Int64 local75 = 304
+
+		                            [instruction error - managed method being called is null]
+
+		                            if (_clientLastCommandSearchResults != 0)
+                                        goto INSN_18035A598
+                                    endif
+		                            System.Int64 local77 = 303
+
+		                            [instruction error - managed method being called is null]
+
+		                            if (_clientLastCommandSearchResults != 0)
+                                        goto INSN_18035A598
+                                    endif
+		                            System.Int64 local79 = 306
+
+		                            [instruction error - managed method being called is null]
+
+		                            if (_clientLastCommandSearchResults != 0)
+                                        goto INSN_18035A598
+                                    endif
+		                            System.Int64 local81 = 305
+
+		                            [instruction error - managed method being called is null]
+
+		                            if (_clientLastCommandSearchResults != 0)
+                                        goto INSN_18035A598
+                                    endif
+		                            System.Collections.Generic.List`1<System.Collections.Generic.KeyValuePair`2<System.String,RemoteAdmin.TextBasedRemoteAdmin/CommandDictionaryEntry>> _clientLastCommandSearchResults2 = this._clientLastCommandSearchResults
+		                            System.Int32 _clientLastCommandIndex = this._clientLastCommandIndex
+		                            System.Int32 _size3 = _clientLastCommandSearchResults2._size
+
+		                            if (_clientLastCommandIndex >= _size3)
+                                        goto INSN_18035A5B6
+                                    endif
+		                            System.Int32 local85 = _clientLastCommandIndex + 1
+
+		                            INSN_18035A598:
+		                            System.Int32 _clientLastCommandIndex2 = this._clientLastCommandIndex
+		                            System.Collections.Generic.List`1<System.Collections.Generic.KeyValuePair`2<System.String,RemoteAdmin.TextBasedRemoteAdmin/CommandDictionaryEntry>> _clientLastCommandSearchResults3 = this._clientLastCommandSearchResults
+
+		                            if (_clientLastCommandIndex2 == 0)
+                                        goto INSN_18035A5A8
+                                    endif
+		                            System.Int32 local88 = _clientLastCommandIndex2 - 1
+
+		                            INSN_18035A5A8:
+		                            System.Int32 _size4 = _clientLastCommandSearchResults3._size
+
+		                            INSN_18035A5B6:
+		                            this._clientLastCommandIndex = _size4
+
+		                            this.SetCommandSuggest(_clientLastCommandSearchResults3, _size4) //(List`1 display, Int32 highlightId)
+		                            TMPro.TMP_InputField commandField4 = this.commandField
+		                            System.String m_Text3 = commandField4.m_Text
+		                            System.Int32 m_stringLength = m_Text3.m_stringLength
+		                            ulong local95 = 0
+
+		                            System.String string2 = m_Text3.Substring(local95, m_stringLength) //(Int32 startIndex, Int32 length)
+		                            System.Collections.Generic.List`1<System.Collections.Generic.KeyValuePair`2<System.String,RemoteAdmin.TextBasedRemoteAdmin/CommandDictionaryEntry>> _clientLastCommandSearchResults4 = this._clientLastCommandSearchResults
+		                            System.Int32 _clientLastCommandIndex3 = this._clientLastCommandIndex
+		                            ulong local99 = 0
+
+		                            System.ThrowHelper.ThrowArgumentOutOfRangeException()
+		                            T[] _items = _clientLastCommandSearchResults4._items
+		                            T t = _items[local95]
+
+		                            System.String string3 = System.String.Concat()
+		                            TMPro.TMP_InputField commandField5 = this.commandField
+
+		                            commandField5.SetTextWithoutNotify(string3) //(String input)
+		                            TMPro.TMP_InputField commandField6 = this.commandField
+		                            ulong local108 = 0
+		                            ulong local109 = 0
+
+		                            commandField6.MoveToEndOfLine(local109, local108) //(Boolean shift, Boolean ctrl)
+		                        endif
+                                
+		                        return
+
+		                        INSN_18035A687:
+		                        System.Int64 local110 = 46
+
+		                        System.Int32 int323 = uIController.LastIndexOf(local110) //(Char value)
+		                        System.Int32 local113 = int323 + 1
+
+		                        System.String string4 = uIController.Substring(local113) //(Int32 startIndex)
+
+		                        System.Boolean isNullOrEmpty = System.String.IsNullOrEmpty(string4) //(String value)
+
+		                        if (isNullOrEmpty != False)
+                                    goto INSN_18035AB98
+                                endif
+		                        System.String[] allAliases = RemoteAdmin.TextBasedRemoteAdmin.AllAliases
+		                        System.Int32 length = allAliases.Length
+
+		                        if (TextBasedRemoteAdmin >= length)
+                                    goto INSN_18035A9BD
+                                endif
+		                        System.String string5 = allAliases[]
+		                        System.Int32 5 = 5
+
+		                        System.Boolean boolean = NorthwoodLib.StringUtils.Contains(string4, string5, 5) //(String s, String value, StringComparison comparison)
+
+		                        if (boolean != False)
+                                    goto INSN_18035A77A
+                                endif
+		                         += 1
+
+		                        INSN_18035A77A:
+		                        NorthwoodLib.Pools.StringBuilderPool shared = NorthwoodLib.Pools.StringBuilderPool.Shared
+
+		                        System.Text.StringBuilder stringBuilder = shared.Rent()
+		                        ulong local126 = 0
+
+		                        System.Collections.Generic.HashSet`1/Enumerator<T> enumerator = local126.GetEnumerator()
+
+		                        if (enumerator == 0)
+                                    goto INSN_18035A87B
+                                endif
+
+		                        [instruction error - managed method being called is null]
+		                        System.Collections.Generic.HashSet`1<T> local130 = enumerator._set
+
+		                        System.Text.StringBuilder stringBuilder2 = stringBuilder.Append()
+
+		                        System.Text.StringBuilder stringBuilder3 = stringBuilder2.Append(".") //(String value)
+
+		                        INSN_18035A87B:
+
+		                        stringBuilder2.Dispose()
+
+		                        stringBuilder2.Dispose()
+
+		                        if (stringBuilder2 != 0)
+                                    goto INSN_18035AC18
+                                endif
+
+		                        System.Text.StringBuilder stringBuilder4 = stringBuilder.Append(" ") //(String value)
+		                        TMPro.TMP_InputField commandField7 = this.commandField
+		                        System.String m_Text4 = commandField7.m_Text
+		                        System.Int32 m_stringLength2 = m_Text4.m_stringLength
+		                        ulong local140 = 0
+
+		                        System.String string6 = m_Text4.Substring(local140, m_stringLength2) //(Int32 startIndex, Int32 length)
+
+		                        commandField7.text = string6
+		                        TMPro.TMP_InputField commandField8 = this.commandField
+		                        System.String m_Text5 = commandField8.m_Text
+		                        NorthwoodLib.Pools.StringBuilderPool shared2 = NorthwoodLib.Pools.StringBuilderPool.Shared
+
+		                        System.String string7 = shared2.ToStringReturn(stringBuilder) //(StringBuilder stringBuilder)
+
+		                        System.String string8 = System.String.Concat(m_Text5, string7) //(String str0, String str1)
+
+		                        commandField8.text = string8
+		                        TMPro.TMP_InputField commandField9 = this.commandField
+		                        ulong local153 = 0
+		                        ulong local154 = 0
+
+		                        commandField9.MoveToEndOfLine(local154, local153) //(Boolean shift, Boolean ctrl)
+
+		                        INSN_18035A9BD:
+		                        System.String[] selfAliases = RemoteAdmin.TextBasedRemoteAdmin.SelfAliases
+		                        System.Int32 length2 = selfAliases.Length
+
+		                        if (stringBuilder >= length2)
+                                    goto INSN_18035AB8A
+                                endif
+		                        System.String string9 = selfAliases[stringBuilder]
+		                        System.Int32 5 = 5
+
+		                        System.Boolean boolean2 = NorthwoodLib.StringUtils.Contains(string4, string9, 5) //(String s, String value, StringComparison comparison)
+
+		                        if (boolean2 != False)
+                                    goto INSN_18035AA95
+                                endif
+		                        stringBuilder += 1
+
+		                        INSN_18035AA95:
+		                        TMPro.TMP_InputField commandField10 = this.commandField
+		                        System.String m_Text6 = commandField10.m_Text
+		                        System.Int32 m_stringLength3 = m_Text6.m_stringLength
+		                        ulong local164 = 0
+
+		                        System.String string10 = m_Text6.Substring(local164, m_stringLength3) //(Int32 startIndex, Int32 length)
+
+		                        commandField10.text = string10
+		                        TMPro.TMP_InputField commandField11 = this.commandField
+		                        System.String m_Text7 = commandField11.m_Text
+		                        ulong local169 = 0
+
+		                        ReferenceHub localHub = ReferenceHub.LocalHub
+
+		                        System.Int32 playerId = localHub.PlayerId
+
+		                        System.String string11 = System.String.Format("{0}. ", local173) //(String format, Object arg0)
+
+		                        System.String string12 = System.String.Concat(m_Text7, string11) //(String str0, String str1)
+
+		                        commandField11.text = string12
+		                        TMPro.TMP_InputField commandField12 = this.commandField
+		                        ulong local181 = 0
+		                        ulong local182 = 0
+
+		                        commandField12.MoveToEndOfLine(local182, local181) //(Boolean shift, Boolean ctrl)
+
+		                        INSN_18035AB8A:
+
+		                        this.LookupPlayer(string4) //(String arg)
+
+		                        INSN_18035AB98:
+		                        System.Int32 13 = 13
+
+		                        System.Boolean keyDownInt2 = UnityEngine.Input.GetKeyDownInt(13) //(KeyCode key)
+
+		                        if (keyDownInt2 != False)
+                                    goto INSN_18035ABBA
+                                endif
+		                        System.Int64 local187 = 271
+
+		                        [instruction error - managed method being called is null]
+
+		                        if (keyDownInt2 == False)
+                                    goto INSN_18035A669
+                                endif
+
+		                        INSN_18035ABBA:
+		                        TMPro.TMP_InputField commandField13 = this.commandField
+		                        System.String m_Text8 = commandField13.m_Text
+
+		                        System.Boolean isNullOrEmpty2 = System.String.IsNullOrEmpty(m_Text8) //(String value)
+
+		                        if (isNullOrEmpty2 != False)
+                                    goto INSN_18035A669
+                                endif
+
+		                        this.SendCommand()
+
+		                        INSN_18035ABE8:
+		                        ulong local193 = 0
+		                        this._clientCommandPosition = local193
+		                        throw new System.NullReferenceException()
+
+		                        INSN_18035AC18:
+
+
+Generated IL:
+	IL Generation Skipped due to invalid local _items of type T[]
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.TextBasedRemoteAdmin
+	System.Void SendCommand()
+		TMPro.TMP_InputField commandField = this.commandField
+		System.Collections.Generic.List`1<System.String> _clientCommandLogs = this._clientCommandLogs
+		System.String m_Text = commandField.m_Text
+
+		_clientCommandLogs.Add(m_Text) //(T item)
+		System.Collections.Generic.HashSet`1<System.String> clearCommands = RemoteAdmin.TextBasedRemoteAdmin.ClearCommands
+		TMPro.TMP_InputField commandField2 = this.commandField
+		System.String m_Text2 = commandField2.m_Text
+
+		System.String string = m_Text2.ToLower()
+
+		System.Boolean boolean = clearCommands.Contains(string) //(T item)
+
+		if (boolean == False)
+		    TMPro.TMP_InputField commandField3 = this.commandField
+		    System.String m_Text3 = commandField3.m_Text
+
+		    [instruction error - managed method being called is null]
+
+		    if (boolean != False)
+                goto INSN_180359848
+            endif
+		    TMPro.TMP_InputField commandField4 = this.commandField
+		    System.String m_Text4 = commandField4.m_Text
+		    System.Char[] local16 = new System.Char[1]
+		    local16[0] = 36
+
+		    System.String string2 = m_Text4.TrimStart(local16) //(Char[] trimChars)
+
+		    System.Boolean isNullOrEmpty = System.String.IsNullOrEmpty(string2) //(String value)
+
+		    if (isNullOrEmpty != False)
+                goto INSN_180359848
+            endif
+		    ulong local21 = 0
+
+		    ReferenceHub localHub = ReferenceHub.LocalHub
+		    RemoteAdmin.QueryProcessor queryProcessor = localHub.queryProcessor
+		    ulong local25 = 0
+
+		    queryProcessor.CmdSendQuery(string2, local25) //(String query, Boolean gban)
+		    TMPro.TMP_InputField commandField5 = this.commandField
+		    System.String empty = System.String.Empty
+
+		    commandField5.text = empty
+		else
+		    System.Collections.Generic.List`1<System.String> _logs = this._logs
+
+		    _logs.Clear()
+		    System.Collections.Generic.List`1<System.String> _logs2 = this._logs
+		    ulong local31 = 0
+
+		    System.DateTime now = System.DateTime.Now
+
+		    System.String string3 = System.String.Concat()
+
+		    _logs2.Add(string3) //(T item)
+		    TMPro.TMP_InputField commandField6 = this.commandField
+		    System.String empty2 = System.String.Empty
+
+		    commandField6.text = empty2
+
+		    this.RefreshConsole()
+		endif
+        
+		TMPro.TMP_InputField commandField7 = this.commandField
+
+		commandField7.ActivateInputField()
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1803596AF) is corrupt (Don't know what method is being called) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.TextBasedRemoteAdmin
+	System.Void CommandFieldOnValueChanged()
+		ulong local1 = 0
+		RemoteAdmin.TextBasedRemoteAdmin/<>c__DisplayClass24_0 enumeratorInstance = new RemoteAdmin.TextBasedRemoteAdmin/<>c__DisplayClass24_0()
+
+		enumeratorInstance..ctor()
+		RemoteAdmin.Menus.RaSettings Singleton = RemoteAdmin.Menus.RaSettings.<Singleton>k__BackingField
+		RemoteAdmin.Settings.ToggleSuggestionsSetting ToggleSuggestions = Singleton.<ToggleSuggestions>k__BackingField
+
+		System.String string = ToggleSuggestions.ToString()
+
+		if (string != 0)
+		    TMPro.TMP_InputField commandField = this.commandField
+		    System.String m_Text = commandField.m_Text
+
+		    System.Boolean isNullOrEmpty = System.String.IsNullOrEmpty(m_Text) //(String value)
+
+		    if (isNullOrEmpty != False)
+                goto INSN_18035778A
+            endif
+		    TMPro.TMP_InputField commandField2 = this.commandField
+		    System.Int64 local12 = 1
+		    System.String m_Text2 = commandField2.m_Text
+		    System.Char[] local14 = new System.Char[1]
+		    System.Int64 local15 = 32
+		    local14[0] = local15
+
+		    System.String[] stringArray = m_Text2.Split(local14) //(Char[] separator)
+		    System.String local18 = stringArray[0]
+		    enumeratorInstance.cmd = local18
+
+		    if (stringArray.Length > 1)
+		        System.Collections.Generic.List`1<RemoteAdmin.QueryProcessor/CommandData> commands = RemoteAdmin.TextBasedRemoteAdmin.Commands
+		        System.Func`2<RemoteAdmin.QueryProcessor/CommandData,System.Boolean> func = new System.Func`2<RemoteAdmin.QueryProcessor/CommandData,System.Boolean>()
+
+		        func..ctor(enumeratorInstance, {'<CommandFieldOnValueChanged>b__0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		        RemoteAdmin.QueryProcessor/CommandData commandData = System.Linq.Enumerable.FirstOrDefault<RemoteAdmin.QueryProcessor/CommandData>()
+		    else
+		        ulong local22 = 0
+		    endif
+            
+
+		    [instruction error - managed method being called is null]
+
+		    if (local22 == 0)
+                goto INSN_180357562
+            endif
+
+		    if (enumeratorInstance != 0)
+                goto INSN_180357562
+            endif
+
+		    [instruction error - managed method being called is null]
+
+		    if (local22 == 0)
+                goto INSN_180357562
+            endif
+
+		    [instruction error - managed method being called is null]
+
+		    if (local22 == 0)
+                goto INSN_180357562
+            endif
+
+		    RemoteAdmin.TextBasedRemoteAdmin.FuzzySearchCommand(stringArray) //(String partialCommand)
+		    System.Collections.Generic.List`1<RemoteAdmin.TextBasedRemoteAdmin/CommandDistance> _distances = RemoteAdmin.TextBasedRemoteAdmin._distances
+
+		    if ( <= local1)
+                goto INSN_18035778A
+            endif
+		    System.Collections.Generic.List`1<RemoteAdmin.TextBasedRemoteAdmin/CommandDistance> _distances2 = RemoteAdmin.TextBasedRemoteAdmin._distances
+
+		    System.Collections.Generic.List`1<System.Collections.Generic.KeyValuePair`2<System.String,RemoteAdmin.TextBasedRemoteAdmin/CommandDictionaryEntry>> dictionaryFromCommands = RemoteAdmin.TextBasedRemoteAdmin.GetDictionaryFromCommands(_distances2) //(List`1 commands)
+		    ulong local35 = 0
+
+		    this.SetCommandSuggest(dictionaryFromCommands, local35) //(List`1 display, Int32 highlightId)
+		    System.Collections.Generic.List`1<RemoteAdmin.TextBasedRemoteAdmin/CommandDistance> _distances3 = RemoteAdmin.TextBasedRemoteAdmin._distances
+
+		    _distances3.Clear()
+		endif
+        
+		return
+
+		INSN_180357562:
+		System.Collections.Generic.List`1<RemoteAdmin.QueryProcessor/CommandData> list = new System.Collections.Generic.List`1<RemoteAdmin.QueryProcessor/CommandData>()
+
+		list..ctor()
+
+		list.Add()
+		UnityEngine.GameObject commandSuggest = this.commandSuggest
+		ulong local40 = 0
+
+		commandSuggest.SetActive(local40) //(Boolean value)
+		TMPro.TextMeshProUGUI commandSuggestion = this.commandSuggestion
+
+		UnityEngine.GameObject gameObject = commandSuggestion.gameObject
+		ulong local45 = 0
+
+		gameObject.SetActive(local45) //(Boolean value)
+		this._clientLastCommandSearchResults = local1
+		this._clientLastCommandIndex = local1
+		TMPro.TMP_InputField commandField3 = this.commandField
+		System.Int64 local48 = 1
+		System.String m_Text3 = commandField3.m_Text
+		System.Char[] local50 = new System.Char[1]
+		local50[0] = constant60
+
+		System.String[] stringArray2 = m_Text3.Split(local50) //(Char[] separator)
+
+		if (stringArray2.Length <= 1)
+            goto INSN_180357760
+        endif
+
+		if (enumeratorInstance == 0)
+            goto INSN_180357760
+        endif
+		  = enumeratorInstance.
+
+		System.Boolean boolean = System.String.Equals(m_Text3, "%player%") //(String a, String b)
+
+		if (boolean != False)
+            goto INSN_18035769E
+        endif
+		System.Int32 length = stringArray2.Length
+
+		INSN_18035769E:
+		System.Int32 length2 = stringArray2.Length
+		ulong local61 = 0
+
+		System.Collections.Generic.List`1<ReferenceHub> list2 = Utils.RAUtils.ProcessPlayerIdOrNamesList()
+
+		if (list2 == 0)
+            goto INSN_180357760
+        endif
+		System.Int32 _size = list2._size
+
+		if (_size <= -1)
+            goto INSN_180357760
+        endif
+
+		if (_size >= )
+            goto INSN_180357760
+        endif
+
+		System.Collections.Generic.List`1<System.Collections.Generic.KeyValuePair`2<System.String,RemoteAdmin.TextBasedRemoteAdmin/CommandDictionaryEntry>> dictionaryFromArg = this.GetDictionaryFromArg(local61, _size) //(CommandData command, Int32 argId)
+		ulong local67 = 0
+
+		this.SetCommandSuggest(dictionaryFromArg, local67) //(List`1 display, Int32 highlightId)
+
+		INSN_180357760:
+
+		System.Collections.Generic.List`1<System.Collections.Generic.KeyValuePair`2<System.String,RemoteAdmin.TextBasedRemoteAdmin/CommandDictionaryEntry>> dictionaryFromCommands2 = RemoteAdmin.TextBasedRemoteAdmin.GetDictionaryFromCommands(list) //(List`1 commands)
+
+		INSN_18035778A:
+		UnityEngine.GameObject commandSuggest2 = this.commandSuggest
+		ulong local72 = 0
+
+		commandSuggest2.SetActive(local72) //(Boolean value)
+		TMPro.TextMeshProUGUI commandSuggestion2 = this.commandSuggestion
+
+		UnityEngine.GameObject gameObject2 = commandSuggestion2.gameObject
+		ulong local77 = 0
+
+		gameObject2.SetActive(local77) //(Boolean value)
+		this._clientLastCommandSearchResults = local1
+		this._clientLastCommandIndex = local1
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1803573C5) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.TextBasedRemoteAdmin
+	System.Void SetCommandSuggest(System.Collections.Generic.List`1<System.Collections.Generic.KeyValuePair`2<System.String,RemoteAdmin.TextBasedRemoteAdmin/CommandDictionaryEntry>> display, System.Int32 highlightId)
+		ulong local5 = 0
+		this._clientLastCommandSearchResults = display
+
+		if (display != 0)
+
+		    if ( > 22)
+
+		        System.Collections.Generic.IEnumerable`1<System.Collections.Generic.KeyValuePair`2<System.String,RemoteAdmin.TextBasedRemoteAdmin/CommandDictionaryEntry>> iEnumerable = System.Linq.Enumerable.Skip<System.Collections.Generic.KeyValuePair`2<System.String,RemoteAdmin.TextBasedRemoteAdmin/CommandDictionaryEntry>>()
+
+		        System.Collections.Generic.List`1<System.Collections.Generic.KeyValuePair`2<System.String,RemoteAdmin.TextBasedRemoteAdmin/CommandDictionaryEntry>> list = System.Linq.Enumerable.ToList<System.Collections.Generic.KeyValuePair`2<System.String,RemoteAdmin.TextBasedRemoteAdmin/CommandDictionaryEntry>>(iEnumerable) //(IEnumerable`1 source)
+
+		        if ( > 22)
+		            System.Int32 22 = 22
+
+		            System.Collections.Generic.IEnumerable`1<System.Collections.Generic.KeyValuePair`2<System.String,RemoteAdmin.TextBasedRemoteAdmin/CommandDictionaryEntry>> iEnumerable2 = System.Linq.Enumerable.Take<System.Collections.Generic.KeyValuePair`2<System.String,RemoteAdmin.TextBasedRemoteAdmin/CommandDictionaryEntry>>(list, 22) //(IEnumerable`1 source, Int32 count)
+
+		            System.Collections.Generic.List`1<System.Collections.Generic.KeyValuePair`2<System.String,RemoteAdmin.TextBasedRemoteAdmin/CommandDictionaryEntry>> list2 = System.Linq.Enumerable.ToList<System.Collections.Generic.KeyValuePair`2<System.String,RemoteAdmin.TextBasedRemoteAdmin/CommandDictionaryEntry>>(iEnumerable2) //(IEnumerable`1 source)
+		        endif
+                
+
+		        System.Collections.Generic.IEnumerable`1<System.Collections.Generic.KeyValuePair`2<System.String,RemoteAdmin.TextBasedRemoteAdmin/CommandDictionaryEntry>> iEnumerable3 = System.Linq.Enumerable.Take<System.Collections.Generic.KeyValuePair`2<System.String,RemoteAdmin.TextBasedRemoteAdmin/CommandDictionaryEntry>>(iEnumerable, 22) //(IEnumerable`1 source, Int32 count)
+
+		        System.Collections.Generic.List`1<System.Collections.Generic.KeyValuePair`2<System.String,RemoteAdmin.TextBasedRemoteAdmin/CommandDictionaryEntry>> list3 = System.Linq.Enumerable.ToList<System.Collections.Generic.KeyValuePair`2<System.String,RemoteAdmin.TextBasedRemoteAdmin/CommandDictionaryEntry>>(iEnumerable3) //(IEnumerable`1 source)
+		    endif
+            
+		    NorthwoodLib.Pools.StringBuilderPool shared = NorthwoodLib.Pools.StringBuilderPool.Shared
+
+		    System.Text.StringBuilder stringBuilder = shared.Rent()
+
+		    System.Collections.Generic.List`1/Enumerator<T> enumerator = shared.GetEnumerator()
+
+		    if (enumerator == 0)
+                goto INSN_180359B5E
+            endif
+
+		    if (highlightId != -1)
+                goto INSN_180359A55
+            endif
+
+		    INSN_180359A55:
+		    System.Boolean local16 = local5 == highlightId
+
+		    if (local5 == 0)
+                goto INSN_180359A97
+            endif
+
+		    if (local16 == False)
+                goto INSN_180359A6E
+            endif
+
+		    INSN_180359A6E:
+		    System.Int32 -1 = 4294967295
+		    string local17 = -1 == highlightId ? "<size=8>
+            </size>" : "
+            "
+
+		    System.Text.StringBuilder stringBuilder2 = stringBuilder.Append(local17) //(String value)
+
+		    INSN_180359A97:
+
+		    if (local16 == False)
+                goto INSN_180359AB3
+            endif
+
+		    INSN_180359AB3:
+
+		    System.Text.StringBuilder stringBuilder3 = stringBuilder.AppendFormat()
+
+		    if (local16 != False)
+                goto INSN_180359B03
+            endif
+
+		    if ("" == 0)
+                goto INSN_180359B57
+            endif
+
+		    System.Text.StringBuilder stringBuilder4 = stringBuilder.AppendFormat(" {0}", "") //(String format, Object arg0)
+		    local5 += 1
+
+		    INSN_180359B03:
+
+		    System.Boolean isNullOrWhiteSpace = System.String.IsNullOrWhiteSpace()
+
+		    if (isNullOrWhiteSpace != False)
+                goto INSN_180359B2A
+            endif
+
+		    System.Text.StringBuilder stringBuilder5 = stringBuilder.AppendFormat(" {0}", local16) //(String format, Object arg0)
+
+		    INSN_180359B2A:
+
+		    if (local16 == False)
+                goto INSN_180359B45
+            endif
+
+		    System.Text.StringBuilder stringBuilder6 = stringBuilder.AppendFormat("
+            {0}", local16) //(String format, Object arg0)
+
+		    INSN_180359B45:
+
+		    System.Text.StringBuilder stringBuilder7 = stringBuilder.Append("
+            ") //(String value)
+
+		    INSN_180359B57:
+		    local5 += 1
+
+		    INSN_180359B5E:
+
+		    stringBuilder.Dispose()
+
+		    if (local5 != 0)
+                goto INSN_180359D0A
+            endif
+		    TMPro.TextMeshProUGUI commandSuggestion = this.commandSuggestion
+
+		    System.Int32 hashCode = stringBuilder.GetHashCode()
+
+		    System.String text = commandSuggestion.text
+		    NorthwoodLib.Pools.StringBuilderPool shared2 = NorthwoodLib.Pools.StringBuilderPool.Shared
+
+		    shared2.Return(stringBuilder) //(StringBuilder stringBuilder)
+		    UnityEngine.GameObject commandSuggest = this.commandSuggest
+
+		    commandSuggest.SetActive(True) //(Boolean value)
+		    TMPro.TextMeshProUGUI commandSuggestion2 = this.commandSuggestion
+
+		    UnityEngine.GameObject gameObject = commandSuggestion2.gameObject
+
+		    gameObject.SetActive(True) //(Boolean value)
+		      = stringBuilder.
+		    ulong local44 = 0
+
+		    gameObject.SetActive(local44) //(Boolean value)
+		      = stringBuilder.
+
+		    UnityEngine.GameObject gameObject2 = gameObject.gameObject
+		    ulong local48 = 0
+
+		    gameObject2.SetActive(local48) //(Boolean value)
+
+		    System.String string = System.String.Concat("Failed to parse command for command suggestions", local48) //(Object arg0, Object arg1)
+
+		    System.Console.WriteLine(string) //(String value)
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+
+		INSN_180359D0A:
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfLessThanOrEqualToAction at (0x180359907) is corrupt (One of the arguments is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.TextBasedRemoteAdmin
+	System.Collections.Generic.List`1<System.Collections.Generic.KeyValuePair`2<System.String,RemoteAdmin.TextBasedRemoteAdmin/CommandDictionaryEntry>> GetDictionaryFromArg(RemoteAdmin.QueryProcessor/CommandData command, System.Int32 argId)
+		RemoteAdmin.TextBasedRemoteAdmin/<>c__DisplayClass26_0 enumeratorInstance = new RemoteAdmin.TextBasedRemoteAdmin/<>c__DisplayClass26_0()
+
+		enumeratorInstance..ctor()
+		System.Collections.Generic.List`1<System.Collections.Generic.KeyValuePair`2<System.String,RemoteAdmin.TextBasedRemoteAdmin/CommandDictionaryEntry>> list = new System.Collections.Generic.List`1<System.Collections.Generic.KeyValuePair`2<System.String,RemoteAdmin.TextBasedRemoteAdmin/CommandDictionaryEntry>>()
+
+		list..ctor()
+
+		if (list != 0)
+
+		    System.String string = RemoteAdmin.TextBasedRemoteAdmin.UsageArrayToHumanReadableUsage()
+
+		    System.String string2 = System.String.Concat("<color=yellow>", string, "</color>") //(String str0, String str1, String str2)
+		else
+		endif
+        
+		ulong local11 = 0
+
+		list.Add(local11) //(T item)
+		TMPro.TMP_InputField commandField = this.commandField
+		System.String m_Text = commandField.m_Text
+		System.Int64 local16 = 32
+
+		System.Int32 int32 = m_Text.LastIndexOf(local16) //(Char value)
+		System.Int32 local20 = int32 + 1
+
+		System.String string3 = m_Text.Substring(local20) //(Int32 startIndex)
+		enumeratorInstance.str = string3
+
+		if (string3 == 0)
+            goto INSN_18035841A
+        endif
+
+		if (argId >= )
+            goto INSN_18035841A
+        endif
+
+		[instruction error - managed method being called is null]
+
+		if (string3 == 0)
+            goto INSN_18035843A
+        endif
+		ulong local23 = 0
+
+		System.Collections.Generic.Dictionary`2<PlayerRoles.RoleTypeId,PlayerRoles.PlayerRoleBase> allRoles = PlayerRoles.PlayerRoleLoader.AllRoles
+		System.Func`2<System.Collections.Generic.KeyValuePair`2<PlayerRoles.RoleTypeId,PlayerRoles.PlayerRoleBase>,System.String> <>9__26_0 = RemoteAdmin.TextBasedRemoteAdmin/<>c.<>9__26_0
+
+		if (<>9__26_0 != 0)
+            goto INSN_1803581F5
+        endif
+		RemoteAdmin.TextBasedRemoteAdmin/<>c <>c = RemoteAdmin.TextBasedRemoteAdmin/<>c.<>9
+		System.Func`2<System.Collections.Generic.KeyValuePair`2<PlayerRoles.RoleTypeId,PlayerRoles.PlayerRoleBase>,System.String> func = new System.Func`2<System.Collections.Generic.KeyValuePair`2<PlayerRoles.RoleTypeId,PlayerRoles.PlayerRoleBase>,System.String>()
+
+		func..ctor(<>c, {'<GetDictionaryFromArg>b__26_0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		 += 8
+		RemoteAdmin.TextBasedRemoteAdmin/<>c.<>9 = func
+
+		INSN_1803581F5:
+
+		System.Collections.Generic.IEnumerable`1<System.Collections.Generic.KeyValuePair`2<PlayerRoles.RoleTypeId,PlayerRoles.PlayerRoleBase>> iEnumerable = System.Linq.Enumerable.Select<System.Collections.Generic.KeyValuePair`2<PlayerRoles.RoleTypeId,PlayerRoles.PlayerRoleBase>, System.String>(allRoles, func) //(IEnumerable`1 source, Func`2 selector)
+		System.String string4 = enumeratorInstance.str
+
+		[instruction error - managed method being called is null]
+
+		if (iEnumerable != 0)
+            goto INSN_180358355
+        endif
+		System.Func`2<System.String,System.Boolean> func2 = new System.Func`2<System.String,System.Boolean>()
+
+		func2..ctor(enumeratorInstance, {'<GetDictionaryFromArg>b__1' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		System.Collections.Generic.IEnumerable`1<System.String> iEnumerable2 = System.Linq.Enumerable.Where<System.String>(iEnumerable, func2) //(IEnumerable`1 source, Func`2 predicate)
+		System.Func`2<System.String,System.Collections.Generic.KeyValuePair`2<System.String,RemoteAdmin.TextBasedRemoteAdmin/CommandDictionaryEntry>> <>9__26_2 = RemoteAdmin.TextBasedRemoteAdmin/<>c.<>9__26_2
+
+		if (<>9__26_2 != 0)
+            goto INSN_180358301
+        endif
+		RemoteAdmin.TextBasedRemoteAdmin/<>c <>c2 = RemoteAdmin.TextBasedRemoteAdmin/<>c.<>9
+		System.Func`2<System.String,System.Collections.Generic.KeyValuePair`2<System.String,RemoteAdmin.TextBasedRemoteAdmin/CommandDictionaryEntry>> func3 = new System.Func`2<System.String,System.Collections.Generic.KeyValuePair`2<System.String,RemoteAdmin.TextBasedRemoteAdmin/CommandDictionaryEntry>>()
+
+		func3..ctor(<>c2, {'<GetDictionaryFromArg>b__26_2' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		 += 16
+		RemoteAdmin.TextBasedRemoteAdmin/<>c.<>9 = func3
+
+		INSN_180358301:
+
+		System.Collections.Generic.IEnumerable`1<System.String> iEnumerable3 = System.Linq.Enumerable.Select<System.String, System.Collections.Generic.KeyValuePair`2<System.String,RemoteAdmin.TextBasedRemoteAdmin/CommandDictionaryEntry>>(iEnumerable2, func3) //(IEnumerable`1 source, Func`2 selector)
+		System.Func`2<System.Collections.Generic.KeyValuePair`2<System.String,RemoteAdmin.TextBasedRemoteAdmin/CommandDictionaryEntry>,System.Boolean> func4 = new System.Func`2<System.Collections.Generic.KeyValuePair`2<System.String,RemoteAdmin.TextBasedRemoteAdmin/CommandDictionaryEntry>,System.Boolean>()
+
+		func4..ctor(enumeratorInstance, {'<GetDictionaryFromArg>b__3' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		System.Linq.IOrderedEnumerable`1<System.Collections.Generic.KeyValuePair`2<System.String,RemoteAdmin.TextBasedRemoteAdmin/CommandDictionaryEntry>> iOrderedEnumerable = System.Linq.Enumerable.OrderByDescending<System.Collections.Generic.KeyValuePair`2<System.String,RemoteAdmin.TextBasedRemoteAdmin/CommandDictionaryEntry>, System.Boolean>(iEnumerable3, func4) //(IEnumerable`1 source, Func`2 keySelector)
+
+		INSN_180358355:
+		System.Func`2<System.String,System.Collections.Generic.KeyValuePair`2<System.String,RemoteAdmin.TextBasedRemoteAdmin/CommandDictionaryEntry>> <>9__26_4 = RemoteAdmin.TextBasedRemoteAdmin/<>c.<>9__26_4
+
+		if (<>9__26_4 != 0)
+            goto INSN_1803583F6
+        endif
+		RemoteAdmin.TextBasedRemoteAdmin/<>c <>c3 = RemoteAdmin.TextBasedRemoteAdmin/<>c.<>9
+		System.Func`2<System.String,System.Collections.Generic.KeyValuePair`2<System.String,RemoteAdmin.TextBasedRemoteAdmin/CommandDictionaryEntry>> func5 = new System.Func`2<System.String,System.Collections.Generic.KeyValuePair`2<System.String,RemoteAdmin.TextBasedRemoteAdmin/CommandDictionaryEntry>>()
+
+		func5..ctor(<>c3, {'<GetDictionaryFromArg>b__26_4' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		 += 24
+		RemoteAdmin.TextBasedRemoteAdmin/<>c.<>9 = func5
+
+		INSN_1803583F6:
+
+		System.Collections.Generic.IEnumerable`1<System.String> iEnumerable4 = System.Linq.Enumerable.Select<System.String, System.Collections.Generic.KeyValuePair`2<System.String,RemoteAdmin.TextBasedRemoteAdmin/CommandDictionaryEntry>>(iEnumerable, func5) //(IEnumerable`1 source, Func`2 selector)
+
+		System.Collections.Generic.List`1<System.Collections.Generic.KeyValuePair`2<System.String,RemoteAdmin.TextBasedRemoteAdmin/CommandDictionaryEntry>> list2 = System.Linq.Enumerable.ToList<System.Collections.Generic.KeyValuePair`2<System.String,RemoteAdmin.TextBasedRemoteAdmin/CommandDictionaryEntry>>(iEnumerable4) //(IEnumerable`1 source)
+
+		INSN_18035841A:
+		return list2
+
+		INSN_18035843A:
+
+		[instruction error - managed method being called is null]
+
+		if (list2 == 0)
+            goto INSN_18035841A
+        endif
+		System.Collections.Generic.Dictionary`2<System.String,Interactables.Interobjects.DoorUtils.DoorNametagExtension> namedDoors = Interactables.Interobjects.DoorUtils.DoorNametagExtension.NamedDoors
+
+		System.Collections.Generic.Dictionary`2/ValueCollection<System.String,Interactables.Interobjects.DoorUtils.DoorNametagExtension> values = namedDoors.Values
+
+		Interactables.Interobjects.DoorUtils.DoorNametagExtension[] doorNametagExtensionArray = System.Linq.Enumerable.ToArray<Interactables.Interobjects.DoorUtils.DoorNametagExtension>(values) //(IEnumerable`1 source)
+		System.String string5 = enumeratorInstance.str
+
+		[instruction error - managed method being called is null]
+
+		if (doorNametagExtensionArray != 0)
+            goto INSN_1803585CD
+        endif
+		System.Func`2<Interactables.Interobjects.DoorUtils.DoorNametagExtension,System.Boolean> func6 = new System.Func`2<Interactables.Interobjects.DoorUtils.DoorNametagExtension,System.Boolean>()
+
+		func6..ctor(enumeratorInstance, {'<GetDictionaryFromArg>b__5' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		System.Collections.Generic.IEnumerable`1<Interactables.Interobjects.DoorUtils.DoorNametagExtension> iEnumerable5 = System.Linq.Enumerable.Where<Interactables.Interobjects.DoorUtils.DoorNametagExtension>(doorNametagExtensionArray, func6) //(IEnumerable`1 source, Func`2 predicate)
+		System.Func`2<Interactables.Interobjects.DoorUtils.DoorNametagExtension,System.Collections.Generic.KeyValuePair`2<System.String,RemoteAdmin.TextBasedRemoteAdmin/CommandDictionaryEntry>> <>9__26_6 = RemoteAdmin.TextBasedRemoteAdmin/<>c.<>9__26_6
+
+		if (<>9__26_6 != 0)
+            goto INSN_1803585A0
+        endif
+		RemoteAdmin.TextBasedRemoteAdmin/<>c <>c4 = RemoteAdmin.TextBasedRemoteAdmin/<>c.<>9
+		System.Func`2<Interactables.Interobjects.DoorUtils.DoorNametagExtension,System.Collections.Generic.KeyValuePair`2<System.String,RemoteAdmin.TextBasedRemoteAdmin/CommandDictionaryEntry>> func7 = new System.Func`2<Interactables.Interobjects.DoorUtils.DoorNametagExtension,System.Collections.Generic.KeyValuePair`2<System.String,RemoteAdmin.TextBasedRemoteAdmin/CommandDictionaryEntry>>()
+
+		func7..ctor(<>c4, {'<GetDictionaryFromArg>b__26_6' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		 += 32
+		RemoteAdmin.TextBasedRemoteAdmin/<>c.<>9 = func7
+
+		INSN_1803585A0:
+
+		System.Collections.Generic.IEnumerable`1<Interactables.Interobjects.DoorUtils.DoorNametagExtension> iEnumerable6 = System.Linq.Enumerable.Select<Interactables.Interobjects.DoorUtils.DoorNametagExtension, System.Collections.Generic.KeyValuePair`2<System.String,RemoteAdmin.TextBasedRemoteAdmin/CommandDictionaryEntry>>(iEnumerable5, func7) //(IEnumerable`1 source, Func`2 selector)
+		System.Func`2<System.Collections.Generic.KeyValuePair`2<System.String,RemoteAdmin.TextBasedRemoteAdmin/CommandDictionaryEntry>,System.Boolean> func8 = new System.Func`2<System.Collections.Generic.KeyValuePair`2<System.String,RemoteAdmin.TextBasedRemoteAdmin/CommandDictionaryEntry>,System.Boolean>()
+
+		INSN_1803585CD:
+		System.Func`2<Interactables.Interobjects.DoorUtils.DoorNametagExtension,System.Boolean> <>9__26_8 = RemoteAdmin.TextBasedRemoteAdmin/<>c.<>9__26_8
+
+		if (<>9__26_8 != 0)
+            goto INSN_18035866E
+        endif
+		RemoteAdmin.TextBasedRemoteAdmin/<>c <>c5 = RemoteAdmin.TextBasedRemoteAdmin/<>c.<>9
+		System.Func`2<Interactables.Interobjects.DoorUtils.DoorNametagExtension,System.Boolean> func9 = new System.Func`2<Interactables.Interobjects.DoorUtils.DoorNametagExtension,System.Boolean>()
+
+		func9..ctor(<>c5, {'<GetDictionaryFromArg>b__26_8' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		 += 40
+		RemoteAdmin.TextBasedRemoteAdmin/<>c.<>9 = func9
+
+		INSN_18035866E:
+
+		System.Collections.Generic.IEnumerable`1<Interactables.Interobjects.DoorUtils.DoorNametagExtension> iEnumerable7 = System.Linq.Enumerable.Where<Interactables.Interobjects.DoorUtils.DoorNametagExtension>(doorNametagExtensionArray, func9) //(IEnumerable`1 source, Func`2 predicate)
+		System.Func`2<Interactables.Interobjects.DoorUtils.DoorNametagExtension,System.Collections.Generic.KeyValuePair`2<System.String,RemoteAdmin.TextBasedRemoteAdmin/CommandDictionaryEntry>> <>9__26_9 = RemoteAdmin.TextBasedRemoteAdmin/<>c.<>9__26_9
+
+		if (<>9__26_9 != 0)
+            goto INSN_18035872A
+        endif
+		RemoteAdmin.TextBasedRemoteAdmin/<>c <>c6 = RemoteAdmin.TextBasedRemoteAdmin/<>c.<>9
+		System.Func`2<Interactables.Interobjects.DoorUtils.DoorNametagExtension,System.Collections.Generic.KeyValuePair`2<System.String,RemoteAdmin.TextBasedRemoteAdmin/CommandDictionaryEntry>> func10 = new System.Func`2<Interactables.Interobjects.DoorUtils.DoorNametagExtension,System.Collections.Generic.KeyValuePair`2<System.String,RemoteAdmin.TextBasedRemoteAdmin/CommandDictionaryEntry>>()
+
+		func10..ctor(<>c6, {'<GetDictionaryFromArg>b__26_9' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		 += 48
+		RemoteAdmin.TextBasedRemoteAdmin/<>c.<>9 = func10
+
+		INSN_18035872A:
+
+		System.Collections.Generic.IEnumerable`1<Interactables.Interobjects.DoorUtils.DoorNametagExtension> iEnumerable8 = System.Linq.Enumerable.Select<Interactables.Interobjects.DoorUtils.DoorNametagExtension, System.Collections.Generic.KeyValuePair`2<System.String,RemoteAdmin.TextBasedRemoteAdmin/CommandDictionaryEntry>>(iEnumerable7, func10) //(IEnumerable`1 source, Func`2 selector)
+		System.Func`2<System.Collections.Generic.KeyValuePair`2<System.String,RemoteAdmin.TextBasedRemoteAdmin/CommandDictionaryEntry>,System.String> <>9__26_10 = RemoteAdmin.TextBasedRemoteAdmin/<>c.<>9__26_10
+
+		if (<>9__26_10 != 0)
+            goto INSN_1803587E6
+        endif
+		RemoteAdmin.TextBasedRemoteAdmin/<>c <>c7 = RemoteAdmin.TextBasedRemoteAdmin/<>c.<>9
+		System.Func`2<System.Collections.Generic.KeyValuePair`2<System.String,RemoteAdmin.TextBasedRemoteAdmin/CommandDictionaryEntry>,System.String> func11 = new System.Func`2<System.Collections.Generic.KeyValuePair`2<System.String,RemoteAdmin.TextBasedRemoteAdmin/CommandDictionaryEntry>,System.String>()
+
+		func11..ctor(<>c7, {'<GetDictionaryFromArg>b__26_10' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		 += 56
+		RemoteAdmin.TextBasedRemoteAdmin/<>c.<>9 = func11
+
+		INSN_1803587E6:
+
+		System.Linq.IOrderedEnumerable`1<System.Collections.Generic.KeyValuePair`2<System.String,RemoteAdmin.TextBasedRemoteAdmin/CommandDictionaryEntry>> iOrderedEnumerable2 = System.Linq.Enumerable.OrderByDescending<System.Collections.Generic.KeyValuePair`2<System.String,RemoteAdmin.TextBasedRemoteAdmin/CommandDictionaryEntry>, System.String>(iEnumerable8, func11) //(IEnumerable`1 source, Func`2 keySelector)
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180357FAF) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.TextBasedRemoteAdmin
+	static System.Collections.Generic.List`1<System.Collections.Generic.KeyValuePair`2<System.String,RemoteAdmin.TextBasedRemoteAdmin/CommandDictionaryEntry>> GetDictionaryFromCommands(System.Collections.Generic.List`1<RemoteAdmin.TextBasedRemoteAdmin/CommandDistance> commands)
+		System.Collections.Generic.List`1<System.Collections.Generic.KeyValuePair`2<System.String,RemoteAdmin.TextBasedRemoteAdmin/CommandDictionaryEntry>> list = new System.Collections.Generic.List`1<System.Collections.Generic.KeyValuePair`2<System.String,RemoteAdmin.TextBasedRemoteAdmin/CommandDictionaryEntry>>()
+
+		list..ctor()
+
+		System.Collections.Generic.List`1/Enumerator<System.Collections.Generic.KeyValuePair`2<System.String,RemoteAdmin.TextBasedRemoteAdmin/CommandDictionaryEntry>> enumerator = list.GetEnumerator()
+		ulong local3 = 0
+
+		if (enumerator != 0)
+
+		    if (commands != 0)
+
+		        System.String string = RemoteAdmin.TextBasedRemoteAdmin.UsageArrayToHumanReadableUsage(commands) //(IEnumerable`1 usage)
+
+		        System.String string2 = System.String.Concat("<color=yellow>", string, "</color>") //(String str0, String str1, String str2)
+		    else
+		    endif
+            
+
+		    if (MoveNext == 0)
+                goto INSN_18035899D
+            endif
+
+		    System.String string3 = System.String.Concat()
+
+		    INSN_18035899D:
+
+		    list.Add()
+		endif
+        
+
+		list.Dispose()
+
+		list.Dispose()
+
+		if (list != 0)
+            goto INSN_180358AA3
+        endif
+		return list
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+
+		INSN_180358AA3:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfZeroOrNullAction at (0x18035897C) is corrupt (ConstantDefinition: Don't know how to get IL to load a Cpp2IL.Core.Analysis.ResultModels.GenericMethodReference) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.TextBasedRemoteAdmin
+	static System.Collections.Generic.List`1<System.Collections.Generic.KeyValuePair`2<System.String,RemoteAdmin.TextBasedRemoteAdmin/CommandDictionaryEntry>> GetDictionaryFromCommands(System.Collections.Generic.List`1<RemoteAdmin.QueryProcessor/CommandData> commands)
+		System.Collections.Generic.List`1<System.Collections.Generic.KeyValuePair`2<System.String,RemoteAdmin.TextBasedRemoteAdmin/CommandDictionaryEntry>> list = new System.Collections.Generic.List`1<System.Collections.Generic.KeyValuePair`2<System.String,RemoteAdmin.TextBasedRemoteAdmin/CommandDictionaryEntry>>()
+
+		list..ctor()
+
+		System.Collections.Generic.List`1/Enumerator<System.Collections.Generic.KeyValuePair`2<System.String,RemoteAdmin.TextBasedRemoteAdmin/CommandDictionaryEntry>> enumerator = list.GetEnumerator()
+		ulong local3 = 0
+
+		if (enumerator != 0)
+
+		    if (commands != 0)
+
+		        System.String string = RemoteAdmin.TextBasedRemoteAdmin.UsageArrayToHumanReadableUsage(commands) //(IEnumerable`1 usage)
+
+		        System.String string2 = System.String.Concat("<color=yellow>", string, "</color>") //(String str0, String str1, String str2)
+		    else
+		    endif
+            
+
+		    if (MoveNext == 0)
+                goto INSN_180358C27
+            endif
+
+		    System.String string3 = System.String.Concat()
+
+		    INSN_180358C27:
+
+		    list.Add()
+		endif
+        
+
+		list.Dispose()
+
+		list.Dispose()
+
+		if (list != 0)
+            goto INSN_180358D2D
+        endif
+		return list
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+
+		INSN_180358D2D:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfZeroOrNullAction at (0x180358C06) is corrupt (ConstantDefinition: Don't know how to get IL to load a Cpp2IL.Core.Analysis.ResultModels.GenericMethodReference) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.TextBasedRemoteAdmin
+	static System.String UsageArrayToHumanReadableUsage(System.Collections.Generic.IEnumerable`1<System.String> usage)
+		ulong local1 = 0
+		NorthwoodLib.Pools.StringBuilderPool shared = NorthwoodLib.Pools.StringBuilderPool.Shared
+
+		System.Text.StringBuilder stringBuilder = shared.Rent()
+		//UNKNOWN CLASS OFFSET READ HERE
+
+		if (local1 < )
+		    local1 += local1
+
+		    if (local1 == )
+                goto INSN_18035AE4B
+            endif
+		    local1 += 1
+		endif
+        
+		ulong local5 = 0
+		  = stringBuilder.
+		//UNKNOWN CLASS OFFSET READ HERE
+
+		if (local1 < local5)
+		    local1 += local1
+		    local1 += 1
+		endif
+        
+		ulong local6 = 0
+		  = stringBuilder.
+
+		if (stringBuilder == 0)
+            goto INSN_18035AF40
+        endif
+		//UNKNOWN CLASS OFFSET READ HERE
+
+		if (local1 >= local6)
+            goto INSN_18035ADFB
+        endif
+		local1 += local1
+
+		if (local1 == local6)
+            goto INSN_18035AE7B
+        endif
+		local1 += 1
+
+		INSN_18035ADFB:
+		  = local1.
+
+		[instruction error - managed method being called is null]
+
+		if (local1 == 0)
+            goto INSN_18035AE93
+        endif
+
+		System.Text.StringBuilder stringBuilder2 = stringBuilder.Append("[PlayerID or Name]") //(String value)
+
+		INSN_18035AE4B:
+		 += "[PlayerID or Name]"
+		stringBuilder2 += constant24
+		 += "[PlayerID or Name]"
+		stringBuilder2 += constant24
+
+		INSN_18035AE7B:
+		 += "[PlayerID or Name]"
+		stringBuilder2 += constant24
+
+		INSN_18035AE93:
+
+		[instruction error - managed method being called is null]
+
+		if (stringBuilder2 == 0)
+            goto INSN_18035AEC6
+        endif
+
+		System.Text.StringBuilder stringBuilder3 = stringBuilder.Append("[Role Name]") //(String value)
+
+		INSN_18035AEC6:
+
+		[instruction error - managed method being called is null]
+
+		if (stringBuilder3 == 0)
+            goto INSN_18035AEF9
+        endif
+
+		System.Text.StringBuilder stringBuilder4 = stringBuilder.Append("[Door Name]") //(String value)
+
+		INSN_18035AEF9:
+
+		System.String string = System.String.Concat("[", local1, "]") //(String str0, String str1, String str2)
+
+		System.Text.StringBuilder stringBuilder5 = stringBuilder.Append(string) //(String value)
+
+		System.Text.StringBuilder stringBuilder6 = stringBuilder.Append(" ") //(String value)
+		endwhile
+    
+		goto INSN_18035AFFC
+    
+
+		if (stringBuilder == 0)
+        goto INSN_18035AF6B
+    endif
+
+		INSN_18035AF6B:
+
+		if (local1 != 0)
+        goto INSN_18035B002
+    endif
+
+		System.Int32 hashCode = stringBuilder.GetHashCode()
+		NorthwoodLib.Pools.StringBuilderPool shared2 = NorthwoodLib.Pools.StringBuilderPool.Shared
+
+		shared2.Return(stringBuilder) //(StringBuilder stringBuilder)
+		return hashCode
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+
+		INSN_18035AFFC:
+		throw new System.NullReferenceException()
+
+		INSN_18035B002:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.UnknownClassOffsetReadAction at (0x18035ACF5) is corrupt (Unknown class offset read) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.TextBasedRemoteAdmin
+	System.Void OnPointerClick(UnityEngine.EventSystems.PointerEventData eventData)
+		RemoteAdmin.UIController uIController = this._ui
+		UnityEngine.GameObject root_tbra = uIController.root_tbra
+
+		System.Boolean activeSelf = root_tbra.activeSelf
+
+		if (activeSelf != False)
+		    TMPro.TextMeshProUGUI consoleWindow = this.consoleWindow
+		    ulong local9 = 0
+
+		    UnityEngine.Vector3 mousePosition = UnityEngine.Input.mousePosition
+		    ulong local13 = 0
+
+		    System.Int32 int32 = TMPro.TMP_TextUtilities.FindIntersectingLink(consoleWindow, local9, local13) //(TMP_Text text, Vector3 position, Camera camera)
+
+		    if (int32 != -1)
+		        TMPro.TextMeshProUGUI consoleWindow2 = this.consoleWindow
+		        TMPro.TMP_TextInfo m_textInfo = consoleWindow2.m_textInfo
+		        TMPro.TMP_LinkInfo[] linkInfo = m_textInfo.linkInfo
+		        TMPro.TMP_LinkInfo tMP_LinkInfo = linkInfo[int32]
+
+		        System.Boolean boolean = System.String.op_Inequality()
+
+		        if (boolean == False)
+
+		            UnityEngine.GUIUtility.set_systemCopyBuffer()
+		            RemoteAdmin.UIController singleton = RemoteAdmin.UIController.Singleton
+		            ulong local26 = 0
+
+		            singleton.SetToolTip("Copied!", 1, local26) //(String tip, Single blockseconds, Boolean delayedDisplay)
+		        else
+		        else
+		        endif
+                
+		        return
+		        throw new System.NullReferenceException()
+		        throw new System.IndexOutOfRangeException()
+		        throw new System.NullReferenceException()
+		        throw new System.NullReferenceException()
+		        throw new System.NullReferenceException()
+		        throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180359308) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.TextBasedRemoteAdmin
+	static System.Void FuzzySearchCommand(System.String partialCommand)
+		ulong local1 = 0
+		System.Collections.Generic.List`1<RemoteAdmin.TextBasedRemoteAdmin/CommandDistance> _distances = RemoteAdmin.TextBasedRemoteAdmin._distances
+
+		_distances.Clear()
+		System.Collections.Generic.Dictionary`2<System.String,RemoteAdmin.TextBasedRemoteAdmin/CommandDistance> _addedDistances = RemoteAdmin.TextBasedRemoteAdmin._addedDistances
+
+		_addedDistances.Clear()
+		System.Int32 m_stringLength = partialCommand.m_stringLength
+		System.Int32 local6 = m_stringLength + 1
+		System.Single local7 = local1 * 0,5
+		System.Single local8 = local7 / 6
+
+		System.String string = partialCommand.ToLowerInvariant()
+		System.Collections.Generic.List`1<RemoteAdmin.QueryProcessor/CommandData> commands = RemoteAdmin.TextBasedRemoteAdmin.Commands
+
+		System.Collections.Generic.List`1/Enumerator<T> enumerator = .GetEnumerator()
+
+		if (enumerator != 0)
+		    System.Int32 5 = 5
+
+		    System.Boolean boolean = .StartsWith(partialCommand, 5) //(String value, StringComparison comparisonType)
+
+		    if (boolean == False)
+
+		        System.String string2 = Misc.LongestCommonSubstring()
+		        System.Int32 m_stringLength2 = string2.m_stringLength
+
+		        System.Int32 int32 = Misc.LevenshteinDistance()
+
+		        if (int32 >= )
+                    goto INSN_180357ADB
+                endif
+		         -= int32
+		        m_stringLength2 += 2
+		    else
+		        System.Int64 local20 = 0x7FFFFFFF
+		    endif
+            
+		    System.Collections.Generic.Dictionary`2<System.String,RemoteAdmin.TextBasedRemoteAdmin/CommandDistance> _addedDistances2 = RemoteAdmin.TextBasedRemoteAdmin._addedDistances
+
+		    System.Boolean boolean2 = _addedDistances2.TryGetValue()
+
+		    if (boolean2 != False)
+                goto INSN_180357C33
+            endif
+		    System.Collections.Generic.List`1<RemoteAdmin.TextBasedRemoteAdmin/CommandDistance> _distances2 = RemoteAdmin.TextBasedRemoteAdmin._distances
+
+		    _distances2.Add()
+		    System.Collections.Generic.Dictionary`2<System.String,RemoteAdmin.TextBasedRemoteAdmin/CommandDistance> _addedDistances3 = RemoteAdmin.TextBasedRemoteAdmin._addedDistances
+
+		    _addedDistances3.Add()
+
+		    INSN_180357C33:
+
+		    if (_addedDistances3 != 0)
+                goto INSN_180357C97
+            endif
+		    System.Int32 5 = 5
+
+		    System.Int32 int322 = System.String.Compare()
+
+		    INSN_180357C97:
+
+		    if (int322 > 0)
+		        System.Collections.Generic.List`1<RemoteAdmin.TextBasedRemoteAdmin/CommandDistance> _distances3 = RemoteAdmin.TextBasedRemoteAdmin._distances
+
+		        System.Boolean boolean3 = _distances3.Remove()
+		        System.Collections.Generic.List`1<RemoteAdmin.TextBasedRemoteAdmin/CommandDistance> _distances4 = RemoteAdmin.TextBasedRemoteAdmin._distances
+
+		        _distances4.Add()
+		        System.Collections.Generic.Dictionary`2<System.String,RemoteAdmin.TextBasedRemoteAdmin/CommandDistance> _addedDistances4 = RemoteAdmin.TextBasedRemoteAdmin._addedDistances
+
+		        _addedDistances4.set_Item()
+		    endif
+            
+
+		    [instruction error - managed method being called is null]
+
+		    [instruction error - managed method being called is null]
+
+		    if (TextBasedRemoteAdmin != 0)
+                goto INSN_180357EC7
+            endif
+		    System.Collections.Generic.Dictionary`2<System.String,RemoteAdmin.TextBasedRemoteAdmin/CommandDistance> _addedDistances5 = RemoteAdmin.TextBasedRemoteAdmin._addedDistances
+
+		    _addedDistances5.Clear()
+		    System.Collections.Generic.List`1<RemoteAdmin.TextBasedRemoteAdmin/CommandDistance> _distances5 = RemoteAdmin.TextBasedRemoteAdmin._distances
+		    RemoteAdmin.TextBasedRemoteAdmin/CommandDistanceComparer _cdComparer = RemoteAdmin.TextBasedRemoteAdmin._cdComparer
+
+		    _distances5.Sort(_cdComparer) //(IComparer`1 comparer)
+		    return
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+
+		    INSN_180357EC7:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.PlusOneOrMinusOneAction at (0x180357943) is corrupt (Local made was stripped) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.TextBasedRemoteAdmin
+	System.Boolean ShouldProcessAllPlayers(System.String args)
+		ulong local2 = 0
+		System.String[] allAliases = RemoteAdmin.TextBasedRemoteAdmin.AllAliases
+		System.Int32 length = allAliases.Length
+
+		if (local2 < length)
+		    System.String string = allAliases[local2]
+		    System.Int32 5 = 5
+
+		    System.Boolean boolean = NorthwoodLib.StringUtils.Contains(args, string, 5) //(String s, String value, StringComparison comparison)
+
+		    if (boolean == False)
+		        local2 += 1
+		    endif
+            
+		    return True
+		endif
+        
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: ldsfld System.String[] RemoteAdmin.TextBasedRemoteAdmin::AllAliases
+	IL_0007: stloc.1
+	IL_0008: ldloc.1
+	IL_0009: call System.Int32 System.Array::get_Length()
+	IL_000e: stloc.2
+	IL_000f: ldloc.0
+	IL_0010: ldloc.2
+	IL_0011: bge.s IL_002c
+	IL_0013: ldloc.1
+	IL_0014: ldloc.0
+	IL_0015: ldelem.any System.String
+	IL_001a: stloc.3
+	IL_001b: ldarg.1
+	IL_001c: ldloc.3
+	IL_001d: ldc.i4.5
+	IL_001e: call System.Boolean NorthwoodLib.StringUtils::Contains(System.String,System.String,System.StringComparison)
+	IL_0023: ldc.i4.0
+	IL_0024: bne.un.s IL_002a
+	IL_0026: ldloc.0
+	IL_0027: ldc.i4.1
+	IL_0028: add
+	IL_0029: stloc.0
+	IL_002a: ldc.i4.1
+	IL_002b: ret
+	IL_002c: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0031: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.TextBasedRemoteAdmin
+	static System.Boolean ShouldProcessSelf(System.String args)
+		ulong local1 = 0
+		System.String[] selfAliases = RemoteAdmin.TextBasedRemoteAdmin.SelfAliases
+		System.Int32 length = selfAliases.Length
+
+		if (local1 < length)
+		    System.String string = selfAliases[local1]
+		    System.Int32 5 = 5
+
+		    System.Boolean boolean = NorthwoodLib.StringUtils.Contains(args, string, 5) //(String s, String value, StringComparison comparison)
+
+		    if (boolean == False)
+		        local1 += 1
+		    endif
+            
+		    return True
+		endif
+        
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: ldsfld System.String[] RemoteAdmin.TextBasedRemoteAdmin::SelfAliases
+	IL_0007: stloc.1
+	IL_0008: ldloc.1
+	IL_0009: call System.Int32 System.Array::get_Length()
+	IL_000e: stloc.2
+	IL_000f: ldloc.0
+	IL_0010: ldloc.2
+	IL_0011: bge.s IL_002c
+	IL_0013: ldloc.1
+	IL_0014: ldloc.0
+	IL_0015: ldelem.any System.String
+	IL_001a: stloc.3
+	IL_001b: ldarg.0
+	IL_001c: ldloc.3
+	IL_001d: ldc.i4.5
+	IL_001e: call System.Boolean NorthwoodLib.StringUtils::Contains(System.String,System.String,System.StringComparison)
+	IL_0023: ldc.i4.0
+	IL_0024: bne.un.s IL_002a
+	IL_0026: ldloc.0
+	IL_0027: ldc.i4.1
+	IL_0028: add
+	IL_0029: stloc.0
+	IL_002a: ldc.i4.1
+	IL_002b: ret
+	IL_002c: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0031: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.TextBasedRemoteAdmin
+	System.Void LookupPlayer(System.String arg)
+		RemoteAdmin.TextBasedRemoteAdmin/<>c__DisplayClass35_0 enumeratorInstance = new RemoteAdmin.TextBasedRemoteAdmin/<>c__DisplayClass35_0()
+
+		enumeratorInstance..ctor()
+		enumeratorInstance.arg = arg
+		System.Collections.Generic.HashSet`1<ReferenceHub> AllHubs = ReferenceHub.<AllHubs>k__BackingField
+		System.Func`2<ReferenceHub,System.Boolean> func = new System.Func`2<ReferenceHub,System.Boolean>()
+
+		func..ctor(enumeratorInstance, {'<LookupPlayer>b__0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		System.Collections.Generic.IEnumerable`1<ReferenceHub> iEnumerable = System.Linq.Enumerable.Where<ReferenceHub>(AllHubs, func) //(IEnumerable`1 source, Func`2 predicate)
+
+		System.Collections.Generic.List`1<ReferenceHub> list = System.Linq.Enumerable.ToList<ReferenceHub>(iEnumerable) //(IEnumerable`1 source)
+
+		if ( != 1)
+
+		    if ( > 1)
+
+		        RemoteAdmin.TextBasedRemoteAdmin.AddLog("Multiple matches found!") //(String log)
+
+		        RemoteAdmin.TextBasedRemoteAdmin.AddLog("-----------------------------------------") //(String log)
+
+		        System.Collections.Generic.List`1/Enumerator<T> enumerator = .GetEnumerator()
+
+		        if (enumerator != 0)
+
+		            [instruction error - managed method being called is null]
+		              = list.
+
+		            System.String myNick = .MyNick
+
+		            System.String string = System.String.Format("[{0}] {1}", local12, myNick) //(String format, Object arg0, Object arg1)
+
+		            RemoteAdmin.TextBasedRemoteAdmin.AddLog(string) //(String log)
+		        endif
+                
+
+		        [instruction error - managed method being called is null]
+
+		        [instruction error - managed method being called is null]
+
+		        if ("-----------------------------------------" != 0)
+                    goto INSN_1803591AD
+                endif
+
+		        RemoteAdmin.TextBasedRemoteAdmin.AddLog("-----------------------------------------") //(String log)
+		    endif
+            
+		    return
+		endif
+        
+		T[] _items = list._items
+		T local20 = _items[0]
+		  = .
+
+		System.String myNick2 = local20.MyNick
+		System.Int64 local23 = 34
+
+		System.Boolean boolean = NorthwoodLib.StringUtils.Contains(myNick2, local23) //(String s, Char value)
+
+		if (boolean != False)
+            goto INSN_180359004
+        endif
+		System.Int64 local26 = 46
+
+		System.Boolean boolean2 = NorthwoodLib.StringUtils.Contains(myNick2, local26) //(String s, Char value)
+
+		if (boolean2 != False)
+            goto INSN_180359004
+        endif
+		System.Int64 local29 = 32
+
+		System.Boolean boolean3 = NorthwoodLib.StringUtils.Contains(myNick2, local29) //(String s, Char value)
+
+		if (boolean3 == False)
+            goto INSN_1803590FC
+        endif
+
+		System.String string2 = System.String.Concat("@"", myNick2, """) //(String str0, String str1, String str2)
+
+		INSN_1803590FC:
+
+		System.String string3 = System.String.Concat("@", myNick2) //(String str0, String str1)
+		TMPro.TMP_InputField commandField = this.commandField
+		System.String m_Text = commandField.m_Text
+		System.Int32 m_stringLength = m_Text.m_stringLength
+		System.String string4 = enumeratorInstance.arg
+		ulong local41 = 0
+
+		System.String string5 = m_Text.Substring(local41, m_stringLength) //(Int32 startIndex, Int32 length)
+
+		commandField.text = string5
+		TMPro.TMP_InputField commandField2 = this.commandField
+		System.String m_Text2 = commandField2.m_Text
+
+		System.String string6 = System.String.Concat(m_Text2, string3, ".") //(String str0, String str1, String str2)
+
+		commandField2.text = string6
+		TMPro.TMP_InputField commandField3 = this.commandField
+		ulong local51 = 0
+		ulong local52 = 0
+
+		commandField3.MoveToEndOfLine(local52, local51) //(Boolean shift, Boolean ctrl)
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+
+		INSN_1803591AD:
+
+
+Generated IL:
+	IL Generation Skipped due to invalid local _items of type T[]
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.TextBasedRemoteAdmin
+	System.Void .ctor()
+		System.Collections.Generic.List`1<System.Collections.Generic.KeyValuePair`2<System.String,RemoteAdmin.TextBasedRemoteAdmin/CommandDictionaryEntry>> list = new System.Collections.Generic.List`1<System.Collections.Generic.KeyValuePair`2<System.String,RemoteAdmin.TextBasedRemoteAdmin/CommandDictionaryEntry>>()
+
+		list..ctor()
+		this._clientLastCommandSearchResults = list
+		System.Collections.Generic.List`1<System.String> list2 = new System.Collections.Generic.List`1<System.String>()
+
+		list2..ctor()
+		this._clientCommandLogs = list2
+		System.Collections.Generic.List`1<System.String> list3 = new System.Collections.Generic.List`1<System.String>()
+
+		list3..ctor()
+		this._logs = list3
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: newobj System.Void System.Collections.Generic.List`1::.ctor()
+	IL_0005: stloc.0
+	IL_0006: ldarg.0
+	IL_0007: ldloc.0
+	IL_0008: stfld System.Collections.Generic.List`1<System.Collections.Generic.KeyValuePair`2<System.String,RemoteAdmin.TextBasedRemoteAdmin/CommandDictionaryEntry>> RemoteAdmin.TextBasedRemoteAdmin::_clientLastCommandSearchResults
+	IL_000d: newobj System.Void System.Collections.Generic.List`1::.ctor()
+	IL_0012: stloc.1
+	IL_0013: ldarg.0
+	IL_0014: ldloc.1
+	IL_0015: stfld System.Collections.Generic.List`1<System.String> RemoteAdmin.TextBasedRemoteAdmin::_clientCommandLogs
+	IL_001a: newobj System.Void System.Collections.Generic.List`1::.ctor()
+	IL_001f: stloc.2
+	IL_0020: ldarg.0
+	IL_0021: ldloc.2
+	IL_0022: stfld System.Collections.Generic.List`1<System.String> RemoteAdmin.TextBasedRemoteAdmin::_logs
+	IL_0027: ldarg.0
+	IL_0028: call System.Void UnityEngine.MonoBehaviour::.ctor()
+	IL_002d: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.TextBasedRemoteAdmin
+	static System.Void .cctor()
+		System.Collections.Generic.List`1<RemoteAdmin.QueryProcessor/CommandData> list = new System.Collections.Generic.List`1<RemoteAdmin.QueryProcessor/CommandData>()
+
+		list..ctor()
+		 += 8
+		RemoteAdmin.TextBasedRemoteAdmin.singleton = list
+		System.Int64 local1 = 4
+		System.String[] local2 = new System.String[4]
+
+		if ("@all" != 0)
+
+		    if ("@all" == 0)
+                goto INSN_18035B44E
+            endif
+		endif
+        
+		local2[0] = "@all"
+
+		if ("*" == 0)
+            goto INSN_18035B0FD
+        endif
+
+		if ("*" == 0)
+            goto INSN_18035B46E
+        endif
+
+		INSN_18035B0FD:
+		local2[1] = "*"
+
+		if ("@everyone" == 0)
+            goto INSN_18035B141
+        endif
+
+		if ("@everyone" == 0)
+            goto INSN_18035B48E
+        endif
+
+		INSN_18035B141:
+		local2[2] = "@everyone"
+
+		if ("@a" == 0)
+            goto INSN_18035B185
+        endif
+
+		if ("@a" == 0)
+            goto INSN_18035B4AE
+        endif
+
+		INSN_18035B185:
+		local2[3] = "@a"
+		 += 16
+		RemoteAdmin.TextBasedRemoteAdmin.singleton = local2
+		System.Int64 local3 = 2
+		System.String[] local4 = new System.String[2]
+
+		if ("@me" == 0)
+            goto INSN_18035B203
+        endif
+
+		if ("@me" == 0)
+            goto INSN_18035B4CE
+        endif
+
+		INSN_18035B203:
+		local4[0] = "@me"
+
+		if ("@self" == 0)
+            goto INSN_18035B247
+        endif
+
+		if ("@self" == 0)
+            goto INSN_18035B4EE
+        endif
+
+		INSN_18035B247:
+		local4[1] = "@self"
+		 += 24
+		RemoteAdmin.TextBasedRemoteAdmin.singleton = local4
+		System.StringComparer _ordinalIgnoreCase = System.StringComparer._ordinalIgnoreCase
+		System.Collections.Generic.HashSet`1<System.String> hashSet = new System.Collections.Generic.HashSet`1<System.String>()
+
+		hashSet..ctor(_ordinalIgnoreCase) //(IEqualityComparer`1 comparer)
+
+		System.Boolean boolean = hashSet.Add("clr") //(T item)
+
+		System.Boolean boolean2 = hashSet.Add("cls") //(T item)
+
+		System.Boolean boolean3 = hashSet.Add("clearconsole") //(T item)
+
+		System.Boolean boolean4 = hashSet.Add("clean") //(T item)
+		 += 32
+		RemoteAdmin.TextBasedRemoteAdmin.singleton = hashSet
+		RemoteAdmin.TextBasedRemoteAdmin/CommandDistanceComparer commandDistanceComparer = new RemoteAdmin.TextBasedRemoteAdmin/CommandDistanceComparer()
+
+		commandDistanceComparer..ctor()
+		 += 40
+		RemoteAdmin.TextBasedRemoteAdmin.singleton = commandDistanceComparer
+		System.Collections.Generic.List`1<RemoteAdmin.TextBasedRemoteAdmin/CommandDistance> list2 = new System.Collections.Generic.List`1<RemoteAdmin.TextBasedRemoteAdmin/CommandDistance>()
+
+		list2..ctor()
+		 += 48
+		RemoteAdmin.TextBasedRemoteAdmin.singleton = list2
+		System.Collections.Generic.Dictionary`2<System.String,RemoteAdmin.TextBasedRemoteAdmin/CommandDistance> dictionary = new System.Collections.Generic.Dictionary`2<System.String,RemoteAdmin.TextBasedRemoteAdmin/CommandDistance>()
+
+		dictionary..ctor()
+		 += 56
+		RemoteAdmin.TextBasedRemoteAdmin.singleton = dictionary
+		throw new System.NullReferenceException()
+
+		INSN_18035B44E:
+
+		INSN_18035B46E:
+
+		INSN_18035B48E:
+
+		INSN_18035B4AE:
+
+		INSN_18035B4CE:
+
+		INSN_18035B4EE:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x18035B065) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.TextBasedRemoteAdmin
+	System.Void <Start>b__18_0(System.String <p0>)
+
+		this.CommandFieldOnValueChanged()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void RemoteAdmin.TextBasedRemoteAdmin::CommandFieldOnValueChanged()
+	IL_0006: ret
+	
+

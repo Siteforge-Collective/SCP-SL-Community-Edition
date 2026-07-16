@@ -1,0 +1,405 @@
+Type: BanPlayer
+
+
+	Generated Pseudocode:
+
+	Declaring Type: BanPlayer
+	static System.Boolean GlobalBanUser(ReferenceHub target, CommandSystem.ICommandSender issuer)
+
+		BanPlayer.ApplyIpBan(target, issuer, "You have been Globally Banned.", {'4294967295' (constant value of type System.Int64)}) //(ReferenceHub target, ICommandSender issuer, String reason, Int64 duration)
+
+		UnityEngine.GameObject gameObject = target.gameObject
+
+		ServerConsole.Disconnect(gameObject, "You have been Globally Banned.") //(GameObject player, String message)
+		return True
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1804E6F87) is corrupt (ConstantDefinition: Don't know how to get IL to load a System.Int64) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: BanPlayer
+	static System.Boolean KickUser(ReferenceHub target, CommandSystem.ICommandSender issuer, System.String reason)
+
+		UnityEngine.GameObject gameObject = target.gameObject
+
+		System.String string = System.String.Concat("You have been kicked. Reason: ", reason) //(String str0, String str1)
+
+		ServerConsole.Disconnect(gameObject, string) //(GameObject player, String message)
+		return True
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call UnityEngine.GameObject UnityEngine.Component::get_gameObject()
+	IL_0006: stloc.0
+	IL_0007: ldstr "You have been kicked. Reason: "
+	IL_000c: ldarg.2
+	IL_000d: call System.String System.String::Concat(System.String,System.String)
+	IL_0012: stloc.1
+	IL_0013: ldloc.0
+	IL_0014: ldloc.1
+	IL_0015: call System.Void ServerConsole::Disconnect(UnityEngine.GameObject,System.String)
+	IL_001a: ldc.i4.1
+	IL_001b: ret
+	IL_001c: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0021: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: BanPlayer
+	static System.Boolean KickUser(ReferenceHub target, ReferenceHub issuer, System.String reason)
+		RemoteAdmin.PlayerCommandSender playerCommandSender = new RemoteAdmin.PlayerCommandSender()
+
+		playerCommandSender..ctor(issuer) //(ReferenceHub hub)
+
+		UnityEngine.GameObject gameObject = target.gameObject
+
+		System.String string = System.String.Concat("You have been kicked. Reason: ", reason) //(String str0, String str1)
+
+		ServerConsole.Disconnect(gameObject, string) //(GameObject player, String message)
+		return True
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.1
+	IL_0001: newobj System.Void RemoteAdmin.PlayerCommandSender::.ctor(ReferenceHub)
+	IL_0006: stloc.0
+	IL_0007: ldarg.0
+	IL_0008: call UnityEngine.GameObject UnityEngine.Component::get_gameObject()
+	IL_000d: stloc.1
+	IL_000e: ldstr "You have been kicked. Reason: "
+	IL_0013: ldarg.2
+	IL_0014: call System.String System.String::Concat(System.String,System.String)
+	IL_0019: stloc.2
+	IL_001a: ldloc.1
+	IL_001b: ldloc.2
+	IL_001c: call System.Void ServerConsole::Disconnect(UnityEngine.GameObject,System.String)
+	IL_0021: ldc.i4.1
+	IL_0022: ret
+	IL_0023: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0028: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: BanPlayer
+	static System.Boolean KickUser(ReferenceHub target, System.String reason)
+
+		UnityEngine.GameObject gameObject = target.gameObject
+
+		System.String string = System.String.Concat("You have been kicked. Reason: ", reason) //(String str0, String str1)
+
+		ServerConsole.Disconnect(gameObject, string) //(GameObject player, String message)
+		return True
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call UnityEngine.GameObject UnityEngine.Component::get_gameObject()
+	IL_0006: stloc.0
+	IL_0007: ldstr "You have been kicked. Reason: "
+	IL_000c: ldarg.1
+	IL_000d: call System.String System.String::Concat(System.String,System.String)
+	IL_0012: stloc.1
+	IL_0013: ldloc.0
+	IL_0014: ldloc.1
+	IL_0015: call System.Void ServerConsole::Disconnect(UnityEngine.GameObject,System.String)
+	IL_001a: ldc.i4.1
+	IL_001b: ret
+	IL_001c: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0021: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: BanPlayer
+	static System.Boolean BanUser(ReferenceHub target, System.String reason, System.Int64 duration)
+		ServerConsoleSender serverConsoleSender = ServerConsole.Scs
+
+		System.Boolean boolean = BanPlayer.BanUser(target, serverConsoleSender, reason, duration) //(ReferenceHub target, ICommandSender issuer, String reason, Int64 duration)
+		return boolean
+
+
+Generated IL:
+	IL_0000: ldsfld ServerConsoleSender ServerConsole::Scs
+	IL_0005: stloc.1
+	IL_0006: ldarg.0
+	IL_0007: ldloc.1
+	IL_0008: ldarg.1
+	IL_0009: ldarg.2
+	IL_000a: call System.Boolean BanPlayer::BanUser(ReferenceHub,CommandSystem.ICommandSender,System.String,System.Int64)
+	IL_000f: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: BanPlayer
+	static System.Boolean BanUser(ReferenceHub target, ReferenceHub issuer, System.String reason, System.Int64 duration)
+		RemoteAdmin.PlayerCommandSender playerCommandSender = new RemoteAdmin.PlayerCommandSender()
+
+		playerCommandSender..ctor(issuer) //(ReferenceHub hub)
+
+		System.Boolean boolean = BanPlayer.BanUser(target, playerCommandSender, reason, duration) //(ReferenceHub target, ICommandSender issuer, String reason, Int64 duration)
+		return boolean
+
+
+Generated IL:
+	IL_0000: ldarg.1
+	IL_0001: newobj System.Void RemoteAdmin.PlayerCommandSender::.ctor(ReferenceHub)
+	IL_0006: stloc.0
+	IL_0007: ldarg.0
+	IL_0008: ldloc.0
+	IL_0009: ldarg.2
+	IL_000a: ldarg.3
+	IL_000b: call System.Boolean BanPlayer::BanUser(ReferenceHub,CommandSystem.ICommandSender,System.String,System.Int64)
+	IL_0010: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: BanPlayer
+	static System.Boolean BanUser(ReferenceHub target, CommandSystem.ICommandSender issuer, System.String reason, System.Int64 duration)
+
+		if (duration != constant4)
+		    ServerRoles serverRoles = target.serverRoles
+
+		    if (serverRoles.BypassStaff == False)
+
+		        BanPlayer.ApplyIpBan(target, issuer, reason, duration) //(ReferenceHub target, ICommandSender issuer, String reason, Int64 duration)
+		        ulong local6 = 0
+
+		        System.Int64 int64 = TimeBehaviour.CurrentTimestamp()
+
+		        System.Int64 banExpirationTime = TimeBehaviour.GetBanExpirationTime(duration) //(UInt32 seconds)
+		        NicknameSync nicknameSync = target.nicknameSync
+
+		        System.String myNick = nicknameSync.MyNick
+
+		        System.String string = BanPlayer.ValidateNick(myNick) //(String username)
+		        BanDetails banDetails = new BanDetails()
+		        ulong local16 = 0
+
+		        banDetails.FieldGetter(local16, reason, duration) //(String typeName, String fieldName, Object& val)
+		        banDetails.OriginalName = string
+		        CharacterClassManager characterClassManager = target.characterClassManager
+
+		        System.String userId = characterClassManager.UserId
+		        banDetails.Id = userId
+		        banDetails.Reason = reason
+		        banDetails.IssuanceTime = int64
+		        banDetails.Expires = banExpirationTime
+		        banDetails.Issuer = userId
+		        ulong local21 = 0
+		        ulong local22 = 0
+
+		        System.Boolean issueBan = BanHandler.IssueBan(banDetails, local22, local21) //(BanDetails ban, BanType banType, Boolean forced)
+		        CharacterClassManager characterClassManager2 = target.characterClassManager
+		        System.String userId2 = characterClassManager2.UserId2
+
+		        System.Boolean isNullOrEmpty = System.String.IsNullOrEmpty(userId2) //(String value)
+
+		        if (isNullOrEmpty == False)
+		            BanDetails banDetails2 = new BanDetails()
+
+		            banDetails2..ctor()
+		            banDetails2.OriginalName = string
+		            CharacterClassManager characterClassManager3 = target.characterClassManager
+		            System.String userId22 = characterClassManager3.UserId2
+		            banDetails2.Id = userId22
+		            banDetails2.Reason = reason
+		            banDetails2.IssuanceTime = int64
+		            banDetails2.Expires = banExpirationTime
+		            banDetails2.Issuer = banDetails2
+		            ulong local33 = 0
+		            ulong local34 = 0
+
+		            System.Boolean issueBan2 = BanHandler.IssueBan(banDetails2, local34, local33) //(BanDetails ban, BanType banType, Boolean forced)
+		        endif
+                
+
+		        UnityEngine.GameObject gameObject = target.gameObject
+		    else
+		        ulong local38 = 0
+		        return local38
+		    endif
+            
+
+		    UnityEngine.GameObject gameObject2 = target.gameObject
+		endif
+        
+
+		System.String string2 = System.String.Concat("You have been kicked. Reason: ", reason) //(String str0, String str1)
+
+		ServerConsole.Disconnect(gameObject2, string2) //(GameObject player, String message)
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfZeroOrNullAction at (0x1804E6C06) is corrupt (ConstantDefinition: Don't know how to get IL to load a System.Int64) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: BanPlayer
+	static System.Void ApplyIpBan(ReferenceHub target, CommandSystem.ICommandSender issuer, System.String reason, System.Int64 duration)
+		YamlConfig serverConfig = GameCore.ConfigFile.ServerConfig
+		ulong local6 = 0
+
+		System.Boolean bool = serverConfig.GetBool("ip_banning", local6) //(String key, Boolean def)
+
+		if (bool != False)
+		    YamlConfig serverConfig2 = GameCore.ConfigFile.ServerConfig
+		    ulong local10 = 0
+
+		    System.Boolean bool2 = serverConfig2.GetBool("gban_ban_ip", local10) //(String key, Boolean def)
+
+		    if (bool2 != False)
+		        ulong local12 = 0
+
+		        System.Int64 int64 = TimeBehaviour.CurrentTimestamp()
+
+		        System.Int64 banExpirationTime = TimeBehaviour.GetBanExpirationTime(duration) //(UInt32 seconds)
+		        BanDetails banDetails = new BanDetails()
+
+		        banDetails..ctor()
+		        NicknameSync nicknameSync = target.nicknameSync
+
+		        System.String myNick = nicknameSync.MyNick
+
+		        System.String string = BanPlayer.ValidateNick(myNick) //(String username)
+		        banDetails.OriginalName = string
+
+		        Mirror.NetworkConnection connectionToClient = target.connectionToClient
+
+		        System.String string2 = connectionToClient.ToString()
+		        banDetails.Id = string2
+		        banDetails.Reason = reason
+		        banDetails.IssuanceTime = int64
+		        banDetails.Expires = banExpirationTime
+		        banDetails.Issuer = string2
+		        ulong local27 = 0
+		        System.Int32 1 = 1
+
+		        System.Boolean issueBan = BanHandler.IssueBan(banDetails, 1, local27) //(BanDetails ban, BanType banType, Boolean forced)
+		    endif
+            
+		    return
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldsfld YamlConfig GameCore.ConfigFile::ServerConfig
+	IL_0005: stloc.0
+	IL_0006: ldc.i4.0
+	IL_0007: stloc.1
+	IL_0008: ldloc.0
+	IL_0009: ldstr "ip_banning"
+	IL_000e: ldloc.1
+	IL_000f: call System.Boolean YamlConfig::GetBool(System.String,System.Boolean)
+	IL_0014: ldc.i4.0
+	IL_0015: beq IL_00ad
+	IL_001a: ldsfld YamlConfig GameCore.ConfigFile::ServerConfig
+	IL_001f: stloc.2
+	IL_0020: ldc.i4.0
+	IL_0021: stloc.3
+	IL_0022: ldloc.2
+	IL_0023: ldstr "gban_ban_ip"
+	IL_0028: ldloc.3
+	IL_0029: call System.Boolean YamlConfig::GetBool(System.String,System.Boolean)
+	IL_002e: ldc.i4.0
+	IL_002f: beq.s IL_00ad
+	IL_0031: ldc.i4.0
+	IL_0032: stloc.s V_4
+	IL_0034: call System.Int64 TimeBehaviour::CurrentTimestamp()
+	IL_0039: stloc.s V_5
+	IL_003b: ldarg.3
+	IL_003c: call System.Int64 TimeBehaviour::GetBanExpirationTime(System.UInt32)
+	IL_0041: stloc.s V_6
+	IL_0043: newobj System.Void BanDetails::.ctor()
+	IL_0048: stloc.s V_7
+	IL_004a: ldarg.0
+	IL_004b: ldfld NicknameSync ReferenceHub::nicknameSync
+	IL_0050: call System.String NicknameSync::get_MyNick()
+	IL_0055: call System.String BanPlayer::ValidateNick(System.String)
+	IL_005a: stloc.s V_8
+	IL_005c: ldloc.s V_7
+	IL_005e: ldloc.s V_8
+	IL_0060: stfld System.String BanDetails::OriginalName
+	IL_0065: ldarg.0
+	IL_0066: call Mirror.NetworkConnection Mirror.NetworkBehaviour::get_connectionToClient()
+	IL_006b: callvirt System.String Mirror.NetworkConnection::ToString()
+	IL_0070: stloc.s V_9
+	IL_0072: ldloc.s V_7
+	IL_0074: ldloc.s V_9
+	IL_0076: stfld System.String BanDetails::Id
+	IL_007b: ldloc.s V_7
+	IL_007d: ldarg.2
+	IL_007e: stfld System.String BanDetails::Reason
+	IL_0083: ldloc.s V_7
+	IL_0085: ldloc.s V_5
+	IL_0087: stfld System.Int64 BanDetails::IssuanceTime
+	IL_008c: ldloc.s V_7
+	IL_008e: ldloc.s V_6
+	IL_0090: stfld System.Int64 BanDetails::Expires
+	IL_0095: ldloc.s V_7
+	IL_0097: ldloc.s V_9
+	IL_0099: stfld System.String BanDetails::Issuer
+	IL_009e: ldc.i4.0
+	IL_009f: stloc.s V_10
+	IL_00a1: ldloc.s V_7
+	IL_00a3: ldc.i4.1
+	IL_00a4: ldloc.s V_10
+	IL_00a6: call System.Boolean BanHandler::IssueBan(BanDetails,BanHandler/BanType,System.Boolean)
+	IL_00ab: stloc.s V_11
+	IL_00ad: ret
+	IL_00ae: newobj System.Void System.NullReferenceException::.ctor()
+	IL_00b3: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: BanPlayer
+	static System.String ValidateNick(System.String username)
+		YamlConfig serverConfig = GameCore.ConfigFile.ServerConfig
+		System.Int32 30 = 30
+
+		System.Int32 int = serverConfig.GetInt("ban_nickname_maxlength", 30) //(String key, Int32 def)
+		YamlConfig serverConfig2 = GameCore.ConfigFile.ServerConfig
+
+		System.Boolean bool = serverConfig2.GetBool("ban_nickname_trimunicode", True) //(String key, Boolean def)
+
+		[instruction error - managed method being called is null]
+		string  = bool != False ? "(no nick)" : ""
+
+		if (bool != False)
+
+		    System.String string = NorthwoodLib.StringUtils.StripUnicodeCharacters("(no nick)", "") //(String input, String replacement)
+		endif
+        
+		ulong local11 = 0
+
+		System.String string2 = .Substring(local11, int) //(Int32 startIndex, Int32 length)
+		return string2
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1804E72F4) is corrupt (Don't know what method is being called) and cannot be created as IL. Aborting here.
+
+

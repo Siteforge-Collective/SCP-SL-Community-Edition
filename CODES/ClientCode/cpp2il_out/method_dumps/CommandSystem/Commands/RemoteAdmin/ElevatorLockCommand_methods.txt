@@ -1,0 +1,447 @@
+Type: ElevatorLockCommand
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.ElevatorLockCommand
+	System.String get_Command()
+		System.String Command = this.<Command>k__BackingField
+		return Command
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String CommandSystem.Commands.RemoteAdmin.ElevatorLockCommand::<Command>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.ElevatorLockCommand
+	System.String[] get_Aliases()
+		System.String[] Aliases = this.<Aliases>k__BackingField
+		return Aliases
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String[] CommandSystem.Commands.RemoteAdmin.ElevatorLockCommand::<Aliases>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.ElevatorLockCommand
+	System.String get_Description()
+		System.String Description = this.<Description>k__BackingField
+		return Description
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String CommandSystem.Commands.RemoteAdmin.ElevatorLockCommand::<Description>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.ElevatorLockCommand
+	System.Boolean Execute(System.ArraySegment`1<System.String> arguments, CommandSystem.ICommandSender sender, System.String& response)
+
+		System.Boolean boolean = Misc.CheckPermission(sender, 0x2000, response) //(ICommandSender sender, PlayerPermissions perm, String& response)
+
+		if (boolean != False)
+
+		    if ( != 1)
+		        response. = "Syntax error: elevator lock <Elevator ID / all>"
+		    endif
+            
+		    ulong local6 = 0
+		    return local6
+		endif
+        
+
+		System.Boolean boolean2 = CommandSystem.Commands.RemoteAdmin.ElevatorLockCommand.TrySetLock()
+		return boolean2
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfZeroOrNullAction at (0x18054B15C) is corrupt (One of the arguments is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.ElevatorLockCommand
+	static System.Boolean TrySetLock(System.String elevatorId, System.Boolean locked, System.String& response, CommandSystem.ICommandSender sender)
+		ulong local4 = 0
+		System.Int32 5 = 5
+
+		System.Boolean boolean = elevatorId.Equals("all", 5) //(String value, StringComparison comparisonType)
+
+		if (boolean == False)
+		    System.Int32 5 = 5
+
+		    System.Boolean boolean2 = elevatorId.Equals("*", 5) //(String value, StringComparison comparisonType)
+
+		    if (boolean2 == False)
+
+		        System.Boolean boolean3 = CommandSystem.Commands.RemoteAdmin.ElevatorCommand.TryParseGroup()
+
+		        if (boolean3 != False)
+		            System.Collections.Generic.Dictionary`2<Interactables.Interobjects.ElevatorManager/ElevatorGroup,System.Collections.Generic.List`1<Interactables.Interobjects.ElevatorDoor>> allElevatorDoors = Interactables.Interobjects.ElevatorDoor.AllElevatorDoors
+
+		            System.Boolean boolean4 = allElevatorDoors.TryGetValue()
+
+		            if (boolean4 != False)
+
+		                System.Int32 hashCode = boolean4.GetHashCode()
+		                local16 = boolean4
+		                local16 = locked
+
+		                System.Boolean boolean5 = CommandSystem.Commands.RemoteAdmin.ElevatorLockCommand.SetLock()
+
+		                if (boolean5 != False)
+
+		                    if (locked == False)
+		                    endif
+                            
+		                    local16 = boolean5
+
+		                    System.String string = System.String.Format("Elevator "{0}" has been {1}.", local16, "locked") //(String format, Object arg0, Object arg1)
+		                    response. = string
+		                    return True
+		                endif
+                        
+		                local16 = boolean5
+
+		                System.String string2 = System.String.Format("Could not update lock status for elevator "{0}".", local16) //(String format, Object arg0)
+		            else
+
+		                System.String string3 = System.String.Format("Elevator "{0}" could not be found in the Facility.", boolean4) //(String format, Object arg0)
+		            else
+
+		                System.String string4 = System.String.Concat("Elevator "", elevatorId, "" not found.") //(String str0, String str1, String str2)
+		            endif
+                    
+		            response. = string4
+		        endif
+                
+		        NorthwoodLib.Pools.StringBuilderPool shared = NorthwoodLib.Pools.StringBuilderPool.Shared
+
+		        System.Text.StringBuilder stringBuilder = shared.Rent()
+		        System.Collections.Generic.Dictionary`2<Interactables.Interobjects.ElevatorManager/ElevatorGroup,System.Collections.Generic.List`1<Interactables.Interobjects.ElevatorDoor>> allElevatorDoors2 = Interactables.Interobjects.ElevatorDoor.AllElevatorDoors
+
+		        System.Collections.Generic.Dictionary`2/Enumerator<TKey,TValue> enumerator = .GetEnumerator()
+
+		        if (enumerator == 0)
+                    goto INSN_18054BB04
+                endif
+
+		        System.Int32 hashCode2 = enumerator.GetHashCode()
+		        local33 = enumerator
+
+		        System.Boolean boolean6 = CommandSystem.Commands.RemoteAdmin.ElevatorLockCommand.SetLock()
+
+		        if (boolean6 != False)
+                    goto INSN_18054BAC7
+                endif
+
+		        System.Text.StringBuilder stringBuilder2 = stringBuilder.AppendFormat("Could not update lock status for elevator "{0}".
+                ", boolean6) //(String format, Object arg0)
+
+		        INSN_18054BAC7:
+
+		        if (locked != False)
+                    goto INSN_18054BAE6
+                endif
+
+		        INSN_18054BAE6:
+
+		        System.Text.StringBuilder stringBuilder3 = stringBuilder.AppendFormat("Elevator "{0}" has been {1}.
+                ", stringBuilder2, "unlocked") //(String format, Object arg0, Object arg1)
+
+		        INSN_18054BB04:
+
+		        stringBuilder.Dispose()
+
+		        if (local4 != 0)
+                    goto INSN_18054BC12
+                endif
+
+		        if (local4 == -1)
+                    goto INSN_18054BB62
+                endif
+
+		        if (constant76 != 343)
+                    goto INSN_18054BB62
+                endif
+
+		        INSN_18054BB62:
+
+		        System.Int32 hashCode3 = stringBuilder.GetHashCode()
+		        response. = hashCode3
+		        hashCode2. = 368
+		        NorthwoodLib.Pools.StringBuilderPool shared2 = NorthwoodLib.Pools.StringBuilderPool.Shared
+
+		        shared2.Return(stringBuilder) //(StringBuilder stringBuilder)
+
+		        if (local4 != 0)
+                    goto INSN_18054BC27
+                endif
+		        throw new System.NullReferenceException()
+		        throw new System.NullReferenceException()
+		        throw new System.NullReferenceException()
+		        throw new System.NullReferenceException()
+
+		        INSN_18054BC12:
+		        throw new System.NullReferenceException()
+		        throw new System.NullReferenceException()
+
+		        INSN_18054BC27:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18054B79D) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.ElevatorLockCommand
+	static System.Boolean SetLock(System.Collections.Generic.List`1<Interactables.Interobjects.ElevatorDoor> list, System.Boolean locked, CommandSystem.ICommandSender sender, System.String elevatorName)
+		System.Int32 _size = list._size
+
+		if (_size != 0)
+		    T[] _items = list._items
+		    T local6 = _items[0]
+		      = .
+
+		    System.Boolean boolean = UnityEngine.Object.op_Equality()
+
+		    if (boolean == False)
+
+		        if ( <= 0)
+		            ulong local10 = 0
+
+		            System.ThrowHelper.ThrowArgumentOutOfRangeException()
+		        endif
+                
+		        T[] _items2 = list._items
+		        T local12 = _items2[0]
+		          = .
+		          = .
+
+		        [instruction error - managed method being called is null]
+
+		        if (local12 == locked)
+                    goto INSN_18054B5B9
+                endif
+		        System.String[] local14 = new System.String[6]
+
+		        if (local14 == 0)
+                    goto INSN_18054B353
+                endif
+
+		        if (local14 == 0)
+                    goto INSN_18054B5DD
+                endif
+
+		        INSN_18054B353:
+		        local14[0] = local14
+
+		        if (" " == 0)
+                    goto INSN_18054B397
+                endif
+
+		        if (" " == 0)
+                    goto INSN_18054B5FD
+                endif
+
+		        INSN_18054B397:
+		        local14[1] = " "
+		        string local15 = locked != False ? "locked" : "unlocked"
+
+		        if (local15 == 0)
+                    goto INSN_18054B3DF
+                endif
+
+		        if (" " == 0)
+                    goto INSN_18054B61D
+                endif
+
+		        INSN_18054B3DF:
+		        local14[2] = local15
+
+		        if (" elevator " == 0)
+                    goto INSN_18054B423
+                endif
+
+		        if (" elevator " == 0)
+                    goto INSN_18054B63D
+                endif
+
+		        INSN_18054B423:
+		        local14[3] = " elevator "
+
+		        if (elevatorName == 0)
+                    goto INSN_18054B459
+                endif
+
+		        if (" elevator " == 0)
+                    goto INSN_18054B65D
+                endif
+
+		        INSN_18054B459:
+		        local14[4] = elevatorName
+
+		        if ("." == 0)
+                    goto INSN_18054B49D
+                endif
+
+		        if ("." == 0)
+                    goto INSN_18054B67D
+                endif
+
+		        INSN_18054B49D:
+		        local14[5] = "."
+
+		        System.String string = System.String.Concat(local14) //(String[] values)
+		        ulong local19 = 0
+
+		        ServerLogs.AddLog(True, string, 1, local19) //(Modules module, String msg, ServerLogType type, Boolean init)
+
+		        System.Collections.Generic.List`1/Enumerator<T> enumerator = .GetEnumerator()
+
+		        if (enumerator == 0)
+                    goto INSN_18054B582
+                endif
+
+		        if (locked != False)
+                    goto INSN_18054B567
+                endif
+
+		        .set_NetworkActiveLocks()
+
+		        INSN_18054B567:
+
+		        .set_NetworkActiveLocks()
+
+		        INSN_18054B582:
+
+		        [instruction error - managed method being called is null]
+
+		        [instruction error - managed method being called is null]
+
+		        if (True != 0)
+                    goto INSN_18054B6A9
+                endif
+
+		        INSN_18054B5B9:
+		        return True
+		    endif
+            
+		    throw new System.NullReferenceException()
+
+		    INSN_18054B5DD:
+
+		    INSN_18054B5FD:
+
+		    INSN_18054B61D:
+
+		    INSN_18054B63D:
+
+		    INSN_18054B65D:
+
+		    INSN_18054B67D:
+
+		    INSN_18054B6A9:
+
+
+Generated IL:
+	IL Generation Skipped due to invalid local _items of type T[]
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.ElevatorLockCommand
+	System.Void .ctor()
+		this.<Command>k__BackingField = "lock"
+		System.String[] local1 = new System.String[2]
+
+		if ("l" != 0)
+
+		    if ("l" == 0)
+                goto INSN_18054BD54
+            endif
+		endif
+        
+		local1[0] = "l"
+
+		if ("lck" == 0)
+            goto INSN_18054BD03
+        endif
+
+		if ("lck" == 0)
+            goto INSN_18054BD74
+        endif
+
+		INSN_18054BD03:
+		local1[1] = "lck"
+		this.<Aliases>k__BackingField = local1
+		this.<Description>k__BackingField = "Locks an elevator."
+
+		base..ctor()
+		return
+		throw new System.NullReferenceException()
+
+		INSN_18054BD54:
+
+		INSN_18054BD74:
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldstr "lock"
+	IL_0006: stfld System.String CommandSystem.Commands.RemoteAdmin.ElevatorLockCommand::<Command>k__BackingField
+	IL_000b: ldc.i4.2
+	IL_000c: newarr System.String
+	IL_0011: stloc.0
+	IL_0012: ldstr "l"
+	IL_0017: ldc.i4.0
+	IL_0018: beq.s IL_0022
+	IL_001a: ldstr "l"
+	IL_001f: ldc.i4.0
+	IL_0020: beq.s IL_0000
+	IL_0022: ldloc.0
+	IL_0023: ldc.i4.0
+	IL_0024: ldstr "l"
+	IL_0029: stelem.any System.String
+	IL_002e: ldstr "lck"
+	IL_0033: ldc.i4.0
+	IL_0034: beq.s IL_003e
+	IL_0036: ldstr "lck"
+	IL_003b: ldc.i4.0
+	IL_003c: beq.s IL_0000
+	IL_003e: ldloc.0
+	IL_003f: ldc.i4.1
+	IL_0040: ldstr "lck"
+	IL_0045: stelem.any System.String
+	IL_004a: ldarg.0
+	IL_004b: ldloc.0
+	IL_004c: stfld System.String[] CommandSystem.Commands.RemoteAdmin.ElevatorLockCommand::<Aliases>k__BackingField
+	IL_0051: ldarg.0
+	IL_0052: ldstr "Locks an elevator."
+	IL_0057: stfld System.String CommandSystem.Commands.RemoteAdmin.ElevatorLockCommand::<Description>k__BackingField
+	IL_005c: ldarg.0
+	IL_005d: call System.Void System.Object::.ctor()
+	IL_0062: ret
+	IL_0063: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0068: throw
+	
+

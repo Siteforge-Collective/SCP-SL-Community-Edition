@@ -1,0 +1,304 @@
+Type: InventoryItemProvider
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.InventoryItemProvider
+	static System.Void Init()
+		PlayerRoles.PlayerRoleManager/RoleChanged roleChanged = new PlayerRoles.PlayerRoleManager/RoleChanged()
+		ulong local2 = 0
+
+		roleChanged..ctor(local2, {'RoleChanged' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		PlayerRoles.PlayerRoleManager.add_OnRoleChanged(roleChanged) //(RoleChanged value)
+		return
+
+
+Generated IL:
+	IL_0000: ldloc.1
+	IL_0001: ldftn System.Void InventorySystem.InventoryItemProvider::RoleChanged(ReferenceHub,PlayerRoles.PlayerRoleBase,PlayerRoles.PlayerRoleBase)
+	IL_0007: newobj System.Void PlayerRoles.PlayerRoleManager/RoleChanged::.ctor(System.Object,System.IntPtr)
+	IL_000c: stloc.0
+	IL_000d: ldc.i4.0
+	IL_000e: stloc.1
+	IL_000f: ldloc.0
+	IL_0010: call System.Void PlayerRoles.PlayerRoleManager::add_OnRoleChanged(PlayerRoles.PlayerRoleManager/RoleChanged)
+	IL_0015: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.InventoryItemProvider
+	static System.Void ServerGrantLoadout(ReferenceHub target, PlayerRoles.RoleTypeId roleTypeId, System.Boolean resetInventory)
+		InventorySystem.Inventory inventory = target.inventory
+
+		if (resetInventory != False)
+		    InventorySystem.InventoryInfo userInventory = inventory.UserInventory
+		    System.Collections.Generic.Dictionary`2<System.UInt16,InventorySystem.Items.ItemBase> items = userInventory.Items
+
+		    System.Int32 count = items.Count
+		    InventorySystem.InventoryInfo userInventory2 = inventory.UserInventory
+
+		    if (count > 0)
+
+		        System.Collections.Generic.KeyValuePair`2<System.UInt16,InventorySystem.Items.ItemBase> keyValuePair = System.Linq.Enumerable.ElementAt<System.Collections.Generic.KeyValuePair`2<System.UInt16,InventorySystem.Items.ItemBase>>()
+
+		        InventorySystem.InventoryExtensions.ServerRemoveItem()
+		    endif
+            
+		    System.Collections.Generic.Dictionary`2<ItemType,System.UInt16> reserveAmmo = userInventory2.ReserveAmmo
+
+		    reserveAmmo.Clear()
+		    inventory.SendAmmoNextFrame = True
+		endif
+        
+		  = .
+
+		System.Boolean boolean = .TryGetValue()
+
+		if (boolean == False)
+            goto INSN_18048CEF4
+        endif
+
+		System.Collections.Generic.Dictionary`2/Enumerator<TKey,TValue> enumerator = .GetEnumerator()
+
+		if (enumerator == 0)
+            goto INSN_18048CE12
+        endif
+		System.Collections.Generic.Dictionary`2<TKey,TValue> local19 = enumerator.dictionary
+
+		InventorySystem.InventoryExtensions.ServerAddAmmo()
+
+		INSN_18048CE12:
+
+		inventory.Dispose()
+
+		inventory.Dispose()
+
+		if (inventory != 0)
+            goto INSN_18048CF13
+        endif
+		ulong local20 = 0
+		System.Single lastSyncTime = inventory.lastSyncTime
+
+		if (local20 >= lastSyncTime)
+            goto INSN_18048CEF4
+        endif
+		ulong local22 = 0
+		ulong local23 = 0
+
+		InventorySystem.Items.ItemBase itemBase = InventorySystem.InventoryExtensions.ServerAddItem(inventory, local20, local22, local23) //(Inventory inv, ItemType type, UInt16 itemSerial, ItemPickupBase pickup)
+		System.Action`2<ReferenceHub,InventorySystem.Items.ItemBase> onItemProvided = InventorySystem.InventoryItemProvider.OnItemProvided
+
+		if (onItemProvided == 0)
+            goto INSN_18048CEE2
+        endif
+
+		onItemProvided.Invoke(target, itemBase) //(T1 arg1, T2 arg2)
+
+		INSN_18048CEE2:
+		local20 += 1
+
+		INSN_18048CEF4:
+		return
+
+		INSN_18048CF13:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18048CD19) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.InventoryItemProvider
+	static System.Void SpawnPreviousInventoryPickups(ReferenceHub hub)
+		ulong local1 = 0
+		System.Collections.Generic.Dictionary`2<ReferenceHub,System.Collections.Generic.List`1<InventorySystem.Items.Pickups.ItemPickupBase>> previousInventoryPickups = InventorySystem.InventoryItemProvider.PreviousInventoryPickups
+
+		System.Boolean boolean = previousInventoryPickups.TryGetValue(hub, null) //(TKey key, TValue& value)
+
+		if (boolean != False)
+
+		    UnityEngine.Transform transform = hub.transform
+
+		    UnityEngine.Transform transform2 = hub.transform
+
+		    UnityEngine.Vector3 position = hub.position
+
+		    transform.set_position()
+
+		    System.Collections.Generic.List`1/Enumerator<T> enumerator = transform.GetEnumerator()
+
+		    if (enumerator != 0)
+		        InventorySystem.Inventory inventory = hub.inventory
+		          = transform.
+		          = transform.
+		          = transform.
+
+		        if (enumerator == 0)
+		            ulong local17 = 0
+
+		            System.Collections.Generic.Dictionary`2<ItemType,InventorySystem.Items.ItemBase> availableItems = InventorySystem.InventoryItemLoader.AvailableItems
+
+		            System.Boolean boolean2 = availableItems.TryGetValue()
+
+		            if (boolean2 != False)
+		                InventorySystem.InventoryInfo userInventory = inventory.UserInventory
+		                System.Collections.Generic.Dictionary`2<System.UInt16,InventorySystem.Items.ItemBase> items = userInventory.Items
+
+		                System.Int32 count = items.Count
+
+		                if (count >= 8)
+                            goto INSN_18048D233
+                        endif
+
+		                if ( == 9)
+                            goto INSN_18048D233
+                        endif
+
+		                InventorySystem.Items.ItemBase itemBase = InventorySystem.InventoryExtensions.ServerAddItem()
+
+		                System.Boolean boolean3 = InventorySystem.Items.Armor.BodyArmorUtils.TryGetBodyArmorAndItsSerial()
+
+		                InventorySystem.Items.Armor.BodyArmorUtils.RemoveEverythingExceedingLimits(inventory, local1, True, True) //(Inventory inv, BodyArmor armor, Boolean removeItems, Boolean removeAmmo)
+
+		                transform.DestroySelf()
+
+		                INSN_18048D233:
+
+		                UnityEngine.Transform transform3 = transform.transform
+
+		                UnityEngine.Transform transform4 = hub.transform
+
+		                UnityEngine.Vector3 position2 = hub.position
+
+		                transform3.set_position()
+
+		                transform.RefreshPositionAndRotation()
+		            endif
+                    
+
+		            transform.Dispose()
+
+		            transform.Dispose()
+
+		            if (transform != 0)
+                        goto INSN_18048D365
+                    endif
+		            System.Collections.Generic.Dictionary`2<ReferenceHub,System.Collections.Generic.List`1<InventorySystem.Items.Pickups.ItemPickupBase>> previousInventoryPickups2 = InventorySystem.InventoryItemProvider.PreviousInventoryPickups
+
+		            System.Boolean boolean4 = previousInventoryPickups2.Remove(hub) //(TKey key)
+		        endif
+                
+		        return
+		        throw new System.NullReferenceException()
+		        throw new System.NullReferenceException()
+		        throw new System.NullReferenceException()
+		        throw new System.NullReferenceException()
+		        throw new System.NullReferenceException()
+		        throw new System.NullReferenceException()
+		        throw new System.NullReferenceException()
+		        throw new System.NullReferenceException()
+		        throw new System.NullReferenceException()
+
+		        INSN_18048D365:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18048D030) is corrupt (Found null operand in Arguments: [{'hub' (function parameter, type ReferenceHub)}, ]) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.InventoryItemProvider
+	static System.Void RoleChanged(ReferenceHub ply, PlayerRoles.PlayerRoleBase prevRole, PlayerRoles.PlayerRoleBase newRole)
+		ulong local3 = 0
+
+		PlayerRoles.RoleSpawnFlags serverSpawnFlags = newRole.ServerSpawnFlags
+
+		System.Boolean boolean = serverSpawnFlags.HasFlag(local7) //(Enum flag)
+
+		if (boolean != False)
+		    InventorySystem.Inventory inventory = ply.inventory
+
+		    PlayerRoles.RoleChangeReason serverSpawnReason = newRole.ServerSpawnReason
+		    System.Boolean local13 = serverSpawnReason == constant26
+
+		    if (serverSpawnReason == constant26)
+		        System.Collections.Generic.List`1<InventorySystem.Items.Pickups.ItemPickupBase> list = new System.Collections.Generic.List`1<InventorySystem.Items.Pickups.ItemPickupBase>()
+
+		        list..ctor()
+
+		        System.Boolean boolean2 = InventorySystem.Items.Armor.BodyArmorUtils.TryGetBodyArmorAndItsSerial(inventory, local3, local3) //(Inventory inv, BodyArmor& bodyArmor, UInt16& serial)
+
+		        if (boolean2 != False)
+		            local3. = 1
+		        endif
+                
+		        InventorySystem.InventoryInfo userInventory = inventory.UserInventory
+		        System.Collections.Generic.Dictionary`2<System.UInt16,InventorySystem.Items.ItemBase> items = userInventory.Items
+
+		        System.Int32 count = items.Count
+
+		        if (count <= 0)
+                    goto INSN_18048CAEA
+                endif
+		        InventorySystem.InventoryInfo userInventory2 = inventory.UserInventory
+
+		        System.Collections.Generic.KeyValuePair`2<System.UInt16,InventorySystem.Items.ItemBase> keyValuePair = System.Linq.Enumerable.ElementAt<System.Collections.Generic.KeyValuePair`2<System.UInt16,InventorySystem.Items.ItemBase>>()
+		        InventorySystem.InventoryInfo userInventory3 = inventory.UserInventory
+		        System.Collections.Generic.Dictionary`2<System.UInt16,InventorySystem.Items.ItemBase> items2 = userInventory3.Items
+
+		        System.Boolean boolean3 = items2.TryGetValue()
+
+		        if (boolean3 == False)
+                    goto INSN_18048CAC7
+                endif
+
+		        System.UInt16 uInt16 = local3.System.IConvertible.ToUInt16()
+
+		        INSN_18048CAC7:
+
+		        list.Add(local3) //(T item)
+
+		        INSN_18048CAEA:
+		        System.Collections.Generic.Dictionary`2<ReferenceHub,System.Collections.Generic.List`1<InventorySystem.Items.Pickups.ItemPickupBase>> previousInventoryPickups = InventorySystem.InventoryItemProvider.PreviousInventoryPickups
+		        throw new System.NullReferenceException()
+		    endif
+            
+
+		    System.String string = newRole.ToString()
+
+		    InventorySystem.InventoryItemProvider.ServerGrantLoadout()
+
+		    InventorySystem.InventoryItemProvider.SpawnPreviousInventoryPickups(ply) //(ReferenceHub hub)
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.EqualRegisterSetAction at (0x18048C99D) is corrupt (Destination local has been stripped) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.InventoryItemProvider
+	static System.Void .cctor()
+		System.Collections.Generic.Dictionary`2<ReferenceHub,System.Collections.Generic.List`1<InventorySystem.Items.Pickups.ItemPickupBase>> dictionary = new System.Collections.Generic.Dictionary`2<ReferenceHub,System.Collections.Generic.List`1<InventorySystem.Items.Pickups.ItemPickupBase>>()
+
+		dictionary..ctor()
+		 += 8
+		InventorySystem.InventoryItemProvider.OnItemProvided = dictionary
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x18048D3C0) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+

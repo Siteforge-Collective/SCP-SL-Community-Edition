@@ -1,0 +1,439 @@
+Type: PlayerRoles.PlayableScps.Scp049.Zombies.ZombieAudioPlayer+Scp0492Sound
+
+Method: UnityEngine.AudioClip get_Random()
+
+Disassembly:
+	push rbx
+	sub rsp,20h
+	cmp byte ptr [1826EAAF9h],0
+	mov rbx,rcx
+	jne short 000000018049F424h
+	mov ecx,[1822EF164h]
+	call 0000000180294190h
+	mov byte ptr [1826EAAF9h],1
+	mov rdx,[1827543B8h]
+	mov rcx,[rbx+18h]
+	add rsp,20h
+	pop rbx
+	jmp near ptr 00000001807D2F70h
+
+ISIL:
+	001 ShiftStack -8
+	002 Move stack:0x0, rbx
+	003 ShiftStack -32
+	004 Compare [0x1826EAAF9], 0
+	005 Move rbx, rcx
+	006 JumpIfNotEqual {10}
+	007 Move rcx, [0x1822EF164]
+	008 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	009 Move [0x1826EAAF9], 1
+	010 Move rdx, [0x1827543B8]
+	011 Move rcx, [rbx+24]
+	012 ShiftStack 32
+	013 Move rbx, stack:0x0
+	014 ShiftStack 8
+	015 Call 0x1807D2F70, rcx, rdx
+	016 Return rax
+
+Method: System.Boolean CheckRateLimit()
+
+Disassembly:
+	push rbx
+	sub rsp,20h
+	movss xmm1,dword ptr [rcx+28h]
+	xorps xmm0,xmm0
+	ucomiss xmm1,xmm0
+	mov rbx,rcx
+	jp short 0000000180375238h
+	je short 000000018037527Fh
+	mov rcx,[rcx+30h]
+	test rcx,rcx
+	je short 000000018037528Fh
+	xor edx,edx
+	call 0000000180BCB990h
+	xor edx,edx
+	mov [rsp+30h],rax
+	lea rcx,[rsp+30h]
+	call 0000000180DBC620h
+	movss xmm1,dword ptr [181EA337Ch]
+	divss xmm1,dword ptr [rbx+28h]
+	cvtps2pd xmm1,xmm1
+	comisd xmm1,xmm0
+	ja short 0000000180375287h
+	mov rcx,[rbx+30h]
+	test rcx,rcx
+	je short 000000018037528Fh
+	xor edx,edx
+	call 0000000180BCB4E0h
+	mov al,1
+	add rsp,20h
+	pop rbx
+	ret
+	xor al,al
+	add rsp,20h
+	pop rbx
+	ret
+	call 0000000180294310h
+
+ISIL:
+	001 ShiftStack -8
+	002 Move stack:0x0, rbx
+	003 ShiftStack -32
+	004 Move xmm1, [rcx+40]
+	005 Move xmm0, 0
+	006 Compare xmm1, xmm0
+	007 Move rbx, rcx
+	008 NotImplemented "jp short 0000000180375238h"
+	009 JumpIfEqual {29}
+	010 Move rcx, [rcx+48]
+	011 Compare rcx, 0
+	012 JumpIfEqual {39}
+	013 Move rdx, 0
+	014 Call Stopwatch.get_Elapsed, rcx, rdx
+	015 Move rdx, 0
+	016 Move stack:0x30, rax
+	017 LoadAddress rcx, stack:0x30
+	018 Call 0x180DBC620, rcx, rdx, r8, r9
+	019 Move xmm1, [0x181EA337C]
+	020 Divide xmm1, xmm1, [rbx+40]
+	021 Move xmm1, xmm1
+	022 NotImplemented "comisd xmm1,xmm0"
+	023 JumpIfGreater {34}
+	024 Move rcx, [rbx+48]
+	025 Compare rcx, 0
+	026 JumpIfEqual {39}
+	027 Move rdx, 0
+	028 Call Stopwatch.Restart, rcx, rdx
+	029 Move rax, 1
+	030 ShiftStack 32
+	031 Move rbx, stack:0x0
+	032 ShiftStack 8
+	033 Return rax
+	034 Move rax, 0
+	035 ShiftStack 32
+	036 Move rbx, stack:0x0
+	037 ShiftStack 8
+	038 Return rax
+	039 Call 0x180294310, rcx, rdx, r8, r9
+
+Method: System.Void PlayLocal()
+
+Disassembly:
+	push rbx
+	sub rsp,80h
+	cmp byte ptr [1826EAAFAh],0
+	mov rbx,rcx
+	jne short 000000018049F167h
+	mov ecx,[1822EF120h]
+	call 0000000180294190h
+	mov byte ptr [1826EAAFAh],1
+	xor edx,edx
+	mov rcx,rbx
+	call 0000000180375220h
+	test al,al
+	je near ptr 000000018049F26Fh
+	mov [rsp+90h],rsi
+	mov [rsp+98h],rdi
+	movaps [rsp+70h],xmm6
+	movaps [rsp+60h],xmm7
+	cmp byte ptr [1826EAAF9h],0
+	jne short 000000018049F1AEh
+	mov ecx,[1822EF164h]
+	call 0000000180294190h
+	mov byte ptr [1826EAAF9h],1
+	mov rdx,[1827543B8h]
+	mov rcx,[rbx+18h]
+	call 00000001807D2F70h
+	mov rcx,[182701998h]
+	mov rdi,rax
+	test byte ptr [rcx+12Fh],2
+	je short 000000018049F1DFh
+	cmp dword ptr [rcx+0E0h],0
+	jne short 000000018049F1DFh
+	call 000000018021A070h
+	xor edx,edx
+	lea rcx,[rsp+50h]
+	call 0000000180FE2C80h
+	mov rcx,[182743960h]
+	movss xmm7,dword ptr [rbx+24h]
+	mov ebx,[rbx+20h]
+	movsd xmm6,qword ptr [rax]
+	test byte ptr [rcx+12Fh],2
+	mov esi,[rax+8]
+	je short 000000018049F218h
+	cmp dword ptr [rcx+0E0h],0
+	jne short 000000018049F218h
+	call 000000018021A070h
+	mov qword ptr [rsp+40h],0
+	lea rdx,[rsp+50h]
+	mov byte ptr [rsp+38h],0
+	xorps xmm2,xmm2
+	movss dword ptr [rsp+30h],xmm2
+	movaps xmm3,xmm7
+	mov [rsp+28h],ebx
+	mov rcx,rdi
+	mov dword ptr [rsp+20h],1
+	movsd qword ptr [rsp+50h],xmm6
+	mov [rsp+58h],esi
+	call 00000001804E0BF0h
+	movaps xmm7,[rsp+60h]
+	movaps xmm6,[rsp+70h]
+	mov rdi,[rsp+98h]
+	mov rsi,[rsp+90h]
+	add rsp,80h
+	pop rbx
+	ret
+
+ISIL:
+	001 ShiftStack -8
+	002 Move stack:0x0, rbx
+	003 ShiftStack -128
+	004 Compare [0x1826EAAFA], 0
+	005 Move rbx, rcx
+	006 JumpIfNotEqual {10}
+	007 Move rcx, [0x1822EF120]
+	008 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	009 Move [0x1826EAAFA], 1
+	010 Move rdx, 0
+	011 Move rcx, rbx
+	012 Call 0x180375220, rcx, rdx
+	013 Compare rax, 0
+	014 JumpIfEqual {63}
+	015 Move stack:0x90, rsi
+	016 Move stack:0x98, rdi
+	017 Move stack:0x70, xmm6
+	018 Move stack:0x60, xmm7
+	019 Compare [0x1826EAAF9], 0
+	020 JumpIfNotEqual {24}
+	021 Move rcx, [0x1822EF164]
+	022 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	023 Move [0x1826EAAF9], 1
+	024 Move rdx, [0x1827543B8]
+	025 Move rcx, [rbx+24]
+	026 Call 0x1807D2F70, rcx, rdx
+	027 Move rcx, typeof(UnityEngine.Vector3)
+	028 Move rdi, rax
+	029 Compare [rcx+303], 2
+	030 JumpIfEqual {34}
+	031 Compare [rcx+224], 0
+	032 JumpIfNotEqual {34}
+	033 Call "il2cpp_runtime_class_init_export", rcx, rdx, r8, r9
+	034 Move rdx, 0
+	035 LoadAddress rcx, stack:0x50
+	036 Call Vector3.get_zero, rcx
+	037 Move rcx, typeof(AudioPooling.AudioSourcePoolManager)
+	038 Move xmm7, [rbx+36]
+	039 Move rbx, [rbx+32]
+	040 Move xmm6, [rax]
+	041 Compare [rcx+303], 2
+	042 Move rsi, [rax+8]
+	043 JumpIfEqual {47}
+	044 Compare [rcx+224], 0
+	045 JumpIfNotEqual {47}
+	046 Call "il2cpp_runtime_class_init_export", rcx, rdx, r8, r9
+	047 Move stack:0x40, 0
+	048 LoadAddress rdx, stack:0x50
+	049 Move stack:0x38, 0
+	050 Move xmm2, 0
+	051 Move stack:0x30, xmm2
+	052 Move xmm3, xmm7
+	053 Move stack:0x28, rbx
+	054 Move rcx, rdi
+	055 Move stack:0x20, 1
+	056 Move stack:0x50, xmm6
+	057 Move stack:0x58, rsi
+	058 Call AudioSourcePoolManager.PlaySound, rcx, rdx, xmm2, xmm3, stack:0x0, stack:0x8, stack:0x10, stack:0x18, stack:0x20
+	059 Move xmm7, stack:0x60
+	060 Move xmm6, stack:0x70
+	061 Move rdi, stack:0x98
+	062 Move rsi, stack:0x90
+	063 ShiftStack 128
+	064 Move rbx, stack:0x0
+	065 ShiftStack 8
+	066 Return 
+
+Method: System.Void PlayThirdperson(Mirror.NetworkReader reader)
+
+Disassembly:
+	mov [rsp+10h],rbx
+	push rdi
+	sub rsp,70h
+	cmp byte ptr [1826EAAFBh],0
+	mov rbx,rdx
+	mov rdi,rcx
+	jne short 000000018049F2ABh
+	mov ecx,[1822EF138h]
+	call 0000000180294190h
+	mov byte ptr [1826EAAFBh],1
+	xor edx,edx
+	mov rcx,rdi
+	call 0000000180375220h
+	test al,al
+	je near ptr 000000018049F380h
+	mov [rsp+80h],rsi
+	movaps [rsp+60h],xmm6
+	movaps [rsp+50h],xmm7
+	xor edx,edx
+	mov rcx,rbx
+	call 000000018033DE70h
+	cmp byte ptr [1826EAAF9h],0
+	mov rbx,rax
+	jne short 000000018049F2F7h
+	mov ecx,[1822EF164h]
+	call 0000000180294190h
+	mov byte ptr [1826EAAF9h],1
+	mov rdx,[1827543B8h]
+	mov rcx,[rdi+18h]
+	call 00000001807D2F70h
+	mov rcx,[182743960h]
+	mov rsi,rax
+	movss xmm6,dword ptr [rdi+14h]
+	movss xmm7,dword ptr [rdi+24h]
+	mov edi,[rdi+20h]
+	test byte ptr [rcx+12Fh],2
+	je short 000000018049F335h
+	cmp dword ptr [rcx+0E0h],0
+	jne short 000000018049F335h
+	call 000000018021A070h
+	movss xmm0,dword ptr [181EA337Ch]
+	movaps xmm3,xmm7
+	mov qword ptr [rsp+40h],0
+	movaps xmm2,xmm6
+	mov byte ptr [rsp+38h],0
+	mov rdx,rbx
+	movss dword ptr [rsp+30h],xmm0
+	mov rcx,rsi
+	mov [rsp+28h],edi
+	mov dword ptr [rsp+20h],1
+	call 00000001804E0D50h
+	movaps xmm7,[rsp+50h]
+	movaps xmm6,[rsp+60h]
+	mov rsi,[rsp+80h]
+	mov rbx,[rsp+88h]
+	add rsp,70h
+	pop rdi
+	ret
+
+ISIL:
+	001 Move stack:0x10, rbx
+	002 ShiftStack -8
+	003 Move stack:0x0, rdi
+	004 ShiftStack -112
+	005 Compare [0x1826EAAFB], 0
+	006 Move rbx, rdx
+	007 Move rdi, rcx
+	008 JumpIfNotEqual {12}
+	009 Move rcx, [0x1822EF138]
+	010 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	011 Move [0x1826EAAFB], 1
+	012 Move rdx, 0
+	013 Move rcx, rdi
+	014 Call 0x180375220, rcx, rdx
+	015 Compare rax, 0
+	016 JumpIfEqual {56}
+	017 Move stack:0x80, rsi
+	018 Move stack:0x60, xmm6
+	019 Move stack:0x50, xmm7
+	020 Move rdx, 0
+	021 Move rcx, rbx
+	022 Call RelativePositionSerialization.ReadRelativePosition, rcx, rdx
+	023 Compare [0x1826EAAF9], 0
+	024 Move rbx, rax
+	025 JumpIfNotEqual {29}
+	026 Move rcx, [0x1822EF164]
+	027 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	028 Move [0x1826EAAF9], 1
+	029 Move rdx, [0x1827543B8]
+	030 Move rcx, [rdi+24]
+	031 Call 0x1807D2F70, rcx, rdx
+	032 Move rcx, typeof(AudioPooling.AudioSourcePoolManager)
+	033 Move rsi, rax
+	034 Move xmm6, [rdi+20]
+	035 Move xmm7, [rdi+36]
+	036 Move rdi, [rdi+32]
+	037 Compare [rcx+303], 2
+	038 JumpIfEqual {42}
+	039 Compare [rcx+224], 0
+	040 JumpIfNotEqual {42}
+	041 Call "il2cpp_runtime_class_init_export", rcx, rdx, r8, r9
+	042 Move xmm0, [0x181EA337C]
+	043 Move xmm3, xmm7
+	044 Move stack:0x40, 0
+	045 Move xmm2, xmm6
+	046 Move stack:0x38, 0
+	047 Move rdx, rbx
+	048 Move stack:0x30, xmm0
+	049 Move rcx, rsi
+	050 Move stack:0x28, rdi
+	051 Move stack:0x20, 1
+	052 Call AudioSourcePoolManager.PlaySound, rcx, rdx, xmm2, xmm3, stack:0x0, stack:0x8, stack:0x10, stack:0x18, stack:0x20
+	053 Move xmm7, stack:0x50
+	054 Move xmm6, stack:0x60
+	055 Move rsi, stack:0x80
+	056 Move rbx, stack:0x88
+	057 ShiftStack 112
+	058 Move rdi, stack:0x0
+	059 ShiftStack 8
+	060 Return 
+
+Method: System.Void .ctor()
+
+Disassembly:
+	push rbx
+	sub rsp,20h
+	cmp byte ptr [1826EAAFCh],0
+	mov rbx,rcx
+	jne short 000000018049F3B4h
+	mov ecx,[1822EF148h]
+	call 0000000180294190h
+	mov byte ptr [1826EAAFCh],1
+	mov dword ptr [rbx+24h],3F800000h
+	mov rcx,[182707FD0h]
+	test byte ptr [rcx+12Fh],2
+	je short 000000018049F3D9h
+	cmp dword ptr [rcx+0E0h],0
+	jne short 000000018049F3D9h
+	call 000000018021A070h
+	xor ecx,ecx
+	call 0000000180BCB540h
+	lea rcx,[rbx+30h]
+	mov rdx,rax
+	mov [rcx],rax
+	call 0000000180293EF0h
+	xor edx,edx
+	mov rcx,rbx
+	add rsp,20h
+	pop rbx
+	jmp near ptr 00000001802D5040h
+
+ISIL:
+	001 ShiftStack -8
+	002 Move stack:0x0, rbx
+	003 ShiftStack -32
+	004 Compare [0x1826EAAFC], 0
+	005 Move rbx, rcx
+	006 JumpIfNotEqual {10}
+	007 Move rcx, [0x1822EF148]
+	008 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	009 Move [0x1826EAAFC], 1
+	010 Move [rbx+36], 0x3F800000
+	011 Move rcx, typeof(System.Diagnostics.Stopwatch)
+	012 Compare [rcx+303], 2
+	013 JumpIfEqual {17}
+	014 Compare [rcx+224], 0
+	015 JumpIfNotEqual {17}
+	016 Call "il2cpp_runtime_class_init_export", rcx, rdx, r8, r9
+	017 Move rcx, 0
+	018 Call Stopwatch.StartNew, rcx
+	019 LoadAddress rcx, [rbx+48]
+	020 Move rdx, rax
+	021 Move [rcx], rax
+	022 Call 0x180293EF0, rcx, rdx, r8, r9
+	023 Move rdx, 0
+	024 Move rcx, rbx
+	025 ShiftStack 32
+	026 Move rbx, stack:0x0
+	027 ShiftStack 8
+	028 Call 0x1802D5040, rcx, rdx, r8, r9, stack:0x0
+	029 Return 
+

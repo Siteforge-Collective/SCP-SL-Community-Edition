@@ -1,0 +1,252 @@
+Type: Burned
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomPlayerEffects.Burned
+	System.Single get_DamageMultiplier()
+		ReferenceHub Hub = this.<Hub>k__BackingField
+
+		System.Single single = CustomPlayerEffects.RainbowTaste.CurrentMultiplier(Hub) //(ReferenceHub ply)
+		System.Single local4 = single * 0,25
+		return local4
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld ReferenceHub CustomPlayerEffects.StatusEffectBase::<Hub>k__BackingField
+	IL_0006: call System.Single CustomPlayerEffects.RainbowTaste::CurrentMultiplier(ReferenceHub)
+	IL_000b: ldc.r4 0,25
+	IL_0010: mul
+	IL_0011: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomPlayerEffects.Burned
+	System.Boolean IsHealable(ItemType it)
+
+		if (it == 14)
+		    return True
+		endif
+        
+		System.Boolean local2 = it == 17
+		return local2
+
+
+Generated IL:
+	IL_0000: ldarg.1
+	IL_0001: ldc.i4.s 14
+	IL_0003: bne.un.s IL_0007
+	IL_0005: ldc.i4.1
+	IL_0006: ret
+	IL_0007: ldarg.1
+	IL_0008: ldc.i4.s 17
+	IL_000a: ceq
+	IL_000c: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomPlayerEffects.Burned
+	System.Boolean get_AllowEnabling()
+		ReferenceHub Hub = this.<Hub>k__BackingField
+		ulong local3 = 0
+
+		System.Boolean boolean = ReferenceHub.op_Inequality(Hub, local3) //(ReferenceHub left, ReferenceHub right)
+
+		if (boolean == False)
+		    return True
+		endif
+        
+		PlayerEffectsController playerEffectsController = Hub.playerEffectsController
+
+		CustomPlayerEffects.Vitality effect = playerEffectsController.GetEffect<CustomPlayerEffects.Vitality>()
+		return effect
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x181AEA5EA) is corrupt (Return value has a type of CustomPlayerEffects.Vitality, expecting an object of type System.Boolean) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomPlayerEffects.Burned
+	System.Single GetDamageModifier(System.Single baseDamage, PlayerStatsSystem.DamageHandlerBase handler, HitboxType hitboxType)
+		ReferenceHub Hub = this.<Hub>k__BackingField
+
+		System.Single single = CustomPlayerEffects.RainbowTaste.CurrentMultiplier(Hub) //(ReferenceHub ply)
+		System.Single local7 = single * 0,25
+		return local7
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld ReferenceHub CustomPlayerEffects.StatusEffectBase::<Hub>k__BackingField
+	IL_0006: call System.Single CustomPlayerEffects.RainbowTaste::CurrentMultiplier(ReferenceHub)
+	IL_000b: ldc.r4 0,25
+	IL_0010: mul
+	IL_0011: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomPlayerEffects.Burned
+	System.Void OnAwake()
+		ReferenceHub Hub = this.<Hub>k__BackingField
+
+		System.Boolean isLocalPlayer = Hub.isLocalPlayer
+
+		if (isLocalPlayer != False)
+
+		    TiltShiftWave component = base.GetComponent<TiltShiftWave>()
+		    this._tiltShiftOffsetWave = component
+		    this._initialized = True
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld ReferenceHub CustomPlayerEffects.StatusEffectBase::<Hub>k__BackingField
+	IL_0006: call System.Boolean Mirror.NetworkBehaviour::get_isLocalPlayer()
+	IL_000b: ldc.i4.0
+	IL_000c: beq.s IL_0023
+	IL_000e: ldarg.0
+	IL_000f: call T UnityEngine.Component::GetComponent<TiltShiftWave>()
+	IL_0014: stloc.0
+	IL_0015: ldarg.0
+	IL_0016: ldloc.0
+	IL_0017: stfld TiltShiftWave CustomPlayerEffects.Burned::_tiltShiftOffsetWave
+	IL_001c: ldarg.0
+	IL_001d: ldc.i4.1
+	IL_001e: stfld System.Boolean CustomPlayerEffects.Burned::_initialized
+	IL_0023: ret
+	IL_0024: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0029: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomPlayerEffects.Burned
+	System.Void Enabled()
+		ReferenceHub Hub = this.<Hub>k__BackingField
+
+		System.Boolean isLocalPlayer = Hub.isLocalPlayer
+
+		if (isLocalPlayer != False)
+
+		    if (this._initialized != False)
+		        TiltShiftWave _tiltShiftOffsetWave = this._tiltShiftOffsetWave
+
+		        _tiltShiftOffsetWave.enabled = True
+		        _tiltShiftOffsetWave._disabling = False
+		    endif
+            
+		    return
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld ReferenceHub CustomPlayerEffects.StatusEffectBase::<Hub>k__BackingField
+	IL_0006: call System.Boolean Mirror.NetworkBehaviour::get_isLocalPlayer()
+	IL_000b: ldc.i4.0
+	IL_000c: beq.s IL_002c
+	IL_000e: ldarg.0
+	IL_000f: ldfld System.Boolean CustomPlayerEffects.Burned::_initialized
+	IL_0014: ldc.i4.0
+	IL_0015: beq.s IL_002c
+	IL_0017: ldarg.0
+	IL_0018: ldfld TiltShiftWave CustomPlayerEffects.Burned::_tiltShiftOffsetWave
+	IL_001d: stloc.0
+	IL_001e: ldloc.0
+	IL_001f: ldc.i4.1
+	IL_0020: call System.Void UnityEngine.Behaviour::set_enabled(System.Boolean)
+	IL_0025: ldloc.0
+	IL_0026: ldc.i4.0
+	IL_0027: stfld System.Boolean CustomPlayerEffects.PostProcessEffectWave::_disabling
+	IL_002c: ret
+	IL_002d: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0032: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomPlayerEffects.Burned
+	System.Void Disabled()
+		ReferenceHub Hub = this.<Hub>k__BackingField
+
+		System.Boolean isLocalPlayer = Hub.isLocalPlayer
+
+		if (isLocalPlayer != False)
+
+		    if (this._initialized != False)
+		        TiltShiftWave _tiltShiftOffsetWave = this._tiltShiftOffsetWave
+
+		        System.Boolean enabled = _tiltShiftOffsetWave.enabled
+
+		        if (enabled != False)
+		            _tiltShiftOffsetWave._disabling = True
+		        endif
+                
+		        return
+		        throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld ReferenceHub CustomPlayerEffects.StatusEffectBase::<Hub>k__BackingField
+	IL_0006: call System.Boolean Mirror.NetworkBehaviour::get_isLocalPlayer()
+	IL_000b: ldc.i4.0
+	IL_000c: beq.s IL_002e
+	IL_000e: ldarg.0
+	IL_000f: ldfld System.Boolean CustomPlayerEffects.Burned::_initialized
+	IL_0014: ldc.i4.0
+	IL_0015: beq.s IL_002e
+	IL_0017: ldarg.0
+	IL_0018: ldfld TiltShiftWave CustomPlayerEffects.Burned::_tiltShiftOffsetWave
+	IL_001d: stloc.0
+	IL_001e: ldloc.0
+	IL_001f: call System.Boolean UnityEngine.Behaviour::get_enabled()
+	IL_0024: ldc.i4.0
+	IL_0025: beq.s IL_002e
+	IL_0027: ldloc.0
+	IL_0028: ldc.i4.1
+	IL_0029: stfld System.Boolean CustomPlayerEffects.PostProcessEffectWave::_disabling
+	IL_002e: ret
+	IL_002f: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0034: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomPlayerEffects.Burned
+	System.Void .ctor()
+		this.<MaxIntensity>k__BackingField = 255
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldc.i4 255
+	IL_0006: conv.i8
+	IL_0007: conv.u8
+	IL_0008: stfld System.Byte CustomPlayerEffects.StatusEffectBase::<MaxIntensity>k__BackingField
+	IL_000d: ldarg.0
+	IL_000e: call System.Void UnityEngine.MonoBehaviour::.ctor()
+	IL_0013: ret
+	
+

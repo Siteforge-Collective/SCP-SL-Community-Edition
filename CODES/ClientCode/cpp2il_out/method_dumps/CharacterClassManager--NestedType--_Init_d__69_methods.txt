@@ -1,0 +1,328 @@
+Type: <Init>d__69
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CharacterClassManager/<Init>d__69
+	System.Void .ctor(System.Int32 <>1__state)
+
+		this.System.IDisposable.Dispose()
+		this.<>1__state = <>1__state
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void CharacterClassManager/<Init>d__69::System.IDisposable.Dispose()
+	IL_0006: ldarg.0
+	IL_0007: ldarg.1
+	IL_0008: stfld System.Int32 CharacterClassManager/<Init>d__69::<>1__state
+	IL_000d: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CharacterClassManager/<Init>d__69
+	System.Void System.IDisposable.Dispose()
+
+
+Generated IL:
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CharacterClassManager/<Init>d__69
+	System.Boolean MoveNext()
+		System.Int32 <>1__state = this.<>1__state
+		ulong local2 = 0
+		CharacterClassManager <>4__this = this.<>4__this
+		ulong local4 = 0
+
+		if (<>1__state != 0)
+
+		    if (<>1__state != 0)
+
+		        if (<>1__state != 0)
+
+		            if (<>1__state == 1)
+		                System.Int64 local5 = 0xFFFFFFFF
+		                this.<>1__state = local5
+		            else
+		                System.Int64 local6 = 0xFFFFFFFF
+		                this.<>1__state = local6
+		            else
+		                System.Int64 local7 = 0xFFFFFFFF
+		                this.<>1__state = local7
+
+		                System.String userId = <>4__this.UserId
+
+		                System.Boolean isNullOrEmpty = System.String.IsNullOrEmpty(userId) //(String value)
+
+		                if (isNullOrEmpty != False)
+		                    System.Single <timeout>5__2 = this.<timeout>5__2
+
+		                    Mirror.NetworkConnection connectionToClient = <>4__this.connectionToClient
+
+		                    ServerConsole.Disconnect(connectionToClient, "Your client has failed to authenticate in time.") //(NetworkConnection conn, String message)
+		                endif
+                        
+		            else
+		                System.Int64 local17 = 0xFFFFFFFF
+		                this.<>1__state = local17
+
+		                if ( == 0)
+                            goto INSN_180477133
+                        endif
+
+		                System.Boolean isLocalPlayer = <>4__this.isLocalPlayer
+
+		                if (isLocalPlayer != False)
+		                    ulong local21 = 0
+
+		                    ServerLogs.StartLogging()
+		                endif
+                        
+
+		                System.Boolean isLocalPlayer2 = <>4__this.isLocalPlayer
+
+		                if (isLocalPlayer2 != False)
+                            goto INSN_180477014
+                        endif
+		                this.<timeout>5__2 = local2
+		                ulong local25 = 0
+
+		                System.Single deltaTime = MEC.Timing.DeltaTime
+		                this.<>2__current = local2
+		                this.<timeout>5__2 = deltaTime
+		                this.<>1__state = 1
+		                System.Int64 local28 = 1
+		            endif
+                    
+		            return local28
+
+		            INSN_180477014:
+
+		            System.Boolean isLocalPlayer3 = <>4__this.isLocalPlayer
+
+		            if (isLocalPlayer3 != False)
+                        goto INSN_1804770E7
+                    endif
+
+		            System.UInt32 netId = <>4__this.netId
+
+		            System.DateTimeOffset now = System.DateTimeOffset.Now
+
+		            System.String string = System.String.Format("OFFLINE_MODE_{0}_{1}", netId, now) //(String format, Object arg0, Object arg1)
+		            <>4__this._privUserId = string
+		            System.String _privUserId = <>4__this._privUserId
+
+		            <>4__this.NetworkSyncedUserId = _privUserId
+
+		            INSN_1804770E7:
+		            string _privUserId = "{il2cpp field on {'constant61' (constant value of type Cpp2IL.Core.Analysis.ResultModels.StaticFieldsPtr)}, offset 0x0}" != local2 ? "ID_Dedicated" : "ID_Host"
+
+		            <>4__this.UserId = _privUserId
+		        endif
+                
+
+		        System.Boolean boolean = ReferenceHub.TryGetHostHub(local2) //(ReferenceHub& hub)
+
+		        if (boolean != False)
+                    goto INSN_18047717E
+                endif
+		        this.<>2__current = local2
+		        this.<>1__state = 2
+
+		        INSN_18047717E:
+
+		        System.Boolean isLocalPlayer4 = <>4__this.isLocalPlayer
+
+		        if (isLocalPlayer4 != False)
+
+		            if (isLocalPlayer4 != False)
+		                FriendlyFireConfig.PauseDetector = local2
+		                ulong local49 = 0
+
+		                CustomLiteNetLib4MirrorTransport.DelayConnections = local49
+		                ulong local51 = 0
+
+		                IdleMode.PauseIdleMode = local51
+
+		                ServerConsole.AddOutputEntry()
+		                System.Int32 7 = 7
+
+		                ServerConsole.AddLog("Waiting for players...", 7) //(String q, ConsoleColor color)
+		                NonFacilityCompatibility/SceneDescription currentSceneSettings = NonFacilityCompatibility.currentSceneSettings
+
+		                if (currentSceneSettings.roundAutostart != local2)
+                            goto INSN_1804776EE
+                        endif
+		                GameCore.RoundStart singleton = GameCore.RoundStart.singleton
+
+		                singleton.ShowButton()
+		                YamlConfig serverConfig = GameCore.ConfigFile.ServerConfig
+		                System.Int64 local58 = 20
+
+		                System.Int16 short = serverConfig.GetShort("lobby_waiting_time", local58) //(String key, Int16 def)
+		                this.<originalTimeLeft>5__3 = short
+		                this.<timeLeft>5__4 = short
+		                this.<topPlayers>5__5 = 2
+		            endif
+                    
+		            GameCore.RoundStart singleton2 = GameCore.RoundStart.singleton
+		            System.Int64 local62 = 0xFFFF
+
+		            if (singleton2.Timer == local62)
+                        goto INSN_1804776E3
+                    endif
+		            System.Int64 local63 = 0xFFFE
+
+		            if (this.<timeLeft>5__4 != local63)
+                        goto INSN_180477403
+                    endif
+		            System.Int16 <originalTimeLeft>5__3 = this.<originalTimeLeft>5__3
+		            this.<timeLeft>5__4 = <originalTimeLeft>5__3
+
+		            INSN_180477403:
+		            System.Func`2<ReferenceHub,System.Boolean> <>9__69_0 = CharacterClassManager/<>c.<>9__69_0
+
+		            if (<>9__69_0 != 0)
+                        goto INSN_1804774D3
+                    endif
+		            CharacterClassManager/<>c <>c = CharacterClassManager/<>c.<>9
+		            System.Func`2<ReferenceHub,System.Boolean> func = new System.Func`2<ReferenceHub,System.Boolean>()
+
+		            func..ctor(<>c, {'<Init>b__69_0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		             += 8
+		            CharacterClassManager/<>c.<>9 = func
+
+		            INSN_1804774D3:
+
+		            System.Int32 int32 = System.Linq.Enumerable.Count<ReferenceHub>()
+
+		            if (int32 <= 1)
+                        goto INSN_18047761E
+                    endif
+		            System.Int16 <timeLeft>5__4 = this.<timeLeft>5__4
+		            this.<timeLeft>5__4 = <timeLeft>5__4
+		            System.Int16 <originalTimeLeft>5__32 = this.<originalTimeLeft>5__3
+		            this.<topPlayers>5__5 = int32
+
+		            if (<timeLeft>5__4 >= <originalTimeLeft>5__32)
+                        goto INSN_18047757A
+                    endif
+		            <timeLeft>5__4 += 1
+		            this.<timeLeft>5__4 = <timeLeft>5__4
+		            System.UInt64 local73 = (System.UInt64) constant161 / 5
+		            local73 += local73
+
+		            if (constant161 != local73)
+                        goto INSN_18047757A
+                    endif
+
+		            INSN_18047757A:
+		            //UNKNOWN CLASS OFFSET READ HERE
+		            this.<timeLeft>5__4 = 0
+		            System.Int16 <timeLeft>5__42 = this.<timeLeft>5__4
+
+		            if (<timeLeft>5__42 != local62)
+                        goto INSN_180477627
+                    endif
+		            ulong local77 = 0
+
+		            System.Boolean boolean2 = CharacterClassManager.ForceRoundStart()
+
+		            INSN_18047761E:
+		            System.Int64 local79 = 0xFFFFFFFE
+		            this.<timeLeft>5__4 = local79
+
+		            INSN_180477627:
+		            GameCore.RoundStart singleton3 = GameCore.RoundStart.singleton
+
+		            if (singleton3.Timer == constant185)
+                        goto INSN_1804776A6
+                    endif
+		            GameCore.RoundStart singleton4 = GameCore.RoundStart.singleton
+		            System.Int16 <timeLeft>5__43 = this.<timeLeft>5__4
+
+		            singleton4.NetworkTimer = <timeLeft>5__43
+
+		            INSN_1804776A6:
+		            UnityEngine.WaitForSeconds waitForSeconds = new UnityEngine.WaitForSeconds()
+
+		            waitForSeconds..ctor(1) //(Single seconds)
+		            this.<>2__current = waitForSeconds
+		            this.<>1__state = 3
+
+		            INSN_1804776E3:
+
+		            INSN_1804776EE:
+		            ulong local86 = 0
+
+		            System.Boolean boolean3 = CharacterClassManager.ForceRoundStart()
+		            System.Int64 local89 = 1
+
+		            func.NetworkRoundStarted = local89
+		            ulong local90 = 0
+
+		            Mirror.PooledNetworkWriter writer = Mirror.NetworkWriterPool.GetWriter()
+
+		            System.Type typeFromHandle = System.Type.GetTypeFromHandle({'CharacterClassManager' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+
+		            func.SendRPCInternal(typeFromHandle, "RpcRoundStarted", writer, local2, local94) //(Type invokeClass, String rpcName, NetworkWriter writer, Int32 channelId, Boolean includeOwner)
+
+		            Mirror.NetworkWriterPool.Recycle(writer) //(PooledNetworkWriter writer)
+		            throw new System.InvalidCastException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfZeroOrNullAction at (0x180476F19) is corrupt (One of the arguments is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CharacterClassManager/<Init>d__69
+	System.Object System.Collections.Generic.IEnumerator<System.Object>.get_Current()
+		System.Object <>2__current = this.<>2__current
+		return <>2__current
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Object CharacterClassManager/<Init>d__69::<>2__current
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CharacterClassManager/<Init>d__69
+	System.Void System.Collections.IEnumerator.Reset()
+		System.NotSupportedException notSupportedException = new System.NotSupportedException()
+
+		notSupportedException..ctor()
+
+
+Generated IL:
+	IL_0000: newobj System.Void System.NotSupportedException::.ctor()
+	IL_0005: stloc.0
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CharacterClassManager/<Init>d__69
+	System.Object System.Collections.IEnumerator.get_Current()
+		System.Object <>2__current = this.<>2__current
+		return <>2__current
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Object CharacterClassManager/<Init>d__69::<>2__current
+	IL_0006: ret
+	
+

@@ -1,0 +1,290 @@
+Type: SyncedStatBase
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerStatsSystem.SyncedStatBase
+	System.Single get_CurValue()
+		System.Single _lastValue = this._lastValue
+		return _lastValue
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Single PlayerStatsSystem.SyncedStatBase::_lastValue
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerStatsSystem.SyncedStatBase
+	System.Void set_CurValue(System.Single value)
+		System.Single _lastSent = this._lastSent
+		this._lastValue = value
+
+		this.WriteValue(null) //(NetworkWriter writer)
+
+		if (constant1 != 0)
+		    this._valueDirty = True
+		endif
+        
+
+		if (constant1 == 0)
+            goto INSN_181B51CE0
+        endif
+		_lastSent = local2
+
+		System.Boolean boolean = this.CheckDirty(_lastSent, value) //(Single prevValue, Single newValue)
+
+		INSN_181B51CE0:
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallVirtualMethodAction at (0x181B51CB2) is corrupt (Found null operand in Arguments: []) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerStatsSystem.SyncedStatBase
+	System.Void OnValueChanged(System.Single prevValue, System.Single newValue)
+
+
+Generated IL:
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerStatsSystem.SyncedStatBase
+	static PlayerStatsSystem.SyncedStatBase GetStatOfUser(System.UInt32 netId, System.Byte syncId)
+		ulong local2 = 0
+		System.Collections.Generic.Dictionary`2<System.UInt32,System.Collections.Generic.Dictionary`2<System.Byte,PlayerStatsSystem.SyncedStatBase>> allSyncedStats = PlayerStatsSystem.SyncedStatBase.AllSyncedStats
+
+		System.Boolean boolean = allSyncedStats.TryGetValue(netId, local2) //(TKey key, TValue& value)
+
+		if (boolean == False)
+
+		    System.Boolean boolean2 = ReferenceHub.TryGetHubNetID(netId, local2) //(UInt32 netId, ReferenceHub& hub)
+
+		    if (boolean2 == False)
+                goto INSN_181B51851
+            endif
+		    System.Collections.Generic.Dictionary`2<System.Byte,PlayerStatsSystem.SyncedStatBase> dictionary = new System.Collections.Generic.Dictionary`2<System.Byte,PlayerStatsSystem.SyncedStatBase>()
+
+		    dictionary..ctor()
+		      = local2.
+		      = local2.
+		      = local2.
+
+		    if (local2 < dictionary)
+
+		        if ( != 0)
+		              = local2.
+
+		            if ( == SyncedStatBase)
+		                  = local2.
+		                throw new System.NullReferenceException()
+		            endif
+                    
+		            local2 += 1
+		        endif
+                
+		        System.Collections.Generic.Dictionary`2<System.UInt32,System.Collections.Generic.Dictionary`2<System.Byte,PlayerStatsSystem.SyncedStatBase>> allSyncedStats2 = PlayerStatsSystem.SyncedStatBase.AllSyncedStats
+		        throw new System.NullReferenceException()
+		    endif
+            
+
+		    System.Boolean boolean3 = local2.TryGetValue(syncId, local2) //(TKey key, TValue& value)
+
+		    if (boolean3 == False)
+                goto INSN_181B518A9
+            endif
+		    return local2
+		    throw new System.NullReferenceException()
+
+		    INSN_181B51851:
+
+		    System.String string = System.String.Format("Cannot generate stats for non-existing user of NetId={0}", local12) //(String format, Object arg0)
+		    System.InvalidOperationException invalidOperationException = new System.InvalidOperationException()
+
+		    invalidOperationException..ctor(string) //(String message)
+
+		    INSN_181B518A9:
+
+		    System.String string2 = System.String.Format("Stat of SyncId={0} does not exist.", invalidOperationException) //(String format, Object arg0)
+		    System.InvalidOperationException invalidOperationException2 = new System.InvalidOperationException()
+
+		    invalidOperationException2..ctor(string2) //(String message)
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.FieldToLocalAction at (0x181B51708) is corrupt (No further info) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerStatsSystem.SyncedStatBase
+	System.Void Update()
+
+		if (this._valueDirty != False)
+
+		    System.String string = this.ToString()
+		    System.Func`2<ReferenceHub,System.Boolean> func = new System.Func`2<ReferenceHub,System.Boolean>()
+
+		    func..ctor(this, {'CanReceive' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		    Utils.Networking.NetworkUtils.SendToHubsConditionally<PlayerStatsSystem.SyncedStatMessages/StatMessage>()
+
+		    System.String string2 = this.ToString()
+		    this._lastSent = 
+		    this._valueDirty = False
+		endif
+        
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181B51BE6) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (3)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerStatsSystem.SyncedStatBase
+	System.Void ClassChanged()
+		this._valueDirty = True
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldc.i4.1
+	IL_0002: stfld System.Boolean PlayerStatsSystem.SyncedStatBase::_valueDirty
+	IL_0007: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerStatsSystem.SyncedStatBase
+	System.Boolean CanReceive(ReferenceHub hub)
+
+		System.Boolean isLocalPlayer = hub.isLocalPlayer
+
+		if (isLocalPlayer == False)
+
+		    System.Byte syncId = this.SyncId
+
+		    if (syncId == constant8)
+                goto INSN_181B5150B
+            endif
+
+		    if (syncId == constant8)
+                goto INSN_181B514F0
+            endif
+
+		    if (syncId == constant9)
+                goto INSN_181B514FE
+            endif
+		endif
+        
+		ulong local5 = 0
+		return local5
+
+		INSN_181B514F0:
+
+		System.Boolean isAlive = PlayerRoles.PlayerRolesUtils.IsAlive()
+
+		if (isAlive != False)
+            goto INSN_181B5150B
+        endif
+
+		INSN_181B514FE:
+		System.Int64 local8 = 1
+		return local8
+
+		INSN_181B5150B:
+
+		System.Boolean boolean = ReferenceHub.op_Equality()
+		return boolean
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfZeroOrNullAction at (0x181B514D7) is corrupt (ConstantDefinition: Don't know how to get IL to load a System.Byte) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerStatsSystem.SyncedStatBase
+	static System.Void InitOnLoad()
+		System.Action`1<ReferenceHub> onPlayerRemoved = ReferenceHub.OnPlayerRemoved
+		System.Action`1<ReferenceHub> <>9__19_0 = PlayerStatsSystem.SyncedStatBase/<>c.<>9__19_0
+
+		if (<>9__19_0 == 0)
+		    PlayerStatsSystem.SyncedStatBase/<>c <>c = PlayerStatsSystem.SyncedStatBase/<>c.<>9
+		    System.Action`1<ReferenceHub> action = new System.Action`1<ReferenceHub>()
+
+		    action..ctor(<>c, {'<InitOnLoad>b__19_0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		     += 8
+		    PlayerStatsSystem.SyncedStatBase/<>c.<>9 = action
+		endif
+        
+
+		System.Delegate delegate = System.Delegate.Combine(onPlayerRemoved, <>9__19_0) //(Delegate a, Delegate b)
+
+		if (delegate == 0)
+            goto INSN_181B51A61
+        endif
+
+		if (delegate == 0)
+            goto INSN_181B51A83
+        endif
+
+		INSN_181B51A61:
+		 += 8
+		ReferenceHub.OnPlayerAdded = delegate
+
+		INSN_181B51A83:
+		throw new System.InvalidCastException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x181B51A02) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerStatsSystem.SyncedStatBase
+	System.Void .ctor()
+
+		this.OnValueChanged()
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1802D67A2) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerStatsSystem.SyncedStatBase
+	static System.Void .cctor()
+		System.Collections.Generic.Dictionary`2<System.UInt32,System.Collections.Generic.Dictionary`2<System.Byte,PlayerStatsSystem.SyncedStatBase>> dictionary = new System.Collections.Generic.Dictionary`2<System.UInt32,System.Collections.Generic.Dictionary`2<System.Byte,PlayerStatsSystem.SyncedStatBase>>()
+
+		dictionary..ctor()
+		PlayerStatsSystem.SyncedStatBase.AllSyncedStats = dictionary
+
+
+Generated IL:
+	IL_0000: newobj System.Void System.Collections.Generic.Dictionary`2::.ctor()
+	IL_0005: stsfld System.Collections.Generic.Dictionary`2<System.UInt32,System.Collections.Generic.Dictionary`2<System.Byte,PlayerStatsSystem.SyncedStatBase>> PlayerStatsSystem.SyncedStatBase::AllSyncedStats
+	
+

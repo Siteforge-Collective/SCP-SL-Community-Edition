@@ -1,0 +1,327 @@
+Type: HintDisplay
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Hints.HintDisplay
+	Hints.Hint get_ActiveHint()
+		Hints.Hint ActiveHint = this.<ActiveHint>k__BackingField
+		return ActiveHint
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld Hints.Hint Hints.HintDisplay::<ActiveHint>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Hints.HintDisplay
+	System.Void set_ActiveHint(Hints.Hint value)
+		this.<ActiveHint>k__BackingField = value
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: stfld Hints.Hint Hints.HintDisplay::<ActiveHint>k__BackingField
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Hints.HintDisplay
+	System.Void Start()
+
+		System.Boolean isLocalPlayer = base.isLocalPlayer
+
+		if (isLocalPlayer != False)
+		    Security.RateLimit rateLimit = new Security.RateLimit()
+		    ulong local4 = 0
+		    System.Int32 10 = 10
+
+		    rateLimit..ctor(10, 5, local4) //(Int32 usagesAllowed, Single timeWindow, NetworkConnection conn)
+		    this._showRateLimit = rateLimit
+		    System.Collections.Generic.Stack`1<Hints.Hint> stack = new System.Collections.Generic.Stack`1<Hints.Hint>()
+
+		    stack..ctor()
+		    this._hints = stack
+		    UserMainInterface singleton = UserMainInterface.singleton
+		    TMPro.TextMeshProUGUI hintText = singleton.hintText
+		    this._textbox = hintText
+
+		    UnityEngine.GameObject gameObject = base.gameObject
+		    TMPro.TextMeshProUGUI _textbox = this._textbox
+
+		    ReferenceHub hub = ReferenceHub.GetHub(gameObject) //(GameObject player)
+		    this._sharedData = hub
+		    System.Action`1<Hints.HintMessage> action = new System.Action`1<Hints.HintMessage>()
+
+		    action..ctor(this, {'ShowLocalRatelimited' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		    Mirror.NetworkClient.ReplaceHandler<Hints.HintMessage>(action, True) //(Action`1 handler, Boolean requireAuthentication)
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Boolean Mirror.NetworkBehaviour::get_isLocalPlayer()
+	IL_0006: ldc.i4.0
+	IL_0007: beq.s IL_0074
+	IL_0009: ldc.i4.s 10
+	IL_000b: ldc.r4 5
+	IL_0010: ldloc.1
+	IL_0011: newobj System.Void Security.RateLimit::.ctor(System.Int32,System.Single,Mirror.NetworkConnection)
+	IL_0016: stloc.0
+	IL_0017: ldc.i4.0
+	IL_0018: stloc.1
+	IL_0019: ldarg.0
+	IL_001a: ldloc.0
+	IL_001b: stfld Security.RateLimit Hints.HintDisplay::_showRateLimit
+	IL_0020: newobj System.Void System.Collections.Generic.Stack`1::.ctor()
+	IL_0025: stloc.3
+	IL_0026: ldarg.0
+	IL_0027: ldloc.3
+	IL_0028: stfld System.Collections.Generic.Stack`1<Hints.Hint> Hints.HintDisplay::_hints
+	IL_002d: ldsfld UserMainInterface UserMainInterface::singleton
+	IL_0032: ldfld TMPro.TextMeshProUGUI UserMainInterface::hintText
+	IL_0037: stloc.s V_4
+	IL_0039: ldarg.0
+	IL_003a: ldloc.s V_4
+	IL_003c: stfld TMPro.TextMeshProUGUI Hints.HintDisplay::_textbox
+	IL_0041: ldarg.0
+	IL_0042: call UnityEngine.GameObject UnityEngine.Component::get_gameObject()
+	IL_0047: stloc.s V_5
+	IL_0049: ldarg.0
+	IL_004a: ldfld TMPro.TextMeshProUGUI Hints.HintDisplay::_textbox
+	IL_004f: stloc.s V_6
+	IL_0051: ldloc.s V_5
+	IL_0053: call ReferenceHub ReferenceHub::GetHub(UnityEngine.GameObject)
+	IL_0058: stloc.s V_8
+	IL_005a: ldarg.0
+	IL_005b: ldloc.s V_8
+	IL_005d: stfld Hints.SharedHintData Hints.HintDisplay::_sharedData
+	IL_0062: ldarg.0
+	IL_0063: ldftn System.Void Hints.HintDisplay::ShowLocalRatelimited(Hints.HintMessage)
+	IL_0069: newobj System.Void System.Action`1::.ctor(System.Object,System.IntPtr)
+	IL_006e: ldc.i4.1
+	IL_006f: call System.Void Mirror.NetworkClient::ReplaceHandler<Hints.HintMessage>(System.Action`1,System.Boolean)
+	IL_0074: ret
+	IL_0075: newobj System.Void System.NullReferenceException::.ctor()
+	IL_007a: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Hints.HintDisplay
+	System.Void Update()
+
+		System.Boolean isLocalPlayer = base.isLocalPlayer
+
+		if (isLocalPlayer != False)
+		    Hints.Hint ActiveHint = this.<ActiveHint>k__BackingField
+
+		    if (ActiveHint != 0)
+		        ulong local4 = 0
+
+		        System.Single time = UnityEngine.Time.time
+
+		        System.Single single = ActiveHint.Update(time) //(Single rawTime)
+		        Hints.Hint ActiveHint2 = this.<ActiveHint>k__BackingField
+
+		        ActiveHint2.Dispose()
+		        System.Collections.Generic.Stack`1<Hints.Hint> _hints = this._hints
+
+		        if ( > 0)
+
+		            Hints.Hint hint = _hints.Pop()
+		        else
+		            ulong local10 = 0
+		        endif
+                
+		        this.<ActiveHint>k__BackingField = local10
+		    endif
+            
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfLessThanOrEqualToAction at (0x181B2B9D0) is corrupt (One of the arguments is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Hints.HintDisplay
+	System.Void PushHint(Hints.Hint hint)
+		System.Collections.Generic.Stack`1<Hints.Hint> _hints = this._hints
+
+		_hints.Push(hint) //(T item)
+		this.<ActiveHint>k__BackingField = hint
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Collections.Generic.Stack`1<Hints.Hint> Hints.HintDisplay::_hints
+	IL_0006: ldarg.1
+	IL_0007: call System.Void System.Collections.Generic.Stack`1::Push(T)
+	IL_000c: ldarg.0
+	IL_000d: ldarg.1
+	IL_000e: stfld Hints.Hint Hints.HintDisplay::<ActiveHint>k__BackingField
+	IL_0013: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0018: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Hints.HintDisplay
+	System.Void PopHint()
+		System.Collections.Generic.Stack`1<Hints.Hint> _hints = this._hints
+
+		if ( > 0)
+
+		    Hints.Hint hint = _hints.Pop()
+		else
+		    ulong local3 = 0
+		endif
+        
+		this.<ActiveHint>k__BackingField = local3
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfLessThanOrEqualToAction at (0x181B2B301) is corrupt (One of the arguments is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Hints.HintDisplay
+	System.Void ShowLocal(Hints.Hint hint)
+
+		if (hint != 0)
+		    Hints.SharedHintData _sharedData = this._sharedData
+
+		    hint.Awake(_sharedData) //(TData data)
+		    System.Collections.Generic.Stack`1<Hints.Hint> _hints = this._hints
+
+		    _hints.Push(hint) //(T item)
+		    this.<ActiveHint>k__BackingField = hint
+		endif
+        
+
+		UnityEngine.Color red = UnityEngine.Color.red
+
+		UnityEngine.Debug.LogError("Attempted to display an empty hint!") //(Object message)
+		System.Collections.Concurrent.ConcurrentQueue`1<GameCore.Log> logQueue = GameCore.Console.logQueue
+
+		logQueue.Enqueue()
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181B2B5D0) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Hints.HintDisplay
+	System.Void ShowLocalRatelimited(Hints.HintMessage message)
+		Security.RateLimit _showRateLimit = this._showRateLimit
+
+		System.Boolean boolean = _showRateLimit.CanExecute(True) //(Boolean countUsage)
+
+		if (boolean != False)
+
+		    this.ShowLocal()
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181B2B3D0) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Hints.HintDisplay
+	System.Void Show(Hints.Hint hint)
+
+		if (hint != 0)
+
+		    System.Boolean isLocalPlayer = base.isLocalPlayer
+
+		    if (isLocalPlayer == False)
+
+		        if (isLocalPlayer == False)
+                    goto INSN_181B2B700
+                endif
+
+		        Mirror.NetworkIdentity netIdentity = base.netIdentity
+		        Mirror.NetworkConnectionToClient _connectionToClient = netIdentity._connectionToClient
+
+		        _connectionToClient.Send<Hints.HintMessage>()
+		        return
+		    endif
+            
+
+		    this.ShowLocal(hint) //(Hint hint)
+		    return
+		endif
+        
+		System.ArgumentNullException argumentNullException = new System.ArgumentNullException()
+
+		argumentNullException..ctor("hint") //(String paramName)
+
+		INSN_181B2B700:
+		System.InvalidOperationException invalidOperationException = new System.InvalidOperationException()
+
+		invalidOperationException..ctor("The active hint of the player cannot be set as it is not the local player and a server is not being run.") //(String message)
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181B2B6A7) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Hints.HintDisplay
+	System.Void .ctor()
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void Mirror.NetworkBehaviour::.ctor()
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Hints.HintDisplay
+	System.Void MirrorProcessed()
+
+
+Generated IL:
+	
+

@@ -1,0 +1,42 @@
+Type: Hints.TranslationHintFunctions
+
+Method: System.Void Serialize(Mirror.NetworkWriter writer, Hints.TranslationHint value)
+
+Disassembly:
+	sub rsp,28h
+	mov r9,rdx
+	test rdx,rdx
+	je short 000000018136B347h
+	mov rax,[rdx]
+	mov rdx,rcx
+	mov rcx,r9
+	mov r8,[rax+198h]
+	add rsp,28h
+	jmp qword ptr [rax+190h]
+	call 0000000180294310h
+
+ISIL:
+	001 ShiftStack -40
+	002 Move r9, rdx
+	003 Compare rdx, 0
+	004 JumpIfEqual {12}
+	005 Move rax, [rdx]
+	006 Move rdx, rcx
+	007 Move rcx, r9
+	008 Move r8, [rax+408]
+	009 ShiftStack 40
+	010 Call 0, rcx, rdx, r8, r9, stack:0x0, stack:0x8, stack:0x10, stack:0x18, stack:0x20, stack:0x28, stack:0x30, stack:0x38, stack:0x40
+	011 Return 
+	012 Call 0x180294310, rcx, rdx, r8, r9
+
+Method: Hints.TranslationHint Deserialize(Mirror.NetworkReader reader)
+
+Disassembly:
+	xor edx,edx
+	jmp near ptr 0000000181B355B0h
+
+ISIL:
+	001 Move rdx, 0
+	002 Call TranslationHint.FromNetwork, rcx, rdx
+	003 Return rax
+

@@ -1,0 +1,760 @@
+Type: SeedSynchronizer
+
+
+	Generated Pseudocode:
+
+	Declaring Type: MapGeneration.SeedSynchronizer
+	static System.Void add_OnMapGenerated(System.Action value)
+		System.Action onMapGenerated = MapGeneration.SeedSynchronizer.OnMapGenerated
+
+		System.Delegate delegate = System.Delegate.Combine(onMapGenerated, value) //(Delegate a, Delegate b)
+
+		if (delegate != 0)
+
+		    if (delegate == 0)
+                goto INSN_1802EA506
+            endif
+		endif
+        
+		 += 8
+
+		if (SeedSynchronizer == onMapGenerated)
+		    return
+
+		    INSN_1802EA506:
+		    throw new System.InvalidCastException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x1802EA4DD) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: MapGeneration.SeedSynchronizer
+	static System.Void remove_OnMapGenerated(System.Action value)
+		System.Action onMapGenerated = MapGeneration.SeedSynchronizer.OnMapGenerated
+
+		System.Delegate delegate = System.Delegate.Remove(onMapGenerated, value) //(Delegate source, Delegate value)
+
+		if (delegate != 0)
+
+		    if (delegate == 0)
+                goto INSN_1802EA776
+            endif
+		endif
+        
+		 += 8
+
+		if (SeedSynchronizer == onMapGenerated)
+		    return
+
+		    INSN_1802EA776:
+		    throw new System.InvalidCastException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x1802EA74D) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: MapGeneration.SeedSynchronizer
+	static System.Single get_TimeSinceMapGeneration()
+		System.Diagnostics.Stopwatch _stopwatch = MapGeneration.SeedSynchronizer._stopwatch
+
+		System.TimeSpan elapsed = _stopwatch.Elapsed
+		return 
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x1802EA677) is corrupt (Return value is missing) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: MapGeneration.SeedSynchronizer
+	static System.Int32 get_Seed()
+		MapGeneration.SeedSynchronizer _singleton = MapGeneration.SeedSynchronizer._singleton
+		ulong local2 = 0
+
+		System.Boolean boolean = UnityEngine.Object.op_Equality(_singleton, local2) //(Object x, Object y)
+
+		if (boolean != False)
+		    ulong local4 = 0
+		    return local4
+		endif
+        
+		MapGeneration.SeedSynchronizer _singleton2 = MapGeneration.SeedSynchronizer._singleton
+		System.Int32 _syncSeed = _singleton2._syncSeed
+		return _syncSeed
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldsfld MapGeneration.SeedSynchronizer MapGeneration.SeedSynchronizer::_singleton
+	IL_0005: stloc.0
+	IL_0006: ldc.i4.0
+	IL_0007: stloc.1
+	IL_0008: ldloc.0
+	IL_0009: ldloc.1
+	IL_000a: call System.Boolean UnityEngine.Object::op_Equality(UnityEngine.Object,UnityEngine.Object)
+	IL_000f: ldc.i4.0
+	IL_0010: beq.s IL_0014
+	IL_0012: ldc.i4.0
+	IL_0013: ret
+	IL_0014: ldsfld MapGeneration.SeedSynchronizer MapGeneration.SeedSynchronizer::_singleton
+	IL_0019: ldfld System.Int32 MapGeneration.SeedSynchronizer::_syncSeed
+	IL_001e: ret
+	IL_001f: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0024: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: MapGeneration.SeedSynchronizer
+	System.Void Awake()
+		 += 24
+		MapGeneration.SeedSynchronizer.MapAliases = this
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x1802E9086) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: MapGeneration.SeedSynchronizer
+	System.Void OnDestroy()
+		. = 0
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ImmediateToFieldAction at (0x1802E98FE) is corrupt (Instance or field is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: MapGeneration.SeedSynchronizer
+	System.Void Start()
+		YamlConfig serverConfig = GameCore.ConfigFile.ServerConfig
+		System.Int32 -1 = 4294967295
+
+		System.Int32 int = serverConfig.GetInt("map_seed", -1) //(String key, Int32 def)
+		System.Int32 1 = 1
+
+		System.Int32 int32 = UnityEngine.Random.Range(1, 0x7FFFFFFF) //(Int32 min, Int32 max)
+		int = int32
+
+		System.String string = System.String.Concat("Server has successfully generated a random seed: ", int32) //(Object arg0, Object arg1)
+		ulong local9 = 0
+
+		MapGeneration.SeedSynchronizer.DebugInfo(string, 2, local9) //(String txt, MessageImportance importance, Boolean nospace)
+		System.Int32 1 = 1
+
+		System.Int32 int322 = UnityEngine.Mathf.Clamp(int, 1, 0x7FFFFFFF) //(Int32 value, Int32 min, Int32 max)
+
+		this.Network_syncSeed = int322
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldsfld YamlConfig GameCore.ConfigFile::ServerConfig
+	IL_0005: ldstr "map_seed"
+	IL_000a: ldc.i4.m1
+	IL_000b: call System.Int32 YamlConfig::GetInt(System.String,System.Int32)
+	IL_0010: stloc.0
+	IL_0011: ldc.i4.1
+	IL_0012: ldc.i4 2147483647
+	IL_0017: call System.Int32 UnityEngine.Random::Range(System.Int32,System.Int32)
+	IL_001c: stloc.1
+	IL_001d: ldloc.1
+	IL_001e: stloc.0
+	IL_001f: ldstr "Server has successfully generated a random seed: "
+	IL_0024: ldloc.1
+	IL_0025: call System.String System.String::Concat(System.Object,System.Object)
+	IL_002a: stloc.2
+	IL_002b: ldc.i4.0
+	IL_002c: stloc.3
+	IL_002d: ldloc.2
+	IL_002e: ldc.i4.2
+	IL_002f: conv.i8
+	IL_0030: conv.u8
+	IL_0031: ldloc.3
+	IL_0032: call System.Void MapGeneration.SeedSynchronizer::DebugInfo(System.String,MessageImportance,System.Boolean)
+	IL_0037: ldloc.0
+	IL_0038: ldc.i4.1
+	IL_0039: ldc.i4 2147483647
+	IL_003e: call System.Int32 UnityEngine.Mathf::Clamp(System.Int32,System.Int32,System.Int32)
+	IL_0043: stloc.s V_4
+	IL_0045: ldarg.0
+	IL_0046: ldloc.s V_4
+	IL_0048: call System.Void MapGeneration.SeedSynchronizer::set_Network_syncSeed(System.Int32)
+	IL_004d: ret
+	IL_004e: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0053: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: MapGeneration.SeedSynchronizer
+	System.Void Update()
+		ulong local1 = 0
+
+		System.Int32 seed = MapGeneration.SeedSynchronizer.Seed
+
+		if (seed > 0)
+		    ulong local3 = 0
+
+		    ReferenceHub localHub = ReferenceHub.LocalHub
+		    ulong local6 = 0
+
+		    System.Boolean boolean = ReferenceHub.op_Equality(localHub, local6) //(ReferenceHub left, ReferenceHub right)
+
+		    if (boolean == False)
+
+		        this.GenerateLevel()
+		        System.Collections.Generic.HashSet`1<MapGeneration.RoomIdentifier> hashSet = new System.Collections.Generic.HashSet`1<MapGeneration.RoomIdentifier>()
+
+		        hashSet..ctor()
+		        System.Collections.Generic.HashSet`1<MapGeneration.RoomIdentifier> allRoomIdentifiers = MapGeneration.RoomIdentifier.AllRoomIdentifiers
+
+		        System.Collections.Generic.HashSet`1/Enumerator<T> enumerator = .GetEnumerator()
+
+		        if (enumerator != 0)
+		            ulong local13 = 0
+
+		            System.Boolean boolean2 = UnityEngine.Object.op_Equality(this, local13) //(Object x, Object y)
+
+		            if (boolean2 == False)
+
+		                System.Boolean boolean3 = this.TryAssignId()
+
+		                if (boolean3 == False)
+		                endif
+                        
+
+		                System.Boolean boolean4 = hashSet.Add()
+		            endif
+                    
+		            ulong local18 = 0
+
+		            [instruction error - managed method being called is null]
+
+		            [instruction error - managed method being called is null]
+
+		            if (RoomIdentifier != 0)
+                        goto INSN_1802EA17C
+                    endif
+
+		            if (local18 == -1)
+                        goto INSN_1802E9E4D
+                    endif
+
+		            INSN_1802E9E4D:
+
+		            System.Collections.Generic.HashSet`1/Enumerator<T> enumerator2 = .GetEnumerator()
+
+		            if (enumerator2 == 0)
+                        goto INSN_1802E9EE4
+                    endif
+		            System.Collections.Generic.HashSet`1<MapGeneration.RoomIdentifier> allRoomIdentifiers2 = MapGeneration.RoomIdentifier.AllRoomIdentifiers
+
+		            System.Boolean boolean5 = allRoomIdentifiers2.Remove()
+
+		            INSN_1802E9EE4:
+		            . = 166
+
+		            allRoomIdentifiers2.Dispose()
+
+		            allRoomIdentifiers2.Dispose()
+
+		            if (allRoomIdentifiers2 != 0)
+                        goto INSN_1802EA18A
+                    endif
+		            System.Action onMapGenerated = MapGeneration.SeedSynchronizer.OnMapGenerated
+
+		            onMapGenerated.Invoke()
+
+		            System.Object object = onMapGenerated.Clone()
+
+		            System.String string = System.String.Concat()
+
+		            UnityEngine.Debug.LogError(string) //(Object message)
+
+		            UnityEngine.Debug.LogError("List of methods that can cause this issue:") //(Object message)
+		            System.Action onMapGenerated2 = MapGeneration.SeedSynchronizer.OnMapGenerated
+
+		            onMapGenerated2.GetObjectData()
+		            ulong local30 = 0
+		            //UNKNOWN CLASS OFFSET READ HERE
+
+		            [instruction error - managed method being called is null]
+		              = local30.
+
+		            System.Object object2 = .Invoke()
+
+		            [instruction error - managed method being called is null]
+
+		            [instruction error - managed method being called is null]
+
+		            System.String string2 = System.String.Concat()
+
+		            UnityEngine.Debug.LogError(string2) //(Object message)
+		            string2 += 1
+		            . = 1
+		            System.Diagnostics.Stopwatch _stopwatch = MapGeneration.SeedSynchronizer._stopwatch
+
+		            _stopwatch.Restart()
+		        endif
+                
+		        return
+		        throw new System.NullReferenceException()
+		        throw new System.NullReferenceException()
+		        throw new System.NullReferenceException()
+
+		        INSN_1802EA17C:
+		        throw new System.NullReferenceException()
+
+		        INSN_1802EA18A:
+		        throw new System.NullReferenceException()
+		        throw new System.IndexOutOfRangeException()
+		        throw new System.NullReferenceException()
+		        throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1802E9D53) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: MapGeneration.SeedSynchronizer
+	System.Void GenerateLevel()
+		ulong local1 = 0
+		MapGeneration.ImageGenerator[] zoneGenerators = MapGeneration.ImageGenerator.ZoneGenerators
+
+		if (local1 < zoneGenerators.Length)
+		    System.String[] mapAliases = MapGeneration.SeedSynchronizer.MapAliases
+		    System.String string = mapAliases[local1]
+		    MapGeneration.ImageGenerator[] zoneGenerators2 = MapGeneration.ImageGenerator.ZoneGenerators
+		    MapGeneration.ImageGenerator imageGenerator = zoneGenerators2[local1]
+		    System.Int32 _syncSeed = this._syncSeed
+		    _syncSeed -= local1
+
+		    System.Boolean boolean = imageGenerator.GenerateMap(_syncSeed, string, local1) //(Int32 seed, String newAlias, String& blackbox)
+
+		    if (boolean == False)
+
+		        System.String string2 = System.String.Concat(string, " generator tasks failed, blackbox message: ", local1) //(String str0, String str1, String str2)
+		        System.Int64 local12 = 1
+
+		        MapGeneration.SeedSynchronizer.DebugError(local12, string2) //(Boolean isFatal, String txt)
+		        local1 += 1
+		    endif
+            
+
+		    System.String string3 = System.String.Concat(string, " generator tasks completed, no fatal errors to report.") //(String str0, String str1)
+
+		    MapGeneration.SeedSynchronizer.DebugInfo()
+		    local1 += 1
+		endif
+        
+
+		MapGeneration.SeedSynchronizer.DebugInfo()
+		SteamLobby singleton = SteamLobby.singleton
+		ulong local23 = 0
+
+		System.Boolean boolean2 = UnityEngine.Object.op_Inequality(singleton, local23) //(Object x, Object y)
+
+		if (boolean2 == False)
+            goto INSN_1802E97D9
+        endif
+		SteamLobby singleton2 = SteamLobby.singleton
+		ulong local27 = 0
+		System.Int32 maxPlayers = PlayButton.maxPlayers
+
+		singleton2.CreateLobby(maxPlayers, local27) //(Int32 maxMembers, Boolean preLobby)
+
+		INSN_1802E97D9:
+		ulong local29 = 0
+
+		MapGeneration.DoorSpawnpoint.SetupAllDoors()
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1802E96C0) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (3)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: MapGeneration.SeedSynchronizer
+	static System.Void DebugInfo(System.String txt, MessageImportance importance, System.Boolean nospace)
+
+		GameCore.Console.AddDebugLog("MAPGEN", txt, importance, nospace) //(String debugKey, String message, MessageImportance importance, Boolean nospace)
+		return
+
+
+Generated IL:
+	IL_0000: ldstr "MAPGEN"
+	IL_0005: ldarg.0
+	IL_0006: ldarg.1
+	IL_0007: ldarg.2
+	IL_0008: call System.Void GameCore.Console::AddDebugLog(System.String,System.String,MessageImportance,System.Boolean)
+	IL_000d: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: MapGeneration.SeedSynchronizer
+	static System.Void DebugError(System.Boolean isFatal, System.String txt)
+		string local2 = isFatal != False ? "<color=red>Fatal Error:</color> {0}" : "<color=orange>Warning:</color> {0}"
+
+		System.String string = System.String.Format(local2, txt) //(String format, Object arg0)
+		ulong local5 = 0
+
+		GameCore.Console.AddDebugLog("MAPGEN", string, 1, local5) //(String debugKey, String message, MessageImportance importance, Boolean nospace)
+		System.Object[] local7 = new System.Object[4]
+
+		if ("Map generation error for seed " != 0)
+
+		    if ("Map generation error for seed " == 0)
+                goto INSN_1802E92DF
+            endif
+		endif
+        
+		local7[0] = "Map generation error for seed "
+		ulong local8 = 0
+
+		System.Int32 seed = MapGeneration.SeedSynchronizer.Seed
+
+		if (seed == 0)
+            goto INSN_1802E9201
+        endif
+
+		if (seed == 0)
+            goto INSN_1802E92FF
+        endif
+
+		INSN_1802E9201:
+		local7[1] = seed
+
+		if (": " == 0)
+            goto INSN_1802E9245
+        endif
+
+		if (": " == 0)
+            goto INSN_1802E931F
+        endif
+
+		INSN_1802E9245:
+		local7[2] = ": "
+
+		if (txt == 0)
+            goto INSN_1802E927B
+        endif
+
+		if (": " == 0)
+            goto INSN_1802E933F
+        endif
+
+		INSN_1802E927B:
+		local7[3] = txt
+
+		System.String string2 = System.String.Concat(local7) //(Object[] args)
+
+		UnityEngine.Debug.LogError(string2) //(Object message)
+		return
+		throw new System.NullReferenceException()
+
+		INSN_1802E92DF:
+
+		INSN_1802E92FF:
+
+		INSN_1802E931F:
+
+		INSN_1802E933F:
+
+
+Generated IL:
+	IL_0000: ldstr "<color=orange>Warning:</color> {0}"
+	IL_0005: stloc.0
+	IL_0006: ldarg.0
+	IL_0007: ldc.i4.0
+	IL_0008: beq.s IL_0010
+	IL_000a: ldstr "<color=red>Fatal Error:</color> {0}"
+	IL_000f: stloc.0
+	IL_0010: nop
+	IL_0011: ldloc.0
+	IL_0012: ldarg.1
+	IL_0013: call System.String System.String::Format(System.String,System.Object)
+	IL_0018: stloc.1
+	IL_0019: ldc.i4.0
+	IL_001a: stloc.2
+	IL_001b: ldstr "MAPGEN"
+	IL_0020: ldloc.1
+	IL_0021: ldc.i4.1
+	IL_0022: conv.i8
+	IL_0023: conv.u8
+	IL_0024: ldloc.2
+	IL_0025: call System.Void GameCore.Console::AddDebugLog(System.String,System.String,MessageImportance,System.Boolean)
+	IL_002a: ldc.i4.4
+	IL_002b: newarr System.Object
+	IL_0030: stloc.s V_4
+	IL_0032: ldstr "Map generation error for seed "
+	IL_0037: ldc.i4.0
+	IL_0038: beq.s IL_0042
+	IL_003a: ldstr "Map generation error for seed "
+	IL_003f: ldc.i4.0
+	IL_0040: beq.s IL_0000
+	IL_0042: ldloc.s V_4
+	IL_0044: ldc.i4.0
+	IL_0045: ldstr "Map generation error for seed "
+	IL_004a: stelem.any System.Object
+	IL_004f: ldc.i4.0
+	IL_0050: stloc.s V_5
+	IL_0052: call System.Int32 MapGeneration.SeedSynchronizer::get_Seed()
+	IL_0057: stloc.s V_6
+	IL_0059: ldloc.s V_6
+	IL_005b: ldc.i4.0
+	IL_005c: beq.s IL_0063
+	IL_005e: ldloc.s V_6
+	IL_0060: ldc.i4.0
+	IL_0061: beq.s IL_0000
+	IL_0063: ldloc.s V_4
+	IL_0065: ldc.i4.1
+	IL_0066: ldloc.s V_6
+	IL_0068: stelem.any System.Object
+	IL_006d: ldstr ": "
+	IL_0072: ldc.i4.0
+	IL_0073: beq.s IL_007d
+	IL_0075: ldstr ": "
+	IL_007a: ldc.i4.0
+	IL_007b: beq.s IL_0000
+	IL_007d: ldloc.s V_4
+	IL_007f: ldc.i4.2
+	IL_0080: ldstr ": "
+	IL_0085: stelem.any System.Object
+	IL_008a: ldarg.1
+	IL_008b: ldc.i4.0
+	IL_008c: beq.s IL_0099
+	IL_008e: ldstr ": "
+	IL_0093: ldc.i4.0
+	IL_0094: beq IL_0000
+	IL_0099: ldloc.s V_4
+	IL_009b: ldc.i4.3
+	IL_009c: ldarg.1
+	IL_009d: stelem.any System.Object
+	IL_00a2: ldloc.s V_4
+	IL_00a4: call System.String System.String::Concat(System.Object[])
+	IL_00a9: call System.Void UnityEngine.Debug::LogError(System.Object)
+	IL_00ae: ret
+	IL_00af: newobj System.Void System.NullReferenceException::.ctor()
+	IL_00b4: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: MapGeneration.SeedSynchronizer
+	System.Void .ctor()
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void Mirror.NetworkBehaviour::.ctor()
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: MapGeneration.SeedSynchronizer
+	static System.Void .cctor()
+		System.Int64 local0 = 3
+		System.String[] local1 = new System.String[3]
+
+		if ("LCZ" != 0)
+
+		    if ("LCZ" == 0)
+                goto INSN_1802EA3A1
+            endif
+		endif
+        
+		local1[0] = "LCZ"
+
+		if ("HCZ" == 0)
+            goto INSN_1802EA26D
+        endif
+
+		if ("HCZ" == 0)
+            goto INSN_1802EA3C1
+        endif
+
+		INSN_1802EA26D:
+		local1[1] = "HCZ"
+
+		if ("EZ" == 0)
+            goto INSN_1802EA2B1
+        endif
+
+		if ("EZ" == 0)
+            goto INSN_1802EA3E1
+        endif
+
+		INSN_1802EA2B1:
+		local1[2] = "EZ"
+		MapGeneration.SeedSynchronizer.MapAliases = local1
+		  = .
+		System.Action action = new System.Action()
+
+		action..ctor(local1, {'<.cctor>b__24_0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		 += 8
+		MapGeneration.SeedSynchronizer.MapAliases = action
+		System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch()
+
+		stopwatch..ctor()
+		 += 32
+		MapGeneration.SeedSynchronizer.MapAliases = stopwatch
+		throw new System.NullReferenceException()
+
+		INSN_1802EA3A1:
+
+		INSN_1802EA3C1:
+
+		INSN_1802EA3E1:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.StaticFieldToRegAction at (0x1802EA31E) is corrupt (Couldn't identify the field being read (or its type).) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: MapGeneration.SeedSynchronizer
+	System.Void MirrorProcessed()
+
+
+Generated IL:
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: MapGeneration.SeedSynchronizer
+	System.Int32 get_Network_syncSeed()
+		System.Int32 _syncSeed = this._syncSeed
+		return _syncSeed
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Int32 MapGeneration.SeedSynchronizer::_syncSeed
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: MapGeneration.SeedSynchronizer
+	System.Void set_Network_syncSeed(System.Int32 value)
+
+		System.Boolean boolean = base.SyncVarEqual<System.Int32>()
+
+		if (boolean == False)
+		    throw new System.NullReferenceException()
+		endif
+        
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1802EA7BF) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: MapGeneration.SeedSynchronizer
+	System.Boolean SerializeSyncVars(Mirror.NetworkWriter writer, System.Boolean forceAll)
+
+		System.Boolean boolean = base.SerializeSyncVars(writer, forceAll) //(NetworkWriter writer, Boolean initialState)
+
+		if (forceAll == False)
+		    System.UInt64 syncVarDirtyBits = this.<syncVarDirtyBits>k__BackingField
+
+		    Mirror.NetworkWriterExtensions.WriteUInt64(writer, syncVarDirtyBits) //(NetworkWriter writer, UInt64 value)
+
+		    if ( != 1)
+		        System.Int32 _syncSeed = this._syncSeed
+
+		        Mirror.NetworkWriterExtensions.WriteInt32(writer, _syncSeed) //(NetworkWriter writer, Int32 value)
+		    endif
+            
+		else
+		    System.Int32 _syncSeed2 = this._syncSeed
+
+		    Mirror.NetworkWriterExtensions.WriteInt32(writer, _syncSeed2) //(NetworkWriter writer, Int32 value)
+		endif
+        
+		return True
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfZeroOrNullAction at (0x1802E9997) is corrupt (One of the arguments is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: MapGeneration.SeedSynchronizer
+	System.Void DeserializeSyncVars(Mirror.NetworkReader reader, System.Boolean initialState)
+
+		this.MirrorProcessed()
+
+		if (initialState == False)
+
+		    System.UInt64 uInt64 = Mirror.NetworkReaderExtensions.ReadUInt64(reader) //(NetworkReader reader)
+
+		    if (uInt64 == 1)
+                goto INSN_1802E94E5
+            endif
+		endif
+        
+
+		System.Int32 int32 = Mirror.NetworkReaderExtensions.ReadInt32(reader) //(NetworkReader reader)
+
+		System.Boolean boolean = base.SyncVarEqual<System.Int32>()
+
+		if (boolean != False)
+            goto INSN_1802E94E5
+        endif
+		throw new System.NullReferenceException()
+
+		INSN_1802E94E5:
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1802E94BC) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+

@@ -1,0 +1,108 @@
+Type: ECDH
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Cryptography.ECDH
+	static Org.BouncyCastle.Crypto.AsymmetricCipherKeyPair GenerateKeys(System.Int32 size)
+		Org.BouncyCastle.Crypto.Generators.ECKeyPairGenerator eCKeyPairGenerator = new Org.BouncyCastle.Crypto.Generators.ECKeyPairGenerator()
+
+		eCKeyPairGenerator..ctor("ECDH") //(String algorithm)
+		Org.BouncyCastle.Security.SecureRandom secureRandom = new Org.BouncyCastle.Security.SecureRandom()
+
+		secureRandom..ctor()
+		Org.BouncyCastle.Crypto.KeyGenerationParameters keyGenerationParameters = new Org.BouncyCastle.Crypto.KeyGenerationParameters()
+
+		keyGenerationParameters..ctor(secureRandom, size) //(SecureRandom random, Int32 strength)
+
+		eCKeyPairGenerator.Init(keyGenerationParameters) //(KeyGenerationParameters parameters)
+
+		Org.BouncyCastle.Crypto.AsymmetricCipherKeyPair asymmetricCipherKeyPair = eCKeyPairGenerator.GenerateKeyPair()
+		return asymmetricCipherKeyPair
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldstr "ECDH"
+	IL_0005: newobj System.Void Org.BouncyCastle.Crypto.Generators.ECKeyPairGenerator::.ctor(System.String)
+	IL_000a: stloc.0
+	IL_000b: newobj System.Void Org.BouncyCastle.Security.SecureRandom::.ctor()
+	IL_0010: ldarg.0
+	IL_0011: newobj System.Void Org.BouncyCastle.Crypto.KeyGenerationParameters::.ctor(Org.BouncyCastle.Security.SecureRandom,System.Int32)
+	IL_0016: stloc.1
+	IL_0017: ldloc.0
+	IL_0018: ldloc.1
+	IL_0019: call System.Void Org.BouncyCastle.Crypto.Generators.ECKeyPairGenerator::Init(Org.BouncyCastle.Crypto.KeyGenerationParameters)
+	IL_001e: ldloc.0
+	IL_001f: call Org.BouncyCastle.Crypto.AsymmetricCipherKeyPair Org.BouncyCastle.Crypto.Generators.ECKeyPairGenerator::GenerateKeyPair()
+	IL_0024: ret
+	IL_0025: newobj System.Void System.NullReferenceException::.ctor()
+	IL_002a: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Cryptography.ECDH
+	static Org.BouncyCastle.Crypto.Agreement.ECDHBasicAgreement Init(Org.BouncyCastle.Crypto.AsymmetricCipherKeyPair localKey)
+		Org.BouncyCastle.Crypto.Agreement.ECDHBasicAgreement eCDHBasicAgreement = new Org.BouncyCastle.Crypto.Agreement.ECDHBasicAgreement()
+
+		eCDHBasicAgreement..ctor()
+		Org.BouncyCastle.Crypto.AsymmetricKeyParameter privateParameter = localKey.privateParameter
+
+		Org.BouncyCastle.Math.BigInteger bigInteger = eCDHBasicAgreement.CalculateAgreement(privateParameter) //(ICipherParameters pubKey)
+		return eCDHBasicAgreement
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: newobj System.Void Org.BouncyCastle.Crypto.Agreement.ECDHBasicAgreement::.ctor()
+	IL_0005: stloc.0
+	IL_0006: ldarg.0
+	IL_0007: ldfld Org.BouncyCastle.Crypto.AsymmetricKeyParameter Org.BouncyCastle.Crypto.AsymmetricCipherKeyPair::privateParameter
+	IL_000c: stloc.1
+	IL_000d: ldloc.0
+	IL_000e: ldloc.1
+	IL_000f: callvirt Org.BouncyCastle.Math.BigInteger Org.BouncyCastle.Crypto.Agreement.ECDHBasicAgreement::CalculateAgreement(Org.BouncyCastle.Crypto.ICipherParameters)
+	IL_0014: stloc.2
+	IL_0015: ldloc.0
+	IL_0016: ret
+	IL_0017: newobj System.Void System.NullReferenceException::.ctor()
+	IL_001c: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Cryptography.ECDH
+	static System.Byte[] DeriveKey(Org.BouncyCastle.Crypto.Agreement.ECDHBasicAgreement exchange, Org.BouncyCastle.Crypto.AsymmetricKeyParameter remoteKey)
+		ulong local2 = 0
+		ulong local3 = 0
+
+		System.Security.Cryptography.SHA256 sHA256 = System.Security.Cryptography.SHA256.Create()
+
+		System.Int32 fieldSize = exchange.GetFieldSize()
+
+		System.Byte[] byteArray = fieldSize.ToByteArray()
+
+		System.Byte[] byteArray2 = sHA256.ComputeHash(byteArray) //(Byte[] buffer)
+
+		if (sHA256 != 0)
+		endif
+        
+
+		if (local2 != 0)
+            goto INSN_181ADE720
+        endif
+		return byteArray2
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+
+		INSN_181ADE720:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181ADE6B3) is corrupt (Mismatched instance parameter. Expecting an instance of Org.BouncyCastle.Math.BigInteger, actually {'fieldSize' (type System.Int32)}) and cannot be created as IL. Aborting here.
+
+

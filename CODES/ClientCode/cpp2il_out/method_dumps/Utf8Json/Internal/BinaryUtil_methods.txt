@@ -1,0 +1,113 @@
+Type: BinaryUtil
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Utf8Json.Internal.BinaryUtil
+	static System.Void EnsureCapacity(System.Byte[]& bytes, System.Int32 offset, System.Int32 appendLength)
+
+		if (constant4 != 0)
+		    //UNKNOWN CLASS OFFSET READ HERE
+
+		    if (offset <= constant4)
+                goto INSN_180CFFDEB
+            endif
+
+		    if (constant4 == 0x7FFFFFC7)
+                goto INSN_180CFFDFB
+            endif
+		     += constant4
+
+		    if (offset < constant4)
+
+		        Utf8Json.Internal.BinaryUtil.FastResize()
+		        return
+		    endif
+            
+
+		    Utf8Json.Internal.BinaryUtil.FastResize(bytes, offset) //(Byte[]& array, Int32 newSize)
+		    return
+
+		    Utf8Json.Internal.BinaryUtil.FastResize()
+		    return
+		endif
+        
+		System.Byte[] local8 = new System.Byte[offset]
+		bytes.m_value = local8
+
+		INSN_180CFFDEB:
+		return
+
+		INSN_180CFFDFB:
+		System.InvalidOperationException invalidOperationException = new System.InvalidOperationException()
+
+		invalidOperationException..ctor("byte[] size reached maximum size of array(0x7FFFFFC7), can not write to single byte[]. Details: https://msdn.microsoft.com/en-us/library/system.array") //(String message)
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfZeroOrNullAction at (0x180CFFD4B) is corrupt (ConstantDefinition: Don't know how to get IL to load a Cpp2IL.Core.Analysis.Il2CppClassIdentifier) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Utf8Json.Internal.BinaryUtil
+	static System.Void FastResize(System.Byte[]& array, System.Int32 newSize)
+
+		if (constant5 != 0)
+		    System.Byte[] local2 = new System.Byte[newSize]
+		    //UNKNOWN CLASS OFFSET READ HERE
+
+		    System.Buffer.BlockCopy()
+		    array.m_value = local2
+		    return
+		endif
+        
+		System.Byte[] local6 = new System.Byte[newSize]
+		array.m_value = local6
+		System.ArgumentOutOfRangeException argumentOutOfRangeException = new System.ArgumentOutOfRangeException()
+
+		argumentOutOfRangeException..ctor("newSize") //(String paramName)
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfZeroOrNullAction at (0x180CFFF62) is corrupt (ConstantDefinition: Don't know how to get IL to load a Cpp2IL.Core.Analysis.Il2CppClassIdentifier) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Utf8Json.Internal.BinaryUtil
+	static System.Byte[] FastCloneWithResize(System.Byte[] src, System.Int32 newSize)
+		System.Byte[] local2 = new System.Byte[newSize]
+		ulong local3 = 0
+		ulong local5 = 0
+
+		System.Buffer.BlockCopy(src, local5, local2, local3, newSize) //(Array src, Int32 srcOffset, Array dst, Int32 dstOffset, Int32 count)
+		return local2
+		System.ArgumentOutOfRangeException argumentOutOfRangeException = new System.ArgumentOutOfRangeException()
+
+		argumentOutOfRangeException..ctor("newSize") //(String paramName)
+
+
+Generated IL:
+	IL_0000: ldarg.1
+	IL_0001: newarr System.Byte
+	IL_0006: stloc.0
+	IL_0007: ldc.i4.0
+	IL_0008: stloc.1
+	IL_0009: ldc.i4.0
+	IL_000a: stloc.3
+	IL_000b: ldarg.0
+	IL_000c: ldloc.3
+	IL_000d: ldloc.0
+	IL_000e: ldloc.1
+	IL_000f: ldarg.1
+	IL_0010: call System.Void System.Buffer::BlockCopy(System.Array,System.Int32,System.Array,System.Int32,System.Int32)
+	IL_0015: ldloc.0
+	IL_0016: ret
+	IL_0017: ldstr "newSize"
+	IL_001c: newobj System.Void System.ArgumentOutOfRangeException::.ctor(System.String)
+	IL_0021: stloc.s V_4
+	
+

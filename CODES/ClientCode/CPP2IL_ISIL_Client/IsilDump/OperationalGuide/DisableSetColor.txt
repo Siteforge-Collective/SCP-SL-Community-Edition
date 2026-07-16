@@ -1,0 +1,51 @@
+Type: OperationalGuide.DisableSetColor
+
+Method: System.Void OnDisable()
+
+Disassembly:
+	sub rsp,38h
+	mov rdx,[rcx+18h]
+	test rdx,rdx
+	je short 0000000181B53979h
+	mov rcx,[rdx+20h]
+	test rcx,rcx
+	je short 0000000181B53979h
+	movups xmm0,[rdx+38h]
+	mov rax,[rcx]
+	lea rdx,[rsp+20h]
+	movaps [rsp+20h],xmm0
+	mov r8,[rax+2A8h]
+	call qword ptr [rax+2A0h]
+	add rsp,38h
+	ret
+	call 0000000180294310h
+
+ISIL:
+	001 ShiftStack -56
+	002 Move rdx, [rcx+24]
+	003 Compare rdx, 0
+	004 JumpIfEqual {16}
+	005 Move rcx, [rdx+32]
+	006 Compare rcx, 0
+	007 JumpIfEqual {16}
+	008 Move xmm0, [rdx+56]
+	009 Move rax, [rcx]
+	010 LoadAddress rdx, stack:0x20
+	011 Move stack:0x20, xmm0
+	012 Move r8, [rax+680]
+	013 Call 0, rcx, rdx, r8, r9, stack:0x0, stack:0x8, stack:0x10, stack:0x18, stack:0x20, stack:0x28, stack:0x30, stack:0x38, stack:0x40
+	014 ShiftStack 56
+	015 Return 
+	016 Call 0x180294310, rcx, rdx, r8, r9
+
+Method: System.Void .ctor()
+
+Disassembly:
+	xor edx,edx
+	jmp near ptr 0000000180FD1850h
+
+ISIL:
+	001 Move rdx, 0
+	002 Call 0x180FD1850, rcx, rdx
+	003 Return 
+

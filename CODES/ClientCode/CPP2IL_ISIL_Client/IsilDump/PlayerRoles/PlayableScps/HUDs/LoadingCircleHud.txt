@@ -1,0 +1,189 @@
+Type: PlayerRoles.PlayableScps.HUDs.LoadingCircleHud
+
+Method: System.Void Apply(System.Single percent, System.Boolean forceHide = False)
+
+Disassembly:
+	mov [rsp+8],rbx
+	push rdi
+	sub rsp,50h
+	cmp byte ptr [1826EAA6Fh],0
+	movzx edi,r8b
+	movaps [rsp+40h],xmm6
+	mov rbx,rcx
+	movaps [rsp+30h],xmm7
+	movaps xmm6,xmm1
+	jne short 000000018049DC19h
+	mov ecx,[1822E6308h]
+	call 0000000180294190h
+	mov byte ptr [1826EAA6Fh],1
+	mov rcx,[182701818h]
+	test byte ptr [rcx+12Fh],2
+	je short 000000018049DC37h
+	cmp dword ptr [rcx+0E0h],0
+	jne short 000000018049DC37h
+	call 000000018021A070h
+	xor edx,edx
+	movaps xmm0,xmm6
+	call 000000018115A320h
+	movss xmm7,dword ptr [181EA337Ch]
+	movaps xmm6,xmm0
+	test dil,dil
+	jne short 000000018049DC72h
+	ucomiss xmm6,xmm7
+	jp short 000000018049DC5Eh
+	jne short 000000018049DC5Eh
+	cmp [rbx+29h],dil
+	jne short 000000018049DC72h
+	xorps xmm0,xmm0
+	ucomiss xmm6,xmm0
+	jp short 000000018049DC6Eh
+	jne short 000000018049DC6Eh
+	movzx edi,byte ptr [rbx+2Ah]
+	jmp short 000000018049DC77h
+	xor edi,edi
+	jmp short 000000018049DC77h
+	mov edi,1
+	mov rcx,[rbx+10h]
+	test rcx,rcx
+	je near ptr 000000018049DD10h
+	test edi,edi
+	sete dl
+	xor r8d,r8d
+	call 0000000181046340h
+	test edi,edi
+	jne short 000000018049DCFBh
+	mov rcx,[rbx+18h]
+	cmp [rbx+28h],dil
+	je short 000000018049DCA5h
+	subss xmm7,xmm6
+	jmp short 000000018049DCA8h
+	movaps xmm7,xmm6
+	test rcx,rcx
+	je short 000000018049DD10h
+	xor r8d,r8d
+	movaps xmm1,xmm7
+	call 0000000180D58570h
+	mov rdx,[rbx+20h]
+	mov rdi,[rbx+18h]
+	test rdx,rdx
+	je short 000000018049DD10h
+	xor r9d,r9d
+	lea rcx,[rsp+20h]
+	movaps xmm2,xmm6
+	call 0000000181047810h
+	test rdi,rdi
+	je short 000000018049DD10h
+	mov r9,[rdi]
+	lea rdx,[rsp+20h]
+	movups xmm0,[rax]
+	mov rcx,rdi
+	mov r8,[r9+2A8h]
+	movaps [rsp+20h],xmm0
+	call qword ptr [r9+2A0h]
+	mov rbx,[rsp+60h]
+	movaps xmm6,[rsp+40h]
+	movaps xmm7,[rsp+30h]
+	add rsp,50h
+	pop rdi
+	ret
+	call 0000000180294310h
+
+ISIL:
+	001 Move stack:0x8, rbx
+	002 ShiftStack -8
+	003 Move stack:0x0, rdi
+	004 ShiftStack -80
+	005 Compare [0x1826EAA6F], 0
+	006 Move rdi, r8
+	007 Move stack:0x40, xmm6
+	008 Move rbx, rcx
+	009 Move stack:0x30, xmm7
+	010 Move xmm6, xmm1
+	011 JumpIfNotEqual {15}
+	012 Move rcx, [0x1822E6308]
+	013 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	014 Move [0x1826EAA6F], 1
+	015 Move rcx, typeof(UnityEngine.Mathf)
+	016 Compare [rcx+303], 2
+	017 JumpIfEqual {21}
+	018 Compare [rcx+224], 0
+	019 JumpIfNotEqual {21}
+	020 Call "il2cpp_runtime_class_init_export", rcx, rdx, r8, r9
+	021 Move rdx, 0
+	022 Move xmm0, xmm6
+	023 Call Mathf.Clamp01, xmm0, rdx
+	024 Move xmm7, [0x181EA337C]
+	025 Move xmm6, xmm0
+	026 Compare rdi, 0
+	027 JumpIfNotEqual {41}
+	028 Compare xmm6, xmm7
+	029 NotImplemented "jp short 000000018049DC5Eh"
+	030 JumpIfNotEqual {33}
+	031 Compare [rbx+41], rdi
+	032 JumpIfNotEqual {41}
+	033 Move xmm0, 0
+	034 Compare xmm6, xmm0
+	035 NotImplemented "jp short 000000018049DC6Eh"
+	036 JumpIfNotEqual {39}
+	037 Move rdi, [rbx+42]
+	038 Goto {42}
+	039 Move rdi, 0
+	040 Goto {42}
+	041 Move rdi, 1
+	042 Move rcx, [rbx+16]
+	043 Compare rcx, 0
+	044 JumpIfEqual {86}
+	045 Compare rdi, 0
+	046 NotImplemented "sete dl"
+	047 Move r8, 0
+	048 Call GameObject.SetActive, rcx, rdx
+	049 Compare rdi, 0
+	050 JumpIfNotEqual {79}
+	051 Move rcx, [rbx+24]
+	052 Compare [rbx+40], rdi
+	053 JumpIfEqual {56}
+	054 Subtract xmm7, xmm7, xmm6
+	055 Goto {57}
+	056 Move xmm7, xmm6
+	057 Compare rcx, 0
+	058 JumpIfEqual {86}
+	059 Move r8, 0
+	060 Move xmm1, xmm7
+	061 Call Image.set_fillAmount, rcx, rdx
+	062 Move rdx, [rbx+32]
+	063 Move rdi, [rbx+24]
+	064 Compare rdx, 0
+	065 JumpIfEqual {86}
+	066 Move r9, 0
+	067 LoadAddress rcx, stack:0x20
+	068 Move xmm2, xmm6
+	069 Call Gradient.Evaluate, rcx, rdx
+	070 Compare rdi, 0
+	071 JumpIfEqual {86}
+	072 Move r9, [rdi]
+	073 LoadAddress rdx, stack:0x20
+	074 Move xmm0, [rax]
+	075 Move rcx, rdi
+	076 Move r8, [r9+680]
+	077 Move stack:0x20, xmm0
+	078 Call 0, rcx, rdx, r8, r9, stack:0x0, stack:0x8, stack:0x10, stack:0x18, stack:0x20, stack:0x28, stack:0x30, stack:0x38, stack:0x40
+	079 Move rbx, stack:0x60
+	080 Move xmm6, stack:0x40
+	081 Move xmm7, stack:0x30
+	082 ShiftStack 80
+	083 Move rdi, stack:0x0
+	084 ShiftStack 8
+	085 Return 
+	086 Call 0x180294310, rcx, rdx, r8, r9
+
+Method: System.Void .ctor()
+
+Disassembly:
+	xor edx,edx
+	jmp near ptr 00000001802D5040h
+
+ISIL:
+	001 Move rdx, 0
+	002 Call 0x1802D5040, rcx, rdx, r8, r9, stack:0x0
+	003 Return 
+

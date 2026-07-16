@@ -1,0 +1,584 @@
+Type: Scp018Projectile
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.ThrowableProjectiles.Scp018Projectile
+	System.Single get_CurrentDamage()
+		UnityEngine.Rigidbody rigidbody = this.Rb
+		UnityEngine.AnimationCurve _damageOverSpeed = this._damageOverSpeed
+		System.Single _activationSqrt = this._activationSqrt
+		System.Single _cutoffSqrt = this._cutoffSqrt
+		ulong local5 = 0
+
+		UnityEngine.Vector3 velocity = .velocity
+		System.Single single = velocity.z
+
+		System.Single single2 = UnityEngine.Mathf.InverseLerp(_activationSqrt, _cutoffSqrt, local5) //(Single a, Single b, Single value)
+		_cutoffSqrt = single2
+
+		System.Single single3 = _damageOverSpeed.Evaluate(_cutoffSqrt) //(Single time)
+		return single3
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1804D4CB3) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.ThrowableProjectiles.Scp018Projectile
+	System.Boolean get_IgnoreFriendlyFire()
+
+		if ( == 0)
+		    return True
+		endif
+        
+		ulong local1 = 0
+
+		System.Single timeSinceLevelLoad = UnityEngine.Time.timeSinceLevelLoad
+		System.Single _activatedTime = this._activatedTime
+		return 
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfNonZeroOrNonNullAction at (0x1804D4D50) is corrupt (One of the arguments is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.ThrowableProjectiles.Scp018Projectile
+	System.Void Start()
+		System.Action`1<InventorySystem.Items.Pickups.ItemPickupBase> onPickupAdded = InventorySystem.Items.Pickups.ItemPickupBase.OnPickupAdded
+
+		if (onPickupAdded != 0)
+
+		    onPickupAdded.Invoke(this) //(T obj)
+		endif
+        
+		System.Action`1<InventorySystem.Items.ThrowableProjectiles.ThrownProjectile> onProjectileSpawned = InventorySystem.Items.ThrowableProjectiles.ThrownProjectile.OnProjectileSpawned
+
+		if (onProjectileSpawned == 0)
+            goto INSN_1804D45CA
+        endif
+
+		onProjectileSpawned.Invoke(this) //(T obj)
+
+		INSN_1804D45CA:
+		System.Single _activationVelocity = this._activationVelocity
+		System.Single _cutoffVelocity = this._cutoffVelocity
+		this._activationSqrt = _activationVelocity
+		this._cutoffSqrt = _cutoffVelocity
+		return
+
+
+Generated IL:
+	IL_0000: ldsfld System.Action`1<InventorySystem.Items.Pickups.ItemPickupBase> InventorySystem.Items.Pickups.ItemPickupBase::OnPickupAdded
+	IL_0005: stloc.0
+	IL_0006: ldloc.0
+	IL_0007: ldc.i4.0
+	IL_0008: beq.s IL_0011
+	IL_000a: ldloc.0
+	IL_000b: ldarg.0
+	IL_000c: call System.Void System.Action`1::Invoke(T)
+	IL_0011: ldsfld System.Action`1<InventorySystem.Items.ThrowableProjectiles.ThrownProjectile> InventorySystem.Items.ThrowableProjectiles.ThrownProjectile::OnProjectileSpawned
+	IL_0016: stloc.1
+	IL_0017: ldloc.1
+	IL_0018: ldc.i4.0
+	IL_0019: beq.s IL_0022
+	IL_001b: ldloc.1
+	IL_001c: ldarg.0
+	IL_001d: call System.Void System.Action`1::Invoke(T)
+	IL_0022: ldarg.0
+	IL_0023: ldfld System.Single InventorySystem.Items.ThrowableProjectiles.Scp018Projectile::_activationVelocity
+	IL_0028: stloc.2
+	IL_0029: ldarg.0
+	IL_002a: ldfld System.Single InventorySystem.Items.ThrowableProjectiles.Scp018Projectile::_cutoffVelocity
+	IL_002f: stloc.3
+	IL_0030: ldarg.0
+	IL_0031: ldloc.2
+	IL_0032: stfld System.Single InventorySystem.Items.ThrowableProjectiles.Scp018Projectile::_activationSqrt
+	IL_0037: ldarg.0
+	IL_0038: ldloc.3
+	IL_0039: stfld System.Single InventorySystem.Items.ThrowableProjectiles.Scp018Projectile::_cutoffSqrt
+	IL_003e: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.ThrowableProjectiles.Scp018Projectile
+	System.Void Update()
+
+		base.Update()
+		ulong local3 = 0
+		System.Single _cooldownTimer = this._cooldownTimer
+
+		if (_cooldownTimer <= local3)
+
+		    this.DetectPlayers()
+		else
+		    ulong local6 = 0
+
+		    System.Single deltaTime = UnityEngine.Time.deltaTime
+		    this._cooldownTimer = _cooldownTimer
+		endif
+        
+		UnityEngine.Rigidbody rigidbody = this.Rb
+
+		UnityEngine.Vector3 velocity = local6.velocity
+
+		if (deltaTime >= this._minimalHeightVelocity)
+            goto INSN_1804D4A44
+        endif
+		ulong local13 = 0
+
+		System.Single deltaTime2 = UnityEngine.Time.deltaTime
+		this._subspeedTimer = deltaTime2
+
+		if (deltaTime2 <= this._reactivationTime)
+            goto INSN_1804D4A13
+        endif
+		UnityEngine.Rigidbody rigidbody2 = this.Rb
+
+		UnityEngine.Vector3 velocity2 = local13.velocity
+		UnityEngine.Rigidbody rigidbody3 = this.Rb
+
+		UnityEngine.Vector3 velocity3 = local13.velocity
+
+		if (local3 <= deltaTime2)
+            goto INSN_1804D4922
+        endif
+
+		UnityEngine.Vector3 down = UnityEngine.Vector3.down
+
+		INSN_1804D4922:
+		ulong local25 = 0
+
+		UnityEngine.Vector3 up = UnityEngine.Vector3.up
+
+		UnityEngine.Vector3 vector3 = UnityEngine.Vector3.op_Multiply()
+		local28 = local29
+
+		UnityEngine.Vector3 vector32 = UnityEngine.Vector3.op_Multiply()
+
+		UnityEngine.Vector3 vector33 = UnityEngine.Vector3.op_Addition()
+		System.Single single = vector33.z
+
+		rigidbody2.velocity = local25
+		this._subspeedTimer = 0
+
+		INSN_1804D4A13:
+		return
+
+		INSN_1804D4A44:
+		. = 0
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1804D481D) is corrupt (Mismatched instance parameter. Expecting an instance of UnityEngine.Rigidbody, actually {'local6' (type System.Int32)}) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.ThrowableProjectiles.Scp018Projectile
+	System.Void DetectPlayers()
+		UnityEngine.Rigidbody rigidbody = this.Rb
+
+		UnityEngine.Vector3 position = .position
+		UnityEngine.Rigidbody rigidbody2 = this.Rb
+		System.Single single = position.z
+		this._prevPosition.z = single
+
+		UnityEngine.Vector3 position2 = .position
+
+		System.Boolean boolean = UnityEngine.Physics.Linecast()
+
+		if (boolean != False)
+
+		    [instruction error - managed method being called is null]
+		    ulong local16 = 0
+
+		    UnityEngine.GameObject gameObject = boolean.gameObject
+
+		    System.Boolean boolean2 = ReferenceHub.TryGetHub(gameObject, local16) //(GameObject player, ReferenceHub& hub)
+
+		    if (boolean2 != False)
+
+		        System.Single currentDamage = this.CurrentDamage
+
+		        System.Single single2 = UnityEngine.Random.Range(0.8999999761581421, 1.100000023841858) //(Single min, Single max)
+
+		        System.Boolean isHuman = PlayerRoles.PlayerRolesUtils.IsHuman()
+		        UnityEngine.Rigidbody rigidbody3 = this.Rb
+
+		        UnityEngine.Vector3 left = UnityEngine.Vector3.left
+		        ulong local29 = 0
+		        System.Single single3 = left.z
+
+		        UnityEngine.Vector3 forward = UnityEngine.Vector3.forward
+
+		        UnityEngine.Vector3 vector3 = UnityEngine.Vector3.op_Addition()
+		        ulong local37 = 0
+
+		        rigidbody3.AddForce(local29, local37) //(Vector3 force, ForceMode mode)
+		          = single3.
+
+		        if ( == 0)
+		        else
+		            ulong local38 = 0
+
+		            System.Single timeSinceLevelLoad = UnityEngine.Time.timeSinceLevelLoad
+		            System.Single _activatedTime = this._activatedTime
+		        endif
+                
+		        PlayerStatsSystem.Scp018DamageHandler scp018DamageHandler = new PlayerStatsSystem.Scp018DamageHandler()
+
+		        scp018DamageHandler..ctor()
+
+		        System.Boolean boolean3 = single3.DealDamage(scp018DamageHandler) //(DamageHandlerBase handler)
+		        System.Single _damageCooldown = this._damageCooldown
+		        this._cooldownTimer = _damageCooldown
+		    endif
+            
+		    return
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1804D3A2B) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.ThrowableProjectiles.Scp018Projectile
+	System.Boolean TryGetDoor(UnityEngine.Collision col, Interactables.Interobjects.DoorUtils.IDamageableDoor& door)
+		ulong local3 = 0
+		door. = local3
+
+		UnityEngine.Collider collider = col.collider
+
+		UnityEngine.GameObject gameObject = collider.gameObject
+
+		System.Int32 layer = gameObject.layer
+
+		if (layer == 27)
+
+		    UnityEngine.Collider collider2 = col.collider
+
+		    System.Boolean boolean = collider2.TryGetComponent<Interactables.InteractableCollider>(local3) //(T& component)
+
+		    if (boolean != False)
+		          = local3.
+
+		        if (boolean != False)
+		            door. = boolean
+		            return True
+		        endif
+                
+		        ulong local14 = 0
+		        return local14
+		        throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.RegToFieldAction at (0x1804D4637) is corrupt (Instance or field is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.ThrowableProjectiles.Scp018Projectile
+	System.Void ProcessCollision(UnityEngine.Collision collision)
+		ulong local2 = 0
+		ulong local3 = 0
+
+		base.ProcessCollision(collision) //(Collision collision)
+
+		UnityEngine.Vector3 relativeVelocity = this.relativeVelocity
+		ulong local7 = 0
+		ulong local9 = 0
+
+		Mirror.PooledNetworkWriter writer = Mirror.NetworkWriterPool.GetWriter()
+
+		Mirror.NetworkWriterExtensions.WriteSingle(writer, local7) //(NetworkWriter writer, Single value)
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'Scp018Projectile' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+
+		base.SendRPCInternal(typeFromHandle, "RpcMakeSound", writer, local3, local14) //(Type invokeClass, String rpcName, NetworkWriter writer, Int32 channelId, Boolean includeOwner)
+
+		Mirror.NetworkWriterPool.Recycle(writer) //(PooledNetworkWriter writer)
+		ulong local17 = 0
+
+		UnityEngine.Vector3 relativeVelocity2 = .relativeVelocity
+		System.Single single = relativeVelocity2.z
+		System.Single _activationSqrt = this._activationSqrt
+
+		if (_activationSqrt <= local17)
+
+		    if (single != 0)
+
+		        this.ToggleRenderers()
+		    endif
+            
+		    ulong local24 = 0
+
+		    System.Single timeSinceLevelLoad = UnityEngine.Time.timeSinceLevelLoad
+		    this._activatedTime = timeSinceLevelLoad
+
+		    UnityEngine.Collider collider = collision.collider
+
+		    UnityEngine.GameObject gameObject = collider.gameObject
+
+		    System.Int32 layer = gameObject.layer
+
+		    if (layer != 27)
+                goto INSN_1804D4298
+            endif
+		    ulong local33 = 0
+
+		    UnityEngine.Collider collider2 = collision.collider
+
+		    System.Boolean boolean = collider2.TryGetComponent<Interactables.InteractableCollider>(local33) //(T& component)
+
+		    if (boolean == False)
+                goto INSN_1804D4298
+            endif
+		      = collider2.
+
+		    if (boolean == False)
+                goto INSN_1804D4298
+            endif
+
+		    System.Single currentDamage = this.CurrentDamage
+		    System.Single local38 = currentDamage * 300
+
+		    INSN_1804D4298:
+		    UnityEngine.Rigidbody rigidbody = this.Rb
+
+		    UnityEngine.Vector3 velocity = .velocity
+		    System.Single _cutoffSqrt = this._cutoffSqrt
+
+		    if (_cutoffSqrt <= local38)
+                goto INSN_1804D436E
+            endif
+		    UnityEngine.Rigidbody rigidbody2 = this.Rb
+
+		    UnityEngine.Vector3 velocity2 = .velocity
+
+		    UnityEngine.Vector3 vector3 = UnityEngine.Vector3.op_Multiply()
+
+		    rigidbody2.set_velocity()
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1804D3F74) is corrupt (Mismatched instance parameter. Expecting an instance of UnityEngine.Collision, actually {'this' (function parameter, type InventorySystem.Items.ThrowableProjectiles.Scp018Projectile)}) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.ThrowableProjectiles.Scp018Projectile
+	System.Void RpcMakeSound(System.Single sqrtSpeed)
+		ulong local2 = 0
+
+		Mirror.PooledNetworkWriter writer = Mirror.NetworkWriterPool.GetWriter()
+
+		Mirror.NetworkWriterExtensions.WriteSingle(writer, sqrtSpeed) //(NetworkWriter writer, Single value)
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'Scp018Projectile' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		ulong local7 = 0
+
+		base.SendRPCInternal(typeFromHandle, "RpcMakeSound", writer, local7, local8) //(Type invokeClass, String rpcName, NetworkWriter writer, Int32 channelId, Boolean includeOwner)
+
+		Mirror.NetworkWriterPool.Recycle(writer) //(PooledNetworkWriter writer)
+		return
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: call Mirror.PooledNetworkWriter Mirror.NetworkWriterPool::GetWriter()
+	IL_0007: stloc.1
+	IL_0008: ldloc.1
+	IL_0009: ldarg.1
+	IL_000a: call System.Void Mirror.NetworkWriterExtensions::WriteSingle(Mirror.NetworkWriter,System.Single)
+	IL_000f: ldtoken InventorySystem.Items.ThrowableProjectiles.Scp018Projectile
+	IL_0014: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+	IL_0019: stloc.2
+	IL_001a: ldc.i4.0
+	IL_001b: stloc.3
+	IL_001c: ldarg.0
+	IL_001d: ldloc.2
+	IL_001e: ldstr "RpcMakeSound"
+	IL_0023: ldloc.1
+	IL_0024: ldloc.3
+	IL_0025: ldloc.s V_4
+	IL_0027: call System.Void Mirror.NetworkBehaviour::SendRPCInternal(System.Type,System.String,Mirror.NetworkWriter,System.Int32,System.Boolean)
+	IL_002c: ldloc.1
+	IL_002d: call System.Void Mirror.NetworkWriterPool::Recycle(Mirror.PooledNetworkWriter)
+	IL_0032: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.ThrowableProjectiles.Scp018Projectile
+	System.Void ServerActivate()
+
+		base.ServerActivate()
+		InventorySystem.Items.Pickups.PickupSyncInfo info = this.Info
+		System.Int16 positionZ = this.Info.RelativePosition.PositionZ
+		System.Single single = this.Info._serverPosition.z
+
+		base.NetworkInfo = info
+		ulong local6 = 0
+
+		System.Single timeSinceLevelLoad = UnityEngine.Time.timeSinceLevelLoad
+		this._activatedTime = timeSinceLevelLoad
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void InventorySystem.Items.ThrowableProjectiles.TimeGrenade::ServerActivate()
+	IL_0006: ldarg.0
+	IL_0007: ldfld InventorySystem.Items.Pickups.PickupSyncInfo InventorySystem.Items.Pickups.ItemPickupBase::Info
+	IL_000c: stloc.0
+	IL_000d: ldarg.0
+	IL_000e: ldfld InventorySystem.Items.Pickups.PickupSyncInfo InventorySystem.Items.Pickups.ItemPickupBase::Info
+	IL_0013: ldfld RelativePositioning.RelativePosition InventorySystem.Items.Pickups.PickupSyncInfo::RelativePosition
+	IL_0018: ldfld System.Int16 RelativePositioning.RelativePosition::PositionZ
+	IL_001d: stloc.1
+	IL_001e: ldarg.0
+	IL_001f: ldfld InventorySystem.Items.Pickups.PickupSyncInfo InventorySystem.Items.Pickups.ItemPickupBase::Info
+	IL_0024: ldfld UnityEngine.Vector3 InventorySystem.Items.Pickups.PickupSyncInfo::_serverPosition
+	IL_0029: ldfld System.Single UnityEngine.Vector3::z
+	IL_002e: stloc.2
+	IL_002f: ldarg.0
+	IL_0030: ldloc.0
+	IL_0031: call System.Void InventorySystem.Items.Pickups.ItemPickupBase::set_NetworkInfo(InventorySystem.Items.Pickups.PickupSyncInfo)
+	IL_0036: ldc.i4.0
+	IL_0037: stloc.3
+	IL_0038: call System.Single UnityEngine.Time::get_timeSinceLevelLoad()
+	IL_003d: stloc.s V_4
+	IL_003f: ldarg.0
+	IL_0040: ldloc.s V_4
+	IL_0042: stfld System.Single InventorySystem.Items.ThrowableProjectiles.Scp018Projectile::_activatedTime
+	IL_0047: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.ThrowableProjectiles.Scp018Projectile
+	System.Void .ctor()
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void InventorySystem.Items.ThrowableProjectiles.EffectGrenade::.ctor()
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.ThrowableProjectiles.Scp018Projectile
+	System.Void MirrorProcessed()
+
+
+Generated IL:
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.ThrowableProjectiles.Scp018Projectile
+	System.Void UserCode_RpcMakeSound(System.Single sqrtSpeed)
+
+		base.MakeCollisionSound(sqrtSpeed) //(Single sqrtVelocity)
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: call System.Void InventorySystem.Items.Pickups.CollisionDetectionPickup::MakeCollisionSound(System.Single)
+	IL_0007: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.ThrowableProjectiles.Scp018Projectile
+	static System.Void InvokeUserCode_RpcMakeSound(Mirror.NetworkBehaviour obj, Mirror.NetworkReader reader, Mirror.NetworkConnectionToClient senderConnection)
+		ulong local3 = 0
+
+		System.Boolean active = Mirror.NetworkClient.active
+
+		if (active != False)
+
+		    System.Single single = Mirror.NetworkReaderExtensions.ReadSingle(reader) //(NetworkReader reader)
+		    //UNKNOWN CLASS OFFSET READ HERE
+
+		    obj.MakeCollisionSound(single) //(Single sqrtVelocity)
+		    return
+		endif
+        
+
+		UnityEngine.Debug.LogError("RPC RpcMakeSound called on server.") //(Object message)
+		return
+		throw new System.InvalidCastException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.UnknownClassOffsetReadAction at (0x1804D3D6E) is corrupt (Unknown class offset read) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.ThrowableProjectiles.Scp018Projectile
+	static System.Void .cctor()
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'Scp018Projectile' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		Mirror.RemoteCalls.CmdDelegate cmdDelegate = new Mirror.RemoteCalls.CmdDelegate()
+		ulong local4 = 0
+
+		cmdDelegate..ctor(local4, {'InvokeUserCode_RpcMakeSound' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		Mirror.RemoteCalls.RemoteCallHelper.RegisterRpcDelegate(typeFromHandle, "RpcMakeSound", cmdDelegate) //(Type invokeClass, String rpcName, CmdDelegate func)
+		return
+
+
+Generated IL:
+	IL_0000: ldtoken InventorySystem.Items.ThrowableProjectiles.Scp018Projectile
+	IL_0005: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+	IL_000a: stloc.0
+	IL_000b: ldloc.2
+	IL_000c: ldftn System.Void InventorySystem.Items.ThrowableProjectiles.Scp018Projectile::InvokeUserCode_RpcMakeSound(Mirror.NetworkBehaviour,Mirror.NetworkReader,Mirror.NetworkConnectionToClient)
+	IL_0012: newobj System.Void Mirror.RemoteCalls.CmdDelegate::.ctor(System.Object,System.IntPtr)
+	IL_0017: stloc.1
+	IL_0018: ldc.i4.0
+	IL_0019: stloc.2
+	IL_001a: ldloc.0
+	IL_001b: ldstr "RpcMakeSound"
+	IL_0020: ldloc.1
+	IL_0021: call System.Void Mirror.RemoteCalls.RemoteCallHelper::RegisterRpcDelegate(System.Type,System.String,Mirror.RemoteCalls.CmdDelegate)
+	IL_0026: ret
+	
+

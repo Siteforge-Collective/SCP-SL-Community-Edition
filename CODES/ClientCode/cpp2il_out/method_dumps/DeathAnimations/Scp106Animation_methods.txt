@@ -1,0 +1,233 @@
+Type: Scp106Animation
+
+
+	Generated Pseudocode:
+
+	Declaring Type: DeathAnimations.Scp106Animation
+	System.Void Update()
+		ulong local1 = 0
+
+		System.Single deltaTime = UnityEngine.Time.deltaTime
+		this._fadeTime = deltaTime
+
+		if (this._disable == False)
+		    System.Single delay = this.delay
+
+		    PlayerRoles.PlayableScps.Scp106.Scp106Hud.SetDissolveAnimation(deltaTime) //(Single amt)
+		endif
+        
+		System.Single delay2 = this.delay
+
+		if (delay2 > deltaTime)
+            goto INSN_181AFD6CE
+        endif
+
+		UnityEngine.Renderer[] componentsInChildren = base.GetComponentsInChildren<UnityEngine.Renderer>()
+		ulong local8 = 0
+		System.Int32 length = componentsInChildren.Length
+
+		if (local8 >= length)
+            goto INSN_181AFD6B7
+        endif
+		UnityEngine.Renderer renderer = componentsInChildren[local8]
+
+		UnityEngine.GameObject gameObject = renderer.gameObject
+		ulong local14 = 0
+
+		gameObject.SetActive(local14) //(Boolean value)
+		local8 += 1
+
+		INSN_181AFD6B7:
+		ulong local16 = 0
+
+		base.enabled = local16
+
+		INSN_181AFD6CE:
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: call System.Single UnityEngine.Time::get_deltaTime()
+	IL_0007: stloc.1
+	IL_0008: ldarg.0
+	IL_0009: ldloc.1
+	IL_000a: stfld System.Single DeathAnimations.Scp106Animation::_fadeTime
+	IL_000f: ldarg.0
+	IL_0010: ldfld System.Boolean DeathAnimations.Scp106Animation::_disable
+	IL_0015: ldc.i4.0
+	IL_0016: bne.un.s IL_0025
+	IL_0018: ldarg.0
+	IL_0019: ldfld System.Single DeathAnimations.Scp106Animation::delay
+	IL_001e: stloc.2
+	IL_001f: ldloc.1
+	IL_0020: call System.Void PlayerRoles.PlayableScps.Scp106.Scp106Hud::SetDissolveAnimation(System.Single)
+	IL_0025: ldarg.0
+	IL_0026: ldfld System.Single DeathAnimations.Scp106Animation::delay
+	IL_002b: ldloc.1
+	IL_002c: bgt.s IL_0072
+	IL_002e: ldarg.0
+	IL_002f: call T[] UnityEngine.Component::GetComponentsInChildren<UnityEngine.Renderer>()
+	IL_0034: stloc.3
+	IL_0035: ldc.i4.0
+	IL_0036: stloc.s V_4
+	IL_0038: ldloc.3
+	IL_0039: call System.Int32 System.Array::get_Length()
+	IL_003e: stloc.s V_5
+	IL_0040: ldloc.s V_4
+	IL_0042: ldloc.s V_5
+	IL_0044: bge.s IL_0067
+	IL_0046: ldloc.3
+	IL_0047: ldloc.s V_4
+	IL_0049: ldelem.any UnityEngine.Renderer
+	IL_004e: call UnityEngine.GameObject UnityEngine.Component::get_gameObject()
+	IL_0053: stloc.s V_6
+	IL_0055: ldc.i4.0
+	IL_0056: stloc.s V_7
+	IL_0058: ldloc.s V_6
+	IL_005a: ldloc.s V_7
+	IL_005c: call System.Void UnityEngine.GameObject::SetActive(System.Boolean)
+	IL_0061: ldloc.s V_4
+	IL_0063: ldc.i4.1
+	IL_0064: add
+	IL_0065: stloc.s V_4
+	IL_0067: ldc.i4.0
+	IL_0068: stloc.s V_8
+	IL_006a: ldarg.0
+	IL_006b: ldloc.s V_8
+	IL_006d: call System.Void UnityEngine.Behaviour::set_enabled(System.Boolean)
+	IL_0072: ret
+	IL_0073: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0078: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: DeathAnimations.Scp106Animation
+	System.Void OnAnimationStarted()
+
+		System.Boolean isFirstperson = base.IsFirstperson
+
+		if (isFirstperson != False)
+
+		    base.EventAssigned = True
+		endif
+        
+
+		base.enabled = True
+		UnityEngine.Transform portalAnchor = this.portalAnchor
+
+		UnityEngine.Vector3 position = this.position
+
+		UnityEngine.Vector3 down = UnityEngine.Vector3.down
+		System.Single single = down.z
+		ulong local17 = 0
+		System.Int32 1 = 1
+
+		System.Boolean boolean = UnityEngine.Physics.Raycast()
+
+		if (boolean != False)
+            goto INSN_181AFD4E1
+        endif
+
+		UnityEngine.Vector3 up = UnityEngine.Vector3.up
+		System.Single single2 = up.z
+
+		System.Boolean boolean2 = UnityEngine.Physics.Raycast()
+
+		if (boolean2 == False)
+            goto INSN_181AFD599
+        endif
+
+		INSN_181AFD4E1:
+		UnityEngine.Transform portalAnchor2 = this.portalAnchor
+		  = boolean2.
+		ulong local28 = 0
+
+		UnityEngine.Vector3 up2 = UnityEngine.Vector3.up
+
+		UnityEngine.Vector3 vector3 = UnityEngine.Vector3.op_Addition()
+
+		portalAnchor2.position = local28
+		UnityEngine.Transform portalAnchor3 = this.portalAnchor
+
+		portalAnchor3.SetParent()
+
+		INSN_181AFD599:
+
+		System.Boolean isFirstperson2 = base.IsFirstperson
+
+		if (isFirstperson2 != False)
+            goto INSN_181AFD5AB
+        endif
+		this._disable = True
+
+		INSN_181AFD5AB:
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181AFD3A0) is corrupt (Mismatched instance parameter. Expecting an instance of UnityEngine.Transform, actually {'this' (function parameter, type DeathAnimations.Scp106Animation)}) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: DeathAnimations.Scp106Animation
+	System.Void OnAnimationEnded()
+		ulong local2 = 0
+
+		base.EventAssigned = local2
+
+		if (this._disable == False)
+		    ulong local4 = 0
+
+		    PlayerRoles.PlayableScps.Scp106.Scp106Hud.SetDissolveAnimation(local4) //(Single amt)
+		    this._disable = True
+		endif
+        
+		return
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: ldarg.0
+	IL_0003: ldloc.0
+	IL_0004: call System.Void DeathAnimations.FirstpersonDeathAnimation::set_EventAssigned(System.Boolean)
+	IL_0009: ldarg.0
+	IL_000a: ldfld System.Boolean DeathAnimations.Scp106Animation::_disable
+	IL_000f: ldc.i4.0
+	IL_0010: bne.un.s IL_001f
+	IL_0012: ldc.i4.0
+	IL_0013: call System.Void PlayerRoles.PlayableScps.Scp106.Scp106Hud::SetDissolveAnimation(System.Single)
+	IL_0018: ldarg.0
+	IL_0019: ldc.i4.1
+	IL_001a: stfld System.Boolean DeathAnimations.Scp106Animation::_disable
+	IL_001f: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: DeathAnimations.Scp106Animation
+	System.Void .ctor()
+		this.delay = 6
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldc.r4 6
+	IL_0006: stfld System.Single DeathAnimations.Scp106Animation::delay
+	IL_000b: ldarg.0
+	IL_000c: call System.Void UnityEngine.MonoBehaviour::.ctor()
+	IL_0011: ret
+	
+

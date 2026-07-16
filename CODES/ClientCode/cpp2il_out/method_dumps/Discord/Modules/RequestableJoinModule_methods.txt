@@ -1,0 +1,770 @@
+Type: RequestableJoinModule
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Discord.Modules.RequestableJoinModule
+	System.Boolean get_IsEnabled()
+		System.Boolean _isEnabled = this._isEnabled
+		return _isEnabled
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Boolean Discord.Modules.DiscordModuleBase::_isEnabled
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Discord.Modules.RequestableJoinModule
+	System.Void set_IsEnabled(System.Boolean value)
+		this._isEnabled = value
+
+		if (value == False)
+		    System.Int32 2 = 2
+
+		    this.SendResponse(2) //(Reply reply)
+		    return
+		endif
+        
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: stfld System.Boolean Discord.Modules.DiscordModuleBase::_isEnabled
+	IL_0007: ldarg.1
+	IL_0008: ldc.i4.0
+	IL_0009: bne.un.s IL_0013
+	IL_000b: ldarg.0
+	IL_000c: ldc.i4.2
+	IL_000d: call System.Void Discord.Modules.RequestableJoinModule::SendResponse(Discord.Reply)
+	IL_0012: ret
+	IL_0013: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Discord.Modules.RequestableJoinModule
+	System.Boolean get_RequestAvailable()
+		System.Boolean RequestAvailable = this.<RequestAvailable>k__BackingField
+		return RequestAvailable
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Boolean Discord.Modules.RequestableJoinModule::<RequestAvailable>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Discord.Modules.RequestableJoinModule
+	System.Void set_RequestAvailable(System.Boolean value)
+		this.<RequestAvailable>k__BackingField = value
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: stfld System.Boolean Discord.Modules.RequestableJoinModule::<RequestAvailable>k__BackingField
+	IL_0007: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Discord.Modules.RequestableJoinModule
+	System.Void SendResponse(Discord.Reply reply)
+		System.Int32 local2 = reply.value__
+
+		if (this.<RequestAvailable>k__BackingField != False)
+
+		    System.String string = System.String.Format("Discord: Sent {0} as the response to join request.", local2) //(String format, Object arg0)
+
+		    UnityEngine.Debug.Log(string) //(Object message)
+		    System.String username = this._joinRequest.username
+
+		    System.String string2 = System.String.Format("Discord: Sent {0} as the response to {1}'s join request.", string, username) //(String format, Object arg0, Object arg1)
+
+		    UnityEngine.Color color = UnityEngine.Color32.op_Implicit()
+
+		    GameCore.Console.AddLog()
+		    UnityEngine.Animator _joinAnimator = this._joinAnimator
+		    ulong local19 = 0
+
+		    _joinAnimator.SetBool("Requested", local19) //(String name, Boolean value)
+		    Discord.Basic.DiscordUser _joinRequest = this._joinRequest
+
+		    Discord.CallbackController.Respond()
+		    this.<RequestAvailable>k__BackingField = False
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181B18668) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Discord.Modules.RequestableJoinModule
+	System.Void OnUpdateModule()
+
+		System.String string = this.ToString()
+
+		if (string != 0)
+
+		    System.Boolean keyInt = UnityEngine.Input.GetKeyInt(306) //(KeyCode key)
+
+		    if (keyInt != False)
+		        UnityEngine.Animator _joinAnimator = this._joinAnimator
+		        System.Int32 requested = Discord.Modules.RequestableJoinModule.Requested
+
+		        System.Boolean bool = _joinAnimator.GetBool(requested) //(Int32 id)
+
+		        if (bool != False)
+		            System.Int32 121 = 121
+
+		            System.Boolean keyDownInt = UnityEngine.Input.GetKeyDownInt(121) //(KeyCode key)
+
+		            if (keyDownInt != False)
+		                System.Int32 1 = 1
+
+		                this.SendResponse(1) //(Reply reply)
+		            endif
+                    
+		            System.Int32 110 = 110
+
+		            System.Boolean keyDownInt2 = UnityEngine.Input.GetKeyDownInt(110) //(KeyCode key)
+
+		            if (keyDownInt2 == False)
+                        goto INSN_181B18559
+                    endif
+		            ulong local14 = 0
+
+		            this.SendResponse(local14) //(Reply reply)
+		        endif
+                
+		    endif
+            
+		    return
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: callvirt System.String UnityEngine.Object::ToString()
+	IL_0006: ldc.i4.0
+	IL_0007: beq.s IL_0052
+	IL_0009: ldc.i4 306
+	IL_000e: conv.u4
+	IL_000f: call System.Boolean UnityEngine.Input::GetKeyInt(UnityEngine.KeyCode)
+	IL_0014: ldc.i4.0
+	IL_0015: beq.s IL_0052
+	IL_0017: ldarg.0
+	IL_0018: ldfld UnityEngine.Animator Discord.Modules.RequestableJoinModule::_joinAnimator
+	IL_001d: stloc.0
+	IL_001e: ldsfld System.Int32 Discord.Modules.RequestableJoinModule::Requested
+	IL_0023: stloc.1
+	IL_0024: ldloc.0
+	IL_0025: ldloc.1
+	IL_0026: call System.Boolean UnityEngine.Animator::GetBool(System.Int32)
+	IL_002b: ldc.i4.0
+	IL_002c: beq.s IL_0052
+	IL_002e: ldc.i4.s 121
+	IL_0030: call System.Boolean UnityEngine.Input::GetKeyDownInt(UnityEngine.KeyCode)
+	IL_0035: ldc.i4.0
+	IL_0036: beq.s IL_003f
+	IL_0038: ldarg.0
+	IL_0039: ldc.i4.1
+	IL_003a: call System.Void Discord.Modules.RequestableJoinModule::SendResponse(Discord.Reply)
+	IL_003f: ldc.i4.s 110
+	IL_0041: call System.Boolean UnityEngine.Input::GetKeyDownInt(UnityEngine.KeyCode)
+	IL_0046: ldc.i4.0
+	IL_0047: beq.s IL_0052
+	IL_0049: ldc.i4.0
+	IL_004a: stloc.2
+	IL_004b: ldarg.0
+	IL_004c: ldloc.2
+	IL_004d: call System.Void Discord.Modules.RequestableJoinModule::SendResponse(Discord.Reply)
+	IL_0052: ret
+	IL_0053: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0058: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Discord.Modules.RequestableJoinModule
+	System.Void OnDestroy()
+
+		System.Boolean isEnabled = this.IsEnabled
+		  = .
+		Discord.CallbackController/OnRequestInfo onRequestInfo = new Discord.CallbackController/OnRequestInfo()
+		onRequestInfo.method_ptr = OnReceivedRequest
+		onRequestInfo.method = OnReceivedRequest
+		onRequestInfo.m_target = this
+
+		System.Delegate delegate = System.Delegate.Remove()
+		ulong local6 = 0
+
+		if (delegate == 0)
+		    . = local6
+		else
+
+		    if (delegate == 0)
+                goto INSN_181B17669
+            endif
+		    . = delegate
+
+		    if (delegate == 0)
+                goto INSN_181B1768A
+            endif
+		endif
+        
+		  = .
+		Discord.CallbackController/OnJoinInfo onJoinInfo = new Discord.CallbackController/OnJoinInfo()
+		onJoinInfo.method_ptr = OnRequestAccepted
+		onJoinInfo.method = OnRequestAccepted
+		onJoinInfo.m_target = this
+
+		System.Delegate delegate2 = System.Delegate.Remove()
+
+		if (delegate2 != 0)
+            goto INSN_181B1761D
+        endif
+		. = local6
+
+		INSN_181B1761D:
+
+		if (delegate2 == 0)
+            goto INSN_181B1767E
+        endif
+		. = delegate2
+
+		if (delegate2 == 0)
+            goto INSN_181B17675
+        endif
+
+		INSN_181B17669:
+		throw new System.InvalidCastException()
+
+		INSN_181B1768A:
+		throw new System.InvalidCastException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.StaticFieldToRegAction at (0x181B17533) is corrupt (Couldn't identify the field being read (or its type).) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Discord.Modules.RequestableJoinModule
+	System.Void OnReceivedRequest(Discord.Basic.DiscordUser& request)
+
+		System.String string = this.ToString()
+
+		if (string != 0)
+		    System.String[] local3 = new System.String[6]
+
+		    if ("Discord: Join request " != 0)
+
+		        if ("Discord: Join request " == 0)
+                    goto INSN_181B17CC1
+                endif
+		    endif
+            
+		    local3[0] = "Discord: Join request "
+		    System.String username = request.username
+
+		    if (username == 0)
+                goto INSN_181B17778
+            endif
+
+		    if ("Discord: Join request " == 0)
+                goto INSN_181B17CE1
+            endif
+
+		    INSN_181B17778:
+		    local3[1] = username
+
+		    if ("#" == 0)
+                goto INSN_181B177BC
+            endif
+
+		    if ("#" == 0)
+                goto INSN_181B17D01
+            endif
+
+		    INSN_181B177BC:
+		    local3[2] = "#"
+		    System.String discriminator = request.discriminator
+
+		    if (discriminator == 0)
+                goto INSN_181B177F6
+            endif
+
+		    if ("#" == 0)
+                goto INSN_181B17D21
+            endif
+
+		    INSN_181B177F6:
+		    local3[3] = discriminator
+
+		    if (": " == 0)
+                goto INSN_181B1783A
+            endif
+
+		    if (": " == 0)
+                goto INSN_181B17D41
+            endif
+
+		    INSN_181B1783A:
+		    local3[4] = ": "
+
+		    if (constant41 == 0)
+                goto INSN_181B17873
+            endif
+
+		    if (": " == 0)
+                goto INSN_181B17D61
+            endif
+
+		    INSN_181B17873:
+		    local3[5] = constant41
+
+		    System.String string2 = System.String.Concat(local3) //(String[] values)
+
+		    UnityEngine.Debug.Log(string2) //(Object message)
+		    System.String[] local9 = new System.String[6]
+
+		    if ("Discord: Join request " == 0)
+                goto INSN_181B17909
+            endif
+
+		    if ("Discord: Join request " == 0)
+                goto INSN_181B17D81
+            endif
+
+		    INSN_181B17909:
+		    local9[0] = "Discord: Join request "
+		    System.String username2 = request.username
+
+		    if (username2 == 0)
+                goto INSN_181B17943
+            endif
+
+		    if ("Discord: Join request " == 0)
+                goto INSN_181B17DA1
+            endif
+
+		    INSN_181B17943:
+		    local9[1] = username2
+
+		    if ("#" == 0)
+                goto INSN_181B17987
+            endif
+
+		    if ("#" == 0)
+                goto INSN_181B17DC1
+            endif
+
+		    INSN_181B17987:
+		    local9[2] = "#"
+		    System.String discriminator2 = request.discriminator
+
+		    if (discriminator2 == 0)
+                goto INSN_181B179C1
+            endif
+
+		    if ("#" == 0)
+                goto INSN_181B17DE1
+            endif
+
+		    INSN_181B179C1:
+		    local9[3] = discriminator2
+
+		    if (": " == 0)
+                goto INSN_181B17A05
+            endif
+
+		    if (": " == 0)
+                goto INSN_181B17E01
+            endif
+
+		    INSN_181B17A05:
+		    local9[4] = ": "
+
+		    if (constant86 == 0)
+                goto INSN_181B17A3E
+            endif
+
+		    if (": " == 0)
+                goto INSN_181B17E21
+            endif
+
+		    INSN_181B17A3E:
+		    local9[5] = constant86
+
+		    System.String string3 = System.String.Concat(local9) //(String[] values)
+		    ulong local14 = 0
+
+		    UnityEngine.Color color = UnityEngine.Color32.op_Implicit()
+
+		    GameCore.Console.AddLog()
+		    TMPro.TMP_Text _joinText = this._joinText
+		    System.String[] local21 = new System.String[5]
+
+		    if ("<b><color=#7289DA>" == 0)
+                goto INSN_181B17B2E
+            endif
+
+		    if ("<b><color=#7289DA>" == 0)
+                goto INSN_181B17E41
+            endif
+
+		    INSN_181B17B2E:
+		    local21[0] = "<b><color=#7289DA>"
+		    System.String username3 = request.username
+
+		    if (username3 == 0)
+                goto INSN_181B17B67
+            endif
+
+		    if ("<b><color=#7289DA>" == 0)
+                goto INSN_181B17E61
+            endif
+
+		    INSN_181B17B67:
+		    local21[1] = username3
+
+		    if ("<color=#99AAB5>#</color>" == 0)
+                goto INSN_181B17BAB
+            endif
+
+		    if ("<color=#99AAB5>#</color>" == 0)
+                goto INSN_181B17E81
+            endif
+
+		    INSN_181B17BAB:
+		    local21[2] = "<color=#99AAB5>#</color>"
+		    System.String discriminator3 = request.discriminator
+
+		    if (discriminator3 == 0)
+                goto INSN_181B17BE5
+            endif
+
+		    if ("<color=#99AAB5>#</color>" == 0)
+                goto INSN_181B17EA1
+            endif
+
+		    INSN_181B17BE5:
+		    local21[3] = discriminator3
+
+		    if ("</color></b> would like to join your match!" == 0)
+                goto INSN_181B17C29
+            endif
+
+		    if ("</color></b> would like to join your match!" == 0)
+                goto INSN_181B17EC1
+            endif
+
+		    INSN_181B17C29:
+		    local21[4] = "</color></b> would like to join your match!"
+
+		    System.String string4 = System.String.Concat(local21) //(String[] values)
+
+		    System.String text = _joinText.text
+		    UnityEngine.Animator _joinAnimator = this._joinAnimator
+
+		    _joinAnimator.SetBool("Requested", True) //(String name, Boolean value)
+		    this._joinRequest = constant144
+		    System.String discriminator4 = request.discriminator
+		    this._joinRequest = discriminator4
+		    this.<RequestAvailable>k__BackingField = True
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+		INSN_181B17CC1:
+
+		INSN_181B17CE1:
+
+		INSN_181B17D01:
+
+		INSN_181B17D21:
+
+		INSN_181B17D41:
+
+		INSN_181B17D61:
+
+		INSN_181B17D81:
+
+		INSN_181B17DA1:
+
+		INSN_181B17DC1:
+
+		INSN_181B17DE1:
+
+		INSN_181B17E01:
+
+		INSN_181B17E21:
+
+		INSN_181B17E41:
+
+		INSN_181B17E61:
+
+		INSN_181B17E81:
+
+		INSN_181B17EA1:
+
+		INSN_181B17EC1:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfZeroOrNullAction at (0x181B17859) is corrupt (ConstantDefinition: Don't know how to get IL to load a Cpp2IL.Core.Analysis.Il2CppClassIdentifier) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Discord.Modules.RequestableJoinModule
+	System.Void OnRequestAccepted(System.String secret)
+		ulong local2 = 0
+
+		System.String string = System.String.Concat("Discord: Joining (", secret, ")") //(String str0, String str1, String str2)
+
+		UnityEngine.Debug.Log(string) //(Object message)
+		ulong local6 = 0
+
+		System.Text.Encoding uTF8 = System.Text.Encoding.UTF8
+
+		System.Byte[] byteArray = System.Convert.FromBase64String(secret) //(String s)
+
+		System.Int32 maxCharCount = uTF8.GetMaxCharCount()
+		ulong local11 = 0
+
+		CustomNetworkManager typedSingleton = CustomNetworkManager.TypedSingleton
+		System.Int64 local13 = 1
+		System.Char[] local14 = new System.Char[1]
+		System.Int64 local15 = 58
+		local14[0] = local15
+
+		System.String[] stringArray = maxCharCount.Split(local14) //(Char[] separator)
+
+		if (stringArray.Length == 3)
+		    System.String local19 = stringArray[1]
+
+		    System.Boolean boolean = System.UInt16.TryParse()
+
+		    if (boolean == False)
+                goto INSN_181B1842A
+            endif
+		    System.String local21 = stringArray[0]
+		    typedSingleton.networkAddress = local21
+		    System.String local22 = stringArray[0]
+		     += 72
+		    CustomNetworkManager.OnClientReady = local22
+		    Mirror.LiteNetLib4Mirror.LiteNetLib4MirrorTransport singleton = Mirror.LiteNetLib4Mirror.LiteNetLib4MirrorTransport.Singleton
+		    singleton.port = constant50
+		    System.String versionString = GameCore.Version.VersionString
+		    System.Int32 4 = 4
+		    System.String local26 = stringArray[2]
+
+		    System.Boolean boolean2 = versionString.Equals(local26, 4) //(String value, StringComparison comparisonType)
+
+		    if (boolean2 == False)
+		        System.String local29 = stringArray[2]
+
+		        System.String string2 = System.String.Concat("Discord: Could not join the server - version mismatch. Required version: ", local29) //(String str0, String str1)
+
+		        UnityEngine.Color color = UnityEngine.Color32.op_Implicit()
+
+		        GameCore.Console.AddLog()
+		    else
+		        ulong local40 = 0
+
+		        CustomLiteNetLib4MirrorTransport.SetReconnectionParameters(local40) //(Boolean roundRestart)
+		        ulong local42 = 0
+
+		        typedSingleton.ShowLoadingScreen(local42) //(Int32 id)
+
+		        typedSingleton.LateUpdate()
+		    else
+
+		        System.String string3 = System.String.Concat()
+
+		        UnityEngine.Color color2 = UnityEngine.Color32.op_Implicit()
+
+		        GameCore.Console.AddLog()
+
+		        System.String string4 = System.String.Concat()
+		        ulong local54 = 0
+
+		        UnityEngine.Color color3 = UnityEngine.Color32.op_Implicit()
+
+		        GameCore.Console.AddLog()
+		    endif
+            
+
+		    UnityEngine.Debug.LogException()
+		endif
+        
+		return
+		throw new System.IndexOutOfRangeException()
+		throw new System.IndexOutOfRangeException()
+		throw new System.IndexOutOfRangeException()
+		throw new System.IndexOutOfRangeException()
+		throw new System.IndexOutOfRangeException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+
+		INSN_181B1842A:
+		System.Exception exception = new System.Exception()
+
+		exception..ctor("No specified port Exception") //(String message)
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallVirtualMethodAction at (0x181B17FCC) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Discord.Modules.RequestableJoinModule
+	System.Void Start()
+		  = .
+		Discord.CallbackController/OnRequestInfo onRequestInfo = new Discord.CallbackController/OnRequestInfo()
+		onRequestInfo.method_ptr = OnReceivedRequest
+		onRequestInfo.method = OnReceivedRequest
+		onRequestInfo.m_target = this
+
+		System.Delegate delegate = System.Delegate.Combine()
+		ulong local4 = 0
+
+		if (delegate == 0)
+		    . = local4
+		else
+
+		    if (delegate == 0)
+                goto INSN_181B188C4
+            endif
+		    . = delegate
+
+		    if (delegate == 0)
+                goto INSN_181B188E5
+            endif
+		endif
+        
+		  = .
+		Discord.CallbackController/OnJoinInfo onJoinInfo = new Discord.CallbackController/OnJoinInfo()
+		onJoinInfo.method_ptr = OnRequestAccepted
+		onJoinInfo.method = OnRequestAccepted
+		onJoinInfo.m_target = this
+
+		System.Delegate delegate2 = System.Delegate.Combine()
+
+		if (delegate2 != 0)
+            goto INSN_181B18878
+        endif
+		. = local4
+
+		INSN_181B18878:
+
+		if (delegate2 == 0)
+            goto INSN_181B188D9
+        endif
+		. = delegate2
+
+		if (delegate2 == 0)
+            goto INSN_181B188D0
+        endif
+
+		INSN_181B188C4:
+		throw new System.InvalidCastException()
+
+		INSN_181B188E5:
+		throw new System.InvalidCastException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.StaticFieldToRegAction at (0x181B1878E) is corrupt (Couldn't identify the field being read (or its type).) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Discord.Modules.RequestableJoinModule
+	System.Void Update()
+
+		System.String string = this.ToString()
+
+		if (string != 0)
+
+		    FMOD.RESULT rESULT = base.setUserData(Discord.Modules.RequestableJoinModule.OnUpdateModule) //(IntPtr userdata)
+		    return
+		endif
+        
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181B09FEF) is corrupt (ConstantDefinition: Don't know how to get IL to load a Mono.Cecil.MethodDefinition) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Discord.Modules.RequestableJoinModule
+	System.Void .ctor()
+		this._isEnabled = True
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldc.i4.1
+	IL_0002: stfld System.Boolean Discord.Modules.DiscordModuleBase::_isEnabled
+	IL_0007: ldarg.0
+	IL_0008: call System.Void UnityEngine.MonoBehaviour::.ctor()
+	IL_000d: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Discord.Modules.RequestableJoinModule
+	static System.Void .cctor()
+
+		System.Int32 int32 = UnityEngine.Animator.StringToHash("Requested") //(String name)
+		Discord.Modules.RequestableJoinModule.Requested = int32
+		return
+
+
+Generated IL:
+	IL_0000: ldstr "Requested"
+	IL_0005: call System.Int32 UnityEngine.Animator::StringToHash(System.String)
+	IL_000a: stsfld System.Int32 Discord.Modules.RequestableJoinModule::Requested
+	IL_000f: ret
+	
+

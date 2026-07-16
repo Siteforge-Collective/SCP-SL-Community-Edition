@@ -1,0 +1,86 @@
+Type: CustomPlayerEffects.TickingEffectBase
+
+Method: System.Void OnTick()
+
+Disassembly:
+	
+
+ISIL:
+No ISIL was generated
+Method: System.Void Enabled()
+
+Disassembly:
+	mov eax,[rcx+38h]
+	mov [rcx+3Ch],eax
+	ret
+
+ISIL:
+	001 Move rax, [rcx+56]
+	002 Move [rcx+60], rax
+	003 Return 
+
+Method: System.Void OnEffectUpdate()
+
+Disassembly:
+	push rbx
+	sub rsp,30h
+	mov rbx,rcx
+	movaps [rsp+20h],xmm6
+	movss xmm6,dword ptr [rcx+3Ch]
+	xor ecx,ecx
+	call 0000000180FDAC30h
+	subss xmm6,xmm0
+	xorps xmm0,xmm0
+	comiss xmm6,xmm0
+	movss dword ptr [rbx+3Ch],xmm6
+	ja short 0000000181B00C68h
+	addss xmm6,dword ptr [rbx+38h]
+	mov rax,[rbx]
+	mov rcx,rbx
+	movss dword ptr [rbx+3Ch],xmm6
+	mov rdx,[rax+278h]
+	call qword ptr [rax+270h]
+	movaps xmm6,[rsp+20h]
+	add rsp,30h
+	pop rbx
+	ret
+
+ISIL:
+	001 ShiftStack -8
+	002 Move stack:0x0, rbx
+	003 ShiftStack -48
+	004 Move rbx, rcx
+	005 Move stack:0x20, xmm6
+	006 Move xmm6, [rcx+60]
+	007 Move rcx, 0
+	008 Call Time.get_deltaTime, rcx
+	009 Subtract xmm6, xmm6, xmm0
+	010 Move xmm0, 0
+	011 Compare xmm6, xmm0
+	012 Move [rbx+60], xmm6
+	013 JumpIfGreater {20}
+	014 Add xmm6, xmm6, [rbx+56]
+	015 Move rax, [rbx]
+	016 Move rcx, rbx
+	017 Move [rbx+60], xmm6
+	018 Move rdx, [rax+632]
+	019 Call 0, rcx, rdx, r8, r9, stack:0x0, stack:0x8, stack:0x10, stack:0x18, stack:0x20, stack:0x28, stack:0x30, stack:0x38, stack:0x40
+	020 Move xmm6, stack:0x20
+	021 ShiftStack 48
+	022 Move rbx, stack:0x0
+	023 ShiftStack 8
+	024 Return 
+
+Method: System.Void .ctor()
+
+Disassembly:
+	xor edx,edx
+	mov byte ptr [rcx+18h],0FFh
+	jmp near ptr 0000000180FD1850h
+
+ISIL:
+	001 Move rdx, 0
+	002 Move [rcx+24], 255
+	003 Call 0x180FD1850, rcx, rdx
+	004 Return 
+

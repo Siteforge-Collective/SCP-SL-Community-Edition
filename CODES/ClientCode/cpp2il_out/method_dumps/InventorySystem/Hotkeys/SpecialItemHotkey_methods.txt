@@ -1,0 +1,232 @@
+Type: SpecialItemHotkey
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Hotkeys.SpecialItemHotkey
+	ActionName get_KeyActionName()
+		ActionName KeyActionName = this.<KeyActionName>k__BackingField
+		return KeyActionName
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld ActionName InventorySystem.Hotkeys.SpecialItemHotkey::<KeyActionName>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Hotkeys.SpecialItemHotkey
+	System.Void set_KeyActionName(ActionName value)
+		this.<KeyActionName>k__BackingField = value
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: stfld ActionName InventorySystem.Hotkeys.SpecialItemHotkey::<KeyActionName>k__BackingField
+	IL_0007: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Hotkeys.SpecialItemHotkey
+	System.Void .ctor(ActionName actionName, ItemType[] bestToWorstItems)
+		System.Int32 local3 = actionName.value__
+		System.Collections.Generic.Dictionary`2<ItemType,System.Int32> dictionary = new System.Collections.Generic.Dictionary`2<ItemType,System.Int32>()
+
+		dictionary..ctor()
+		this._itemIndexes = dictionary
+		ItemType[] local5 = new ItemType[8]
+		this._medicalItemTypes = local5
+		System.UInt16[] local6 = new System.UInt16[8]
+		this._medicalItemSerials = local6
+
+		base..ctor()
+		this.<KeyActionName>k__BackingField = local3
+		this._bestToWorstItems = bestToWorstItems
+		ItemType[] _bestToWorstItems = this._bestToWorstItems
+		ulong local9 = 0
+
+		while (local9 < _bestToWorstItems.Length)
+		    System.Collections.Generic.Dictionary`2<ItemType,System.Int32> _itemIndexes = this._itemIndexes
+		    ItemType itemType = _bestToWorstItems[local9]
+		    throw new System.NullReferenceException()
+		    ItemType[] _bestToWorstItems2 = this._bestToWorstItems
+		    local9 += 1
+		endwhile
+        
+		System.Action`1<ReferenceHub> action = new System.Action`1<ReferenceHub>()
+
+		action..ctor(this, {'RefreshItems' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		InventorySystem.Inventory.add_OnItemsModified(action) //(Action`1 value)
+		System.Action`3<ReferenceHub,InventorySystem.Items.ItemIdentifier,InventorySystem.Items.ItemIdentifier> action2 = new System.Action`3<ReferenceHub,InventorySystem.Items.ItemIdentifier,InventorySystem.Items.ItemIdentifier>()
+
+		action2..ctor(this, {'<.ctor>b__11_0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		InventorySystem.Inventory.add_OnCurrentItemChanged(action2) //(Action`3 value)
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1803FCE86) is corrupt (Mismatched instance parameter. Expecting an instance of System.Action`1, actually {'action2' (type System.Action`3<ReferenceHub,InventorySystem.Items.ItemIdentifier,InventorySystem.Items.ItemIdentifier>)}) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Hotkeys.SpecialItemHotkey
+	System.Void RefreshItems(ReferenceHub ply)
+		this._medicalItemsCount = 0
+		InventorySystem.Inventory local2 = ply.inventory
+		InventorySystem.InventoryInfo local3 = local2.UserInventory
+		System.Collections.Generic.Dictionary`2<System.UInt16,InventorySystem.Items.ItemBase> local4 = local3.Items
+
+		System.Collections.Generic.Dictionary`2/Enumerator<TKey,TValue> local5 = local3.GetEnumerator()
+
+		if (local5 != 0)
+
+
+Generated IL:
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Hotkeys.SpecialItemHotkey
+	System.UInt16 HasItem(ItemType type)
+		System.Int32 _medicalItemsCount = this._medicalItemsCount
+		ulong local3 = 0
+
+		if (_medicalItemsCount > 0)
+		    ItemType[] _medicalItemTypes = this._medicalItemTypes
+
+		    if ("{il2cpp array field local4->}" == type)
+                goto INSN_1803FC915
+            endif
+		    local3 += 1
+		endwhile
+        
+		goto INSN_1803FC92D
+        
+		return local3
+
+		INSN_1803FC915:
+		System.UInt16[] _medicalItemSerials = this._medicalItemSerials
+		System.UInt16 uInt16 = _medicalItemSerials[local3]
+		return uInt16
+
+		INSN_1803FC92D:
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x1803FC914) is corrupt (Return value has a type of System.Int32, expecting an object of type System.UInt16) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Hotkeys.SpecialItemHotkey
+	System.Void RefreshHotkey(ReferenceHub ply)
+		ulong local2 = 0
+
+		System.Boolean isLocalPlayer = ply.isLocalPlayer
+
+		if (isLocalPlayer != False)
+		    this._bestSerial = local2
+		    InventorySystem.Inventory inventory = ply.inventory
+		    System.Collections.Generic.Dictionary`2<ItemType,System.Int32> _itemIndexes = this._itemIndexes
+		    InventorySystem.Items.ItemIdentifier curItem = inventory.CurItem
+		    ItemType local8 = curItem.TypeId
+
+		    System.Boolean boolean = _itemIndexes.TryGetValue(local8, local2) //(TKey key, TValue& value)
+
+		    if (boolean == False)
+		        System.Collections.Generic.Dictionary`2<ItemType,System.Int32> _itemIndexes2 = this._itemIndexes
+		        ItemType _lastMatch = this._lastMatch
+
+		        System.Boolean boolean2 = _itemIndexes2.TryGetValue(_lastMatch, local2) //(TKey key, TValue& value)
+
+		        if (boolean2 != False)
+		            ItemType _lastMatch2 = this._lastMatch
+
+		            System.UInt16 uInt16 = this.HasItem(_lastMatch2) //(ItemType type)
+
+		            if (uInt16 != constant15)
+		            else
+		                this._lastMatch = 4294967295
+		            else
+		                local2 += 1
+		                this._lastMatch = curItem
+		            endif
+                    
+		        endif
+                
+		        ItemType[] _bestToWorstItems = this._bestToWorstItems
+		        System.Int32 length = _bestToWorstItems.Length
+		        System.Int32 0 = 0
+
+		        if (local2 >= 0)
+                    goto INSN_1803FCA90
+                endif
+		        ItemType[] _bestToWorstItems2 = this._bestToWorstItems
+		        local2 -= length
+		        ItemType itemType = _bestToWorstItems2[local2]
+
+		        System.UInt16 uInt162 = this.HasItem(itemType) //(ItemType type)
+		        this._bestSerial = uInt162
+
+		        if (uInt162 != constant19)
+                    goto INSN_1803FCA90
+                endif
+		        local2 += 1
+		        local2 += length
+		    endif
+            
+		    return
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfZeroOrNullAction at (0x1803FCA1F) is corrupt (ConstantDefinition: Don't know how to get IL to load a System.UInt16) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Hotkeys.SpecialItemHotkey
+	System.UInt16 GetCorrespondingItemSerial(ReferenceHub ply, System.UInt16[] itemsOrder, System.Boolean smartFeatureEnabled)
+		System.UInt16 _bestSerial = this._bestSerial
+		return _bestSerial
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.UInt16 InventorySystem.Hotkeys.SpecialItemHotkey::_bestSerial
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Hotkeys.SpecialItemHotkey
+	System.Void <.ctor>b__11_0(ReferenceHub ply, InventorySystem.Items.ItemIdentifier oldItem, InventorySystem.Items.ItemIdentifier newItem)
+
+		this.RefreshHotkey(ply) //(ReferenceHub ply)
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: call System.Void InventorySystem.Hotkeys.SpecialItemHotkey::RefreshHotkey(ReferenceHub)
+	IL_0007: ret
+	
+

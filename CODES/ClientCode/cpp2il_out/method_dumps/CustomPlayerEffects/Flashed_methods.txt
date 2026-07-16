@@ -1,0 +1,298 @@
+Type: Flashed
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomPlayerEffects.Flashed
+	System.Single get_Weight()
+		System.Single _remainingWeight = this._remainingWeight
+		return _remainingWeight
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Single CustomPlayerEffects.Flashed::_remainingWeight
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomPlayerEffects.Flashed
+	System.Void set_Weight(System.Single value)
+
+		System.Single single = UnityEngine.Mathf.Clamp01(value) //(Single value)
+		ReferenceHub Hub = this.<Hub>k__BackingField
+		this._remainingWeight = single
+
+		System.Boolean isLocalPlayer = Hub.isLocalPlayer
+
+		if (isLocalPlayer == False)
+		    ReferenceHub Hub2 = this.<Hub>k__BackingField
+
+		    System.Boolean isLocallySpectated = PlayerRoles.Spectating.SpectatorNetworking.IsLocallySpectated(Hub2) //(ReferenceHub target)
+
+		    if (isLocallySpectated == False)
+                goto INSN_181AF9B6B
+            endif
+		endif
+        
+		UnityEngine.Rendering.PostProcessing.PostProcessVolume _processVolume = this._processVolume
+		System.Single _remainingWeight = this._remainingWeight
+		_processVolume.weight = _remainingWeight
+
+		INSN_181AF9B6B:
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.1
+	IL_0001: call System.Single UnityEngine.Mathf::Clamp01(System.Single)
+	IL_0006: stloc.0
+	IL_0007: ldarg.0
+	IL_0008: ldfld ReferenceHub CustomPlayerEffects.StatusEffectBase::<Hub>k__BackingField
+	IL_000d: stloc.1
+	IL_000e: ldarg.0
+	IL_000f: ldloc.0
+	IL_0010: stfld System.Single CustomPlayerEffects.Flashed::_remainingWeight
+	IL_0015: ldloc.1
+	IL_0016: call System.Boolean Mirror.NetworkBehaviour::get_isLocalPlayer()
+	IL_001b: ldc.i4.0
+	IL_001c: bne.un.s IL_002c
+	IL_001e: ldarg.0
+	IL_001f: ldfld ReferenceHub CustomPlayerEffects.StatusEffectBase::<Hub>k__BackingField
+	IL_0024: call System.Boolean PlayerRoles.Spectating.SpectatorNetworking::IsLocallySpectated(ReferenceHub)
+	IL_0029: ldc.i4.0
+	IL_002a: beq.s IL_0041
+	IL_002c: ldarg.0
+	IL_002d: ldfld UnityEngine.Rendering.PostProcessing.PostProcessVolume CustomPlayerEffects.Flashed::_processVolume
+	IL_0032: stloc.2
+	IL_0033: ldarg.0
+	IL_0034: ldfld System.Single CustomPlayerEffects.Flashed::_remainingWeight
+	IL_0039: stloc.3
+	IL_003a: ldloc.2
+	IL_003b: ldloc.3
+	IL_003c: stfld System.Single UnityEngine.Rendering.PostProcessing.PostProcessVolume::weight
+	IL_0041: ret
+	IL_0042: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0047: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomPlayerEffects.Flashed
+	System.Void OnAwake()
+
+		UnityEngine.Rendering.PostProcessing.PostProcessVolume component = base.GetComponent<UnityEngine.Rendering.PostProcessing.PostProcessVolume>()
+		this._processVolume = component
+		UnityEngine.Rendering.PostProcessing.PostProcessVolume _processVolume = this._processVolume
+
+		UnityEngine.Rendering.PostProcessing.PostProcessProfile profile = _processVolume.profile
+
+		PostProcessing.Lighten setting = profile.GetSetting<PostProcessing.Lighten>()
+		this._lightenEffect = setting
+
+		PostProcessing.Darken setting2 = profile.GetSetting<PostProcessing.Darken>()
+		this._darkenEffect = setting2
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call T UnityEngine.Component::GetComponent<UnityEngine.Rendering.PostProcessing.PostProcessVolume>()
+	IL_0006: stloc.0
+	IL_0007: ldarg.0
+	IL_0008: ldloc.0
+	IL_0009: stfld UnityEngine.Rendering.PostProcessing.PostProcessVolume CustomPlayerEffects.Flashed::_processVolume
+	IL_000e: ldarg.0
+	IL_000f: ldfld UnityEngine.Rendering.PostProcessing.PostProcessVolume CustomPlayerEffects.Flashed::_processVolume
+	IL_0014: call UnityEngine.Rendering.PostProcessing.PostProcessProfile UnityEngine.Rendering.PostProcessing.PostProcessVolume::get_profile()
+	IL_0019: stloc.1
+	IL_001a: ldloc.1
+	IL_001b: call T UnityEngine.Rendering.PostProcessing.PostProcessProfile::GetSetting<PostProcessing.Lighten>()
+	IL_0020: stloc.2
+	IL_0021: ldarg.0
+	IL_0022: ldloc.2
+	IL_0023: stfld PostProcessing.Lighten CustomPlayerEffects.Flashed::_lightenEffect
+	IL_0028: ldloc.1
+	IL_0029: call T UnityEngine.Rendering.PostProcessing.PostProcessProfile::GetSetting<PostProcessing.Darken>()
+	IL_002e: stloc.3
+	IL_002f: ldarg.0
+	IL_0030: ldloc.3
+	IL_0031: stfld PostProcessing.Darken CustomPlayerEffects.Flashed::_darkenEffect
+	IL_0036: newobj System.Void System.NullReferenceException::.ctor()
+	IL_003b: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomPlayerEffects.Flashed
+	System.Void Enabled()
+
+		System.Int32 hashCode = local2.GetHashCode()
+		local4 = local2
+
+		System.Boolean boolean = PlayerPrefsSl.Get()
+		PostProcessing.Lighten _lightenEffect = this._lightenEffect
+		System.Boolean local9 = boolean == False
+		_lightenEffect.active = local9
+		PostProcessing.Darken _darkenEffect = this._darkenEffect
+		_darkenEffect.active = boolean
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181AF965D) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomPlayerEffects.Flashed
+	System.Void IntensityChanged(System.Byte prevState, System.Byte newState)
+		System.Single local3 =  * 0,1
+
+		base.TimeLeft = local3
+		ReferenceHub Hub = this.<Hub>k__BackingField
+
+		System.Boolean isLocalPlayer = Hub.isLocalPlayer
+
+		if (isLocalPlayer == False)
+		    ReferenceHub Hub2 = this.<Hub>k__BackingField
+
+		    System.Boolean isLocallySpectated = PlayerRoles.Spectating.SpectatorNetworking.IsLocallySpectated(Hub2) //(ReferenceHub target)
+
+		    if (isLocallySpectated == False)
+                goto INSN_181AF97BD
+            endif
+		endif
+        
+		ulong local11 = 0
+
+		if (local3 <= local11)
+            goto INSN_181AF97BD
+        endif
+		UnityEngine.Rendering.PostProcessing.PostProcessVolume _processVolume = this._processVolume
+
+		_processVolume.enabled = True
+		ulong local15 = 0
+
+		this.Weight = local15
+
+		INSN_181AF97BD:
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.MultiplyRegByGlobalAction at (0x181AF96EC) is corrupt (Operand we were multiplying by is null or local made was stripped) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomPlayerEffects.Flashed
+	System.Void Update()
+
+		if ( > 0)
+
+		    if ( != 0)
+		        System.Single _timeLeft = this._timeLeft
+		        ulong local4 = 0
+
+		        System.Single deltaTime = UnityEngine.Time.deltaTime
+
+		        base.TimeLeft = _timeLeft
+		    endif
+            
+
+		    this.OnAwake()
+		endif
+        
+		ulong local9 = 0
+
+		System.Single single = UnityEngine.Mathf.Max(local9, 1) //(Single a, Single b)
+		this._timeLeft = single
+
+		this.OnDeath()
+		ReferenceHub Hub = this.<Hub>k__BackingField
+
+		System.Boolean isLocalPlayer = Hub.isLocalPlayer
+
+		if (isLocalPlayer != False)
+            goto INSN_181AF9A4E
+        endif
+		ReferenceHub Hub2 = this.<Hub>k__BackingField
+
+		System.Boolean isLocallySpectated = PlayerRoles.Spectating.SpectatorNetworking.IsLocallySpectated(Hub2) //(ReferenceHub target)
+
+		if (isLocallySpectated != False)
+            goto INSN_181AF9A4E
+        endif
+		UnityEngine.Rendering.PostProcessing.PostProcessVolume _processVolume = this._processVolume
+		_processVolume.weight = 0
+		return
+
+		INSN_181AF9A4E:
+		System.Single _remainingWeight = this._remainingWeight
+
+		if ( > 0)
+            goto INSN_181AF9AB0
+        endif
+
+		if (_remainingWeight > constant41)
+            goto INSN_181AF9A80
+        endif
+		UnityEngine.Rendering.PostProcessing.PostProcessVolume _processVolume2 = this._processVolume
+		ulong local22 = 0
+
+		_processVolume2.enabled = local22
+		return
+
+		INSN_181AF9A80:
+		ulong local23 = 0
+
+		System.Single deltaTime2 = UnityEngine.Time.deltaTime
+		System.Single local25 = deltaTime2 * 0,9
+
+		this.set_Weight()
+		return
+
+		INSN_181AF9AB0:
+		ulong local27 = 0
+
+		System.Single deltaTime3 = UnityEngine.Time.deltaTime
+		System.Single local29 = deltaTime3 * 2,5
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfLessThanOrEqualToAction at (0x181AF98C5) is corrupt (One of the arguments is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomPlayerEffects.Flashed
+	System.Void .ctor()
+		this.<MaxIntensity>k__BackingField = 255
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldc.i4 255
+	IL_0006: conv.i8
+	IL_0007: conv.u8
+	IL_0008: stfld System.Byte CustomPlayerEffects.StatusEffectBase::<MaxIntensity>k__BackingField
+	IL_000d: ldarg.0
+	IL_000e: call System.Void UnityEngine.MonoBehaviour::.ctor()
+	IL_0013: ret
+	
+

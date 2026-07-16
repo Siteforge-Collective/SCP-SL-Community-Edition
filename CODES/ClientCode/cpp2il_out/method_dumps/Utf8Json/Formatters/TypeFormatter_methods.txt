@@ -1,0 +1,157 @@
+Type: TypeFormatter
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Utf8Json.Formatters.TypeFormatter
+	System.Void .ctor()
+
+		base..ctor()
+		this.serializeAssemblyQualifiedName = True
+		this.throwOnError = True
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void System.Object::.ctor()
+	IL_0006: ldarg.0
+	IL_0007: ldc.i4.1
+	IL_0008: stfld System.Boolean Utf8Json.Formatters.TypeFormatter::serializeAssemblyQualifiedName
+	IL_000d: ldarg.0
+	IL_000e: ldc.i4.1
+	IL_000f: stfld System.Boolean Utf8Json.Formatters.TypeFormatter::throwOnError
+	IL_0014: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Utf8Json.Formatters.TypeFormatter
+	System.Void .ctor(System.Boolean serializeAssemblyQualifiedName, System.Boolean deserializeSubtractAssemblyQualifiedName, System.Boolean throwOnError)
+
+		base..ctor()
+		this.serializeAssemblyQualifiedName = serializeAssemblyQualifiedName
+		this.deserializeSubtractAssemblyQualifiedName = deserializeSubtractAssemblyQualifiedName
+		this.throwOnError = throwOnError
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void System.Object::.ctor()
+	IL_0006: ldarg.0
+	IL_0007: ldarg.1
+	IL_0008: stfld System.Boolean Utf8Json.Formatters.TypeFormatter::serializeAssemblyQualifiedName
+	IL_000d: ldarg.0
+	IL_000e: ldarg.2
+	IL_000f: stfld System.Boolean Utf8Json.Formatters.TypeFormatter::deserializeSubtractAssemblyQualifiedName
+	IL_0014: ldarg.0
+	IL_0015: ldarg.3
+	IL_0016: stfld System.Boolean Utf8Json.Formatters.TypeFormatter::throwOnError
+	IL_001b: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Utf8Json.Formatters.TypeFormatter
+	System.Void Serialize(Utf8Json.JsonWriter& writer, System.Type value, Utf8Json.IJsonFormatterResolver formatterResolver)
+		ulong local5 = 0
+
+		System.Boolean boolean = value.Equals(local5) //(Object obj)
+
+		if (boolean == False)
+
+		    if (this.serializeAssemblyQualifiedName == False)
+
+		        System.RuntimeTypeHandle typeHandle = value.TypeHandle
+		    endif
+            
+
+		    System.String namespace = value.Namespace
+		endif
+        
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: ldarg.2
+	IL_0003: ldloc.0
+	IL_0004: call System.Boolean System.Object::Equals(System.Object)
+	IL_0009: ldc.i4.0
+	IL_000a: bne.un.s IL_0023
+	IL_000c: ldarg.0
+	IL_000d: ldfld System.Boolean Utf8Json.Formatters.TypeFormatter::serializeAssemblyQualifiedName
+	IL_0012: ldc.i4.0
+	IL_0013: bne.un.s IL_001c
+	IL_0015: ldarg.2
+	IL_0016: callvirt System.RuntimeTypeHandle System.Type::get_TypeHandle()
+	IL_001b: stloc.1
+	IL_001c: ldarg.2
+	IL_001d: callvirt System.String System.Type::get_Namespace()
+	IL_0022: stloc.2
+	IL_0023: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0028: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Utf8Json.Formatters.TypeFormatter
+	System.Type Deserialize(Utf8Json.JsonReader& reader, Utf8Json.IJsonFormatterResolver formatterResolver)
+
+		if ( == 0)
+
+		    if (this.deserializeSubtractAssemblyQualifiedName != False)
+		        System.Text.RegularExpressions.Regex subtractFullNameRegex = Utf8Json.Formatters.TypeFormatter.SubtractFullNameRegex
+
+		        System.String string = subtractFullNameRegex.Replace()
+		    endif
+            
+
+		    System.Type type = System.Type.GetType()
+
+		    if (type != 0)
+                goto INSN_180D0FC71
+            endif
+
+		    System.Type type2 = System.Type.GetType()
+		    return type2
+		endif
+        
+		ulong local13 = 0
+
+		INSN_180D0FC71:
+		return local13
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfNonZeroOrNonNullAction at (0x180D0FBA7) is corrupt (One of the arguments is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Utf8Json.Formatters.TypeFormatter
+	static System.Void .cctor()
+		Utf8Json.Formatters.TypeFormatter typeFormatter = new Utf8Json.Formatters.TypeFormatter()
+
+		typeFormatter..ctor()
+		typeFormatter.serializeAssemblyQualifiedName = True
+		typeFormatter.throwOnError = True
+		Utf8Json.Formatters.TypeFormatter.Default = typeFormatter
+		System.Text.RegularExpressions.Regex regex = new System.Text.RegularExpressions.Regex()
+
+		regex..ctor(", Version=\d+.\d+.\d+.\d+, Culture=\w+, PublicKeyToken=\w+") //(String pattern)
+		 += 8
+		Utf8Json.Formatters.TypeFormatter.Default = regex
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x180D0FE0F) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+

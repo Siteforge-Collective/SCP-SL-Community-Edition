@@ -1,0 +1,147 @@
+Type: MovementTracer
+
+
+	Generated Pseudocode:
+
+	Declaring Type: MovementTracer
+	System.Void .ctor(System.Byte size, System.Byte cooldown, System.Single teleportDistance)
+
+		base..ctor()
+		this._size = size
+		RelativePositioning.RelativePosition[] local5 = new RelativePositioning.RelativePosition[size]
+		this.Positions = local5
+		this._tpDis = teleportDistance
+		this._cooldown = cooldown
+		this._cooldownTimer = 0
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void System.Object::.ctor()
+	IL_0006: ldarg.0
+	IL_0007: ldarg.1
+	IL_0008: stfld System.Byte MovementTracer::_size
+	IL_000d: ldarg.1
+	IL_000e: newarr RelativePositioning.RelativePosition
+	IL_0013: stloc.0
+	IL_0014: ldarg.0
+	IL_0015: ldloc.0
+	IL_0016: stfld RelativePositioning.RelativePosition[] MovementTracer::Positions
+	IL_001b: ldarg.0
+	IL_001c: ldarg.3
+	IL_001d: stfld System.Single MovementTracer::_tpDis
+	IL_0022: ldarg.0
+	IL_0023: ldarg.2
+	IL_0024: stfld System.Byte MovementTracer::_cooldown
+	IL_0029: ldarg.0
+	IL_002a: ldc.i4.0
+	IL_002b: conv.i8
+	IL_002c: conv.u8
+	IL_002d: stfld System.Byte MovementTracer::_cooldownTimer
+	IL_0032: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: MovementTracer
+	System.Void Record(UnityEngine.Vector3 plyPosition)
+		System.Byte _cooldownTimer = this._cooldownTimer
+
+		if (_cooldownTimer == constant1)
+		    System.Byte clock = this.Clock
+		    clock += 1
+		    this.Clock = clock
+		    this.Clock = _cooldownTimer
+		    ulong local4 = 0
+		    System.Single single = plyPosition.z
+		    RelativePositioning.RelativePosition[] positions = this.Positions
+		    positions[0] = local8
+		    System.Byte _cooldown = this._cooldown
+		    this._cooldownTimer = _cooldown
+		    return
+		endif
+        
+		this._cooldownTimer = _cooldownTimer
+		return
+		throw new System.IndexOutOfRangeException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfNonZeroOrNonNullAction at (0x181B5987F) is corrupt (ConstantDefinition: Don't know how to get IL to load a System.Byte) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: MovementTracer
+	UnityEngine.Bounds GenerateBounds(System.Single time, System.Boolean ignoreTeleports)
+		ulong local3 = 0
+		ulong local4 = 0
+		this. = local3
+		ulong local5 = 0
+		this.Clock = local4
+
+		System.Single fixedDeltaTime = UnityEngine.Time.fixedDeltaTime
+
+		System.Int32 int32 = UnityEngine.Mathf.FloorToInt(fixedDeltaTime) //(Single f)
+		System.Int64 local9 = 1
+
+		if (int32 > 0)
+
+		    if (int32 <= Mathf)
+                goto INSN_181B596AD
+            endif
+		    ulong local11 = 0
+
+		    System.Single fixedDeltaTime2 = UnityEngine.Time.fixedDeltaTime
+
+		    System.String string = System.String.Format("MovementTracer was requested to generate Bounds for the last {0} seconds, but it can't keep track of positions after {1}", local10, local13) //(String format, Object arg0, Object arg1)
+
+		    UnityEngine.Debug.LogError(string) //(Object message)
+		else
+
+		    System.String string2 = System.String.Format("MovementTracer was requested to generate Bounds for the last {0} seconds, but it's too short. Please access PlayerMovementSync.RealModelPosition directly.", local17) //(String format, Object arg0)
+
+		    UnityEngine.Debug.LogError(string2) //(Object message)
+		endif
+        
+		  = string2.
+		ulong local22 = 0
+
+		UnityEngine.Vector3 zero = UnityEngine.Vector3.zero
+		System.Single single = zero.z
+
+		if (local9 <= local9)
+            goto INSN_181B59816
+        endif
+		this -= local9
+		this += single
+		System.Int32 0 = 0
+		 += 32
+		  = this.
+
+		if (il2cppMethodInfo != 0)
+            goto INSN_181B597F3
+        endif
+		  = this.
+
+		System.Single single2 = UnityEngine.Vector3.Distance()
+
+		if (single2 > )
+            goto INSN_181B59816
+        endif
+
+		INSN_181B597F3:
+		local9 += 1
+
+		INSN_181B59816:
+		return this
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.RegToFieldAction at (0x181B5953E) is corrupt (Instance or field is null) and cannot be created as IL. Aborting here.
+
+

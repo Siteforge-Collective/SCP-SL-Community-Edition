@@ -1,0 +1,252 @@
+Type: <_Request>d__7
+
+
+	Generated Pseudocode:
+
+	Declaring Type: NewsLoader/<_Request>d__7
+	System.Void .ctor(System.Int32 <>1__state)
+
+		base..ctor()
+		this.<>1__state = <>1__state
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void System.Object::.ctor()
+	IL_0006: ldarg.0
+	IL_0007: ldarg.1
+	IL_0008: stfld System.Int32 NewsLoader/<_Request>d__7::<>1__state
+	IL_000d: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: NewsLoader/<_Request>d__7
+	System.Void System.IDisposable.Dispose()
+		ulong local1 = 0
+		System.Int32 <>1__state = this.<>1__state
+
+		if (<>1__state != -3)
+
+		    if (<>1__state == 1)
+		    endif
+            
+		    this.<>1__state = 4294967295
+		    UnityEngine.Networking.UnityWebRequest <www>5__2 = this.<www>5__2
+
+		    if (<www>5__2 != 0)
+		    endif
+            
+
+		    if (local1 != 0)
+                goto INSN_181B6CF73
+            endif
+		endif
+        
+		return
+
+		INSN_181B6CF73:
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: ldarg.0
+	IL_0003: ldfld System.Int32 NewsLoader/<_Request>d__7::<>1__state
+	IL_0008: stloc.1
+	IL_0009: ldloc.1
+	IL_000a: ldc.i4.s -3
+	IL_000c: beq.s IL_0012
+	IL_000e: ldloc.1
+	IL_000f: ldc.i4.1
+	IL_0010: bne.un.s IL_002f
+	IL_0012: ldarg.0
+	IL_0013: ldc.i8 4294967295
+	IL_001c: conv.u8
+	IL_001d: stfld System.Int32 NewsLoader/<_Request>d__7::<>1__state
+	IL_0022: ldarg.0
+	IL_0023: ldfld UnityEngine.Networking.UnityWebRequest NewsLoader/<_Request>d__7::<www>5__2
+	IL_0028: ldc.i4.0
+	IL_0029: beq.s IL_002b
+	IL_002b: ldloc.0
+	IL_002c: ldc.i4.0
+	IL_002d: bne.un.s IL_0000
+	IL_002f: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: NewsLoader/<_Request>d__7
+	System.Boolean MoveNext()
+		System.Int32 <>1__state = this.<>1__state
+		NewsLoader <>4__this = this.<>4__this
+
+		if (<>1__state == 0)
+		    this.<>1__state = 4294967295
+
+		    UnityEngine.Networking.UnityWebRequest unityWebRequest = UnityEngine.Networking.UnityWebRequest.Get("https://api.steampowered.com/ISteamNews/GetNewsForApp/v2/?appid=700330&count=5") //(String uri)
+		    this.<www>5__2 = unityWebRequest
+		    this.<>1__state = 4294967293
+		    UnityEngine.Networking.UnityWebRequest <www>5__2 = this.<www>5__2
+
+		    UnityEngine.Networking.UnityWebRequestAsyncOperation unityWebRequestAsyncOperation = <www>5__2.SendWebRequest()
+
+		    System.Single single = MEC.Timing.WaitUntilDone(unityWebRequestAsyncOperation) //(AsyncOperation operation)
+		    this.<>2__current = single
+		    this.<>1__state = 1
+		else
+
+		    if (<>1__state == 1)
+		        this.<>1__state = 4294967293
+		        UnityEngine.Networking.UnityWebRequest <www>5__22 = this.<www>5__2
+
+		        System.String error = <www>5__22.error
+
+		        System.Boolean isNullOrEmpty = System.String.IsNullOrEmpty(error) //(String value)
+
+		        if (isNullOrEmpty == False)
+		            TMPro.TextMeshProUGUI articleText = <>4__this.ArticleText
+		            UnityEngine.Networking.UnityWebRequest <www>5__23 = this.<www>5__2
+
+		            System.String error2 = <www>5__23.error
+
+		            System.String text = articleText.text
+		            UnityEngine.Networking.UnityWebRequest <www>5__24 = this.<www>5__2
+
+		            System.String error3 = <www>5__24.error
+
+		            System.String string = System.String.Concat("Web request failed: ", error3) //(String str0, String str1)
+
+		            UnityEngine.Debug.LogError(string) //(Object message)
+		        else
+		            UnityEngine.Networking.UnityWebRequest <www>5__25 = this.<www>5__2
+
+		            UnityEngine.Networking.DownloadHandler downloadHandler = <www>5__25.downloadHandler
+
+		            System.Boolean isDone = downloadHandler.isDone
+
+		            if (isDone == False)
+                        goto INSN_181B6CDB9
+                    endif
+		            UnityEngine.Networking.UnityWebRequest <www>5__26 = this.<www>5__2
+
+		            UnityEngine.Networking.DownloadHandler downloadHandler2 = <www>5__26.downloadHandler
+
+		            System.String text2 = downloadHandler2.text
+
+		            <>4__this.TextProcessor(text2) //(String text)
+
+		            UnityEngine.Debug.Log("Web request succeeded") //(Object message)
+		        endif
+                
+		        this.<>1__state = 4294967295
+		        UnityEngine.Networking.UnityWebRequest <www>5__27 = this.<www>5__2
+
+		        if (<www>5__27 == 0)
+                    goto INSN_181B6CD9F
+                endif
+
+		        INSN_181B6CD9F:
+		        this.<www>5__2 = 0
+
+		        INSN_181B6CDB9:
+
+		        this.<>m__Finally1()
+		    else
+		        ulong local44 = 0
+
+		        .System.IDisposable.Dispose()
+		    endif
+            
+		    return local44
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181B6CDD8) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: NewsLoader/<_Request>d__7
+	System.Void <>m__Finally1()
+		UnityEngine.Networking.UnityWebRequest <www>5__2 = this.<www>5__2
+		this.<>1__state = 4294967295
+
+		if (<www>5__2 != 0)
+		endif
+        
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld UnityEngine.Networking.UnityWebRequest NewsLoader/<_Request>d__7::<www>5__2
+	IL_0006: stloc.0
+	IL_0007: ldarg.0
+	IL_0008: ldc.i8 4294967295
+	IL_0011: conv.u8
+	IL_0012: stfld System.Int32 NewsLoader/<_Request>d__7::<>1__state
+	IL_0017: ldloc.0
+	IL_0018: ldc.i4.0
+	IL_0019: beq.s IL_001b
+	IL_001b: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: NewsLoader/<_Request>d__7
+	System.Single System.Collections.Generic.IEnumerator<System.Single>.get_Current()
+		System.Single <>2__current = this.<>2__current
+		return <>2__current
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Single NewsLoader/<_Request>d__7::<>2__current
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: NewsLoader/<_Request>d__7
+	System.Void System.Collections.IEnumerator.Reset()
+		System.NotSupportedException notSupportedException = new System.NotSupportedException()
+
+		notSupportedException..ctor()
+
+
+Generated IL:
+	IL_0000: newobj System.Void System.NotSupportedException::.ctor()
+	IL_0005: stloc.0
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: NewsLoader/<_Request>d__7
+	System.Object System.Collections.IEnumerator.get_Current()
+		System.Single <>2__current = this.<>2__current
+		return 
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x181B6CED5) is corrupt (Return value is missing) and cannot be created as IL. Aborting here.
+
+

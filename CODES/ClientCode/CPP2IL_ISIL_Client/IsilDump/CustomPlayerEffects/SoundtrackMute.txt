@@ -1,0 +1,47 @@
+Type: CustomPlayerEffects.SoundtrackMute
+
+Method: System.String get_DisplayName()
+
+Disassembly:
+	mov rax,[rcx+38h]
+	ret
+
+ISIL:
+	001 Move rax, [rcx+56]
+	002 Return rax
+
+Method: System.Boolean get_CanBeDisplayed()
+
+Disassembly:
+	movzx eax,byte ptr [rcx+40h]
+	ret
+
+ISIL:
+	001 Move rax, [rcx+64]
+	002 Return rax
+
+Method: System.Boolean get_MuteSoundtrack()
+
+Disassembly:
+	cmp byte ptr [rcx+28h],0
+	seta al
+	ret
+
+ISIL:
+	001 Compare [rcx+40], 0
+	002 NotImplemented "seta al"
+	003 Return rax
+
+Method: System.Void .ctor()
+
+Disassembly:
+	xor edx,edx
+	mov byte ptr [rcx+18h],0FFh
+	jmp near ptr 0000000180FD1850h
+
+ISIL:
+	001 Move rdx, 0
+	002 Move [rcx+24], 255
+	003 Call 0x180FD1850, rcx, rdx
+	004 Return 
+

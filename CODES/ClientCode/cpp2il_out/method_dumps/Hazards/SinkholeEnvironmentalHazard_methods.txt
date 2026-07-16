@@ -1,0 +1,179 @@
+Type: SinkholeEnvironmentalHazard
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Hazards.SinkholeEnvironmentalHazard
+	System.Void OnEnter(ReferenceHub player)
+
+		this.set_SourceOffset()
+
+		if (constant4 != 0)
+
+		    System.Boolean isSCP = PlayerRoles.PlayerRolesUtils.IsSCP(player, True) //(ReferenceHub hub, Boolean includeZombies)
+
+		    if (isSCP == False)
+		        System.Collections.Generic.List`1<ReferenceHub> AffectedPlayers = this.<AffectedPlayers>k__BackingField
+
+		        AffectedPlayers.Add(player) //(T item)
+		        PlayerEffectsController playerEffectsController = player.playerEffectsController
+		        ulong local6 = 0
+
+		        CustomPlayerEffects.Sinkhole sinkhole = playerEffectsController.EnableEffect<CustomPlayerEffects.Sinkhole>(1, local6) //(Single duration, Boolean addDuration)
+		    endif
+            
+		    return
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallVirtualMethodAction at (0x181B322C8) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Hazards.SinkholeEnvironmentalHazard
+	System.Void OnStay(ReferenceHub player)
+		PlayerEffectsController playerEffectsController = player.playerEffectsController
+		ulong local3 = 0
+
+		CustomPlayerEffects.Sinkhole sinkhole = playerEffectsController.EnableEffect<CustomPlayerEffects.Sinkhole>(1, local3) //(Single duration, Boolean addDuration)
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.1
+	IL_0001: ldfld PlayerEffectsController ReferenceHub::playerEffectsController
+	IL_0006: stloc.0
+	IL_0007: ldc.i4.0
+	IL_0008: stloc.1
+	IL_0009: ldloc.0
+	IL_000a: ldc.r4 1
+	IL_000f: ldloc.1
+	IL_0010: call T PlayerEffectsController::EnableEffect<CustomPlayerEffects.Sinkhole>(System.Single,System.Boolean)
+	IL_0015: stloc.2
+	IL_0016: ret
+	IL_0017: newobj System.Void System.NullReferenceException::.ctor()
+	IL_001c: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Hazards.SinkholeEnvironmentalHazard
+	System.Void OnExit(ReferenceHub player)
+		System.Collections.Generic.List`1<ReferenceHub> AffectedPlayers = this.<AffectedPlayers>k__BackingField
+
+		System.Boolean boolean = AffectedPlayers.Remove(player) //(T item)
+		PlayerEffectsController playerEffectsController = player.playerEffectsController
+		ulong local5 = 0
+
+		CustomPlayerEffects.Sinkhole sinkhole = playerEffectsController.EnableEffect<CustomPlayerEffects.Sinkhole>(1, local5) //(Single , Boolean )
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Collections.Generic.List`1<ReferenceHub> Hazards.EnvironmentalHazard::<AffectedPlayers>k__BackingField
+	IL_0006: ldarg.1
+	IL_0007: call System.Boolean System.Collections.Generic.List`1::Remove(T)
+	IL_000c: stloc.0
+	IL_000d: ldarg.1
+	IL_000e: ldfld PlayerEffectsController ReferenceHub::playerEffectsController
+	IL_0013: stloc.1
+	IL_0014: ldc.i4.0
+	IL_0015: stloc.2
+	IL_0016: ldloc.1
+	IL_0017: ldc.r4 1
+	IL_001c: ldloc.2
+	IL_001d: call T PlayerEffectsController::EnableEffect<CustomPlayerEffects.Sinkhole>(System.Single,System.Boolean)
+	IL_0022: stloc.3
+	IL_0023: ret
+	IL_0024: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0029: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Hazards.SinkholeEnvironmentalHazard
+	System.Void Start()
+		YamlConfig serverConfig = GameCore.ConfigFile.ServerConfig
+		ulong local3 = 0
+
+		System.Single float = serverConfig.GetFloat("sinkhole_spawn_chance", local3) //(String key, Single def)
+		System.Int32 100 = 100
+
+		[instruction error - managed method being called is null]
+
+		if ( > float)
+
+		    System.UInt32 netId = base.netId
+
+		    if (netId != 0)
+
+		        UnityEngine.GameObject gameObject = base.gameObject
+
+		        Mirror.NetworkServer.Destroy(gameObject) //(GameObject obj)
+		        return
+		    endif
+            
+
+		    UnityEngine.GameObject gameObject2 = base.gameObject
+
+		    UnityEngine.Object.Destroy(gameObject2) //(Object obj)
+		    return
+		endif
+        
+
+		base.Start()
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181B32550) is corrupt (Don't know what method is being called) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Hazards.SinkholeEnvironmentalHazard
+	System.Void .ctor()
+		System.Collections.Generic.List`1<ReferenceHub> list = new System.Collections.Generic.List`1<ReferenceHub>()
+
+		list..ctor()
+		this.<AffectedPlayers>k__BackingField = list
+		this.<IsActive>k__BackingField = True
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: newobj System.Void System.Collections.Generic.List`1::.ctor()
+	IL_0005: stloc.0
+	IL_0006: ldarg.0
+	IL_0007: ldloc.0
+	IL_0008: stfld System.Collections.Generic.List`1<ReferenceHub> Hazards.EnvironmentalHazard::<AffectedPlayers>k__BackingField
+	IL_000d: ldarg.0
+	IL_000e: ldc.i4.1
+	IL_000f: stfld System.Boolean Hazards.EnvironmentalHazard::<IsActive>k__BackingField
+	IL_0014: ldarg.0
+	IL_0015: call System.Void Mirror.NetworkBehaviour::.ctor()
+	IL_001a: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Hazards.SinkholeEnvironmentalHazard
+	System.Void MirrorProcessed()
+
+
+Generated IL:
+	
+

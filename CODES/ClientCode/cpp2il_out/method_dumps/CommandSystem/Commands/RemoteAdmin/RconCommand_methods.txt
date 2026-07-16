@@ -1,0 +1,264 @@
+Type: RconCommand
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.RconCommand
+	System.String get_Command()
+		System.String Command = this.<Command>k__BackingField
+		return Command
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String CommandSystem.Commands.RemoteAdmin.RconCommand::<Command>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.RconCommand
+	System.String[] get_Aliases()
+		System.String[] Aliases = this.<Aliases>k__BackingField
+		return Aliases
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String[] CommandSystem.Commands.RemoteAdmin.RconCommand::<Aliases>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.RconCommand
+	System.String get_Description()
+		System.String Description = this.<Description>k__BackingField
+		return Description
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String CommandSystem.Commands.RemoteAdmin.RconCommand::<Description>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.RconCommand
+	System.String[] get_Usage()
+		System.String[] Usage = this.<Usage>k__BackingField
+		return Usage
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String[] CommandSystem.Commands.RemoteAdmin.RconCommand::<Usage>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.RconCommand
+	System.Boolean Execute(System.ArraySegment`1<System.String> arguments, CommandSystem.ICommandSender sender, System.String& response)
+
+		System.Boolean boolean = Misc.CheckPermission(sender, 0x10000, response) //(ICommandSender sender, PlayerPermissions perm, String& response)
+
+		if (boolean != False)
+
+		    System.Boolean boolean2 = .StartsWith("!") //(String value)
+
+		    if (boolean2 == False)
+                goto INSN_180623849
+            endif
+		    YamlConfig rolesConfig = ServerStatic.RolesConfig
+		    ulong local11 = 0
+
+		    System.Boolean bool = rolesConfig.GetBool("allow_central_server_commands_as_ServerConsoleCommands", local11) //(String key, Boolean def)
+
+		    if (bool != False)
+                goto INSN_180623849
+            endif
+		    response. = "Running central server commands in Remote Admin is disabled in RA config file!"
+		endif
+        
+		ulong local13 = 0
+		return local13
+
+		INSN_180623849:
+
+		if (constant30 == 0)
+            goto INSN_180623985
+        endif
+		  = local13.
+
+		if ( != CommandSender)
+            goto INSN_180623985
+        endif
+
+		System.String string = Utils.RAUtils.FormatArguments()
+		ulong local17 = 0
+
+		System.String string2 = System.String.Concat(string, " executed command as server console: ", string, ".") //(String str0, String str1, String str2, String str3)
+		ulong local19 = 0
+
+		ServerLogs.AddLog(4, string2, 1, local19) //(Modules module, String msg, ServerLogType type, Boolean init)
+
+		System.String string3 = ServerConsole.EnterCommand()
+
+		System.String string4 = System.String.Concat("Command "", string, "" executed in server console!") //(String str0, String str1, String str2)
+		response. = string4
+
+		INSN_180623985:
+		response. = "You must be a CommandSender to execute this command!"
+		//UNKNOWN CLASS OFFSET READ HERE
+
+		System.String string5 = CommandSystem.HelpProviderExtensions.DisplayCommandUsage()
+		ulong local26 = 0
+
+		System.String string6 = System.String.Concat()
+		response. = string6
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1806237BA) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.RconCommand
+	System.Void .ctor()
+		this.<Command>k__BackingField = "remoteconsole"
+		System.String[] local1 = new System.String[3]
+
+		if ("remoteconsole" != 0)
+
+		    if ("remoteconsole" == 0)
+                goto INSN_180623BDC
+            endif
+		endif
+        
+		local1[0] = "remoteconsole"
+
+		if ("rcon" == 0)
+            goto INSN_180623AD7
+        endif
+
+		if ("rcon" == 0)
+            goto INSN_180623BFC
+        endif
+
+		INSN_180623AD7:
+		local1[1] = "rcon"
+
+		if ("sudo" == 0)
+            goto INSN_180623B1B
+        endif
+
+		if ("sudo" == 0)
+            goto INSN_180623C1C
+        endif
+
+		INSN_180623B1B:
+		local1[2] = "sudo"
+		this.<Aliases>k__BackingField = local1
+		this.<Description>k__BackingField = "Runs a command as the server console."
+		System.String[] local2 = new System.String[1]
+
+		if ("Command" == 0)
+            goto INSN_180623B9A
+        endif
+
+		if (local2 == 0)
+            goto INSN_180623C3C
+        endif
+
+		INSN_180623B9A:
+		local2[0] = "Command"
+		this.<Usage>k__BackingField = local2
+
+		base..ctor()
+		return
+		throw new System.NullReferenceException()
+
+		INSN_180623BDC:
+
+		INSN_180623BFC:
+
+		INSN_180623C1C:
+
+		INSN_180623C3C:
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldstr "remoteconsole"
+	IL_0006: stfld System.String CommandSystem.Commands.RemoteAdmin.RconCommand::<Command>k__BackingField
+	IL_000b: ldc.i4.3
+	IL_000c: newarr System.String
+	IL_0011: stloc.0
+	IL_0012: ldstr "remoteconsole"
+	IL_0017: ldc.i4.0
+	IL_0018: beq.s IL_0022
+	IL_001a: ldstr "remoteconsole"
+	IL_001f: ldc.i4.0
+	IL_0020: beq.s IL_0000
+	IL_0022: ldloc.0
+	IL_0023: ldc.i4.0
+	IL_0024: ldstr "remoteconsole"
+	IL_0029: stelem.any System.String
+	IL_002e: ldstr "rcon"
+	IL_0033: ldc.i4.0
+	IL_0034: beq.s IL_003e
+	IL_0036: ldstr "rcon"
+	IL_003b: ldc.i4.0
+	IL_003c: beq.s IL_0000
+	IL_003e: ldloc.0
+	IL_003f: ldc.i4.1
+	IL_0040: ldstr "rcon"
+	IL_0045: stelem.any System.String
+	IL_004a: ldstr "sudo"
+	IL_004f: ldc.i4.0
+	IL_0050: beq.s IL_005a
+	IL_0052: ldstr "sudo"
+	IL_0057: ldc.i4.0
+	IL_0058: beq.s IL_0000
+	IL_005a: ldloc.0
+	IL_005b: ldc.i4.2
+	IL_005c: ldstr "sudo"
+	IL_0061: stelem.any System.String
+	IL_0066: ldarg.0
+	IL_0067: ldloc.0
+	IL_0068: stfld System.String[] CommandSystem.Commands.RemoteAdmin.RconCommand::<Aliases>k__BackingField
+	IL_006d: ldarg.0
+	IL_006e: ldstr "Runs a command as the server console."
+	IL_0073: stfld System.String CommandSystem.Commands.RemoteAdmin.RconCommand::<Description>k__BackingField
+	IL_0078: ldc.i4.1
+	IL_0079: newarr System.String
+	IL_007e: stloc.1
+	IL_007f: ldstr "Command"
+	IL_0084: ldc.i4.0
+	IL_0085: beq.s IL_008e
+	IL_0087: ldloc.1
+	IL_0088: ldc.i4.0
+	IL_0089: beq IL_0000
+	IL_008e: ldloc.1
+	IL_008f: ldc.i4.0
+	IL_0090: ldstr "Command"
+	IL_0095: stelem.any System.String
+	IL_009a: ldarg.0
+	IL_009b: ldloc.1
+	IL_009c: stfld System.String[] CommandSystem.Commands.RemoteAdmin.RconCommand::<Usage>k__BackingField
+	IL_00a1: ldarg.0
+	IL_00a2: call System.Void System.Object::.ctor()
+	IL_00a7: ret
+	IL_00a8: newobj System.Void System.NullReferenceException::.ctor()
+	IL_00ad: throw
+	
+

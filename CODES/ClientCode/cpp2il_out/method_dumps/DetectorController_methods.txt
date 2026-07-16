@@ -1,0 +1,157 @@
+Type: DetectorController
+
+
+	Generated Pseudocode:
+
+	Declaring Type: DetectorController
+	System.Void Start()
+
+		base.InvokeRepeating("RefreshDetectorsList", 10, 10) //(String methodName, Single time, Single repeatRate)
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldstr "RefreshDetectorsList"
+	IL_0006: ldc.r4 10
+	IL_000b: ldc.r4 10
+	IL_0010: call System.Void UnityEngine.MonoBehaviour::InvokeRepeating(System.String,System.Single,System.Single)
+	IL_0015: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: DetectorController
+	System.Void RefreshDetectorsList()
+
+		UnityEngine.GameObject[] gameObjectArray = UnityEngine.GameObject.FindGameObjectsWithTag("Detector") //(String tag)
+		this.detectors = gameObjectArray
+
+
+Generated IL:
+	IL_0000: ldstr "Detector"
+	IL_0005: call UnityEngine.GameObject[] UnityEngine.GameObject::FindGameObjectsWithTag(System.String)
+	IL_000a: stloc.0
+	IL_000b: ldarg.0
+	IL_000c: ldloc.0
+	IL_000d: stfld UnityEngine.GameObject[] DetectorController::detectors
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: DetectorController
+	System.Void Update()
+		UnityEngine.GameObject[] detectors = this.detectors
+		ulong local2 = 0
+
+		if (detectors.Length != local2)
+		    ulong local4 = 0
+		    System.Int32 length = detectors.Length
+
+		    if (local4 < length)
+		        UnityEngine.GameObject gameObject = detectors[local4]
+
+		        UnityEngine.Transform transform = gameObject.transform
+
+		        UnityEngine.Vector3 position = gameObject.position
+		        System.Single single = position.z
+
+		        UnityEngine.Transform transform2 = base.transform
+
+		        UnityEngine.Vector3 position2 = this.position
+		        System.Single single2 = position2.z
+
+		        System.Single single3 = UnityEngine.Vector3.Distance()
+
+		        if (single3 > this.viewRange)
+
+		            UnityEngine.Transform transform3 = base.transform
+
+		            UnityEngine.Vector3 position3 = this.position
+		            System.Single single4 = position3.z
+
+		            UnityEngine.Transform transform4 = gameObject.transform
+
+		            UnityEngine.Vector3 position4 = gameObject.position
+		            System.Single single5 = position4.z
+
+		            UnityEngine.Vector3 vector3 = UnityEngine.Vector3.op_Subtraction()
+		            System.Single single6 = vector3.z
+		              = single6.
+
+		            UnityEngine.Transform transform5 = gameObject.transform
+
+		            UnityEngine.Vector3 forward = gameObject.forward
+
+		            System.Single single7 = UnityEngine.Vector3.Dot()
+		            System.Single single8 = this.fov
+
+		            if (single8 > single7)
+
+		                UnityEngine.Transform transform6 = gameObject.transform
+
+		                UnityEngine.Vector3 position5 = gameObject.position
+
+		                System.Boolean boolean = UnityEngine.Physics.Raycast()
+
+		                if (boolean != False)
+
+		                    System.Boolean boolean2 = boolean.CompareTag("Detector") //(String tag)
+
+		                    if (boolean2 != False)
+                                goto INSN_181AF858E
+                            endif
+		                endif
+                        
+		                local4 += 1
+
+		                INSN_181AF858E:
+		                ulong local52 = 0
+
+		                System.Single deltaTime = UnityEngine.Time.deltaTime
+		            else
+		                ulong local55 = 0
+
+		                System.Single deltaTime2 = UnityEngine.Time.deltaTime
+		            endif
+                    
+		            this.detectionProgress = deltaTime2
+
+		            System.Single single9 = UnityEngine.Mathf.Clamp01(deltaTime2) //(Single value)
+		            this.detectionProgress = single9
+		        endif
+                
+		        return
+		        throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181AF8365) is corrupt (Mismatched instance parameter. Expecting an instance of UnityEngine.Transform, actually {'gameObject' (type UnityEngine.GameObject)}) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: DetectorController
+	System.Void .ctor()
+		this.viewRange = 30
+		this.fov = -0,75
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldc.r4 30
+	IL_0006: stfld System.Single DetectorController::viewRange
+	IL_000b: ldarg.0
+	IL_000c: ldc.r4 -0,75
+	IL_0011: stfld System.Single DetectorController::fov
+	IL_0016: ldarg.0
+	IL_0017: call System.Void UnityEngine.MonoBehaviour::.ctor()
+	IL_001c: ret
+	
+

@@ -1,0 +1,80 @@
+Type: Interactables.Interobjects.DoorUtils.DoorLockUtils
+
+Method: Interactables.Interobjects.DoorUtils.DoorLockMode GetMode(Interactables.Interobjects.DoorUtils.DoorLockReason reason)
+
+Disassembly:
+	test cx,cx
+	je short 0000000181BA5350h
+	mov eax,2D8h
+	test ax,cx
+	ja short 0000000181BA534Dh
+	test cl,3
+	ja short 0000000181BA534Ah
+	test cl,24h
+	ja short 0000000181BA5347h
+	mov eax,100h
+	test ax,cx
+	setbe al
+	add al,2
+	ret
+	mov al,1
+	ret
+	mov al,4
+	ret
+	xor al,al
+	ret
+	mov al,3
+	ret
+
+ISIL:
+	001 Compare rcx, 0
+	002 JumpIfEqual {21}
+	003 Move rax, 728
+	004 Compare rax, rcx
+	005 JumpIfGreater {19}
+	006 Compare rcx, 3
+	007 JumpIfGreater {17}
+	008 Compare rcx, 36
+	009 JumpIfGreater {15}
+	010 Move rax, 256
+	011 Compare rax, rcx
+	012 NotImplemented "setbe al"
+	013 Add rax, rax, 2
+	014 Return rax
+	015 Move rax, 1
+	016 Return rax
+	017 Move rax, 4
+	018 Return rax
+	019 Move rax, 0
+	020 Return rax
+	021 Move rax, 3
+	022 Return rax
+
+Method: System.Boolean HasFlagFast(Interactables.Interobjects.DoorUtils.DoorLockMode mode, Interactables.Interobjects.DoorUtils.DoorLockMode flag)
+
+Disassembly:
+	and cl,dl
+	cmp cl,dl
+	sete al
+	ret
+
+ISIL:
+	001 And rcx, rcx, rdx
+	002 Compare rcx, rdx
+	003 NotImplemented "sete al"
+	004 Return rax
+
+Method: System.Boolean HasFlagFast(Interactables.Interobjects.DoorUtils.DoorLockReason res, Interactables.Interobjects.DoorUtils.DoorLockReason flag)
+
+Disassembly:
+	and cx,dx
+	cmp cx,dx
+	sete al
+	ret
+
+ISIL:
+	001 And rcx, rcx, rdx
+	002 Compare rcx, rdx
+	003 NotImplemented "sete al"
+	004 Return rax
+

@@ -1,0 +1,103 @@
+Type: PlayerRoles.PlayableScps.Scp939.Scp939StateProcessor
+
+Method: System.Void .ctor(ReferenceHub hub, PlayerRoles.PlayableScps.Scp939.Scp939Motor motor, PlayerRoles.FirstPersonControl.FirstPersonMovementModule fpmm, System.Single useRate, System.Single respawnImmunity, UnityEngine.AnimationCurve regenCurve)
+
+Disassembly:
+	mov [rsp+8],rbx
+	push rdi
+	sub rsp,40h
+	mov rax,[rsp+80h]
+	mov rdi,r8
+	movss xmm0,dword ptr [rsp+78h]
+	mov r8,r9
+	movss xmm3,dword ptr [rsp+70h]
+	mov rbx,rcx
+	mov qword ptr [rsp+30h],0
+	mov [rsp+28h],rax
+	movss dword ptr [rsp+20h],xmm0
+	call 000000018049A030h
+	lea rcx,[rbx+58h]
+	mov rdx,rdi
+	mov [rcx],rdi
+	mov rbx,[rsp+50h]
+	add rsp,40h
+	pop rdi
+	jmp near ptr 0000000180293EF0h
+
+ISIL:
+	001 Move stack:0x8, rbx
+	002 ShiftStack -8
+	003 Move stack:0x0, rdi
+	004 ShiftStack -64
+	005 Move rax, stack:0x80
+	006 Move rdi, r8
+	007 Move xmm0, stack:0x78
+	008 Move r8, r9
+	009 Move xmm3, stack:0x70
+	010 Move rbx, rcx
+	011 Move stack:0x30, 0
+	012 Move stack:0x28, rax
+	013 Move stack:0x20, xmm0
+	014 Call FpcStateProcessor..ctor, rcx, rdx, xmm2, xmm3, stack:0x0, stack:0x8
+	015 LoadAddress rcx, [rbx+88]
+	016 Move rdx, rdi
+	017 Move [rcx], rdi
+	018 Move rbx, stack:0x50
+	019 ShiftStack 64
+	020 Move rdi, stack:0x0
+	021 ShiftStack 8
+	022 Call 0x180293EF0, rcx, rdx, r8, r9
+	023 Return 
+
+Method: System.Void ClientUpdateInput(PlayerRoles.FirstPersonControl.FirstPersonMovementModule moduleRef, System.Single walkSpeed, out PlayerRoles.FirstPersonControl.PlayerMovementState valueToSend)
+
+Disassembly:
+	mov [rsp+8],rbx
+	push rdi
+	sub rsp,30h
+	mov rbx,r9
+	mov qword ptr [rsp+20h],0
+	mov rdi,rcx
+	call 0000000180498E40h
+	cmp byte ptr [rbx],3
+	jne short 0000000180455D9Ah
+	mov rcx,[rdi+58h]
+	test rcx,rcx
+	je short 0000000180455DA5h
+	xor edx,edx
+	call 0000000180454E10h
+	test al,al
+	jne short 0000000180455D9Ah
+	mov byte ptr [rbx],2
+	mov rbx,[rsp+40h]
+	add rsp,30h
+	pop rdi
+	ret
+	call 0000000180294310h
+
+ISIL:
+	001 Move stack:0x8, rbx
+	002 ShiftStack -8
+	003 Move stack:0x0, rdi
+	004 ShiftStack -48
+	005 Move rbx, r9
+	006 Move stack:0x20, 0
+	007 Move rdi, rcx
+	008 Call FpcStateProcessor.ClientUpdateInput, rcx, xmm1, r8, r9
+	009 Compare [rbx], 3
+	010 JumpIfNotEqual {19}
+	011 Move rcx, [rdi+88]
+	012 Compare rcx, 0
+	013 JumpIfEqual {24}
+	014 Move rdx, 0
+	015 Call Scp939Motor.get_MovingForwards, rcx, rdx
+	016 Compare rax, 0
+	017 JumpIfNotEqual {19}
+	018 Move [rbx], 2
+	019 Move rbx, stack:0x40
+	020 ShiftStack 48
+	021 Move rdi, stack:0x0
+	022 ShiftStack 8
+	023 Return 
+	024 Call 0x180294310, rcx, rdx, r8, r9
+

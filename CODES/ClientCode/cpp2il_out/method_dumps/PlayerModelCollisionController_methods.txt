@@ -1,0 +1,327 @@
+Type: PlayerModelCollisionController
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerModelCollisionController
+	System.Void SpawnObject()
+		System.Collections.Generic.List`1<PlayerModelCollisionController> allControllers = PlayerModelCollisionController.AllControllers
+
+		allControllers.Add(this) //(T item)
+
+		UnityEngine.Transform transform = base.transform
+
+		UnityEngine.Transform parent = transform.parent
+
+		UnityEngine.GameObject gameObject = parent.gameObject
+
+		ReferenceHub hub = ReferenceHub.GetHub(gameObject) //(GameObject player)
+		this.Owner = hub
+		ReferenceHub owner = this.Owner
+		ulong local12 = 0
+
+		System.Boolean boolean = ReferenceHub.op_Equality(owner, local12) //(ReferenceHub left, ReferenceHub right)
+
+		if (boolean == False)
+		    ReferenceHub owner2 = this.Owner
+
+		    System.Boolean isLocalPlayer = owner2.isLocalPlayer
+
+		    if (isLocalPlayer != False)
+                goto INSN_18038C1CE
+            endif
+
+		    this.RefreshRelation(this) //(PlayerModelCollisionController targetController)
+		endif
+        
+		return
+
+		INSN_18038C1CE:
+		PlayerModelCollisionController.LocalPlayerController = this
+
+		this.RefreshAllRelations()
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldsfld System.Collections.Generic.List`1<PlayerModelCollisionController> PlayerModelCollisionController::AllControllers
+	IL_0005: ldarg.0
+	IL_0006: call System.Void System.Collections.Generic.List`1::Add(T)
+	IL_000b: ldarg.0
+	IL_000c: call UnityEngine.Transform UnityEngine.Component::get_transform()
+	IL_0011: call UnityEngine.Transform UnityEngine.Transform::get_parent()
+	IL_0016: call UnityEngine.GameObject UnityEngine.Component::get_gameObject()
+	IL_001b: call ReferenceHub ReferenceHub::GetHub(UnityEngine.GameObject)
+	IL_0020: stloc.0
+	IL_0021: ldarg.0
+	IL_0022: ldloc.0
+	IL_0023: stfld ReferenceHub PlayerModelCollisionController::Owner
+	IL_0028: ldarg.0
+	IL_0029: ldfld ReferenceHub PlayerModelCollisionController::Owner
+	IL_002e: stloc.1
+	IL_002f: ldc.i4.0
+	IL_0030: stloc.2
+	IL_0031: ldloc.1
+	IL_0032: ldloc.2
+	IL_0033: call System.Boolean ReferenceHub::op_Equality(ReferenceHub,ReferenceHub)
+	IL_0038: ldc.i4.0
+	IL_0039: bne.un.s IL_0050
+	IL_003b: ldarg.0
+	IL_003c: ldfld ReferenceHub PlayerModelCollisionController::Owner
+	IL_0041: call System.Boolean Mirror.NetworkBehaviour::get_isLocalPlayer()
+	IL_0046: ldc.i4.0
+	IL_0047: bne.un.s IL_0051
+	IL_0049: ldarg.0
+	IL_004a: ldarg.0
+	IL_004b: call System.Void PlayerModelCollisionController::RefreshRelation(PlayerModelCollisionController)
+	IL_0050: ret
+	IL_0051: ldarg.0
+	IL_0052: stsfld PlayerModelCollisionController PlayerModelCollisionController::LocalPlayerController
+	IL_0057: ldarg.0
+	IL_0058: call System.Void PlayerModelCollisionController::RefreshAllRelations()
+	IL_005d: ret
+	IL_005e: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0063: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerModelCollisionController
+	System.Void ResetObject()
+		System.Collections.Generic.List`1<PlayerModelCollisionController> allControllers = PlayerModelCollisionController.AllControllers
+
+		System.Boolean boolean = allControllers.Remove(this) //(T item)
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldsfld System.Collections.Generic.List`1<PlayerModelCollisionController> PlayerModelCollisionController::AllControllers
+	IL_0005: ldarg.0
+	IL_0006: call System.Boolean System.Collections.Generic.List`1::Remove(T)
+	IL_000b: stloc.0
+	IL_000c: ret
+	IL_000d: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0012: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerModelCollisionController
+	System.Void RefreshAllRelations()
+		System.Collections.Generic.List`1<PlayerModelCollisionController> allControllers = PlayerModelCollisionController.AllControllers
+
+		System.Collections.Generic.List`1/Enumerator<T> enumerator = .GetEnumerator()
+
+		if (enumerator != 0)
+
+		    System.Boolean boolean = UnityEngine.Object.op_Inequality()
+
+		    if (boolean != False)
+
+		        System.Boolean boolean2 = ReferenceHub.op_Inequality()
+
+		        if (boolean2 != False)
+		            ulong local9 = 0
+
+		            System.Boolean isLocalPlayer = .isLocalPlayer
+
+		            if (isLocalPlayer == False)
+
+		                this.RefreshRelation(local9) //(PlayerModelCollisionController targetController)
+		            endif
+                    
+
+		            [instruction error - managed method being called is null]
+
+		            [instruction error - managed method being called is null]
+
+		            if (PlayerModelCollisionController != 0)
+                        goto INSN_18038BD75
+                    endif
+		            return
+		            throw new System.NullReferenceException()
+		            throw new System.NullReferenceException()
+
+		            INSN_18038BD75:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18038BC4A) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerModelCollisionController
+	System.Void RefreshRelation(PlayerModelCollisionController targetController)
+		PlayerModelCollisionController localPlayerController = PlayerModelCollisionController.LocalPlayerController
+		ulong local4 = 0
+
+		System.Boolean boolean = UnityEngine.Object.op_Equality(localPlayerController, local4) //(Object x, Object y)
+
+		if (boolean == False)
+		    PlayerModelCollisionController localPlayerController2 = PlayerModelCollisionController.LocalPlayerController
+		    ReferenceHub owner = localPlayerController2.Owner
+		    ulong local9 = 0
+
+		    System.Boolean boolean2 = ReferenceHub.op_Equality(owner, local9) //(ReferenceHub left, ReferenceHub right)
+
+		    if (boolean2 == False)
+		        ulong local12 = 0
+
+		        System.Boolean boolean3 = UnityEngine.Object.op_Equality(targetController, local12) //(Object x, Object y)
+
+		        if (boolean3 == False)
+		            ReferenceHub owner2 = targetController.Owner
+		            ulong local16 = 0
+
+		            System.Boolean boolean4 = ReferenceHub.op_Equality(owner2, local16) //(ReferenceHub left, ReferenceHub right)
+
+		            if (boolean4 == False)
+		                PlayerModelCollisionController localPlayerController3 = PlayerModelCollisionController.LocalPlayerController
+		                ReferenceHub owner3 = localPlayerController3.Owner
+
+		                System.Boolean isHuman = PlayerRoles.PlayerRolesUtils.IsHuman(owner3) //(ReferenceHub hub)
+
+		                if (isHuman == False)
+		                else
+		                    ReferenceHub owner4 = targetController.Owner
+		                    PlayerModelCollisionController localPlayerController4 = PlayerModelCollisionController.LocalPlayerController
+		                    ReferenceHub owner5 = localPlayerController4.Owner
+
+		                    System.Boolean boolean5 = HitboxIdentity.CheckFriendlyFire(owner4, owner5, True) //(ReferenceHub attacker, ReferenceHub victim, Boolean ignoreConfig)
+		                endif
+                        
+		                UnityEngine.Collider[] myColliders = targetController.MyColliders
+		                ulong local29 = 0
+		                System.Int32 length = myColliders.Length
+
+		                if (local29 >= length)
+                            goto INSN_18038C005
+                        endif
+		                UnityEngine.Collider collider = myColliders[local29]
+
+		                collider.isTrigger = boolean5
+		                local29 += 1
+		            endif
+                    
+		        endif
+                
+		        return
+		        throw new System.IndexOutOfRangeException()
+
+
+Generated IL:
+	IL_0000: ldsfld PlayerModelCollisionController PlayerModelCollisionController::LocalPlayerController
+	IL_0005: stloc.0
+	IL_0006: ldc.i4.0
+	IL_0007: stloc.1
+	IL_0008: ldloc.0
+	IL_0009: ldloc.1
+	IL_000a: call System.Boolean UnityEngine.Object::op_Equality(UnityEngine.Object,UnityEngine.Object)
+	IL_000f: ldc.i4.0
+	IL_0010: bne.un IL_00b9
+	IL_0015: ldsfld PlayerModelCollisionController PlayerModelCollisionController::LocalPlayerController
+	IL_001a: ldfld ReferenceHub PlayerModelCollisionController::Owner
+	IL_001f: stloc.2
+	IL_0020: ldc.i4.0
+	IL_0021: stloc.3
+	IL_0022: ldloc.2
+	IL_0023: ldloc.3
+	IL_0024: call System.Boolean ReferenceHub::op_Equality(ReferenceHub,ReferenceHub)
+	IL_0029: ldc.i4.0
+	IL_002a: bne.un IL_00b9
+	IL_002f: ldc.i4.0
+	IL_0030: stloc.s V_4
+	IL_0032: ldarg.1
+	IL_0033: ldloc.s V_4
+	IL_0035: call System.Boolean UnityEngine.Object::op_Equality(UnityEngine.Object,UnityEngine.Object)
+	IL_003a: ldc.i4.0
+	IL_003b: bne.un IL_00b9
+	IL_0040: ldarg.1
+	IL_0041: ldfld ReferenceHub PlayerModelCollisionController::Owner
+	IL_0046: stloc.s V_5
+	IL_0048: ldc.i4.0
+	IL_0049: stloc.s V_6
+	IL_004b: ldloc.s V_5
+	IL_004d: ldloc.s V_6
+	IL_004f: call System.Boolean ReferenceHub::op_Equality(ReferenceHub,ReferenceHub)
+	IL_0054: ldc.i4.0
+	IL_0055: bne.un.s IL_00b9
+	IL_0057: ldsfld PlayerModelCollisionController PlayerModelCollisionController::LocalPlayerController
+	IL_005c: ldfld ReferenceHub PlayerModelCollisionController::Owner
+	IL_0061: call System.Boolean PlayerRoles.PlayerRolesUtils::IsHuman(ReferenceHub)
+	IL_0066: ldc.i4.0
+	IL_0067: bne.un.s IL_0069
+	IL_0069: ldarg.1
+	IL_006a: ldfld ReferenceHub PlayerModelCollisionController::Owner
+	IL_006f: stloc.s V_7
+	IL_0071: ldsfld PlayerModelCollisionController PlayerModelCollisionController::LocalPlayerController
+	IL_0076: ldfld ReferenceHub PlayerModelCollisionController::Owner
+	IL_007b: stloc.s V_8
+	IL_007d: ldloc.s V_7
+	IL_007f: ldloc.s V_8
+	IL_0081: ldc.i4.1
+	IL_0082: call System.Boolean HitboxIdentity::CheckFriendlyFire(ReferenceHub,ReferenceHub,System.Boolean)
+	IL_0087: stloc.s V_9
+	IL_0089: ldarg.1
+	IL_008a: ldfld UnityEngine.Collider[] PlayerModelCollisionController::MyColliders
+	IL_008f: stloc.s V_10
+	IL_0091: ldc.i4.0
+	IL_0092: stloc.s V_11
+	IL_0094: ldloc.s V_10
+	IL_0096: call System.Int32 System.Array::get_Length()
+	IL_009b: stloc.s V_12
+	IL_009d: ldloc.s V_11
+	IL_009f: ldloc.s V_12
+	IL_00a1: bge.s IL_00b9
+	IL_00a3: ldloc.s V_10
+	IL_00a5: ldloc.s V_11
+	IL_00a7: ldelem.any UnityEngine.Collider
+	IL_00ac: ldloc.s V_9
+	IL_00ae: call System.Void UnityEngine.Collider::set_isTrigger(System.Boolean)
+	IL_00b3: ldloc.s V_11
+	IL_00b5: ldc.i4.1
+	IL_00b6: add
+	IL_00b7: stloc.s V_11
+	IL_00b9: ret
+	IL_00ba: newobj System.Void System.IndexOutOfRangeException::.ctor()
+	IL_00bf: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerModelCollisionController
+	System.Void .ctor()
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void UnityEngine.MonoBehaviour::.ctor()
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerModelCollisionController
+	static System.Void .cctor()
+		System.Collections.Generic.List`1<PlayerModelCollisionController> list = new System.Collections.Generic.List`1<PlayerModelCollisionController>()
+
+		list..ctor()
+		 += 8
+		PlayerModelCollisionController.LocalPlayerController = list
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x18038C270) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+

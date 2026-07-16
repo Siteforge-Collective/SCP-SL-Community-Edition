@@ -1,0 +1,443 @@
+Type: ItemHotkeysController
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Hotkeys.ItemHotkeysController
+	System.Boolean get_SmartFeaturesEnabled()
+		System.Int32 _smartFeaturesConfig = this._smartFeaturesConfig
+
+		if (_smartFeaturesConfig == 0)
+
+		    System.Boolean boolean = PlayerPrefsSl.Get("InventorySmartHotkeys", True) //(String key, Boolean defaultValue)
+		    System.Boolean local5 = boolean != False
+		    local5 += 1
+		    this._smartFeaturesConfig = local5
+		endif
+        
+		System.Boolean local6 = _smartFeaturesConfig == 2
+		return local6
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x1803F6930) is corrupt (Don't know how to create a suitable constant for type: System.Boolean to add to local) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Hotkeys.ItemHotkeysController
+	System.Void Start()
+		PlayerRoles.PlayerRoleManager/RoleChanged roleChanged = new PlayerRoles.PlayerRoleManager/RoleChanged()
+
+		roleChanged..ctor(this, {'UpdateColors' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		PlayerRoles.PlayerRoleManager.add_OnRoleChanged(roleChanged) //(RoleChanged value)
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldftn System.Void InventorySystem.Hotkeys.ItemHotkeysController::UpdateColors(ReferenceHub,PlayerRoles.PlayerRoleBase,PlayerRoles.PlayerRoleBase)
+	IL_0007: newobj System.Void PlayerRoles.PlayerRoleManager/RoleChanged::.ctor(System.Object,System.IntPtr)
+	IL_000c: call System.Void PlayerRoles.PlayerRoleManager::add_OnRoleChanged(PlayerRoles.PlayerRoleManager/RoleChanged)
+	IL_0011: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Hotkeys.ItemHotkeysController
+	System.Void OnDestroy()
+		PlayerRoles.PlayerRoleManager/RoleChanged roleChanged = new PlayerRoles.PlayerRoleManager/RoleChanged()
+
+		roleChanged..ctor(this, {'UpdateColors' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		PlayerRoles.PlayerRoleManager.remove_OnRoleChanged(roleChanged) //(RoleChanged value)
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldftn System.Void InventorySystem.Hotkeys.ItemHotkeysController::UpdateColors(ReferenceHub,PlayerRoles.PlayerRoleBase,PlayerRoles.PlayerRoleBase)
+	IL_0007: newobj System.Void PlayerRoles.PlayerRoleManager/RoleChanged::.ctor(System.Object,System.IntPtr)
+	IL_000c: call System.Void PlayerRoles.PlayerRoleManager::remove_OnRoleChanged(PlayerRoles.PlayerRoleManager/RoleChanged)
+	IL_0011: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Hotkeys.ItemHotkeysController
+	System.Void UpdateColors(ReferenceHub rh, PlayerRoles.PlayerRoleBase prevRole, PlayerRoles.PlayerRoleBase newRole)
+
+		System.Boolean isLocalPlayer = rh.isLocalPlayer
+
+		if (isLocalPlayer != False)
+
+		    PlayerRoles.Team team = .Team
+		    InventorySystem.Hotkeys.HotkeyIconBase[] _hotkeyIcons = this._hotkeyIcons
+		    ulong local8 = 0
+		    ulong local10 = 0
+		    System.Int32 length = _hotkeyIcons.Length
+
+		    if (local8 < length)
+		        InventorySystem.Hotkeys.HotkeyIconBase hotkeyIconBase = _hotkeyIcons[local8]
+		        UnityEngine.UI.Image outline = hotkeyIconBase.Outline
+
+		        UnityEngine.Color color = outline.color
+		        TMPro.TextMeshProUGUI keycodeText = hotkeyIconBase.KeycodeText
+
+		        UnityEngine.Color color2 = keycodeText.color
+		        ulong local23 = 0
+		        local8 += 1
+		        hotkeyIconBase._highlightTransparentColor = local23
+		    endif
+            
+		    return
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallVirtualMethodAction at (0x1803F5D0D) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Hotkeys.ItemHotkeysController
+	System.Void RefreshAlpha()
+		UnityEngine.CanvasGroup _fadeGroup = this._fadeGroup
+
+		System.Single alpha = _fadeGroup.alpha
+		System.Diagnostics.Stopwatch _stopwatch = this._stopwatch
+
+		System.TimeSpan elapsed = _stopwatch.Elapsed
+		ulong local8 = 0
+
+		if (_stopwatch <= 0)
+
+		    System.Single deltaTime = UnityEngine.Time.deltaTime
+		    System.Single local10 = alpha * 1,2
+		else
+
+		    System.Single deltaTime2 = UnityEngine.Time.deltaTime
+		endif
+        
+		deltaTime2 = alpha
+
+		System.Single single = UnityEngine.Mathf.Clamp01(deltaTime2) //(Single value)
+		UnityEngine.CanvasGroup _fadeGroup2 = this._fadeGroup
+		alpha = single
+
+		System.Single alpha2 = _fadeGroup2.alpha
+
+		if (_fadeGroup2 == 0)
+            goto INSN_1803F5C2A
+        endif
+		UnityEngine.CanvasGroup _fadeGroup3 = this._fadeGroup
+
+		_fadeGroup3.alpha = alpha
+
+		INSN_1803F5C2A:
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.MultiplyRegByGlobalAction at (0x1803F5BB5) is corrupt (Operand we were multiplying by is null or local made was stripped) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Hotkeys.ItemHotkeysController
+	System.Void Update()
+		ulong local1 = 0
+
+		System.Boolean boolean = ReferenceHub.TryGetLocalHub(local1) //(ReferenceHub& hub)
+
+		if (boolean != False)
+		    UnityEngine.CanvasGroup _fadeGroup = this._fadeGroup
+
+		    System.Single alpha = _fadeGroup.alpha
+		    System.Diagnostics.Stopwatch _stopwatch = this._stopwatch
+
+		    System.TimeSpan elapsed = _stopwatch.Elapsed
+		    ulong local11 = 0
+
+		    if (_stopwatch <= 0)
+
+		        System.Single deltaTime = UnityEngine.Time.deltaTime
+		        System.Single local13 = alpha * 1,2
+		    else
+
+		        System.Single deltaTime2 = UnityEngine.Time.deltaTime
+		    endif
+            
+		    deltaTime2 = alpha
+
+		    System.Single single = UnityEngine.Mathf.Clamp01(deltaTime2) //(Single value)
+		    UnityEngine.CanvasGroup _fadeGroup2 = this._fadeGroup
+		    alpha = single
+		    ulong local18 = 0
+
+		    System.Single alpha2 = _fadeGroup2.alpha
+
+		    if (_fadeGroup2 == 0)
+                goto INSN_1803F6027
+            endif
+		    UnityEngine.CanvasGroup _fadeGroup3 = this._fadeGroup
+
+		    _fadeGroup3.alpha = alpha
+
+		    INSN_1803F6027:
+		    ulong local22 = 0
+
+		    System.Boolean inventoryVisible = InventorySystem.GUI.InventoryGuiController.InventoryVisible
+
+		    if (inventoryVisible == False)
+                goto INSN_1803F605C
+            endif
+
+		    INSN_1803F605C:
+		    ulong local24 = 0
+
+		    System.Boolean boolean2 = InventorySystem.GUI.InventoryGuiController.CanInventoryBeDisplayed()
+		    System.Boolean local26 = boolean2 == False
+		    ulong local27 = 0
+
+		    InventorySystem.GUI.IInventoryGuiDisplayType displayController = InventorySystem.GUI.InventoryGuiController.DisplayController
+
+		    if (displayController == 0)
+                goto INSN_1803F63C1
+            endif
+		    //UNKNOWN CLASS OFFSET READ HERE
+		    InventorySystem.Hotkeys.IHotkeyItemSelector[] definedHotkeys = InventorySystem.Hotkeys.ItemHotkeysController.DefinedHotkeys
+
+		    if (local1 >= definedHotkeys.Length)
+                goto INSN_1803F636E
+            endif
+		    InventorySystem.Hotkeys.HotkeyIconBase[] _hotkeyIcons = this._hotkeyIcons
+		    InventorySystem.Hotkeys.HotkeyIconBase hotkeyIconBase = _hotkeyIcons[local1]
+		    InventorySystem.Hotkeys.IHotkeyItemSelector[] definedHotkeys2 = InventorySystem.Hotkeys.ItemHotkeysController.DefinedHotkeys
+		    InventorySystem.Hotkeys.IHotkeyItemSelector iHotkeyItemSelector = definedHotkeys2[local1]
+		      = displayController.
+
+		    System.Boolean smartFeaturesEnabled = this.SmartFeaturesEnabled
+
+		    UnityEngine.KeyCode key = NewInput.GetKey()
+		    System.Int32 local40 = key.value__
+
+		    if (smartFeaturesEnabled != False)
+                goto INSN_1803F6252
+            endif
+
+		    hotkeyIconBase.CancelHighlightAnimation()
+
+		    INSN_1803F6252:
+
+		    [instruction error - managed method being called is null]
+
+		    if (key == 0)
+                goto INSN_1803F631C
+            endif
+		    ulong local43 = 0
+
+		    System.Boolean itemsSafeForInteraction = InventorySystem.GUI.InventoryGuiController.ItemsSafeForInteraction
+
+		    if (itemsSafeForInteraction == False)
+                goto INSN_1803F631C
+            endif
+
+		    if (local26 != False)
+                goto INSN_1803F62D5
+            endif
+		    UnityEngine.UI.Image highlightImage = hotkeyIconBase.HighlightImage
+		    hotkeyIconBase._highlightTimer = 0
+		    hotkeyIconBase._highlightPlaying = True
+
+		    highlightImage.enabled = True
+		    System.Diagnostics.Stopwatch _stopwatch2 = this._stopwatch
+
+		    _stopwatch2.Restart()
+
+		    INSN_1803F62D5:
+		      = local1.
+
+		    if (smartFeaturesEnabled == )
+                goto INSN_1803F631C
+            endif
+
+		    local1.CmdProcessHotkey()
+
+		    INSN_1803F631C:
+
+		    hotkeyIconBase.UpdateAnimations()
+
+		    System.Boolean boolean3 = hotkeyIconBase.Setup()
+
+		    if (boolean3 == False)
+                goto INSN_1803F635F
+            endif
+		    System.Diagnostics.Stopwatch _stopwatch3 = this._stopwatch
+
+		    _stopwatch3.Restart()
+
+		    INSN_1803F635F:
+		    local1 += 1
+
+		    INSN_1803F636E:
+		endif
+        
+		return
+		throw new System.IndexOutOfRangeException()
+
+		INSN_1803F63C1:
+		System.Exception exception = new System.Exception()
+
+		exception..ctor("The hotkeys do not support non-standard RadialInventory.") //(String message)
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.MultiplyRegByGlobalAction at (0x1803F5FAB) is corrupt (Operand we were multiplying by is null or local made was stripped) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Hotkeys.ItemHotkeysController
+	System.Void .ctor()
+		System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch()
+
+		stopwatch..ctor()
+		this._stopwatch = stopwatch
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: newobj System.Void System.Diagnostics.Stopwatch::.ctor()
+	IL_0005: stloc.0
+	IL_0006: ldarg.0
+	IL_0007: ldloc.0
+	IL_0008: stfld System.Diagnostics.Stopwatch InventorySystem.Hotkeys.ItemHotkeysController::_stopwatch
+	IL_000d: ldarg.0
+	IL_000e: call System.Void UnityEngine.MonoBehaviour::.ctor()
+	IL_0013: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Hotkeys.ItemHotkeysController
+	static System.Void .cctor()
+		InventorySystem.Hotkeys.IHotkeyItemSelector[] local0 = new InventorySystem.Hotkeys.IHotkeyItemSelector[5]
+		InventorySystem.Hotkeys.KeycardHotkey keycardHotkey = new InventorySystem.Hotkeys.KeycardHotkey()
+
+		keycardHotkey..ctor()
+		ulong local3 = 0
+		ItemType[] bestToWorstKeycards = InventorySystem.Hotkeys.KeycardHotkey.BestToWorstKeycards
+
+		if (local3 < bestToWorstKeycards.Length)
+		    ItemType[] bestToWorstKeycards2 = InventorySystem.Hotkeys.KeycardHotkey.BestToWorstKeycards
+		    System.Collections.Generic.Dictionary`2<ItemType,System.Int32> keycardValues = InventorySystem.Hotkeys.KeycardHotkey.KeycardValues
+		    ItemType itemType = bestToWorstKeycards2[local3]
+		    throw new System.NullReferenceException()
+		    local3 += 1
+		endif
+        
+		System.Action`1<ReferenceHub> action = new System.Action`1<ReferenceHub>()
+
+		action..ctor(keycardHotkey, {'RefreshBestKeycard' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		InventorySystem.Inventory.add_OnItemsModified(action) //(Action`1 value)
+		System.Action`3<ReferenceHub,InventorySystem.Items.ItemIdentifier,InventorySystem.Items.ItemIdentifier> action2 = new System.Action`3<ReferenceHub,InventorySystem.Items.ItemIdentifier,InventorySystem.Items.ItemIdentifier>()
+
+		action2..ctor(keycardHotkey, {'<.ctor>b__9_0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		InventorySystem.Inventory.add_OnCurrentItemChanged(action2) //(Action`3 value)
+
+		if (keycardHotkey == 0)
+            goto INSN_1803F65CF
+        endif
+
+		if (action2 == 0)
+            goto INSN_1803F67BC
+        endif
+
+		INSN_1803F65CF:
+		local0[0] = keycardHotkey
+		InventorySystem.Hotkeys.FirearmHotkey firearmHotkey = new InventorySystem.Hotkeys.FirearmHotkey()
+
+		firearmHotkey..ctor()
+		firearmHotkey._isPrimary = True
+
+		if (firearmHotkey == 0)
+            goto INSN_1803F67DC
+        endif
+		local0[1] = firearmHotkey
+		InventorySystem.Hotkeys.FirearmHotkey firearmHotkey2 = new InventorySystem.Hotkeys.FirearmHotkey()
+
+		firearmHotkey2..ctor()
+		firearmHotkey2._isPrimary = False
+
+		if (firearmHotkey2 == 0)
+            goto INSN_1803F67FC
+        endif
+		local0[2] = firearmHotkey2
+		ItemType[] local17 = new ItemType[4]
+
+		local17 = new ItemType[] {17, 33, 14, 34}
+		InventorySystem.Hotkeys.SpecialItemHotkey specialItemHotkey = new InventorySystem.Hotkeys.SpecialItemHotkey()
+		System.Int32 26 = 26
+
+		specialItemHotkey..ctor(26, local17) //(ActionName actionName, ItemType[] bestToWorstItems)
+
+		if (specialItemHotkey == 0)
+            goto INSN_1803F66E8
+        endif
+
+		if (specialItemHotkey == 0)
+            goto INSN_1803F681C
+        endif
+
+		INSN_1803F66E8:
+		local0[3] = specialItemHotkey
+		ItemType[] local21 = new ItemType[4]
+
+		local21 = new ItemType[] {25, 26, 31, 43}
+		InventorySystem.Hotkeys.SpecialItemHotkey specialItemHotkey2 = new InventorySystem.Hotkeys.SpecialItemHotkey()
+		System.Int32 29 = 29
+
+		specialItemHotkey2..ctor(29, local21) //(ActionName actionName, ItemType[] bestToWorstItems)
+
+		if (specialItemHotkey2 == 0)
+            goto INSN_1803F6765
+        endif
+
+		if (specialItemHotkey2 == 0)
+            goto INSN_1803F683C
+        endif
+
+		INSN_1803F6765:
+		local0[4] = specialItemHotkey2
+		InventorySystem.Hotkeys.ItemHotkeysController.DefinedHotkeys = local0
+		throw new System.NullReferenceException()
+
+		INSN_1803F67BC:
+
+		INSN_1803F67DC:
+
+		INSN_1803F67FC:
+
+		INSN_1803F681C:
+
+		INSN_1803F683C:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1803F659A) is corrupt (Mismatched instance parameter. Expecting an instance of System.Action`1, actually {'action2' (type System.Action`3<ReferenceHub,InventorySystem.Items.ItemIdentifier,InventorySystem.Items.ItemIdentifier>)}) and cannot be created as IL. Aborting here.
+
+

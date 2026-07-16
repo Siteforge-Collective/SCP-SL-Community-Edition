@@ -1,0 +1,541 @@
+Type: ConfigFile
+
+
+	Generated Pseudocode:
+
+	Declaring Type: GameCore.ConfigFile
+	static System.Void .cctor()
+		ulong local1 = 0
+
+		System.String appFolder = FileManager.GetAppFolder(True, local1, "") //(Boolean addSeparator, Boolean serverConfig, String centralConfig)
+
+		System.Boolean boolean = System.IO.Directory.Exists(appFolder) //(String path)
+
+		if (boolean == False)
+		    ulong local6 = 0
+
+		    System.String appFolder2 = FileManager.GetAppFolder(True, local6, "") //(Boolean addSeparator, Boolean serverConfig, String centralConfig)
+
+		    System.IO.DirectoryInfo directoryInfo = System.IO.Directory.CreateDirectory(appFolder2) //(String path)
+		endif
+        
+		ulong local11 = 0
+
+		System.String appFolder3 = FileManager.GetAppFolder(True, local11, "") //(Boolean addSeparator, Boolean serverConfig, String centralConfig)
+
+		System.String string = System.String.Concat(appFolder3, "config.txt") //(String str0, String str1)
+
+		System.Boolean boolean2 = System.IO.File.Exists(string) //(String path)
+
+		if (boolean2 == False)
+            goto INSN_181B087C6
+        endif
+		ulong local18 = 0
+
+		System.String appFolder4 = FileManager.GetAppFolder(True, local18, "") //(Boolean addSeparator, Boolean serverConfig, String centralConfig)
+
+		System.String string2 = System.String.Concat(appFolder4, "LEGACY CONFIG BACKUP - NOT WORKING.txt") //(String str0, String str1)
+
+		System.Boolean boolean3 = System.IO.File.Exists(string2) //(String path)
+
+		if (boolean3 != False)
+            goto INSN_181B087C6
+        endif
+		ulong local25 = 0
+
+		System.String appFolder5 = FileManager.GetAppFolder(True, local25, "") //(Boolean addSeparator, Boolean serverConfig, String centralConfig)
+
+		System.String string3 = System.String.Concat(appFolder5, "config.txt") //(String str0, String str1)
+		ulong local30 = 0
+
+		System.String appFolder6 = FileManager.GetAppFolder(True, local30, "") //(Boolean addSeparator, Boolean serverConfig, String centralConfig)
+
+		System.String string4 = System.String.Concat(appFolder6, "LEGACY CONFIG BACKUP - NOT WORKING.txt") //(String str0, String str1)
+
+		System.IO.File.Move(string3, string4) //(String sourceFileName, String destFileName)
+
+		INSN_181B087C6:
+
+		GameCore.ConfigFile.ReloadGameConfigs(True) //(Boolean firstTime)
+		return
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: ldc.i4.1
+	IL_0003: ldloc.0
+	IL_0004: ldstr ""
+	IL_0009: call System.String FileManager::GetAppFolder(System.Boolean,System.Boolean,System.String)
+	IL_000e: call System.Boolean System.IO.Directory::Exists(System.String)
+	IL_0013: ldc.i4.0
+	IL_0014: bne.un.s IL_002a
+	IL_0016: ldc.i4.0
+	IL_0017: stloc.1
+	IL_0018: ldc.i4.1
+	IL_0019: ldloc.1
+	IL_001a: ldstr ""
+	IL_001f: call System.String FileManager::GetAppFolder(System.Boolean,System.Boolean,System.String)
+	IL_0024: call System.IO.DirectoryInfo System.IO.Directory::CreateDirectory(System.String)
+	IL_0029: stloc.2
+	IL_002a: ldc.i4.0
+	IL_002b: stloc.3
+	IL_002c: ldc.i4.1
+	IL_002d: ldloc.3
+	IL_002e: ldstr ""
+	IL_0033: call System.String FileManager::GetAppFolder(System.Boolean,System.Boolean,System.String)
+	IL_0038: ldstr "config.txt"
+	IL_003d: call System.String System.String::Concat(System.String,System.String)
+	IL_0042: call System.Boolean System.IO.File::Exists(System.String)
+	IL_0047: ldc.i4.0
+	IL_0048: beq.s IL_00ad
+	IL_004a: ldc.i4.0
+	IL_004b: stloc.s V_4
+	IL_004d: ldc.i4.1
+	IL_004e: ldloc.s V_4
+	IL_0050: ldstr ""
+	IL_0055: call System.String FileManager::GetAppFolder(System.Boolean,System.Boolean,System.String)
+	IL_005a: ldstr "LEGACY CONFIG BACKUP - NOT WORKING.txt"
+	IL_005f: call System.String System.String::Concat(System.String,System.String)
+	IL_0064: call System.Boolean System.IO.File::Exists(System.String)
+	IL_0069: ldc.i4.0
+	IL_006a: bne.un.s IL_00ad
+	IL_006c: ldc.i4.0
+	IL_006d: stloc.s V_5
+	IL_006f: ldc.i4.1
+	IL_0070: ldloc.s V_5
+	IL_0072: ldstr ""
+	IL_0077: call System.String FileManager::GetAppFolder(System.Boolean,System.Boolean,System.String)
+	IL_007c: ldstr "config.txt"
+	IL_0081: call System.String System.String::Concat(System.String,System.String)
+	IL_0086: stloc.s V_6
+	IL_0088: ldc.i4.0
+	IL_0089: stloc.s V_7
+	IL_008b: ldc.i4.1
+	IL_008c: ldloc.s V_7
+	IL_008e: ldstr ""
+	IL_0093: call System.String FileManager::GetAppFolder(System.Boolean,System.Boolean,System.String)
+	IL_0098: ldstr "LEGACY CONFIG BACKUP - NOT WORKING.txt"
+	IL_009d: call System.String System.String::Concat(System.String,System.String)
+	IL_00a2: stloc.s V_8
+	IL_00a4: ldloc.s V_6
+	IL_00a6: ldloc.s V_8
+	IL_00a8: call System.Void System.IO.File::Move(System.String,System.String)
+	IL_00ad: ldc.i4.1
+	IL_00ae: call System.Void GameCore.ConfigFile::ReloadGameConfigs(System.Boolean)
+	IL_00b3: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: GameCore.ConfigFile
+	static System.Void ReloadGameConfigs(System.Boolean firstTime)
+		ulong local3 = 0
+
+		if (firstTime != False)
+		endif
+        
+		. = 1
+		System.Int32 7 = 7
+
+		ServerConsole.AddLog("Loading gameplay config...", 7) //(String q, ConsoleColor color)
+
+		System.String configPath = GameCore.ConfigFile.GetConfigPath("config_gameplay") //(String name)
+		YamlConfig serverConfig = GameCore.ConfigFile.ServerConfig
+
+		serverConfig.LoadConfigFile(configPath) //(String path)
+		YamlConfig yamlConfig = new YamlConfig()
+
+		yamlConfig..ctor(configPath) //(String path)
+		 += 8
+		GameCore.ConfigFile.OnConfigReloaded = yamlConfig
+		ulong local12 = 0
+
+		ServerConsole.RefreshEmailSetStatus()
+		System.Int32 7 = 7
+
+		ServerConsole.AddLog("Processing rate limits...", 7) //(String q, ConsoleColor color)
+		ulong local14 = 0
+
+		Security.RateLimitCreator.Load()
+		System.Int32 7 = 7
+
+		ServerConsole.AddLog("Loading sharing config...", 7) //(String q, ConsoleColor color)
+
+		System.String configPath2 = GameCore.ConfigFile.GetConfigPath("config_sharing") //(String name)
+		YamlConfig sharingConfig = GameCore.ConfigFile.SharingConfig
+
+		sharingConfig.LoadConfigFile(configPath2) //(String path)
+		YamlConfig yamlConfig2 = new YamlConfig()
+
+		yamlConfig2..ctor(configPath2) //(String path)
+		 += 16
+		GameCore.ConfigFile.OnConfigReloaded = yamlConfig2
+		System.Int32 7 = 7
+
+		ServerConsole.AddLog("Processing shares...", 7) //(String q, ConsoleColor color)
+		ulong local23 = 0
+
+		GameCore.ConfigSharing.Reload()
+		ulong local24 = 0
+
+		BanHandler.Init()
+		ulong local25 = 0
+
+		WhiteList.Reload()
+		ulong local26 = 0
+
+		ReservedSlot.Reload()
+		YamlConfig serverConfig2 = GameCore.ConfigFile.ServerConfig
+		System.Int64 local28 = 60
+
+		System.Int16 short = serverConfig2.GetShort("server_tickrate", local28) //(String key, Int16 def)
+
+		ServerStatic.ServerTickrate = short
+		YamlConfig serverConfig3 = GameCore.ConfigFile.ServerConfig
+		System.Int64 local34 = 1
+
+		System.Boolean bool = serverConfig3.GetBool("idle_mode_enabled", local34) //(String key, Boolean def)
+
+		IdleMode.IdleModeEnabled = bool
+		YamlConfig serverConfig4 = GameCore.ConfigFile.ServerConfig
+		System.Int64 local39 = 0x1388
+
+		System.UInt32 uInt = serverConfig4.GetUInt("idle_mode_time", local39) //(String key, UInt32 def)
+		IdleMode.IdleModeTime = uInt
+		YamlConfig serverConfig5 = GameCore.ConfigFile.ServerConfig
+		System.Int64 local43 = 0x7530
+
+		System.UInt32 uInt2 = serverConfig5.GetUInt("idle_mode_preauth_time", local43) //(String key, UInt32 def)
+		IdleMode.IdleModePreauthTime = uInt2
+		YamlConfig serverConfig6 = GameCore.ConfigFile.ServerConfig
+		System.Int64 local46 = 1
+
+		System.Int16 short2 = serverConfig6.GetShort("idle_mode_tickrate", local46) //(String key, Int16 def)
+
+		IdleMode.IdleModeTickrate = short2
+		YamlConfig serverConfig7 = GameCore.ConfigFile.ServerConfig
+		ulong local51 = 0
+
+		System.UInt16 uShort = serverConfig7.GetUShort("server_list_port_override", local51) //(String key, UInt16 def)
+		ServerConsole.PortOverride = uShort
+		YamlConfig serverConfig8 = GameCore.ConfigFile.ServerConfig
+		ulong local56 = 0
+
+		System.Boolean bool2 = serverConfig8.GetBool("friendly_fire", local56) //(String key, Boolean def)
+		ServerConsole.FriendlyFire = bool2
+		YamlConfig serverConfig9 = GameCore.ConfigFile.ServerConfig
+		ulong local60 = 0
+
+		System.Boolean bool3 = serverConfig9.GetBool("enable_whitelist", local60) //(String key, Boolean def)
+
+		if (bool3 == False)
+            goto INSN_181B05CD9
+        endif
+
+		INSN_181B05CD9:
+		YamlConfig serverConfig10 = GameCore.ConfigFile.ServerConfig
+		ulong local65 = 0
+
+		System.Boolean bool4 = serverConfig10.GetBool("custom_whitelist", local65) //(String key, Boolean def)
+		ServerConsole.WhiteListEnabled = bool4
+		YamlConfig serverConfig11 = GameCore.ConfigFile.ServerConfig
+		ulong local69 = 0
+
+		System.Boolean bool5 = serverConfig11.GetBool("server_access_restriction", local69) //(String key, Boolean def)
+		ServerConsole.AccessRestriction = bool5
+		YamlConfig serverConfig12 = GameCore.ConfigFile.ServerConfig
+		ulong local73 = 0
+
+		System.Boolean bool6 = serverConfig12.GetBool("custom_gamemode_server", local73) //(String key, Boolean def)
+		ServerConsole.CustomGamemodeServerConfig = bool6
+		YamlConfig serverConfig13 = GameCore.ConfigFile.ServerConfig
+		ulong local77 = 0
+
+		System.Boolean bool7 = serverConfig13.GetBool("heavily_modded_server", local77) //(String key, Boolean def)
+		ServerConsole.HeavilyModdedServerConfig = bool7
+		YamlConfig serverConfig14 = GameCore.ConfigFile.ServerConfig
+		System.Int64 local81 = 1
+
+		System.Boolean bool8 = serverConfig14.GetBool("ratelimit_kick", local81) //(String key, Boolean def)
+		ServerConsole.RateLimitKick = bool8
+		YamlConfig serverConfig15 = GameCore.ConfigFile.ServerConfig
+		System.Int64 local85 = 1
+
+		System.Boolean bool9 = serverConfig15.GetBool("enforce_same_ip", local85) //(String key, Boolean def)
+		ServerConsole.EnforceSameIp = bool9
+		YamlConfig serverConfig16 = GameCore.ConfigFile.ServerConfig
+		System.Int64 local89 = 1
+
+		System.Boolean bool10 = serverConfig16.GetBool("enforce_same_asn", local89) //(String key, Boolean def)
+		ServerConsole.EnforceSameAsn = bool10
+		YamlConfig serverConfig17 = GameCore.ConfigFile.ServerConfig
+		System.Int64 local93 = 1
+
+		System.Boolean bool11 = serverConfig17.GetBool("no_enforcement_for_local_ip_addresses", local93) //(String key, Boolean def)
+		ServerConsole.SkipEnforcementForLocalAddresses = bool11
+		YamlConfig serverConfig18 = GameCore.ConfigFile.ServerConfig
+		ulong local97 = 0
+
+		System.Boolean bool12 = serverConfig18.GetBool("enable_fast_round_restart", local97) //(String key, Boolean def)
+		bool4 = bool12
+		CustomNetworkManager.EnableFastRestart = bool4
+		YamlConfig serverConfig19 = GameCore.ConfigFile.ServerConfig
+
+		System.Single float = serverConfig19.GetFloat("fast_round_restart_delay", 3.200000047683716) //(String key, Single def)
+		CustomNetworkManager.FastRestartDelay = float
+		YamlConfig serverConfig20 = GameCore.ConfigFile.ServerConfig
+		System.Int64 local104 = 1
+
+		System.Boolean bool13 = serverConfig20.GetBool("online_mode", local104) //(String key, Boolean def)
+		bool4 = bool13
+		CharacterClassManager.OnlineMode = bool4
+		YamlConfig serverConfig21 = GameCore.ConfigFile.ServerConfig
+		System.Int64 local108 = 1
+
+		System.Boolean bool14 = serverConfig21.GetBool("cuffed_escapee_change_team", local108) //(String key, Boolean def)
+		CharacterClassManager.CuffedChangeTeam = bool14
+		YamlConfig serverConfig22 = GameCore.ConfigFile.ServerConfig
+		System.Int64 local112 = 1
+
+		System.Boolean bool15 = serverConfig22.GetBool("force_cuffed_escapee_change_team", local112) //(String key, Boolean def)
+		CharacterClassManager.ForceCuffedChangeTeam = bool15
+		YamlConfig serverConfig23 = GameCore.ConfigFile.ServerConfig
+		ulong local116 = 0
+
+		System.Boolean bool16 = serverConfig23.GetBool("enable_sync_command_binding", local116) //(String key, Boolean def)
+		CharacterClassManager.EnableSyncServerCmdBinding = bool16
+		YamlConfig serverConfig24 = GameCore.ConfigFile.ServerConfig
+		ulong local120 = 0
+
+		System.Boolean bool17 = serverConfig24.GetBool("pd_refresh_exit", local120) //(String key, Boolean def)
+		PocketDimensionTeleport.RefreshExit = bool17
+		YamlConfig serverConfig25 = GameCore.ConfigFile.ServerConfig
+		System.Int64 local124 = 1
+
+		System.Boolean bool18 = serverConfig25.GetBool("auto_warhead_broadcast_enabled", local124) //(String key, Boolean def)
+		bool4 = bool18
+		AlphaWarheadController.AutoWarheadBroadcastEnabled = bool4
+		YamlConfig serverConfig26 = GameCore.ConfigFile.ServerConfig
+
+		System.String string = serverConfig26.GetString("auto_warhead_broadcast_message", "The Alpha Warhead is being detonated") //(String key, String def)
+		 += 16
+		AlphaWarheadController.Singleton = string
+		YamlConfig serverConfig27 = GameCore.ConfigFile.ServerConfig
+		System.Int64 local130 = 10
+
+		System.UInt16 uShort2 = serverConfig27.GetUShort("auto_warhead_broadcast_time", local130) //(String key, UInt16 def)
+		AlphaWarheadController.WarheadBroadcastMessageTime = uShort2
+		YamlConfig serverConfig28 = GameCore.ConfigFile.ServerConfig
+
+		System.String string2 = serverConfig28.GetString("auto_warhead_detonate_broadcast", "The Alpha Warhead has been detonated") //(String key, String def)
+		 += 24
+		AlphaWarheadController.Singleton = string2
+		YamlConfig serverConfig29 = GameCore.ConfigFile.ServerConfig
+		System.Int64 local137 = 10
+
+		System.UInt16 uShort3 = serverConfig29.GetUShort("auto_warhead_detonate_broadcast_time", local137) //(String key, UInt16 def)
+		AlphaWarheadController.WarheadExplodedBroadcastMessageTime = uShort3
+		YamlConfig serverConfig30 = GameCore.ConfigFile.ServerConfig
+		ulong local142 = 0
+
+		System.Boolean bool19 = serverConfig30.GetBool("auto_decon_broadcast_enabled", local142) //(String key, Boolean def)
+		LightContainmentZoneDecontamination.DecontaminationController.AutoDeconBroadcastEnabled = bool19
+		YamlConfig serverConfig31 = GameCore.ConfigFile.ServerConfig
+
+		System.String string3 = serverConfig31.GetString("auto_decon_broadcast_message", "Light Containment Zone is being decontaminated") //(String key, String def)
+		 += 16
+		LightContainmentZoneDecontamination.DecontaminationController.Singleton = string3
+		YamlConfig serverConfig32 = GameCore.ConfigFile.ServerConfig
+		System.Int64 local148 = 10
+
+		System.UInt16 uShort4 = serverConfig32.GetUShort("auto_decon_broadcast_time", local148) //(String key, UInt16 def)
+		LightContainmentZoneDecontamination.DecontaminationController.DeconBroadcastDeconMessageTime = uShort4
+		YamlConfig serverConfig33 = GameCore.ConfigFile.ServerConfig
+		System.Int64 local153 = 1
+
+		System.Boolean bool20 = serverConfig33.GetBool("display_preauth_logs", local153) //(String key, Boolean def)
+		bool4 = bool20
+		CustomLiteNetLib4MirrorTransport.DisplayPreauthLogs = bool4
+		YamlConfig serverConfig34 = GameCore.ConfigFile.ServerConfig
+		System.Int64 local157 = 5
+
+		System.Byte byte = serverConfig34.GetByte("connections_delay_time", local157) //(String key, Byte def)
+		CustomLiteNetLib4MirrorTransport.DelayTime = byte
+		YamlConfig serverConfig35 = GameCore.ConfigFile.ServerConfig
+		System.Int64 local161 = 1
+
+		System.Boolean bool21 = serverConfig35.GetBool("enable_ip_ratelimit", local161) //(String key, Boolean def)
+		CustomLiteNetLib4MirrorTransport.IpRateLimiting = bool21
+		YamlConfig serverConfig36 = GameCore.ConfigFile.ServerConfig
+		System.Int64 local165 = 1
+
+		System.Boolean bool22 = serverConfig36.GetBool("enable_userid_ratelimit", local165) //(String key, Boolean def)
+		CustomLiteNetLib4MirrorTransport.UserRateLimiting = bool22
+		YamlConfig serverConfig37 = GameCore.ConfigFile.ServerConfig
+		System.Int64 local169 = 1
+
+		System.Boolean bool23 = serverConfig37.GetBool("geoblocking_ignore_whitelisted", local169) //(String key, Boolean def)
+		CustomLiteNetLib4MirrorTransport.GeoblockIgnoreWhitelisted = bool23
+		YamlConfig serverConfig38 = GameCore.ConfigFile.ServerConfig
+		System.Int32 60 = 60
+
+		System.UInt32 uInt3 = serverConfig38.GetUInt("rejection_suppression_threshold", 60) //(String key, UInt32 def)
+		CustomLiteNetLib4MirrorTransport.RejectionThreshold = uInt3
+		YamlConfig serverConfig39 = GameCore.ConfigFile.ServerConfig
+		System.Int32 50 = 50
+
+		System.UInt32 uInt4 = serverConfig39.GetUInt("challenge_issuance_suppression_threshold", 50) //(String key, UInt32 def)
+		CustomLiteNetLib4MirrorTransport.IssuedThreshold = uInt4
+		ulong local177 = 0
+
+		CustomLiteNetLib4MirrorTransport.ReloadChallengeOptions()
+		System.Collections.Generic.HashSet`1<System.String> geoblockingList = CustomLiteNetLib4MirrorTransport.GeoblockingList
+
+		geoblockingList.Clear()
+		YamlConfig serverConfig40 = GameCore.ConfigFile.ServerConfig
+
+		System.String string4 = serverConfig40.GetString("geoblocking_mode", "none") //(String key, String def)
+
+		System.Boolean boolean = System.String.Equals(string4, "whitelist") //(String a, String b)
+
+		if (boolean == False)
+            goto INSN_181B06770
+        endif
+		. = 1
+		YamlConfig serverConfig41 = GameCore.ConfigFile.ServerConfig
+
+		System.Collections.Generic.List`1<System.String> stringList = serverConfig41.GetStringList("geoblocking_whitelist") //(String key)
+
+		System.Collections.Generic.List`1/Enumerator<T> enumerator = serverConfig41.GetEnumerator()
+
+		if (enumerator == 0)
+            goto INSN_181B066FB
+        endif
+		System.Collections.Generic.HashSet`1<System.String> geoblockingList2 = CustomLiteNetLib4MirrorTransport.GeoblockingList
+
+		System.String string5 = configPath2.ToUpper()
+
+		System.Boolean boolean2 = geoblockingList2.Add(string5) //(T item)
+
+		INSN_181B066FB:
+
+		geoblockingList2.Dispose()
+
+		geoblockingList2.Dispose()
+
+		if (local3 != 0)
+            goto INSN_181B085B5
+        endif
+
+		if (local3 == -1)
+            goto INSN_181B0678A
+        endif
+
+		INSN_181B06770:
+
+		[instruction error - managed method being called is null]
+
+		if (local3 == 0)
+            goto INSN_181B06919
+        endif
+
+		INSN_181B0678A:
+		. = 2
+		YamlConfig serverConfig42 = GameCore.ConfigFile.ServerConfig
+
+		System.Collections.Generic.List`1<System.String> stringList2 = serverConfig42.GetStringList("geoblocking_blacklist") //(String key)
+
+		System.Collections.Generic.List`1/Enumerator<T> enumerator2 = serverConfig42.GetEnumerator()
+
+		if (enumerator2 == 0)
+            goto INSN_181B068BB
+        endif
+		System.Collections.Generic.HashSet`1<System.String> geoblockingList3 = CustomLiteNetLib4MirrorTransport.GeoblockingList
+
+		System.String string6 = configPath2.ToUpper()
+
+		System.Boolean boolean3 = geoblockingList3.Add(string6) //(T item)
+
+		INSN_181B068BB:
+		local3 += 1
+		. = 1238
+
+		geoblockingList3.Dispose()
+
+		if (local3 != 0)
+            goto INSN_181B085CB
+        endif
+
+		if (local3 == -1)
+            goto INSN_181B06919
+        endif
+
+		INSN_181B06919:
+		. = 0
+		YamlConfig serverConfig43 = GameCore.ConfigFile.ServerConfig
+		ulong local205 = 0
+
+		System.Boolean bool24 = serverConfig43.GetBool("same_account_joining", local205) //(String key, Boolean def)
+		ServerRoles.AllowSameAccountJoining = bool24
+		YamlConfig serverConfig44 = GameCore.ConfigFile.ServerConfig
+		ulong local210 = 0
+
+		System.Boolean bool25 = serverConfig44.GetBool("enable_proxy_ip_passthrough", local210) //(String key, Boolean def)
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ImmediateToFieldAction at (0x181B057A9) is corrupt (Instance or field is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: GameCore.ConfigFile
+	static System.String GetConfigPath(System.String name)
+
+		System.String appFolder = FileManager.GetAppFolder(True, True, "") //(Boolean addSeparator, Boolean serverConfig, String centralConfig)
+
+		System.Boolean boolean = System.IO.Directory.Exists(appFolder) //(String path)
+
+		if (boolean == False)
+
+		    System.IO.DirectoryInfo directoryInfo = System.IO.Directory.CreateDirectory(appFolder) //(String path)
+		endif
+        
+
+		System.String string = System.String.Concat(appFolder, name, ".txt") //(String str0, String str1, String str2)
+
+		System.Boolean boolean2 = System.IO.File.Exists(string) //(String path)
+
+		if (boolean2 != False)
+            goto INSN_181B0562F
+        endif
+
+		System.String string2 = System.String.Concat("ConfigTemplates/", name, ".template.txt") //(String str0, String str1, String str2)
+
+		System.String string3 = System.String.Concat(appFolder, name, ".txt") //(String str0, String str1, String str2)
+
+		System.IO.File.Copy(string2, string3) //(String sourceFileName, String destFileName)
+
+		INSN_181B0562F:
+
+		System.String string4 = System.String.Concat(appFolder, name, ".txt") //(String str0, String str1, String str2)
+		return string4
+
+		System.Int32 int32 = appFolder.CompareTo()
+
+		System.String string5 = System.String.Concat()
+		System.Int32 7 = 7
+
+		ServerConsole.AddLog(string5, 7) //(String q, ConsoleColor color)
+		ulong local22 = 0
+		return local22
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallVirtualMethodAction at (0x181B05669) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+

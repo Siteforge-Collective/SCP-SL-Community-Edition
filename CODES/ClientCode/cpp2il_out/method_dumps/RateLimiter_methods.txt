@@ -1,0 +1,198 @@
+Type: RateLimiter
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RateLimiter
+	System.Boolean get_InstantReady()
+		System.Diagnostics.Stopwatch _instInput = this._instInput
+
+		if (_instInput.is_running != False)
+
+		    System.TimeSpan elapsed = _instInput.Elapsed
+		    return elapsed
+		endif
+        
+		return True
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x18033AB93) is corrupt (Return value has a type of System.TimeSpan, expecting an object of type System.Boolean) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RateLimiter
+	System.Boolean get_RateReady()
+		System.Collections.Generic.Queue`1<System.Diagnostics.Stopwatch> _inputs = this._inputs
+		System.Int32 _size = _inputs._size
+
+		if (_size > 0)
+		    System.Collections.Generic.Queue`1<System.Diagnostics.Stopwatch> _inputs2 = this._inputs
+
+		    System.Diagnostics.Stopwatch stopwatch = _inputs2.Peek()
+
+		    System.TimeSpan elapsed = stopwatch.Elapsed
+		    System.Collections.Generic.Queue`1<System.Diagnostics.Stopwatch> _inputs3 = this._inputs
+
+		    System.Diagnostics.Stopwatch stopwatch2 = _inputs3.Dequeue()
+		endif
+        
+		System.Boolean local12 = _size < this._windowLength
+		return local12
+		return True
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Collections.Generic.Queue`1<System.Diagnostics.Stopwatch> RateLimiter::_inputs
+	IL_0006: ldfld System.Int32 System.Collections.Generic.Queue`1::_size
+	IL_000b: stloc.1
+	IL_000c: ldloc.1
+	IL_000d: ldc.i4.0
+	IL_000e: ble.s IL_002d
+	IL_0010: ldarg.0
+	IL_0011: ldfld System.Collections.Generic.Queue`1<System.Diagnostics.Stopwatch> RateLimiter::_inputs
+	IL_0016: call T System.Collections.Generic.Queue`1::Peek()
+	IL_001b: call System.TimeSpan System.Diagnostics.Stopwatch::get_Elapsed()
+	IL_0020: stloc.2
+	IL_0021: ldarg.0
+	IL_0022: ldfld System.Collections.Generic.Queue`1<System.Diagnostics.Stopwatch> RateLimiter::_inputs
+	IL_0027: call T System.Collections.Generic.Queue`1::Dequeue()
+	IL_002c: stloc.3
+	IL_002d: ldloc.1
+	IL_002e: ldarg.0
+	IL_002f: ldfld System.Int32 RateLimiter::_windowLength
+	IL_0034: clt
+	IL_0036: ret
+	IL_0037: ldc.i4.1
+	IL_0038: ret
+	IL_0039: newobj System.Void System.NullReferenceException::.ctor()
+	IL_003e: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RateLimiter
+	System.Boolean get_AllReady()
+		System.Diagnostics.Stopwatch _instInput = this._instInput
+
+		if (_instInput.is_running != False)
+
+		    System.TimeSpan elapsed = _instInput.Elapsed
+
+		    if (elapsed == 0)
+		        return elapsed
+		    endif
+            
+		    System.Collections.Generic.Queue`1<System.Diagnostics.Stopwatch> _inputs = this._inputs
+		    System.Int32 _size = _inputs._size
+
+		    if (_size <= 0)
+                goto INSN_18033AB0E
+            endif
+		    System.Collections.Generic.Queue`1<System.Diagnostics.Stopwatch> _inputs2 = this._inputs
+
+		    System.Diagnostics.Stopwatch stopwatch = _inputs2.Peek()
+
+		    System.TimeSpan elapsed2 = stopwatch.Elapsed
+		    System.Collections.Generic.Queue`1<System.Diagnostics.Stopwatch> _inputs3 = this._inputs
+
+		    System.Diagnostics.Stopwatch stopwatch2 = _inputs3.Dequeue()
+
+		    INSN_18033AB0E:
+		    System.Boolean local19 = _size < this._windowLength
+		    return local19
+		    return True
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x18033AA6B) is corrupt (Return value has a type of System.TimeSpan, expecting an object of type System.Boolean) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RateLimiter
+	System.Void .ctor(System.Single instantCooldown, System.Int32 maxInputs, System.Single timeWindow)
+
+		base..ctor()
+		this._instantCooldown = instantCooldown
+		this._windowCooldown = timeWindow
+		this._windowLength = maxInputs
+		System.Collections.Generic.Queue`1<System.Diagnostics.Stopwatch> queue = new System.Collections.Generic.Queue`1<System.Diagnostics.Stopwatch>()
+
+		queue..ctor()
+		this._inputs = queue
+		System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch()
+
+		stopwatch..ctor()
+		this._instInput = stopwatch
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void System.Object::.ctor()
+	IL_0006: ldarg.0
+	IL_0007: ldarg.1
+	IL_0008: stfld System.Single RateLimiter::_instantCooldown
+	IL_000d: ldarg.0
+	IL_000e: ldarg.3
+	IL_000f: stfld System.Single RateLimiter::_windowCooldown
+	IL_0014: ldarg.0
+	IL_0015: ldarg.2
+	IL_0016: stfld System.Int32 RateLimiter::_windowLength
+	IL_001b: newobj System.Void System.Collections.Generic.Queue`1::.ctor()
+	IL_0020: stloc.0
+	IL_0021: ldarg.0
+	IL_0022: ldloc.0
+	IL_0023: stfld System.Collections.Generic.Queue`1<System.Diagnostics.Stopwatch> RateLimiter::_inputs
+	IL_0028: newobj System.Void System.Diagnostics.Stopwatch::.ctor()
+	IL_002d: stloc.1
+	IL_002e: ldarg.0
+	IL_002f: ldloc.1
+	IL_0030: stfld System.Diagnostics.Stopwatch RateLimiter::_instInput
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RateLimiter
+	System.Void RegisterInput()
+		System.Diagnostics.Stopwatch _instInput = this._instInput
+
+		_instInput.Restart()
+		System.Collections.Generic.Queue`1<System.Diagnostics.Stopwatch> _inputs = this._inputs
+		ulong local4 = 0
+
+		System.Diagnostics.Stopwatch stopwatch = System.Diagnostics.Stopwatch.StartNew()
+
+		_inputs.Enqueue(stopwatch) //(T item)
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Diagnostics.Stopwatch RateLimiter::_instInput
+	IL_0006: call System.Void System.Diagnostics.Stopwatch::Restart()
+	IL_000b: ldarg.0
+	IL_000c: ldfld System.Collections.Generic.Queue`1<System.Diagnostics.Stopwatch> RateLimiter::_inputs
+	IL_0011: stloc.0
+	IL_0012: ldc.i4.0
+	IL_0013: stloc.1
+	IL_0014: call System.Diagnostics.Stopwatch System.Diagnostics.Stopwatch::StartNew()
+	IL_0019: stloc.2
+	IL_001a: ldloc.0
+	IL_001b: ldloc.2
+	IL_001c: call System.Void System.Collections.Generic.Queue`1::Enqueue(T)
+	IL_0021: ret
+	IL_0022: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0027: throw
+	
+

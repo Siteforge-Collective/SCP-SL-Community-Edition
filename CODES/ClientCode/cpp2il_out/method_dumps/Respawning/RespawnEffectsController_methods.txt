@@ -1,0 +1,763 @@
+Type: RespawnEffectsController
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Respawning.RespawnEffectsController
+	System.Void Awake()
+		System.Collections.Generic.List`1<Respawning.RespawnEffectsController> allControllers = Respawning.RespawnEffectsController.AllControllers
+		ulong local2 = 0
+
+		System.Boolean boolean = allControllers.Contains(local2) //(T item)
+
+		if (boolean != False)
+		    System.Collections.Generic.List`1<Respawning.RespawnEffectsController> allControllers2 = Respawning.RespawnEffectsController.AllControllers
+		    ulong local5 = 0
+
+		    System.Boolean boolean2 = allControllers2.Remove(local5) //(T item)
+		endif
+        
+		System.Collections.Generic.List`1<Respawning.RespawnEffectsController> allControllers3 = Respawning.RespawnEffectsController.AllControllers
+
+		allControllers3.Add(this) //(T item)
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldsfld System.Collections.Generic.List`1<Respawning.RespawnEffectsController> Respawning.RespawnEffectsController::AllControllers
+	IL_0005: stloc.0
+	IL_0006: ldc.i4.0
+	IL_0007: stloc.1
+	IL_0008: ldloc.0
+	IL_0009: ldloc.1
+	IL_000a: call System.Boolean System.Collections.Generic.List`1::Contains(T)
+	IL_000f: ldc.i4.0
+	IL_0010: beq.s IL_0023
+	IL_0012: ldsfld System.Collections.Generic.List`1<Respawning.RespawnEffectsController> Respawning.RespawnEffectsController::AllControllers
+	IL_0017: stloc.2
+	IL_0018: ldc.i4.0
+	IL_0019: stloc.3
+	IL_001a: ldloc.2
+	IL_001b: ldloc.3
+	IL_001c: call System.Boolean System.Collections.Generic.List`1::Remove(T)
+	IL_0021: stloc.s V_4
+	IL_0023: ldsfld System.Collections.Generic.List`1<Respawning.RespawnEffectsController> Respawning.RespawnEffectsController::AllControllers
+	IL_0028: ldarg.0
+	IL_0029: call System.Void System.Collections.Generic.List`1::Add(T)
+	IL_002e: ret
+	IL_002f: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0034: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Respawning.RespawnEffectsController
+	static System.Void ExecuteAllEffects(Respawning.RespawnEffectsController/EffectType type, Respawning.SpawnableTeamType team)
+		System.Collections.Generic.List`1<Respawning.RespawnEffectsController> allControllers = Respawning.RespawnEffectsController.AllControllers
+
+		System.Collections.Generic.List`1/Enumerator<T> enumerator = .GetEnumerator()
+
+		if (enumerator != 0)
+
+		    System.Boolean boolean = UnityEngine.Object.op_Inequality()
+
+		    if (boolean != False)
+
+		        .ServerExecuteEffects(type, team) //(EffectType type, SpawnableTeamType team)
+		    endif
+            
+
+		    [instruction error - managed method being called is null]
+
+		    [instruction error - managed method being called is null]
+
+		    if (RespawnEffectsController != 0)
+                goto INSN_181AAA38A
+            endif
+		    return
+		    throw new System.NullReferenceException()
+
+		    INSN_181AAA38A:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181AAA2BC) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Respawning.RespawnEffectsController
+	System.Void ServerExecuteEffects(Respawning.RespawnEffectsController/EffectType type, Respawning.SpawnableTeamType team)
+
+		if (type == constant22)
+		else
+		    Respawning.RespawnEffect[] onSpawnEffects = this.OnSpawnEffects
+		endif
+        
+		NorthwoodLib.Pools.ListPool`1<T> shared = NorthwoodLib.Pools.ListPool`1.Shared
+
+		System.Collections.Generic.List`1<T> list = shared.Rent()
+		ulong local7 = 0
+		System.Int32 length = onSpawnEffects.Length
+
+		if (local7 >= length)
+            goto INSN_181AAAE1B
+        endif
+		local7 += 1
+
+		if (constant33 != team)
+            goto INSN_181AAAE15
+        endif
+		local7 += local7
+
+		list.Add(local7) //(T item)
+
+		INSN_181AAAE15:
+		local7 += 1
+
+		INSN_181AAAE1B:
+
+		if ( <= local7)
+            goto INSN_181AAAF0C
+        endif
+
+		System.Byte[] byteArray = list.ToArray()
+		ulong local11 = 0
+
+		Mirror.PooledNetworkWriter writer = Mirror.NetworkWriterPool.GetWriter()
+
+		Mirror.NetworkWriterExtensions.WriteBytesAndSize(writer, byteArray) //(NetworkWriter writer, Byte[] buffer)
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'RespawnEffectsController' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+
+		base.SendRPCInternal(typeFromHandle, "RpcPlayEffects", writer, local7, local16) //(Type invokeClass, String rpcName, NetworkWriter writer, Int32 channelId, Boolean includeOwner)
+
+		Mirror.NetworkWriterPool.Recycle(writer) //(PooledNetworkWriter writer)
+
+		INSN_181AAAF0C:
+		NorthwoodLib.Pools.ListPool`1<T> shared2 = NorthwoodLib.Pools.ListPool`1.Shared
+
+		shared2.Return(list) //(List`1 list)
+		return
+
+		UnityEngine.Debug.LogWarning("[Server] function 'System.Void Respawning.RespawnEffectsController::ServerExecuteEffects(Respawning.RespawnEffectsController/EffectType,Respawning.SpawnableTeamType)' called when server was not active") //(Object message)
+		return
+		throw new System.IndexOutOfRangeException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfNonZeroOrNonNullAction at (0x181AAAD53) is corrupt (ConstantDefinition: Don't know how to get IL to load a System.Byte) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Respawning.RespawnEffectsController
+	System.Void RpcPlayEffects(System.Byte[] effects)
+		ulong local2 = 0
+
+		Mirror.PooledNetworkWriter writer = Mirror.NetworkWriterPool.GetWriter()
+
+		Mirror.NetworkWriterExtensions.WriteBytesAndSize(writer, effects) //(NetworkWriter writer, Byte[] buffer)
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'RespawnEffectsController' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		ulong local7 = 0
+
+		base.SendRPCInternal(typeFromHandle, "RpcPlayEffects", writer, local7, local8) //(Type invokeClass, String rpcName, NetworkWriter writer, Int32 channelId, Boolean includeOwner)
+
+		Mirror.NetworkWriterPool.Recycle(writer) //(PooledNetworkWriter writer)
+		return
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: call Mirror.PooledNetworkWriter Mirror.NetworkWriterPool::GetWriter()
+	IL_0007: stloc.1
+	IL_0008: ldloc.1
+	IL_0009: ldarg.1
+	IL_000a: call System.Void Mirror.NetworkWriterExtensions::WriteBytesAndSize(Mirror.NetworkWriter,System.Byte[])
+	IL_000f: ldtoken Respawning.RespawnEffectsController
+	IL_0014: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+	IL_0019: stloc.2
+	IL_001a: ldc.i4.0
+	IL_001b: stloc.3
+	IL_001c: ldarg.0
+	IL_001d: ldloc.2
+	IL_001e: ldstr "RpcPlayEffects"
+	IL_0023: ldloc.1
+	IL_0024: ldloc.3
+	IL_0025: ldloc.s V_4
+	IL_0027: call System.Void Mirror.NetworkBehaviour::SendRPCInternal(System.Type,System.String,Mirror.NetworkWriter,System.Int32,System.Boolean)
+	IL_002c: ldloc.1
+	IL_002d: call System.Void Mirror.NetworkWriterPool::Recycle(Mirror.PooledNetworkWriter)
+	IL_0032: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Respawning.RespawnEffectsController
+	static System.Void PlayCassieAnnouncement(System.String words, System.Boolean makeHold, System.Boolean makeNoise, System.Boolean customAnnouncement)
+		System.Collections.Generic.List`1<Respawning.RespawnEffectsController> allControllers = Respawning.RespawnEffectsController.AllControllers
+
+		System.Collections.Generic.List`1/Enumerator<T> enumerator = .GetEnumerator()
+
+		if (enumerator != 0)
+
+		    System.Boolean boolean = UnityEngine.Object.op_Inequality()
+
+		    if (boolean != False)
+		        customAnnouncement = makeNoise
+
+		        .ServerPassCassie(words, makeHold, customAnnouncement, customAnnouncement) //(String words, Boolean makeHold, Boolean makeNoise, Boolean customAnnouncement)
+
+		        [instruction error - managed method being called is null]
+		    else
+
+		        [instruction error - managed method being called is null]
+
+		        [instruction error - managed method being called is null]
+
+		        if (RespawnEffectsController != 0)
+                    goto INSN_181AAA97A
+                endif
+		    endif
+            
+		    return
+		    throw new System.NullReferenceException()
+
+		    INSN_181AAA97A:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181AAA87D) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Respawning.RespawnEffectsController
+	System.Void ServerPassCassie(System.String words, System.Boolean makeHold, System.Boolean makeNoise, System.Boolean customAnnouncement)
+		ulong local5 = 0
+
+		Mirror.PooledNetworkWriter writer = Mirror.NetworkWriterPool.GetWriter()
+
+		Mirror.NetworkWriterExtensions.WriteString(writer, words) //(NetworkWriter writer, String value)
+
+		[instruction error - managed method being called is null]
+		makeHold = makeNoise
+
+		[instruction error - managed method being called is null]
+
+		[instruction error - managed method being called is null]
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'RespawnEffectsController' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		ulong local13 = 0
+
+		base.SendRPCInternal(typeFromHandle, "RpcCassieAnnouncement", writer, local13, local14) //(Type invokeClass, String rpcName, NetworkWriter writer, Int32 channelId, Boolean includeOwner)
+
+		Mirror.NetworkWriterPool.Recycle(writer) //(PooledNetworkWriter writer)
+
+		UnityEngine.Debug.LogWarning("[Server] function 'System.Void Respawning.RespawnEffectsController::ServerPassCassie(System.String,System.Boolean,System.Boolean,System.Boolean)' called when server was not active") //(Object message)
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181AAB0F8) is corrupt (Don't know what method is being called) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Respawning.RespawnEffectsController
+	System.Void RpcCassieAnnouncement(System.String words, System.Boolean makeHold, System.Boolean makeNoise, System.Boolean customAnnouncement)
+		ulong local5 = 0
+
+		Mirror.PooledNetworkWriter writer = Mirror.NetworkWriterPool.GetWriter()
+
+		Mirror.NetworkWriterExtensions.WriteString(writer, words) //(NetworkWriter writer, String value)
+
+		[instruction error - managed method being called is null]
+		makeHold = makeNoise
+
+		[instruction error - managed method being called is null]
+
+		[instruction error - managed method being called is null]
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'RespawnEffectsController' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		ulong local13 = 0
+
+		base.SendRPCInternal(typeFromHandle, "RpcCassieAnnouncement", writer, local13, local14) //(Type invokeClass, String rpcName, NetworkWriter writer, Int32 channelId, Boolean includeOwner)
+
+		Mirror.NetworkWriterPool.Recycle(writer) //(PooledNetworkWriter writer)
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181AAAA31) is corrupt (Don't know what method is being called) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Respawning.RespawnEffectsController
+	static System.Void ClearQueue()
+		System.Collections.Generic.List`1<Respawning.RespawnEffectsController> allControllers = Respawning.RespawnEffectsController.AllControllers
+
+		System.Collections.Generic.List`1/Enumerator<T> enumerator = .GetEnumerator()
+
+		if (enumerator != 0)
+
+		    System.Boolean boolean = UnityEngine.Object.op_Inequality()
+
+		    if (boolean != False)
+
+		        .ServerPassClearQueue()
+
+		        [instruction error - managed method being called is null]
+		    else
+
+		        [instruction error - managed method being called is null]
+
+		        [instruction error - managed method being called is null]
+
+		        if (RespawnEffectsController != 0)
+                    goto INSN_181AAA213
+                endif
+		    endif
+            
+		    return
+		    throw new System.NullReferenceException()
+
+		    INSN_181AAA213:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181AAA142) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Respawning.RespawnEffectsController
+	System.Void ServerPassClearQueue()
+		ulong local1 = 0
+
+		Mirror.PooledNetworkWriter writer = Mirror.NetworkWriterPool.GetWriter()
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'RespawnEffectsController' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		ulong local5 = 0
+
+		base.SendRPCInternal(typeFromHandle, "RpcClearQueue", writer, local5, local6) //(Type invokeClass, String rpcName, NetworkWriter writer, Int32 channelId, Boolean includeOwner)
+
+		Mirror.NetworkWriterPool.Recycle(writer) //(PooledNetworkWriter writer)
+		return
+
+		UnityEngine.Debug.LogWarning("[Server] function 'System.Void Respawning.RespawnEffectsController::ServerPassClearQueue()' called when server was not active") //(Object message)
+		return
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: call Mirror.PooledNetworkWriter Mirror.NetworkWriterPool::GetWriter()
+	IL_0007: stloc.1
+	IL_0008: ldtoken Respawning.RespawnEffectsController
+	IL_000d: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+	IL_0012: stloc.2
+	IL_0013: ldc.i4.0
+	IL_0014: stloc.3
+	IL_0015: ldarg.0
+	IL_0016: ldloc.2
+	IL_0017: ldstr "RpcClearQueue"
+	IL_001c: ldloc.1
+	IL_001d: ldloc.3
+	IL_001e: ldloc.s V_4
+	IL_0020: call System.Void Mirror.NetworkBehaviour::SendRPCInternal(System.Type,System.String,Mirror.NetworkWriter,System.Int32,System.Boolean)
+	IL_0025: ldloc.1
+	IL_0026: call System.Void Mirror.NetworkWriterPool::Recycle(Mirror.PooledNetworkWriter)
+	IL_002b: ret
+	IL_002c: ldstr "[Server] function 'System.Void Respawning.RespawnEffectsController::ServerPassClearQueue()' called when server was not active"
+	IL_0031: call System.Void UnityEngine.Debug::LogWarning(System.Object)
+	IL_0036: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Respawning.RespawnEffectsController
+	System.Void RpcClearQueue()
+		ulong local1 = 0
+
+		Mirror.PooledNetworkWriter writer = Mirror.NetworkWriterPool.GetWriter()
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'RespawnEffectsController' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		ulong local5 = 0
+
+		base.SendRPCInternal(typeFromHandle, "RpcClearQueue", writer, local5, local6) //(Type invokeClass, String rpcName, NetworkWriter writer, Int32 channelId, Boolean includeOwner)
+
+		Mirror.NetworkWriterPool.Recycle(writer) //(PooledNetworkWriter writer)
+		return
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: call Mirror.PooledNetworkWriter Mirror.NetworkWriterPool::GetWriter()
+	IL_0007: stloc.1
+	IL_0008: ldtoken Respawning.RespawnEffectsController
+	IL_000d: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+	IL_0012: stloc.2
+	IL_0013: ldc.i4.0
+	IL_0014: stloc.3
+	IL_0015: ldarg.0
+	IL_0016: ldloc.2
+	IL_0017: ldstr "RpcClearQueue"
+	IL_001c: ldloc.1
+	IL_001d: ldloc.3
+	IL_001e: ldloc.s V_4
+	IL_0020: call System.Void Mirror.NetworkBehaviour::SendRPCInternal(System.Type,System.String,Mirror.NetworkWriter,System.Int32,System.Boolean)
+	IL_0025: ldloc.1
+	IL_0026: call System.Void Mirror.NetworkWriterPool::Recycle(Mirror.PooledNetworkWriter)
+	IL_002b: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Respawning.RespawnEffectsController
+	System.Void .ctor()
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void Mirror.NetworkBehaviour::.ctor()
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Respawning.RespawnEffectsController
+	static System.Void .cctor()
+		System.Collections.Generic.List`1<Respawning.RespawnEffectsController> list = new System.Collections.Generic.List`1<Respawning.RespawnEffectsController>()
+
+		list..ctor()
+		Respawning.RespawnEffectsController.AllControllers = list
+
+		System.Int32 int32 = UnityEngine.Animator.StringToHash("Play") //(String name)
+		Respawning.RespawnEffectsController.PlayKey = int32
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'RespawnEffectsController' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		Mirror.RemoteCalls.CmdDelegate cmdDelegate = new Mirror.RemoteCalls.CmdDelegate()
+		ulong local7 = 0
+
+		cmdDelegate..ctor(local7, {'InvokeUserCode_RpcPlayEffects' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		Mirror.RemoteCalls.RemoteCallHelper.RegisterRpcDelegate(typeFromHandle, "RpcPlayEffects", cmdDelegate) //(Type invokeClass, String rpcName, CmdDelegate func)
+
+		System.Type typeFromHandle2 = System.Type.GetTypeFromHandle({'RespawnEffectsController' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		Mirror.RemoteCalls.CmdDelegate cmdDelegate2 = new Mirror.RemoteCalls.CmdDelegate()
+		ulong local13 = 0
+
+		cmdDelegate2..ctor(local13, {'InvokeUserCode_RpcCassieAnnouncement' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		Mirror.RemoteCalls.RemoteCallHelper.RegisterRpcDelegate(typeFromHandle2, "RpcCassieAnnouncement", cmdDelegate2) //(Type invokeClass, String rpcName, CmdDelegate func)
+
+		System.Type typeFromHandle3 = System.Type.GetTypeFromHandle({'RespawnEffectsController' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		Mirror.RemoteCalls.CmdDelegate cmdDelegate3 = new Mirror.RemoteCalls.CmdDelegate()
+		ulong local19 = 0
+
+		cmdDelegate3..ctor(local19, {'InvokeUserCode_RpcClearQueue' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		Mirror.RemoteCalls.RemoteCallHelper.RegisterRpcDelegate(typeFromHandle3, "RpcClearQueue", cmdDelegate3) //(Type invokeClass, String rpcName, CmdDelegate func)
+		return
+
+
+Generated IL:
+	IL_0000: newobj System.Void System.Collections.Generic.List`1::.ctor()
+	IL_0005: stsfld System.Collections.Generic.List`1<Respawning.RespawnEffectsController> Respawning.RespawnEffectsController::AllControllers
+	IL_000a: ldstr "Play"
+	IL_000f: call System.Int32 UnityEngine.Animator::StringToHash(System.String)
+	IL_0014: stsfld System.Int32 Respawning.RespawnEffectsController::PlayKey
+	IL_0019: ldtoken Respawning.RespawnEffectsController
+	IL_001e: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+	IL_0023: stloc.0
+	IL_0024: ldloc.2
+	IL_0025: ldftn System.Void Respawning.RespawnEffectsController::InvokeUserCode_RpcPlayEffects(Mirror.NetworkBehaviour,Mirror.NetworkReader,Mirror.NetworkConnectionToClient)
+	IL_002b: newobj System.Void Mirror.RemoteCalls.CmdDelegate::.ctor(System.Object,System.IntPtr)
+	IL_0030: stloc.1
+	IL_0031: ldc.i4.0
+	IL_0032: stloc.2
+	IL_0033: ldloc.0
+	IL_0034: ldstr "RpcPlayEffects"
+	IL_0039: ldloc.1
+	IL_003a: call System.Void Mirror.RemoteCalls.RemoteCallHelper::RegisterRpcDelegate(System.Type,System.String,Mirror.RemoteCalls.CmdDelegate)
+	IL_003f: ldtoken Respawning.RespawnEffectsController
+	IL_0044: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+	IL_0049: stloc.3
+	IL_004a: ldloc.s V_5
+	IL_004c: ldftn System.Void Respawning.RespawnEffectsController::InvokeUserCode_RpcCassieAnnouncement(Mirror.NetworkBehaviour,Mirror.NetworkReader,Mirror.NetworkConnectionToClient)
+	IL_0052: newobj System.Void Mirror.RemoteCalls.CmdDelegate::.ctor(System.Object,System.IntPtr)
+	IL_0057: stloc.s V_4
+	IL_0059: ldc.i4.0
+	IL_005a: stloc.s V_5
+	IL_005c: ldloc.3
+	IL_005d: ldstr "RpcCassieAnnouncement"
+	IL_0062: ldloc.s V_4
+	IL_0064: call System.Void Mirror.RemoteCalls.RemoteCallHelper::RegisterRpcDelegate(System.Type,System.String,Mirror.RemoteCalls.CmdDelegate)
+	IL_0069: ldtoken Respawning.RespawnEffectsController
+	IL_006e: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+	IL_0073: stloc.s V_6
+	IL_0075: ldloc.s V_8
+	IL_0077: ldftn System.Void Respawning.RespawnEffectsController::InvokeUserCode_RpcClearQueue(Mirror.NetworkBehaviour,Mirror.NetworkReader,Mirror.NetworkConnectionToClient)
+	IL_007d: newobj System.Void Mirror.RemoteCalls.CmdDelegate::.ctor(System.Object,System.IntPtr)
+	IL_0082: stloc.s V_7
+	IL_0084: ldc.i4.0
+	IL_0085: stloc.s V_8
+	IL_0087: ldloc.s V_6
+	IL_0089: ldstr "RpcClearQueue"
+	IL_008e: ldloc.s V_7
+	IL_0090: call System.Void Mirror.RemoteCalls.RemoteCallHelper::RegisterRpcDelegate(System.Type,System.String,Mirror.RemoteCalls.CmdDelegate)
+	IL_0095: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Respawning.RespawnEffectsController
+	System.Void MirrorProcessed()
+
+
+Generated IL:
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Respawning.RespawnEffectsController
+	System.Void UserCode_RpcPlayEffects(System.Byte[] effects)
+		ulong local2 = 0
+		System.Int32 length = effects.Length
+
+		if (local2 < length)
+		    System.Byte local4 = effects[local2]
+
+		    if (local4 < constant5)
+		        Respawning.RespawnEffect[] onSpawnEffects = this.OnSpawnEffects
+		    else
+		        Respawning.RespawnEffect[] selectionEffects = this.SelectionEffects
+		    endif
+            
+		    local2 += 1
+		    Respawning.RespawnEffect local7 = selectionEffects[local2]
+		    Respawning.RespawnEffect local8 = selectionEffects[local2]
+
+		    if (local8 == 0)
+                goto INSN_181AAB5BA
+            endif
+		    ulong local9 = 0
+
+		    ReferenceHub localHub = ReferenceHub.LocalHub
+
+		    PlayerRoles.RoleTypeId roleId = PlayerRoles.PlayerRolesUtils.GetRoleId(localHub) //(ReferenceHub hub)
+
+		    System.Boolean boolean = CollectionExtensions.Contains<PlayerRoles.RoleTypeId>()
+
+		    if (boolean == False)
+                goto INSN_181AAB677
+            endif
+
+		    INSN_181AAB5BA:
+
+		    System.Boolean boolean2 = UnityEngine.Object.op_Inequality()
+
+		    if (boolean2 == False)
+                goto INSN_181AAB634
+            endif
+		    System.Int32 playKey = Respawning.RespawnEffectsController.PlayKey
+
+		    [instruction error - managed method being called is null]
+
+		    INSN_181AAB634:
+
+		    System.Boolean boolean3 = UnityEngine.Object.op_Inequality()
+
+		    if (boolean3 == False)
+                goto INSN_181AAB677
+            endif
+
+		    .Play()
+
+		    INSN_181AAB677:
+		    local2 += 1
+		endif
+        
+		return
+		throw new System.IndexOutOfRangeException()
+
+
+Generated IL:
+	Don't know how to write IL for Cpp2IL.Core.Analysis.Actions.x86.Important.RegOffsetArrayValueReadRegToRegAction. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Respawning.RespawnEffectsController
+	static System.Void InvokeUserCode_RpcPlayEffects(Mirror.NetworkBehaviour obj, Mirror.NetworkReader reader, Mirror.NetworkConnectionToClient senderConnection)
+		ulong local3 = 0
+
+		System.Boolean active = Mirror.NetworkClient.active
+
+		if (active != False)
+		    ulong local5 = 0
+
+		    System.Byte[] byteArray = Mirror.NetworkReaderExtensions.ReadBytesAndSize(reader) //(NetworkReader reader)
+		    //UNKNOWN CLASS OFFSET READ HERE
+
+		    obj.UserCode_RpcPlayEffects(byteArray) //(Byte[] effects)
+		    return
+		endif
+        
+
+		UnityEngine.Debug.LogError("RPC RpcPlayEffects called on server.") //(Object message)
+		return
+		throw new System.InvalidCastException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.UnknownClassOffsetReadAction at (0x181AAA76B) is corrupt (Unknown class offset read) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Respawning.RespawnEffectsController
+	System.Void UserCode_RpcCassieAnnouncement(System.String words, System.Boolean makeHold, System.Boolean makeNoise, System.Boolean customAnnouncement)
+
+		[instruction error - managed method being called is null]
+
+		if ( == 0)
+		    NineTailedFoxAnnouncer singleton = NineTailedFoxAnnouncer.singleton
+		    makeHold = makeNoise
+
+		    singleton.AddPhraseToQueue()
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181AAB39A) is corrupt (Don't know what method is being called) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Respawning.RespawnEffectsController
+	static System.Void InvokeUserCode_RpcCassieAnnouncement(Mirror.NetworkBehaviour obj, Mirror.NetworkReader reader, Mirror.NetworkConnectionToClient senderConnection)
+		ulong local3 = 0
+
+		System.Boolean active = Mirror.NetworkClient.active
+
+		if (active != False)
+
+		    System.String string = Mirror.NetworkReaderExtensions.ReadString(reader) //(NetworkReader reader)
+
+		    System.Boolean boolean = Mirror.NetworkReaderExtensions.ReadBoolean(reader) //(NetworkReader reader)
+
+		    System.Boolean boolean2 = Mirror.NetworkReaderExtensions.ReadBoolean(reader) //(NetworkReader reader)
+		    ulong local11 = 0
+
+		    System.Boolean boolean3 = Mirror.NetworkReaderExtensions.ReadBoolean(reader) //(NetworkReader reader)
+		    //UNKNOWN CLASS OFFSET READ HERE
+
+		    [instruction error - managed method being called is null]
+
+		    if (boolean3 == False)
+		        NineTailedFoxAnnouncer singleton = NineTailedFoxAnnouncer.singleton
+		        ulong local16 = 0
+
+		        singleton.AddPhraseToQueue(string, boolean2, local16, boolean, boolean3) //(String tts, Boolean generateNoise, Boolean rawNumber, Boolean makeHold, Boolean customAnnouncement)
+		    endif
+            
+		    return
+		endif
+        
+
+		UnityEngine.Debug.LogError("RPC RpcCassieAnnouncement called on server.") //(Object message)
+		return
+		throw new System.InvalidCastException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.UnknownClassOffsetReadAction at (0x181AAA481) is corrupt (Unknown class offset read) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Respawning.RespawnEffectsController
+	System.Void UserCode_RpcClearQueue()
+		NineTailedFoxAnnouncer singleton = NineTailedFoxAnnouncer.singleton
+
+		singleton.ClearQueue()
+		Subtitles.SubtitleController singleton2 = Subtitles.SubtitleController.Singleton
+
+		singleton2.ClearSubtitles(1) //(CassieAnnouncementType type)
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldsfld NineTailedFoxAnnouncer NineTailedFoxAnnouncer::singleton
+	IL_0005: call System.Void NineTailedFoxAnnouncer::ClearQueue()
+	IL_000a: ldsfld Subtitles.SubtitleController Subtitles.SubtitleController::Singleton
+	IL_000f: ldc.i4.1
+	IL_0010: conv.i8
+	IL_0011: conv.u8
+	IL_0012: call System.Void Subtitles.SubtitleController::ClearSubtitles(Subtitles.CassieAnnouncementType)
+	IL_0017: ret
+	IL_0018: newobj System.Void System.NullReferenceException::.ctor()
+	IL_001d: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Respawning.RespawnEffectsController
+	static System.Void InvokeUserCode_RpcClearQueue(Mirror.NetworkBehaviour obj, Mirror.NetworkReader reader, Mirror.NetworkConnectionToClient senderConnection)
+		ulong local3 = 0
+
+		System.Boolean active = Mirror.NetworkClient.active
+
+		if (active != False)
+		    //UNKNOWN CLASS OFFSET READ HERE
+		    NineTailedFoxAnnouncer singleton = NineTailedFoxAnnouncer.singleton
+
+		    singleton.ClearQueue()
+		    Subtitles.SubtitleController singleton2 = Subtitles.SubtitleController.Singleton
+
+		    singleton2.ClearSubtitles(1) //(CassieAnnouncementType type)
+		    return
+		endif
+        
+
+		UnityEngine.Debug.LogError("RPC RpcClearQueue called on server.") //(Object message)
+		return
+		throw new System.InvalidCastException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.UnknownClassOffsetReadAction at (0x181AAA5F7) is corrupt (Unknown class offset read) and cannot be created as IL. Aborting here.
+
+

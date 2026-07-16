@@ -1,0 +1,423 @@
+Type: DoorLinkingRooms
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomCulling.DoorLinkingRooms
+	System.Boolean get_CanNotSeeThrough()
+		Interactables.Interobjects.DoorUtils.DoorVariant _doorVariant = this._doorVariant
+		ulong local3 = 0
+
+		System.Boolean boolean = UnityEngine.Object.op_Equality(_doorVariant, local3) //(Object x, Object y)
+
+		if (boolean == False)
+		    Interactables.Interobjects.DoorUtils.DoorVariant _doorVariant2 = this._doorVariant
+
+		    if (_doorVariant2.CanSeeThrough == boolean)
+
+		        System.Boolean boolean2 = _doorVariant2.AllowInteracting()
+		        ulong local7 = 0
+		        return boolean2
+		    endif
+            
+		    ulong local8 = 0
+		    return local8
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallVirtualMethodAction at (0x181ADDFC3) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomCulling.DoorLinkingRooms
+	CustomCulling.CullableRoom GetOtherRoom(CustomCulling.CullableRoom currentRoom)
+		CustomCulling.CullableRoom forwardRoom = this.ForwardRoom
+
+		UnityEngine.GameObject gameObject = forwardRoom.gameObject
+
+		UnityEngine.GameObject gameObject2 = currentRoom.gameObject
+
+		System.Boolean boolean = UnityEngine.Object.op_Equality(gameObject, gameObject2) //(Object x, Object y)
+
+		if (boolean != False)
+		    CustomCulling.CullableRoom backwardRoom = this.BackwardRoom
+		    return backwardRoom
+		endif
+        
+		CustomCulling.CullableRoom forwardRoom2 = this.ForwardRoom
+		return forwardRoom2
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld CustomCulling.CullableRoom CustomCulling.DoorLinkingRooms::ForwardRoom
+	IL_0006: call UnityEngine.GameObject UnityEngine.Component::get_gameObject()
+	IL_000b: stloc.0
+	IL_000c: ldarg.1
+	IL_000d: call UnityEngine.GameObject UnityEngine.Component::get_gameObject()
+	IL_0012: stloc.1
+	IL_0013: ldloc.0
+	IL_0014: ldloc.1
+	IL_0015: call System.Boolean UnityEngine.Object::op_Equality(UnityEngine.Object,UnityEngine.Object)
+	IL_001a: ldc.i4.0
+	IL_001b: beq.s IL_0024
+	IL_001d: ldarg.0
+	IL_001e: ldfld CustomCulling.CullableRoom CustomCulling.DoorLinkingRooms::BackwardRoom
+	IL_0023: ret
+	IL_0024: ldarg.0
+	IL_0025: ldfld CustomCulling.CullableRoom CustomCulling.DoorLinkingRooms::ForwardRoom
+	IL_002a: ret
+	IL_002b: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0030: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomCulling.DoorLinkingRooms
+	System.Void Initialize()
+
+		if (this._initialized == False)
+
+		    UnityEngine.Transform transform = base.transform
+
+		    UnityEngine.Vector3 position = this.position
+
+		    UnityEngine.Transform transform2 = base.transform
+
+		    UnityEngine.Vector3 forward = this.forward
+
+		    UnityEngine.Vector3 vector3 = UnityEngine.Vector3.op_Addition()
+
+		    MapGeneration.RoomIdentifier roomIdentifier = MapGeneration.RoomIdUtils.RoomAtPosition()
+		    ulong local17 = 0
+
+		    System.Boolean boolean = UnityEngine.Object.op_Inequality(roomIdentifier, local17) //(Object x, Object y)
+
+		    if (boolean != False)
+
+		        CustomCulling.CullableRoom componentInParent = roomIdentifier.GetComponentInParent<CustomCulling.CullableRoom>()
+		        this.ForwardRoom = componentInParent
+		    endif
+            
+
+		    UnityEngine.Transform transform3 = base.transform
+
+		    UnityEngine.Vector3 position2 = this.position
+
+		    UnityEngine.Transform transform4 = base.transform
+
+		    UnityEngine.Vector3 forward2 = this.forward
+
+		    UnityEngine.Vector3 vector32 = UnityEngine.Vector3.op_Subtraction()
+
+		    MapGeneration.RoomIdentifier roomIdentifier2 = MapGeneration.RoomIdUtils.RoomAtPosition()
+		    ulong local36 = 0
+
+		    System.Boolean boolean2 = UnityEngine.Object.op_Inequality(roomIdentifier2, local36) //(Object x, Object y)
+
+		    if (boolean2 == False)
+                goto INSN_181ADDAFE
+            endif
+
+		    CustomCulling.CullableRoom componentInParent2 = roomIdentifier2.GetComponentInParent<CustomCulling.CullableRoom>()
+		    this.BackwardRoom = componentInParent2
+
+		    INSN_181ADDAFE:
+		    CustomCulling.CullableRoom forwardRoom = this.ForwardRoom
+		    ulong local41 = 0
+
+		    System.Boolean boolean3 = UnityEngine.Object.op_Equality(forwardRoom, local41) //(Object x, Object y)
+
+		    if (boolean3 != False)
+                goto INSN_181ADDC2D
+            endif
+		    CustomCulling.CullableRoom backwardRoom = this.BackwardRoom
+		    ulong local45 = 0
+
+		    System.Boolean boolean4 = UnityEngine.Object.op_Equality(backwardRoom, local45) //(Object x, Object y)
+
+		    if (boolean4 != False)
+                goto INSN_181ADDC2D
+            endif
+		    CustomCulling.CullableRoom forwardRoom2 = this.ForwardRoom
+		    CustomCulling.CullableRoom backwardRoom2 = this.BackwardRoom
+
+		    System.Boolean boolean5 = UnityEngine.Object.op_Equality(forwardRoom2, backwardRoom2) //(Object x, Object y)
+
+		    if (boolean5 != False)
+                goto INSN_181ADDC3E
+            endif
+		    this._initialized = True
+
+		    Interactables.Interobjects.DoorUtils.DoorVariant component = base.GetComponent<Interactables.Interobjects.DoorUtils.DoorVariant>()
+		    this._doorVariant = component
+		    CustomCulling.CullableRoom forwardRoom3 = this.ForwardRoom
+		    System.Collections.Generic.List`1<CustomCulling.DoorLinkingRooms> doors = forwardRoom3.Doors
+
+		    doors.Add(this) //(T item)
+		    CustomCulling.CullableRoom backwardRoom3 = this.BackwardRoom
+		    System.Collections.Generic.List`1<CustomCulling.DoorLinkingRooms> doors2 = backwardRoom3.Doors
+
+		    doors2.Add(this) //(T item)
+
+		    this.GetNearbyLights(True) //(Boolean isForward)
+		    ulong local58 = 0
+
+		    this.GetNearbyLights(local58) //(Boolean isForward)
+
+		    INSN_181ADDC2D:
+		endif
+        
+		return
+
+		INSN_181ADDC3E:
+		CustomCulling.CullableRoom forwardRoom4 = this.ForwardRoom
+
+		forwardRoom4.AddCullableBase(this) //(CullableBase cullableBase)
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181ADD8E5) is corrupt (Mismatched instance parameter. Expecting an instance of UnityEngine.Transform, actually {'this' (function parameter, type CustomCulling.DoorLinkingRooms)}) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomCulling.DoorLinkingRooms
+	System.Void AddLight(System.Boolean isForwardRoom, UnityEngine.Light light1, System.Single distanceToDoor)
+
+		System.Single range = light1.range
+
+		if (isForwardRoom == False)
+
+		    if (range > this.BackwardRoomLightRange)
+		        this.BackwardRoomLightRange = range
+		    endif
+            
+		else
+
+		    if (range > this.ForwardRoomLightRange)
+		        this.ForwardRoomLightRange = range
+		    endif
+            
+		    System.Collections.Generic.List`1<UnityEngine.Light> forwardRoomNearbyLights = this.ForwardRoomNearbyLights
+		endif
+        
+
+		forwardRoomNearbyLights.Add(light1) //(T item)
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.2
+	IL_0001: call System.Single UnityEngine.Light::get_range()
+	IL_0006: stloc.0
+	IL_0007: ldarg.1
+	IL_0008: ldc.i4.0
+	IL_0009: bne.un.s IL_001b
+	IL_000b: ldloc.0
+	IL_000c: ldarg.0
+	IL_000d: ldfld System.Single CustomCulling.DoorLinkingRooms::BackwardRoomLightRange
+	IL_0012: ble.s IL_001b
+	IL_0014: ldarg.0
+	IL_0015: ldloc.0
+	IL_0016: stfld System.Single CustomCulling.DoorLinkingRooms::BackwardRoomLightRange
+	IL_001b: ldloc.0
+	IL_001c: ldarg.0
+	IL_001d: ldfld System.Single CustomCulling.DoorLinkingRooms::ForwardRoomLightRange
+	IL_0022: ble.s IL_002b
+	IL_0024: ldarg.0
+	IL_0025: ldloc.0
+	IL_0026: stfld System.Single CustomCulling.DoorLinkingRooms::ForwardRoomLightRange
+	IL_002b: ldarg.0
+	IL_002c: ldfld System.Collections.Generic.List`1<UnityEngine.Light> CustomCulling.DoorLinkingRooms::ForwardRoomNearbyLights
+	IL_0031: ldarg.2
+	IL_0032: call System.Void System.Collections.Generic.List`1::Add(T)
+	IL_0037: ret
+	IL_0038: newobj System.Void System.NullReferenceException::.ctor()
+	IL_003d: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomCulling.DoorLinkingRooms
+	System.Void RefreshDistances(System.Boolean forwardRoom)
+
+		if (forwardRoom != False)
+		else
+		    System.Collections.Generic.List`1<UnityEngine.Light> backwardRoomNearbyLights = this.BackwardRoomNearbyLights
+		endif
+        
+		ulong local5 = 0
+
+		UnityEngine.Transform transform = base.transform
+
+		UnityEngine.Vector3 position = .position
+		System.Single single = position.z
+		System.Int32 _size = backwardRoomNearbyLights._size
+		ulong local11 = 0
+
+		System.ThrowHelper.ThrowArgumentOutOfRangeException()
+		T[] _items = backwardRoomNearbyLights._items
+		 local13 = _items[]
+
+		System.Boolean boolean = UnityEngine.Object.op_Equality()
+
+		if (boolean == False)
+
+		    UnityEngine.Transform transform2 = local13.transform
+
+		    UnityEngine.Vector3 position2 = .position
+		    System.Single single2 = position2.z
+
+		    System.Single single3 = UnityEngine.Vector3.Distance()
+
+		    System.Single range = local13.range
+
+		    if (range <= local5)
+                goto INSN_181ADDE2E
+            endif
+		else
+
+		    backwardRoomNearbyLights.RemoveAt(_size) //(Int32 index)
+		endif
+        
+		endwhile
+    
+		goto INSN_181ADDD72
+    
+
+		if (forwardRoom != False)
+        goto INSN_181ADDE90
+    endif
+		this.BackwardRoomLightRange = local5
+		return
+
+		INSN_181ADDE90:
+		this.ForwardRoomLightRange = 0
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL Generation Skipped due to invalid local _items of type T[]
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomCulling.DoorLinkingRooms
+	System.Void GetNearbyLights(System.Boolean isForward)
+
+		if (isForward != False)
+		else
+		    CustomCulling.CullableRoom backwardRoom = this.BackwardRoom
+		endif
+        
+		System.Collections.Generic.List`1<UnityEngine.Light> lights = backwardRoom.lights
+		System.Int32 _size = lights._size
+		System.Collections.Generic.List`1<UnityEngine.Light> lights2 = backwardRoom.lights
+		ulong local7 = 0
+
+		System.ThrowHelper.ThrowArgumentOutOfRangeException()
+		T[] _items = lights2._items
+		 local9 = _items[]
+
+		System.Boolean boolean = UnityEngine.Object.op_Equality()
+
+		if (boolean != False)
+            goto INSN_181ADD718
+        endif
+
+		UnityEngine.Transform transform = local9.transform
+
+		UnityEngine.Vector3 position = .position
+		System.Single single = position.z
+
+		UnityEngine.Transform transform2 = base.transform
+
+		UnityEngine.Vector3 position2 = .position
+		System.Single single2 = position2.z
+
+		System.Single single3 = UnityEngine.Vector3.Distance()
+
+		System.Single range = local9.range
+
+		if (range <= single3)
+            goto INSN_181ADD72F
+        endif
+
+		this.AddLight()
+
+		INSN_181ADD718:
+		System.Collections.Generic.List`1<UnityEngine.Light> lights3 = backwardRoom.lights
+
+		lights3.RemoveAt(_size) //(Int32 index)
+
+		INSN_181ADD72F:
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL Generation Skipped due to invalid local _items of type T[]
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomCulling.DoorLinkingRooms
+	System.Void Start()
+
+		this.Initialize()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void CustomCulling.DoorLinkingRooms::Initialize()
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CustomCulling.DoorLinkingRooms
+	System.Void .ctor()
+		System.Collections.Generic.List`1<UnityEngine.Light> list = new System.Collections.Generic.List`1<UnityEngine.Light>()
+
+		list..ctor()
+		this.ForwardRoomNearbyLights = list
+		System.Collections.Generic.List`1<UnityEngine.Light> list2 = new System.Collections.Generic.List`1<UnityEngine.Light>()
+
+		list2..ctor()
+		this.BackwardRoomNearbyLights = list2
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: newobj System.Void System.Collections.Generic.List`1::.ctor()
+	IL_0005: stloc.0
+	IL_0006: ldarg.0
+	IL_0007: ldloc.0
+	IL_0008: stfld System.Collections.Generic.List`1<UnityEngine.Light> CustomCulling.DoorLinkingRooms::ForwardRoomNearbyLights
+	IL_000d: newobj System.Void System.Collections.Generic.List`1::.ctor()
+	IL_0012: stloc.1
+	IL_0013: ldarg.0
+	IL_0014: ldloc.1
+	IL_0015: stfld System.Collections.Generic.List`1<UnityEngine.Light> CustomCulling.DoorLinkingRooms::BackwardRoomNearbyLights
+	IL_001a: ldarg.0
+	IL_001b: call System.Void UnityEngine.MonoBehaviour::.ctor()
+	IL_0020: ret
+	
+

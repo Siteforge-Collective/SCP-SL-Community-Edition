@@ -1,0 +1,324 @@
+Type: ElevatorSendCommand
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.ElevatorSendCommand
+	System.String get_Command()
+		System.String Command = this.<Command>k__BackingField
+		return Command
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String CommandSystem.Commands.RemoteAdmin.ElevatorSendCommand::<Command>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.ElevatorSendCommand
+	System.String[] get_Aliases()
+		System.String[] Aliases = this.<Aliases>k__BackingField
+		return Aliases
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String[] CommandSystem.Commands.RemoteAdmin.ElevatorSendCommand::<Aliases>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.ElevatorSendCommand
+	System.String get_Description()
+		System.String Description = this.<Description>k__BackingField
+		return Description
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.String CommandSystem.Commands.RemoteAdmin.ElevatorSendCommand::<Description>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.ElevatorSendCommand
+	System.Boolean Execute(System.ArraySegment`1<System.String> arguments, CommandSystem.ICommandSender sender, System.String& response)
+		ulong local4 = 0
+
+		System.Boolean boolean = Misc.CheckPermission(sender, 0x2000, response) //(ICommandSender sender, PlayerPermissions perm, String& response)
+
+		if (boolean != False)
+		    System.Int32 _count = arguments._count
+		    System.Int32 local10 = _count - 1
+
+		    if (local10 <= 1)
+		        System.Int32 5 = 5
+
+		        System.Boolean boolean2 = sender.Equals("all", 5) //(String value, StringComparison comparisonType)
+
+		        if (boolean2 != False)
+		        else
+		            ulong local13 = 0
+		            System.Int32 5 = 5
+
+		            System.Boolean boolean3 = sender.Equals("*", 5) //(String value, StringComparison comparisonType)
+		        endif
+                
+
+		        if (_count <= 1)
+                    goto INSN_18054BF36
+                endif
+		        sender += 1
+
+		        System.Boolean boolean4 = System.Int32.TryParse()
+
+		        if (boolean4 == False)
+                    goto INSN_18054BF20
+                endif
+
+		        INSN_18054BF20:
+		        response. = "Level must be a nonnegative integer."
+
+		        INSN_18054BF36:
+
+		        if (boolean3 == False)
+                    goto INSN_18054C155
+                endif
+		        NorthwoodLib.Pools.StringBuilderPool shared = NorthwoodLib.Pools.StringBuilderPool.Shared
+
+		        System.Text.StringBuilder stringBuilder = shared.Rent()
+		        System.Collections.Generic.Dictionary`2<Interactables.Interobjects.ElevatorManager/ElevatorGroup,System.Collections.Generic.List`1<Interactables.Interobjects.ElevatorDoor>> allElevatorDoors = Interactables.Interobjects.ElevatorDoor.AllElevatorDoors
+
+		        System.Collections.Generic.Dictionary`2/Enumerator<TKey,TValue> enumerator = .GetEnumerator()
+
+		        if (enumerator == 0)
+                    goto INSN_18054C05C
+                endif
+
+		        System.Boolean boolean5 = CommandSystem.Commands.RemoteAdmin.ElevatorSendCommand.SendElevator()
+
+		        System.Text.StringBuilder stringBuilder2 = stringBuilder.AppendFormat()
+
+		        INSN_18054C05C:
+
+		        stringBuilder.Dispose()
+
+		        if (local4 != 0)
+                    goto INSN_18054C1FC
+                endif
+
+		        if (local4 == -1)
+                    goto INSN_18054C0BA
+                endif
+
+		        if (constant57 != 266)
+                    goto INSN_18054C0BA
+                endif
+
+		        INSN_18054C0BA:
+
+		        System.Int32 hashCode = stringBuilder.GetHashCode()
+		        response. = hashCode
+		        boolean3. = 292
+		        NorthwoodLib.Pools.StringBuilderPool shared2 = NorthwoodLib.Pools.StringBuilderPool.Shared
+
+		        shared2.Return(stringBuilder) //(StringBuilder stringBuilder)
+
+		        if (local4 != 0)
+                    goto INSN_18054C211
+                endif
+
+		        INSN_18054C155:
+
+		        System.Boolean boolean6 = CommandSystem.Commands.RemoteAdmin.ElevatorCommand.TryParseGroup()
+
+		        if (boolean6 == False)
+                    goto INSN_18054C180
+                endif
+
+		        System.Boolean boolean7 = CommandSystem.Commands.RemoteAdmin.ElevatorSendCommand.SendElevator()
+
+		        INSN_18054C180:
+
+		        System.String string = System.String.Concat("Elevator "", local4, "" not found.") //(String str0, String str1, String str2)
+		        response. = string
+		    else
+		        response. = "Syntax error: elevator send <Elevator ID / all> [level]"
+		    endif
+            
+		endif
+        
+		ulong local33 = 0
+		return local33
+		throw new System.IndexOutOfRangeException()
+
+		INSN_18054C1FC:
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+
+		INSN_18054C211:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18054BEAB) is corrupt (Mismatched instance parameter. Expecting an instance of System.String, actually {'sender' (function parameter, type CommandSystem.ICommandSender)}) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.ElevatorSendCommand
+	static System.Boolean SendElevator(Interactables.Interobjects.ElevatorManager/ElevatorGroup group, System.Int32 level, System.String& response, CommandSystem.ICommandSender sender)
+		ulong local4 = 0
+		System.Collections.Generic.Dictionary`2<Interactables.Interobjects.ElevatorManager/ElevatorGroup,System.Collections.Generic.List`1<Interactables.Interobjects.ElevatorDoor>> allElevatorDoors = Interactables.Interobjects.ElevatorDoor.AllElevatorDoors
+
+		System.Boolean boolean = allElevatorDoors.TryGetValue()
+
+		if (boolean != False)
+
+		    if (level != -1)
+
+		        System.String string = System.String.Format("Elevator "{0}" does not have a level {1}.", boolean, boolean) //(String format, Object arg0, Object arg1)
+		        response. = string
+		    else
+
+		        if ( == 2)
+		            System.Collections.Generic.Dictionary`2<Interactables.Interobjects.ElevatorManager/ElevatorGroup,Interactables.Interobjects.ElevatorChamber> spawnedChambers = Interactables.Interobjects.ElevatorManager.SpawnedChambers
+
+		            System.Boolean boolean2 = spawnedChambers.TryGetValue()
+
+		            if (boolean2 != False)
+
+		                System.Boolean boolean3 = UnityEngine.Object.op_Equality()
+
+		                if (boolean3 == False)
+		                    System.Boolean local14 =  == local4
+
+		                    System.Boolean boolean4 = Interactables.Interobjects.ElevatorManager.TrySetDestination()
+
+		                    if (boolean4 == False)
+		                        local14 = boolean4
+
+		                        System.String string2 = System.String.Format("Could not send elevator "{0}" to level {1}.", local14, boolean4) //(String format, Object arg0, Object arg1)
+		                        response. = string2
+		                    else
+
+		                        System.String string3 = System.String.Format("{0} sent elevator {1} to level {2}.", boolean4, boolean4, boolean4) //(String format, Object arg0, Object arg1, Object arg2)
+		                        ulong local20 = 0
+
+		                        ServerLogs.AddLog(4, string3, 1, local20) //(Modules module, String msg, ServerLogType type, Boolean init)
+
+		                        System.String string4 = System.String.Format("Elevator "{0}" has been sent to level {1}.", string3, string3) //(String format, Object arg0, Object arg1)
+		                        response. = string4
+		                    else
+
+		                        System.Int32 hashCode = boolean2.GetHashCode()
+		                        local25 = boolean2
+
+		                        System.String string5 = System.String.Concat()
+		                        response. = string5
+		                    else
+		                        response. = "Elevator has more than 2 levels. Please specify a level manually."
+		                    endif
+                            
+		                    ulong local27 = 0
+		                endif
+                        
+		                return local27
+		            endif
+                    
+
+		            System.String string6 = System.String.Format("Elevator "{0}" could not be found in the Facility.", boolean) //(String format, Object arg0)
+		            response. = string6
+		            throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18054C2C6) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CommandSystem.Commands.RemoteAdmin.ElevatorSendCommand
+	System.Void .ctor()
+		this.<Command>k__BackingField = "send"
+		System.String[] local1 = new System.String[2]
+
+		if ("s" != 0)
+
+		    if ("s" == 0)
+                goto INSN_18054C754
+            endif
+		endif
+        
+		local1[0] = "s"
+
+		if ("snd" == 0)
+            goto INSN_18054C703
+        endif
+
+		if ("snd" == 0)
+            goto INSN_18054C774
+        endif
+
+		INSN_18054C703:
+		local1[1] = "snd"
+		this.<Aliases>k__BackingField = local1
+		this.<Description>k__BackingField = "Sends an elevator."
+
+		base..ctor()
+		return
+		throw new System.NullReferenceException()
+
+		INSN_18054C754:
+
+		INSN_18054C774:
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldstr "send"
+	IL_0006: stfld System.String CommandSystem.Commands.RemoteAdmin.ElevatorSendCommand::<Command>k__BackingField
+	IL_000b: ldc.i4.2
+	IL_000c: newarr System.String
+	IL_0011: stloc.0
+	IL_0012: ldstr "s"
+	IL_0017: ldc.i4.0
+	IL_0018: beq.s IL_0022
+	IL_001a: ldstr "s"
+	IL_001f: ldc.i4.0
+	IL_0020: beq.s IL_0000
+	IL_0022: ldloc.0
+	IL_0023: ldc.i4.0
+	IL_0024: ldstr "s"
+	IL_0029: stelem.any System.String
+	IL_002e: ldstr "snd"
+	IL_0033: ldc.i4.0
+	IL_0034: beq.s IL_003e
+	IL_0036: ldstr "snd"
+	IL_003b: ldc.i4.0
+	IL_003c: beq.s IL_0000
+	IL_003e: ldloc.0
+	IL_003f: ldc.i4.1
+	IL_0040: ldstr "snd"
+	IL_0045: stelem.any System.String
+	IL_004a: ldarg.0
+	IL_004b: ldloc.0
+	IL_004c: stfld System.String[] CommandSystem.Commands.RemoteAdmin.ElevatorSendCommand::<Aliases>k__BackingField
+	IL_0051: ldarg.0
+	IL_0052: ldstr "Sends an elevator."
+	IL_0057: stfld System.String CommandSystem.Commands.RemoteAdmin.ElevatorSendCommand::<Description>k__BackingField
+	IL_005c: ldarg.0
+	IL_005d: call System.Void System.Object::.ctor()
+	IL_0062: ret
+	IL_0063: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0068: throw
+	
+

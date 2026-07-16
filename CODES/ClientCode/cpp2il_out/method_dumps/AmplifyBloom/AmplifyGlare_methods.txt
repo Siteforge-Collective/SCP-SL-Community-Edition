@@ -1,0 +1,1473 @@
+Type: AmplifyGlare
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AmplifyBloom.AmplifyGlare
+	System.Void .ctor()
+		this.m_applyGlare = True
+
+		UnityEngine.Color white = UnityEngine.Color.white
+		this.m_glareMaxPassCount = 4
+		this.m_perPassDisplacement = 4
+		this._overallTint = constant5
+		this.m_intensity = 0,17
+		this.m_overallStreakScale = 1
+		this.m_isDirty = True
+
+		base..ctor()
+		AmplifyBloom.GlareLibType m_currentGlareType = this.m_currentGlareType
+		this.m_currentGlareIdx = m_currentGlareType
+		UnityEngine.Gradient gradient = new UnityEngine.Gradient()
+
+		gradient..ctor()
+		this.m_cromaticAberrationGrad = gradient
+		UnityEngine.RenderTexture[] local7 = new UnityEngine.RenderTexture[16]
+		this._rtBuffer = local7
+		UnityEngine.Matrix4x4[] local8 = new UnityEngine.Matrix4x4[4]
+		this.m_weigthsMat = local8
+		UnityEngine.Matrix4x4[] local9 = new UnityEngine.Matrix4x4[4]
+		this.m_offsetsMat = local9
+		AmplifyBloom.AmplifyGlareCache amplifyGlareCache = new AmplifyBloom.AmplifyGlareCache()
+
+		amplifyGlareCache..ctor()
+		this.m_amplifyGlareCache = amplifyGlareCache
+		ulong local12 = 0
+		ulong local13 = 0
+		ulong local14 = 0
+		this.m_whiteReference = local12
+		this.m_aTanFoV = constant25
+		AmplifyBloom.StarDefData[] local15 = new AmplifyBloom.StarDefData[5]
+		AmplifyBloom.StarDefData starDefData = new AmplifyBloom.StarDefData()
+
+		starDefData..ctor()
+
+		if (starDefData != 0)
+
+		    if (starDefData == 0)
+                goto INSN_1805A4E8D
+            endif
+		endif
+        
+		local15[0] = starDefData
+		AmplifyBloom.StarDefData starDefData2 = new AmplifyBloom.StarDefData()
+
+		starDefData2..ctor()
+
+		if (starDefData2 == 0)
+            goto INSN_1805A48B6
+        endif
+
+		if (starDefData2 == 0)
+            goto INSN_1805A4EAD
+        endif
+
+		INSN_1805A48B6:
+		local15[1] = starDefData2
+		AmplifyBloom.StarDefData starDefData3 = new AmplifyBloom.StarDefData()
+
+		starDefData3..ctor()
+
+		if (starDefData3 == 0)
+            goto INSN_1805A495A
+        endif
+
+		if (starDefData3 == 0)
+            goto INSN_1805A4ECD
+        endif
+
+		INSN_1805A495A:
+		local15[2] = starDefData3
+		AmplifyBloom.StarDefData starDefData4 = new AmplifyBloom.StarDefData()
+
+		starDefData4..ctor()
+
+		if (starDefData4 == 0)
+            goto INSN_1805A49ED
+        endif
+
+		if (starDefData4 == 0)
+            goto INSN_1805A4EED
+        endif
+
+		INSN_1805A49ED:
+		local15[3] = starDefData4
+		AmplifyBloom.StarDefData starDefData5 = new AmplifyBloom.StarDefData()
+
+		starDefData5..ctor()
+
+		if (starDefData5 == 0)
+            goto INSN_1805A4A8D
+        endif
+
+		if (starDefData5 == 0)
+            goto INSN_1805A4F0D
+        endif
+
+		INSN_1805A4A8D:
+		local15[4] = starDefData5
+		this.m_starDefArr = local15
+		AmplifyBloom.GlareDefData[] local51 = new AmplifyBloom.GlareDefData[9]
+		AmplifyBloom.GlareDefData glareDefData = new AmplifyBloom.GlareDefData()
+		ulong local53 = 0
+		ulong local54 = 0
+
+		glareDefData..ctor(local54, local53, 0.5) //(StarLibType starType, Single starInclination, Single chromaticAberration)
+
+		if (glareDefData == 0)
+            goto INSN_1805A4B13
+        endif
+
+		if (glareDefData == 0)
+            goto INSN_1805A4F2D
+        endif
+
+		INSN_1805A4B13:
+		local51[0] = glareDefData
+		AmplifyBloom.GlareDefData glareDefData2 = new AmplifyBloom.GlareDefData()
+
+		glareDefData2..ctor(1, 0.4399999976158142, 0.5) //(StarLibType starType, Single starInclination, Single chromaticAberration)
+
+		if (glareDefData2 == 0)
+            goto INSN_1805A4B74
+        endif
+
+		if (glareDefData2 == 0)
+            goto INSN_1805A4F4D
+        endif
+
+		INSN_1805A4B74:
+		local51[1] = glareDefData2
+		AmplifyBloom.GlareDefData glareDefData3 = new AmplifyBloom.GlareDefData()
+
+		glareDefData3..ctor(1, 1.2200000286102295, 1.5) //(StarLibType starType, Single starInclination, Single chromaticAberration)
+
+		if (glareDefData3 == 0)
+            goto INSN_1805A4BE0
+        endif
+
+		if (glareDefData3 == 0)
+            goto INSN_1805A4F6D
+        endif
+
+		INSN_1805A4BE0:
+		local51[2] = glareDefData3
+		AmplifyBloom.GlareDefData glareDefData4 = new AmplifyBloom.GlareDefData()
+
+		glareDefData4..ctor(2, 0.17000000178813934, 0.5) //(StarLibType starType, Single starInclination, Single chromaticAberration)
+
+		if (glareDefData4 == 0)
+            goto INSN_1805A4C42
+        endif
+
+		if (glareDefData4 == 0)
+            goto INSN_1805A4F8D
+        endif
+
+		INSN_1805A4C42:
+		local51[3] = glareDefData4
+		AmplifyBloom.GlareDefData glareDefData5 = new AmplifyBloom.GlareDefData()
+
+		glareDefData5..ctor(2, 0.699999988079071, 1.5) //(StarLibType starType, Single starInclination, Single chromaticAberration)
+
+		if (glareDefData5 == 0)
+            goto INSN_1805A4CA5
+        endif
+
+		if (glareDefData5 == 0)
+            goto INSN_1805A4FAD
+        endif
+
+		INSN_1805A4CA5:
+		local51[4] = glareDefData5
+		AmplifyBloom.GlareDefData glareDefData6 = new AmplifyBloom.GlareDefData()
+		ulong local60 = 0
+
+		glareDefData6..ctor(4, local60, 0.5) //(StarLibType starType, Single starInclination, Single chromaticAberration)
+
+		if (glareDefData6 == 0)
+            goto INSN_1805A4D02
+        endif
+
+		if (glareDefData6 == 0)
+            goto INSN_1805A4FCD
+        endif
+
+		INSN_1805A4D02:
+		local51[5] = glareDefData6
+		AmplifyBloom.GlareDefData glareDefData7 = new AmplifyBloom.GlareDefData()
+
+		glareDefData7..ctor(4, 0.7900000214576721, 1.5) //(StarLibType starType, Single starInclination, Single chromaticAberration)
+
+		if (glareDefData7 == 0)
+            goto INSN_1805A4D65
+        endif
+
+		if (glareDefData7 == 0)
+            goto INSN_1805A4FED
+        endif
+
+		INSN_1805A4D65:
+		local51[6] = glareDefData7
+		AmplifyBloom.GlareDefData glareDefData8 = new AmplifyBloom.GlareDefData()
+
+		glareDefData8..ctor(3, 1.5700000524520874, 0.5) //(StarLibType starType, Single starInclination, Single chromaticAberration)
+
+		if (glareDefData8 == 0)
+            goto INSN_1805A4DC7
+        endif
+
+		if (glareDefData8 == 0)
+            goto INSN_1805A500D
+        endif
+
+		INSN_1805A4DC7:
+		local51[7] = glareDefData8
+		AmplifyBloom.GlareDefData glareDefData9 = new AmplifyBloom.GlareDefData()
+		ulong local64 = 0
+
+		glareDefData9..ctor(3, local64, 0.5) //(StarLibType starType, Single starInclination, Single chromaticAberration)
+
+		if (glareDefData9 == 0)
+            goto INSN_1805A4E24
+        endif
+
+		if (glareDefData9 == 0)
+            goto INSN_1805A502D
+        endif
+
+		INSN_1805A4E24:
+		local51[8] = glareDefData9
+		this.m_glareDefArr = local51
+		return
+		throw new System.NullReferenceException()
+
+		INSN_1805A4E8D:
+
+		INSN_1805A4EAD:
+
+		INSN_1805A4ECD:
+
+		INSN_1805A4EED:
+
+		INSN_1805A4F0D:
+
+		INSN_1805A4F2D:
+
+		INSN_1805A4F4D:
+
+		INSN_1805A4F6D:
+
+		INSN_1805A4F8D:
+
+		INSN_1805A4FAD:
+
+		INSN_1805A4FCD:
+
+		INSN_1805A4FED:
+
+		INSN_1805A500D:
+
+		INSN_1805A502D:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.RegToFieldAction at (0x1805A4605) is corrupt (ConstantDefinition: Don't know how to get IL to load a Cpp2IL.Core.Analysis.Il2CppClassIdentifier) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AmplifyBloom.AmplifyGlare
+	System.Void Init()
+		UnityEngine.Gradient m_cromaticAberrationGrad = this.m_cromaticAberrationGrad
+
+		UnityEngine.GradientAlphaKey[] alphaKeys = m_cromaticAberrationGrad.alphaKeys
+
+		if (alphaKeys.Length == 0)
+		    UnityEngine.Gradient m_cromaticAberrationGrad2 = this.m_cromaticAberrationGrad
+
+		    UnityEngine.GradientColorKey[] colorKeys = m_cromaticAberrationGrad2.colorKeys
+
+		    if (colorKeys.Length == 0)
+		        UnityEngine.GradientColorKey[] local7 = new UnityEngine.GradientColorKey[5]
+
+		        UnityEngine.Color white = UnityEngine.Color.white
+		        ulong local10 = 0
+		        ulong local13 = 0
+		        local7[0] = local10
+		        local7[2] = local13
+
+		        UnityEngine.Color blue = UnityEngine.Color.blue
+		        ulong local16 = 0
+		        ulong local18 = 0
+		        local7[2] = local16
+		        local7[4] = local18
+
+		        UnityEngine.Color green = UnityEngine.Color.green
+		        ulong local21 = 0
+		        ulong local23 = 0
+		        local7[5] = local21
+		        local7[7] = local23
+
+		        UnityEngine.Color yellow = UnityEngine.Color.yellow
+		        ulong local26 = 0
+		        ulong local28 = 0
+		        local7[7] = local26
+		        local7[9] = local28
+
+		        UnityEngine.Color red = UnityEngine.Color.red
+		        ulong local31 = 0
+		        ulong local33 = 0
+		        local7[10] = local31
+		        local7[12] = local33
+		        UnityEngine.GradientAlphaKey[] local34 = new UnityEngine.GradientAlphaKey[5]
+		        ulong local35 = 0
+		        local34[0] = constant25
+		        local34[0] = local31
+		        local34[1] = constant25
+		        local34[1] = local31
+		        local34[2] = constant25
+		        local34[2] = local31
+		        local34[3] = constant25
+		        local34[3] = local31
+		        local34[4] = local31
+		        local34[4] = constant25
+		        UnityEngine.Gradient m_cromaticAberrationGrad3 = this.m_cromaticAberrationGrad
+
+		        m_cromaticAberrationGrad3.SetKeys(local7, local34) //(GradientColorKey[] colorKeys, GradientAlphaKey[] alphaKeys)
+		    endif
+            
+		    return
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.RegToConstantArrayOffsetAction at (0x1805A22EC) is corrupt (ConstantDefinition: Don't know how to get IL to load a Cpp2IL.Core.Analysis.ResultModels.UnknownGlobalAddr) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AmplifyBloom.AmplifyGlare
+	System.Void Destroy()
+		AmplifyBloom.StarDefData[] m_starDefArr = this.m_starDefArr
+		ulong local2 = 0
+
+		while (local2 < m_starDefArr.Length)
+		    AmplifyBloom.StarDefData starDefData = m_starDefArr[local2]
+
+		    starDefData.Destroy()
+		    AmplifyBloom.StarDefData[] m_starDefArr2 = this.m_starDefArr
+		    local2 += 1
+		endwhile
+        
+		this.m_glareDefArr = local2
+		this.m_weigthsMat = local2
+		this.m_offsetsMat = local2
+
+		while (local2 < m_starDefArr2.Length)
+		    AmplifyBloom.StarDefData starDefData2 = m_starDefArr2[local2]
+
+		    System.Boolean boolean = UnityEngine.Object.op_Inequality()
+
+		    if (boolean != False)
+
+		        AmplifyBloom.AmplifyUtils.ReleaseTempRenderTarget()
+		        starDefData2. = local2
+		    endif
+            
+		    local2 += 1
+
+		    if (boolean == False)
+		    endwhile
+            
+		    goto INSN_1805A1EE3
+            
+
+		    INSN_1805A1EE3:
+		    this._rtBuffer = local2
+		    AmplifyBloom.AmplifyGlareCache m_amplifyGlareCache = this.m_amplifyGlareCache
+		    AmplifyBloom.AmplifyStarlineCache[] starlines = m_amplifyGlareCache.Starlines
+		    AmplifyBloom.AmplifyStarlineCache amplifyStarlineCache = starlines[local2]
+		    AmplifyBloom.AmplifyPassCache[] passes = amplifyStarlineCache.Passes
+		    AmplifyBloom.AmplifyPassCache amplifyPassCache = passes[local2]
+		    amplifyPassCache.Offsets = local2
+		    amplifyPassCache.Weights = local2
+		    local2 += 1
+		    amplifyStarlineCache.Passes = local2
+		    local2 += 1
+		    m_amplifyGlareCache.Starlines = local2
+		    m_amplifyGlareCache.CromaticAberrationMat = local2
+		    this.m_amplifyGlareCache = local2
+		    throw new System.IndexOutOfRangeException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1805A1E59) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AmplifyBloom.AmplifyGlare
+	System.Void SetDirty()
+		this.m_isDirty = True
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldc.i4.1
+	IL_0002: stfld System.Boolean AmplifyBloom.AmplifyGlare::m_isDirty
+	IL_0007: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AmplifyBloom.AmplifyGlare
+	System.Void OnRenderFromCache(UnityEngine.RenderTexture source, UnityEngine.RenderTexture dest, UnityEngine.Material material, System.Single glareIntensity, System.Single cameraRotation)
+		AmplifyBloom.AmplifyGlareCache m_amplifyGlareCache = this.m_amplifyGlareCache
+		ulong local7 = 0
+		ulong local8 = 0
+
+		while (local8 < m_amplifyGlareCache.TotalRT)
+		    UnityEngine.RenderTexture[] _rtBuffer = this._rtBuffer
+
+		    System.String string = source.ToString()
+
+		    source.set_width()
+
+		    UnityEngine.RenderTexture tempRenderTarget = AmplifyBloom.AmplifyUtils.GetTempRenderTarget()
+
+		    if (tempRenderTarget != 0)
+
+		        if (tempRenderTarget == 0)
+                    goto INSN_1805A2A42
+                endif
+		    endif
+            
+		    throw new System.IndexOutOfRangeException()
+		    AmplifyBloom.AmplifyGlareCache m_amplifyGlareCache2 = this.m_amplifyGlareCache
+		    local7 += 1
+		    local8 = local7
+		endwhile
+        
+		ulong local15 = 0
+		ulong local16 = 0
+		ulong local17 = 0
+		AmplifyBloom.StarDefData starDef = m_amplifyGlareCache2.StarDef
+		ulong local19 = 0
+
+		if (local17 >= starDef.m_starlinesCount)
+            goto INSN_1805A27A9
+        endif
+		AmplifyBloom.AmplifyGlareCache m_amplifyGlareCache3 = this.m_amplifyGlareCache
+
+		if (local19 >= m_amplifyGlareCache3.CurrentPassCount)
+            goto INSN_1805A279E
+        endif
+		AmplifyBloom.AmplifyStarlineCache[] starlines = m_amplifyGlareCache3.Starlines
+		AmplifyBloom.AmplifyStarlineCache amplifyStarlineCache = starlines[local16]
+		AmplifyBloom.AmplifyPassCache[] passes = amplifyStarlineCache.Passes
+		AmplifyBloom.AmplifyPassCache amplifyPassCache = passes[local19]
+		AmplifyBloom.StarDefData starDef2 = m_amplifyGlareCache3.StarDef
+		System.Single local27 =  * starDef2.m_rotation
+
+		this.UpdateMatrixesForPass()
+		UnityEngine.RenderTexture[] _rtBuffer2 = this._rtBuffer
+
+		if (local19 == 0)
+            goto INSN_1805A273D
+        endif
+		System.Int32 length = _rtBuffer2.Length
+		System.Int32 -1 = 4294967295
+		UnityEngine.RenderTexture renderTexture = _rtBuffer2[]
+		UnityEngine.RenderTexture renderTexture2 = _rtBuffer2[local15]
+
+		INSN_1805A273D:
+
+		UnityEngine.Graphics.Blit(source, renderTexture2, material, 2) //(Texture source, RenderTexture dest, Material mat, Int32 pass)
+		local15 += 1
+		local19 += 1
+
+		INSN_1805A279E:
+		local16 += 1
+
+		INSN_1805A27A9:
+		ulong local36 = 0
+		  = source.
+
+		if (local36 >= )
+            goto INSN_1805A28DF
+        endif
+		System.Int32[] anamorphicGlareWeightsStr = AmplifyBloom.AmplifyUtils.AnamorphicGlareWeightsStr
+		AmplifyBloom.AmplifyGlareCache m_amplifyGlareCache4 = this.m_amplifyGlareCache
+		UnityEngine.Vector4 averageWeight = m_amplifyGlareCache4.AverageWeight
+		System.Int32 int32 = anamorphicGlareWeightsStr[local19]
+
+		material.SetVector(int32, averageWeight) //(Int32 nameID, Vector4 value)
+		AmplifyBloom.AmplifyGlareCache m_amplifyGlareCache5 = this.m_amplifyGlareCache
+		System.Int32[] anamorphicRTS = AmplifyBloom.AmplifyUtils.AnamorphicRTS
+		UnityEngine.RenderTexture[] _rtBuffer3 = this._rtBuffer
+		local19 += 1
+		UnityEngine.RenderTexture renderTexture3 = _rtBuffer3[local19]
+		System.Int32 int322 = anamorphicRTS[local19]
+
+		material.SetTextureImpl(int322, renderTexture3) //(Int32 name, Texture value)
+		AmplifyBloom.AmplifyGlareCache m_amplifyGlareCache6 = this.m_amplifyGlareCache
+
+		if (m_amplifyGlareCache6 != 0)
+            goto INSN_1805A27C0
+        endif
+
+		INSN_1805A28DF:
+		AmplifyBloom.StarDefData starDef3 = m_amplifyGlareCache6.StarDef
+
+		.DiscardContents()
+		UnityEngine.RenderTexture[] _rtBuffer4 = this._rtBuffer
+		UnityEngine.RenderTexture local53 = _rtBuffer4[0]
+		ulong local54 = 0
+
+		UnityEngine.Graphics.Blit()
+		UnityEngine.RenderTexture[] _rtBuffer5 = this._rtBuffer
+
+		if (local54 < _rtBuffer5.Length)
+		    UnityEngine.RenderTexture renderTexture4 = _rtBuffer5[local54]
+
+		    AmplifyBloom.AmplifyUtils.ReleaseTempRenderTarget(renderTexture4) //(RenderTexture renderTarget)
+		    UnityEngine.RenderTexture[] _rtBuffer6 = this._rtBuffer
+		    _rtBuffer6[0] = local54
+		    UnityEngine.RenderTexture[] _rtBuffer7 = this._rtBuffer
+		    local54 += 1
+
+		    if (_rtBuffer7 == 0)
+		    endwhile
+            
+		    goto INSN_1805A2A0D
+            
+		else
+		    return
+		endif
+        
+		throw new System.NullReferenceException()
+
+		INSN_1805A2A42:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallVirtualMethodAction at (0x1805A256D) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AmplifyBloom.AmplifyGlare
+	System.Void UpdateMatrixesForPass(UnityEngine.Material material, UnityEngine.Vector4[] offsets, UnityEngine.Vector4[] weights, System.Single glareIntensity, System.Single rotation)
+		ulong local6 = 0
+		UnityEngine.Matrix4x4[] m_offsetsMat = this.m_offsetsMat
+		System.Int32 2 = 2
+		local6 += local6
+		  =  * .
+		local6 += constant14
+		  =  * offsets.
+		UnityEngine.Matrix4x4[] m_offsetsMat2 = this.m_offsetsMat
+		  =  * offsets.
+		System.Int32 local12 =  * local8.m_value
+		local6 += 32
+		m_offsetsMat2 += local6
+		UnityEngine.Matrix4x4[] m_weigthsMat = this.m_weigthsMat
+		System.Int32 local15 =  * local8.m_value
+		local6 += 32
+		m_weigthsMat += local6
+		UnityEngine.Matrix4x4[] m_weigthsMat2 = this.m_weigthsMat
+		  =  * weights.
+		local6 += 32
+		local6 += m_weigthsMat2
+		UnityEngine.Matrix4x4[] m_weigthsMat3 = this.m_weigthsMat
+		  =  * weights.
+		local6 += 32
+		local6 += m_weigthsMat3
+		local6 += 1
+		System.Int32[] anamorphicGlareOffsetsMatStr = AmplifyBloom.AmplifyUtils.AnamorphicGlareOffsetsMatStr
+		UnityEngine.Matrix4x4[] m_offsetsMat3 = this.m_offsetsMat
+		UnityEngine.Matrix4x4 local22 = m_offsetsMat3[local6]
+		System.Int32 int32 = anamorphicGlareOffsetsMatStr[local6]
+		UnityEngine.Matrix4x4 local25 = m_offsetsMat3[local6]
+		UnityEngine.Matrix4x4 local26 = m_offsetsMat3[local6]
+		UnityEngine.Matrix4x4 local27 = m_offsetsMat3[local6]
+
+		.SetMatrix(int32, local22) //(Int32 nameID, Matrix4x4 value)
+		System.Int32[] anamorphicGlareWeightsMatStr = AmplifyBloom.AmplifyUtils.AnamorphicGlareWeightsMatStr
+		UnityEngine.Matrix4x4[] m_weigthsMat4 = this.m_weigthsMat
+		UnityEngine.Matrix4x4 local30 = m_weigthsMat4[local6]
+		System.Int32 int322 = anamorphicGlareWeightsMatStr[local6]
+		UnityEngine.Matrix4x4 local33 = m_weigthsMat4[local6]
+		UnityEngine.Matrix4x4 local34 = m_weigthsMat4[local6]
+		UnityEngine.Matrix4x4 local35 = m_weigthsMat4[local6]
+
+		.SetMatrix(int322, local30) //(Int32 nameID, Matrix4x4 value)
+		local6 += 1
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.MultiplyRegByFieldAction at (0x1805A41B0) is corrupt (FieldRead was null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AmplifyBloom.AmplifyGlare
+	System.Void OnRenderImage(UnityEngine.Material material, UnityEngine.RenderTexture source, UnityEngine.RenderTexture dest, System.Single cameraRot)
+		ulong local5 = 0
+
+		UnityEngine.Texture2D blackTexture = UnityEngine.Texture2D.blackTexture
+
+		UnityEngine.Graphics.Blit(blackTexture, dest) //(Texture source, RenderTexture dest)
+
+		if (this.m_isDirty == False)
+		    System.Int32 m_currentWidth = this.m_currentWidth
+
+		    System.String string = source.ToString()
+
+		    if (m_currentWidth == string)
+		        System.Int32 m_currentHeight = this.m_currentHeight
+
+		        source.set_width()
+
+		        if (m_currentHeight == constant14)
+		            ulong local11 = 0
+		            System.Single m_intensity = this.m_intensity
+
+		            this.OnRenderFromCache()
+		            return
+		        endif
+                
+		        this.m_isDirty = False
+
+		        System.String string2 = source.ToString()
+		        this.m_currentWidth = string2
+
+		        source.set_width()
+		        this.m_currentHeight = constant31
+
+		        if (this.m_currentGlareType == 9)
+                    goto INSN_1805A2D7E
+                endif
+		        AmplifyBloom.GlareDefData[] m_glareDefArr = this.m_glareDefArr
+		        System.Int32 m_currentGlareIdx = this.m_currentGlareIdx
+		        AmplifyBloom.GlareDefData glareDefData = m_glareDefArr[m_currentGlareIdx]
+
+		        INSN_1805A2D7E:
+		        AmplifyBloom.GlareDefData[] m_customGlareDef = this.m_customGlareDef
+
+		        if (m_customGlareDef == 0)
+                    goto INSN_1805A2DA5
+                endif
+		        System.Int32 length = m_customGlareDef.Length
+
+		        if (length == 0)
+                    goto INSN_1805A2DA5
+                endif
+		        System.Int32 m_customGlareDefIdx = this.m_customGlareDefIdx
+		        AmplifyBloom.GlareDefData glareDefData2 = m_customGlareDef[m_customGlareDefIdx]
+		        System.Int64 local22 = 1
+
+		        INSN_1805A2DA5:
+		        AmplifyBloom.GlareDefData[] m_glareDefArr2 = this.m_glareDefArr
+		        AmplifyBloom.GlareDefData local24 = m_glareDefArr2[0]
+		        AmplifyBloom.AmplifyGlareCache m_amplifyGlareCache = this.m_amplifyGlareCache
+		        m_amplifyGlareCache.GlareDef = local24
+
+		        System.String string3 = source.ToString()
+
+		        source.set_width()
+
+		        if (local22 == 0)
+                    goto INSN_1805A2E35
+                endif
+
+		        INSN_1805A2E35:
+		        AmplifyBloom.StarDefData[] m_starDefArr = this.m_starDefArr
+		        AmplifyBloom.StarLibType m_starType = local24.m_starType
+		        AmplifyBloom.StarDefData starDefData = m_starDefArr[m_starType]
+		        AmplifyBloom.AmplifyGlareCache m_amplifyGlareCache2 = this.m_amplifyGlareCache
+		        m_amplifyGlareCache2.StarDef = starDefData
+		        System.Int32 m_glareMaxPassCount = this.m_glareMaxPassCount
+		        AmplifyBloom.AmplifyGlareCache m_amplifyGlareCache3 = this.m_amplifyGlareCache
+		        if (m_glareMaxPassCount >= starDefData.m_passCount) System.Int32 local34 = starDefData.m_passCount
+		        m_amplifyGlareCache3.CurrentPassCount = local34
+		        ulong local35 = 0
+		        System.Single m_inclination = starDefData.m_inclination
+		        System.Int32 m_glareMaxPassCount2 = this.m_glareMaxPassCount
+
+		        if (m_glareMaxPassCount2 <= 0)
+                    goto INSN_1805A3047
+                endif
+		        System.Int32 1 = 1
+		        UnityEngine.Gradient m_cromaticAberrationGrad = this.m_cromaticAberrationGrad
+		        UnityEngine.Color m_whiteReference = this.m_whiteReference
+
+		        UnityEngine.Color color = .Evaluate(m_inclination) //(Single time)
+
+		        UnityEngine.Color color2 = UnityEngine.Color.Lerp()
+
+		        UnityEngine.Color color3 = UnityEngine.Color.op_Multiply()
+		        AmplifyBloom.AmplifyGlareCache m_amplifyGlareCache4 = this.m_amplifyGlareCache
+		        UnityEngine.Vector4[,] cromaticAberrationMat = m_amplifyGlareCache4.CromaticAberrationMat
+
+		        UnityEngine.Color color4 = UnityEngine.Color.Lerp()
+		        ulong local53 = 0
+
+		        UnityEngine.Vector4 vector4 = UnityEngine.Color.op_Implicit()
+		        local35 += 1
+		        local35 += 2
+		        System.Int32 local56 = local35 * local53
+		        local35 += local56
+		        local35 += local35
+		        cromaticAberrationMat.x = constant68
+		        System.Int32 m_glareMaxPassCount3 = this.m_glareMaxPassCount
+
+		        INSN_1805A3047:
+		        AmplifyBloom.AmplifyGlareCache m_amplifyGlareCache5 = this.m_amplifyGlareCache
+		        m_glareMaxPassCount3 = local34
+		        m_amplifyGlareCache5.TotalRT = m_glareMaxPassCount3
+		        AmplifyBloom.AmplifyGlareCache m_amplifyGlareCache6 = this.m_amplifyGlareCache
+
+		        while (local35 < m_amplifyGlareCache6.TotalRT)
+		            UnityEngine.RenderTexture[] _rtBuffer = this._rtBuffer
+		              = m_amplifyGlareCache6.
+		              = local34.
+
+		            UnityEngine.RenderTexture tempRenderTarget = AmplifyBloom.AmplifyUtils.GetTempRenderTarget()
+
+		            if (tempRenderTarget != 0)
+
+		                if (tempRenderTarget == 0)
+                            goto INSN_1805A3DD7
+                        endif
+		            endif
+                    
+		            throw new System.IndexOutOfRangeException()
+		            AmplifyBloom.AmplifyGlareCache m_amplifyGlareCache7 = this.m_amplifyGlareCache
+		            local35 += 1
+		        endwhile
+                
+
+		        if (local35 >= starDefData.m_starlinesCount)
+                    goto INSN_1805A3AEA
+                endif
+		        AmplifyBloom.StarLineData[] m_starLinesArr = starDefData.m_starLinesArr
+		        AmplifyBloom.StarLineData starLineData = m_starLinesArr[local35]
+		        System.Single sampleLength = starLineData.SampleLength
+		        System.Single local68 = sampleLength * this.m_overallStreakScale
+		        System.Single m_aTanFoV = this.m_aTanFoV
+		        System.Single local70 = m_aTanFoV * 280
+		        System.Single local71 = local70 * 1,2
+
+		        if (local34 <= 0)
+                    goto INSN_1805A3ADC
+                endif
+		        ulong local72 = 0
+		        System.Int32 length2 = m_starLinesArr.Length
+		        AmplifyBloom.AmplifyGlareCache m_amplifyGlareCache8 = this.m_amplifyGlareCache
+		        AmplifyBloom.AmplifyStarlineCache[] starlines = m_amplifyGlareCache8.Starlines
+		        AmplifyBloom.AmplifyStarlineCache amplifyStarlineCache = starlines[local35]
+		        AmplifyBloom.AmplifyPassCache[] passes = amplifyStarlineCache.Passes
+		        AmplifyBloom.AmplifyPassCache amplifyPassCache = passes[local35]
+		        UnityEngine.Vector4[] weights = amplifyPassCache.Weights
+		        UnityEngine.Vector4[,] cromaticAberrationMat2 = m_amplifyGlareCache8.CromaticAberrationMat
+		        local34 -= local35
+		          = local34.
+		        System.Int32 local81 = local34 * local34
+		        local34 += local72
+		        local34 += local34
+
+		        [instruction error - managed method being called is null]
+
+		        [instruction error - managed method being called is null]
+
+		        [instruction error - managed method being called is null]
+		        System.Int32 2 = 2
+		         += 2
+		        weights.x = constant117
+		        AmplifyBloom.AmplifyGlareCache m_amplifyGlareCache9 = this.m_amplifyGlareCache
+		        AmplifyBloom.AmplifyStarlineCache[] starlines2 = m_amplifyGlareCache9.Starlines
+		        AmplifyBloom.AmplifyStarlineCache amplifyStarlineCache2 = starlines2[]
+		        AmplifyBloom.AmplifyPassCache[] passes2 = amplifyStarlineCache2.Passes
+		        AmplifyBloom.AmplifyPassCache amplifyPassCache2 = passes2[local35]
+		        UnityEngine.Vector4[] offsets = amplifyPassCache2.Offsets
+		        offsets.x = local68
+		        AmplifyBloom.AmplifyGlareCache m_amplifyGlareCache10 = this.m_amplifyGlareCache
+		        AmplifyBloom.AmplifyStarlineCache[] starlines3 = m_amplifyGlareCache10.Starlines
+		        AmplifyBloom.AmplifyStarlineCache amplifyStarlineCache3 = starlines3[]
+		        AmplifyBloom.AmplifyPassCache[] passes3 = amplifyStarlineCache3.Passes
+		        AmplifyBloom.AmplifyPassCache amplifyPassCache3 = passes3[local35]
+		        UnityEngine.Vector4[] offsets2 = amplifyPassCache3.Offsets
+		        local72 += local72
+		        offsets2[0] = local68
+		        AmplifyBloom.AmplifyGlareCache m_amplifyGlareCache11 = this.m_amplifyGlareCache
+		        AmplifyBloom.AmplifyStarlineCache[] starlines4 = m_amplifyGlareCache11.Starlines
+		        AmplifyBloom.AmplifyStarlineCache amplifyStarlineCache4 = starlines4[]
+		        AmplifyBloom.AmplifyPassCache[] passes4 = amplifyStarlineCache4.Passes
+		        AmplifyBloom.AmplifyPassCache amplifyPassCache4 = passes4[local35]
+		        UnityEngine.Vector4[] offsets3 = amplifyPassCache4.Offsets
+
+		        if (local68 < 0.8999999761581421)
+		        endif
+                
+		        AmplifyBloom.AmplifyGlareCache m_amplifyGlareCache12 = this.m_amplifyGlareCache
+		        AmplifyBloom.AmplifyStarlineCache[] starlines5 = m_amplifyGlareCache12.Starlines
+		        AmplifyBloom.AmplifyStarlineCache amplifyStarlineCache5 = starlines5[]
+		        AmplifyBloom.AmplifyPassCache[] passes5 = amplifyStarlineCache5.Passes
+		        AmplifyBloom.AmplifyPassCache amplifyPassCache5 = passes5[local35]
+		        UnityEngine.Vector4[] offsets4 = amplifyPassCache5.Offsets
+		        ulong local111 = 0
+		        offsets4.x = local111
+		        AmplifyBloom.AmplifyGlareCache m_amplifyGlareCache13 = this.m_amplifyGlareCache
+		        AmplifyBloom.AmplifyStarlineCache[] starlines6 = m_amplifyGlareCache13.Starlines
+		        AmplifyBloom.AmplifyStarlineCache amplifyStarlineCache6 = starlines6[]
+		        AmplifyBloom.AmplifyPassCache[] passes6 = amplifyStarlineCache6.Passes
+		        AmplifyBloom.AmplifyPassCache amplifyPassCache6 = passes6[local35]
+		        UnityEngine.Vector4[] offsets5 = amplifyPassCache6.Offsets
+		        offsets5[0] = local111
+		        AmplifyBloom.AmplifyGlareCache m_amplifyGlareCache14 = this.m_amplifyGlareCache
+		        AmplifyBloom.AmplifyStarlineCache[] starlines7 = m_amplifyGlareCache14.Starlines
+		        AmplifyBloom.AmplifyStarlineCache amplifyStarlineCache7 = starlines7[]
+		        AmplifyBloom.AmplifyPassCache[] passes7 = amplifyStarlineCache7.Passes
+		        AmplifyBloom.AmplifyPassCache amplifyPassCache7 = passes7[local35]
+		        UnityEngine.Vector4[] weights2 = amplifyPassCache7.Weights
+
+		        [instruction error - managed method being called is null]
+		        weights2.x = constant166
+		        local72 += 1
+		    endwhile
+            
+		    goto INSN_1805A328C
+            
+		    System.Int64 local126 = 8
+		    AmplifyBloom.AmplifyGlareCache m_amplifyGlareCache15 = this.m_amplifyGlareCache
+		    AmplifyBloom.AmplifyStarlineCache[] starlines8 = m_amplifyGlareCache15.Starlines
+		    AmplifyBloom.AmplifyStarlineCache amplifyStarlineCache8 = starlines8[local35]
+		    AmplifyBloom.AmplifyPassCache[] passes8 = amplifyStarlineCache8.Passes
+		    AmplifyBloom.AmplifyPassCache amplifyPassCache8 = passes8[local35]
+		    UnityEngine.Vector4[] offsets6 = amplifyPassCache8.Offsets
+		    System.Int32 2 = 2
+		     += 2
+		    ulong local133 = 0
+
+		    UnityEngine.Vector4 vector42 = UnityEngine.Vector4.op_UnaryNegation()
+		    local133 += local133
+		    offsets6.x = constant182
+		    AmplifyBloom.AmplifyGlareCache m_amplifyGlareCache16 = this.m_amplifyGlareCache
+		    AmplifyBloom.AmplifyStarlineCache[] starlines9 = m_amplifyGlareCache16.Starlines
+		    AmplifyBloom.AmplifyStarlineCache amplifyStarlineCache9 = starlines9[local126]
+		    AmplifyBloom.AmplifyPassCache[] passes9 = amplifyStarlineCache9.Passes
+		    AmplifyBloom.AmplifyPassCache amplifyPassCache9 = passes9[local35]
+		    UnityEngine.Vector4[] weights3 = amplifyPassCache9.Weights
+		    System.Int32 length3 = weights3.Length
+		    System.Int32 2 = 2
+		     += 2
+		    local126 += 1
+		    weights3.x = constant182
+		    AmplifyBloom.AmplifyGlareCache m_amplifyGlareCache17 = this.m_amplifyGlareCache
+		    AmplifyBloom.AmplifyStarlineCache[] starlines10 = m_amplifyGlareCache17.Starlines
+		    AmplifyBloom.AmplifyStarlineCache amplifyStarlineCache10 = starlines10[local126]
+		    AmplifyBloom.AmplifyPassCache[] passes10 = amplifyStarlineCache10.Passes
+		    AmplifyBloom.AmplifyPassCache amplifyPassCache10 = passes10[local35]
+		    ulong local147 = 0
+		    System.Single local150 =  * starDefData.m_rotation
+		    System.Single m_intensity2 = this.m_intensity
+
+		    this.UpdateMatrixesForPass()
+		    UnityEngine.RenderTexture[] _rtBuffer2 = this._rtBuffer
+
+		    if (local35 == 0)
+                goto INSN_1805A39FD
+            endif
+		    System.Int32 length4 = _rtBuffer2.Length
+		    System.Int32 -1 = 4294967295
+		    UnityEngine.RenderTexture renderTexture = _rtBuffer2[]
+		    UnityEngine.RenderTexture renderTexture2 = _rtBuffer2[local35]
+
+		    INSN_1805A39FD:
+
+		    UnityEngine.Graphics.Blit()
+		    local68 = local157
+
+		    UnityEngine.Vector2 vector2 = UnityEngine.Vector2.op_Multiply()
+		    local35 += 1
+		    System.Single local160 = local71 * this.m_perPassDisplacement
+
+		    INSN_1805A3ADC:
+		    local126 += 1
+		    ulong local161 = 0
+
+		    INSN_1805A3AEA:
+		    AmplifyBloom.AmplifyGlareCache m_amplifyGlareCache18 = this.m_amplifyGlareCache
+
+		    UnityEngine.Vector4 one = UnityEngine.Vector4.one
+
+		    [instruction error - managed method being called is null]
+		    m_amplifyGlareCache18.AverageWeight = constant223
+		      = local126.
+
+		    if (local161 >= local126)
+                goto INSN_1805A3C50
+            endif
+		    System.Int32[] anamorphicGlareWeightsStr = AmplifyBloom.AmplifyUtils.AnamorphicGlareWeightsStr
+		    AmplifyBloom.AmplifyGlareCache m_amplifyGlareCache19 = this.m_amplifyGlareCache
+		    System.Int32 int32 = anamorphicGlareWeightsStr[local161]
+
+		    local147.SetVector()
+		    System.Int32[] anamorphicRTS = AmplifyBloom.AmplifyUtils.AnamorphicRTS
+		    UnityEngine.RenderTexture[] _rtBuffer3 = this._rtBuffer
+		    UnityEngine.RenderTexture renderTexture3 = _rtBuffer3[local34]
+		    System.Int32 int322 = anamorphicRTS[local161]
+
+		    [instruction error - managed method being called is null]
+		    local161 += 1
+		    local34 += local34
+
+		    INSN_1805A3C50:
+
+		    local34.DiscardContents()
+		    UnityEngine.RenderTexture[] _rtBuffer4 = this._rtBuffer
+		    UnityEngine.RenderTexture local178 = _rtBuffer4[0]
+
+		    UnityEngine.Graphics.Blit()
+		    UnityEngine.RenderTexture[] _rtBuffer5 = this._rtBuffer
+
+		    while (local161 < _rtBuffer5.Length)
+		        UnityEngine.RenderTexture renderTexture4 = _rtBuffer5[local161]
+
+		        AmplifyBloom.AmplifyUtils.ReleaseTempRenderTarget(renderTexture4) //(RenderTexture renderTarget)
+		        UnityEngine.RenderTexture[] _rtBuffer6 = this._rtBuffer
+		        _rtBuffer6[0] = local161
+		        UnityEngine.RenderTexture[] _rtBuffer7 = this._rtBuffer
+		        local161 += 1
+
+		        if (_rtBuffer7 == 0)
+		        endwhile
+                
+		        goto INSN_1805A2C90
+                
+		        throw new System.IndexOutOfRangeException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallVirtualMethodAction at (0x1805A2C48) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AmplifyBloom.AmplifyGlare
+	AmplifyBloom.GlareLibType get_CurrentGlare()
+		AmplifyBloom.GlareLibType m_currentGlareType = this.m_currentGlareType
+		return m_currentGlareType
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld AmplifyBloom.GlareLibType AmplifyBloom.AmplifyGlare::m_currentGlareType
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AmplifyBloom.AmplifyGlare
+	System.Void set_CurrentGlare(AmplifyBloom.GlareLibType value)
+
+		if (this.m_currentGlareType != value)
+		    this.m_currentGlareType = value
+		    this.m_currentGlareIdx = value
+		    this.m_isDirty = True
+		endif
+        
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld AmplifyBloom.GlareLibType AmplifyBloom.AmplifyGlare::m_currentGlareType
+	IL_0006: ldarg.1
+	IL_0007: beq.s IL_001e
+	IL_0009: ldarg.0
+	IL_000a: ldarg.1
+	IL_000b: stfld AmplifyBloom.GlareLibType AmplifyBloom.AmplifyGlare::m_currentGlareType
+	IL_0010: ldarg.0
+	IL_0011: ldarg.1
+	IL_0012: stfld System.Int32 AmplifyBloom.AmplifyGlare::m_currentGlareIdx
+	IL_0017: ldarg.0
+	IL_0018: ldc.i4.1
+	IL_0019: stfld System.Boolean AmplifyBloom.AmplifyGlare::m_isDirty
+	IL_001e: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AmplifyBloom.AmplifyGlare
+	System.Int32 get_GlareMaxPassCount()
+		System.Int32 m_glareMaxPassCount = this.m_glareMaxPassCount
+		return m_glareMaxPassCount
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Int32 AmplifyBloom.AmplifyGlare::m_glareMaxPassCount
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AmplifyBloom.AmplifyGlare
+	System.Void set_GlareMaxPassCount(System.Int32 value)
+		this.m_glareMaxPassCount = value
+		this.m_isDirty = True
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: stfld System.Int32 AmplifyBloom.AmplifyGlare::m_glareMaxPassCount
+	IL_0007: ldarg.0
+	IL_0008: ldc.i4.1
+	IL_0009: stfld System.Boolean AmplifyBloom.AmplifyGlare::m_isDirty
+	IL_000e: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AmplifyBloom.AmplifyGlare
+	System.Single get_PerPassDisplacement()
+		System.Single m_perPassDisplacement = this.m_perPassDisplacement
+		return m_perPassDisplacement
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Single AmplifyBloom.AmplifyGlare::m_perPassDisplacement
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AmplifyBloom.AmplifyGlare
+	System.Void set_PerPassDisplacement(System.Single value)
+		this.m_perPassDisplacement = value
+		this.m_isDirty = True
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: stfld System.Single AmplifyBloom.AmplifyGlare::m_perPassDisplacement
+	IL_0007: ldarg.0
+	IL_0008: ldc.i4.1
+	IL_0009: stfld System.Boolean AmplifyBloom.AmplifyGlare::m_isDirty
+	IL_000e: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AmplifyBloom.AmplifyGlare
+	System.Single get_Intensity()
+		System.Single m_intensity = this.m_intensity
+		return m_intensity
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Single AmplifyBloom.AmplifyGlare::m_intensity
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AmplifyBloom.AmplifyGlare
+	System.Void set_Intensity(System.Single value)
+		ulong local2 = 0
+
+		if (local2 <= value)
+		endif
+        
+		this.m_intensity = local2
+		this.m_isDirty = True
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: ldloc.0
+	IL_0003: ldarg.1
+	IL_0004: bgt.s IL_0006
+	IL_0006: ldarg.0
+	IL_0007: ldloc.0
+	IL_0008: stfld System.Single AmplifyBloom.AmplifyGlare::m_intensity
+	IL_000d: ldarg.0
+	IL_000e: ldc.i4.1
+	IL_000f: stfld System.Boolean AmplifyBloom.AmplifyGlare::m_isDirty
+	IL_0014: ret
+	IL_0015: newobj System.Void System.NullReferenceException::.ctor()
+	IL_001a: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AmplifyBloom.AmplifyGlare
+	UnityEngine.Color get_OverallTint()
+		this. = 
+		return this
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.RegToFieldAction at (0x1805A5067) is corrupt (Instance or field is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AmplifyBloom.AmplifyGlare
+	System.Void set_OverallTint(UnityEngine.Color value)
+		this.m_isDirty = True
+		this._overallTint = constant1
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.RegToFieldAction at (0x1805A531A) is corrupt (ConstantDefinition: Don't know how to get IL to load a Cpp2IL.Core.Analysis.Il2CppClassIdentifier) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AmplifyBloom.AmplifyGlare
+	System.Boolean get_ApplyLensGlare()
+		System.Boolean m_applyGlare = this.m_applyGlare
+		return m_applyGlare
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Boolean AmplifyBloom.AmplifyGlare::m_applyGlare
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AmplifyBloom.AmplifyGlare
+	System.Void set_ApplyLensGlare(System.Boolean value)
+		this.m_applyGlare = value
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: stfld System.Boolean AmplifyBloom.AmplifyGlare::m_applyGlare
+	IL_0007: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AmplifyBloom.AmplifyGlare
+	UnityEngine.Gradient get_CromaticColorGradient()
+		UnityEngine.Gradient m_cromaticAberrationGrad = this.m_cromaticAberrationGrad
+		return m_cromaticAberrationGrad
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld UnityEngine.Gradient AmplifyBloom.AmplifyGlare::m_cromaticAberrationGrad
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AmplifyBloom.AmplifyGlare
+	System.Void set_CromaticColorGradient(UnityEngine.Gradient value)
+		this.m_cromaticAberrationGrad = value
+		this.m_isDirty = True
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: stfld UnityEngine.Gradient AmplifyBloom.AmplifyGlare::m_cromaticAberrationGrad
+	IL_0007: ldarg.0
+	IL_0008: ldc.i4.1
+	IL_0009: stfld System.Boolean AmplifyBloom.AmplifyGlare::m_isDirty
+	IL_000e: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AmplifyBloom.AmplifyGlare
+	System.Single get_OverallStreakScale()
+		System.Single m_overallStreakScale = this.m_overallStreakScale
+		return m_overallStreakScale
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Single AmplifyBloom.AmplifyGlare::m_overallStreakScale
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AmplifyBloom.AmplifyGlare
+	System.Void set_OverallStreakScale(System.Single value)
+		this.m_overallStreakScale = value
+		this.m_isDirty = True
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: stfld System.Single AmplifyBloom.AmplifyGlare::m_overallStreakScale
+	IL_0007: ldarg.0
+	IL_0008: ldc.i4.1
+	IL_0009: stfld System.Boolean AmplifyBloom.AmplifyGlare::m_isDirty
+	IL_000e: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AmplifyBloom.AmplifyGlare
+	AmplifyBloom.GlareDefData[] get_CustomGlareDef()
+		AmplifyBloom.GlareDefData[] m_customGlareDef = this.m_customGlareDef
+		return m_customGlareDef
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld AmplifyBloom.GlareDefData[] AmplifyBloom.AmplifyGlare::m_customGlareDef
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AmplifyBloom.AmplifyGlare
+	System.Void set_CustomGlareDef(AmplifyBloom.GlareDefData[] value)
+		this.m_customGlareDef = value
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: stfld AmplifyBloom.GlareDefData[] AmplifyBloom.AmplifyGlare::m_customGlareDef
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AmplifyBloom.AmplifyGlare
+	System.Int32 get_CustomGlareDefIdx()
+		System.Int32 m_customGlareDefIdx = this.m_customGlareDefIdx
+		return m_customGlareDefIdx
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Int32 AmplifyBloom.AmplifyGlare::m_customGlareDefIdx
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AmplifyBloom.AmplifyGlare
+	System.Void set_CustomGlareDefIdx(System.Int32 value)
+		this.m_customGlareDefIdx = value
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: stfld System.Int32 AmplifyBloom.AmplifyGlare::m_customGlareDefIdx
+	IL_0007: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AmplifyBloom.AmplifyGlare
+	System.Int32 get_CustomGlareDefAmount()
+		System.Int32 m_customGlareDefAmount = this.m_customGlareDefAmount
+		return m_customGlareDefAmount
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Int32 AmplifyBloom.AmplifyGlare::m_customGlareDefAmount
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: AmplifyBloom.AmplifyGlare
+	System.Void set_CustomGlareDefAmount(System.Int32 value)
+
+		if (value != this.m_customGlareDefAmount)
+
+		    if (value == 0)
+                goto INSN_1805A523D
+            endif
+		    AmplifyBloom.GlareDefData[] local2 = new AmplifyBloom.GlareDefData[value]
+		    ulong local3 = 0
+
+		    if (value > 0)
+		        AmplifyBloom.GlareDefData glareDefData = new AmplifyBloom.GlareDefData()
+
+		        glareDefData..ctor()
+
+		        if (glareDefData != 0)
+
+		            if (glareDefData == 0)
+                        goto INSN_1805A525F
+                    endif
+		        endif
+                
+		        AmplifyBloom.GlareDefData[] m_customGlareDef = this.m_customGlareDef
+		        AmplifyBloom.GlareDefData glareDefData2 = m_customGlareDef[local3]
+
+		        if (glareDefData2 == 0)
+                    goto INSN_1805A51BE
+                endif
+
+		        if (glareDefData == 0)
+                    goto INSN_1805A526F
+                endif
+
+		        INSN_1805A51BE:
+		        throw new System.IndexOutOfRangeException()
+		        local3 += 1
+		    endwhile
+            
+		    goto INSN_1805A528F
+            
+		    System.Int32 m_customGlareDefIdx = this.m_customGlareDefIdx
+		    System.Int32 local10 = value - 1
+		    ulong local12 = 0
+
+		    System.Int32 int32 = UnityEngine.Mathf.Clamp(m_customGlareDefIdx, local12, local10) //(Int32 value, Int32 min, Int32 max)
+		    this.m_customGlareDef = local2
+		    this.m_customGlareDefIdx = int32
+		    this.m_customGlareDefAmount = value
+		endif
+        
+		return
+
+		INSN_1805A523D:
+		ulong local14 = 0
+		this.m_customGlareDef = local14
+		this.m_customGlareDefIdx = local14
+		return
+
+		INSN_1805A525F:
+
+		INSN_1805A526F:
+
+
+Generated IL:
+	IL_0000: ldarg.1
+	IL_0001: ldarg.0
+	IL_0002: ldfld System.Int32 AmplifyBloom.AmplifyGlare::m_customGlareDefAmount
+	IL_0007: beq.s IL_0076
+	IL_0009: ldarg.1
+	IL_000a: ldc.i4.0
+	IL_000b: beq.s IL_0077
+	IL_000d: ldarg.1
+	IL_000e: newarr AmplifyBloom.GlareDefData
+	IL_0013: stloc.0
+	IL_0014: ldc.i4.0
+	IL_0015: stloc.1
+	IL_0016: ldarg.1
+	IL_0017: ldc.i4.0
+	IL_0018: ble.s IL_0045
+	IL_001a: newobj System.Void AmplifyBloom.GlareDefData::.ctor()
+	IL_001f: stloc.2
+	IL_0020: ldloc.2
+	IL_0021: ldc.i4.0
+	IL_0022: beq.s IL_0028
+	IL_0024: ldloc.2
+	IL_0025: ldc.i4.0
+	IL_0026: beq.s IL_0000
+	IL_0028: ldarg.0
+	IL_0029: ldfld AmplifyBloom.GlareDefData[] AmplifyBloom.AmplifyGlare::m_customGlareDef
+	IL_002e: ldloc.1
+	IL_002f: ldelem.any AmplifyBloom.GlareDefData
+	IL_0034: ldc.i4.0
+	IL_0035: beq.s IL_003b
+	IL_0037: ldloc.2
+	IL_0038: ldc.i4.0
+	IL_0039: beq.s IL_0000
+	IL_003b: newobj System.Void System.IndexOutOfRangeException::.ctor()
+	IL_0040: throw
+	IL_0041: ldloc.1
+	IL_0042: ldc.i4.1
+	IL_0043: add
+	IL_0044: stloc.1
+	IL_0045: ldarg.0
+	IL_0046: ldfld System.Int32 AmplifyBloom.AmplifyGlare::m_customGlareDefIdx
+	IL_004b: stloc.3
+	IL_004c: ldarg.1
+	IL_004d: ldc.i4.1
+	IL_004e: sub
+	IL_004f: stloc.s V_4
+	IL_0051: ldc.i4.0
+	IL_0052: stloc.s V_5
+	IL_0054: ldloc.3
+	IL_0055: ldloc.s V_5
+	IL_0057: ldloc.s V_4
+	IL_0059: call System.Int32 UnityEngine.Mathf::Clamp(System.Int32,System.Int32,System.Int32)
+	IL_005e: stloc.s V_6
+	IL_0060: ldarg.0
+	IL_0061: ldloc.0
+	IL_0062: stfld AmplifyBloom.GlareDefData[] AmplifyBloom.AmplifyGlare::m_customGlareDef
+	IL_0067: ldarg.0
+	IL_0068: ldloc.s V_6
+	IL_006a: stfld System.Int32 AmplifyBloom.AmplifyGlare::m_customGlareDefIdx
+	IL_006f: ldarg.0
+	IL_0070: ldarg.1
+	IL_0071: stfld System.Int32 AmplifyBloom.AmplifyGlare::m_customGlareDefAmount
+	IL_0076: ret
+	IL_0077: ldc.i4.0
+	IL_0078: stloc.s V_7
+	IL_007a: ldarg.0
+	IL_007b: ldloc.s V_7
+	IL_007d: stfld AmplifyBloom.GlareDefData[] AmplifyBloom.AmplifyGlare::m_customGlareDef
+	IL_0082: ldarg.0
+	IL_0083: ldloc.s V_7
+	IL_0085: stfld System.Int32 AmplifyBloom.AmplifyGlare::m_customGlareDefIdx
+	IL_008a: ret
+	
+

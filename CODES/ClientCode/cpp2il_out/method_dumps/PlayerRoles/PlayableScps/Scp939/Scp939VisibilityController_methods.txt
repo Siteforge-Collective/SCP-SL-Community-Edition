@@ -1,0 +1,782 @@
+Type: Scp939VisibilityController
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp939.Scp939VisibilityController
+	System.Single get_CurrentDetectionRange()
+		PlayerRoles.PlayableScps.Scp939.Scp939FocusAbility _focus = this._focus
+		PlayerStatsSystem.StaminaStat _stamina = this._stamina
+
+		System.Single normalizedValue = _stamina.NormalizedValue
+		normalizedValue = local6
+
+		System.Single single = UnityEngine.Mathf.Lerp(normalizedValue, 1, normalizedValue) //(Single a, Single b, Single t)
+		return single
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.RegToRegMoveAction at (0x1804576F4) is corrupt (Local local6 is a variable but it has been stripped out. Are you missing a call to RegisterUsedLocal?) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp939.Scp939VisibilityController
+	System.Single DetectionRangeForPlayer(ReferenceHub hub)
+
+		System.Single currentDetectionRange = this.CurrentDetectionRange
+		System.Collections.Generic.Dictionary`2<System.UInt32,System.Double> _lastFootstepSounds = this._lastFootstepSounds
+
+		System.UInt32 netId = hub.netId
+
+		System.Boolean boolean = _lastFootstepSounds.TryGetValue()
+
+		if (boolean != False)
+		    ulong local9 = 0
+
+		    System.Double time = Mirror.NetworkTime.time
+		    System.Single local12 = currentDetectionRange * this._recentFootstepRangeMultiplier
+		endif
+        
+		return currentDetectionRange
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1804560F4) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp939.Scp939VisibilityController
+	System.Void OnDestroy()
+
+		if (this._wasFaded != False)
+
+		    this.ResetFade()
+		    return
+		endif
+        
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Boolean PlayerRoles.PlayableScps.Scp939.Scp939VisibilityController::_wasFaded
+	IL_0006: ldc.i4.0
+	IL_0007: beq.s IL_0010
+	IL_0009: ldarg.0
+	IL_000a: call System.Void PlayerRoles.PlayableScps.Scp939.Scp939VisibilityController::ResetFade()
+	IL_000f: ret
+	IL_0010: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp939.Scp939VisibilityController
+	System.Void LateUpdate()
+		ReferenceHub Owner = this.<Owner>k__BackingField
+
+		System.Boolean isLocalPlayer = Owner.isLocalPlayer
+
+		if (isLocalPlayer == False)
+		    ReferenceHub Owner2 = this.<Owner>k__BackingField
+
+		    System.Boolean isLocallySpectated = PlayerRoles.Spectating.SpectatorNetworking.IsLocallySpectated(Owner2) //(ReferenceHub target)
+
+		    if (isLocallySpectated == False)
+                goto INSN_1804561E8
+            endif
+		endif
+        
+		System.Action`2<ReferenceHub,PlayerRoles.HumanRole> action = new System.Action`2<ReferenceHub,PlayerRoles.HumanRole>()
+
+		action..ctor(this, {'UpdateHuman' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		PlayerRoles.PlayerRolesUtils.ForEachRole<PlayerRoles.HumanRole>(action) //(Action`2 action)
+
+		INSN_1804561E8:
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld ReferenceHub PlayerRoles.Visibility.VisibilityController::<Owner>k__BackingField
+	IL_0006: call System.Boolean Mirror.NetworkBehaviour::get_isLocalPlayer()
+	IL_000b: ldc.i4.0
+	IL_000c: bne.un.s IL_001c
+	IL_000e: ldarg.0
+	IL_000f: ldfld ReferenceHub PlayerRoles.Visibility.VisibilityController::<Owner>k__BackingField
+	IL_0014: call System.Boolean PlayerRoles.Spectating.SpectatorNetworking::IsLocallySpectated(ReferenceHub)
+	IL_0019: ldc.i4.0
+	IL_001a: beq.s IL_002d
+	IL_001c: ldarg.0
+	IL_001d: ldftn System.Void PlayerRoles.PlayableScps.Scp939.Scp939VisibilityController::UpdateHuman(ReferenceHub,PlayerRoles.HumanRole)
+	IL_0023: newobj System.Void System.Action`2::.ctor(System.Object,System.IntPtr)
+	IL_0028: call System.Void PlayerRoles.PlayerRolesUtils::ForEachRole<PlayerRoles.HumanRole>(System.Action`2)
+	IL_002d: ret
+	IL_002e: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0033: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp939.Scp939VisibilityController
+	System.Void UpdateHuman(ReferenceHub ply, PlayerRoles.HumanRole human)
+		PlayerRoles.FirstPersonControl.FirstPersonMovementModule FpcModule = human.<FpcModule>k__BackingField
+		PlayerRoles.FirstPersonControl.FpcMotor Motor = FpcModule.<Motor>k__BackingField
+		PlayerRoles.FirstPersonControl.Thirdperson.CharacterModel CharacterModelInstance = FpcModule.<CharacterModelInstance>k__BackingField
+		System.Collections.Generic.Dictionary`2<System.UInt32,PlayerRoles.PlayableScps.Scp939.Scp939VisibilityController/LastSeenInfo> lastSeen = PlayerRoles.PlayableScps.Scp939.Scp939VisibilityController.LastSeen
+
+		System.UInt32 netId = ply.netId
+
+		System.Boolean boolean = lastSeen.TryGetValue()
+		System.Boolean IsInvisible = Motor.<IsInvisible>k__BackingField
+
+		if (IsInvisible != False)
+		else
+		    PlayerRoles.PlayableScps.Scp939.Scp939Role _scpRole = this._scpRole
+		    System.Single single = FpcModule._cachedPosition.z
+		    PlayerRoles.FirstPersonControl.FirstPersonMovementModule FpcModule2 = _scpRole.<FpcModule>k__BackingField
+
+		    System.Single single2 = UnityEngine.Vector3.Distance()
+
+		    System.Single single3 = this.DetectionRangeForPlayer()
+		    System.Int64 local21 = 1
+
+		    if (boolean == False)
+		    else
+		        ulong local23 = 0
+
+		        System.Double time = Mirror.NetworkTime.time
+		        ulong local25 = 0
+		        System.Single _sustain = this._sustain
+		    endif
+            
+		endif
+        
+
+		CharacterModelInstance.SpawnObject()
+		single2 = _sustain
+
+		CharacterModelInstance.SpawnObject()
+		ulong local27 = 0
+
+		System.Single deltaTime = UnityEngine.Time.deltaTime
+
+		if (local21 != 0)
+            goto INSN_180456CB1
+        endif
+
+		INSN_180456CB1:
+		local29 = deltaTime
+
+		System.Single fade = CharacterModelInstance.Fade
+		this._wasFaded = True
+		ReferenceHub Owner = this.<Owner>k__BackingField
+
+		System.Boolean isLocalPlayer = Owner.isLocalPlayer
+
+		if (isLocalPlayer == False)
+            goto INSN_180456E53
+        endif
+
+		CharacterModelInstance.SpawnObject()
+
+		if (isLocalPlayer != False)
+            goto INSN_180456E91
+        endif
+
+		if (isLocalPlayer == False)
+            goto INSN_180456E53
+        endif
+		HitboxIdentity[] hitboxes = CharacterModelInstance.Hitboxes
+		System.Action`1<HitboxIdentity> <>9__19_0 = PlayerRoles.PlayableScps.Scp939.Scp939VisibilityController/<>c.<>9__19_0
+
+		if (<>9__19_0 != 0)
+            goto INSN_180456E41
+        endif
+		PlayerRoles.PlayableScps.Scp939.Scp939VisibilityController/<>c <>c = PlayerRoles.PlayableScps.Scp939.Scp939VisibilityController/<>c.<>9
+		System.Action`1<HitboxIdentity> action = new System.Action`1<HitboxIdentity>()
+
+		action..ctor(<>c, {'<UpdateHuman>b__19_0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		 += 8
+		PlayerRoles.PlayableScps.Scp939.Scp939VisibilityController/<>c.<>9 = action
+
+		INSN_180456E41:
+
+		CollectionExtensions.ForEach<HitboxIdentity>()
+
+		INSN_180456E53:
+		return
+
+		INSN_180456E91:
+
+		if (single != 0)
+            goto INSN_1804570EA
+        endif
+
+		if (constant89 == 0)
+            goto INSN_180456E53
+        endif
+
+		if (constant89 != 0)
+            goto INSN_180456FEB
+        endif
+
+		hitboxes.set_Position()
+		HitboxIdentity local42 = hitboxes[21]
+		System.Boolean local43 =  == AnimatedCharacterModel
+		  = local43.
+		System.Action`1<HitboxIdentity> <>9__19_1 = PlayerRoles.PlayableScps.Scp939.Scp939VisibilityController/<>c.<>9__19_1
+
+		if (<>9__19_1 != 0)
+            goto INSN_180456FD9
+        endif
+		PlayerRoles.PlayableScps.Scp939.Scp939VisibilityController/<>c <>c2 = PlayerRoles.PlayableScps.Scp939.Scp939VisibilityController/<>c.<>9
+		System.Action`1<HitboxIdentity> action2 = new System.Action`1<HitboxIdentity>()
+
+		action2..ctor(<>c2, {'<UpdateHuman>b__19_1' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		 += 16
+		PlayerRoles.PlayableScps.Scp939.Scp939VisibilityController/<>c.<>9 = action2
+
+		INSN_180456FD9:
+
+		CollectionExtensions.ForEach<HitboxIdentity>()
+
+		INSN_180456FEB:
+		System.Collections.Generic.Dictionary`2<System.UInt32,PlayerRoles.PlayableScps.Scp939.Scp939VisibilityController/LastSeenInfo> lastSeen2 = PlayerRoles.PlayableScps.Scp939.Scp939VisibilityController.LastSeen
+
+		System.UInt32 netId2 = .netId
+		HitboxIdentity local51 = hitboxes[22]
+		ulong local52 = 0
+		ulong local53 = 0
+
+		System.Double time2 = Mirror.NetworkTime.time
+		  = netId2.
+		  = netId2.
+
+		lastSeen2.set_Item(netId2, local52) //(TKey key, TValue value)
+
+		INSN_1804570EA:
+
+		if (constant88 == 0)
+            goto INSN_180457102
+        endif
+
+		INSN_180457102:
+		  = netId2.
+
+		hitboxes.set_Position()
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180456B3D) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp939.Scp939VisibilityController
+	System.Void ResetFade()
+		System.Action`1<PlayerRoles.HumanRole> <>9__20_0 = PlayerRoles.PlayableScps.Scp939.Scp939VisibilityController/<>c.<>9__20_0
+
+		if (<>9__20_0 == 0)
+		    PlayerRoles.PlayableScps.Scp939.Scp939VisibilityController/<>c <>c = PlayerRoles.PlayableScps.Scp939.Scp939VisibilityController/<>c.<>9
+		    System.Action`1<PlayerRoles.HumanRole> action = new System.Action`1<PlayerRoles.HumanRole>()
+
+		    action..ctor(<>c, {'<ResetFade>b__20_0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		     += 32
+		    PlayerRoles.PlayableScps.Scp939.Scp939VisibilityController/<>c.<>9 = action
+		endif
+        
+
+		PlayerRoles.PlayerRolesUtils.ForEachRole<PlayerRoles.HumanRole>(<>9__20_0) //(Action`1 )
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x18045658B) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp939.Scp939VisibilityController
+	System.Void OnFootstepPlayed(PlayerRoles.FirstPersonControl.Thirdperson.AnimatedCharacterModel model, System.Single range)
+		ReferenceHub OwnerHub = model.<OwnerHub>k__BackingField
+		PlayerRoles.PlayerRoleManager roleManager = OwnerHub.roleManager
+
+		if (roleManager._anySet == False)
+		    ulong local5 = 0
+		    ulong local6 = 0
+
+		    roleManager.InitializeNewRole(0xFFFFFFFF, local6, 0xFFFFFFFF, local5) //(RoleTypeId targetId, RoleChangeReason reason, RoleSpawnFlags spawnFlags, NetworkReader data)
+		endif
+        
+		PlayerRoles.PlayerRoleBase _curRole = roleManager._curRole
+
+		if (_curRole == 0)
+            goto INSN_1804563FE
+        endif
+		//UNKNOWN CLASS OFFSET READ HERE
+		  = _curRole.
+		//UNKNOWN CLASS OFFSET READ HERE
+		PlayerRoles.PlayableScps.Scp939.Scp939Role _scpRole = this._scpRole
+		PlayerRoles.FirstPersonControl.FirstPersonMovementModule FpcModule = _scpRole.<FpcModule>k__BackingField
+		System.Single single = FpcModule._cachedPosition.z
+
+		UnityEngine.Vector3 vector3 = UnityEngine.Vector3.op_Subtraction()
+		System.Single single2 = vector3.z
+
+		if ( > range)
+            goto INSN_1804563FE
+        endif
+		System.Collections.Generic.Dictionary`2<System.UInt32,System.Double> _lastFootstepSounds = this._lastFootstepSounds
+
+		System.UInt32 netId = OwnerHub.netId
+		ulong local18 = 0
+
+		System.Double time = Mirror.NetworkTime.time
+		throw new System.NullReferenceException()
+
+		INSN_1804563FE:
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.UnknownClassOffsetReadAction at (0x1804562CE) is corrupt (Unknown class offset read) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp939.Scp939VisibilityController
+	System.Void OnSpectatorTargetChanged()
+
+		if (this._wasFaded != False)
+
+		    this.ResetFade()
+		    return
+		endif
+        
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Boolean PlayerRoles.PlayableScps.Scp939.Scp939VisibilityController::_wasFaded
+	IL_0006: ldc.i4.0
+	IL_0007: beq.s IL_0010
+	IL_0009: ldarg.0
+	IL_000a: call System.Void PlayerRoles.PlayableScps.Scp939.Scp939VisibilityController::ResetFade()
+	IL_000f: ret
+	IL_0010: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp939.Scp939VisibilityController
+	System.Void OnRoleChanged(ReferenceHub hub, PlayerRoles.PlayerRoleBase oldRole, PlayerRoles.PlayerRoleBase newRole)
+
+		if (this._wasFaded != False)
+
+		    System.Boolean isLocalPlayer = hub.isLocalPlayer
+
+		    if (isLocalPlayer != False)
+
+		        if (newRole != 0)
+		            //UNKNOWN CLASS OFFSET READ HERE
+		        endif
+                
+
+		        this.ResetFade()
+		    endif
+            
+		    return
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.UnknownClassOffsetReadAction at (0x18045649A) is corrupt (Unknown class offset read) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp939.Scp939VisibilityController
+	System.Void SpawnObject()
+
+		base.SpawnObject()
+		PlayerRoles.PlayerRoleBase Role = this.<Role>k__BackingField
+
+		if (Role == 0)
+		else
+		    //UNKNOWN CLASS OFFSET READ HERE
+		    ulong local5 = 0
+		endif
+        
+		this._scpRole = Role
+		ReferenceHub Owner = this.<Owner>k__BackingField
+		PlayerStatsSystem.PlayerStats playerStats = Owner.playerStats
+
+		System.Boolean boolean = playerStats.TryGetModule<PlayerStatsSystem.StaminaStat>()
+		PlayerRoles.PlayableScps.Scp939.Scp939Role _scpRole = this._scpRole
+		PlayerRoles.PlayableScps.Subroutines.SubroutineManagerModule SubroutineModule = _scpRole.<SubroutineModule>k__BackingField
+
+		System.Boolean boolean2 = SubroutineModule.TryGetSubroutine<PlayerRoles.PlayableScps.Scp939.Scp939FocusAbility>()
+		System.Action onTargetChanged = PlayerRoles.Spectating.SpectatorTargetTracker.OnTargetChanged
+		System.Action action = new System.Action()
+
+		action..ctor(this, {'OnSpectatorTargetChanged' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		System.Delegate delegate = System.Delegate.Combine(onTargetChanged, action) //(Delegate a, Delegate b)
+
+		if (delegate == 0)
+            goto INSN_1804568B9
+        endif
+
+		if (delegate == 0)
+            goto INSN_180456A25
+        endif
+
+		INSN_1804568B9:
+		 += 96
+		PlayerRoles.Spectating.SpectatorTargetTracker._trackedTransformSet = delegate
+		PlayerRoles.PlayerRoleManager/RoleChanged roleChanged = new PlayerRoles.PlayerRoleManager/RoleChanged()
+		roleChanged.method_ptr = OnRoleChanged
+		roleChanged.method = OnRoleChanged
+		roleChanged.m_target = this
+
+		PlayerRoles.PlayerRoleManager.add_OnRoleChanged(roleChanged) //(RoleChanged value)
+		System.Action`2<PlayerRoles.FirstPersonControl.Thirdperson.AnimatedCharacterModel,System.Single> onFootstepPlayed = PlayerRoles.FirstPersonControl.Thirdperson.AnimatedCharacterModel.OnFootstepPlayed
+		System.Action`2<PlayerRoles.FirstPersonControl.Thirdperson.AnimatedCharacterModel,System.Single> action2 = new System.Action`2<PlayerRoles.FirstPersonControl.Thirdperson.AnimatedCharacterModel,System.Single>()
+
+		action2..ctor(this, {'OnFootstepPlayed' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		System.Delegate delegate2 = System.Delegate.Combine(onFootstepPlayed, action2) //(Delegate a, Delegate b)
+
+		if (delegate2 == 0)
+            goto INSN_180456991
+        endif
+
+		if (delegate2 == 0)
+            goto INSN_180456A1C
+        endif
+
+		INSN_180456991:
+		PlayerRoles.FirstPersonControl.Thirdperson.AnimatedCharacterModel.OnFootstepPlayed = delegate2
+		ReferenceHub Owner2 = this.<Owner>k__BackingField
+
+		System.Boolean isLocalPlayer = Owner2.isLocalPlayer
+
+		if (isLocalPlayer == False)
+            goto INSN_180456A01
+        endif
+		System.Collections.Generic.Dictionary`2<System.UInt32,PlayerRoles.PlayableScps.Scp939.Scp939VisibilityController/LastSeenInfo> lastSeen = PlayerRoles.PlayableScps.Scp939.Scp939VisibilityController.LastSeen
+
+		lastSeen.Clear()
+
+		INSN_180456A01:
+		return
+		throw new System.NullReferenceException()
+
+		INSN_180456A25:
+		throw new System.InvalidCastException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.UnknownClassOffsetReadAction at (0x1804567CF) is corrupt (Unknown class offset read) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp939.Scp939VisibilityController
+	System.Boolean ValidateVisibility(ReferenceHub hub)
+
+		System.Boolean boolean = base.ValidateVisibility(hub) //(ReferenceHub hub)
+
+		if (boolean != False)
+		    PlayerRoles.PlayerRoleManager roleManager = hub.roleManager
+
+		    if (roleManager._anySet == False)
+
+		        roleManager.InitializeNewRole()
+		    endif
+            
+		    PlayerRoles.PlayerRoleBase _curRole = roleManager._curRole
+
+		    if (_curRole == 0)
+                goto INSN_180457552
+            endif
+		    //UNKNOWN CLASS OFFSET READ HERE
+		    PlayerRoles.PlayableScps.Scp939.Scp939Role _scpRole = this._scpRole
+		    PlayerRoles.FirstPersonControl.FirstPersonMovementModule FpcModule = _scpRole.<FpcModule>k__BackingField
+
+		    System.Single single = this.BaseRangeForPlayer()
+
+		    System.Single single2 = this.DetectionRangeForPlayer(hub) //(ReferenceHub hub)
+		    single2 = single
+
+		    System.Single single3 = UnityEngine.Mathf.Max(single2, single2) //(Single a, Single b)
+		    single2 = single3
+
+		    System.Single maxMovementSpeed = FpcModule.MaxMovementSpeed
+		      = _curRole.
+		    single = maxMovementSpeed
+		    System.Single local20 = single * this._pingTolerance
+		    //UNKNOWN CLASS OFFSET READ HERE
+		    System.Single single4 = FpcModule._cachedPosition.z
+
+		    UnityEngine.Vector3 vector3 = UnityEngine.Vector3.op_Subtraction()
+		    ulong local26 = 0
+
+		    if (local26 == 0)
+                goto INSN_18045748F
+            endif
+		    PlayerRoles.PlayableScps.Scp939.Scp939Role _scpRole2 = this._scpRole
+
+		    if ( != 0)
+                goto INSN_1804573BA
+            endif
+
+		    System.Boolean isLocalPlayer = .isLocalPlayer
+
+		    if (isLocalPlayer != False)
+                goto INSN_180457460
+            endif
+
+		    INSN_1804573BA:
+		    System.Collections.Generic.Dictionary`2<System.UInt32,PlayerRoles.PlayableScps.Scp939.Scp939VisibilityController/LastSeenInfo> lastSeen = PlayerRoles.PlayableScps.Scp939.Scp939VisibilityController.LastSeen
+
+		    System.UInt32 netId = hub.netId
+		    ulong local35 = 0
+
+		    System.Double time = Mirror.NetworkTime.time
+
+		    lastSeen.set_Item()
+
+		    INSN_180457460:
+		    return True
+
+		    INSN_18045748F:
+		    System.Collections.Generic.Dictionary`2<System.UInt32,PlayerRoles.PlayableScps.Scp939.Scp939VisibilityController/LastSeenInfo> lastSeen2 = PlayerRoles.PlayableScps.Scp939.Scp939VisibilityController.LastSeen
+
+		    System.UInt32 netId2 = netId.netId
+
+		    System.Boolean boolean2 = lastSeen2.TryGetValue()
+
+		    if (boolean2 != False)
+                goto INSN_1804574F5
+            endif
+
+		    INSN_1804574F5:
+		    ulong local42 = 0
+
+		    System.Double time2 = Mirror.NetworkTime.time
+		    ulong local44 = 0
+		      = lastSeen.
+
+		    INSN_180457552:
+		endif
+        
+		ulong local45 = 0
+		return local45
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180457200) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (4)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp939.Scp939VisibilityController
+	System.Single BaseRangeForPlayer(ReferenceHub hub, PlayerRoles.HumanRole human)
+		InventorySystem.Inventory inventory = hub.inventory
+		InventorySystem.Items.ItemBase _curInstance = inventory._curInstance
+
+		if (_curInstance != 0)
+		    //UNKNOWN CLASS OFFSET READ HERE
+		    //UNKNOWN CLASS OFFSET READ HERE
+
+		    if ( == MicroHIDItem)
+		        ulong local8 = 0
+
+		        System.Boolean boolean = UnityEngine.Object.op_Inequality(_curInstance, local8) //(Object x, Object y)
+
+		        if (boolean == False)
+                    goto INSN_180455FC6
+                endif
+		          = _curInstance.
+
+		        if (boolean == False)
+                    goto INSN_180455FC6
+                endif
+
+		        if (boolean == True)
+                    goto INSN_180455FC6
+                endif
+		    else
+		        //UNKNOWN CLASS OFFSET READ HERE
+
+		        if ( == UsableItem)
+		            System.Collections.Generic.Dictionary`2<ReferenceHub,InventorySystem.Items.Usables.PlayerHandler> handlers = InventorySystem.Items.Usables.UsableItemsController.Handlers
+
+		            System.Boolean boolean2 = handlers.TryGetValue()
+
+		            if (boolean2 != False)
+		                ulong local13 = 0
+
+		                System.Boolean boolean3 = UnityEngine.Object.op_Inequality(_curInstance, local13) //(Object x, Object y)
+
+		                if (boolean3 != False)
+		                    System.UInt16 ItemSerial = _curInstance.<ItemSerial>k__BackingField
+
+		                    if ( == ItemSerial)
+		                    endif
+                            
+		                    PlayerRoles.Voice.VoiceModuleBase VoiceModule = human.<VoiceModule>k__BackingField
+
+		                    if (VoiceModule == 0)
+                                goto INSN_180456062
+                            endif
+		                    //UNKNOWN CLASS OFFSET READ HERE
+
+		                    if (VoiceModule.<ServerIsSending>k__BackingField == False)
+                                goto INSN_180456062
+                            endif
+		                      = VoiceModule.
+		                    //UNKNOWN CLASS OFFSET READ HERE
+
+		                    System.Single maxDistance = local4.maxDistance
+
+		                    System.Single single = UnityEngine.Mathf.Max(15, maxDistance) //(Single a, Single b)
+
+		                    INSN_180456062:
+		                    return single
+		                    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.UnknownClassOffsetReadAction at (0x180455E7E) is corrupt (Unknown class offset read) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp939.Scp939VisibilityController
+	System.Void ResetObject()
+		System.Action onTargetChanged = PlayerRoles.Spectating.SpectatorTargetTracker.OnTargetChanged
+		System.Action action = new System.Action()
+
+		action..ctor(this, {'OnSpectatorTargetChanged' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		System.Delegate delegate = System.Delegate.Remove(onTargetChanged, action) //(Delegate source, Delegate value)
+		ulong local6 = 0
+
+		if (delegate != 0)
+
+		    if (delegate == 0)
+                goto INSN_180456758
+            endif
+		endif
+        
+		 += 96
+		PlayerRoles.Spectating.SpectatorTargetTracker._trackedTransformSet = local6
+		PlayerRoles.PlayerRoleManager/RoleChanged roleChanged = new PlayerRoles.PlayerRoleManager/RoleChanged()
+		roleChanged.method_ptr = OnRoleChanged
+		roleChanged.method = OnRoleChanged
+		roleChanged.m_target = this
+
+		PlayerRoles.PlayerRoleManager.remove_OnRoleChanged(roleChanged) //(RoleChanged value)
+		System.Action`2<PlayerRoles.FirstPersonControl.Thirdperson.AnimatedCharacterModel,System.Single> onFootstepPlayed = PlayerRoles.FirstPersonControl.Thirdperson.AnimatedCharacterModel.OnFootstepPlayed
+		System.Action`2<PlayerRoles.FirstPersonControl.Thirdperson.AnimatedCharacterModel,System.Single> action2 = new System.Action`2<PlayerRoles.FirstPersonControl.Thirdperson.AnimatedCharacterModel,System.Single>()
+
+		action2..ctor(this, {'OnFootstepPlayed' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		System.Delegate delegate2 = System.Delegate.Remove(onFootstepPlayed, action2) //(Delegate source, Delegate value)
+
+		if (delegate2 == 0)
+            goto INSN_18045671A
+        endif
+
+		if (delegate2 == 0)
+            goto INSN_180456764
+        endif
+
+		INSN_18045671A:
+		PlayerRoles.FirstPersonControl.Thirdperson.AnimatedCharacterModel.OnFootstepPlayed = delegate2
+
+		if (this._wasFaded == False)
+            goto INSN_180456743
+        endif
+
+		this.ResetFade()
+
+		INSN_180456743:
+		return
+
+		INSN_180456758:
+		throw new System.InvalidCastException()
+
+		INSN_180456764:
+		throw new System.InvalidCastException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x180456654) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp939.Scp939VisibilityController
+	System.Void .ctor()
+		System.Collections.Generic.Dictionary`2<System.UInt32,System.Double> dictionary = new System.Collections.Generic.Dictionary`2<System.UInt32,System.Double>()
+
+		dictionary..ctor()
+		this._lastFootstepSounds = dictionary
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: newobj System.Void System.Collections.Generic.Dictionary`2::.ctor()
+	IL_0005: stloc.0
+	IL_0006: ldarg.0
+	IL_0007: ldloc.0
+	IL_0008: stfld System.Collections.Generic.Dictionary`2<System.UInt32,System.Double> PlayerRoles.PlayableScps.Scp939.Scp939VisibilityController::_lastFootstepSounds
+	IL_000d: ldarg.0
+	IL_000e: call System.Void PlayerRoles.FirstPersonControl.FpcVisibilityController::.ctor()
+	IL_0013: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp939.Scp939VisibilityController
+	static System.Void .cctor()
+		System.Collections.Generic.Dictionary`2<System.UInt32,PlayerRoles.PlayableScps.Scp939.Scp939VisibilityController/LastSeenInfo> dictionary = new System.Collections.Generic.Dictionary`2<System.UInt32,PlayerRoles.PlayableScps.Scp939.Scp939VisibilityController/LastSeenInfo>()
+
+		dictionary..ctor()
+		PlayerRoles.PlayableScps.Scp939.Scp939VisibilityController.LastSeen = dictionary
+
+
+Generated IL:
+	IL_0000: newobj System.Void System.Collections.Generic.Dictionary`2::.ctor()
+	IL_0005: stsfld System.Collections.Generic.Dictionary`2<System.UInt32,PlayerRoles.PlayableScps.Scp939.Scp939VisibilityController/LastSeenInfo> PlayerRoles.PlayableScps.Scp939.Scp939VisibilityController::LastSeen
+	
+

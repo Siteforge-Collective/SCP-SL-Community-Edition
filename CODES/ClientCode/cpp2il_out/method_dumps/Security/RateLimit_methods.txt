@@ -1,0 +1,97 @@
+Type: RateLimit
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Security.RateLimit
+	System.Void .ctor(System.Int32 usagesAllowed, System.Single timeWindow, Mirror.NetworkConnection conn)
+		ulong local4 = 0
+
+		base.FieldGetter(local4, null, conn) //(String typeName, String fieldName, Object& val)
+		this._conn = conn
+		this._timeWindow = timeWindow
+		this._usagesAllowed = usagesAllowed
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181AA9F61) is corrupt (Found null operand in Arguments: [{'local4' (type System.Int32)}, , {'conn' (function parameter, type Mirror.NetworkConnection)}]) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Security.RateLimit
+	System.Boolean CanExecute(System.Boolean countUsage)
+		System.Single _timeWindow = this._timeWindow
+		ulong local3 = 0
+		ulong local4 = 0
+
+		System.Single fixedUnscaledTime = UnityEngine.Time.fixedUnscaledTime
+
+		if (fixedUnscaledTime > this._timeWindow)
+		    ulong local6 = 0
+		    this._usages = 1
+
+		    System.Single fixedUnscaledTime2 = UnityEngine.Time.fixedUnscaledTime
+		    this._usageTime = fixedUnscaledTime2
+		    return True
+		endif
+        
+		System.UInt32 _usages = this._usages
+		System.Int32 _usagesAllowed = this._usagesAllowed
+
+		if (_usages >= _usagesAllowed)
+            goto INSN_181AA9E94
+        endif
+
+		if (countUsage != False)
+		    System.UInt32 local10 = _usages + 1
+		    this._usages = local10
+		    return True
+
+		    INSN_181AA9E94:
+
+		    if (constant9 == 0)
+                goto INSN_181AA9EF8
+            endif
+
+		    ServerConsole.Disconnect()
+
+		    INSN_181AA9EF8:
+		    ulong local12 = 0
+		    return local12
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfZeroOrNullAction at (0x181AA9ECD) is corrupt (ConstantDefinition: Don't know how to get IL to load a Cpp2IL.Core.Analysis.ResultModels.StackPointer) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Security.RateLimit
+	System.Void Reset()
+		this._usages = 0
+		ulong local1 = 0
+
+		System.Single fixedUnscaledTime = UnityEngine.Time.fixedUnscaledTime
+		this._usageTime = fixedUnscaledTime
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldc.i4.0
+	IL_0002: conv.i8
+	IL_0003: conv.u8
+	IL_0004: stfld System.UInt32 Security.RateLimit::_usages
+	IL_0009: ldc.i4.0
+	IL_000a: stloc.0
+	IL_000b: call System.Single UnityEngine.Time::get_fixedUnscaledTime()
+	IL_0010: stloc.1
+	IL_0011: ldarg.0
+	IL_0012: ldloc.1
+	IL_0013: stfld System.Single Security.RateLimit::_usageTime
+	IL_0018: ret
+	
+

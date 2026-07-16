@@ -1,0 +1,460 @@
+Type: JailbirdHitreg
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Jailbird.JailbirdHitreg
+	System.Single get_TotalMeleeDamageDealt()
+		System.Single TotalMeleeDamageDealt = this.<TotalMeleeDamageDealt>k__BackingField
+		return TotalMeleeDamageDealt
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Single InventorySystem.Items.Jailbird.JailbirdHitreg::<TotalMeleeDamageDealt>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Jailbird.JailbirdHitreg
+	System.Void set_TotalMeleeDamageDealt(System.Single value)
+		this.<TotalMeleeDamageDealt>k__BackingField = value
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: stfld System.Single InventorySystem.Items.Jailbird.JailbirdHitreg::<TotalMeleeDamageDealt>k__BackingField
+	IL_0007: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Jailbird.JailbirdHitreg
+	System.Boolean get_AnyDetected()
+
+		this.DetectDestructibles()
+		System.Boolean local2 = "{il2cpp field on {'constant10' (constant value of type Cpp2IL.Core.Analysis.ResultModels.StaticFieldsPtr)}, offset 0x30}" > 0
+		return local2
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void InventorySystem.Items.Jailbird.JailbirdHitreg::DetectDestructibles()
+	IL_0006: ldstr "{il2cpp field on {'constant10' (constant value of type Cpp2IL.Core.Analysis.ResultModels.StaticFieldsPtr)}, offset 0x30}"
+	IL_000b: ldc.i4.0
+	IL_000c: conv.i8
+	IL_000d: conv.u8
+	IL_000e: cgt
+	IL_0010: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Jailbird.JailbirdHitreg
+	System.Void Setup(InventorySystem.Items.Jailbird.JailbirdItem target)
+		this._item = target
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: stfld InventorySystem.Items.Jailbird.JailbirdItem InventorySystem.Items.Jailbird.JailbirdHitreg::_item
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Jailbird.JailbirdHitreg
+	System.Boolean ClientTryAttack()
+		ulong local1 = 0
+		InventorySystem.Items.Jailbird.JailbirdItem _item = this._item
+		ReferenceHub Owner = _item.<Owner>k__BackingField
+		PlayerRoles.PlayerRoleManager roleManager = Owner.roleManager
+
+		PlayerRoles.PlayerRoleBase currentRole = roleManager.CurrentRole
+
+		if (currentRole != 0)
+		    InventorySystem.Items.Jailbird.JailbirdItem _item2 = this._item
+		    InventorySystem.Items.Autosync.AutosyncCmd autosyncCmd = new InventorySystem.Items.Autosync.AutosyncCmd()
+
+		    autosyncCmd..ctor(_item2, null) //(AutosyncItem item, NetworkWriter& writer)
+
+		    autosyncCmd.WriteByte({'4' (constant value of type System.Byte)}) //(Byte value)
+		      = autosyncCmd.
+
+		    RelativePositioning.RelativePositionSerialization.WriteRelativePosition()
+		    InventorySystem.Items.Jailbird.JailbirdItem _item3 = this._item
+		    ReferenceHub Owner2 = _item3.<Owner>k__BackingField
+		    UnityEngine.Transform playerCameraReference = Owner2.PlayerCameraReference
+
+		    UnityEngine.Quaternion rotation = Owner2.rotation
+
+		    Mirror.NetworkWriterExtensions.WriteQuaternion()
+
+		    this.DetectDestructibles()
+		    IDestructible[] detectedDestructibles = InventorySystem.Items.Jailbird.JailbirdHitreg.DetectedDestructibles
+		    IDestructible iDestructible = detectedDestructibles[local1]
+
+		    if (iDestructible != 0)
+		        //UNKNOWN CLASS OFFSET READ HERE
+
+		        ReferenceHub targetHub = iDestructible.TargetHub
+
+		        Utils.Networking.ReferenceHubReaderWriter.WriteReferenceHub()
+
+		        RelativePositioning.RelativePositionSerialization.WriteRelativePosition()
+		    endif
+            
+		    local1 += 1
+		endwhile
+        
+		goto INSN_18056198E
+        
+
+		if (autosyncCmd == 0)
+            goto INSN_180561A95
+        endif
+
+		INSN_180561A95:
+
+		if (local1 != 0)
+            goto INSN_180561AE6
+        endif
+		endif
+    
+		return currentRole
+		throw new System.NullReferenceException()
+		throw new System.IndexOutOfRangeException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+
+		INSN_180561AE6:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AllocateInstanceAction at (0x180561851) is corrupt (Found null operand in Arguments: [{'_item2' (type InventorySystem.Items.Jailbird.JailbirdItem)}, ]) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Jailbird.JailbirdHitreg
+	System.Boolean ServerAttack(System.Boolean isCharging, Mirror.NetworkReader reader)
+		InventorySystem.Items.Jailbird.JailbirdItem _item = this._item
+
+		if (reader != 0)
+
+		    RelativePositioning.RelativePosition relativePosition = RelativePositioning.RelativePositionSerialization.ReadRelativePosition(reader) //(NetworkReader reader)
+
+		    UnityEngine.Quaternion quaternion = Mirror.NetworkReaderExtensions.ReadQuaternion()
+		    System.Collections.Generic.HashSet`1<PlayerRoles.FirstPersonControl.FpcBacktracker> backtrackedPlayers = InventorySystem.Items.Jailbird.JailbirdHitreg.BacktrackedPlayers
+		    IDestructible[] detectedDestructibles = InventorySystem.Items.Jailbird.JailbirdHitreg.DetectedDestructibles
+		    PlayerRoles.FirstPersonControl.FpcBacktracker fpcBacktracker = new PlayerRoles.FirstPersonControl.FpcBacktracker()
+
+		    fpcBacktracker..ctor()
+
+		    System.Boolean boolean = backtrackedPlayers.Add(fpcBacktracker) //(T item)
+		    System.Int32 position = reader.Position
+		    ulong local19 = 0
+
+		    System.Int32 length = reader.Length
+
+		    if (position < length)
+
+		        System.Boolean boolean2 = Utils.Networking.ReferenceHubReaderWriter.TryReadReferenceHub(reader, local19) //(NetworkReader reader, ReferenceHub& hub)
+
+		        RelativePositioning.RelativePosition relativePosition2 = RelativePositioning.RelativePositionSerialization.ReadRelativePosition(reader) //(NetworkReader reader)
+		          = relativePosition2.
+
+		        if (boolean2 != False)
+		            System.Collections.Generic.HashSet`1<PlayerRoles.FirstPersonControl.FpcBacktracker> backtrackedPlayers2 = InventorySystem.Items.Jailbird.JailbirdHitreg.BacktrackedPlayers
+		            PlayerRoles.FirstPersonControl.FpcBacktracker fpcBacktracker2 = new PlayerRoles.FirstPersonControl.FpcBacktracker()
+
+		            fpcBacktracker2..ctor()
+
+		            System.Boolean boolean3 = backtrackedPlayers2.Add(fpcBacktracker2) //(T item)
+		        endif
+                
+		    endif
+            
+
+		    this.DetectDestructibles()
+		    InventorySystem.Items.Jailbird.JailbirdItem _item2 = this._item
+		    ReferenceHub Owner = _item2.<Owner>k__BackingField
+		    UnityEngine.Transform playerCameraReference = Owner.PlayerCameraReference
+
+		    UnityEngine.Vector3 forward = this.forward
+
+		    if (isCharging == False)
+                goto INSN_180562334
+            endif
+
+		    INSN_180562334:
+		    System.Single _damageMelee = this._damageMelee
+		    ulong local39 = 0
+		    IDestructible[] detectedDestructibles2 = InventorySystem.Items.Jailbird.JailbirdHitreg.DetectedDestructibles
+		    IDestructible iDestructible = detectedDestructibles2[local39]
+		    PlayerStatsSystem.JailbirdDamageHandler jailbirdDamageHandler = new PlayerStatsSystem.JailbirdDamageHandler()
+
+		    jailbirdDamageHandler..ctor()
+		      = jailbirdDamageHandler.
+
+		    if (jailbirdDamageHandler == 0)
+                goto INSN_1805624C0
+            endif
+		    System.Int64 local46 = 1
+
+		    if (isCharging == False)
+                goto INSN_1805624B3
+            endif
+		    //UNKNOWN CLASS OFFSET READ HERE
+
+		    ReferenceHub targetHub = iDestructible.TargetHub
+		    PlayerEffectsController playerEffectsController = targetHub.playerEffectsController
+		    System.Single _flashDuration = this._flashDuration
+
+		    CustomPlayerEffects.Flashed flashed = playerEffectsController.EnableEffect<CustomPlayerEffects.Flashed>(_flashDuration, local46) //(Single , Boolean )
+		    local39 += 1
+
+		    INSN_1805624B3:
+		    this.<TotalMeleeDamageDealt>k__BackingField = _damageMelee
+
+		    INSN_1805624C0:
+		    local39 += 1
+
+		    if ( == 2)
+                goto INSN_1805624E5
+            endif
+
+		    if ( != 0)
+                goto INSN_1805624E5
+            endif
+
+		    INSN_1805624E5:
+		    System.Collections.Generic.HashSet`1<PlayerRoles.FirstPersonControl.FpcBacktracker> backtrackedPlayers3 = InventorySystem.Items.Jailbird.JailbirdHitreg.BacktrackedPlayers
+		    System.Action`1<PlayerRoles.FirstPersonControl.FpcBacktracker> <>9__22_0 = InventorySystem.Items.Jailbird.JailbirdHitreg/<>c.<>9__22_0
+
+		    if (<>9__22_0 != 0)
+                goto INSN_180562591
+            endif
+		    InventorySystem.Items.Jailbird.JailbirdHitreg/<>c <>c = InventorySystem.Items.Jailbird.JailbirdHitreg/<>c.<>9
+		    System.Action`1<PlayerRoles.FirstPersonControl.FpcBacktracker> action = new System.Action`1<PlayerRoles.FirstPersonControl.FpcBacktracker>()
+
+		    action..ctor(<>c, {'<ServerAttack>b__22_0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		     += 8
+		    InventorySystem.Items.Jailbird.JailbirdHitreg/<>c.<>9 = action
+
+		    INSN_180562591:
+
+		    Utils.NonAllocLINQ.HashsetExtensions.ForEach<PlayerRoles.FirstPersonControl.FpcBacktracker>(backtrackedPlayers3, action) //(HashSet`1 , Action`1 )
+		    System.Collections.Generic.HashSet`1<PlayerRoles.FirstPersonControl.FpcBacktracker> backtrackedPlayers4 = InventorySystem.Items.Jailbird.JailbirdHitreg.BacktrackedPlayers
+
+		    backtrackedPlayers4.Clear()
+		    return local46
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180562139) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Jailbird.JailbirdHitreg
+	System.Void DetectDestructibles()
+		ulong local2 = 0
+		InventorySystem.Items.Jailbird.JailbirdItem _item = this._item
+		ReferenceHub Owner = _item.<Owner>k__BackingField
+		UnityEngine.Transform playerCameraReference = Owner.PlayerCameraReference
+
+		UnityEngine.Vector3 position = .position
+
+		UnityEngine.Vector3 forward = .forward
+
+		UnityEngine.Vector3 vector3 = UnityEngine.Vector3.op_Multiply()
+
+		UnityEngine.Vector3 vector32 = UnityEngine.Vector3.op_Addition()
+		InventorySystem.Items.Jailbird.JailbirdHitreg._detectionsLen = local2
+		UnityEngine.Collider[] detectedColliders = InventorySystem.Items.Jailbird.JailbirdHitreg.DetectedColliders
+		CachedLayerMask detectionMask = InventorySystem.Items.Jailbird.JailbirdHitreg.DetectionMask
+
+		System.Int32 int32 = CachedLayerMask.op_Implicit(detectionMask) //(CachedLayerMask mask)
+
+		System.Int32 int322 = UnityEngine.Physics.OverlapSphereNonAlloc()
+
+		if (int322 != 0)
+		    System.Collections.Generic.HashSet`1<System.UInt32> detectedNetIds = InventorySystem.Items.Jailbird.JailbirdHitreg.DetectedNetIds
+
+		    detectedNetIds.Clear()
+
+		    if (int322 > 0)
+		        UnityEngine.Collider[] detectedColliders2 = InventorySystem.Items.Jailbird.JailbirdHitreg.DetectedColliders
+		        UnityEngine.Collider collider = detectedColliders2[local2]
+
+		        System.Boolean boolean = collider.TryGetComponent<IDestructible>()
+
+		        if (boolean != False)
+
+		            UnityEngine.Vector3 position2 = collider.position
+		            CachedLayerMask linecastMask = InventorySystem.Items.Jailbird.JailbirdHitreg.LinecastMask
+
+		            System.Int32 int323 = CachedLayerMask.op_Implicit(linecastMask) //(CachedLayerMask mask)
+		            int32 = int323
+
+		            System.Boolean boolean2 = UnityEngine.Physics.Linecast()
+
+		            if (boolean2 != False)
+		                UnityEngine.Collider[] detectedColliders3 = InventorySystem.Items.Jailbird.JailbirdHitreg.DetectedColliders
+		                UnityEngine.Collider collider2 = detectedColliders3[local2]
+
+		                System.Boolean boolean3 = UnityEngine.Object.op_Inequality()
+
+		                if (boolean3 != False)
+                            goto INSN_180561FC3
+                        endif
+		            endif
+                    
+		            System.Collections.Generic.HashSet`1<System.UInt32> detectedNetIds2 = InventorySystem.Items.Jailbird.JailbirdHitreg.DetectedNetIds
+
+		            System.Boolean boolean4 = detectedNetIds2.Add()
+
+		            if (boolean4 == False)
+                        goto INSN_180561FC3
+                    endif
+		            System.Int32 _detectionsLen = InventorySystem.Items.Jailbird.JailbirdHitreg._detectionsLen
+		            IDestructible[] detectedDestructibles = InventorySystem.Items.Jailbird.JailbirdHitreg.DetectedDestructibles
+		            System.Int32 local48 = _detectionsLen + 1
+		            InventorySystem.Items.Jailbird.JailbirdHitreg._detectionsLen = local48
+
+		            if (detectedNetIds2 == 0)
+                        goto INSN_180561FA6
+                    endif
+
+		            if (local48 == 0)
+                        goto INSN_180562028
+                    endif
+
+		            INSN_180561FA6:
+		            detectedNetIds2. = detectedNetIds2
+		        endif
+                
+		        local2 += 1
+		    endif
+            
+		    return
+		    throw new System.NullReferenceException()
+
+		    INSN_180562028:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180561BBC) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Jailbird.JailbirdHitreg
+	System.Void .ctor()
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void System.Object::.ctor()
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: InventorySystem.Items.Jailbird.JailbirdHitreg
+	static System.Void .cctor()
+		System.Int64 local0 = 128
+		UnityEngine.Collider[] local1 = new UnityEngine.Collider[128]
+		InventorySystem.Items.Jailbird.JailbirdHitreg.DetectedColliders = local1
+		System.Int64 local2 = 128
+		IDestructible[] local3 = new IDestructible[128]
+		 += 8
+		InventorySystem.Items.Jailbird.JailbirdHitreg.DetectedColliders = local3
+		System.Int64 local4 = 2
+		System.String[] local5 = new System.String[2]
+
+		if ("Hitbox" != 0)
+
+		    if ("Hitbox" == 0)
+                goto INSN_1805628BE
+            endif
+		endif
+        
+		local5[0] = "Hitbox"
+
+		if ("Glass" == 0)
+            goto INSN_18056274A
+        endif
+
+		if ("Glass" == 0)
+            goto INSN_1805628DE
+        endif
+
+		INSN_18056274A:
+		local5[1] = "Glass"
+		CachedLayerMask cachedLayerMask = new CachedLayerMask()
+
+		cachedLayerMask..ctor(local5) //(String[] layers)
+		 += 16
+		InventorySystem.Items.Jailbird.JailbirdHitreg.DetectedColliders = cachedLayerMask
+		System.Int64 local8 = 1
+		System.String[] local9 = new System.String[1]
+
+		if ("Default" == 0)
+            goto INSN_1805627E5
+        endif
+
+		if (local9 == 0)
+            goto INSN_1805628FE
+        endif
+
+		INSN_1805627E5:
+		local9[0] = "Default"
+		CachedLayerMask cachedLayerMask2 = new CachedLayerMask()
+
+		cachedLayerMask2..ctor(local9) //(String[] layers)
+		 += 24
+		InventorySystem.Items.Jailbird.JailbirdHitreg.DetectedColliders = cachedLayerMask2
+		System.Collections.Generic.HashSet`1<System.UInt32> hashSet = new System.Collections.Generic.HashSet`1<System.UInt32>()
+
+		hashSet..ctor()
+		 += 32
+		InventorySystem.Items.Jailbird.JailbirdHitreg.DetectedColliders = hashSet
+		System.Collections.Generic.HashSet`1<PlayerRoles.FirstPersonControl.FpcBacktracker> hashSet2 = new System.Collections.Generic.HashSet`1<PlayerRoles.FirstPersonControl.FpcBacktracker>()
+
+		hashSet2..ctor()
+		 += 40
+		InventorySystem.Items.Jailbird.JailbirdHitreg.DetectedColliders = hashSet2
+		throw new System.NullReferenceException()
+
+		INSN_1805628BE:
+
+		INSN_1805628DE:
+
+		INSN_1805628FE:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x1805626B2) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+

@@ -1,0 +1,319 @@
+Type: PryableDoor
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Interobjects.PryableDoor
+	System.Boolean get_IsScp106Passable()
+		return True
+
+
+Generated IL:
+	IL_0000: ldc.i4.1
+	IL_0001: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Interobjects.PryableDoor
+	System.Boolean TryPryGate(ReferenceHub player)
+		Interactables.Interobjects.DoorUtils.DoorLockReason _blockPryingMask = this._blockPryingMask
+
+		if (_blockPryingMask != constant22)
+		    System.UInt16 activeLocks = this.ActiveLocks
+
+		    [instruction error - managed method being called is null]
+
+		    if (constant19 != 0)
+                goto INSN_1803F92C5
+            endif
+		endif
+        
+		ulong local5 = 0
+		ulong local6 = 0
+
+		this.PermissionsDenied(local6, local5) //(ReferenceHub ply, Byte colliderId)
+
+		if (constant24 == 0)
+            goto INSN_1803F92C5
+        endif
+		ulong local7 = 0
+
+		Mirror.PooledNetworkWriter writer = Mirror.NetworkWriterPool.GetWriter()
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'PryableDoor' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		ulong local11 = 0
+
+		base.SendRPCInternal(typeFromHandle, "RpcPryGate", writer, local11, local12) //(Type invokeClass, String rpcName, NetworkWriter writer, Int32 channelId, Boolean includeOwner)
+
+		Mirror.NetworkWriterPool.Recycle(writer) //(PooledNetworkWriter writer)
+		System.Single _pryAnimDuration = this._pryAnimDuration
+		this._remainingPryCooldown = _pryAnimDuration
+		return True
+
+		UnityEngine.Debug.LogWarning("[Server] function 'System.Boolean Interactables.Interobjects.PryableDoor::TryPryGate(ReferenceHub)' called when server was not active") //(Object message)
+
+		INSN_1803F92C5:
+		ulong local16 = 0
+		return local16
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfZeroOrNullAction at (0x1803F919A) is corrupt (ConstantDefinition: Don't know how to get IL to load a System.UInt16) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Interobjects.PryableDoor
+	System.Void RpcPryGate()
+		ulong local1 = 0
+
+		Mirror.PooledNetworkWriter writer = Mirror.NetworkWriterPool.GetWriter()
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'PryableDoor' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		ulong local5 = 0
+
+		base.SendRPCInternal(typeFromHandle, "RpcPryGate", writer, local5, local6) //(Type invokeClass, String rpcName, NetworkWriter writer, Int32 channelId, Boolean includeOwner)
+
+		Mirror.NetworkWriterPool.Recycle(writer) //(PooledNetworkWriter writer)
+		return
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: call Mirror.PooledNetworkWriter Mirror.NetworkWriterPool::GetWriter()
+	IL_0007: stloc.1
+	IL_0008: ldtoken Interactables.Interobjects.PryableDoor
+	IL_000d: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+	IL_0012: stloc.2
+	IL_0013: ldc.i4.0
+	IL_0014: stloc.3
+	IL_0015: ldarg.0
+	IL_0016: ldloc.2
+	IL_0017: ldstr "RpcPryGate"
+	IL_001c: ldloc.1
+	IL_001d: ldloc.3
+	IL_001e: ldloc.s V_4
+	IL_0020: call System.Void Mirror.NetworkBehaviour::SendRPCInternal(System.Type,System.String,Mirror.NetworkWriter,System.Int32,System.Boolean)
+	IL_0025: ldloc.1
+	IL_0026: call System.Void Mirror.NetworkWriterPool::Recycle(Mirror.PooledNetworkWriter)
+	IL_002b: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Interobjects.PryableDoor
+	System.Boolean AllowInteracting(ReferenceHub ply, System.Byte colliderId)
+		ulong local3 = 0
+
+		if (local3 < this._remainingPryCooldown)
+		    ulong local4 = 0
+		    return local4
+		endif
+        
+
+		System.Boolean boolean = base.AllowInteracting(ply, colliderId) //(ReferenceHub ply, Byte colliderId)
+		return boolean
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x1803F8EAE) is corrupt (Return value has a type of System.Int32, expecting an object of type System.Boolean) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Interobjects.PryableDoor
+	System.Void Update()
+
+		base.Update()
+		System.Single _remainingPryCooldown = this._remainingPryCooldown
+		ulong local3 = 0
+
+		if (_remainingPryCooldown > local3)
+		    ulong local4 = 0
+
+		    System.Single deltaTime = UnityEngine.Time.deltaTime
+		    this._remainingPryCooldown = _remainingPryCooldown
+		    UnityEngine.Animator mainAnimator = this.MainAnimator
+		    System.Int32 pryAnimHash = Interactables.Interobjects.PryableDoor.PryAnimHash
+
+		    mainAnimator.ResetTrigger(pryAnimHash) //(Int32 id)
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void Interactables.Interobjects.BasicDoor::Update()
+	IL_0006: ldarg.0
+	IL_0007: ldfld System.Single Interactables.Interobjects.PryableDoor::_remainingPryCooldown
+	IL_000c: stloc.0
+	IL_000d: ldc.i4.0
+	IL_000e: stloc.1
+	IL_000f: ldloc.0
+	IL_0010: ldloc.1
+	IL_0011: ble.s IL_003a
+	IL_0013: ldc.i4.0
+	IL_0014: stloc.2
+	IL_0015: call System.Single UnityEngine.Time::get_deltaTime()
+	IL_001a: stloc.3
+	IL_001b: ldarg.0
+	IL_001c: ldloc.0
+	IL_001d: stfld System.Single Interactables.Interobjects.PryableDoor::_remainingPryCooldown
+	IL_0022: ldarg.0
+	IL_0023: ldfld UnityEngine.Animator Interactables.Interobjects.BasicDoor::MainAnimator
+	IL_0028: stloc.s V_4
+	IL_002a: ldsfld System.Int32 Interactables.Interobjects.PryableDoor::PryAnimHash
+	IL_002f: stloc.s V_5
+	IL_0031: ldloc.s V_4
+	IL_0033: ldloc.s V_5
+	IL_0035: call System.Void UnityEngine.Animator::ResetTrigger(System.Int32)
+	IL_003a: ret
+	IL_003b: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0040: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Interobjects.PryableDoor
+	System.Void .ctor()
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void Interactables.Interobjects.BasicDoor::.ctor()
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Interobjects.PryableDoor
+	static System.Void .cctor()
+
+		System.Int32 int32 = UnityEngine.Animator.StringToHash("PryGate") //(String name)
+		Interactables.Interobjects.PryableDoor.PryAnimHash = int32
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'PryableDoor' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		Mirror.RemoteCalls.CmdDelegate cmdDelegate = new Mirror.RemoteCalls.CmdDelegate()
+		ulong local6 = 0
+
+		cmdDelegate..ctor(local6, {'InvokeUserCode_RpcPryGate' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		Mirror.RemoteCalls.RemoteCallHelper.RegisterRpcDelegate(typeFromHandle, "RpcPryGate", cmdDelegate) //(Type invokeClass, String rpcName, CmdDelegate func)
+		return
+
+
+Generated IL:
+	IL_0000: ldstr "PryGate"
+	IL_0005: call System.Int32 UnityEngine.Animator::StringToHash(System.String)
+	IL_000a: stsfld System.Int32 Interactables.Interobjects.PryableDoor::PryAnimHash
+	IL_000f: ldtoken Interactables.Interobjects.PryableDoor
+	IL_0014: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+	IL_0019: stloc.0
+	IL_001a: ldloc.2
+	IL_001b: ldftn System.Void Interactables.Interobjects.PryableDoor::InvokeUserCode_RpcPryGate(Mirror.NetworkBehaviour,Mirror.NetworkReader,Mirror.NetworkConnectionToClient)
+	IL_0021: newobj System.Void Mirror.RemoteCalls.CmdDelegate::.ctor(System.Object,System.IntPtr)
+	IL_0026: stloc.1
+	IL_0027: ldc.i4.0
+	IL_0028: stloc.2
+	IL_0029: ldloc.0
+	IL_002a: ldstr "RpcPryGate"
+	IL_002f: ldloc.1
+	IL_0030: call System.Void Mirror.RemoteCalls.RemoteCallHelper::RegisterRpcDelegate(System.Type,System.String,Mirror.RemoteCalls.CmdDelegate)
+	IL_0035: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Interobjects.PryableDoor
+	System.Void MirrorProcessed()
+
+
+Generated IL:
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Interobjects.PryableDoor
+	System.Void UserCode_RpcPryGate()
+		UnityEngine.Animator mainAnimator = this.MainAnimator
+		System.Int32 pryAnimHash = Interactables.Interobjects.PryableDoor.PryAnimHash
+
+		mainAnimator.SetTrigger(pryAnimHash) //(Int32 id)
+		UnityEngine.AudioSource mainSource = this.MainSource
+		UnityEngine.AudioClip _prySound = this._prySound
+
+		mainSource.PlayOneShot(_prySound) //(AudioClip clip)
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld UnityEngine.Animator Interactables.Interobjects.BasicDoor::MainAnimator
+	IL_0006: stloc.0
+	IL_0007: ldsfld System.Int32 Interactables.Interobjects.PryableDoor::PryAnimHash
+	IL_000c: stloc.1
+	IL_000d: ldloc.0
+	IL_000e: ldloc.1
+	IL_000f: call System.Void UnityEngine.Animator::SetTrigger(System.Int32)
+	IL_0014: ldarg.0
+	IL_0015: ldfld UnityEngine.AudioSource Interactables.Interobjects.BasicDoor::MainSource
+	IL_001a: stloc.2
+	IL_001b: ldarg.0
+	IL_001c: ldfld UnityEngine.AudioClip Interactables.Interobjects.PryableDoor::_prySound
+	IL_0021: stloc.3
+	IL_0022: ldloc.2
+	IL_0023: ldloc.3
+	IL_0024: call System.Void UnityEngine.AudioSource::PlayOneShot(UnityEngine.AudioClip)
+	IL_0029: ret
+	IL_002a: newobj System.Void System.NullReferenceException::.ctor()
+	IL_002f: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: Interactables.Interobjects.PryableDoor
+	static System.Void InvokeUserCode_RpcPryGate(Mirror.NetworkBehaviour obj, Mirror.NetworkReader reader, Mirror.NetworkConnectionToClient senderConnection)
+		ulong local3 = 0
+
+		System.Boolean active = Mirror.NetworkClient.active
+
+		if (active != False)
+		    //UNKNOWN CLASS OFFSET READ HERE
+		      = obj.
+		    System.Int32 pryAnimHash = Interactables.Interobjects.PryableDoor.PryAnimHash
+
+		    [instruction error - managed method being called is null]
+		      = obj.
+		      = obj.
+
+		    .PlayOneShot()
+		    return
+		endif
+        
+
+		UnityEngine.Debug.LogError("RPC RpcPryGate called on server.") //(Object message)
+		return
+		throw new System.InvalidCastException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.UnknownClassOffsetReadAction at (0x1803F8F3C) is corrupt (Unknown class offset read) and cannot be created as IL. Aborting here.
+
+

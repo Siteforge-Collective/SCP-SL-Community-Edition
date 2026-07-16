@@ -1,0 +1,458 @@
+Type: VoiceChatMicCapture
+
+
+	Generated Pseudocode:
+
+	Declaring Type: VoiceChat.VoiceChatMicCapture
+	static System.Boolean get_MicCaptureDenied()
+		ulong local0 = 0
+
+		VoiceChat.VcPrivacyFlags privacyFlags = VoiceChat.VoiceChatPrivacySettings.PrivacyFlags
+		return privacyFlags
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x181B9387E) is corrupt (Return value has a type of VoiceChat.VcPrivacyFlags, expecting an object of type System.Boolean) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: VoiceChat.VoiceChatMicCapture
+	System.Void Awake()
+		VoiceChat.VoiceChatMicCapture _singleton = VoiceChat.VoiceChatMicCapture._singleton
+		ulong local3 = 0
+
+		System.Boolean boolean = UnityEngine.Object.op_Inequality(_singleton, local3) //(Object x, Object y)
+
+		if (boolean == False)
+		    VoiceChat.VoiceChatMicCapture._singleton = this
+		    . = 1
+		      = .
+		    VoiceChat.CaressNoiseReduction.NoiseReducer noiseReducer = new VoiceChat.CaressNoiseReduction.NoiseReducer()
+
+		    noiseReducer..ctor()
+		    this._noiseReducer = noiseReducer
+		    this._noiseReductionFailed = True
+		      = noiseReducer.
+
+		    System.String string = System.String.Concat()
+
+		    UnityEngine.Debug.LogError(string) //(Object message)
+		    System.Single[] local10 = new System.Single[480]
+		    this._noiseReductionBuffer = local10
+		    VoiceChat.Networking.PlaybackBuffer playbackBuffer = new VoiceChat.Networking.PlaybackBuffer()
+		    ulong local13 = 0
+
+		    playbackBuffer..ctor(0x5DC0, local13) //(Int32 capacity, Boolean endlessTapeMode)
+		    this._recordBuffer = playbackBuffer
+		    VoiceChat.Networking.PlaybackBuffer playbackBuffer2 = new VoiceChat.Networking.PlaybackBuffer()
+		    ulong local16 = 0
+
+		    playbackBuffer2..ctor(0x5DC0, local16) //(Int32 capacity, Boolean endlessTapeMode)
+		    this._sendBuffer = playbackBuffer2
+
+		    UnityEngine.GameObject gameObject = base.gameObject
+
+		    UnityEngine.AudioSource audioSource = gameObject.AddComponent<UnityEngine.AudioSource>()
+		    this._micSource = audioSource
+		    UnityEngine.AudioSource _micSource = this._micSource
+		    ulong local22 = 0
+
+		    _micSource.volume = local22
+		    UnityEngine.AudioSource _micSource2 = this._micSource
+
+		    _micSource2.loop = True
+		    UnityEngine.AudioSource _micSource3 = this._micSource
+
+		    _micSource3.bypassEffects = True
+		    UnityEngine.AudioSource _micSource4 = this._micSource
+
+		    _micSource4.bypassListenerEffects = True
+		    UnityEngine.AudioSource _micSource5 = this._micSource
+
+		    _micSource5.bypassReverbZones = True
+		    System.Action`1<ReferenceHub> action = new System.Action`1<ReferenceHub>()
+
+		    action..ctor(this, {'OnPrivacySettingsUpdated' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		    VoiceChat.VoiceChatPrivacySettings.add_OnUserFlagsChanged(action) //(Action`1 value)
+		    return
+		endif
+        
+		System.InvalidOperationException invalidOperationException = new System.InvalidOperationException()
+
+		invalidOperationException..ctor("More than one 'VoiceChatMicCapture'' detected on scene!") //(String message)
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ImmediateToFieldAction at (0x181B92B12) is corrupt (Instance or field is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: VoiceChat.VoiceChatMicCapture
+	System.Void OnDestroy()
+		System.Action`1<ReferenceHub> action = new System.Action`1<ReferenceHub>()
+
+		action..ctor(this, {'OnPrivacySettingsUpdated' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		VoiceChat.VoiceChatPrivacySettings.remove_OnUserFlagsChanged(action) //(Action`1 value)
+		ulong local3 = 0
+
+		VoiceChat.VoiceChatMicCapture.StopAllMicrophones()
+		. = 0
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ImmediateToFieldAction at (0x181B92E92) is corrupt (Instance or field is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: VoiceChat.VoiceChatMicCapture
+	System.Void Update()
+		ulong local1 = 0
+
+		System.Boolean boolean = this.UpdateRecording()
+
+		if (boolean != False)
+		    VoiceChat.VoiceChatMicrophoneIndicator _singleton = VoiceChat.VoiceChatMicrophoneIndicator._singleton
+
+		    UnityEngine.GameObject gameObject = _singleton.gameObject
+
+		    gameObject.SetActive(local2) //(Boolean value)
+		    System.Single _minValue = _singleton._minValue
+		    System.Single _maxValue = _singleton._maxValue
+
+		    System.Single single = UnityEngine.Mathf.InverseLerp(_minValue, _maxValue, local1) //(Single a, Single b, Single value)
+		    System.Single _curvePower = _singleton._curvePower
+		    _minValue = single
+
+		    if ( != 0)
+		        UnityEngine.UI.Image _loudnessIndicator = _singleton._loudnessIndicator
+		        _curvePower = _minValue
+		        single = local15
+
+		        System.Single single2 = UnityEngine.Mathf.Max(single, _curvePower) //(Single a, Single b)
+		        _minValue = single2
+		    endif
+            
+		    _curvePower = _minValue
+
+		    _singleton.FillAmount = _curvePower
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x181B936DF) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: VoiceChat.VoiceChatMicCapture
+	System.Void OnPrivacySettingsUpdated(ReferenceHub hub)
+
+		System.Boolean isLocalPlayer = hub.isLocalPlayer
+
+		if (isLocalPlayer != False)
+
+		    if (this._micStarted != False)
+		        ulong local4 = 0
+
+		        VoiceChat.VcPrivacyFlags privacyFlags = VoiceChat.VoiceChatPrivacySettings.PrivacyFlags
+
+		        if (privacyFlags == constant12)
+                    goto INSN_181B92F19
+                endif
+		    endif
+            
+		    ulong local6 = 0
+
+		    VoiceChat.VoiceChatMicCapture.RestartRecording()
+		    return
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfZeroOrNullAction at (0x181B92F0B) is corrupt (ConstantDefinition: Don't know how to get IL to load a System.Byte) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: VoiceChat.VoiceChatMicCapture
+	System.Boolean UpdateRecording(System.Single& loudness, System.Boolean& isSpeaking)
+		ulong local3 = 0
+		loudness.m_value = local3
+		isSpeaking.m_value = local3
+		ulong local4 = 0
+
+		System.Boolean local5 = ReferenceHub.TryGetLocalHub(local3) //(ReferenceHub& hub)
+
+		if (local5 != False)
+		      = local3.
+		    ulong local6 = 0
+
+		    PlayerRoles.PlayerRoleBase local7 = .CurrentRole
+
+		    if (local7 != 0)
+		        ulong local8 = 0
+
+
+Generated IL:
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: VoiceChat.VoiceChatMicCapture
+	static System.Void StopAllMicrophones()
+		VoiceChat.VoiceChatMicCapture _singleton = VoiceChat.VoiceChatMicCapture._singleton
+
+		if (_singleton._micStarted != False)
+		    ulong local1 = 0
+
+		    System.String[] devices = UnityEngine.Microphone.devices
+		    ulong local3 = 0
+		    System.Int32 length = devices.Length
+
+		    if (local3 < length)
+		        System.String string = devices[local3]
+
+		        System.Boolean isRecording = UnityEngine.Microphone.IsRecording(string) //(String deviceName)
+
+		        if (isRecording != False)
+
+		            UnityEngine.Microphone.End(string) //(String deviceName)
+		        endif
+                
+		        local3 += 1
+		    endif
+            
+		    VoiceChat.VoiceChatMicCapture _singleton2 = VoiceChat.VoiceChatMicCapture._singleton
+		    _singleton2._micStarted = False
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldsfld VoiceChat.VoiceChatMicCapture VoiceChat.VoiceChatMicCapture::_singleton
+	IL_0005: ldfld System.Boolean VoiceChat.VoiceChatMicCapture::_micStarted
+	IL_000a: ldc.i4.0
+	IL_000b: beq.s IL_004b
+	IL_000d: ldc.i4.0
+	IL_000e: stloc.0
+	IL_000f: call System.String[] UnityEngine.Microphone::get_devices()
+	IL_0014: stloc.1
+	IL_0015: ldc.i4.0
+	IL_0016: stloc.2
+	IL_0017: ldloc.1
+	IL_0018: call System.Int32 System.Array::get_Length()
+	IL_001d: stloc.3
+	IL_001e: ldloc.2
+	IL_001f: ldloc.3
+	IL_0020: bge.s IL_0040
+	IL_0022: ldloc.1
+	IL_0023: ldloc.2
+	IL_0024: ldelem.any System.String
+	IL_0029: stloc.s V_4
+	IL_002b: ldloc.s V_4
+	IL_002d: call System.Boolean UnityEngine.Microphone::IsRecording(System.String)
+	IL_0032: ldc.i4.0
+	IL_0033: beq.s IL_003c
+	IL_0035: ldloc.s V_4
+	IL_0037: call System.Void UnityEngine.Microphone::End(System.String)
+	IL_003c: ldloc.2
+	IL_003d: ldc.i4.1
+	IL_003e: add
+	IL_003f: stloc.2
+	IL_0040: ldsfld VoiceChat.VoiceChatMicCapture VoiceChat.VoiceChatMicCapture::_singleton
+	IL_0045: ldc.i4.0
+	IL_0046: stfld System.Boolean VoiceChat.VoiceChatMicCapture::_micStarted
+	IL_004b: ret
+	IL_004c: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0051: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: VoiceChat.VoiceChatMicCapture
+	static System.Void StartRecording()
+		VoiceChat.VoiceChatMicCapture _singleton = VoiceChat.VoiceChatMicCapture._singleton
+
+		if (_singleton._micStarted == False)
+		    ulong local1 = 0
+
+		    VoiceChat.VoiceChatMicCapture.RestartRecording()
+		    return
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldsfld VoiceChat.VoiceChatMicCapture VoiceChat.VoiceChatMicCapture::_singleton
+	IL_0005: ldfld System.Boolean VoiceChat.VoiceChatMicCapture::_micStarted
+	IL_000a: ldc.i4.0
+	IL_000b: bne.un.s IL_0015
+	IL_000d: ldc.i4.0
+	IL_000e: stloc.0
+	IL_000f: call System.Void VoiceChat.VoiceChatMicCapture::RestartRecording()
+	IL_0014: ret
+	IL_0015: ret
+	IL_0016: newobj System.Void System.NullReferenceException::.ctor()
+	IL_001b: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: VoiceChat.VoiceChatMicCapture
+	static System.Void RestartRecording()
+		ulong local0 = 0
+
+		System.Boolean boolean = VoiceChat.VoiceChatMicrophoneSelector.TryGetPreferredMicrophone(local0) //(String& mic)
+
+		if (boolean != False)
+		    ulong local3 = 0
+
+		    VoiceChat.VcPrivacyFlags privacyFlags = VoiceChat.VoiceChatPrivacySettings.PrivacyFlags
+
+		    if (privacyFlags != constant15)
+                goto INSN_181B93260
+            endif
+		    VoiceChat.VoiceChatMicCapture _singleton = VoiceChat.VoiceChatMicCapture._singleton
+
+		    if (_singleton._micStarted != local0)
+		        System.String _selectedMic = VoiceChat.VoiceChatMicCapture._selectedMic
+
+		        System.Boolean boolean2 = System.String.op_Inequality(_selectedMic, local0) //(String a, String b)
+
+		        if (boolean2 != False)
+		            ulong local9 = 0
+
+		            VoiceChat.VoiceChatMicCapture.StopAllMicrophones()
+		             += 16
+		            VoiceChat.VoiceChatMicCapture._singleton = local0
+		        endif
+                
+		        VoiceChat.VoiceChatMicCapture _singleton2 = VoiceChat.VoiceChatMicCapture._singleton
+		        System.String _selectedMic2 = VoiceChat.VoiceChatMicCapture._selectedMic
+		        System.Int64 local12 = 1
+		        UnityEngine.AudioSource _micSource = _singleton2._micSource
+		        System.Int64 local14 = 0xBB80
+
+		        UnityEngine.AudioClip audioClip = UnityEngine.Microphone.Start(_selectedMic2, local12, local12, local14) //(String deviceName, Boolean loop, Int32 lengthSec, Int32 frequency)
+
+		        _micSource.clip = audioClip
+
+		        UnityEngine.AudioClip clip = _micSource.clip
+		        ulong local20 = 0
+
+		        System.Boolean boolean3 = UnityEngine.Object.op_Equality(clip, local20) //(Object x, Object y)
+		        VoiceChat.VoiceChatMicCapture _singleton3 = VoiceChat.VoiceChatMicCapture._singleton
+
+		        if (boolean3 != False)
+                    goto INSN_181B931F5
+                endif
+		        VoiceChat.Networking.PlaybackBuffer _recordBuffer = _singleton3._recordBuffer
+		        _recordBuffer.ReadHead = local0
+		        _recordBuffer.WriteHead = local0
+		        VoiceChat.VoiceChatMicCapture _singleton4 = VoiceChat.VoiceChatMicCapture._singleton
+		        VoiceChat.Networking.PlaybackBuffer _sendBuffer = _singleton4._sendBuffer
+		        _sendBuffer.ReadHead = local0
+		        _sendBuffer.WriteHead = local0
+		        VoiceChat.VoiceChatMicCapture _singleton5 = VoiceChat.VoiceChatMicCapture._singleton
+		        _singleton5._micStarted = True
+
+		        UnityEngine.AudioClip clip2 = _micSource.clip
+
+		        System.Int32 samples = clip2.samples
+		        VoiceChat.VoiceChatMicCapture _singleton6 = VoiceChat.VoiceChatMicCapture._singleton
+		        _singleton6._lastSample = local0
+		        VoiceChat.VoiceChatMicCapture _singleton7 = VoiceChat.VoiceChatMicCapture._singleton
+
+		        if (samples == _singleton7._samplesCount)
+                    goto INSN_181B931DB
+                endif
+		        _singleton7._samplesCount = samples
+		        VoiceChat.VoiceChatMicCapture _singleton8 = VoiceChat.VoiceChatMicCapture._singleton
+		        System.Single[] local34 = new System.Single[samples]
+		        _singleton8._samples = local34
+
+		        INSN_181B931DB:
+
+		        _micSource.Play()
+		    endif
+            
+		    return
+
+		    INSN_181B931F5:
+		    boolean. = local0
+		    System.String _selectedMic3 = VoiceChat.VoiceChatMicCapture._selectedMic
+
+		    System.String string = System.String.Concat("Microphone '", _selectedMic3, "' failed to start recording.") //(String str0, String str1, String str2)
+
+		    UnityEngine.Debug.LogError(string) //(Object message)
+		    return
+
+		    INSN_181B93260:
+		    ulong local40 = 0
+
+		    VoiceChat.VoiceChatMicCapture.StopAllMicrophones()
+		    return
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfNonZeroOrNonNullAction at (0x181B92FC9) is corrupt (ConstantDefinition: Don't know how to get IL to load a System.Byte) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: VoiceChat.VoiceChatMicCapture
+	static VoiceChat.VoiceChatChannel GetCurrentChannel()
+		VoiceChat.VoiceChatMicCapture _singleton = VoiceChat.VoiceChatMicCapture._singleton
+		VoiceChat.VoiceChatChannel _channel = _singleton._channel
+		return _channel
+		ulong local2 = 0
+		return local2
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x181B92DF9) is corrupt (Return value has a type of System.Int32, expecting an object of type VoiceChat.VoiceChatChannel) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: VoiceChat.VoiceChatMicCapture
+	System.Void .ctor()
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void UnityEngine.MonoBehaviour::.ctor()
+	IL_0006: ret
+	
+

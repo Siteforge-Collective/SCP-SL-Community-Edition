@@ -1,0 +1,676 @@
+Type: RaPlayer
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.Communication.RaPlayer
+	System.Int32 get_DataId()
+		return 1
+
+
+Generated IL:
+	IL_0000: ldc.i4.1
+	IL_0001: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.Communication.RaPlayer
+	System.Void ReceiveData(CommandSender sender, System.String data)
+		ulong local3 = 0
+		System.Int32 1 = 1
+		System.Char[] local6 = new System.Char[0]
+		local6[0] = 32
+
+		System.String[] stringArray = data.Split(local6) //(Char[] separator)
+
+		if (stringArray.Length == 2)
+		    System.String local10 = stringArray[0]
+
+		    System.Boolean boolean = System.Int32.TryParse()
+
+		    if (boolean != False)
+		        System.Boolean local12 = "{il2cpp field on {'constant1' (constant value of type Cpp2IL.Core.Analysis.ResultModels.StackPointer)}, offset 0x20}" == 1
+
+		        if (sender == 0)
+		        else
+		            //UNKNOWN CLASS OFFSET READ HERE
+		            ulong local13 = 0
+		        endif
+                
+
+		        if (local12 != False)
+                    goto INSN_180337D3E
+                endif
+
+		        if (sender == 0)
+                    goto INSN_180337D3E
+                endif
+		          = sender.
+		          = local13.
+
+		        if ( != local3)
+                    goto INSN_180337D3E
+                endif
+
+		        System.Boolean boolean2 = RemoteAdmin.CommandProcessor.CheckPermissions(sender, 0x100000) //(CommandSender sender, PlayerPermissions perm)
+
+		        if (boolean2 == False)
+                    goto INSN_180338BE3
+                endif
+
+		        INSN_180337D3E:
+
+		        System.Collections.Generic.IEnumerable`1<System.String> iEnumerable = System.Linq.Enumerable.Skip<System.String>(stringArray, 1) //(IEnumerable`1 source, Int32 count)
+
+		        System.String[] stringArray2 = System.Linq.Enumerable.ToArray<System.String>(iEnumerable) //(IEnumerable`1 source)
+
+		        System.Collections.Generic.List`1<ReferenceHub> list = Utils.RAUtils.ProcessPlayerIdOrNamesList()
+
+		        if ( == local3)
+                    goto INSN_180338BE3
+                endif
+
+		        System.String nickname = sender.Nickname
+
+		        [instruction error - managed method being called is null]
+
+		        if (sender == 0)
+                    goto INSN_180337E6E
+                endif
+		          = sender.
+		          = nickname.
+
+		        if ( != local3)
+                    goto INSN_180337E64
+                endif
+
+		        if ( == local3)
+                    goto INSN_180337E6E
+                endif
+
+		        INSN_180337E64:
+
+		        INSN_180337E6E:
+		        System.Int32 _size = list._size
+
+		        if (_size != 0)
+                    goto INSN_180337E86
+                endif
+		        ulong local25 = 0
+
+		        System.ThrowHelper.ThrowArgumentOutOfRangeException()
+
+		        INSN_180337E86:
+		        T[] _items = list._items
+		        T local27 = _items[0]
+
+		        sender.Respond()
+		          = .
+		          = .
+
+		        System.String myNick = .MyNick
+
+		        System.String string = System.String.Format()
+		        ulong local31 = 0
+
+		        ServerLogs.AddLog(6, string, 1, local31) //(Modules module, String msg, ServerLogType type, Boolean init)
+
+		        System.String nickname2 = sender.Nickname
+
+		        System.Boolean isPermitted = PermissionsHandler.IsPermitted()
+		          = .
+		          = .
+		          = .
+		          = local3.
+		          = .
+		        //UNKNOWN CLASS OFFSET READ HERE
+		          = sender.
+		        //UNKNOWN CLASS OFFSET READ HERE
+
+		        nickname2.GameplayData = isPermitted
+		        NorthwoodLib.Pools.StringBuilderPool shared = NorthwoodLib.Pools.StringBuilderPool.Shared
+
+		        System.Text.StringBuilder stringBuilder = shared.Rent("<color=white>") //(String text)
+
+		        System.String combinedName = stringBuilder.CombinedName
+
+		        System.String string2 = System.String.Concat("Nickname: ", combinedName) //(String str0, String str1)
+
+		        System.Text.StringBuilder stringBuilder2 = stringBuilder.Append(string2) //(String value)
+		          = .
+
+		        System.String string3 = System.String.Format("
+                Player ID: {0} <color=green><link=CP_ID></link></color>", stringBuilder2) //(String format, Object arg0)
+
+		        System.Text.StringBuilder stringBuilder3 = stringBuilder.Append(string3) //(String value)
+		          = .
+
+		        System.String string4 = System.String.Format("{0}", stringBuilder3) //(String format, Object arg0)
+		        System.Int32 2 = 2
+
+		        RemoteAdmin.Communication.RaClipboard.Send(sender, 2, string4) //(CommandSender sender, RaClipBoardType type, String data)
+
+		        if (local3 == 0)
+                    goto INSN_180338268
+                endif
+
+		        System.String string5 = local3.ToString()
+
+		        System.String string6 = System.String.Concat("
+                IP Address: ", string5, " ") //(String str0, String str1, String str2)
+
+		        System.Text.StringBuilder stringBuilder4 = stringBuilder.Append(string6) //(String value)
+
+		        if ( != 0)
+                    goto INSN_1803381E6
+                endif
+
+		        System.String string7 = local3.ToString()
+		        ulong local59 = 0
+
+		        RemoteAdmin.Communication.RaClipboard.Send(sender, local59, string7) //(CommandSender sender, RaClipBoardType type, String data)
+
+		        INSN_1803381E6:
+
+		        System.String originalIpAddress = sender.OriginalIpAddress
+		        ulong local63 = 0
+
+		        RemoteAdmin.Communication.RaClipboard.Send(sender, local63, string7) //(CommandSender sender, RaClipBoardType type, String data)
+
+		        System.String originalIpAddress2 = string7.OriginalIpAddress
+
+		        System.String string8 = System.String.Concat(" [routed via ", originalIpAddress2, "]") //(String str0, String str1, String str2)
+
+		        System.Text.StringBuilder stringBuilder5 = stringBuilder.Append(string8) //(String value)
+
+		        INSN_180338268:
+
+		        System.Text.StringBuilder stringBuilder6 = stringBuilder.Append("
+                IP Address: null") //(String value)
+
+		        System.String userId = stringBuilder.UserId
+
+		        System.Boolean isNullOrEmpty = System.String.IsNullOrEmpty(userId) //(String value)
+
+		        if (isNullOrEmpty == False)
+                    goto INSN_1803382B8
+                endif
+
+		        INSN_1803382B8:
+
+		        System.String userId2 = userId.UserId
+
+		        System.String string9 = System.String.Concat(userId2, " <color=green><link=CP_USERID></link></color>") //(String str0, String str1)
+
+		        System.String string10 = System.String.Concat("
+                User ID: ", string9) //(String str0, String str1)
+
+		        System.Text.StringBuilder stringBuilder7 = stringBuilder.Append(string10) //(String value)
+
+		        System.String userId3 = stringBuilder.UserId
+		        System.Int32 1 = 1
+
+		        RemoteAdmin.Communication.RaClipboard.Send(sender, 1, userId3) //(CommandSender sender, RaClipBoardType type, String data)
+
+		        System.String saltedUserId = sender.SaltedUserId
+
+		        if (saltedUserId == 0)
+                    goto INSN_18033839A
+                endif
+
+		        System.String saltedUserId2 = sender.SaltedUserId
+
+		        System.Boolean boolean3 = saltedUserId2.Contains("$") //(String value)
+
+		        if (boolean3 == False)
+                    goto INSN_18033839A
+                endif
+
+		        System.String saltedUserId3 = saltedUserId2.SaltedUserId
+
+		        System.String string11 = System.String.Concat("
+                Salted User ID: ", saltedUserId3) //(String str0, String str1)
+
+		        System.Text.StringBuilder stringBuilder8 = stringBuilder.Append(string11) //(String value)
+
+		        INSN_18033839A:
+
+		        [instruction error - managed method being called is null]
+
+		        if (stringBuilder8 != 0)
+                    goto INSN_1803383D8
+                endif
+
+		        System.String string12 = System.String.Concat(userId3, "<color=#D4AF37>INSUFFICIENT PERMISSIONS</color>") //(String str0, String str1)
+
+		        System.Text.StringBuilder stringBuilder9 = stringBuilder.Append(string12) //(String value)
+
+		        INSN_1803383D8:
+		        ulong local105 = 0
+
+		        System.String coloredRoleString = .GetColoredRoleString(local105) //(Boolean newLine)
+
+		        System.String string13 = System.String.Concat("
+                Server role: ", coloredRoleString) //(String str0, String str1)
+
+		        System.Text.StringBuilder stringBuilder10 = stringBuilder.Append(string13) //(String value)
+
+		        System.Boolean boolean4 = RemoteAdmin.CommandProcessor.CheckPermissions(sender, 0x20000) //(CommandSender sender, PlayerPermissions perm)
+
+		        System.Boolean boolean5 = RemoteAdmin.CommandProcessor.CheckPermissions(sender, 0x1000000) //(CommandSender sender, PlayerPermissions perm)
+
+		        if (sender == 0)
+                    goto INSN_180338487
+                endif
+		          = sender.
+		          = sender.
+
+		        INSN_180338487:
+
+		        [instruction error - managed method being called is null]
+		        System.Boolean local116 = boolean5 == False
+
+		        if (boolean5 != False)
+                    goto INSN_1803384D0
+                endif
+
+		        if (1 == 0)
+                    goto INSN_180338568
+                endif
+
+		        INSN_1803384D0:
+
+		        if (local116 == False)
+                    goto INSN_180338539
+                endif
+
+		        System.String string14 = System.String.Concat()
+
+		        System.Text.StringBuilder stringBuilder11 = stringBuilder.Append(string14) //(String value)
+
+		        System.String string15 = System.String.Concat("
+                <color=#DC143C>Hidden role type: </color>", "LOCAL") //(String str0, String str1)
+
+		        System.Text.StringBuilder stringBuilder12 = stringBuilder.Append(string15) //(String value)
+
+		        INSN_180338539:
+
+		        System.Text.StringBuilder stringBuilder13 = stringBuilder.Append("
+                Studio Status: <color=#BCC6CC>Studio GLOBAL Staff (management or global moderation)</color>") //(String value)
+
+		        INSN_180338568:
+		        ulong local128 = 0
+
+		        System.ThrowHelper.ThrowArgumentOutOfRangeException()
+		        System.Int32 m_ChunkLength = stringBuilder13.m_ChunkLength
+
+		        VoiceChat.VcMuteFlags flags = VoiceChat.VoiceChatMutes.GetFlags()
+
+		        if (flags == 0)
+                    goto INSN_18033876C
+                endif
+
+		        System.Text.StringBuilder stringBuilder14 = stringBuilder.Append("
+                MUTE STATUS:") //(String value)
+
+		        System.Type typeFromHandle = System.Type.GetTypeFromHandle({'VcMuteFlags' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+
+		        System.Array values = System.Enum.GetValues(typeFromHandle) //(Type enumType)
+
+		        System.Collections.IEnumerator enumerator = values.GetEnumerator()
+
+		        if (enumerator == 0)
+                    goto INSN_1803386FB
+                endif
+		        local141 = enumerator
+
+		        if (local141 != 0)
+		        endwhile
+                
+		        goto INSN_180339022
+                
+
+		        if (local141 == null)
+
+		            System.Text.StringBuilder stringBuilder15 = stringBuilder.Append(" <color=#F70D1A>") //(String value)
+
+		            System.Text.StringBuilder stringBuilder16 = stringBuilder.Append(stringBuilder15) //(Object value)
+
+		            System.Text.StringBuilder stringBuilder17 = stringBuilder.Append("</color>") //(String value)
+
+		            INSN_1803386FB:
+		            ulong local148 = 0
+
+		            if (stringBuilder17 == 0)
+                        goto INSN_180338763
+                    endif
+
+		            INSN_180338763:
+
+		            if (local148 != 0)
+                        goto INSN_180339028
+                    endif
+
+		            INSN_18033876C:
+
+		            System.Text.StringBuilder stringBuilder18 = stringBuilder.Append("
+                    Active flag(s):") //(String value)
+
+		            if ( == 0)
+                        goto INSN_1803387A1
+                    endif
+
+		            System.Text.StringBuilder stringBuilder19 = stringBuilder.Append(" <color=#659EC7>[GOD MODE]</color>") //(String value)
+
+		            INSN_1803387A1:
+		              = .
+
+		            PlayerStatsSystem.AdminFlagsStat module = stringBuilder.GetModule<PlayerStatsSystem.AdminFlagsStat>()
+		            System.Int32 1 = 1
+
+		            System.Boolean boolean6 = module.HasFlag(1) //(AdminFlags flag)
+
+		            if (boolean6 != False)
+                        goto INSN_18033880B
+                    endif
+
+		            System.Boolean isPermitted2 = PlayerRoles.FirstPersonControl.FpcNoclip.IsPermitted()
+
+		            if (isPermitted2 == False)
+                        goto INSN_18033881D
+                    endif
+
+		            INSN_18033880B:
+
+		            System.Text.StringBuilder stringBuilder20 = stringBuilder.Append(" <color=#DC143C>[NOCLIP ENABLED]</color>") //(String value)
+
+		            INSN_18033881D:
+
+		            System.Text.StringBuilder stringBuilder21 = stringBuilder.Append(" <color=#BFFF00>[DO NOT TRACK]</color>") //(String value)
+
+		            System.Text.StringBuilder stringBuilder22 = stringBuilder.Append(" <color=#BFFF00>[BYPASS MODE]</color>") //(String value)
+
+		            System.Text.StringBuilder stringBuilder23 = stringBuilder.Append(" <color=#43C6DB>[RA AUTHENTICATED]</color>") //(String value)
+
+		            System.Boolean isInOverwatch = .IsInOverwatch
+		            ulong local169 = 0
+
+		            if (isInOverwatch != False)
+                        goto INSN_180338AD8
+                    endif
+
+		            System.Text.StringBuilder stringBuilder24 = stringBuilder.Append("
+                    Class: ") //(String value)
+		            ulong local171 = 0
+
+		            System.Collections.Generic.Dictionary`2<PlayerRoles.RoleTypeId,PlayerRoles.PlayerRoleBase> allRoles = PlayerRoles.PlayerRoleLoader.AllRoles
+
+		            PlayerRoles.RoleTypeId roleId = PlayerRoles.PlayerRolesUtils.GetRoleId()
+
+		            System.Boolean boolean7 = allRoles.TryGetValue(roleId, local169) //(TKey key, TValue& value)
+
+		            if (boolean7 == False)
+                        goto INSN_180338917
+                    endif
+
+		            System.String roleName = allRoles.RoleName
+
+		            INSN_180338917:
+
+		            System.Text.StringBuilder stringBuilder25 = stringBuilder24.Append("None") //(String value)
+
+		            System.Text.StringBuilder stringBuilder26 = stringBuilder.Append(" <color=#fcff99>[HP: ") //(String value)
+
+		            System.Single roundedStat = RemoteAdmin.CommandProcessor.GetRoundedStat<PlayerStatsSystem.HealthStat>()
+
+		            System.Text.StringBuilder stringBuilder27 = stringBuilder26.Append(roundedStat) //(Single value)
+
+		            System.Text.StringBuilder stringBuilder28 = stringBuilder27.Append("]</color>") //(String value)
+
+		            System.Text.StringBuilder stringBuilder29 = stringBuilder.Append(" <color=green>[AHP: ") //(String value)
+
+		            System.Single roundedStat2 = RemoteAdmin.CommandProcessor.GetRoundedStat<PlayerStatsSystem.AhpStat>()
+		            roundedStat = roundedStat2
+
+		            System.Text.StringBuilder stringBuilder30 = stringBuilder29.Append(roundedStat) //(Single value)
+
+		            System.Text.StringBuilder stringBuilder31 = stringBuilder30.Append("]</color>") //(String value)
+
+		            System.Text.StringBuilder stringBuilder32 = stringBuilder.Append(" <color=#977dff>[HS: ") //(String value)
+
+		            System.Single roundedStat3 = RemoteAdmin.CommandProcessor.GetRoundedStat<PlayerStatsSystem.HumeShieldStat>()
+		            roundedStat = roundedStat3
+
+		            System.Text.StringBuilder stringBuilder33 = stringBuilder32.Append(roundedStat) //(Single value)
+
+		            System.Text.StringBuilder stringBuilder34 = stringBuilder33.Append("]</color>") //(String value)
+
+		            System.Text.StringBuilder stringBuilder35 = stringBuilder.Append("
+                    Position: ") //(String value)
+
+		            UnityEngine.Transform transform = local27.transform
+
+		            UnityEngine.Vector3 position = local27.position
+
+		            System.String string16 = Misc.ToPreciseString()
+
+		            INSN_180338AD8:
+
+		            System.Text.StringBuilder stringBuilder36 = stringBuilder35.Append(" <color=#008080>[OVERWATCH MODE]</color>") //(String value)
+
+		            System.Text.StringBuilder stringBuilder37 = stringBuilder.Append("</color>") //(String value)
+		            NorthwoodLib.Pools.StringBuilderPool shared2 = NorthwoodLib.Pools.StringBuilderPool.Shared
+
+		            System.String string17 = shared2.ToStringReturn(stringBuilder) //(StringBuilder stringBuilder)
+
+		            System.String string18 = System.String.Format("${0} {1}", stringBuilder37, string17) //(String format, Object arg0, Object arg1)
+		            System.String empty = System.String.Empty
+
+		            System.Boolean fullPermissions = sender.FullPermissions
+
+		            System.String userId4 = sender.UserId
+
+		            [instruction error - managed method being called is null]
+
+		            if (userId4 == 0)
+                        goto INSN_180338BC8
+                    endif
+
+		            INSN_180338BC8:
+
+		            System.String userId5 = userId4.UserId
+
+		            RemoteAdmin.Communication.RaPlayerQR.Send()
+		        endif
+                
+		        return
+		        NorthwoodLib.Pools.StringBuilderPool shared3 = NorthwoodLib.Pools.StringBuilderPool.Shared
+
+		        System.Text.StringBuilder stringBuilder38 = shared3.Rent("<color=white>") //(String text)
+
+		        System.Text.StringBuilder stringBuilder39 = stringBuilder38.Append("Selecting multiple players:") //(String value)
+
+		        System.Text.StringBuilder stringBuilder40 = stringBuilder38.Append("
+                Player ID: <color=green><link=CP_ID></link></color>") //(String value)
+
+		        if ( == 0)
+                    goto INSN_180338C9B
+                endif
+
+		        INSN_180338C9B:
+
+		        System.String string19 = System.String.Concat("
+                IP Address: ", "[REDACTED]") //(String str0, String str1)
+
+		        System.Text.StringBuilder stringBuilder41 = stringBuilder38.Append(string19) //(String value)
+
+		        if (stringArray != 0)
+                    goto INSN_180338CCB
+                endif
+
+		        INSN_180338CCB:
+
+		        System.String string20 = System.String.Concat("
+                User ID: ", "[REDACTED]") //(String str0, String str1)
+
+		        System.Text.StringBuilder stringBuilder42 = stringBuilder38.Append(string20) //(String value)
+
+		        System.Text.StringBuilder stringBuilder43 = stringBuilder38.Append("</color>") //(String value)
+		        System.String empty2 = System.String.Empty
+
+		        System.Collections.Generic.List`1/Enumerator<T> enumerator2 = .GetEnumerator()
+
+		        if (enumerator2 == 0)
+                    goto INSN_180338E44
+                endif
+		          = data.
+
+		        System.String string21 = System.String.Concat(empty2, enumerator2, ".") //(Object arg0, Object arg1, Object arg2)
+
+		        if ( != 0)
+                    goto INSN_180338E02
+                endif
+		          = data.
+		          = empty2.
+
+		        if ( == 0)
+                    goto INSN_180338DD6
+                endif
+
+		        System.String originalIpAddress3 = empty2.OriginalIpAddress
+
+		        INSN_180338DD6:
+
+		        System.String string22 = empty2.ToString()
+
+		        System.String string23 = System.String.Concat(empty2, string22, ",") //(String str0, String str1, String str2)
+
+		        INSN_180338E02:
+		          = data.
+
+		        System.String userId6 = empty2.UserId
+
+		        System.String string24 = System.String.Concat(empty2, userId6, ".") //(String str0, String str1, String str2)
+
+		        INSN_180338E44:
+
+		        empty2.Dispose()
+
+		        empty2.Dispose()
+
+		        if (empty2 != 0)
+                    goto INSN_18033905A
+                endif
+
+		        if (string21.m_stringLength <= 0)
+                    goto INSN_180338ED3
+                endif
+		        System.Int32 2 = 2
+
+		        RemoteAdmin.Communication.RaClipboard.Send(sender, 2, string21) //(CommandSender sender, RaClipBoardType type, String data)
+
+		        INSN_180338ED3:
+
+		        if (string23.m_stringLength <= 0)
+                    goto INSN_180338F11
+                endif
+		        ulong local261 = 0
+
+		        RemoteAdmin.Communication.RaClipboard.Send(sender, local261, string23) //(CommandSender sender, RaClipBoardType type, String data)
+
+		        INSN_180338F11:
+
+		        if (string24.m_stringLength <= 0)
+                    goto INSN_180338F50
+                endif
+
+		        INSN_180338F50:
+
+		        System.String string25 = System.String.Format("${0} {1}", local262, stringBuilder38) //(String format, Object arg0, Object arg1)
+		        System.String empty3 = System.String.Empty
+
+		        System.Boolean fullPermissions2 = sender.FullPermissions
+		        NorthwoodLib.Pools.StringBuilderPool shared4 = NorthwoodLib.Pools.StringBuilderPool.Shared
+
+		        shared4.Return(stringBuilder38) //(StringBuilder stringBuilder)
+		        throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL Generation Skipped due to invalid local _items of type T[]
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.Communication.RaPlayer
+	System.Void ReceiveData(System.String data, System.Boolean secure)
+		RemoteAdmin.SubmenuSelector Singleton = RemoteAdmin.SubmenuSelector.<Singleton>k__BackingField
+		RemoteAdmin.SubmenuSelector/SubMenu _currentMenu = Singleton._currentMenu
+
+		if (_currentMenu != 0)
+
+		    _currentMenu.SetResponse(True, data) //(Boolean isSuccess, String content)
+		    return
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldsfld RemoteAdmin.SubmenuSelector RemoteAdmin.SubmenuSelector::<Singleton>k__BackingField
+	IL_0005: ldfld RemoteAdmin.SubmenuSelector/SubMenu RemoteAdmin.SubmenuSelector::_currentMenu
+	IL_000a: stloc.0
+	IL_000b: ldloc.0
+	IL_000c: ldc.i4.0
+	IL_000d: beq.s IL_0018
+	IL_000f: ldloc.0
+	IL_0010: ldc.i4.1
+	IL_0011: ldarg.1
+	IL_0012: call System.Void RemoteAdmin.SubmenuSelector/SubMenu::SetResponse(System.Boolean,System.String)
+	IL_0017: ret
+	IL_0018: ret
+	IL_0019: newobj System.Void System.NullReferenceException::.ctor()
+	IL_001e: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.Communication.RaPlayer
+	static System.Void Request(System.Boolean isShort, System.String playerIds)
+
+		System.Boolean boolean = ReferenceHub.TryGetLocalHub()
+		  = local2.
+
+		System.String string = System.String.Format("$1 {0} {1}", local2, playerIds) //(String format, Object arg0, Object arg1)
+		ulong local8 = 0
+
+		.CmdSendQuery(string, local8) //(String query, Boolean gban)
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180339109) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: RemoteAdmin.Communication.RaPlayer
+	System.Void .ctor()
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void System.Object::.ctor()
+	IL_0006: ret
+	
+

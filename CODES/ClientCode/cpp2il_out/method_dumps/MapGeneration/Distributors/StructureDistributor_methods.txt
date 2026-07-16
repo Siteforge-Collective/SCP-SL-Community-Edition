@@ -1,0 +1,305 @@
+Type: StructureDistributor
+
+
+	Generated Pseudocode:
+
+	Declaring Type: MapGeneration.Distributors.StructureDistributor
+	System.Void PlaceSpawnables()
+		ulong local1 = 0
+
+		this.PrepareQueueForStructures()
+
+		System.Boolean boolean = this.TryGetNextStructure(local1, local1) //(Int32& structureId, StructureSpawnpoint& spawnpoint)
+
+		if (boolean != False)
+		    ulong local6 = 0
+
+		    System.Boolean boolean2 = UnityEngine.Object.op_Equality(local1, local6) //(Object x, Object y)
+
+		    if (boolean2 == False)
+		        MapGeneration.Distributors.SpawnablesDistributorSettings settings = this.Settings
+		        MapGeneration.Distributors.SpawnableStructure[] spawnableStructures = settings.SpawnableStructures
+		        MapGeneration.Distributors.SpawnableStructure spawnableStructure = spawnableStructures[local1]
+
+		        UnityEngine.Transform transform = local1.transform
+		          = local1.
+
+		        UnityEngine.Vector3 position = .position
+		        System.Single single = position.z
+
+		        UnityEngine.Quaternion rotation = .rotation
+
+		        MapGeneration.Distributors.SpawnableStructure spawnableStructure2 = UnityEngine.Object.Instantiate<MapGeneration.Distributors.SpawnableStructure>()
+
+		        UnityEngine.Transform transform2 = spawnableStructure2.transform
+
+		        transform2.parentInternal = transform
+		        ulong local23 = 0
+
+		        [instruction error - managed method being called is null]
+
+		        if (transform2 == 0)
+		            System.Collections.Generic.Dictionary`2<System.String,Interactables.Interobjects.DoorUtils.DoorNametagExtension> namedDoors = Interactables.Interobjects.DoorUtils.DoorNametagExtension.NamedDoors
+
+		            System.Boolean boolean3 = namedDoors.TryGetValue(local23, local1) //(TKey key, TValue& value)
+
+		            if (boolean3 != False)
+		                  = local1.
+
+		                UnityEngine.GameObject gameObject = spawnableStructure2.gameObject
+
+		                base.RegisterUnspawnedObject(local1, gameObject) //(DoorVariant door, GameObject unspawnedObject)
+		            else
+
+		                UnityEngine.GameObject gameObject2 = spawnableStructure2.gameObject
+
+		                this.Unregister()
+		            endif
+                    
+
+		            System.Boolean boolean4 = this.TryGetNextStructure(local1, local1) //(Int32& structureId, StructureSpawnpoint& spawnpoint)
+
+		            if (boolean4 == False)
+		            endif
+                    
+		            return
+		            throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1802EB8BE) is corrupt (Mismatched instance parameter. Expecting an instance of UnityEngine.Component, actually {'local1' (type System.Int32)}) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: MapGeneration.Distributors.StructureDistributor
+	System.Void PrepareQueueForStructures()
+		NorthwoodLib.Pools.ListPool`1<T> shared = NorthwoodLib.Pools.ListPool`1.Shared
+
+		System.Collections.Generic.List`1<T> list = shared.Rent()
+		ulong local3 = 0
+		MapGeneration.Distributors.SpawnablesDistributorSettings settings = this.Settings
+		ulong local5 = 0
+		MapGeneration.Distributors.SpawnableStructure[] spawnableStructures = settings.SpawnableStructures
+
+		if (local5 < spawnableStructures.Length)
+		    MapGeneration.Distributors.SpawnableStructure[] spawnableStructures2 = settings.SpawnableStructures
+		    MapGeneration.Distributors.SpawnableStructure local8 = spawnableStructures2[]
+		    System.Int32 maxAmount = local8.MaxAmount
+		    System.Int32 minAmount = local8.MinAmount
+		    maxAmount += 1
+
+		    System.Int32 int32 = UnityEngine.Random.Range(minAmount, maxAmount) //(Int32 min, Int32 max)
+		    ulong local13 = 0
+
+		    if (int32 > 0)
+		        MapGeneration.Distributors.SpawnablesDistributorSettings settings2 = this.Settings
+		        MapGeneration.Distributors.SpawnableStructure[] spawnableStructures3 = settings2.SpawnableStructures
+		        MapGeneration.Distributors.SpawnableStructure local16 = spawnableStructures3[]
+
+		        list.Add(local3) //(T item)
+		        System.Collections.Generic.Queue`1<System.Int32> _queuedStructures = this._queuedStructures
+
+		        _queuedStructures.Enqueue(local3) //(T item)
+		        local13 += 1
+		    endif
+            
+		    MapGeneration.Distributors.SpawnablesDistributorSettings settings3 = this.Settings
+		    local3 += 1
+		endif
+        
+		System.Int32 _size = list._size
+
+		if (_size <= 0)
+            goto INSN_1802EBCCD
+        endif
+		ulong local21 = 0
+
+		System.Int32 int322 = UnityEngine.Random.Range(local21, _size) //(Int32 min, Int32 max)
+		System.Collections.Generic.Queue`1<System.Int32> _queuedStructures2 = this._queuedStructures
+		ulong local24 = 0
+
+		System.ThrowHelper.ThrowArgumentOutOfRangeException()
+		T[] _items = list._items
+		T t = _items[int322]
+
+		_queuedStructures2.Enqueue()
+
+		list.RemoveAt(int322) //(Int32 index)
+
+		INSN_1802EBCCD:
+		NorthwoodLib.Pools.ListPool`1<T> shared2 = NorthwoodLib.Pools.ListPool`1.Shared
+
+		shared2.Return(list) //(List`1 list)
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL Generation Skipped due to invalid local _items of type T[]
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: MapGeneration.Distributors.StructureDistributor
+	System.Boolean TryGetNextStructure(System.Int32& structureId, MapGeneration.Distributors.StructureSpawnpoint& spawnpoint)
+		System.Collections.Generic.Queue`1<System.Int32> _queuedStructures = this._queuedStructures
+
+		System.Boolean boolean = CollectionExtensions.TryDequeue<System.Int32>()
+
+		if (boolean != False)
+		    System.Collections.Generic.HashSet`1<System.Int32> _missingSpawnpoints = this._missingSpawnpoints
+
+		    System.Boolean boolean2 = _missingSpawnpoints.Contains()
+
+		    if (boolean2 == False)
+		        NorthwoodLib.Pools.ListPool`1<T> shared = NorthwoodLib.Pools.ListPool`1.Shared
+
+		        System.Collections.Generic.List`1<T> list = shared.Rent()
+		        System.Collections.Generic.HashSet`1<MapGeneration.Distributors.StructureSpawnpoint> availableInstances = MapGeneration.Distributors.StructureSpawnpoint.AvailableInstances
+
+		        System.Collections.Generic.HashSet`1/Enumerator<T> enumerator = .GetEnumerator()
+
+		        if (enumerator != 0)
+
+		            System.Boolean boolean3 = UnityEngine.Object.op_Equality()
+
+		            if (boolean3 == False)
+		                MapGeneration.Distributors.SpawnablesDistributorSettings settings = this.Settings
+		                MapGeneration.Distributors.SpawnableStructure[] spawnableStructures = settings.SpawnableStructures
+		                MapGeneration.Distributors.SpawnableStructure spawnableStructure = spawnableStructures[]
+
+		                System.Boolean boolean4 = CollectionExtensions.Contains<MapGeneration.Distributors.StructureType>()
+
+		                if (boolean4 != False)
+
+		                    list.Add()
+		                endif
+                        
+
+		                [instruction error - managed method being called is null]
+
+		                [instruction error - managed method being called is null]
+
+		                if (StructureSpawnpoint != 0)
+                            goto INSN_1802EC2C2
+                        endif
+		                System.Int32 _size = list._size
+		                System.Collections.Generic.HashSet`1<System.Int32> _missingSpawnpoints2 = this._missingSpawnpoints
+
+		                System.Boolean boolean5 = _missingSpawnpoints2.Add()
+		                return True
+		                ulong local24 = 0
+
+		                [instruction error - managed method being called is null]
+		                ulong local25 = 0
+
+		                System.ThrowHelper.ThrowArgumentOutOfRangeException()
+		                T[] _items = list._items
+		                T t = _items[]
+		                System.Collections.Generic.HashSet`1<MapGeneration.Distributors.StructureSpawnpoint> availableInstances2 = MapGeneration.Distributors.StructureSpawnpoint.AvailableInstances
+
+		                System.Boolean boolean6 = availableInstances2.Remove()
+		                spawnpoint. = t
+		            endif
+                    
+		            return True
+		        endif
+                
+		        ulong local30 = 0
+		        return local30
+		        throw new System.IndexOutOfRangeException()
+		        throw new System.NullReferenceException()
+		        throw new System.NullReferenceException()
+		        throw new System.NullReferenceException()
+		        throw new System.NullReferenceException()
+		        throw new System.NullReferenceException()
+
+		        INSN_1802EC2C2:
+
+
+Generated IL:
+	IL Generation Skipped due to invalid local _items of type T[]
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: MapGeneration.Distributors.StructureDistributor
+	System.Void SpawnStructure(MapGeneration.Distributors.SpawnableStructure structure, UnityEngine.Transform tr, System.String doorName)
+
+		UnityEngine.Vector3 position = .position
+		System.Single single = position.z
+
+		UnityEngine.Quaternion rotation = .rotation
+
+		MapGeneration.Distributors.SpawnableStructure spawnableStructure = UnityEngine.Object.Instantiate<MapGeneration.Distributors.SpawnableStructure>()
+
+		UnityEngine.Transform transform = spawnableStructure.transform
+
+		transform.parentInternal = tr
+
+		[instruction error - managed method being called is null]
+
+		if (transform == 0)
+		    System.Collections.Generic.Dictionary`2<System.String,Interactables.Interobjects.DoorUtils.DoorNametagExtension> namedDoors = Interactables.Interobjects.DoorUtils.DoorNametagExtension.NamedDoors
+
+		    System.Boolean boolean = namedDoors.TryGetValue()
+
+		    if (boolean != False)
+		          = local4.
+
+		        UnityEngine.GameObject gameObject = spawnableStructure.gameObject
+
+		        base.RegisterUnspawnedObject()
+		        return
+		    endif
+            
+
+		    UnityEngine.GameObject gameObject2 = spawnableStructure.gameObject
+
+		    this.Unregister()
+		    return
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1802EBDC5) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: MapGeneration.Distributors.StructureDistributor
+	System.Void .ctor()
+		System.Collections.Generic.Queue`1<System.Int32> queue = new System.Collections.Generic.Queue`1<System.Int32>()
+
+		queue..ctor()
+		this._queuedStructures = queue
+		System.Collections.Generic.HashSet`1<System.Int32> hashSet = new System.Collections.Generic.HashSet`1<System.Int32>()
+
+		hashSet..ctor()
+		this._missingSpawnpoints = hashSet
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: newobj System.Void System.Collections.Generic.Queue`1::.ctor()
+	IL_0005: stloc.0
+	IL_0006: ldarg.0
+	IL_0007: ldloc.0
+	IL_0008: stfld System.Collections.Generic.Queue`1<System.Int32> MapGeneration.Distributors.StructureDistributor::_queuedStructures
+	IL_000d: newobj System.Void System.Collections.Generic.HashSet`1::.ctor()
+	IL_0012: stloc.1
+	IL_0013: ldarg.0
+	IL_0014: ldloc.1
+	IL_0015: stfld System.Collections.Generic.HashSet`1<System.Int32> MapGeneration.Distributors.StructureDistributor::_missingSpawnpoints
+	IL_001a: ldarg.0
+	IL_001b: call System.Void MapGeneration.Distributors.SpawnablesDistributorBase::.ctor()
+	IL_0020: ret
+	
+

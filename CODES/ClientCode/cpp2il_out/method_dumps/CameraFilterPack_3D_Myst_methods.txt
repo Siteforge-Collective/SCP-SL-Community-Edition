@@ -1,0 +1,282 @@
+Type: CameraFilterPack_3D_Myst
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CameraFilterPack_3D_Myst
+	UnityEngine.Material get_material()
+
+		System.Boolean boolean = UnityEngine.Object.op_Equality()
+
+		if (boolean != False)
+		    UnityEngine.Shader sCShader = this.SCShader
+		    UnityEngine.Material material = new UnityEngine.Material()
+
+		    material..ctor(sCShader) //(Shader shader)
+		    this.SCMaterial = material
+		    System.Int32 61 = 61
+
+		    .hideFlags = 61
+		endif
+        
+		return boolean
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1804F1A6A) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CameraFilterPack_3D_Myst
+	System.Void Start()
+
+		UnityEngine.Object object = UnityEngine.Resources.Load("CameraFilterPack_3D_Myst1") //(String path)
+		ulong local3 = 0
+
+		if (object != 0)
+		endif
+        
+		this.Texture2 = local3
+
+		UnityEngine.Shader shader = UnityEngine.Shader.Find("CameraFilterPack/3D_Myst") //(String name)
+		this.SCShader = shader
+		ulong local6 = 0
+
+		[instruction error - managed method being called is null]
+
+		if (shader != 0)
+            goto INSN_1804F1A00
+        endif
+		ulong local8 = 0
+
+		base.enabled = local8
+		return
+
+		INSN_1804F1A00:
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1804F19E5) is corrupt (Don't know what method is being called) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CameraFilterPack_3D_Myst
+	System.Void OnRenderImage(UnityEngine.RenderTexture sourceTexture, UnityEngine.RenderTexture destTexture)
+		UnityEngine.Shader sCShader = this.SCShader
+		ulong local5 = 0
+
+		System.Boolean boolean = UnityEngine.Object.op_Inequality(sCShader, local5) //(Object x, Object y)
+
+		if (boolean == False)
+
+		    UnityEngine.Graphics.Blit(sourceTexture, destTexture) //(Texture source, RenderTexture dest)
+		else
+		    ulong local8 = 0
+
+		    System.Single deltaTime = UnityEngine.Time.deltaTime
+		    this.TimeX = deltaTime
+
+		    if (deltaTime > 100)
+		        this.TimeX = 0
+		    endif
+            
+
+		    UnityEngine.Material material = this.material
+		    System.Single timeX = this.TimeX
+
+		    material.SetFloat("_TimeX", timeX) //(String name, Single value)
+
+		    if (this.AutoAnimatedNear == False)
+                goto INSN_1804F167A
+            endif
+		    ulong local16 = 0
+
+		    System.Single deltaTime2 = UnityEngine.Time.deltaTime
+		    System.Single local18 = deltaTime2 * this.AutoAnimatedNearSpeed
+		    this._Distance = local18
+
+		    if (local18 <= 1)
+                goto INSN_1804F1666
+            endif
+		    this._Distance = -1
+
+		    INSN_1804F1666:
+		    this._Distance = 1
+
+		    INSN_1804F167A:
+
+		    UnityEngine.Material material2 = this.material
+		    System.Single _Distance = this._Distance
+
+		    material2.SetFloat("_Near", _Distance) //(String name, Single value)
+
+		    UnityEngine.Material material3 = this.material
+		    System.Single _Size = this._Size
+
+		    material3.SetFloat("_Far", _Size) //(String name, Single value)
+
+		    UnityEngine.Material material4 = this.material
+		    ulong local29 = 0
+		    System.Boolean local30 = this._Visualize != local29
+
+		    material4.SetFloat("_Visualize", _Size) //(String name, Single value)
+
+		    UnityEngine.Material material5 = this.material
+		    System.Single _FixDistance = this._FixDistance
+
+		    material5.SetFloat("_FixDistance", _FixDistance) //(String name, Single value)
+
+		    UnityEngine.Material material6 = this.material
+		    System.Single distortionLevel = this.DistortionLevel
+		    System.Single local40 = distortionLevel * 28
+
+		    material6.SetFloat("_DistortionLevel", local40) //(String name, Single value)
+
+		    UnityEngine.Material material7 = this.material
+		    System.Single distortionSize = this.DistortionSize
+		    System.Single local45 = distortionSize * 16
+
+		    material7.SetFloat("_DistortionSize", local45) //(String name, Single value)
+
+		    UnityEngine.Material material8 = this.material
+		    System.Single lightIntensity = this.LightIntensity
+		    System.Single local50 = lightIntensity * 64
+
+		    material8.SetFloat("_LightIntensity", local50) //(String name, Single value)
+
+		    UnityEngine.Material material9 = this.material
+		    UnityEngine.Texture2D texture2 = this.Texture2
+
+		    material9.SetTexture("_MainTex2", texture2) //(String name, Texture value)
+
+		    UnityEngine.Camera component = base.GetComponent<UnityEngine.Camera>()
+
+		    System.Single farClipPlane = component.farClipPlane
+		    local15 = farClipPlane
+
+		    UnityEngine.Material material10 = this.material
+
+		    material10.SetFloat("_FarCamera", 1000) //(String name, Single value)
+
+		    UnityEngine.Material material11 = this.material
+
+		    System.String string = sourceTexture.ToString()
+
+		    sourceTexture.set_width()
+		    ulong local64 = 0
+		    ulong local66 = 0
+
+		    material11.SetVector("_ScreenResolution", local64) //(String name, Vector4 value)
+
+		    UnityEngine.Camera component2 = base.GetComponent<UnityEngine.Camera>()
+		    System.Int32 1 = 1
+
+		    component2.depthTextureMode = 1
+
+		    UnityEngine.Material material12 = this.material
+
+		    UnityEngine.Graphics.Blit(sourceTexture, destTexture, material12) //(Texture source, RenderTexture dest, Material mat)
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.NotEqualRegisterSetAction at (0x1804F16F2) is corrupt (Destination local has been stripped) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CameraFilterPack_3D_Myst
+	System.Void Update()
+
+
+Generated IL:
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CameraFilterPack_3D_Myst
+	System.Void OnDisable()
+		UnityEngine.Material sCMaterial = this.SCMaterial
+
+		System.Boolean boolean = UnityEngine.Object.op_Implicit(sCMaterial) //(Object exists)
+
+		if (boolean != False)
+		    UnityEngine.Material sCMaterial2 = this.SCMaterial
+
+		    UnityEngine.Object.DestroyImmediate(sCMaterial2) //(Object obj)
+		endif
+        
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld UnityEngine.Material CameraFilterPack_3D_Myst::SCMaterial
+	IL_0006: call System.Boolean UnityEngine.Object::op_Implicit(UnityEngine.Object)
+	IL_000b: ldc.i4.0
+	IL_000c: beq.s IL_0019
+	IL_000e: ldarg.0
+	IL_000f: ldfld UnityEngine.Material CameraFilterPack_3D_Myst::SCMaterial
+	IL_0014: call System.Void UnityEngine.Object::DestroyImmediate(UnityEngine.Object)
+	IL_0019: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: CameraFilterPack_3D_Myst
+	System.Void .ctor()
+		this.TimeX = 1
+		this._FixDistance = 1
+		this._Distance = 0,5
+		this._Size = 0,1
+		this.DistortionLevel = 1,2
+		this.DistortionSize = 1,4
+		this.LightIntensity = 0,08
+		this.AutoAnimatedNearSpeed = 0,5
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldc.r4 1
+	IL_0006: stfld System.Single CameraFilterPack_3D_Myst::TimeX
+	IL_000b: ldarg.0
+	IL_000c: ldc.r4 1
+	IL_0011: stfld System.Single CameraFilterPack_3D_Myst::_FixDistance
+	IL_0016: ldarg.0
+	IL_0017: ldc.r4 0,5
+	IL_001c: stfld System.Single CameraFilterPack_3D_Myst::_Distance
+	IL_0021: ldarg.0
+	IL_0022: ldc.r4 0,1
+	IL_0027: stfld System.Single CameraFilterPack_3D_Myst::_Size
+	IL_002c: ldarg.0
+	IL_002d: ldc.r4 1,2
+	IL_0032: stfld System.Single CameraFilterPack_3D_Myst::DistortionLevel
+	IL_0037: ldarg.0
+	IL_0038: ldc.r4 1,4
+	IL_003d: stfld System.Single CameraFilterPack_3D_Myst::DistortionSize
+	IL_0042: ldarg.0
+	IL_0043: ldc.r4 0,08
+	IL_0048: stfld System.Single CameraFilterPack_3D_Myst::LightIntensity
+	IL_004d: ldarg.0
+	IL_004e: ldc.r4 0,5
+	IL_0053: stfld System.Single CameraFilterPack_3D_Myst::AutoAnimatedNearSpeed
+	IL_0058: ldarg.0
+	IL_0059: call System.Void UnityEngine.MonoBehaviour::.ctor()
+	IL_005e: ret
+	
+

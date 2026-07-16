@@ -1,0 +1,465 @@
+Type: Scp106MovementModule
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp106.Scp106MovementModule
+	System.Void set_MovementSpeed(System.Single value)
+		this.SneakSpeed = value
+		this.WalkSpeed = value
+		this.SprintSpeed = value
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: stfld System.Single PlayerRoles.FirstPersonControl.FirstPersonMovementModule::SneakSpeed
+	IL_0007: ldarg.0
+	IL_0008: ldarg.1
+	IL_0009: stfld System.Single PlayerRoles.FirstPersonControl.FirstPersonMovementModule::WalkSpeed
+	IL_000e: ldarg.0
+	IL_000f: ldarg.1
+	IL_0010: stfld System.Single PlayerRoles.FirstPersonControl.FirstPersonMovementModule::SprintSpeed
+	IL_0015: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp106.Scp106MovementModule
+	System.Single get_MovementSpeed()
+		System.Single walkSpeed = this.WalkSpeed
+		return walkSpeed
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Single PlayerRoles.FirstPersonControl.FirstPersonMovementModule::WalkSpeed
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp106.Scp106MovementModule
+	System.Single get_CurSlowdown()
+		System.Single CurSlowdown = this.<CurSlowdown>k__BackingField
+		return CurSlowdown
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Single PlayerRoles.PlayableScps.Scp106.Scp106MovementModule::<CurSlowdown>k__BackingField
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp106.Scp106MovementModule
+	System.Void set_CurSlowdown(System.Single value)
+		this.<CurSlowdown>k__BackingField = value
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldarg.1
+	IL_0002: stfld System.Single PlayerRoles.PlayableScps.Scp106.Scp106MovementModule::<CurSlowdown>k__BackingField
+	IL_0007: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp106.Scp106MovementModule
+	System.Void SpawnObject()
+
+		base.SpawnObject()
+		ReferenceHub Hub = this.<Hub>k__BackingField
+		PlayerRoles.PlayerRoleManager roleManager = Hub.roleManager
+
+		PlayerRoles.PlayerRoleBase currentRole = roleManager.CurrentRole
+		//UNKNOWN CLASS OFFSET READ HERE
+		System.Boolean local6 =  == Scp106Role
+
+		PlayerRoles.PlayableScps.Scp106.Scp106SinkholeController sinkhole = currentRole.Sinkhole
+		this._sinkhole = sinkhole
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.UnknownClassOffsetReadAction at (0x180316F3F) is corrupt (Unknown class offset read) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp106.Scp106MovementModule
+	System.Void RefreshInstance()
+		PlayerRoles.PlayableScps.Scp106.Scp106SinkholeController _sinkhole = this._sinkhole
+		ulong local2 = 0
+		ulong local3 = 0
+		System.Boolean local4 = _sinkhole._state != local2
+		this._slowndownTarget = 
+		ReferenceHub Hub = this.<Hub>k__BackingField
+
+		System.Boolean isLocalPlayer = Hub.isLocalPlayer
+
+		if (isLocalPlayer == False)
+		    ReferenceHub Hub2 = this.<Hub>k__BackingField
+
+		    System.Boolean isLocallySpectated = PlayerRoles.Spectating.SpectatorNetworking.IsLocallySpectated(Hub2) //(ReferenceHub target)
+
+		    if (isLocallySpectated == False)
+                goto INSN_180316E3A
+            endif
+		    PlayerRoles.FirstPersonControl.FpcMotor Motor = this.<Motor>k__BackingField
+		else
+		    PlayerRoles.FirstPersonControl.FpcMotor Motor2 = this.<Motor>k__BackingField
+
+		    System.Boolean isGrounded = base.IsGrounded
+
+		    if (isGrounded != False)
+		    endif
+            
+		      = isGrounded.
+
+		    UnityEngine.Vector3 vector3 = UnityEngine.Vector3.op_Multiply()
+
+		    UnityEngine.Vector3 vector32 = UnityEngine.Vector3.op_Addition()
+		endif
+        
+
+		UnityEngine.Vector3 vector33 = UnityEngine.Vector3.op_Addition()
+
+		UnityEngine.Vector3 vector34 = UnityEngine.Vector3.op_Subtraction()
+		System.Single _ccRadius = this._ccRadius
+		System.Int32 detectionMask = PlayerRoles.PlayableScps.Scp106.Scp106MovementModule.DetectionMask
+
+		System.Int32 int32 = UnityEngine.Physics.OverlapCapsuleNonAlloc()
+		this._numberOfDetections = int32
+
+		if (int32 <= 0)
+            goto INSN_180316CA6
+        endif
+		UnityEngine.Collider[] _collidersNonAlloc = this._collidersNonAlloc
+		ulong local39 = 0
+		UnityEngine.Collider collider = _collidersNonAlloc[local3]
+
+		this.ProcessCollider(collider) //(Collider col)
+		local3 += 1
+
+		INSN_180316CA6:
+
+		UnityEngine.Vector3 vector35 = UnityEngine.Vector3.op_Subtraction()
+		ulong local44 = 0
+
+		this.RefreshCollidersCapsuleCast(local44, local39) //(Vector3 curPoint, Vector3 targetPoint)
+		ulong local49 = 0
+		System.Single _slowndownTarget = this._slowndownTarget
+
+		System.Single deltaTime = UnityEngine.Time.deltaTime
+		System.Single local52 = deltaTime * 4
+		deltaTime = local48
+		_ccRadius = local52
+
+		System.Single single = UnityEngine.Mathf.MoveTowards(deltaTime, _slowndownTarget, _ccRadius) //(Single current, Single target, Single maxDelta)
+		PlayerRoles.PlayableScps.Scp106.Scp106SinkholeController _sinkhole2 = this._sinkhole
+		this.<CurSlowdown>k__BackingField = single
+
+		System.Boolean isDuringAnimation = _sinkhole2.IsDuringAnimation
+
+		if (isDuringAnimation != False)
+            goto INSN_180316E6E
+        endif
+		_ccRadius = local60
+		_slowndownTarget = local59
+		single = local58
+
+		System.Single single2 = UnityEngine.Mathf.Lerp(single, _slowndownTarget, _ccRadius) //(Single a, Single b, Single t)
+		PlayerRoles.PlayableScps.Scp106.Scp106SinkholeController _sinkhole3 = this._sinkhole
+
+		if (_sinkhole3._state == False)
+            goto INSN_180316E2B
+        endif
+		System.Single _stalkSpeed = this._stalkSpeed
+
+		INSN_180316E2B:
+		this.SneakSpeed = _stalkSpeed
+		this.WalkSpeed = _stalkSpeed
+		this.SprintSpeed = _stalkSpeed
+
+		INSN_180316E3A:
+		return
+
+		INSN_180316E6E:
+		ulong local66 = 0
+
+		System.Single deltaTime2 = UnityEngine.Time.deltaTime
+		System.Single local68 = deltaTime2 * 1,5
+		ulong local70 = 0
+		deltaTime2 = local65
+		_ccRadius = local68
+
+		System.Single single3 = UnityEngine.Mathf.Lerp(deltaTime2, local70, _ccRadius) //(Single a, Single b, Single t)
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.NotEqualRegisterSetAction at (0x180316960) is corrupt (Destination local has been stripped) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp106.Scp106MovementModule
+	System.Void RefreshCollidersCapsuleCast(UnityEngine.Vector3 curPoint, UnityEngine.Vector3 targetPoint)
+
+		System.Single single = UnityEngine.Vector3.Distance()
+
+		UnityEngine.Vector3 vector3 = UnityEngine.Vector3.op_Subtraction()
+
+		UnityEngine.Vector3 vector32 = UnityEngine.Vector3.op_Division()
+
+		UnityEngine.Vector3 vector33 = UnityEngine.Vector3.op_Addition()
+
+		UnityEngine.Vector3 vector34 = UnityEngine.Vector3.op_Subtraction()
+		UnityEngine.RaycastHit[] _hitsNonAlloc = this._hitsNonAlloc
+		ulong local27 = 0
+		single = local24
+		System.Int32 detectionMask = PlayerRoles.PlayableScps.Scp106.Scp106MovementModule.DetectionMask
+
+		System.Int32 int32 = UnityEngine.Physics.CapsuleCastNonAlloc()
+		this._numberOfDetections = int32
+
+		if (int32 > 0)
+		    UnityEngine.RaycastHit[] _hitsNonAlloc2 = this._hitsNonAlloc
+		    System.Int64 local31 = local27 * 44
+		    local31 += constant18
+
+		    this.ProcessCollider(local27) //(Collider col)
+		    local27 += 1
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1803164F1) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp106.Scp106MovementModule
+	System.Void RefreshCollidersOverlap(UnityEngine.Vector3 point)
+		System.Single single = this._ccOffset.z
+		System.Single single2 = point.z
+
+		UnityEngine.Vector3 vector3 = UnityEngine.Vector3.op_Addition()
+		System.Single single3 = vector3.z
+		System.Single single4 = this._ccOffset.z
+		System.Single single5 = point.z
+
+		UnityEngine.Vector3 vector32 = UnityEngine.Vector3.op_Subtraction()
+		System.Single single6 = vector32.z
+		ulong local14 = 0
+		System.Int32 detectionMask = PlayerRoles.PlayableScps.Scp106.Scp106MovementModule.DetectionMask
+
+		System.Int32 int32 = UnityEngine.Physics.OverlapCapsuleNonAlloc()
+		this._numberOfDetections = int32
+
+		if (int32 > 0)
+		    UnityEngine.Collider[] _collidersNonAlloc = this._collidersNonAlloc
+		    UnityEngine.Collider collider = _collidersNonAlloc[local14]
+
+		    this.ProcessCollider(collider) //(Collider col)
+		    local14 += 1
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18031679E) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp106.Scp106MovementModule
+	System.Void ProcessCollider(UnityEngine.Collider col)
+		ulong local2 = 0
+
+		UnityEngine.GameObject gameObject = col.gameObject
+
+		System.Int32 layer = gameObject.layer
+
+		if (layer == 14)
+		    //UNKNOWN CLASS OFFSET READ HERE
+
+		    col.isTrigger = True
+		    System.Collections.Generic.HashSet`1<UnityEngine.Collider> enabledColliders = PlayerRoles.PlayableScps.Scp106.Scp106MovementModule.EnabledColliders
+
+		    System.Boolean boolean = enabledColliders.Add(col) //(T item)
+		endif
+        
+
+		UnityEngine.Transform transform = col.transform
+
+		System.Boolean boolean2 = transform.TryGetComponent<Interactables.Interobjects.DoorUtils.DoorVariant>()
+
+		if (boolean2 != False)
+            goto INSN_18031634A
+        endif
+
+		UnityEngine.Transform parent = transform.parent
+		ulong local17 = 0
+
+		System.Boolean boolean3 = UnityEngine.Object.op_Inequality(parent, local17) //(Object x, Object y)
+
+		if (boolean3 == False)
+		endwhile
+        
+		goto INSN_180316448
+        
+
+		if (local2 != 0)
+		endif
+        
+		return
+
+		INSN_18031634A:
+
+		if (boolean3 != False)
+
+		    if (boolean3 != False)
+
+		        col.isTrigger = True
+		        System.Collections.Generic.HashSet`1<UnityEngine.Collider> enabledColliders2 = PlayerRoles.PlayableScps.Scp106.Scp106MovementModule.EnabledColliders
+
+		        System.Boolean boolean4 = enabledColliders2.Add(col) //(T item)
+
+		        System.DateTime dateTime = local3.System.IConvertible.ToDateTime()
+
+		        System.Single single = UnityEngine.Mathf.Clamp01(1) //(Single value)
+
+		        System.Single single2 = UnityEngine.Mathf.Max()
+
+		        INSN_180316448:
+		        throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.UnknownClassOffsetReadAction at (0x18031624E) is corrupt (Unknown class offset read) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp106.Scp106MovementModule
+	System.Void Awake()
+		PlayerRoles.FirstPersonControl.CharacterControllerSettingsPreset characterControllerSettings = this.CharacterControllerSettings
+		System.Single radius = characterControllerSettings.Radius
+		this._ccRadius = radius
+
+		UnityEngine.Vector3 up = UnityEngine.Vector3.up
+		System.Single single = up.z
+
+		UnityEngine.Vector3 vector3 = UnityEngine.Vector3.op_Multiply()
+		System.Single single2 = vector3.z
+
+		UnityEngine.Vector3 vector32 = UnityEngine.Vector3.op_Division()
+		System.Single single3 = vector32.z
+		System.Single walkSpeed = this.WalkSpeed
+		this._ccOffset.z = single3
+		System.Single sneakSpeed = this.SneakSpeed
+		this.SneakSpeed = walkSpeed
+		this._slowndownSpeed = sneakSpeed
+		this._normalSpeed = walkSpeed
+		this.SprintSpeed = walkSpeed
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180316064) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp106.Scp106MovementModule
+	static System.Void Init()
+		System.Action <>9__32_0 = PlayerRoles.PlayableScps.Scp106.Scp106MovementModule/<>c.<>9__32_0
+
+		if (<>9__32_0 == 0)
+		    PlayerRoles.PlayableScps.Scp106.Scp106MovementModule/<>c <>c = PlayerRoles.PlayableScps.Scp106.Scp106MovementModule/<>c.<>9
+		    System.Action action = new System.Action()
+
+		    action..ctor(<>c, {'<Init>b__32_0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		     += 24
+		    PlayerRoles.PlayableScps.Scp106.Scp106MovementModule/<>c.<>9 = action
+		endif
+        
+
+		StaticUnityMethods.add_OnUpdate(<>9__32_0) //(Action value)
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x180316197) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp106.Scp106MovementModule
+	System.Void .ctor()
+		UnityEngine.Collider[] local1 = new UnityEngine.Collider[8]
+		this._collidersNonAlloc = local1
+		UnityEngine.RaycastHit[] local2 = new UnityEngine.RaycastHit[8]
+		this._hitsNonAlloc = local2
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldc.i4.8
+	IL_0001: newarr UnityEngine.Collider
+	IL_0006: stloc.0
+	IL_0007: ldarg.0
+	IL_0008: ldloc.0
+	IL_0009: stfld UnityEngine.Collider[] PlayerRoles.PlayableScps.Scp106.Scp106MovementModule::_collidersNonAlloc
+	IL_000e: ldc.i4.8
+	IL_000f: newarr UnityEngine.RaycastHit
+	IL_0014: stloc.1
+	IL_0015: ldarg.0
+	IL_0016: ldloc.1
+	IL_0017: stfld UnityEngine.RaycastHit[] PlayerRoles.PlayableScps.Scp106.Scp106MovementModule::_hitsNonAlloc
+	IL_001c: ldarg.0
+	IL_001d: call System.Void UnityEngine.EventSystems.UIBehaviour::.ctor()
+	IL_0022: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp106.Scp106MovementModule
+	static System.Void .cctor()
+		System.Collections.Generic.HashSet`1<UnityEngine.Collider> hashSet = new System.Collections.Generic.HashSet`1<UnityEngine.Collider>()
+
+		hashSet..ctor()
+		 += 8
+		PlayerRoles.PlayableScps.Scp106.Scp106MovementModule.DetectionMask = hashSet
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x180316FE4) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+

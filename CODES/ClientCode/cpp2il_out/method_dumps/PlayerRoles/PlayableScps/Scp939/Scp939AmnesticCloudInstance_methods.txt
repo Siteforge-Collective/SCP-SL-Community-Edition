@@ -1,0 +1,1677 @@
+Type: Scp939AmnesticCloudInstance
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudInstance
+	PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudInstance/CloudState get_State()
+		System.Byte _syncState = this._syncState
+		return _syncState
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x18044B007) is corrupt (Return value has a type of System.Byte, expecting an object of type PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudInstance/CloudState) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudInstance
+	System.Void set_State(PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudInstance/CloudState value)
+
+		this.set_Network_syncState()
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18044B303) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudInstance
+	System.Single get_NormalizedHoldTime()
+		PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudAbility cloud = this.cloud
+		System.Diagnostics.Stopwatch _beginHeldSw = cloud._beginHeldSw
+
+		System.TimeSpan elapsed = _beginHeldSw.Elapsed
+		ulong local6 = 0
+
+		System.Single single = UnityEngine.Mathf.Clamp01(local6) //(Single value)
+		return single
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudAbility PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudInstance::cloud
+	IL_0006: ldfld System.Diagnostics.Stopwatch PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudAbility::_beginHeldSw
+	IL_000b: call System.TimeSpan System.Diagnostics.Stopwatch::get_Elapsed()
+	IL_0010: stloc.0
+	IL_0011: ldc.i4.0
+	IL_0012: call System.Single UnityEngine.Mathf::Clamp01(System.Single)
+	IL_0017: ret
+	IL_0018: newobj System.Void System.NullReferenceException::.ctor()
+	IL_001d: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudInstance
+	System.Single get_HazardDuration()
+		System.Single _targetDuration = this._targetDuration
+		return _targetDuration
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Single PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudInstance::_targetDuration
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudInstance
+	System.Single get_DecaySpeed()
+
+		if (this._syncState == constant1)
+		    return constant2
+		endif
+        
+		ulong local1 = 0
+		return local1
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfNonZeroOrNonNullAction at (0x18044AF67) is corrupt (ConstantDefinition: Don't know how to get IL to load a System.Byte) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudInstance
+	UnityEngine.Vector2 get_MinMaxTime()
+		return local4
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x18044AFC3) is corrupt (Return value has a type of System.UInt64, expecting an object of type UnityEngine.Vector2) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudInstance
+	System.Void ServerDestroy()
+
+		base.ServerDestroy()
+		this._abilitiesSet = False
+
+		this.Network_syncState = 2
+		return
+
+		UnityEngine.Debug.LogWarning("[Server] function 'System.Void PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudInstance::ServerDestroy()' called when server was not active") //(Object message)
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18044939A) is corrupt (ConstantDefinition: Don't know how to get IL to load a System.Byte) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudInstance
+	System.Void OnStay(ReferenceHub player)
+		ulong local2 = 0
+
+		this.MirrorProcessed()
+
+		if (this._syncState == constant4)
+		    PlayerRoles.PlayerRoleManager roleManager = player.roleManager
+
+		    if (roleManager._anySet == local2)
+		        ulong local5 = 0
+
+		        roleManager.InitializeNewRole(0xFFFFFFFF, local5, 0xFFFFFFFF, local2) //(RoleTypeId targetId, RoleChangeReason reason, RoleSpawnFlags spawnFlags, NetworkReader data)
+		    endif
+            
+		    PlayerRoles.PlayerRoleBase _curRole = roleManager._curRole
+
+		    if (_curRole == 0)
+                goto INSN_180448DF1
+            endif
+		    //UNKNOWN CLASS OFFSET READ HERE
+		    PlayerEffectsController playerEffectsController = player.playerEffectsController
+		    ulong local8 = 0
+		    System.Single _amnesiaDuration = this._amnesiaDuration
+
+		    CustomPlayerEffects.AmnesiaItems amnesiaItems = playerEffectsController.EnableEffect<CustomPlayerEffects.AmnesiaItems>(_amnesiaDuration, local8) //(Single , Boolean )
+		    PlayerRoles.PlayableScps.Subroutines.AbilityCooldown _overallCooldown = this._overallCooldown
+
+		    System.String string = _overallCooldown.ToString()
+
+		    if (string == 0)
+                goto INSN_180448DF1
+            endif
+		    System.Collections.Generic.Dictionary`2<System.UInt32,PlayerRoles.PlayableScps.Subroutines.AbilityCooldown> _individualCooldown = this._individualCooldown
+
+		    System.UInt32 netId = player.netId
+
+		    System.Boolean boolean = _individualCooldown.TryGetValue(netId, local2) //(TKey key, TValue& value)
+
+		    if (boolean == False)
+                goto INSN_180448DD7
+            endif
+
+		    System.String string2 = local2.ToString()
+
+		    if (string2 == 0)
+                goto INSN_180448DF1
+            endif
+
+		    INSN_180448DD7:
+		    ulong local18 = 0
+		    System.Single _amnesiaDuration2 = this._amnesiaDuration
+
+		    CustomPlayerEffects.AmnesiaVision amnesiaVision = playerEffectsController.EnableEffect<CustomPlayerEffects.AmnesiaVision>(_amnesiaDuration2, local18) //(Single , Boolean )
+
+		    INSN_180448DF1:
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfNonZeroOrNonNullAction at (0x180448CBC) is corrupt (ConstantDefinition: Don't know how to get IL to load a System.Byte) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudInstance
+	System.Void Start()
+
+		UnityEngine.Transform transform = base.transform
+		this._t = transform
+		System.Collections.Generic.List`1<PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudInstance> activeInstances = PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudInstance.ActiveInstances
+
+		activeInstances.Add(this) //(T item)
+		System.UInt32 _syncOwner = this._syncOwner
+
+		System.Boolean boolean = ReferenceHub.TryGetHubNetID()
+
+		if (boolean != False)
+
+		    System.Boolean isLocalPlayer = local2.isLocalPlayer
+
+		    if (isLocalPlayer != False)
+		        this._localOwner = True
+
+		        this.SetAbilityCache()
+		    endif
+            
+
+		    base.Start()
+		    return
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180449E96) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudInstance
+	System.Void OnDestroy()
+
+		base.OnDestroy()
+		System.Collections.Generic.List`1<PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudInstance> activeInstances = PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudInstance.ActiveInstances
+
+		System.Boolean boolean = activeInstances.Remove(this) //(T item)
+		System.Action`2<ReferenceHub,PlayerStatsSystem.DamageHandlerBase> action = new System.Action`2<ReferenceHub,PlayerStatsSystem.DamageHandlerBase>()
+
+		action..ctor(this, {'OnAnyPlayerDamaged' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		PlayerStatsSystem.PlayerStats.remove_OnAnyPlayerDamaged(action) //(Action`2 value)
+		PlayerRoles.PlayableScps.Scp939.Scp939LungeAbility _lunge = this._lunge
+		ulong local8 = 0
+
+		System.Boolean boolean2 = UnityEngine.Object.op_Inequality(_lunge, local8) //(Object x, Object y)
+
+		if (boolean2 != False)
+		    PlayerRoles.PlayableScps.Scp939.Scp939LungeAbility _lunge2 = this._lunge
+		    System.Action`1<PlayerRoles.PlayableScps.Scp939.Scp939LungeState> action2 = new System.Action`1<PlayerRoles.PlayableScps.Scp939.Scp939LungeState>()
+
+		    action2..ctor(this, {'OnLungeStateChanged' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		    _lunge2.remove_OnStateChanged(action2) //(Action`1 value)
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void Hazards.EnvironmentalHazard::OnDestroy()
+	IL_0006: ldsfld System.Collections.Generic.List`1<PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudInstance> PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudInstance::ActiveInstances
+	IL_000b: ldarg.0
+	IL_000c: call System.Boolean System.Collections.Generic.List`1::Remove(T)
+	IL_0011: stloc.0
+	IL_0012: ldarg.0
+	IL_0013: ldftn System.Void PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudInstance::OnAnyPlayerDamaged(ReferenceHub,PlayerStatsSystem.DamageHandlerBase)
+	IL_0019: newobj System.Void System.Action`2::.ctor(System.Object,System.IntPtr)
+	IL_001e: call System.Void PlayerStatsSystem.PlayerStats::remove_OnAnyPlayerDamaged(System.Action`2)
+	IL_0023: ldarg.0
+	IL_0024: ldfld PlayerRoles.PlayableScps.Scp939.Scp939LungeAbility PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudInstance::_lunge
+	IL_0029: stloc.1
+	IL_002a: ldc.i4.0
+	IL_002b: stloc.2
+	IL_002c: ldloc.1
+	IL_002d: ldloc.2
+	IL_002e: call System.Boolean UnityEngine.Object::op_Inequality(UnityEngine.Object,UnityEngine.Object)
+	IL_0033: ldc.i4.0
+	IL_0034: beq.s IL_0053
+	IL_0036: ldarg.0
+	IL_0037: ldfld PlayerRoles.PlayableScps.Scp939.Scp939LungeAbility PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudInstance::_lunge
+	IL_003c: stloc.3
+	IL_003d: ldarg.0
+	IL_003e: ldftn System.Void PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudInstance::OnLungeStateChanged(PlayerRoles.PlayableScps.Scp939.Scp939LungeState)
+	IL_0044: newobj System.Void System.Action`1::.ctor(System.Object,System.IntPtr)
+	IL_0049: stloc.s V_4
+	IL_004b: ldloc.3
+	IL_004c: ldloc.s V_4
+	IL_004e: call System.Void PlayerRoles.PlayableScps.Scp939.Scp939LungeAbility::remove_OnStateChanged(System.Action`1)
+	IL_0053: ret
+	IL_0054: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0059: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudInstance
+	System.Void Update()
+
+		base.Update()
+
+		if (this._localOwner == False)
+		    ulong local3 = 0
+
+		    System.Single deltaTime = UnityEngine.Time.deltaTime
+		    System.Single local5 = deltaTime * this._sizeLerpTime
+		    System.Single local7 =  / 255
+
+		    this.UpdateVisuals(local7, local5) //(Single normalizedSize, Single lerpTime)
+		else
+
+		    this.UpdateLocal()
+		endif
+        
+		System.Byte _syncState = this._syncState
+
+		if (_syncState != constant23)
+            goto INSN_18044AA40
+        endif
+
+		this.ServerUpdateSpawning()
+		return
+
+		INSN_18044AA40:
+
+		if (_syncState != constant25)
+            goto INSN_18044AB6D
+        endif
+		System.Single _destroyTime = this._destroyTime
+		ulong local12 = 0
+
+		System.Single deltaTime2 = UnityEngine.Time.deltaTime
+		ulong local14 = 0
+		this._destroyTime = _destroyTime
+
+		if (_destroyTime > local14)
+            goto INSN_18044AB6D
+        endif
+
+		UnityEngine.GameObject gameObject = base.gameObject
+
+		Mirror.NetworkServer.Destroy(gameObject) //(GameObject obj)
+		return
+
+		UnityEngine.Debug.LogWarning("[Server] function 'System.Void PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudInstance::ServerUpdateDestroyed()' called when server was not active") //(Object message)
+
+		INSN_18044AB6D:
+		return
+
+
+Generated IL:
+	Don't know how to write IL for Cpp2IL.Core.Analysis.Actions.x86.Important.DivideRegByGlobalAction. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudInstance
+	System.Void TryGetPlayer(System.Boolean& is939, System.Boolean& isOwner)
+		ulong local3 = 0
+		is939.m_value = local3
+		isOwner.m_value = local3
+
+		System.Boolean boolean = PlayerRoles.Spectating.SpectatorTargetTracker.TryGetTrackedPlayer(local3) //(ReferenceHub& hub)
+
+		if (boolean == False)
+
+		    System.Boolean boolean2 = ReferenceHub.TryGetLocalHub(local3) //(ReferenceHub& hub)
+
+		    if (boolean2 == False)
+                goto INSN_18044A00E
+            endif
+		endif
+        
+		  = local3.
+
+		if ( != local3)
+            goto INSN_180449FA9
+        endif
+		ulong local8 = 0
+
+		.InitializeNewRole(0xFFFFFFFF, local8, 0xFFFFFFFF, local3) //(RoleTypeId targetId, RoleChangeReason reason, RoleSpawnFlags spawnFlags, NetworkReader data)
+
+		INSN_180449FA9:
+
+		if (0xFFFFFFFF == 0)
+            goto INSN_180449FE6
+        endif
+		  = boolean.
+
+		if ( != Scp939Role)
+            goto INSN_180449FDE
+        endif
+
+		INSN_180449FDE:
+		ulong local9 = 0
+
+		INSN_180449FE6:
+		System.Boolean local10 = 0xFFFFFFFF != 0
+		is939.m_value = local10
+
+		System.UInt32 netId = local3.netId
+		System.Boolean local13 = netId == this._syncOwner
+		isOwner.m_value = local13
+
+		INSN_18044A00E:
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.FieldToLocalAction at (0x180449F72) is corrupt (No further info) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudInstance
+	System.Void OnAnyPlayerDamaged(ReferenceHub hub, PlayerStatsSystem.DamageHandlerBase dhb)
+		ulong local3 = 0
+		PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudInstance/<>c__DisplayClass51_0 local4 = new PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudInstance/<>c__DisplayClass51_0()
+		ulong local5 = 0
+
+		local4..ctor()
+
+		if (dhb != 0)
+		    //UNKNOWN CLASS OFFSET READ HERE
+		    ulong local6 = 0
+
+		    this.PauseAll()
+		    return
+		endif
+        
+		ulong local7 = 0
+
+		System.UInt32 local8 = hub.netId
+
+		if (local8 == this._syncOwner)
+
+		    if (dhb != 0)
+		        //UNKNOWN CLASS OFFSET READ HERE
+		        PlayerRoles.PlayableScps.Subroutines.AbilityCooldown local9 = new PlayerRoles.PlayableScps.Subroutines.AbilityCooldown()
+		        ulong local10 = 0
+
+		        local9..ctor()
+		        System.Single local11 = this._pauseDuration
+
+		        System.Boolean local12 = local9.IsReady
+
+
+Generated IL:
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudInstance
+	System.Void OnLungeStateChanged(PlayerRoles.PlayableScps.Scp939.Scp939LungeState state)
+
+		if (state != constant1)
+
+		    this.PauseAll()
+		    return
+		endif
+        
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfZeroOrNullAction at (0x180448C62) is corrupt (ConstantDefinition: Don't know how to get IL to load a System.Byte) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudInstance
+	System.Void PauseAll()
+		ulong local1 = 0
+		System.Collections.Generic.List`1<ReferenceHub> AffectedPlayers = this.<AffectedPlayers>k__BackingField
+
+		System.Collections.Generic.List`1/Enumerator<T> enumerator = .GetEnumerator()
+
+		if (enumerator != 0)
+		      = enumerator.
+
+		    System.Boolean boolean = .TryGetEffect<CustomPlayerEffects.AmnesiaVision>()
+
+		    if (boolean != False)
+		        ulong local6 = 0
+
+		        .IsEnabled = local6
+		    endif
+            
+
+		    [instruction error - managed method being called is null]
+		else
+
+		    [instruction error - managed method being called is null]
+
+		    [instruction error - managed method being called is null]
+
+		    if (True != 0)
+                goto INSN_180448FB9
+            endif
+
+		    if (local1 == -1)
+                goto INSN_180448F75
+            endif
+		endif
+        
+
+		INSN_180448F75:
+		PlayerRoles.PlayableScps.Subroutines.AbilityCooldown _overallCooldown = this._overallCooldown
+
+		System.Boolean isReady = _overallCooldown.IsReady
+		return
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+		throw new System.NullReferenceException()
+
+		INSN_180448FB9:
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180448E80) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudInstance
+	System.Void SetAbilityCache()
+		System.UInt32 _syncOwner = this._syncOwner
+		this._abilitiesSet = False
+
+		System.Boolean boolean = ReferenceHub.TryGetHubNetID()
+
+		if (boolean != False)
+		      = local2.
+
+		    if ( == 0)
+
+		        local2.InitializeNewRole()
+		    endif
+            
+		      = local2.
+
+		    if (constant9 == 0)
+                goto INSN_180449D3C
+            endif
+		      = boolean.
+
+		    if ( != Scp939Role)
+                goto INSN_180449D3C
+            endif
+		    this._scpRole = local2
+		    PlayerRoles.PlayableScps.Scp939.Scp939Role _scpRole = this._scpRole
+		    PlayerRoles.PlayableScps.Subroutines.SubroutineManagerModule SubroutineModule = _scpRole.<SubroutineModule>k__BackingField
+
+		    System.Boolean boolean2 = SubroutineModule.TryGetSubroutine<PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudAbility>()
+
+		    if (boolean2 != False)
+                goto INSN_180449D0B
+            endif
+		    this._abilitiesSet = boolean2
+		    return
+
+		    INSN_180449D0B:
+		      = boolean2.
+
+		    System.Boolean boolean3 = SubroutineModule.TryGetSubroutine<PlayerRoles.PlayableScps.Scp939.Scp939LungeAbility>()
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180449C26) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudInstance
+	System.Void RefreshPosition(ReferenceHub owner)
+		UnityEngine.Transform transform = this._t
+		UnityEngine.Transform playerCameraReference = owner.PlayerCameraReference
+
+		UnityEngine.Vector3 position = .position
+		System.Single single = position.z
+
+		transform.set_position()
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x180448FF3) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudInstance
+	System.Void UpdateLocal()
+		ulong local1 = 0
+
+		if (this._abilitiesSet != local1)
+
+		    System.Boolean boolean = ReferenceHub.TryGetLocalHub(local1) //(ReferenceHub& hub)
+
+		    if (boolean != False)
+		        System.Byte _syncState = this._syncState
+
+		        if (_syncState == constant11)
+		            PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudAbility cloud = this.cloud
+		        else
+
+		            if (_syncState == constant13)
+		                PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudAbility cloud2 = this.cloud
+		            endif
+                    
+
+		            cloud2.ClientCancel(13) //(Scp939HudTranslation reason)
+		        endif
+                
+		        PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudAbility cloud3 = this.cloud
+
+		        System.Boolean boolean2 = cloud3.ValidateFloor()
+
+		        if (boolean2 != False)
+                    goto INSN_18044A158
+                endif
+		        PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudAbility cloud4 = this.cloud
+		        System.Diagnostics.Stopwatch _beginHeldSw = cloud4._beginHeldSw
+
+		        System.TimeSpan elapsed = _beginHeldSw.Elapsed
+		        ulong local17 = 0
+		        System.Single _minHoldTime = this._minHoldTime
+
+		        cloud4.ClientCancel(local1) //(Scp939HudTranslation reason)
+
+		        INSN_18044A158:
+		        PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudAbility cloud5 = this.cloud
+
+		        if (cloud5._targetState != local1)
+                    goto INSN_18044A18F
+                endif
+
+		        if (this._syncState == local1)
+                    goto INSN_18044A17E
+                endif
+		        this._localOwner = local1
+
+		        INSN_18044A17E:
+		    endif
+            
+		    return
+
+		    INSN_18044A18F:
+
+		    System.Single normalizedHoldTime = this.NormalizedHoldTime
+
+		    this.UpdateVisuals(normalizedHoldTime, 1) //(Single normalizedSize, Single lerpTime)
+		    UnityEngine.Transform transform = this._t
+		      = local1.
+
+		    UnityEngine.Vector3 position = .position
+		    System.Single single = position.z
+
+		    transform.set_position()
+		    return
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfNonZeroOrNonNullAction at (0x18044A0B2) is corrupt (ConstantDefinition: Don't know how to get IL to load a System.Byte) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudInstance
+	System.Void UpdateVisuals(System.Single normalizedSize, System.Single lerpTime)
+		UnityEngine.AudioSource _deploySound = this._deploySound
+		ulong local4 = 0
+		ulong local5 = 0
+
+		System.Boolean boolean = PlayerRoles.Spectating.SpectatorTargetTracker.TryGetTrackedPlayer()
+
+		if (boolean == False)
+
+		    System.Boolean boolean2 = ReferenceHub.TryGetLocalHub()
+
+		    if (boolean2 == False)
+		    else
+
+		        if ( == local4)
+
+		            .InitializeNewRole()
+		        endif
+                
+
+		        if (local5 != 0)
+                    goto INSN_18044A325
+                endif
+
+		        INSN_18044A325:
+		        //UNKNOWN CLASS OFFSET READ HERE
+		        ulong local12 = 0
+		        System.Boolean local13 = local5 != 0
+		    endif
+            
+		    ulong local14 = 0
+
+		    _deploySound.mute = local13
+		    ulong local16 = 0
+
+		    System.Boolean boolean3 = PlayerRoles.Spectating.SpectatorTargetTracker.TryGetTrackedPlayer()
+
+		    if (boolean3 != False)
+                goto INSN_18044A3DE
+            endif
+
+		    System.Boolean boolean4 = ReferenceHub.TryGetLocalHub()
+
+		    if (boolean4 == False)
+                goto INSN_18044A48A
+            endif
+
+		    INSN_18044A3DE:
+		      = local14.
+
+		    if ( != local4)
+                goto INSN_18044A421
+            endif
+		    System.Int64 local21 = 0xFFFFFFFF
+		    ulong local22 = 0
+
+		    local16.InitializeNewRole()
+
+		    INSN_18044A421:
+		      = local16.
+
+		    if (local21 != 0)
+                goto INSN_18044A42F
+            endif
+
+		    INSN_18044A42F:
+		    //UNKNOWN CLASS OFFSET READ HERE
+		    ulong local24 = 0
+		    System.Boolean local25 = local21 != 0
+
+		    System.UInt32 netId = local22.netId
+		    System.Boolean local28 = netId != this._syncOwner
+
+		    INSN_18044A48A:
+		    UnityEngine.Transform transform = this._t
+		      = netId.
+
+		    transform.set_position()
+		    UnityEngine.AnimationCurve _rangeOverHeldTime = this._rangeOverHeldTime
+		    System.Single local35 = normalizedSize * this._maxHoldTime
+
+		    System.Single single = _rangeOverHeldTime.Evaluate(local35) //(Single time)
+		    local35 = single
+		    single = local33
+
+		    System.Single single2 = UnityEngine.Mathf.Lerp(single, local35, lerpTime) //(Single a, Single b, Single t)
+		    UnityEngine.Light _areaLight = this._areaLight
+		    this._prevRange = single2
+
+		    _areaLight.enabled = local25
+		    UnityEngine.Light _radiusLight = this._radiusLight
+
+		    _radiusLight.enabled = local25
+		    UnityEngine.AnimationCurve _radiusToLightAngle = this._radiusToLightAngle
+		    UnityEngine.Light _areaLight2 = this._areaLight
+		    local35 = local45
+
+		    System.Single single3 = _radiusToLightAngle.Evaluate(local35) //(Single time)
+		    local35 = single3
+
+		    _areaLight2.spotAngle = local35
+		    UnityEngine.AnimationCurve _radiusToLightRange = this._radiusToLightRange
+		    local35 = local45
+
+		    System.Single single4 = _radiusToLightRange.Evaluate(local35) //(Single time)
+		    local35 = single4
+
+		    _areaLight2.range = local35
+		    UnityEngine.AnimationCurve _radiusToLightAngle2 = this._radiusToLightAngle
+		    UnityEngine.Light _radiusLight2 = this._radiusLight
+		    local35 = local55
+
+		    System.Single single5 = _radiusToLightAngle2.Evaluate(local35) //(Single time)
+		    local35 = single5
+
+		    _radiusLight2.spotAngle = local35
+		    UnityEngine.AnimationCurve _radiusToLightRange2 = this._radiusToLightRange
+		    local35 = local55
+
+		    System.Single single6 = _radiusToLightRange2.Evaluate(local35) //(Single time)
+		    local35 = single6
+
+		    _radiusLight2.range = local35
+		    UnityEngine.AudioSource _chargeupSound = this._chargeupSound
+		    local25 = local28
+
+		    _chargeupSound.mute = local25
+		    System.Byte _syncState = this._syncState
+
+		    if (_syncState == constant54)
+                goto INSN_18044A871
+            endif
+
+		    if (_syncState == constant54)
+                goto INSN_18044A70B
+            endif
+
+		    if (_syncState != constant55)
+                goto INSN_18044A7FD
+            endif
+		    UnityEngine.Light _radiusLight3 = this._radiusLight
+
+		    UnityEngine.Color black = UnityEngine.Color.black
+
+		    UnityEngine.Color color = _syncState.color
+		    ulong local71 = 0
+
+		    System.Single deltaTime = UnityEngine.Time.deltaTime
+
+		    UnityEngine.Color color2 = UnityEngine.Color.Lerp()
+
+		    _radiusLight3.set_color()
+
+		    UnityEngine.Color black2 = UnityEngine.Color.black
+
+		    INSN_18044A70B:
+		    UnityEngine.Light _radiusLight4 = this._radiusLight
+
+		    UnityEngine.Color white = UnityEngine.Color.white
+
+		    UnityEngine.Color color3 = _radiusLight3.color
+		    ulong local84 = 0
+
+		    System.Single deltaTime2 = UnityEngine.Time.deltaTime
+
+		    UnityEngine.Color color4 = UnityEngine.Color.Lerp()
+
+		    _radiusLight4.set_color()
+		    UnityEngine.Light _areaLight3 = this._areaLight
+
+		    UnityEngine.Color white2 = UnityEngine.Color.white
+
+		    UnityEngine.Color color5 = _radiusLight4.color
+		    ulong local94 = 0
+
+		    System.Single deltaTime3 = UnityEngine.Time.deltaTime
+
+		    UnityEngine.Color color6 = UnityEngine.Color.Lerp()
+
+		    _areaLight3.set_color()
+
+		    INSN_18044A7FD:
+		    UnityEngine.AudioSource _chargeupSound2 = this._chargeupSound
+
+		    System.Single volume = _chargeupSound2.volume
+		    ulong local102 = 0
+
+		    System.Single deltaTime4 = UnityEngine.Time.deltaTime
+		    local35 = volume
+
+		    _chargeupSound2.volume = local35
+		    return
+
+		    INSN_18044A871:
+		      = _chargeupSound2.
+
+		    UnityEngine.Color white3 = UnityEngine.Color.white
+
+		    UnityEngine.Color color7 = _chargeupSound2.color
+		    ulong local109 = 0
+
+		    System.Single deltaTime5 = UnityEngine.Time.deltaTime
+		      = _chargeupSound2.
+
+		    UnityEngine.Color color8 = UnityEngine.Color.Lerp()
+
+		    .set_color()
+		      = _chargeupSound2.
+		      = _chargeupSound2.
+		    local35 = normalizedSize
+
+		    System.Single single7 = .Evaluate(local35) //(Single time)
+		    local35 = single7
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18044A29A) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudInstance
+	System.Void LerpLight(UnityEngine.Light l, UnityEngine.Color c)
+
+		UnityEngine.Color color = .color
+		ulong local5 = 0
+
+		System.Single deltaTime = UnityEngine.Time.deltaTime
+
+		UnityEngine.Color color2 = UnityEngine.Color.Lerp()
+
+		l.set_color()
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18044884E) is corrupt (Method is non-static but don't have an instance) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudInstance
+	System.Void SetLightRadius(UnityEngine.Light l, System.Single range)
+		UnityEngine.AnimationCurve _radiusToLightAngle = this._radiusToLightAngle
+
+		System.Single single = _radiusToLightAngle.Evaluate(range) //(Single time)
+		range = single
+
+		l.spotAngle = range
+		UnityEngine.AnimationCurve _radiusToLightRange = this._radiusToLightRange
+
+		System.Single single2 = _radiusToLightRange.Evaluate(range) //(Single time)
+		range = single2
+
+		l.range = range
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.RegToRegMoveAction at (0x180449D87) is corrupt (Local being overwritten, {'range' (function parameter, type System.Single)} has been stripped or is a parameter) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudInstance
+	System.Void ServerUpdateSpawning()
+		ulong local1 = 0
+
+		if (this._abilitiesSet != local1)
+		    System.UInt32 _syncOwner = this._syncOwner
+
+		    System.Boolean boolean = ReferenceHub.TryGetHubNetID(_syncOwner, local1) //(UInt32 netId, ReferenceHub& hub)
+
+		    if (boolean != False)
+		        PlayerRoles.PlayableScps.Scp939.Scp939Role _scpRole = this._scpRole
+		        ulong local7 = 0
+
+		        System.Boolean boolean2 = UnityEngine.Object.op_Equality(_scpRole, local7) //(Object x, Object y)
+
+		        if (boolean2 == False)
+		            PlayerRoles.PlayableScps.Scp939.Scp939Role _scpRole2 = this._scpRole
+
+		            if ( == local1)
+		                UnityEngine.Transform transform = this._t
+		                  = local1.
+
+		                UnityEngine.Vector3 position = .position
+		                System.Single single = position.z
+
+		                transform.set_position()
+		                UnityEngine.Transform transform2 = this._t
+
+		                UnityEngine.Vector3 position2 = .position
+		                System.Single single2 = position2.z
+
+		                this.Network_syncPos = local1
+		                PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudAbility cloud = this.cloud
+
+		                if (cloud._targetState != local1)
+		                    System.Diagnostics.Stopwatch _beginHeldSw = cloud._beginHeldSw
+
+		                    System.TimeSpan elapsed = _beginHeldSw.Elapsed
+		                    ulong local26 = 0
+		                    this._lastHoldTime = local26
+
+		                    System.Single normalizedHoldTime = this.NormalizedHoldTime
+		                    System.Single local29 = normalizedHoldTime * 255
+		                    normalizedHoldTime = local29
+
+		                    System.Int32 int32 = UnityEngine.Mathf.RoundToInt(normalizedHoldTime) //(Single f)
+
+		                    this.Network_syncHoldTime = int32
+		                    System.Single _maxHoldTime = this._maxHoldTime
+
+		                    if (_maxHoldTime > this._lastHoldTime)
+                                goto INSN_180449AFC
+                            endif
+		                endif
+                        
+		                System.Single _lastHoldTime = this._lastHoldTime
+		                System.Single _minHoldTime = this._minHoldTime
+
+		                if (_minHoldTime > _lastHoldTime)
+                            goto INSN_180449B0B
+                        endif
+		                UnityEngine.AnimationCurve _durationOverHeldTime = this._durationOverHeldTime
+
+		                System.Single single3 = _durationOverHeldTime.Evaluate(_lastHoldTime) //(Single time)
+		                PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudAbility cloud2 = this.cloud
+		                this._targetDuration = single3
+		                PlayerRoles.PlayableScps.Subroutines.AbilityCooldown cooldown = cloud2.Cooldown
+		                cloud2._sendDuration = single3
+
+		                System.Boolean isReady = cooldown.IsReady
+
+		                cloud2.ServerSendRpc(True) //(Boolean toAll)
+		                UnityEngine.AnimationCurve _rangeOverHeldTime = this._rangeOverHeldTime
+		                System.Single _lastHoldTime2 = this._lastHoldTime
+
+		                System.Single single4 = _rangeOverHeldTime.Evaluate(_lastHoldTime2) //(Single time)
+		                _lastHoldTime2 = single4
+
+		                System.Single maxDistance = this.MaxDistance
+
+		                this.Network_syncState = 1
+		                ulong local50 = 0
+
+		                Mirror.PooledNetworkWriter writer = Mirror.NetworkWriterPool.GetWriter()
+
+		                System.Type typeFromHandle = System.Type.GetTypeFromHandle({'Scp939AmnesticCloudInstance' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+
+		                base.SendRPCInternal(typeFromHandle, "RpcPlayCreateSound", writer, local1, local54) //(Type invokeClass, String rpcName, NetworkWriter writer, Int32 channelId, Boolean includeOwner)
+
+		                Mirror.NetworkWriterPool.Recycle(writer) //(PooledNetworkWriter writer)
+
+		                INSN_180449AFC:
+		                return
+
+		                INSN_180449B0B:
+		                PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudAbility cloud3 = this.cloud
+		                PlayerRoles.PlayableScps.Subroutines.AbilityCooldown cooldown2 = cloud3.Cooldown
+		                cloud3._sendDuration = -128
+
+		                System.Boolean isReady2 = cooldown2.IsReady
+
+		                cloud3.ServerSendRpc(True) //(Boolean toAll)
+		            endif
+                    
+
+		            System.Single decaySpeed = this.DecaySpeed
+		            return
+
+		            UnityEngine.Debug.LogWarning("[Server] function 'System.Void PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudInstance::ServerUpdateSpawning()' called when server was not active") //(Object message)
+		            return
+		            throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfNonZeroOrNonNullAction at (0x180449818) is corrupt (One of the arguments is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudInstance
+	System.Void ServerUpdateDestroyed()
+		System.Single _destroyTime = this._destroyTime
+		ulong local2 = 0
+
+		System.Single deltaTime = UnityEngine.Time.deltaTime
+		ulong local4 = 0
+		this._destroyTime = _destroyTime
+
+		if (_destroyTime <= local4)
+
+		    UnityEngine.GameObject gameObject = base.gameObject
+
+		    Mirror.NetworkServer.Destroy(gameObject) //(GameObject obj)
+		    return
+
+		    UnityEngine.Debug.LogWarning("[Server] function 'System.Void PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudInstance::ServerUpdateDestroyed()' called when server was not active") //(Object message)
+		    return
+		endif
+        
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Single PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudInstance::_destroyTime
+	IL_0006: stloc.0
+	IL_0007: ldc.i4.0
+	IL_0008: stloc.1
+	IL_0009: call System.Single UnityEngine.Time::get_deltaTime()
+	IL_000e: stloc.2
+	IL_000f: ldc.i4.0
+	IL_0010: stloc.3
+	IL_0011: ldarg.0
+	IL_0012: ldloc.0
+	IL_0013: stfld System.Single PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudInstance::_destroyTime
+	IL_0018: ldloc.0
+	IL_0019: ldloc.3
+	IL_001a: bgt.s IL_0033
+	IL_001c: ldarg.0
+	IL_001d: call UnityEngine.GameObject UnityEngine.Component::get_gameObject()
+	IL_0022: call System.Void Mirror.NetworkServer::Destroy(UnityEngine.GameObject)
+	IL_0027: ret
+	IL_0028: ldstr "[Server] function 'System.Void PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudInstance::ServerUpdateDestroyed()' called when server was not active"
+	IL_002d: call System.Void UnityEngine.Debug::LogWarning(System.Object)
+	IL_0032: ret
+	IL_0033: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudInstance
+	System.Void RpcPlayCreateSound()
+		ulong local1 = 0
+
+		Mirror.PooledNetworkWriter writer = Mirror.NetworkWriterPool.GetWriter()
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'Scp939AmnesticCloudInstance' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		ulong local5 = 0
+
+		base.SendRPCInternal(typeFromHandle, "RpcPlayCreateSound", writer, local5, local6) //(Type invokeClass, String rpcName, NetworkWriter writer, Int32 channelId, Boolean includeOwner)
+
+		Mirror.NetworkWriterPool.Recycle(writer) //(PooledNetworkWriter writer)
+		return
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: call Mirror.PooledNetworkWriter Mirror.NetworkWriterPool::GetWriter()
+	IL_0007: stloc.1
+	IL_0008: ldtoken PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudInstance
+	IL_000d: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+	IL_0012: stloc.2
+	IL_0013: ldc.i4.0
+	IL_0014: stloc.3
+	IL_0015: ldarg.0
+	IL_0016: ldloc.2
+	IL_0017: ldstr "RpcPlayCreateSound"
+	IL_001c: ldloc.1
+	IL_001d: ldloc.3
+	IL_001e: ldloc.s V_4
+	IL_0020: call System.Void Mirror.NetworkBehaviour::SendRPCInternal(System.Type,System.String,Mirror.NetworkWriter,System.Int32,System.Boolean)
+	IL_0025: ldloc.1
+	IL_0026: call System.Void Mirror.NetworkWriterPool::Recycle(Mirror.PooledNetworkWriter)
+	IL_002b: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudInstance
+	System.Void ServerSetup(ReferenceHub owner)
+
+		System.UInt32 netId = owner.netId
+
+		this.Network_syncOwner = netId
+
+		this.SetAbilityCache()
+		PlayerRoles.PlayableScps.Scp939.Scp939LungeAbility _lunge = this._lunge
+		System.Action`1<PlayerRoles.PlayableScps.Scp939.Scp939LungeState> action = new System.Action`1<PlayerRoles.PlayableScps.Scp939.Scp939LungeState>()
+
+		action..ctor(this, {'OnLungeStateChanged' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		_lunge.add_OnStateChanged(action) //(Action`1 value)
+		System.Action`2<ReferenceHub,PlayerStatsSystem.DamageHandlerBase> action2 = new System.Action`2<ReferenceHub,PlayerStatsSystem.DamageHandlerBase>()
+
+		action2..ctor(this, {'OnAnyPlayerDamaged' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		PlayerStatsSystem.PlayerStats.add_OnAnyPlayerDamaged(action2) //(Action`2 value)
+		return
+
+		UnityEngine.Debug.LogWarning("[Server] function 'System.Void PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudInstance::ServerSetup(ReferenceHub)' called when server was not active") //(Object message)
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18044950F) is corrupt (Mismatched instance parameter. Expecting an instance of System.Action`1, actually {'action2' (type System.Action`2<ReferenceHub,PlayerStatsSystem.DamageHandlerBase>)}) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudInstance
+	System.Void .ctor()
+		PlayerRoles.PlayableScps.Subroutines.AbilityCooldown abilityCooldown = new PlayerRoles.PlayableScps.Subroutines.AbilityCooldown()
+
+		abilityCooldown..ctor()
+		this._overallCooldown = abilityCooldown
+		System.Collections.Generic.Dictionary`2<System.UInt32,PlayerRoles.PlayableScps.Subroutines.AbilityCooldown> dictionary = new System.Collections.Generic.Dictionary`2<System.UInt32,PlayerRoles.PlayableScps.Subroutines.AbilityCooldown>()
+
+		dictionary..ctor()
+		this._individualCooldown = dictionary
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: newobj System.Void PlayerRoles.PlayableScps.Subroutines.AbilityCooldown::.ctor()
+	IL_0005: stloc.0
+	IL_0006: ldarg.0
+	IL_0007: ldloc.0
+	IL_0008: stfld PlayerRoles.PlayableScps.Subroutines.AbilityCooldown PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudInstance::_overallCooldown
+	IL_000d: newobj System.Void System.Collections.Generic.Dictionary`2::.ctor()
+	IL_0012: stloc.1
+	IL_0013: ldarg.0
+	IL_0014: ldloc.1
+	IL_0015: stfld System.Collections.Generic.Dictionary`2<System.UInt32,PlayerRoles.PlayableScps.Subroutines.AbilityCooldown> PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudInstance::_individualCooldown
+	IL_001a: ldarg.0
+	IL_001b: call System.Void Hazards.TemporaryHazard::.ctor()
+	IL_0020: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudInstance
+	static System.Void .cctor()
+		System.Collections.Generic.List`1<PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudInstance> list = new System.Collections.Generic.List`1<PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudInstance>()
+
+		list..ctor()
+		PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudInstance.ActiveInstances = list
+
+		System.Type typeFromHandle = System.Type.GetTypeFromHandle({'Scp939AmnesticCloudInstance' (constant value of type Mono.Cecil.TypeReference)}) //(RuntimeTypeHandle handle)
+		Mirror.RemoteCalls.CmdDelegate cmdDelegate = new Mirror.RemoteCalls.CmdDelegate()
+		ulong local5 = 0
+
+		cmdDelegate..ctor(local5, {'InvokeUserCode_RpcPlayCreateSound' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+
+		Mirror.RemoteCalls.RemoteCallHelper.RegisterRpcDelegate(typeFromHandle, "RpcPlayCreateSound", cmdDelegate) //(Type invokeClass, String rpcName, CmdDelegate func)
+		return
+
+
+Generated IL:
+	IL_0000: newobj System.Void System.Collections.Generic.List`1::.ctor()
+	IL_0005: stsfld System.Collections.Generic.List`1<PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudInstance> PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudInstance::ActiveInstances
+	IL_000a: ldtoken PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudInstance
+	IL_000f: call System.Type System.Type::GetTypeFromHandle(System.RuntimeTypeHandle)
+	IL_0014: stloc.0
+	IL_0015: ldloc.2
+	IL_0016: ldftn System.Void PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudInstance::InvokeUserCode_RpcPlayCreateSound(Mirror.NetworkBehaviour,Mirror.NetworkReader,Mirror.NetworkConnectionToClient)
+	IL_001c: newobj System.Void Mirror.RemoteCalls.CmdDelegate::.ctor(System.Object,System.IntPtr)
+	IL_0021: stloc.1
+	IL_0022: ldc.i4.0
+	IL_0023: stloc.2
+	IL_0024: ldloc.0
+	IL_0025: ldstr "RpcPlayCreateSound"
+	IL_002a: ldloc.1
+	IL_002b: call System.Void Mirror.RemoteCalls.RemoteCallHelper::RegisterRpcDelegate(System.Type,System.String,Mirror.RemoteCalls.CmdDelegate)
+	IL_0030: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudInstance
+	System.Void MirrorProcessed()
+
+
+Generated IL:
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudInstance
+	System.Byte get_Network_syncHoldTime()
+		System.Byte _syncHoldTime = this._syncHoldTime
+		return _syncHoldTime
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Byte PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudInstance::_syncHoldTime
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudInstance
+	System.Void set_Network_syncHoldTime(System.Byte value)
+
+		System.Boolean boolean = base.SyncVarEqual<System.Byte>()
+
+		if (boolean == False)
+		    throw new System.NullReferenceException()
+		endif
+        
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18044B115) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudInstance
+	System.Byte get_Network_syncState()
+		System.Byte _syncState = this._syncState
+		return _syncState
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Byte PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudInstance::_syncState
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudInstance
+	System.Void set_Network_syncState(System.Byte value)
+
+		System.Boolean boolean = base.SyncVarEqual<System.Byte>()
+
+		if (boolean == False)
+		    throw new System.NullReferenceException()
+		endif
+        
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18044B2B5) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudInstance
+	System.UInt32 get_Network_syncOwner()
+		System.UInt32 _syncOwner = this._syncOwner
+		return _syncOwner
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.UInt32 PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudInstance::_syncOwner
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudInstance
+	System.Void set_Network_syncOwner(System.UInt32 value)
+
+		System.Boolean boolean = base.SyncVarEqual<System.UInt32>()
+
+		if (boolean == False)
+		    throw new System.NullReferenceException()
+		endif
+        
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18044B1A2) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudInstance
+	RelativePositioning.RelativePosition get_Network_syncPos()
+		RelativePositioning.RelativePosition _syncPos = this._syncPos
+		return _syncPos
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld RelativePositioning.RelativePosition PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudInstance::_syncPos
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudInstance
+	System.Void set_Network_syncPos(RelativePositioning.RelativePosition value)
+
+		System.Boolean boolean = base.SyncVarEqual<RelativePositioning.RelativePosition>()
+
+		if (boolean == False)
+		    throw new System.NullReferenceException()
+		endif
+        
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18044B224) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudInstance
+	System.Void UserCode_RpcPlayCreateSound()
+		ulong local1 = 0
+
+		if (this._alreadyCreated == local1)
+		    UnityEngine.AudioSource _deploySound = this._deploySound
+
+		    _deploySound.Play()
+		    System.UInt32 _syncOwner = this._syncOwner
+
+		    System.Boolean boolean = ReferenceHub.TryGetHubNetID(_syncOwner, local1) //(UInt32 netId, ReferenceHub& hub)
+
+		    if (boolean != False)
+		          = local1.
+
+		        if ( == local1)
+		            ulong local7 = 0
+
+		            local1.InitializeNewRole(0xFFFFFFFF, local7, 0xFFFFFFFF, local1) //(RoleTypeId targetId, RoleChangeReason reason, RoleSpawnFlags spawnFlags, NetworkReader data)
+		        endif
+                
+		          = local1.
+
+		        if (constant9 == 0)
+                    goto INSN_18044ADB1
+                endif
+		          = boolean.
+
+		        if ( != Scp939Role)
+                    goto INSN_18044ADB1
+                endif
+		          = local1.
+
+		        if (local1 == 0)
+                    goto INSN_18044ADB1
+                endif
+		        //UNKNOWN CLASS OFFSET READ HERE
+		        this._alreadyCreated = True
+		          = local1.
+		        System.Int32 amnesticTriggerHash = PlayerRoles.PlayableScps.Scp939.Scp939Model.AmnesticTriggerHash
+
+		        [instruction error - managed method being called is null]
+		          = local1.
+
+		        UnityEngine.Transform transform = local1.transform
+
+		        UnityEngine.AudioSource audioSource = AudioPooling.AudioSourcePoolManager.PlaySound()
+		    endif
+            
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.FieldToLocalAction at (0x18044AC20) is corrupt (No further info) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudInstance
+	static System.Void InvokeUserCode_RpcPlayCreateSound(Mirror.NetworkBehaviour obj, Mirror.NetworkReader reader, Mirror.NetworkConnectionToClient senderConnection)
+		ulong local3 = 0
+
+		System.Boolean active = Mirror.NetworkClient.active
+
+		if (active != False)
+		    //UNKNOWN CLASS OFFSET READ HERE
+
+		    obj.UserCode_RpcPlayCreateSound()
+		    return
+		endif
+        
+
+		UnityEngine.Debug.LogError("RPC RpcPlayCreateSound called on server.") //(Object message)
+		return
+		throw new System.InvalidCastException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.UnknownClassOffsetReadAction at (0x1804487BB) is corrupt (Unknown class offset read) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudInstance
+	System.Boolean SerializeSyncVars(Mirror.NetworkWriter writer, System.Boolean forceAll)
+
+		System.Boolean boolean = base.SerializeSyncVars(writer, forceAll) //(NetworkWriter writer, Boolean initialState)
+
+		if (forceAll == False)
+		    System.UInt64 syncVarDirtyBits = this.<syncVarDirtyBits>k__BackingField
+
+		    Mirror.NetworkWriterExtensions.WriteUInt64(writer, syncVarDirtyBits) //(NetworkWriter writer, UInt64 value)
+
+		    if ( != 1)
+		        System.Byte _syncHoldTime = this._syncHoldTime
+
+		        Mirror.NetworkWriterExtensions.WriteByte(writer, _syncHoldTime) //(NetworkWriter writer, Byte value)
+		    endif
+            
+
+		    if ( == 2)
+                goto INSN_180449201
+            endif
+		    System.Byte _syncState = this._syncState
+
+		    Mirror.NetworkWriterExtensions.WriteByte(writer, _syncState) //(NetworkWriter writer, Byte value)
+
+		    INSN_180449201:
+
+		    if ( == 4)
+                goto INSN_18044923B
+            endif
+		    System.UInt32 _syncOwner = this._syncOwner
+
+		    Mirror.NetworkWriterExtensions.WriteUInt32(writer, _syncOwner) //(NetworkWriter writer, UInt32 value)
+
+		    INSN_18044923B:
+
+		    if ( == 8)
+                goto INSN_180449256
+            endif
+		    RelativePositioning.RelativePosition _syncPos = this._syncPos
+
+		    RelativePositioning.RelativePositionSerialization.WriteRelativePosition(writer, _syncPos) //(NetworkWriter writer, RelativePosition msg)
+
+		    INSN_180449256:
+		else
+		    System.Byte _syncHoldTime2 = this._syncHoldTime
+
+		    Mirror.NetworkWriterExtensions.WriteByte(writer, _syncHoldTime2) //(NetworkWriter writer, Byte value)
+		    System.Byte _syncState2 = this._syncState
+
+		    Mirror.NetworkWriterExtensions.WriteByte(writer, _syncState2) //(NetworkWriter writer, Byte value)
+		    System.UInt32 _syncOwner2 = this._syncOwner
+
+		    Mirror.NetworkWriterExtensions.WriteUInt32(writer, _syncOwner2) //(NetworkWriter writer, UInt32 value)
+		    RelativePositioning.RelativePosition _syncPos2 = this._syncPos
+
+		    RelativePositioning.RelativePositionSerialization.WriteRelativePosition(writer, _syncPos2) //(NetworkWriter writer, RelativePosition msg)
+		endif
+        
+		return True
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfZeroOrNullAction at (0x18044918B) is corrupt (One of the arguments is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: PlayerRoles.PlayableScps.Scp939.Scp939AmnesticCloudInstance
+	System.Void DeserializeSyncVars(Mirror.NetworkReader reader, System.Boolean initialState)
+
+		this.MirrorProcessed()
+
+		if (initialState == False)
+
+		    System.UInt64 uInt64 = Mirror.NetworkReaderExtensions.ReadUInt64(reader) //(NetworkReader reader)
+
+		    if (uInt64 != 1)
+
+		        [instruction error - managed method being called is null]
+
+		        System.Boolean boolean = base.SyncVarEqual<System.Byte>()
+
+		        if (boolean == False)
+		            throw new System.NullReferenceException()
+		        endif
+                
+
+		        if (uInt64 == 2)
+                    goto INSN_180448528
+                endif
+
+		        [instruction error - managed method being called is null]
+
+		        System.Boolean boolean2 = base.SyncVarEqual<System.Byte>()
+
+		        if (boolean2 != False)
+                    goto INSN_180448528
+                endif
+		        throw new System.NullReferenceException()
+
+		        INSN_180448528:
+
+		        if (uInt64 == 4)
+                    goto INSN_1804485B6
+                endif
+
+		        System.UInt32 uInt32 = Mirror.NetworkReaderExtensions.ReadUInt32(reader) //(NetworkReader reader)
+
+		        System.Boolean boolean3 = base.SyncVarEqual<System.UInt32>()
+
+		        if (boolean3 != False)
+                    goto INSN_1804485B6
+                endif
+		        throw new System.NullReferenceException()
+
+		        INSN_1804485B6:
+
+		        if (uInt64 == 8)
+                    goto INSN_180448735
+                endif
+		    else
+
+		        [instruction error - managed method being called is null]
+
+		        System.Boolean boolean4 = base.SyncVarEqual<System.Byte>()
+
+		        if (boolean4 == False)
+		            throw new System.NullReferenceException()
+		        endif
+                
+
+		        [instruction error - managed method being called is null]
+		        initialState = boolean4
+
+		        System.Boolean boolean5 = base.SyncVarEqual<System.Byte>()
+
+		        if (boolean5 != False)
+                    goto INSN_1804486B7
+                endif
+		        throw new System.NullReferenceException()
+
+		        INSN_1804486B7:
+
+		        System.UInt32 uInt322 = Mirror.NetworkReaderExtensions.ReadUInt32(reader) //(NetworkReader reader)
+
+		        System.Boolean boolean6 = base.SyncVarEqual<System.UInt32>()
+
+		        if (boolean6 != False)
+                    goto INSN_18044871D
+                endif
+		        throw new System.NullReferenceException()
+		    endif
+            
+
+		    RelativePositioning.RelativePosition relativePosition = RelativePositioning.RelativePositionSerialization.ReadRelativePosition(reader) //(NetworkReader reader)
+
+		    this.Network_syncPos = relativePosition
+
+		    INSN_180448735:
+		    return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x18044842F) is corrupt (Don't know what method is being called) and cannot be created as IL. Aborting here.
+
+

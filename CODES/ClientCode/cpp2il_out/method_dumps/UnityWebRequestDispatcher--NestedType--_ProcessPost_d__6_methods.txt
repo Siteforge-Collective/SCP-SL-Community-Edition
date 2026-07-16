@@ -1,0 +1,254 @@
+Type: <ProcessPost>d__6
+
+
+	Generated Pseudocode:
+
+	Declaring Type: UnityWebRequestDispatcher/<ProcessPost>d__6
+	System.Void .ctor(System.Int32 <>1__state)
+
+		base..ctor()
+		this.<>1__state = <>1__state
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void System.Object::.ctor()
+	IL_0006: ldarg.0
+	IL_0007: ldarg.1
+	IL_0008: stfld System.Int32 UnityWebRequestDispatcher/<ProcessPost>d__6::<>1__state
+	IL_000d: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: UnityWebRequestDispatcher/<ProcessPost>d__6
+	System.Void System.IDisposable.Dispose()
+		ulong local1 = 0
+		System.Int32 <>1__state = this.<>1__state
+
+		if (<>1__state != -3)
+
+		    if (<>1__state == 1)
+		    endif
+            
+		    this.<>1__state = 4294967295
+		    UnityEngine.Networking.UnityWebRequest <uwr>5__2 = this.<uwr>5__2
+
+		    if (<uwr>5__2 != 0)
+		    endif
+            
+
+		    if (local1 != 0)
+                goto INSN_180756BF3
+            endif
+		endif
+        
+		return
+
+		INSN_180756BF3:
+
+
+Generated IL:
+	IL_0000: ldc.i4.0
+	IL_0001: stloc.0
+	IL_0002: ldarg.0
+	IL_0003: ldfld System.Int32 UnityWebRequestDispatcher/<ProcessPost>d__6::<>1__state
+	IL_0008: stloc.1
+	IL_0009: ldloc.1
+	IL_000a: ldc.i4.s -3
+	IL_000c: beq.s IL_0012
+	IL_000e: ldloc.1
+	IL_000f: ldc.i4.1
+	IL_0010: bne.un.s IL_002f
+	IL_0012: ldarg.0
+	IL_0013: ldc.i8 4294967295
+	IL_001c: conv.u8
+	IL_001d: stfld System.Int32 UnityWebRequestDispatcher/<ProcessPost>d__6::<>1__state
+	IL_0022: ldarg.0
+	IL_0023: ldfld UnityEngine.Networking.UnityWebRequest UnityWebRequestDispatcher/<ProcessPost>d__6::<uwr>5__2
+	IL_0028: ldc.i4.0
+	IL_0029: beq.s IL_002b
+	IL_002b: ldloc.0
+	IL_002c: ldc.i4.0
+	IL_002d: bne.un.s IL_0000
+	IL_002f: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: UnityWebRequestDispatcher/<ProcessPost>d__6
+	System.Boolean MoveNext()
+		System.Int32 <>1__state = this.<>1__state
+
+		if (<>1__state == 0)
+		    this.<>1__state = 4294967295
+		    UnityWebRequestDispatcher/PostRequest request = this.request
+		    System.String string = request.Url
+		    System.String data = request.Data
+
+		    UnityEngine.WWWForm wWWForm = HttpQuery.ToUnityForm(data) //(String data)
+
+		    UnityEngine.Networking.UnityWebRequest unityWebRequest = UnityEngine.Networking.UnityWebRequest.Post(string, wWWForm) //(String uri, WWWForm formData)
+		    this.<uwr>5__2 = unityWebRequest
+		    this.<>1__state = 4294967293
+		    UnityEngine.Networking.UnityWebRequest <uwr>5__2 = this.<uwr>5__2
+
+		    UnityEngine.Networking.UnityWebRequestAsyncOperation unityWebRequestAsyncOperation = <uwr>5__2.SendWebRequest()
+
+		    System.Single single = MEC.Timing.WaitUntilDone(unityWebRequestAsyncOperation) //(AsyncOperation operation)
+		    this.<>2__current = single
+		    this.<>1__state = 1
+		else
+
+		    if (<>1__state == 1)
+		        this.<>1__state = 4294967293
+		        UnityWebRequestDispatcher/PostRequest request2 = this.request
+		        UnityEngine.Networking.UnityWebRequest <uwr>5__22 = this.<uwr>5__2
+
+		        System.Boolean isNetworkError = <uwr>5__22.isNetworkError
+
+		        if (isNetworkError != False)
+		        else
+		            UnityEngine.Networking.UnityWebRequest <uwr>5__23 = this.<uwr>5__2
+
+		            System.Boolean isHttpError = <uwr>5__23.isHttpError
+		            System.Boolean local22 = isHttpError == False
+		        endif
+                
+		        request2.Successful = local22
+		        UnityWebRequestDispatcher/PostRequest request3 = this.request
+		        UnityEngine.Networking.UnityWebRequest <uwr>5__24 = this.<uwr>5__2
+
+		        System.Int64 responseCode = <uwr>5__24.responseCode
+		        request3.Code = responseCode
+		        UnityWebRequestDispatcher/PostRequest request4 = this.request
+		        UnityEngine.Networking.UnityWebRequest <uwr>5__25 = this.<uwr>5__2
+
+		        System.String error = <uwr>5__25.error
+
+		        System.Boolean isNullOrEmpty = System.String.IsNullOrEmpty(error) //(String value)
+		        UnityEngine.Networking.UnityWebRequest <uwr>5__26 = this.<uwr>5__2
+
+		        if (isNullOrEmpty == False)
+                    goto INSN_1807569B5
+                endif
+
+		        UnityEngine.Networking.DownloadHandler downloadHandler = <uwr>5__26.downloadHandler
+
+		        System.String text = downloadHandler.text
+
+		        INSN_1807569B5:
+
+		        System.String error2 = downloadHandler.error
+		        request4.Text = error2
+		        UnityWebRequestDispatcher/PostRequest request5 = this.request
+		        request5.Done = True
+		        this.<>1__state = 4294967295
+		        UnityEngine.Networking.UnityWebRequest <uwr>5__27 = this.<uwr>5__2
+
+		        if (<uwr>5__27 == 0)
+                    goto INSN_180756A2C
+                endif
+
+		        INSN_180756A2C:
+		        this.<uwr>5__2 = 0
+		    else
+		        ulong local45 = 0
+
+		        .System.IDisposable.Dispose()
+		    endif
+            
+		    return local45
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+		    throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1807569C0) is corrupt (Mismatched instance parameter. Expecting an instance of UnityEngine.Networking.UnityWebRequest, actually {'downloadHandler' (type UnityEngine.Networking.DownloadHandler)}) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: UnityWebRequestDispatcher/<ProcessPost>d__6
+	System.Void <>m__Finally1()
+		UnityEngine.Networking.UnityWebRequest <uwr>5__2 = this.<uwr>5__2
+		this.<>1__state = 4294967295
+
+		if (<uwr>5__2 != 0)
+		endif
+        
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld UnityEngine.Networking.UnityWebRequest UnityWebRequestDispatcher/<ProcessPost>d__6::<uwr>5__2
+	IL_0006: stloc.0
+	IL_0007: ldarg.0
+	IL_0008: ldc.i8 4294967295
+	IL_0011: conv.u8
+	IL_0012: stfld System.Int32 UnityWebRequestDispatcher/<ProcessPost>d__6::<>1__state
+	IL_0017: ldloc.0
+	IL_0018: ldc.i4.0
+	IL_0019: beq.s IL_001b
+	IL_001b: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: UnityWebRequestDispatcher/<ProcessPost>d__6
+	System.Single System.Collections.Generic.IEnumerator<System.Single>.get_Current()
+		System.Single <>2__current = this.<>2__current
+		return <>2__current
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Single UnityWebRequestDispatcher/<ProcessPost>d__6::<>2__current
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: UnityWebRequestDispatcher/<ProcessPost>d__6
+	System.Void System.Collections.IEnumerator.Reset()
+		System.NotSupportedException notSupportedException = new System.NotSupportedException()
+
+		notSupportedException..ctor()
+
+
+Generated IL:
+	IL_0000: newobj System.Void System.NotSupportedException::.ctor()
+	IL_0005: stloc.0
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: UnityWebRequestDispatcher/<ProcessPost>d__6
+	System.Object System.Collections.IEnumerator.get_Current()
+		System.Single <>2__current = this.<>2__current
+		return 
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x180756B55) is corrupt (Return value is missing) and cannot be created as IL. Aborting here.
+
+

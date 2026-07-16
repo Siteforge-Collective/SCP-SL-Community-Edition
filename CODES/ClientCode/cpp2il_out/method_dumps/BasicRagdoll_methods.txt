@@ -1,0 +1,369 @@
+Type: BasicRagdoll
+
+
+	Generated Pseudocode:
+
+	Declaring Type: BasicRagdoll
+	UnityEngine.Transform get_CenterPoint()
+
+		if (this._hasCustomCenter != False)
+		    UnityEngine.Transform _originPoint = this._originPoint
+		    return _originPoint
+		endif
+        
+
+		UnityEngine.Transform transform = base.transform
+		return transform
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Boolean BasicRagdoll::_hasCustomCenter
+	IL_0006: ldc.i4.0
+	IL_0007: beq.s IL_0010
+	IL_0009: ldarg.0
+	IL_000a: ldfld UnityEngine.Transform BasicRagdoll::_originPoint
+	IL_000f: ret
+	IL_0010: ldarg.0
+	IL_0011: call UnityEngine.Transform UnityEngine.Component::get_transform()
+	IL_0016: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: BasicRagdoll
+	System.Void OnCleanup()
+		UnityEngine.Collider[] _serializedColliders = this._serializedColliders
+		ulong local2 = 0
+		System.Int32 length = _serializedColliders.Length
+
+		if (local2 < length)
+		    UnityEngine.Collider collider = _serializedColliders[local2]
+		    ulong local6 = 0
+
+		    collider.enabled = local6
+		    local2 += 1
+		endif
+        
+		UnityEngine.SkinnedMeshRenderer[] _serializedRenderers = this._serializedRenderers
+		System.Int32 length2 = _serializedRenderers.Length
+
+		if (local2 >= length2)
+            goto INSN_1804E759E
+        endif
+		UnityEngine.SkinnedMeshRenderer skinnedMeshRenderer = _serializedRenderers[local2]
+		ulong local11 = 0
+
+		skinnedMeshRenderer.enabled = local11
+		local2 += 1
+
+		INSN_1804E759E:
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld UnityEngine.Collider[] BasicRagdoll::_serializedColliders
+	IL_0006: stloc.0
+	IL_0007: ldc.i4.0
+	IL_0008: stloc.1
+	IL_0009: ldloc.0
+	IL_000a: call System.Int32 System.Array::get_Length()
+	IL_000f: stloc.2
+	IL_0010: ldloc.1
+	IL_0011: ldloc.2
+	IL_0012: bge.s IL_002b
+	IL_0014: ldloc.0
+	IL_0015: ldloc.1
+	IL_0016: ldelem.any UnityEngine.Collider
+	IL_001b: stloc.3
+	IL_001c: ldc.i4.0
+	IL_001d: stloc.s V_4
+	IL_001f: ldloc.3
+	IL_0020: ldloc.s V_4
+	IL_0022: call System.Void UnityEngine.Collider::set_enabled(System.Boolean)
+	IL_0027: ldloc.1
+	IL_0028: ldc.i4.1
+	IL_0029: add
+	IL_002a: stloc.1
+	IL_002b: ldarg.0
+	IL_002c: ldfld UnityEngine.SkinnedMeshRenderer[] BasicRagdoll::_serializedRenderers
+	IL_0031: stloc.s V_5
+	IL_0033: ldloc.s V_5
+	IL_0035: call System.Int32 System.Array::get_Length()
+	IL_003a: stloc.s V_6
+	IL_003c: ldloc.1
+	IL_003d: ldloc.s V_6
+	IL_003f: bge.s IL_005b
+	IL_0041: ldloc.s V_5
+	IL_0043: ldloc.1
+	IL_0044: ldelem.any UnityEngine.SkinnedMeshRenderer
+	IL_0049: stloc.s V_7
+	IL_004b: ldc.i4.0
+	IL_004c: stloc.s V_8
+	IL_004e: ldloc.s V_7
+	IL_0050: ldloc.s V_8
+	IL_0052: call System.Void UnityEngine.Renderer::set_enabled(System.Boolean)
+	IL_0057: ldloc.1
+	IL_0058: ldc.i4.1
+	IL_0059: add
+	IL_005a: stloc.1
+	IL_005b: ret
+	IL_005c: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0061: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: BasicRagdoll
+	System.Void Awake()
+		UnityEngine.Transform _originPoint = this._originPoint
+		ulong local3 = 0
+
+		System.Boolean boolean = UnityEngine.Object.op_Inequality(_originPoint, local3) //(Object x, Object y)
+		this._hasCustomCenter = boolean
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld UnityEngine.Transform BasicRagdoll::_originPoint
+	IL_0006: stloc.0
+	IL_0007: ldc.i4.0
+	IL_0008: stloc.1
+	IL_0009: ldloc.0
+	IL_000a: ldloc.1
+	IL_000b: call System.Boolean UnityEngine.Object::op_Inequality(UnityEngine.Object,UnityEngine.Object)
+	IL_0010: stloc.2
+	IL_0011: ldarg.0
+	IL_0012: ldloc.2
+	IL_0013: stfld System.Boolean BasicRagdoll::_hasCustomCenter
+	IL_0018: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: BasicRagdoll
+	System.Void Start()
+
+		UnityEngine.Transform transform = base.transform
+		System.Single single = this.Info.StartPosition.z
+		UnityEngine.Quaternion startRotation = this.Info.StartRotation
+
+		transform.SetPositionAndRotation()
+		System.Boolean local6 = "{il2cpp field on {'constant22' (constant value of type Cpp2IL.Core.Analysis.ResultModels.StaticFieldsPtr)}, offset 0x10}" <= 0
+		this._cleanedUp = local6
+		PlayerStatsSystem.DamageHandlerBase handler = this.Info.Handler
+
+		handler.ReadAdditionalData()
+
+		PlayerRoles.Ragdolls.RagdollManager.OnSpawnedRagdoll(this) //(BasicRagdoll ragdoll)
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1804E77E2) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: BasicRagdoll
+	System.Void OnDestroy()
+
+		PlayerRoles.Ragdolls.RagdollManager.OnRemovedRagdoll(this) //(BasicRagdoll ragdoll)
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void PlayerRoles.Ragdolls.RagdollManager::OnRemovedRagdoll(BasicRagdoll)
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: BasicRagdoll
+	System.Void Update()
+
+		if (this._cleanedUp == False)
+
+		    if ( <= )
+
+		        FMOD.RESULT rESULT = base.setUserData(BasicRagdoll.OnCleanup) //(IntPtr userdata)
+		        return
+		    endif
+            
+		    return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfGreaterThanAction at (0x1804E7966) is corrupt (One of the arguments is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: BasicRagdoll
+	System.Void UpdateCleanup()
+
+		if (this._cleanedUp == False)
+
+		    if ( <= )
+
+		        FMOD.RESULT rESULT = base.setUserData(BasicRagdoll.OnCleanup) //(IntPtr userdata)
+		        return
+		    endif
+            
+		    return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfGreaterThanAction at (0x1804E7966) is corrupt (One of the arguments is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: BasicRagdoll
+	System.Void .ctor()
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call System.Void Mirror.NetworkBehaviour::.ctor()
+	IL_0006: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: BasicRagdoll
+	System.Void MirrorProcessed()
+
+
+Generated IL:
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: BasicRagdoll
+	RagdollData get_NetworkInfo()
+		this. = 
+		this.m_CachedPtr = 
+		this.syncInterval = 
+		this.syncVarHookGuard = 
+		return this
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.RegToFieldAction at (0x1804E79BB) is corrupt (Instance or field is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: BasicRagdoll
+	System.Void set_NetworkInfo(RagdollData value)
+		PlayerStatsSystem.DamageHandlerBase handler = value.Handler
+		System.Single single = value.StartPosition.z
+		System.Single single2 = value.StartRotation.w
+
+		System.Boolean boolean = base.SyncVarEqual<RagdollData>()
+
+		if (boolean == False)
+		    PlayerStatsSystem.DamageHandlerBase handler2 = value.Handler
+		    System.Single single3 = value.StartPosition.z
+		    System.Single single4 = value.StartRotation.w
+
+		    base.SetSyncVar<RagdollData>()
+		endif
+        
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1804E7A54) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (2)) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: BasicRagdoll
+	System.Boolean SerializeSyncVars(Mirror.NetworkWriter writer, System.Boolean forceAll)
+
+		System.Boolean boolean = base.SerializeSyncVars(writer, forceAll) //(NetworkWriter writer, Boolean initialState)
+
+		if (forceAll == False)
+		    System.UInt64 syncVarDirtyBits = this.<syncVarDirtyBits>k__BackingField
+
+		    Mirror.NetworkWriterExtensions.WriteUInt64(writer, syncVarDirtyBits) //(NetworkWriter writer, UInt64 value)
+
+		    if ( != 1)
+		        RagdollData info = this.Info
+		        PlayerStatsSystem.DamageHandlerBase handler = this.Info.Handler
+		        System.Single single = this.Info.StartPosition.z
+		        System.Single single2 = this.Info.StartRotation.w
+
+		        RagdollDataReaderWriter.WriteRagdollData(writer, info) //(NetworkWriter writer, RagdollData info)
+		    endif
+            
+		else
+		    RagdollData info2 = this.Info
+		    PlayerStatsSystem.DamageHandlerBase handler2 = this.Info.Handler
+		    System.Single single3 = this.Info.StartPosition.z
+		    System.Single single4 = this.Info.StartRotation.w
+
+		    RagdollDataReaderWriter.WriteRagdollData(writer, info2) //(NetworkWriter writer, RagdollData info)
+		endif
+        
+		return True
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.JumpIfZeroOrNullAction at (0x1804E76CB) is corrupt (One of the arguments is null) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: BasicRagdoll
+	System.Void DeserializeSyncVars(Mirror.NetworkReader reader, System.Boolean initialState)
+
+		this.MirrorProcessed()
+
+		if (initialState == False)
+
+		    System.UInt64 uInt64 = Mirror.NetworkReaderExtensions.ReadUInt64(reader) //(NetworkReader reader)
+
+		    if (uInt64 == 1)
+                goto INSN_1804E74F8
+            endif
+		endif
+        
+
+		RagdollData ragdollData = RagdollDataReaderWriter.ReadRagdollData()
+		PlayerStatsSystem.DamageHandlerBase handler = ragdollData.Handler
+		System.Single single = ragdollData.StartPosition.z
+		System.Single single2 = ragdollData.StartRotation.w
+
+		this.set_NetworkInfo()
+
+		INSN_1804E74F8:
+		return
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.CallManagedFunctionAction at (0x1804E74B5) is corrupt (Couldn't get arguments, or actual count (-1) is not equal to expected count (1)) and cannot be created as IL. Aborting here.
+
+

@@ -1,0 +1,236 @@
+Type: SingleBufferPlayback
+
+
+	Generated Pseudocode:
+
+	Declaring Type: VoiceChat.Playbacks.SingleBufferPlayback
+	VoiceChat.Networking.PlaybackBuffer get_Buffer()
+
+		if (this._bufferSet == False)
+		    VoiceChat.Networking.PlaybackBuffer playbackBuffer = new VoiceChat.Networking.PlaybackBuffer()
+		    ulong local3 = 0
+
+		    playbackBuffer..ctor(0x5DC0, local3) //(Int32 capacity, Boolean endlessTapeMode)
+		    this._buffer = playbackBuffer
+		    this._bufferSet = True
+		endif
+        
+		VoiceChat.Networking.PlaybackBuffer _buffer = this._buffer
+		return _buffer
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld System.Boolean VoiceChat.Playbacks.SingleBufferPlayback::_bufferSet
+	IL_0006: ldc.i4.0
+	IL_0007: bne.un.s IL_0025
+	IL_0009: ldc.i4 24000
+	IL_000e: ldloc.1
+	IL_000f: newobj System.Void VoiceChat.Networking.PlaybackBuffer::.ctor(System.Int32,System.Boolean)
+	IL_0014: stloc.0
+	IL_0015: ldc.i4.0
+	IL_0016: stloc.1
+	IL_0017: ldarg.0
+	IL_0018: ldloc.0
+	IL_0019: stfld VoiceChat.Networking.PlaybackBuffer VoiceChat.Playbacks.SingleBufferPlayback::_buffer
+	IL_001e: ldarg.0
+	IL_001f: ldc.i4.1
+	IL_0020: stfld System.Boolean VoiceChat.Playbacks.SingleBufferPlayback::_bufferSet
+	IL_0025: ldarg.0
+	IL_0026: ldfld VoiceChat.Networking.PlaybackBuffer VoiceChat.Playbacks.SingleBufferPlayback::_buffer
+	IL_002b: ret
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: VoiceChat.Playbacks.SingleBufferPlayback
+	System.Int32 get_MaxSamples()
+
+		if (this._bufferSet != False)
+
+		    if (this._bufferSet == False)
+		        VoiceChat.Networking.PlaybackBuffer playbackBuffer = new VoiceChat.Networking.PlaybackBuffer()
+		        ulong local3 = 0
+		        System.Int64 local4 = 0x5DC0
+
+		        playbackBuffer..ctor(local4, local3) //(Int32 capacity, Boolean endlessTapeMode)
+		        this._buffer = playbackBuffer
+		        this._bufferSet = True
+		    endif
+            
+		    VoiceChat.Networking.PlaybackBuffer _buffer = this._buffer
+		    System.Int64 writeHead = _buffer.WriteHead
+		    return writeHead
+		endif
+        
+		ulong local7 = 0
+		return local7
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.ReturnFromFunctionAction at (0x181B8EC33) is corrupt (Return value has a type of System.Int64, expecting an object of type System.Int32) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: VoiceChat.Playbacks.SingleBufferPlayback
+	System.Void OnDestroy()
+
+		if (this._bufferSet != False)
+
+		    if (this._bufferSet == False)
+		        VoiceChat.Networking.PlaybackBuffer playbackBuffer = new VoiceChat.Networking.PlaybackBuffer()
+		        ulong local3 = 0
+		        System.Int64 local4 = 0x5DC0
+
+		        playbackBuffer..ctor(local4, local3) //(Int32 capacity, Boolean endlessTapeMode)
+		        this._buffer = playbackBuffer
+		        this._bufferSet = True
+		    endif
+            
+		    VoiceChat.Networking.PlaybackBuffer _buffer = this._buffer
+		    System.Int32 _bufferSize = _buffer._bufferSize
+		    System.Collections.Generic.Dictionary`2<System.Int32,System.Collections.Generic.Queue`1<System.Single[]>> poolsOfSize = VoiceChat.Networking.PlaybackBuffer.PoolsOfSize
+		    System.Func`1<System.Collections.Generic.Queue`1<System.Single[]>> <>9__25_0 = VoiceChat.Networking.PlaybackBuffer/<>c.<>9__25_0
+
+		    if (<>9__25_0 != 0)
+                goto INSN_181B8E9FC
+            endif
+		    VoiceChat.Networking.PlaybackBuffer/<>c <>c = VoiceChat.Networking.PlaybackBuffer/<>c.<>9
+		    System.Func`1<System.Collections.Generic.Queue`1<System.Single[]>> func = new System.Func`1<System.Collections.Generic.Queue`1<System.Single[]>>()
+
+		    func..ctor(<>c, {'<Dispose>b__25_0' (constant value of type Mono.Cecil.MethodReference)}) //(Object object, IntPtr method)
+		     += 8
+		    VoiceChat.Networking.PlaybackBuffer/<>c.<>9 = func
+
+		    INSN_181B8E9FC:
+
+		    System.Int32 orAdd = CollectionExtensions.GetOrAdd<System.Int32, System.Collections.Generic.Queue`1<System.Single[]>>(poolsOfSize, _bufferSize, func) //(Dictionary`2 dictionary, TKey key, Func`1 factory)
+		    System.Single[] buffer = _buffer.Buffer
+
+		    orAdd.Enqueue(buffer) //(T item)
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	Action of type Cpp2IL.Core.Analysis.Actions.x86.Important.AddConstantToRegAction at (0x181B8E9F0) is corrupt (Local being added to is null / doesn't have a type) and cannot be created as IL. Aborting here.
+
+
+
+	Generated Pseudocode:
+
+	Declaring Type: VoiceChat.Playbacks.SingleBufferPlayback
+	System.Void OnDisable()
+		UnityEngine.AudioSource Source = this.<Source>k__BackingField
+
+		Source.Stop()
+
+		if (this._bufferSet != False)
+
+		    if (this._bufferSet == False)
+		        VoiceChat.Networking.PlaybackBuffer playbackBuffer = new VoiceChat.Networking.PlaybackBuffer()
+		        ulong local5 = 0
+
+		        playbackBuffer..ctor(0x5DC0, local5) //(Int32 capacity, Boolean endlessTapeMode)
+		        this._buffer = playbackBuffer
+		        this._bufferSet = True
+		    endif
+            
+		    VoiceChat.Networking.PlaybackBuffer _buffer = this._buffer
+		    ulong local7 = 0
+		    _buffer.ReadHead = local7
+		    _buffer.WriteHead = local7
+		endif
+        
+		return
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldfld UnityEngine.AudioSource VoiceChat.Playbacks.VoiceChatPlaybackBase::<Source>k__BackingField
+	IL_0006: call System.Void UnityEngine.AudioSource::Stop()
+	IL_000b: ldarg.0
+	IL_000c: ldfld System.Boolean VoiceChat.Playbacks.SingleBufferPlayback::_bufferSet
+	IL_0011: ldc.i4.0
+	IL_0012: beq.s IL_0050
+	IL_0014: ldarg.0
+	IL_0015: ldfld System.Boolean VoiceChat.Playbacks.SingleBufferPlayback::_bufferSet
+	IL_001a: ldc.i4.0
+	IL_001b: bne.un.s IL_0039
+	IL_001d: ldc.i4 24000
+	IL_0022: ldloc.1
+	IL_0023: newobj System.Void VoiceChat.Networking.PlaybackBuffer::.ctor(System.Int32,System.Boolean)
+	IL_0028: stloc.0
+	IL_0029: ldc.i4.0
+	IL_002a: stloc.1
+	IL_002b: ldarg.0
+	IL_002c: ldloc.0
+	IL_002d: stfld VoiceChat.Networking.PlaybackBuffer VoiceChat.Playbacks.SingleBufferPlayback::_buffer
+	IL_0032: ldarg.0
+	IL_0033: ldc.i4.1
+	IL_0034: stfld System.Boolean VoiceChat.Playbacks.SingleBufferPlayback::_bufferSet
+	IL_0039: ldarg.0
+	IL_003a: ldfld VoiceChat.Networking.PlaybackBuffer VoiceChat.Playbacks.SingleBufferPlayback::_buffer
+	IL_003f: stloc.2
+	IL_0040: ldc.i4.0
+	IL_0041: stloc.3
+	IL_0042: ldloc.2
+	IL_0043: ldloc.3
+	IL_0044: stfld System.Int64 VoiceChat.Networking.PlaybackBuffer::ReadHead
+	IL_0049: ldloc.2
+	IL_004a: ldloc.3
+	IL_004b: stfld System.Int64 VoiceChat.Networking.PlaybackBuffer::WriteHead
+	IL_0050: ret
+	IL_0051: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0056: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: VoiceChat.Playbacks.SingleBufferPlayback
+	System.Single ReadSample()
+
+		VoiceChat.Networking.PlaybackBuffer buffer = this.Buffer
+
+		System.Single single = buffer.Read()
+		return single
+		throw new System.NullReferenceException()
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: call VoiceChat.Networking.PlaybackBuffer VoiceChat.Playbacks.SingleBufferPlayback::get_Buffer()
+	IL_0006: call System.Single VoiceChat.Networking.PlaybackBuffer::Read()
+	IL_000b: ret
+	IL_000c: newobj System.Void System.NullReferenceException::.ctor()
+	IL_0011: throw
+	
+
+
+	Generated Pseudocode:
+
+	Declaring Type: VoiceChat.Playbacks.SingleBufferPlayback
+	System.Void .ctor()
+		this.VolumeScale = 1
+
+		base..ctor()
+		return
+
+
+Generated IL:
+	IL_0000: ldarg.0
+	IL_0001: ldc.r4 1
+	IL_0006: stfld System.Single VoiceChat.Playbacks.VoiceChatPlaybackBase::VolumeScale
+	IL_000b: ldarg.0
+	IL_000c: call System.Void UnityEngine.MonoBehaviour::.ctor()
+	IL_0011: ret
+	
+

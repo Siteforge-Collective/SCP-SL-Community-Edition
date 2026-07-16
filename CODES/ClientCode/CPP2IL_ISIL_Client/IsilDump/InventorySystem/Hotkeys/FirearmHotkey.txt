@@ -1,0 +1,228 @@
+Type: InventorySystem.Hotkeys.FirearmHotkey
+
+Method: ActionName get_KeyActionName()
+
+Disassembly:
+	movzx eax,byte ptr [rcx+10h]
+	neg al
+	sbb eax,eax
+	add eax,19h
+	ret
+
+ISIL:
+	001 Move rax, [rcx+16]
+	002 Neg rax
+	003 NotImplemented "sbb eax,eax"
+	004 Add rax, rax, 25
+	005 Return rax
+
+Method: System.Void .ctor(System.Boolean primary)
+
+Disassembly:
+	mov [rsp+8],rbx
+	push rdi
+	sub rsp,20h
+	movzx edi,dl
+	mov rbx,rcx
+	xor edx,edx
+	call 00000001802D5040h
+	mov [rbx+10h],dil
+	mov rbx,[rsp+30h]
+	add rsp,20h
+	pop rdi
+	ret
+
+ISIL:
+	001 Move stack:0x8, rbx
+	002 ShiftStack -8
+	003 Move stack:0x0, rdi
+	004 ShiftStack -32
+	005 Move rdi, rdx
+	006 Move rbx, rcx
+	007 Move rdx, 0
+	008 Call 0x1802D5040, rcx, rdx, r8, r9, stack:0x0
+	009 Move [rbx+16], rdi
+	010 Move rbx, stack:0x30
+	011 ShiftStack 32
+	012 Move rdi, stack:0x0
+	013 ShiftStack 8
+	014 Return 
+
+Method: System.UInt16 GetCorrespondingItemSerial(ReferenceHub ply, System.UInt16[] itemsOrder, System.Boolean smartFeatureEnabled)
+
+Disassembly:
+	mov [rsp+18h],rbx
+	mov [rsp+20h],rbp
+	push rsi
+	push rdi
+	push r15
+	sub rsp,20h
+	cmp byte ptr [1826EA526h],0
+	mov rbp,r8
+	mov rsi,rdx
+	mov rbx,rcx
+	jne short 00000001803EC926h
+	mov ecx,[1822DC924h]
+	call 0000000180294190h
+	mov byte ptr [1826EA526h],1
+	movzx edi,byte ptr [rbx+10h]
+	xor r15d,r15d
+	mov [rsp+48h],r14
+	mov ebx,r15d
+	mov [rsp+40h],r15
+	mov ecx,r15d
+	test rbp,rbp
+	je near ptr 00000001803ECA1Fh
+	nop word ptr [rax+rax]
+	mov eax,[rbp+18h]
+	cmp ecx,eax
+	jge near ptr 00000001803ECA19h
+	cmp ebx,eax
+	jae near ptr 00000001803ECA25h
+	test rsi,rsi
+	je near ptr 00000001803ECA1Fh
+	mov rax,[rsi+78h]
+	test rax,rax
+	je near ptr 00000001803ECA1Fh
+	mov rcx,[rax+48h]
+	test rcx,rcx
+	je near ptr 00000001803ECA1Fh
+	mov rcx,[rcx+10h]
+	test rcx,rcx
+	je near ptr 00000001803ECA1Fh
+	mov r9,[18273DAB8h]
+	lea r8,[rsp+40h]
+	movsxd rax,ebx
+	movzx r14d,word ptr [rbp+rax*2+20h]
+	movzx edx,r14w
+	call 00000001814780E0h
+	test al,al
+	je short 00000001803EC9F4h
+	mov rdx,[rsp+40h]
+	test rdx,rdx
+	je short 00000001803EC9F4h
+	mov r8,[182744810h]
+	mov rax,[rdx]
+	movzx ecx,byte ptr [r8+128h]
+	cmp [rax+128h],cl
+	jb short 00000001803EC9F4h
+	mov rax,[rax+0C8h]
+	cmp [rax+rcx*8-8],r8
+	jne short 00000001803EC9F4h
+	test rdx,rdx
+	je short 00000001803EC9F4h
+	test dil,dil
+	jne short 00000001803EC9FDh
+	mov dil,1
+	inc ebx
+	mov ecx,ebx
+	jmp near ptr 00000001803EC950h
+	movzx eax,r14w
+	mov r14,[rsp+48h]
+	mov rbx,[rsp+50h]
+	mov rbp,[rsp+58h]
+	add rsp,20h
+	pop r15
+	pop rdi
+	pop rsi
+	ret
+	movzx eax,r15w
+	jmp short 00000001803ECA01h
+	call 0000000180294310h
+	int 3
+	call 0000000180294110h
+	mov rcx,rax
+	xor edx,edx
+	call 00000001802942E0h
+
+ISIL:
+	001 Move stack:0x18, rbx
+	002 Move stack:0x20, rbp
+	003 ShiftStack -8
+	004 Move stack:0x0, rsi
+	005 ShiftStack -8
+	006 Move stack:0x0, rdi
+	007 ShiftStack -8
+	008 Move stack:0x0, r15
+	009 ShiftStack -32
+	010 Compare [0x1826EA526], 0
+	011 Move rbp, r8
+	012 Move rsi, rdx
+	013 Move rbx, rcx
+	014 JumpIfNotEqual {18}
+	015 Move rcx, [0x1822DC924]
+	016 Call "il2cpp_codegen_initialize_method", rcx, rdx, r8, r9
+	017 Move [0x1826EA526], 1
+	018 Move rdi, [rbx+16]
+	019 Move r15, 0
+	020 Move stack:0x48, r14
+	021 Move rbx, r15
+	022 Move stack:0x40, r15
+	023 Move rcx, r15
+	024 Compare rbp, 0
+	025 JumpIfEqual {84}
+	026 Nop 
+	027 Move rax, [rbp+24]
+	028 Compare rcx, rax
+	029 JumpIfGreaterOrEqual {82}
+	030 Compare rbx, rax
+	031 JumpIfGreaterOrEqual {86}
+	032 Compare rsi, 0
+	033 JumpIfEqual {84}
+	034 Move rax, [rsi+120]
+	035 Compare rax, 0
+	036 JumpIfEqual {84}
+	037 Move rcx, [rax+72]
+	038 Compare rcx, 0
+	039 JumpIfEqual {84}
+	040 Move rcx, [rcx+16]
+	041 Compare rcx, 0
+	042 JumpIfEqual {84}
+	043 Move r9, [0x18273DAB8]
+	044 LoadAddress r8, stack:0x40
+	045 Move rax, rbx
+	046 Move r14, [rbp+32+rax*2]
+	047 Move rdx, r14
+	048 Call 0x1814780E0, rcx, rdx, r8
+	049 Compare rax, 0
+	050 JumpIfEqual {67}
+	051 Move rdx, stack:0x40
+	052 Compare rdx, 0
+	053 JumpIfEqual {67}
+	054 Move r8, typeof(InventorySystem.Items.Firearms.Firearm)
+	055 Move rax, [rdx]
+	056 Move rcx, [r8+296]
+	057 Compare [rax+296], rcx
+	058 JumpIfLess {67}
+	059 Move rax, [rax+200]
+	060 Compare [rax+0xFFFFFFF8+rcx*8], r8
+	061 JumpIfNotEqual {67}
+	062 Compare rdx, 0
+	063 JumpIfEqual {67}
+	064 Compare rdi, 0
+	065 JumpIfNotEqual {70}
+	066 Move rdi, 1
+	067 Add rbx, rbx, 1
+	068 Move rcx, rbx
+	069 Goto {27}
+	070 Move rax, r14
+	071 Move r14, stack:0x48
+	072 Move rbx, stack:0x50
+	073 Move rbp, stack:0x58
+	074 ShiftStack 32
+	075 Move r15, stack:0x0
+	076 ShiftStack 8
+	077 Move rdi, stack:0x0
+	078 ShiftStack 8
+	079 Move rsi, stack:0x0
+	080 ShiftStack 8
+	081 Return rax
+	082 Move rax, r15
+	083 Goto {71}
+	084 Call 0x180294310, rcx, rdx, r8, r9
+	085 Interrupt 
+	086 Call 0x180294110, rcx, rdx, r8, r9
+	087 Move rcx, rax
+	088 Move rdx, 0
+	089 Call 0x1802942E0, rcx, rdx, r8, r9
+
