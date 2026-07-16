@@ -194,28 +194,22 @@ namespace PlayerRoles.PlayableScps.Scp049
                 return;
             }
 
-            float targetScale = distance * _iconModifier;
-            float delta = Time.deltaTime;
-            
-            _heartbeatTimer = Mathf.Lerp(_heartbeatTimer, targetScale, _heartbeatModifier * delta);
-            _heartbeatTimer = Mathf.Clamp01(_heartbeatTimer);
+            float t = distance * _iconModifier;
 
-            if (_heartbeatTimer >= 1f)
+            _heartbeatTimer += Time.deltaTime * Mathf.Lerp(_heartbeatMax, _heartbeatMin, _heartbeatModifier * distance);
+            if (_heartbeatTimer > 1f)
                 _heartbeatTimer = 0f;
 
-            float animValue = _heartbeatAnimation.Evaluate(_heartbeatTimer);
-
-            Color targetColor = Color.Lerp(_senseNearby, _senseFar, animValue);
-            Vector3 targetSize = Vector3.Lerp(_senseMinSize, _senseMaxSize, animValue);
+            float pulse = _heartbeatAnimation.Evaluate(_heartbeatTimer);
 
             if (_senseIndicator != null)
-                _senseIndicator.color = targetColor;
+                _senseIndicator.color = Color.Lerp(_senseNearby, _senseFar, t);
 
             if (_senseTransform != null)
-                _senseTransform.localScale = targetSize;
+                _senseTransform.localScale = Vector3.Lerp(_senseMinSize, _senseMaxSize, t);
 
             if (_senseTransformParent != null)
-                _senseTransformParent.localScale = Vector3.one * (1f + animValue * 0.5f);
+                _senseTransformParent.localScale = Vector3.one * pulse;
 
             if (_senseTransform != null)
                 _senseTransform.gameObject.SetActive(true);

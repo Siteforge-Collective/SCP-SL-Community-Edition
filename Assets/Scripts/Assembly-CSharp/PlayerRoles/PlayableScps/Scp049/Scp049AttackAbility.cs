@@ -91,7 +91,6 @@ namespace PlayerRoles.PlayableScps.Scp049
         public override void ClientProcessRpc(NetworkReader reader)
         {
             Cooldown.ReadCooldown(reader);
-            UnityEngine.Debug.LogWarning($"[CDBAR] 049 RPC: cd#{Cooldown.GetHashCode()} remaining={Cooldown.Remaining:F2} isReady={Cooldown.IsReady}");
         }
 
         public override void ClientWriteCmd(NetworkWriter writer)

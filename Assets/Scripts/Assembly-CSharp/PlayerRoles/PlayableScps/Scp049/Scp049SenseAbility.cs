@@ -255,7 +255,7 @@ namespace PlayerRoles.PlayableScps.Scp049
                 if (distSqr > bestDistSqr)
                     continue;
 
-                float radius = humanRole.FpcModule.CharController.radius;
+                float radius = humanRole.FpcModule.CharacterControllerSettings.Radius;
                 if (VisionInformation.GetVisionInformation(Owner, cam, humanRole.CameraPosition, radius, _distanceThreshold).IsLooking)
                 {
                     bestDistSqr = distSqr;

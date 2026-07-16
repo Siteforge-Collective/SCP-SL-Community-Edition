@@ -49,9 +49,6 @@ namespace PlayerRoles.PlayableScps.HUDs
 
         private const float FadeSpeed = 8.5f;
 
-        private bool _dbgLoggedFirstUpdate;
-        private bool _dbgLastFlag;
-
         public void Setup(AbilityCooldown cd, AbilityCooldown duration)
         {
             _cooldown = cd;
@@ -59,7 +56,6 @@ namespace PlayerRoles.PlayableScps.HUDs
             _rt = _cooldownCircle.rectTransform;
             _hasDuration = _duration != null && _durationCircle != null;
             _hasFader = _fader != null;
-            UnityEngine.Debug.LogWarning($"[CDBAR] Setup: circle={_cooldownCircle?.name ?? "NULL"} cd#{(cd != null ? cd.GetHashCode() : 0)} dur={(duration != null)} fader={_hasFader} parent={(_parent != null ? _parent.name : "null")}");
             bool flag = UpdateVisibility();
             if (_hasFader)
             {
@@ -73,17 +69,7 @@ namespace PlayerRoles.PlayableScps.HUDs
 
         public void Update(bool forceHidden = false)
         {
-            if (!_dbgLoggedFirstUpdate)
-            {
-                _dbgLoggedFirstUpdate = true;
-                UnityEngine.Debug.LogWarning($"[CDBAR] FirstUpdate: circle={_cooldownCircle?.name ?? "NULL"} cd#{(_cooldown != null ? _cooldown.GetHashCode() : 0)} setupDone={(_cooldown != null)}");
-            }
             bool flag = !forceHidden && UpdateVisibility();
-            if (flag != _dbgLastFlag)
-            {
-                _dbgLastFlag = flag;
-                UnityEngine.Debug.LogWarning($"[CDBAR] VisChange: circle={_cooldownCircle?.name ?? "NULL"} cd#{(_cooldown != null ? _cooldown.GetHashCode() : 0)} visible={flag} readiness={(_cooldown != null ? _cooldown.Readiness : -1f):F2} alpha={(_hasFader ? _fader.alpha : -1f):F2} rootActive={(_cooldownCircle != null && _cooldownCircle.gameObject.activeInHierarchy)} canvasScale={(_rt != null ? _rt.lossyScale.ToString() : "?")}");
-            }
             if (_hasFader)
             {
                 _fader.alpha = Mathf.Clamp01(_fader.alpha + Time.deltaTime * (flag ? FadeSpeed : -FadeSpeed));

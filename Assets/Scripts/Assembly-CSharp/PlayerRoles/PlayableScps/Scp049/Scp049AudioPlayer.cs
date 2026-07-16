@@ -91,7 +91,7 @@ namespace PlayerRoles.PlayableScps.Scp049
         public void ServerSendSound(SoundType soundId)
         {
             _soundToSend = (byte)soundId;
-            ServerSendRpc(true);
+            ServerSendRpc(false);
 
             if (soundId == SoundType.ChaseMusic && _senseAbility != null && _senseAbility.HasTarget)
             {
