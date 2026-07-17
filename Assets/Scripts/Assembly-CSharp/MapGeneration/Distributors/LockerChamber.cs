@@ -113,7 +113,7 @@ namespace MapGeneration.Distributors
                 Transform transform = _spawnpoint;
                 if (_useMultipleSpawnpoints && _spawnpoints.Length != 0)
                 {
-                    if (num > _spawnpoints.Length)
+                    if (num >= _spawnpoints.Length)
                     {
                         num = 0;
                     }
@@ -121,8 +121,10 @@ namespace MapGeneration.Distributors
                     num++;
                 }
 
+                // Spawn at world position without parenting to the chamber: Mirror's
+                // SpawnMessage sends localPosition, so a parented pickup arrives at
+                // clients at (0,0,0).
                 ItemPickupBase itemPickupBase = Object.Instantiate(value.PickupDropModel, transform.position, transform.rotation);
-                itemPickupBase.transform.SetParent(transform);
                 itemPickupBase.Info.ItemId = id;
                 itemPickupBase.Info.Weight = value.Weight;
                 itemPickupBase.Info.Locked = true;
@@ -130,8 +132,6 @@ namespace MapGeneration.Distributors
                 (itemPickupBase as IPickupDistributorTrigger)?.OnDistributed();
                 Rigidbody component = itemPickupBase.GetComponent<Rigidbody>();
                 component.isKinematic = true;
-                component.transform.localPosition = Vector3.zero;
-                component.transform.localRotation = Quaternion.identity;
                 SpawnablesDistributorBase.BodiesToUnfreeze.Add(component);
 
                 if (_spawnOnFirstChamberOpening)

@@ -16,7 +16,7 @@ namespace PlayerRoles.PlayableScps.Scp939
 
 		private readonly bool _isSet;
 
-		private const float FocusAngleLimit = 90f;
+		private const float FocusAngleLimit = 70f;
 
 		private const float SlowdownAngle = 30f;
 

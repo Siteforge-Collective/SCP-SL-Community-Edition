@@ -94,7 +94,6 @@ namespace MapGeneration.Distributors
 
             pickup.Info.ItemId = id;
             pickup.Info.Weight = itemBase.Weight;
-            pickup.transform.SetParent(parentTransform);
 
             (pickup as IPickupDistributorTrigger)?.OnDistributed();
 

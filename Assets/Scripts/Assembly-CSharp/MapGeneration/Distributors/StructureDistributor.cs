@@ -87,8 +87,9 @@ namespace MapGeneration.Distributors
 
         private void SpawnStructure(SpawnableStructure structure, Transform tr, string doorName)
         {
+            // Do not parent network-spawned structures: Mirror's SpawnMessage sends
+            // localPosition, so a child of the spawnpoint arrives at clients at (0,0,0).
             SpawnableStructure spawnableStructure = Object.Instantiate(structure, tr.position, tr.rotation);
-            spawnableStructure.transform.SetParent(tr);
             if (string.IsNullOrEmpty(doorName) || !DoorNametagExtension.NamedDoors.TryGetValue(doorName, out var value))
             {
                 SpawnObject(spawnableStructure.gameObject);
