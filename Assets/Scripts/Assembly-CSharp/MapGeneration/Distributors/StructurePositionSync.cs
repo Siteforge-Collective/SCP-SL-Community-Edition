@@ -14,9 +14,11 @@ namespace MapGeneration.Distributors
         [SyncVar]
         private Vector3 _position;
 
-        [Server]
         private void Start()
         {
+            if (!NetworkServer.active)
+                return;
+
             _position = base.transform.position;
             _rotationY = (sbyte)Mathf.RoundToInt(base.transform.rotation.eulerAngles.y / ConversionRate);
             base.enabled = false;
