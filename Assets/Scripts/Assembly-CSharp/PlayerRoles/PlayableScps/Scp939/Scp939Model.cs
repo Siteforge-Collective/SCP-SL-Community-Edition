@@ -327,5 +327,16 @@ namespace PlayerRoles.PlayableScps.Scp939
                 SpectatorTargetTracker.OnTargetChanged,
                 new Action(OnSpectatorTargetChanged));
         }
+
+        private void OnDestroy()
+        {
+            // Static event subscriptions survive direct destruction (scene reload skips
+            // ResetObject); a dead handler throwing also blocks every other subscriber.
+            FirstPersonMovementModule.OnPositionUpdated -= UpdateFade;
+
+            SpectatorTargetTracker.OnTargetChanged = (Action)Delegate.Remove(
+                SpectatorTargetTracker.OnTargetChanged,
+                new Action(OnSpectatorTargetChanged));
+        }
     }
 }

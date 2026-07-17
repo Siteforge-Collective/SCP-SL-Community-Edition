@@ -68,7 +68,7 @@ namespace PlayerRoles.PlayableScps.HUDs
                 return false;
 
             Team team = PlayerRolesUtils.GetTeam(hub);
-            return team == Team.Dead;
+            return team != Team.Dead;
         }
 
         internal virtual void OnDied()

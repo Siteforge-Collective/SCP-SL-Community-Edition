@@ -105,6 +105,9 @@ namespace PlayerRoles.FirstPersonControl.Thirdperson
             for (int i = 0; i < count; i++)
             {
                 Renderer renderer = _renderers[i];
+                if (renderer == null)
+                    continue;
+
                 Material sharedMat = renderer.sharedMaterial;
 
                 if (sharedMat != null && sharedMat.HasFloat(FadeHash))
@@ -180,6 +183,9 @@ namespace PlayerRoles.FirstPersonControl.Thirdperson
             for (int i = 0; i < num; i++)
             {
                 Renderer renderer = _renderers[i];
+                if (renderer == null)
+                    continue;
+
                 Material sharedMaterial = renderer.sharedMaterial;
                 _originalMaterials[i] = new RendererMaterialPair(renderer, sharedMaterial);
             }

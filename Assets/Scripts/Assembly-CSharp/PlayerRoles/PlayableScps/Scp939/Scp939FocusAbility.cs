@@ -265,33 +265,34 @@ namespace PlayerRoles.PlayableScps.Scp939
             bool isLocalOrSpectated = base.Owner.isLocalPlayer
                                       || SpectatorNetworking.IsLocallySpectated(base.Owner);
 
-            if (!isLocalOrSpectated)
-                return false;
+            if (!isLocalOrSpectated || _state == 0f)
+                return true;
 
-            bool isLunging = _lungeAbility.State == Scp939LungeState.Triggered;
+            bool fullOffset = base.Owner.isLocalPlayer || _lungeAbility.State != Scp939LungeState.Triggered;
 
-            _offsetMultiplier = Mathf.Lerp(_offsetMultiplier, isLunging ? 0f : 1f, Time.deltaTime * OffsetLerpSpeed);
+            _offsetMultiplier = Mathf.Lerp(_offsetMultiplier, fullOffset ? 1f : 0f, Time.deltaTime * OffsetLerpSpeed);
 
             float heightOffset = _cameraHeightOffset.Evaluate(_state) * _offsetMultiplier;
             float forwardOffset = _cameraForwardOffset.Evaluate(_state) * _offsetMultiplier;
 
-            Vector3 castOrigin = _ownerTransform.position + Vector3.up * heightOffset;
-            Vector3 castDirection = _ownerTransform.forward * forwardOffset;
+            Vector3 forward = _ownerTransform.forward;
+            Vector3 castOrigin = ply.PlayerCameraReference.position + Vector3.up * heightOffset;
 
-            if (Physics.SphereCast(castOrigin, CamMinRadius, castDirection, out RaycastHit hit,
-                forwardOffset, VisibilityMask))
+            if (Physics.SphereCast(castOrigin, CamMinRadius, forward, out RaycastHit hit,
+                forwardOffset + CamMinRadius, VisibilityMask))
             {
-                forwardOffset = Mathf.Max(0f, forwardOffset - hit.distance);
+                forwardOffset = Mathf.Max(0f, hit.distance - CamMinRadius);
             }
 
-            positionOffset = Vector3.up * heightOffset + _ownerTransform.forward * forwardOffset;
+            positionOffset = Vector3.up * heightOffset + forward * forwardOffset;
 
-            fovPercent = Mathf.SmoothStep(1f, _cameraFov + 0.5f, _state);
+            fovPercent = Mathf.SmoothStep(fovPercent, _cameraFov + 1f, _state);
 
             if (_hitAnimationPlaying && base.Owner.isLocalPlayer)
             {
                 verticalJump = -Time.deltaTime * RotationSpeed;
-                _hitAnimationPlaying = false;
+                if (_state < 0.9f)
+                    _hitAnimationPlaying = false;
             }
 
             return true;

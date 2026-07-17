@@ -12,6 +12,3 @@ To open the project, Unity 6.3 LTS (6000.3.10f1) is required.
 7. Facility structures such as the Armory (where the rifle and grenades spawn), medkit lockers, and SCP-079 generators [also do not sync].
 8. If you press the middle mouse button while holding the revolver, the animation will play for the player but not for the spectator.
 9. Clients cannot talk while waiting for the round to start; only the host can.
-10. SCP-939's head rotates weirdly while crouching.
-11. SCP-939 has very strange running and walking animations.
-12. The number of alive players is displayed incorrectly for the SCPs.
