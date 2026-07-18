@@ -109,13 +109,15 @@ namespace InventorySystem.Items.Firearms.Attachments
                 firearm.ApplyAttachmentsCode(value2, reValidate: false);
 
                 bool hasReserve = ply.inventory.UserInventory.ReserveAmmo.TryGetValue(firearm.AmmoType, out var value3);
-                byte loadedAmmo = 0;
-                var statusFlags = global::InventorySystem.Items.Firearms.FirearmStatusFlags.MagazineInserted;
+
+                byte loadedAmmo = firearm.Status.Ammo;
+                var statusFlags = firearm.Status.Flags;
                 if (hasReserve)
                 {
                     int num = global::UnityEngine.Mathf.Min(value3, firearm.AmmoManagerModule.MaxAmmo);
                     ply.inventory.UserInventory.ReserveAmmo[firearm.AmmoType] = (ushort)(value3 - num);
                     loadedAmmo = (byte)num;
+                    statusFlags |= global::InventorySystem.Items.Firearms.FirearmStatusFlags.MagazineInserted;
                     bool flag = firearm.HasAdvantageFlag(global::InventorySystem.Items.Firearms.Attachments.AttachmentDescriptiveAdvantages.Flashlight);
                     if (flag)
                         statusFlags |= global::InventorySystem.Items.Firearms.FirearmStatusFlags.FlashlightEnabled;
@@ -126,7 +128,7 @@ namespace InventorySystem.Items.Firearms.Attachments
                 else
                 {
                     FirearmLogger.Log("ATTACH_SETUP",
-                        $"serial={firearm.ItemSerial} no reserve ammo for {firearm.AmmoType} — gun stays empty");
+                        $"serial={firearm.ItemSerial} no reserve ammo for {firearm.AmmoType} — keeping current ammo={loadedAmmo} flags={statusFlags}");
                 }
                 var newStatus = new global::InventorySystem.Items.Firearms.FirearmStatus(loadedAmmo, statusFlags, value2);
                 firearm.Status = newStatus;
