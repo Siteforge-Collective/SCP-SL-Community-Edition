@@ -29,9 +29,6 @@ public class BreakingCardSFX : MonoBehaviour
             return;
 
         _timer = 0f;
-
-        // Advance through the list; once past the end fall back to an empty frame (index -1) so the
-        // effect blanks out for one step before looping back to the start.
         _index++;
 
         string current;

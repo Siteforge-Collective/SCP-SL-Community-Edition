@@ -1,15 +1,27 @@
+using Hints;
+using Interactables;
+using InventorySystem;
+using InventorySystem.Searching;
+using Mirror;
+using PlayerRoles;
+using PlayerStatsSystem;
+using RemoteAdmin;
+using Security;
+using System;
+using System.Collections.Generic;
+using UnityEngine;
 using Utils.Networking;
 
-public sealed class ReferenceHub : global::Mirror.NetworkBehaviour, global::System.IEquatable<ReferenceHub>
+public sealed class ReferenceHub : NetworkBehaviour, IEquatable<ReferenceHub>
 {
-    private class GameObjectComparer : global::System.Collections.Generic.EqualityComparer<global::UnityEngine.GameObject>
+    private class GameObjectComparer : EqualityComparer<GameObject>
     {
-        public override bool Equals(global::UnityEngine.GameObject x, global::UnityEngine.GameObject y)
+        public override bool Equals(GameObject x, GameObject y)
         {
             return x == y;
         }
 
-        public override int GetHashCode(global::UnityEngine.GameObject obj)
+        public override int GetHashCode(GameObject obj)
         {
             if (!(obj == null))
             {
@@ -19,13 +31,13 @@ public sealed class ReferenceHub : global::Mirror.NetworkBehaviour, global::Syst
         }
     }
 
-    public static global::System.Action<ReferenceHub> OnPlayerAdded;
+    public static Action<ReferenceHub> OnPlayerAdded;
 
-    public static global::System.Action<ReferenceHub> OnPlayerRemoved;
+    public static Action<ReferenceHub> OnPlayerRemoved;
 
-    private static readonly global::System.Collections.Generic.Dictionary<global::UnityEngine.GameObject, ReferenceHub> HubsByGameObjects = new global::System.Collections.Generic.Dictionary<global::UnityEngine.GameObject, ReferenceHub>(20, new ReferenceHub.GameObjectComparer());
+    private static readonly Dictionary<GameObject, ReferenceHub> HubsByGameObjects = new(20, new GameObjectComparer());
 
-    private static readonly global::System.Collections.Generic.Dictionary<int, ReferenceHub> HubByPlayerIds = new global::System.Collections.Generic.Dictionary<int, ReferenceHub>(20);
+    private static readonly Dictionary<int, ReferenceHub> HubByPlayerIds = new(20);
 
     private static bool _localHubSet;
 
@@ -35,46 +47,46 @@ public sealed class ReferenceHub : global::Mirror.NetworkBehaviour, global::Syst
 
     private static ReferenceHub _hostHub;
 
-    [global::Mirror.SyncVar]
+    [SyncVar]
     private RecyclablePlayerId _playerId;
 
-    public global::UnityEngine.Transform PlayerCameraReference;
+    public Transform PlayerCameraReference;
 
-    public global::Mirror.NetworkIdentity networkIdentity;
+    public NetworkIdentity networkIdentity;
 
     public CharacterClassManager characterClassManager;
 
-    public global::PlayerRoles.PlayerRoleManager roleManager;
+    public PlayerRoleManager roleManager;
 
-    public global::PlayerStatsSystem.PlayerStats playerStats;
+    public PlayerStats playerStats;
 
-    public global::InventorySystem.Inventory inventory;
+    public Inventory inventory;
 
-    public global::InventorySystem.Searching.SearchCoordinator searchCoordinator;
+    public SearchCoordinator searchCoordinator;
 
     public ServerRoles serverRoles;
 
-    public global::RemoteAdmin.QueryProcessor queryProcessor;
+    public QueryProcessor queryProcessor;
 
     public NicknameSync nicknameSync;
 
     public PlayerInteract playerInteract;
 
-    public global::Interactables.InteractionCoordinator interCoordinator;
+    public InteractionCoordinator interCoordinator;
 
     public PlayerEffectsController playerEffectsController;
 
-    public global::Hints.HintDisplay hints;
+    public HintDisplay hints;
 
     public AspectRatioSync aspectRatioSync;
 
-    public global::Security.PlayerRateLimitHandler playerRateLimitHandler;
+    public PlayerRateLimitHandler playerRateLimitHandler;
 
     public GameConsoleTransmission gameConsoleTransmission;
 
     internal FriendlyFireHandler FriendlyFireHandler;
 
-    public static global::System.Collections.Generic.HashSet<ReferenceHub> AllHubs { get; private set; } = new global::System.Collections.Generic.HashSet<ReferenceHub>();
+    public static HashSet<ReferenceHub> AllHubs { get; private set; } = new HashSet<ReferenceHub>();
 
     public static ReferenceHub HostHub
     {
@@ -114,7 +126,7 @@ public sealed class ReferenceHub : global::Mirror.NetworkBehaviour, global::Syst
     {
         AllHubs.Add(this);
         HubsByGameObjects[base.gameObject] = this;
-        if (global::Mirror.NetworkServer.active)
+        if (NetworkServer.active)
         {
             _playerId = new RecyclablePlayerId(useMinQueue: true);
             FriendlyFireHandler = new FriendlyFireHandler(this);
@@ -150,7 +162,7 @@ public sealed class ReferenceHub : global::Mirror.NetworkBehaviour, global::Syst
         return string.Format("{0} (Name='{1}', NetID='{2}', PlayerID='{3}')", "ReferenceHub", base.name, base.netId, PlayerId);
     }
 
-    public static ReferenceHub GetHub(global::UnityEngine.GameObject player)
+    public static ReferenceHub GetHub(GameObject player)
     {
         if (!TryGetHub(player, out var hub))
         {
@@ -159,7 +171,7 @@ public sealed class ReferenceHub : global::Mirror.NetworkBehaviour, global::Syst
         return hub;
     }
 
-    public static ReferenceHub GetHub(global::UnityEngine.MonoBehaviour player)
+    public static ReferenceHub GetHub(MonoBehaviour player)
     {
         if (!TryGetHub(player.gameObject, out var hub))
         {
@@ -168,7 +180,7 @@ public sealed class ReferenceHub : global::Mirror.NetworkBehaviour, global::Syst
         return hub;
     }
 
-    public static bool TryGetHub(global::UnityEngine.GameObject player, out ReferenceHub hub)
+    public static bool TryGetHub(GameObject player, out ReferenceHub hub)
     {
         if (player == null)
         {

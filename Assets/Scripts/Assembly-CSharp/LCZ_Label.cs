@@ -8,7 +8,7 @@ public class LCZ_Label : MonoBehaviour
 
 	public void Refresh(Material ch, Material num)
 	{
-		chRend.material = ch;
-        numRend.material = num;
+		chRend.sharedMaterial = ch;
+        numRend.sharedMaterial = num;
 	}
 }
