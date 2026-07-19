@@ -52,9 +52,11 @@ public class ClutterSpawner : MonoBehaviour
         {
             ClutterStruct clutterData = clutters[num];
 
+            /*
             GameCore.Console.AddDebugLog("MGCLTR",
                 $"Checking spawn conditions for clutter struct \"{clutterData.descriptor}\" on object \"{gameObject.name}\"",
                 MessageImportance.LeastImportant, true);
+            */
 
             if (clutterData.clutterComponent == null || clutterData.clutterComponent.spawned)
                 continue;

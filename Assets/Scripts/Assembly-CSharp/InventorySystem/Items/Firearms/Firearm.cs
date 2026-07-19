@@ -186,7 +186,7 @@ namespace InventorySystem.Items.Firearms
                 float adsSens = AttachmentsUtils.AttachmentsValue(this, AttachmentParam.AdsZoomMultiplier);
                 float zoomSens = AttachmentsUtils.AttachmentsValue(this, AttachmentParam.AdsMouseSensitivityMultiplier);
                 float reduction = SensitivitySettings.AdsReductionMultiplier;
-                return Mathf.Lerp(1f, zoomSens * reduction, AdsModule.ClientAdsAmount * adsSens);
+                return Mathf.Lerp(1f, zoomSens * reduction, AdsModule.ClientAdsAmount / adsSens);
             }
         }
 
