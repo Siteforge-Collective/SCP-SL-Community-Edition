@@ -135,6 +135,7 @@ public class NewMainMenu : MonoBehaviour
         SensitivitySettings.RawInput = PlayerPrefsSl.Get("RawInput", false);
         SensitivitySettings.SmoothInput = PlayerPrefsSl.Get("SmoothInput", false);
         SensitivitySettings.SensMultiplier = PlayerPrefsSl.Get("Sens", 1f);
+        SensitivitySettings.AdsReductionMultiplier = PlayerPrefsSl.Get("SensAds", 1f);
 
         Version.text = GameCore.Version.VersionString;
         Tabs.SetActive(true);

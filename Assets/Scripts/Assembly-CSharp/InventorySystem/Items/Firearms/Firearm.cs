@@ -183,10 +183,17 @@ namespace InventorySystem.Items.Firearms
         {
             get
             {
-                float adsSens = AttachmentsUtils.AttachmentsValue(this, AttachmentParam.AdsZoomMultiplier);
-                float zoomSens = AttachmentsUtils.AttachmentsValue(this, AttachmentParam.AdsMouseSensitivityMultiplier);
+                float target = AttachmentsUtils.AttachmentsValue(this, AttachmentParam.AdsMouseSensitivityMultiplier)
+                               * AttachmentsUtils.AttachmentsValue(this, AttachmentParam.AdsZoomMultiplier);
                 float reduction = SensitivitySettings.AdsReductionMultiplier;
-                return Mathf.Lerp(1f, zoomSens * reduction, AdsModule.ClientAdsAmount / adsSens);
+                float t = AdsModule.ClientAdsAmount;
+
+                if (reduction < 1f)
+                    t *= reduction;
+                else
+                    target *= reduction;
+
+                return 1f / Mathf.Lerp(1f, target, t);
             }
         }
 
