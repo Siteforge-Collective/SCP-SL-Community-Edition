@@ -38,7 +38,7 @@ namespace InventorySystem.Items.Usables.Scp330
 					global::InventorySystem.Items.Usables.Scp330.CandyKindID candyKindID = scp330Bag.TryRemove(msg.CandyID);
 					if (candyKindID != global::InventorySystem.Items.Usables.Scp330.CandyKindID.None)
 					{
-						scp330Pickup.NetworkExposedCandy = candyKindID;
+						scp330Pickup.ExposedCandy = candyKindID;
 						scp330Pickup.StoredCandies.Add(candyKindID);
 					}
 				}

@@ -337,7 +337,7 @@ namespace LightContainmentZoneDecontamination
             if (RoundStart.singleton == null || RoundStart.singleton.Timer != -1)
                 return;
 
-            NetworkRoundStartTime = NetworkTime.time;
+            RoundStartTime = NetworkTime.time;
         }
 
         private void UpdateTime()
