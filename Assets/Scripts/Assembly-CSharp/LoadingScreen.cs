@@ -69,7 +69,7 @@ public class LoadingScreen : MonoBehaviour
     {
         _currentLoadedScene = scene.name.ToLower();
 
-        if (_currentLoadedScene.Equals("facility"))
+        if (_currentLoadedScene.Equals("Facility"))
         {
             _noFade = true;
             loadingCircle.fillAmount = 0f;
