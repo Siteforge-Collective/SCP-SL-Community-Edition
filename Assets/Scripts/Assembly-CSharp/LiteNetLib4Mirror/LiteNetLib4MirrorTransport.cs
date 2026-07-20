@@ -151,7 +151,13 @@ namespace Mirror.LiteNetLib4Mirror
 
         public override void ClientDisconnect()
         {
-            if (!LiteNetLib4MirrorServer.IsActive()) LiteNetLib4MirrorCore.StopTransport();
+            if (LiteNetLib4MirrorServer.IsActive())
+                return;
+
+            bool wasActive = LiteNetLib4MirrorClient.IsConnected();
+            LiteNetLib4MirrorCore.StopTransport();
+            if (wasActive)
+                OnClientDisconnected?.Invoke();
         }
 
         public override bool ServerActive() => LiteNetLib4MirrorServer.IsActive();

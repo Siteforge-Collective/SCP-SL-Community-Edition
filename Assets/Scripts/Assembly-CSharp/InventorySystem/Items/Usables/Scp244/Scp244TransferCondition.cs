@@ -8,7 +8,7 @@ namespace InventorySystem.Items.Usables.Scp244
 {
 	public class Scp244TransferCondition
 	{
-		private static readonly Vector3 DoorDetectionThickness;
+		private static readonly Vector3 DoorDetectionThickness = new Vector3(3f, 100f, 3f);
 
 		private const float MinimalDoorGapSqrt = 9f;
 

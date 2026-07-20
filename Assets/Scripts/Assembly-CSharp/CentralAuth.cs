@@ -31,9 +31,6 @@ public class CentralAuth : MonoBehaviour
         if (!_awaitingTicket)
             return;
 
-        // The listen-server host authenticates its own client through Mirror's local connection and
-        // gets UserId "ID_Host" directly (see CharacterClassManager.Init). It must NOT push an auth
-        // token, or StartServerChallenge would overwrite ID_Host with the token's user id.
         if (global::Mirror.NetworkServer.active)
         {
             _awaitingTicket = false;
@@ -43,7 +40,6 @@ public class CentralAuth : MonoBehaviour
         if (!CentralAuthManager.TokenObtained)
             return;
 
-        // We need the signed auth token (from requestsignature.php) before we can send it.
         if (!CentralAuthManager.SignedTokenReady)
         {
             CentralAuthManager.RequestAuthToken = true;
@@ -59,11 +55,7 @@ public class CentralAuth : MonoBehaviour
         RequestSignatureResponse signed = CentralAuthManager.SignedToken;
         AuthDebug("Sending your authentication token to game server...", "green");
 
-        // Sending the auth token is what assigns our UserId server-side (CmdSendToken -> _ValidateToken
-        // -> Ok -> StartServerChallenge -> CmdServerSignatureComplete sets _ccm.UserId).
         _ica.TokenGenerated(signed.auth);
-
-        // Optional global-badge / public-part tokens (empty from the local central server).
         if (!string.IsNullOrEmpty(signed.badge))
             _ica.RequestBadge(signed.badge);
         if (!string.IsNullOrEmpty(signed.pub))
@@ -73,13 +65,10 @@ public class CentralAuth : MonoBehaviour
     internal void GenerateToken(ICentralAuth icaa)
     {
         _ica = icaa;
-        // Update() gates on _awaitingTicket; arm it so the token actually gets sent once obtained.
         _awaitingTicket = true;
         _awaitingRequest = true;
-        // In local mode the token is obtained once at startup and reused; don't clobber that flag or
-        // Update() would wait forever (nothing re-obtains it). Online flow re-requests per connection.
-        if (!LocalCentralServer.IsActive)
-            CentralAuthManager.TokenObtained = false;
+        CentralAuthManager.TokenObtained = false;
+        CentralAuthManager.RequestAuthToken = true;
     }
 
     public void StartValidateToken(ICentralAuth icaa, string token, IPEndPoint endpoint)

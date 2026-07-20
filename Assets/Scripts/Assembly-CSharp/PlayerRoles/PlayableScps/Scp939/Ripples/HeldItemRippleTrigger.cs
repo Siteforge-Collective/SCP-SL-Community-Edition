@@ -46,7 +46,8 @@ namespace PlayerRoles.PlayableScps.Scp939.Ripples
 
             if (_cd == null || !_cd.IsReady)
                 return;
-
+                
+            _cd.Trigger(_cooldown);
             PlayerRolesUtils.ForEachRole<HumanRole>(ProcessPlayer);
         }
 

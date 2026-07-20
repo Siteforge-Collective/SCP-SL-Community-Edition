@@ -56,7 +56,20 @@ namespace PlayerRoles.RoleAssign
 
         private static void OnMessageReceived(NetworkConnectionToClient conn, SpawnPreferences msg)
         {
-            Preferences[conn] = msg;
+            if (msg.Preferences == null)
+            {
+                return;
+            }
+
+            SpawnPreferences sanitized = new SpawnPreferences(autoSetup: false);
+            foreach (KeyValuePair<RoleTypeId, int> kvp in msg.Preferences)
+            {
+                if (PlayerRoleLoader.TryGetRoleTemplate<PlayerRoleBase>(kvp.Key, out var roleBase) && roleBase is ISpawnableScp)
+                {
+                    sanitized.Preferences[kvp.Key] = ClampPreference(kvp.Value);
+                }
+            }
+            Preferences[conn] = sanitized;
         }
 
         public static int GetPreference(RoleTypeId role)

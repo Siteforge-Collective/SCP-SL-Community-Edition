@@ -144,7 +144,9 @@ public class NewServerBrowser : MonoBehaviour
 
             while (authStatus != AuthStatusType.Success)
             {
-                set_LoadingErrorMessage(TranslationReader.Get("NewMainMenu", 67, "AUTHENTICATING"));
+                set_LoadingErrorMessage(authStatus == AuthStatusType.Failure
+                    ? TranslationReader.Get("NewMainMenu", 70, "<color=red>Connection failure (Check console for details)</color>")
+                    : TranslationReader.Get("NewMainMenu", 67, "AUTHENTICATING"));
                 if (!_threadStarted || !_redownload) break;
                 Thread.Sleep(150);
                 authStatus = CentralAuthManager.AuthStatusType;

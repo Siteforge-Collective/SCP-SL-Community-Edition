@@ -32,7 +32,7 @@ namespace VoiceChat.Networking
                 return;
             }
             global::VoiceChat.VcMuteFlags flags = global::VoiceChat.VoiceChatMutes.GetFlags(msg.Speaker);
-            if (flags == global::VoiceChat.VcMuteFlags.GlobalRegular || flags == global::VoiceChat.VcMuteFlags.LocalRegular)
+            if ((flags & (global::VoiceChat.VcMuteFlags.GlobalRegular | global::VoiceChat.VcMuteFlags.LocalRegular)) != global::VoiceChat.VcMuteFlags.None)
             {
                 return;
             }

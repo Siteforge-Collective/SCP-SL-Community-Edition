@@ -1,6 +1,7 @@
 using CustomPlayerEffects;
 using InventorySystem.Disarming;
 using InventorySystem.Items;
+using GameCore;
 using Mirror;
 using PlayerRoles;
 
@@ -8,7 +9,7 @@ namespace Achievements.Handlers
 {
     public class EscapeHandler : AchievementHandlerBase
     {
-        private static bool _escapeFired;
+        private const int EscapeArtistTime = 180;
 
         internal override void OnInitialize()
         {
@@ -18,20 +19,19 @@ namespace Achievements.Handlers
 
         private static void OnRoleSet(ReferenceHub userHub, RoleTypeId newId, RoleChangeReason reason)
         {
-            if (NetworkServer.active && !_escapeFired && reason == RoleChangeReason.Escaped)
+            if (NetworkServer.active && reason == RoleChangeReason.Escaped && RoundStart.RoundStartTimer.Elapsed.TotalSeconds <= EscapeArtistTime)
             {
                 AchievementHandlerBase.ServerAchieve(userHub.networkIdentity.connectionToClient, AchievementName.EscapeArtist);
-                _escapeFired = true;
             }
-        }
-
-        internal override void OnRoundStarted()
-        {
-            _escapeFired = false;
         }
 
         private static void OnEscaped(ReferenceHub userHub)
         {
+            if (userHub == null || userHub.inventory.IsDisarmed())
+            {
+                return;
+            }
+
             NetworkConnectionToClient connectionToClient = userHub.networkIdentity.connectionToClient;
             PlayerRoleBase currentRole = userHub.roleManager.CurrentRole;
             if (userHub.playerEffectsController.GetEffect<Scp207>().IsEnabled)
@@ -50,14 +50,11 @@ namespace Achievements.Handlers
                 }
                 AchievementHandlerBase.ServerAchieve(connectionToClient, AchievementName.ItsAlwaysLeft);
                 int num = 0;
-                if (!userHub.inventory.IsDisarmed())
+                foreach (ItemBase value in userHub.inventory.UserInventory.Items.Values)
                 {
-                    foreach (ItemBase value in userHub.inventory.UserInventory.Items.Values)
+                    if (value.Category == ItemCategory.SCPItem)
                     {
-                        if (value.Category == ItemCategory.SCPItem)
-                        {
-                            num++;
-                        }
+                        num++;
                     }
                 }
                 if (num >= 2)

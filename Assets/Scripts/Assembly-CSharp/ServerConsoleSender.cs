@@ -15,7 +15,10 @@ public class ServerConsoleSender : CommandSender
 
 	public override void RaReply(string text, bool success, bool logToConsole, string overrideDisplay)
 	{
-		
+		if (logToConsole)
+		{
+			ServerConsole.AddLog(text, success ? ConsoleColor.Gray : ConsoleColor.Red);
+		}
 	}
 
 	public override void Print(string text)

@@ -11,6 +11,10 @@ namespace VoiceChat.Networking
             int value = reader.ReadRecyclablePlayerId().Value;
             VoiceChatChannel channel = (VoiceChatChannel)reader.ReadByte();
             int num = reader.ReadUShort();
+            if (num > ReceiveArray.Length || num > reader.Remaining)
+            {
+                return new VoiceMessage(null, channel, ReceiveArray, 0, isNull: true);
+            }
             reader.ReadBytes(ReceiveArray, num);
             if (value == 0 || !ReferenceHub.TryGetHub(value, out var hub))
             {

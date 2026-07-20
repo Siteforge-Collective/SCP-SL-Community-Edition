@@ -33,6 +33,9 @@ namespace Achievements
             }
         }
 
-        protected AchievementHandlerBase() => OnInitialize();
+        protected AchievementHandlerBase()
+        {
+            
+        }
     }
 }

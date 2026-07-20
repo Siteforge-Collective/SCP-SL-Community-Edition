@@ -58,8 +58,13 @@ public class AspectRatioSync : NetworkBehaviour
     [Command]
     private void CmdSetAspectRatio(float aspectRatio)
     {
+        if (float.IsNaN(aspectRatio) || float.IsInfinity(aspectRatio))
+            aspectRatio = 1f;
+
         if (aspectRatio < 1f)
             aspectRatio = 1f;
+        else if (aspectRatio > 8f)
+            aspectRatio = 8f;
 
         AspectRatio = aspectRatio;
 

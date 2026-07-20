@@ -64,6 +64,9 @@ public static class CentralAuthManager
 
     private static void Authenticate()
     {
+        if (_authThread != null && _authThread.IsAlive)
+            return;
+
         _authThread = new Thread(Authentication)
         {
             Priority = ThreadPriority.AboveNormal,
@@ -105,53 +108,164 @@ public static class CentralAuthManager
         if (LocalCentralServer.IsActive)
         {
             LocalAuthentication();
+            while (!_abort)
+            {
+                if (RequestAuthToken)
+                {
+                    RequestAuthToken = false;
+                    TokenObtained = false;
+                    RequestToken();
+                }
+                Thread.Sleep(200);
+            }
             return;
         }
 
         List<string> postParams = new List<string>();
-        string ticket = string.Empty;
+        int attempt = 0;
+        bool steamErrorLogged = false;
 
-        DistributionPlatform platform = Platform;
-
-        if (platform == DistributionPlatform.Steam)
+        while (!_abort)
         {
-            AuthDebug("Revoking previous Steam authentication ticket...", "gray");
-            SteamManager.CancelTicket();
-            AuthDebug("<color=blue>Obtaining authentication ticket from Steam...</color>", "blue");
-            Steamworks.AuthTicket authSessionTicket = SteamManager.GetAuthSessionTicket();
-            if (authSessionTicket?.Data == null)
+            try
             {
-                // Steam isn't running / not logged on (common in the editor without Steam),
-                // so no auth ticket is available. Fail gracefully instead of throwing on the
-                // background auth thread. Use LocalCentralServer mode to test without Steam.
-                Authenticated = false;
-                AuthStatusType = AuthStatusType.Failure;
-                string steamErr = "Steam authentication ticket unavailable (Steam not running or not logged on). Cannot authenticate via Steam.";
-                global::UnityEngine.Debug.LogError(steamErr);
-                AuthDebug(steamErr, "red");
-                return;
-            }
-            ticket = global::System.BitConverter.ToString(authSessionTicket.Data).Replace("-", string.Empty);
-            AuthDebug("<color=blue>Authentication Ticked obtained from Steam.</color>", "blue");
-        }
-        else if (platform == DistributionPlatform.Discord)
-        {
-            ticket = DiscordOAuth2Token;
-        }
+                if (!Authenticated)
+                {
+                    string ticket = string.Empty;
+                    DistributionPlatform platform = Platform;
 
-        string signature = Sign(ticket);
-        AuthDebug(string.Format("Establishing authentication session (attempt {0})...", 1), "blue");
+                    if (platform == DistributionPlatform.Steam)
+                    {
+                        AuthDebug("Revoking previous Steam authentication ticket...", "gray");
+                        SteamManager.CancelTicket();
+                        AuthDebug("<color=blue>Obtaining authentication ticket from Steam...</color>", "blue");
+                        Steamworks.AuthTicket authSessionTicket = SteamManager.GetAuthSessionTicket();
+                        if (authSessionTicket?.Data == null)
+                        {
+                            AuthStatusType = AuthStatusType.Failure;
+                            if (!steamErrorLogged)
+                            {
+                                steamErrorLogged = true;
+                                string steamErr = "Steam authentication ticket unavailable (Steam not running or not logged on). Cannot authenticate via Steam.";
+                                global::UnityEngine.Debug.LogError(steamErr);
+                                AuthDebug(steamErr, "red");
+                            }
+                            Thread.Sleep(10000);
+                            continue;
+                        }
+                        ticket = global::System.BitConverter.ToString(authSessionTicket.Data).Replace("-", string.Empty);
+                        AuthDebug("<color=blue>Authentication Ticked obtained from Steam.</color>", "blue");
+                    }
+                    else if (platform == DistributionPlatform.Discord)
+                    {
+                        ticket = DiscordOAuth2Token;
+                    }
+
+                    string signature = Sign(ticket);
+                    attempt++;
+                    AuthDebug(string.Format("Establishing authentication session (attempt {0})...", attempt), "blue");
+
+                    postParams.Clear();
+                    string[] paramArr = new string[5];
+                    paramArr[0] = string.Concat("ticket=", ticket);
+                    string pubKeyStr = Cryptography.ECDSA.KeyToString(SessionKeys.Public);
+                    string pubKeyHashStr = Cryptography.Sha.HashToString(Cryptography.Sha.Sha256(pubKeyStr));
+                    paramArr[1] = string.Concat("publickey=", pubKeyHashStr);
+                    paramArr[2] = string.Concat("signature=", signature);
+                    paramArr[3] = "version=2";
+                    paramArr[4] = string.Concat("platform=", platform == DistributionPlatform.Discord ? "Discord" : "Steam");
+                    postParams.AddRange(paramArr);
+
+                    if (PlayerPrefsSl.Get("DNT", false))
+                        postParams.Add("DNT=true");
+                    if (PlayerPrefsSl.Get("DisplaySteamProfile", false))
+                        postParams.Add("DisplayProfile=true");
+                    if (global::GameCore.Version.PrivateBeta)
+                        postParams.Add("privatebeta=true");
+
+                    string endpoint = platform == DistributionPlatform.Discord ? "v5/discord/authenticate.php" : "v5/steam/authenticate.php";
+                    string url = string.Concat(CentralServer.StandardUrl, endpoint);
+                    string response = HttpQuery.Post(url, HttpQuery.ToPostArgs(postParams));
+                    AuthDebug(string.Concat("[AUTH] ", response), "cyan");
+
+                    try
+                    {
+                        AuthenticateResponse authResp = JsonSerialize.FromJson<AuthenticateResponse>(response);
+                        if (!authResp.success || string.IsNullOrEmpty(authResp.token) || string.IsNullOrEmpty(authResp.id))
+                            throw new Exception("Authentication rejected by central server.");
+
+                        ApiToken = authResp.token;
+                        Nonce = authResp.nonce;
+                        GlobalBanReason = authResp.globalBan;
+                        _lifetime = authResp.lifetime;
+                        Authenticated = true;
+                        TokenObtained = true;
+                        AuthStatusType = AuthStatusType.Success;
+                        AuthDebug("Authentication session established.", "green");
+                    }
+                    catch (Exception)
+                    {
+                        Authenticated = false;
+                        AuthStatusType = AuthStatusType.Failure;
+                        string errMsg = string.Concat("Authentication error (authenticate - response): ", response);
+                        global::UnityEngine.Debug.LogError(errMsg);
+                        AuthDebug(errMsg, "red");
+                        global::UnityEngine.Debug.LogError(string.Concat("[AUTH] ", response));
+                        global::UnityEngine.Debug.LogError(string.Concat("Signature1: ", signature));
+                        AuthDebug(string.Concat("Signature1: ", signature), "cyan");
+                        Thread.Sleep(5000);
+                    }
+
+                    postParams.Clear();
+                }
+                else
+                {
+                    int lifetimeTicks = global::System.Math.Max((int)_lifetime, 30) * 5;
+                    for (int tick = 0; tick < lifetimeTicks && !_abort && !ForceRenew; tick++)
+                    {
+                        if (RequestAuthToken)
+                        {
+                            RequestAuthToken = false;
+                            TokenObtained = false;
+                            try
+                            {
+                                RequestToken();
+                            }
+                            catch (Exception ex)
+                            {
+                                AuthDebug(string.Concat("Authentication error (rqstsgn - web): ", ex.Message), "red");
+                                RequestAuthToken = true;
+                                Thread.Sleep(2000);
+                            }
+                        }
+                        else
+                        {
+                            Thread.Sleep(200);
+                        }
+                    }
+
+                    if (!_abort)
+                        Renew(postParams);
+                }
+            }
+            catch (Exception ex)
+            {
+                if (!Authenticated)
+                    AuthStatusType = AuthStatusType.Failure;
+                AuthDebug(string.Concat("Authentication error (authenticate): ", ex.Message), "red");
+                Thread.Sleep(5000);
+            }
+        }
+    }
+
+    private static void Renew(List<string> postParams)
+    {
+        AuthDebug("Renewing authentication session...", "gray");
+        ForceRenew = false;
 
         postParams.Clear();
-        string[] paramArr = new string[5];
-        paramArr[0] = string.Concat("ticket=", ticket);
-        string pubKeyStr = Cryptography.ECDSA.KeyToString(SessionKeys.Public);
-        string pubKeyHashStr = Cryptography.Sha.HashToString(Cryptography.Sha.Sha256(pubKeyStr));
-        paramArr[1] = string.Concat("publickey=", pubKeyHashStr);
-        paramArr[2] = string.Concat("signature=", signature);
-        paramArr[3] = "version=2";
-        paramArr[4] = string.Concat("platform=", platform == DistributionPlatform.Discord ? "Discord" : "Steam");
-        postParams.AddRange(paramArr);
+        postParams.Add(string.Concat("token=", ApiToken));
+        postParams.Add(string.Concat("nonce=", Nonce));
 
         if (PlayerPrefsSl.Get("DNT", false))
             postParams.Add("DNT=true");
@@ -160,43 +274,36 @@ public static class CentralAuthManager
         if (global::GameCore.Version.PrivateBeta)
             postParams.Add("privatebeta=true");
 
-        string url = string.Concat(CentralServer.StandardUrl, "v5/steam/authenticate.php");
+        string url = string.Concat(CentralServer.StandardUrl, "v5/renew.php");
         string response = HttpQuery.Post(url, HttpQuery.ToPostArgs(postParams));
-        AuthDebug(string.Concat("[AUTH] ", response), "cyan");
+        AuthDebug(string.Concat("[RENEWAL] ", response), "cyan");
 
         try
         {
-            AuthenticateResponse authResp = JsonSerialize.FromJson<AuthenticateResponse>(response);
+            AuthenticateResponse renewResp = JsonSerialize.FromJson<AuthenticateResponse>(response);
+            if (!renewResp.success)
+                throw new Exception("Renewal rejected by central server.");
+
+            Nonce = renewResp.nonce;
+            _lifetime = renewResp.lifetime;
+            GlobalBanReason = renewResp.globalBan;
+            PreauthToken = new CentralAuthPreauthToken(renewResp.id, renewResp.flags, renewResp.country, renewResp.expiration, renewResp.preauth);
             Authenticated = true;
-            ApiToken = authResp.token;
-            Nonce = authResp.nonce;
-            GlobalBanReason = authResp.globalBan;
-            _lifetime = (ushort)authResp.lifetime;
-            TokenObtained = true;
-            RequestAuthToken = false;
             AuthStatusType = AuthStatusType.Success;
-            AuthDebug("Authentication session established.", "green");
+            AuthDebug("Authentication session renewed.", "green");
         }
         catch (Exception)
         {
-            Authenticated = false;
-            AuthStatusType = AuthStatusType.Failure;
-            string errMsg = string.Concat("Authentication error (authenticate - response): ", response);
+            string errMsg = string.Concat("Authentication error (renewal - response): ", response);
             global::UnityEngine.Debug.LogError(errMsg);
             AuthDebug(errMsg, "red");
-            global::UnityEngine.Debug.LogError(string.Concat("[AUTH] ", response));
-            global::UnityEngine.Debug.LogError(string.Concat("Signature1: ", signature));
-            AuthDebug(string.Concat("Signature1: ", signature), "cyan");
+            Authenticated = false;
         }
 
         postParams.Clear();
     }
 
-    /// <summary>
-    /// Local test-mode authentication against Tools/LocalCentralServer. No Steam ticket and no launcher
-    /// signature — the local server trusts the requested identity. Populates ApiToken/Nonce/PreauthToken
-    /// and immediately fetches the signed auth token so it is ready when CentralAuth.Update sends it.
-    /// </summary>
+    
     private static void LocalAuthentication()
     {
         try
@@ -235,8 +342,6 @@ public static class CentralAuthManager
             TokenObtained = true;
             AuthStatusType = AuthStatusType.Success;
             AuthDebug("Local authentication established for " + authResp.id, "green");
-
-            // Fetch the signed auth token up front so it's ready by the time we connect.
             RequestToken();
         }
         catch (Exception ex)
@@ -263,7 +368,6 @@ public static class CentralAuthManager
 
         if (LocalCentralServer.IsActive)
         {
-            // Helps the local server re-issue the token statelessly if it was restarted.
             if (!string.IsNullOrEmpty(LocalCentralServer.UserId))
                 postParams.Add("userid=" + LocalCentralServer.UserId);
             if (!string.IsNullOrEmpty(LocalCentralServer.Nickname))
@@ -286,6 +390,8 @@ public static class CentralAuthManager
             RequestSignatureResponse rqstResp = JsonSerialize.FromJson<RequestSignatureResponse>(response);
             SignedToken = rqstResp;
             SignedTokenReady = !string.IsNullOrEmpty(rqstResp.auth);
+            if (!string.IsNullOrEmpty(rqstResp.nonce))
+                Nonce = rqstResp.nonce;
             TokenObtained = true;
             RequestAuthToken = false;
 
@@ -312,8 +418,7 @@ public static class CentralAuthManager
 
     private static string Sign(string ticket)
     {
-        // Local test mode has no launcher; the local central server ignores this signature anyway.
-        if (LocalCentralServer.IsActive)
+       if (LocalCentralServer.IsActive)
             return ".";
         try
         {
@@ -355,8 +460,6 @@ public static class CentralAuthManager
         {
             Platform = DistributionPlatform.Steam;
             global::GameCore.Console.AddLog("LOCAL central auth mode — auto identity, no Steam ticket/launcher.", new global::UnityEngine.Color32(0, 255, 0, 255));
-            // Start Steam on the main thread (if available) so we can read SteamID64 + persona name.
-            // No auth ticket is requested — this only reads the local account, works offline-ish.
             try
             {
                 SteamManager.StartClient();
@@ -436,8 +539,15 @@ public static class CentralAuthManager
         _interacted = true;
 
         if (result == Result.Ok)
+        {
             DiscordOAuth2Token = token.AccessToken;
+            Authenticate();
+        }
         else
+        {
             DiscordOAuth2Token = null;
+            AuthStatusType = AuthStatusType.Failure;
+            AuthDebug(string.Concat("Discord OAuth2 token request failed: ", result), "red");
+        }
     }
 }

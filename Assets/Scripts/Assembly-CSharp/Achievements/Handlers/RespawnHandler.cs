@@ -18,7 +18,7 @@ namespace Achievements.Handlers
                 switch (result.Team)
                 {
                     case Team.FoundationForces:
-                        AchievementHandlerBase.ServerAchieve(connectionToClient, AchievementName.TurnThemAll);
+                        AchievementHandlerBase.ServerAchieve(connectionToClient, AchievementName.GearUp);
                         break;
                     case Team.ChaosInsurgency:
                         AchievementHandlerBase.ServerAchieve(connectionToClient, AchievementName.Chaos);

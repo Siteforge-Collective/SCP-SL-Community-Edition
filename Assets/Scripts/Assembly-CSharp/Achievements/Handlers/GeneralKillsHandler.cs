@@ -23,53 +23,71 @@ namespace Achievements.Handlers
             {
                 return;
             }
-            AttackerDamageHandler attackerDamageHandler;
-            if (!(handler is ExplosionDamageHandler explosionDamageHandler))
+
+            if (RoundStart.RoundStartTimer.Elapsed.TotalSeconds < AnomalouslyEfficientTime && deadPlayer != null)
             {
-                if (!(handler is ScpDamageHandler scpDamageHandler))
-                {
-                    if (!(handler is MicroHidDamageHandler microHidDamageHandler))
+                Send(deadPlayer, AchievementName.WowReally);
+            }
+
+            if (handler is AttackerDamageHandler attackerDamageHandler && attackerDamageHandler.Attacker.Hub != null)
+            {
+                HandleAttackerKill(deadPlayer, attackerDamageHandler);
+            }
+
+            if (deadPlayer.GetRoleId() == RoleTypeId.Scp096 && deadPlayer.roleManager.CurrentRole is Scp096Role scp096Role && scp096Role.IsRageState(Scp096RageState.Distressed))
+            {
+                Send(deadPlayer, AchievementName.InvoluntaryRageQuit);
+                return;
+            }
+
+            switch (handler)
+            {
+                case UniversalDamageHandler universalDamageHandler:
+                    if (universalDamageHandler.TranslationId == DeathTranslations.PocketDecay.Id)
                     {
-                        attackerDamageHandler = handler as AttackerDamageHandler;
-                        if (attackerDamageHandler == null)
-                        {
-                            if (handler is UniversalDamageHandler universalDamageHandler && universalDamageHandler.TranslationId == DeathTranslations.Tesla.Id && deadPlayer.inventory.CurInstance is MicroHIDItem)
-                            {
-                                Send(deadPlayer, AchievementName.Overcurrent);
-                            }
-                            return;
-                        }
-                        goto IL_00f9;
+                        Send(deadPlayer, AchievementName.Newb);
                     }
-                    if (deadPlayer.IsSCP())
+                    if (universalDamageHandler.TranslationId == DeathTranslations.Falldown.Id)
+                    {
+                        Send(deadPlayer, AchievementName.Gravity);
+                    }
+                    if (universalDamageHandler.TranslationId == DeathTranslations.Tesla.Id)
+                    {
+                        if (deadPlayer.inventory.CurInstance is MicroHIDItem)
+                        {
+                            Send(deadPlayer, AchievementName.Overcurrent);
+                        }
+                        Send(deadPlayer, AchievementName.DeepFried);
+                    }
+                    break;
+
+                case ScpDamageHandler scpDamageHandler:
+                    if (scpDamageHandler.Attacker.Role == RoleTypeId.Scp173)
+                    {
+                        Send(deadPlayer, AchievementName.FirstTime);
+                    }
+                    break;
+
+                case MicroHidDamageHandler microHidDamageHandler:
+                    if (deadPlayer.IsSCP() && microHidDamageHandler.Attacker.Hub != null)
                     {
                         Send(microHidDamageHandler.Attacker.Hub, AchievementName.MicrowaveMeal);
                     }
-                    return;
-                }
-                if (scpDamageHandler.Attacker.Hub != null)
-                {
-                    if (RoundStart.RoundStartTimer.Elapsed.TotalSeconds < 60.0)
+                    break;
+
+                case RecontainmentDamageHandler recontainmentDamageHandler:
+                    if (deadPlayer.GetRoleId() == RoleTypeId.Scp106)
                     {
-                        Send(scpDamageHandler.Attacker.Hub, AchievementName.TurnThemAll);
+                        Send(recontainmentDamageHandler.Attacker.Hub, AchievementName.SecureContainProtect);
                     }
-                    return;
-                }
-            }
-            else if (explosionDamageHandler.Attacker.Hub != null)
-            {
-                if (explosionDamageHandler.Attacker.Hub != deadPlayer)
-                {
-                    Send(explosionDamageHandler.Attacker.Hub, AchievementName.FirstTime);
-                }
-                return;
-            }
-            attackerDamageHandler = (AttackerDamageHandler)handler;
-            goto IL_00f9;
-        IL_00f9:
-            if (attackerDamageHandler.Attacker.Hub != null)
-            {
-                HandleAttackerKill(deadPlayer, attackerDamageHandler);
+                    break;
+
+                case ExplosionDamageHandler explosionDamageHandler:
+                    if (explosionDamageHandler.Attacker.Hub == deadPlayer)
+                    {
+                        Send(deadPlayer, AchievementName.Rocket);
+                    }
+                    break;
             }
         }
 
@@ -77,9 +95,22 @@ namespace Achievements.Handlers
         {
             ReferenceHub hub = faDH.Attacker.Hub;
             RoleTypeId roleId = deadPlayer.GetRoleId();
-            switch (faDH.Attacker.Role.GetTeam())
+
+            if (hub.IsSCP() && deadPlayer.inventory.CurInstance is MicroHIDItem microHid && (microHid.State == HidState.PoweringUp || microHid.State == HidState.Firing))
             {
-                case Team.Scientists:
+                Send(hub, AchievementName.IllPassThanks);
+            }
+
+            switch (faDH.Attacker.Role)
+            {
+                case RoleTypeId.ClassD:
+                    if (roleId == RoleTypeId.Scientist && deadPlayer.inventory.CurInstance is KeycardItem)
+                    {
+                        Send(hub, AchievementName.Betrayal);
+                    }
+                    break;
+
+                case RoleTypeId.Scientist:
                     if (roleId == RoleTypeId.ClassD)
                     {
                         Send(hub, AchievementName.JustResources);
@@ -89,16 +120,6 @@ namespace Achievements.Handlers
                         Send(hub, AchievementName.SomethingDoneRight);
                     }
                     break;
-                case Team.ClassD:
-                    if (roleId == RoleTypeId.Scientist && deadPlayer.inventory.CurInstance is KeycardItem)
-                    {
-                        Send(faDH.Attacker.Hub, AchievementName.ThatCanBeUseful);
-                    }
-                    break;
-            }
-            if (deadPlayer.GetRoleId() == RoleTypeId.Scp096 && (deadPlayer.roleManager.CurrentRole as Scp096Role).IsRageState(Scp096RageState.Distressed))
-            {
-                Send(faDH.Attacker.Hub, AchievementName.Betrayal);
             }
         }
 

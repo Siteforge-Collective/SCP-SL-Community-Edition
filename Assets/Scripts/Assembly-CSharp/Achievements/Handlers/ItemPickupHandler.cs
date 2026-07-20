@@ -23,7 +23,7 @@ namespace Achievements.Handlers
             {
                 if (ib is KeycardItem { ItemTypeId: ItemType.KeycardO5 })
                 {
-                    AchievementHandlerBase.ServerAchieve(ply.connectionToClient, AchievementName.GearUp);
+                      AchievementHandlerBase.ServerAchieve(ply.connectionToClient, AchievementName.Power);
                 }
                 else if (ply.GetRoleId() == RoleTypeId.ClassD && ib is Firearm)
                 {

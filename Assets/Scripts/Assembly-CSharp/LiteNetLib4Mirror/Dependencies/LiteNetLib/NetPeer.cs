@@ -822,10 +822,8 @@ namespace LiteNetLib
             return ConnectRequestResult.None;
         }
 
-        //Process incoming packet
         internal void ProcessPacket(NetPacket packet)
         {
-            //not initialized
             if (_connectionState == ConnectionState.Incoming)
             {
                 _packetPool.Recycle(packet);
@@ -858,7 +856,6 @@ namespace LiteNetLib
                         ProcessPacket(mergedPacket);
                     }
                     break;
-                //If we get ping, send pong
                 case PacketProperty.Ping:
                     if (NetUtils.RelativeSequenceNumber(packet.Sequence, _pongPacket.Sequence) > 0)
                     {
@@ -870,7 +867,6 @@ namespace LiteNetLib
                     _packetPool.Recycle(packet);
                     break;
 
-                //If we get pong, calculate ping time and rtt
                 case PacketProperty.Pong:
                     if (packet.Sequence == _pingPacket.Sequence)
                     {
@@ -886,7 +882,7 @@ namespace LiteNetLib
 
                 case PacketProperty.Ack:
                 case PacketProperty.Channeled:
-                    if (packet.ChannelId > _channels.Length)
+                    if (packet.ChannelId >= _channels.Length)
                     {
                         _packetPool.Recycle(packet);
                         break;

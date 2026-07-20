@@ -323,6 +323,9 @@ public class CustomNetworkManager : LiteNetLib4MirrorNetworkManager
         _challengeRetries = 0;
         _preauthReconnectAttempts = 0;
         reconnecting = false;
+        CustomLiteNetLib4MirrorTransport.LastRejectionReason = RejectionReason.NotSpecified;
+        CustomLiteNetLib4MirrorTransport.LastCustomReason = string.Empty;
+        CustomLiteNetLib4MirrorTransport.LastBanExpiration = 0L;
         CustomNetworkManager.OnClientReady?.Invoke();
     }
 
@@ -412,6 +415,15 @@ public class CustomNetworkManager : LiteNetLib4MirrorNetworkManager
         if (!string.IsNullOrWhiteSpace(CentralAuthManager.GlobalBanReason))
         {
             ShowLog(8, CentralAuthManager.GlobalBanReason, "", "");
+            return;
+        }
+
+        string serverReason = SanitizeRejectionReason(Mirror.LiteNetLib4Mirror.LiteNetLib4MirrorClient.LastDisconnectReason);
+        if (!string.IsNullOrWhiteSpace(serverReason))
+        {
+            if (serverReason.Length > 400)
+                serverReason = serverReason.Substring(0, 400);
+            ShowLog(29, serverReason, "", "");
             return;
         }
 
