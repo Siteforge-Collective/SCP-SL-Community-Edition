@@ -124,6 +124,7 @@ public class MainMenuScript : MonoBehaviour
         SensitivitySettings.RawInput = PlayerPrefsSl.Get("RawInput", false);
         SensitivitySettings.SmoothInput = PlayerPrefsSl.Get("SmoothInput", false);
         SensitivitySettings.SensMultiplier = PlayerPrefsSl.Get("Sens", 1f);
+        SensitivitySettings.AdsReductionMultiplier = PlayerPrefsSl.Get("SensAds", 1f);
     }
 
     private void SetAudioLevelsFromPrefs()
