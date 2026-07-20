@@ -97,6 +97,13 @@ namespace VoiceChat
                     _locally.SetActive(value: true);
                     _globally.SetActive(value: false);
                     break;
+                case global::VoiceChat.VcMuteFlags.LocalRegular | global::VoiceChat.VcMuteFlags.GlobalRegular:
+                    // v12 left this reachable combination (server-mute + local-mute) without a case,
+                    // so the indicator kept a stale state. Show both sub-indicators.
+                    _root.SetActive(value: true);
+                    _locally.SetActive(value: true);
+                    _globally.SetActive(value: true);
+                    break;
                 case global::VoiceChat.VcMuteFlags.LocalIntercom:
                 case global::VoiceChat.VcMuteFlags.LocalRegular | global::VoiceChat.VcMuteFlags.LocalIntercom:
                     break;

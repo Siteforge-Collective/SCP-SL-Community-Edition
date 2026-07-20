@@ -250,6 +250,11 @@ namespace InventorySystem.Items.Firearms
                 {
                     _ammoCounterElements[i].Refresh(isCocked, status.Ammo);
                 }
+
+                for (int i = 0; i < _bullets.Length; i++)
+                {
+                    _bullets[i].SetActive(i < status.Ammo);
+                }
             }
 
             _prevStatus = status;

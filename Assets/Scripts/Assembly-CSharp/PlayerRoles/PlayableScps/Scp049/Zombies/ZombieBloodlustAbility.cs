@@ -15,6 +15,8 @@ namespace PlayerRoles.PlayableScps.Scp049.Zombies
 
         private readonly Stopwatch _simulatedStareSw;
 
+        private bool _lastSentLookingAtTarget;
+
         public bool LookingAtTarget { get; private set; }
 
         public float SimulatedStare
@@ -37,9 +39,20 @@ namespace PlayerRoles.PlayableScps.Scp049.Zombies
             if (!base.Role.TryGetOwner(out var hub))
                 return;
 
-            bool lookingAtTarget = SimulatedStare > 0f || AnyTargets(hub, hub.PlayerCameraReference);
-            LookingAtTarget = lookingAtTarget;
-            ServerSendRpc(toAll: true);
+            LookingAtTarget = SimulatedStare > 0f || AnyTargets(hub, hub.PlayerCameraReference);
+
+            // v12 broadcast a reliable RPC to every ready client each server frame
+            // regardless of whether the value changed, so the load scaled as
+            // zombies * clients * server FPS. Only the owner meaningfully consumes
+            // LookingAtTarget (its own client-side movement prediction) and it is
+            // always ready, so sending solely on change is behaviourally identical
+            // while dropping the per-frame reliable-message spam. Both server and
+            // client start at false, so the gated state stays in sync from spawn.
+            if (LookingAtTarget != _lastSentLookingAtTarget)
+            {
+                _lastSentLookingAtTarget = LookingAtTarget;
+                ServerSendRpc(toAll: true);
+            }
         }
 
         private bool AnyTargets(ReferenceHub owner, Transform camera)
@@ -84,6 +97,8 @@ namespace PlayerRoles.PlayableScps.Scp049.Zombies
         public void ResetObject()
         {
             _simulatedStareTime = 0f;
+            LookingAtTarget = false;
+            _lastSentLookingAtTarget = false;
         }
         public ZombieBloodlustAbility()
         {

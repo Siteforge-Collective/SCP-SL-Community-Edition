@@ -10,6 +10,11 @@ public class CameraFocuser : MonoBehaviour
 
 	private void OnTriggerStay(Collider other)
 	{
-		throw null;
+		ReferenceHub hub = ReferenceHub.GetHub(other.transform.root.gameObject);
+		if (hub != null && hub.characterClassManager.isLocalPlayer)
+		{
+			base.transform.LookAt(lookTarget);
+			Mathf.Clamp(Quaternion.Angle(hub.PlayerCameraReference.rotation, base.transform.rotation), minimumAngle, 70f);
+		}
 	}
 }

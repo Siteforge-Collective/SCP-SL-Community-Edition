@@ -71,7 +71,7 @@ namespace RemoteAdmin.Menus
                 2 => p => p.DisplayName,
                 _ => p => p.DisplayName,
             };
-            bool descending = RaSettings.Singleton?.ToggleItemOrder?.ToString() != null;
+            bool descending = RaSettings.Singleton?.ToggleItemOrder?.Value ?? false;
             var ordered = descending
                 ? PrintedItems.OrderByDescending(keySelector)
                 : PrintedItems.OrderBy(keySelector);

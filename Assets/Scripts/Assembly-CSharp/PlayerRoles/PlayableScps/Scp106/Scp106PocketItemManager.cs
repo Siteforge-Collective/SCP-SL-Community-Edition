@@ -183,7 +183,7 @@ namespace PlayerRoles.PlayableScps.Scp106
                 if (!(pos.y < HeightLimit.x) && TryGetRoofPosition(pos, out var roofPos))
                 {
                     ValidPositionsNonAlloc[count] = roofPos;
-                    if (++count > MaxValidPositions)
+                    if (++count >= MaxValidPositions)
                         break;
                 }
             }
@@ -199,7 +199,7 @@ namespace PlayerRoles.PlayableScps.Scp106
                     && TryGetRoofPosition(room.transform.position, out var roofPos2))
                 {
                     ValidPositionsNonAlloc[count] = roofPos2;
-                    if (++count > MaxValidPositions)
+                    if (++count >= MaxValidPositions)
                         break;
                 }
             }

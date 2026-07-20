@@ -42,10 +42,10 @@ wiggy";
 			CreditsList creditsList = JsonSerialize.FromJson<CreditsList>(text);
 			var categoriesList = new List<CreditsCategory>();
 
-			var manifestFiles = Directory.EnumerateFiles("Translations/", "manifest.json", SearchOption.TopDirectoryOnly);
+			var manifestFiles = Directory.EnumerateFiles("Translations/", "manifest.json", SearchOption.AllDirectories);
 			var manifests = manifestFiles.Select(JsonSerialize.FromFile<TranslationManifest>).ToList();
 
-			foreach (var categoryData in creditsList.Members) 
+			foreach (var categoryData in creditsList.Members)
 			{
 				var entriesList = new List<CreditsEntry>();
 
@@ -62,43 +62,53 @@ wiggy";
 					Color thankYouColor = new Color32(0xD7, 0xFF, 0xFF, 0xFF);
 					var specialEntry = new CreditsEntry(thankYouText, CurrentNicknamePlaceholder, thankYouColor);
 					entriesList.Add(specialEntry);
-				}
 
-				var category = new CreditsCategory
-				{
-					Header = categoryData.category,
-					Records = entriesList.ToArray(),
-					DisplayTime = 2000
-				};
-				categoriesList.Add(category);
+					categoriesList.Add(new CreditsCategory
+					{
+						Header = categoryData.category,
+						Records = entriesList.ToArray(),
+						DisplayTime = 2000
+					});
 
-				entriesList.Clear();
+					// Community translators are appended once, right after SPECIAL THANKS,
+					// reusing the (now cleared) entries list — one entry per author.
+					entriesList.Clear();
 
-				if (manifests.Count > 0)
-				{
-					var translatorEntries = new List<CreditsEntry>();
 					foreach (var manifest in manifests)
 					{
-						string translatorName = Path.GetFileNameWithoutExtension(manifest.Name); 
-																								 
-						int dashIndex = translatorName.IndexOf('-');
+						if (manifest.Name == "English (default)")
+							continue;
+
+						string languageName = manifest.Name;
+						int dashIndex = languageName.IndexOf('-');
 						if (dashIndex >= 0)
-							translatorName = translatorName.Substring(dashIndex + 1).Trim();
+							languageName = languageName.Substring(dashIndex + 2);
 
-						var translatorEntry = new CreditsEntry(translatorName);
-						translatorEntries.Add(translatorEntry);
-					}
-
-					if (translatorEntries.Count > 0)
-					{
-						var translatorCategory = new CreditsCategory
+						if (manifest.Authors != null)
 						{
-							Header = "COMMUNITY TRANSLATORS",
-							Records = translatorEntries.ToArray(),
-							DisplayTime = 2000
-						};
-						categoriesList.Add(translatorCategory);
+							foreach (var author in manifest.Authors)
+								entriesList.Add(new CreditsEntry(languageName, author));
+						}
+
+						// Blank spacer between languages.
+						entriesList.Add(new CreditsEntry("", ""));
 					}
+
+					categoriesList.Add(new CreditsCategory
+					{
+						Header = "COMMUNITY TRANSLATORS",
+						Records = entriesList.ToArray(),
+						DisplayTime = 2000
+					});
+				}
+				else
+				{
+					categoriesList.Add(new CreditsCategory
+					{
+						Header = categoryData.category,
+						Records = entriesList.ToArray(),
+						DisplayTime = 2000
+					});
 				}
 			}
 

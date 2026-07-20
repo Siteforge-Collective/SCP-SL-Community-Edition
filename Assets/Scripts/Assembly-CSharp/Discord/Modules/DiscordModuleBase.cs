@@ -5,7 +5,7 @@ namespace Discord.Modules
     public abstract class DiscordModuleBase : MonoBehaviour
     {
         [SerializeField]
-        protected bool _isEnabled;
+        protected bool _isEnabled = true;
 
         public virtual bool IsEnabled
         {
@@ -15,8 +15,9 @@ namespace Discord.Modules
 
         public void UpdateModule()
         {
-            if (this.ToString() != null)
+            if (IsEnabled)
             {
+                OnUpdateModule();
             }
         }
 

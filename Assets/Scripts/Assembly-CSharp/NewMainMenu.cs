@@ -55,7 +55,7 @@ public class NewMainMenu : MonoBehaviour
                 string host = ip.Substring(1, end - 1);
                 string portStr = ip.Substring(end + 2);
 
-                if (Misc.ValidateIpOrHostname(host, out _, true, true) && ushort.TryParse(portStr, out ushort port))
+                if ((skipValidation || Misc.ValidateIpOrHostname(host, out _, true, true)) && ushort.TryParse(portStr, out ushort port))
                 {
                     _mng.networkAddress = host;
                     Mirror.LiteNetLib4Mirror.LiteNetLib4MirrorTransport.Singleton.port = port;
@@ -71,7 +71,7 @@ public class NewMainMenu : MonoBehaviour
                 string host = ip.Substring(0, colonIndex);
                 string portStr = ip.Substring(colonIndex + 1);
 
-                if (Misc.ValidateIpOrHostname(host, out _, true, true) && ushort.TryParse(portStr, out ushort port))
+                if ((skipValidation || Misc.ValidateIpOrHostname(host, out _, true, true)) && ushort.TryParse(portStr, out ushort port))
                 {
                     _mng.networkAddress = host;
                     Mirror.LiteNetLib4Mirror.LiteNetLib4MirrorTransport.Singleton.port = port;
@@ -80,7 +80,7 @@ public class NewMainMenu : MonoBehaviour
             }
         }
 
-        if (Misc.ValidateIpOrHostname(ip, out _, true, true))
+        if (skipValidation || Misc.ValidateIpOrHostname(ip, out _, true, true))
         {
             _mng.networkAddress = ip;
             Mirror.LiteNetLib4Mirror.LiteNetLib4MirrorTransport.Singleton.port = 7777;
@@ -193,6 +193,13 @@ public class NewMainMenu : MonoBehaviour
 
         if (SetIPOrHost(ip, skipValidation))
         {
+            // v12 recorded the target in SetIPOrHost so a successful direct connect would
+            // enable Rejoin with the right address. Do it here on the success path (SetIPOrHost
+            // is only reached from Connect) to avoid v12's quirk of also storing invalid input.
+            // LastIp drives ReJoin(); IPHistory drives the Rejoin button state in Update().
+            CustomNetworkManager.LastIp = ip;
+            FavoriteAndHistory.Modify(FavoriteAndHistory.StorageLocation.IPHistory, ip, false);
+
             if (SteamLobby.singleton?.Lobby != null)
                 SteamLobby.singleton.LeaveLobby();
 

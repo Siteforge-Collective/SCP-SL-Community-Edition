@@ -2,6 +2,7 @@ using System;
 using CameraShaking;
 using InventorySystem.Items.SwayControllers;
 using Mirror;
+using PlayerRoles.Voice;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -231,9 +232,29 @@ namespace InventorySystem.Items.Radio
 
         private void GetTxRx(out bool tx, out bool rx)
         {
-            tx = PersonalRadioPlayback.IsTransmitting(Hub);
-
+            tx = false;
             rx = false;
+
+            foreach (ReferenceHub hub in ReferenceHub.AllHubs)
+            {
+                if (hub.roleManager.CurrentRole is not IVoiceRole)
+                    continue;
+
+                if (!PersonalRadioPlayback.IsTransmitting(hub))
+                    continue;
+
+                if (hub == Hub)
+                {
+                    tx = true;
+                    continue;
+                }
+
+                if (hub.roleManager.CurrentRole is IVoiceRole { VoiceModule: IRadioVoiceModule radioModule }
+                    && !radioModule.RadioPlayback.Source.mute)
+                {
+                    rx = true;
+                }
+            }
         }
 
         private void SetBattery(byte percent)

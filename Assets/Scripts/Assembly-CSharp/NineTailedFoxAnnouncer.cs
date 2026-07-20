@@ -396,6 +396,15 @@ public class NineTailedFoxAnnouncer : MonoBehaviour
         if (!rawNumber)
         {
             float num = CalculateDuration(tts);
+            if (customAnnouncement)
+            {
+                string subtitleText = WhiteSpaceRegex.Replace(UniqueKeyRegex.Replace(tts, string.Empty), " ").Trim();
+                SubtitleController.Singleton?.AddSubtitle(subtitleText, Mathf.Max(5f, num), new Subtitle
+                {
+                    SubtitleCategory = CassieAnnouncementType.Normal,
+                    Delay = generateNoise ? 3f : 0f
+                });
+            }
             int num2 = 0;
             for (int i = 0; i < backgroundLines.Length - 1; i++)
             {

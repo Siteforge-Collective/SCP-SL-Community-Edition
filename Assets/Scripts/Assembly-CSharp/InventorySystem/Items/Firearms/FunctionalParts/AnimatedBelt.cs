@@ -13,22 +13,91 @@ namespace InventorySystem.Items.Firearms.FunctionalParts
         private bool _wasActive;
         private readonly Stopwatch _stopwatch = new();
 
-        private int GetDisplayAmmo()
+        private FirearmStatus CurStatus
         {
-            Firearm fa = Firearm;
-            if (fa == null) return 0;
+            get
+            {
+                Firearm fa = Firearm;
+                if (fa == null)
+                    return default;
 
-            return fa.Status.Ammo;
+                // Local player reads the predicted (client-side) status so the belt reacts instantly;
+                // spectators use the networked status.
+                return fa.IsLocalPlayer ? fa.ActionModule.PredictedStatus : fa.Status;
+            }
+        }
+
+        private void OnEnable()
+        {
+            if (!_wasActive)
+                return;
+
+            Firearm fa = Firearm;
+            if (fa != null)
+                Refresh(fa.Status.Ammo);
         }
 
         private void Start()
         {
             _wasActive = true;
+
             Firearm fa = Firearm;
-            if (fa != null) fa.OnShotCalled += OnShot;
+            if (fa != null)
+                fa.OnShotCalled += OnShot;
 
             _stopwatch.Start();
-            Refresh(GetDisplayAmmo());
+
+            if (fa != null)
+                Refresh(fa.Status.Ammo);
+        }
+
+        private void LateUpdate()
+        {
+            // Suppress belt re-evaluation for a short window after every shot so the fire animation
+            // can play out without the belt snapping the count around.
+            if (_minimalCooldown > _stopwatch.Elapsed.TotalSeconds)
+                return;
+
+            Firearm fa = Firearm;
+            if (fa == null)
+                return;
+
+            AnimatedFirearmViewmodel viewmodel = fa.ClientViewmodel;
+            if (viewmodel == null)
+                return;
+
+            int curTag = viewmodel.GetAnimatorStateInfo(_idleLayer).tagHash;
+            int targetAmmo = GetTargetAmmo(curTag, _prevBullets, CurStatus);
+            if (targetAmmo != _prevBullets)
+                Refresh(targetAmmo);
+        }
+
+        private int GetTargetAmmo(int curTag, int prev, FirearmStatus status)
+        {
+            Firearm fa = Firearm;
+
+            if (curTag == FirearmAnimatorHashes.Reload)
+            {
+                byte maxAmmo = fa.AmmoManagerModule.MaxAmmo;
+
+                // Spectator: show the synced ammo while it is meaningful, otherwise fill the belt.
+                if (!fa.IsLocalPlayer)
+                    return status.Ammo != 0 ? status.Ammo : maxAmmo;
+
+                // Mag inserted -> the belt just mirrors the loaded ammo.
+                if ((status.Flags & FirearmStatusFlags.MagazineInserted) != 0)
+                    return status.Ammo;
+
+                // Feeding from inventory: never show more rounds than are actually available.
+                int inventoryAmmo = fa.OwnerInventory.GetCurAmmo(fa.AmmoType);
+                return Mathf.Min(inventoryAmmo, maxAmmo);
+            }
+
+            if (curTag == FirearmAnimatorHashes.Idle)
+                return status.Ammo;
+
+            // Any other animator state (e.g. firing) keeps the currently displayed count.
+            return prev;
         }
 
         private void OnDestroy()
@@ -38,26 +107,33 @@ namespace InventorySystem.Items.Firearms.FunctionalParts
                 fa.OnShotCalled -= OnShot;
         }
 
-        private void OnEnable()
-        {
-            if (!_wasActive) return;
-            Refresh(GetDisplayAmmo());
-        }
-
         private void OnShot()
         {
-            int curAmmo = GetDisplayAmmo();
+            FirearmStatus status = CurStatus;
+
+            Firearm fa = Firearm;
+            if (fa == null)
+                return;
+
+            // Keep the just-fired round on the belt for the local shooter until the fire animation
+            // settles; a spectator sees the plain networked count.
+            int curAmmo = status.Ammo + (fa.IsSpectated ? 0 : 1);
             Refresh(curAmmo);
             _stopwatch.Restart();
         }
 
         private void Refresh(int curAmmo)
         {
-            for (int i = 0; i < _bullets.Length; i++)
+            if (_bullets != null)
             {
-                if (_bullets[i] != null)
-                    _bullets[i].SetActive(i < curAmmo);
+                for (int i = 0; i < _bullets.Length; i++)
+                {
+                    GameObject bullet = _bullets[i];
+                    if (bullet != null)
+                        bullet.SetActive(i < curAmmo);
+                }
             }
+
             _prevBullets = curAmmo;
         }
     }

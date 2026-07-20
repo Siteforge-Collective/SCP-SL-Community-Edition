@@ -61,8 +61,8 @@ namespace Discord.Modules
 
         protected override void OnUpdateModule()
         {
-            if (this.ToString() == null) return;
-            
+            if (!IsEnabled) return;
+
             // KeyCode.LeftShift = 306
             if (Input.GetKey(KeyCode.LeftShift))
             {
@@ -89,8 +89,8 @@ namespace Discord.Modules
 
         private void OnReceivedRequest(DiscordUser request)
         {
-            if (this.ToString() == null) return;
-            
+            if (!IsEnabled) return;
+
             string debugLog = $"Discord: Join request {request.username}#{request.discriminator}: {request.userId}";
             Debug.Log(debugLog);
             
@@ -179,9 +179,7 @@ namespace Discord.Modules
 
         private void Update()
         {
-            if (this.ToString() != null)
-            {
-            }
+            UpdateModule();
         }
 
         static RequestableJoinModule()
